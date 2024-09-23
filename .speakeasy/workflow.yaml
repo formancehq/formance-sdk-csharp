@@ -1,0 +1,9 @@
+workflowVersion: 1.0.0
+sources:
+    my-source:
+        inputs:
+            - location: https://raw.githubusercontent.com/formancehq/stack/releases/download/v2.1.0-beta.2/generate.json
+targets:
+    formance:
+        target: csharp
+        source: my-source

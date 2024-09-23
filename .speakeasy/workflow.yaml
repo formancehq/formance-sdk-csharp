@@ -7,3 +7,6 @@ targets:
     formance:
         target: csharp
         source: my-source
+        publish:
+            nuget:
+                apiKey: $nuget_api_key

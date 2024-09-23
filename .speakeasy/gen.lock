@@ -3,10 +3,12 @@ id: bb4a1c17-4efb-4cf4-a5bb-53737f9f624b
 management:
   docChecksum: da9839425759ec1e92b6441bb2f3ca7c
   docVersion: v2.1.0-beta.2
-  speakeasyVersion: 1.401.3
+  speakeasyVersion: 1.401.4
   generationVersion: 2.421.3
-  releaseVersion: 0.0.1
-  configChecksum: 8063a7b30ef0a0ddbc49954143da036b
+  releaseVersion: 0.0.2
+  configChecksum: c4f741a6d40c958756f9625b5345c2d9
+  repoURL: https://github.com/formancehq/formance-sdk-csharp.git
+  published: true
 features:
   csharp:
     additionalDependencies: 0.1.0
@@ -30,6 +32,7 @@ features:
 generatedFiles:
   - .gitattributes
   - CONTRIBUTING.md
+  - NUGET.md
   - USAGE.md
   - docs/Models/Components/Account.md
   - docs/Models/Components/AccountBalance.md
@@ -1997,7 +2000,7 @@ examples:
         application/json: []
       responses:
         "200":
-          application/json: {"data": [{"responseType": "<value>"}, {"responseType": "<value>", "data": {"timestamp": "2023-12-06T13:18:01.588Z", "postings": [], "reference": "ref:001", "metadata": {"admin": "true"}, "id": 715139, "reverted": false}}]}
+          application/json: {"data": [{"responseType": "<value>"}, {"responseType": "<value>"}]}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param", "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9"}
   v2CountAccounts:
@@ -2507,7 +2510,7 @@ examples:
         path:
           connector: "ATLAR"
       requestBody:
-        application/json: {"name": "My Wise Account", "apiKey": "XXX", "pollingPeriod": "60s"}
+        application/json: {"name": "My Stripe Account", "pollingPeriod": "60s", "apiKey": "XXX", "pageSize": 50}
       responses:
         "201":
           application/json: {"data": {"connectorID": "<value>"}}
@@ -2589,7 +2592,7 @@ examples:
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
       responses:
         "200":
-          application/json: {"cursor": {"pageSize": 15, "hasMore": false, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=", "next": "", "data": [{"id": "6943abad-61f7-4aa0-9d99-1cf9266dd481", "connectorID": "<value>", "createdAt": "2024-07-04T01:56:37.650Z", "updatedAt": "2023-10-09T13:20:53.465Z", "status": "REFUNDED_FAILURE"}, {"id": "3f678351-bc60-40cf-93ef-fe2c5cad006d", "connectorID": "<value>", "createdAt": "2024-12-26T02:29:47.666Z", "updatedAt": "2024-07-09T19:34:39.545Z", "status": "FAILED"}]}}
+          application/json: {"cursor": {"pageSize": 15, "hasMore": false, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=", "next": "", "data": [{"id": "886943ab-ad61-4f7a-aa0d-991cf9266dd4", "connectorID": "<value>", "createdAt": "2022-05-16T07:33:51.038Z", "updatedAt": "2022-11-26T05:11:01.390Z", "status": "DISPUTE_LOST"}, {"id": "9c3f6783-51bc-4600-9cf3-effe2c5cad00", "connectorID": "<value>", "createdAt": "2024-07-09T22:31:35.113Z", "updatedAt": "2022-12-08T11:15:27.700Z", "status": "OTHER"}]}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   listConnectorTasksV1:
@@ -2603,7 +2606,7 @@ examples:
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
       responses:
         "200":
-          application/json: {"cursor": {"pageSize": 15, "hasMore": false, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=", "next": "", "data": [{"id": "8119bf1d-77f0-4d7a-995f-6d1de55906fa", "connectorID": "<value>", "createdAt": "2022-05-12T10:18:09.979Z", "updatedAt": "2023-03-21T09:33:37.490Z", "status": "PENDING"}, {"id": "a636e772-b1d5-43e6-ae1a-0f8d94fbd4d0", "connectorID": "<value>", "createdAt": "2024-05-01T19:24:21.069Z", "updatedAt": "2022-07-22T00:43:14.965Z", "status": "DISPUTE_WON"}, {"id": "c3d5edc7-f3fc-4d2b-a143-091094b0590a", "connectorID": "<value>", "createdAt": "2024-01-15T12:09:57.416Z", "updatedAt": "2023-06-24T13:40:46.786Z", "status": "PENDING"}]}}
+          application/json: {"cursor": {"pageSize": 15, "hasMore": false, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=", "next": "", "data": [{"id": "d98119bf-1d77-4f0d-b7a9-5f6d1de55906", "connectorID": "<value>", "createdAt": "2024-01-16T16:40:27.524Z", "updatedAt": "2023-02-09T19:28:55.619Z", "status": "SUCCEEDED"}, {"id": "06a636e7-72b1-4d53-be6e-1a0f8d94fbd4", "connectorID": "<value>", "createdAt": "2022-01-08T13:15:09.022Z", "updatedAt": "2023-08-12T22:43:33.297Z", "status": "DISPUTE_WON"}, {"id": "cdc3d5ed-c7f3-4fcd-82b1-43091094b059", "connectorID": "<value>", "createdAt": "2024-01-10T15:35:11.364Z", "updatedAt": "2023-12-01T06:30:11.766Z", "status": "DISPUTE"}]}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getConnectorTask:
@@ -2614,7 +2617,7 @@ examples:
           taskId: "task1"
       responses:
         "200":
-          application/json: {"data": {"id": "b8d4a71b-a457-4542-9afd-b17eed3b13ec", "connectorID": "<value>", "createdAt": "2023-02-23T14:24:02.658Z", "updatedAt": "2022-08-01T16:40:57.832Z", "status": "DISPUTE_WON"}}
+          application/json: {"data": {"id": "3b8d4a71-ba45-4754-b2af-db17eed3b13e", "connectorID": "<value>", "createdAt": "2023-05-12T00:30:44.775Z", "updatedAt": "2023-02-23T14:24:02.658Z", "status": "CANCELLED"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getConnectorTaskV1:
@@ -2626,7 +2629,7 @@ examples:
           taskId: "task1"
       responses:
         "200":
-          application/json: {"data": {"id": "2592c3a8-ba28-46c9-923f-e1c798f795cd", "connectorID": "<value>", "createdAt": "2022-10-03T13:49:03.180Z", "updatedAt": "2022-05-07T01:38:27.888Z", "status": "OTHER"}}
+          application/json: {"data": {"id": "72592c3a-8ba2-486c-b923-fe1c798f795c", "connectorID": "<value>", "createdAt": "2023-06-06T06:02:13.035Z", "updatedAt": "2022-10-03T13:49:03.180Z", "status": "SUCCEEDED"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   connectorsTransfer:
@@ -2639,6 +2642,7 @@ examples:
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
+        "200": {}
   searchgetServerInfo:
     speakeasy-default-searchget-server-info:
       responses:
@@ -3196,7 +3200,7 @@ examples:
           instanceID: "xxx"
       responses:
         "200":
-          application/json: {"data": [{"name": "<value>", "terminated": false, "startedAt": "2022-01-03T13:54:16.848Z"}, {"name": "<value>", "terminated": true, "startedAt": "2022-01-08T05:52:07.535Z"}]}
+          application/json: {"data": [{"name": "<value>", "input": {"event": "<value>"}, "terminated": false, "startedAt": "2022-01-03T13:54:16.848Z"}, {"name": "<value>", "terminated": true, "startedAt": "2022-01-08T05:52:07.535Z"}]}
         default:
           application/json: {"errorCode": "INTERNAL", "errorMessage": "<value>"}
   v2GetInstanceStageHistory:

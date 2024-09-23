@@ -1,0 +1,12 @@
+# StageStatus
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `Stage`                                                                               | *double*                                                                              | :heavy_check_mark:                                                                    | N/A                                                                                   |
+| `InstanceID`                                                                          | *string*                                                                              | :heavy_check_mark:                                                                    | N/A                                                                                   |
+| `StartedAt`                                                                           | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_check_mark:                                                                    | N/A                                                                                   |
+| `TerminatedAt`                                                                        | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `Error`                                                                               | *string*                                                                              | :heavy_minus_sign:                                                                    | N/A                                                                                   |

@@ -1,0 +1,9 @@
+# V2GetTransactionResponse
+
+
+## Fields
+
+| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `HttpMeta`                                                                                        | [HTTPMetadata](../../Models/Components/HTTPMetadata.md)                                           | :heavy_check_mark:                                                                                | N/A                                                                                               |
+| `V2GetTransactionResponse`                                                                        | [Models.Components.V2GetTransactionResponse](../../Models/Components/V2GetTransactionResponse.md) | :heavy_minus_sign:                                                                                | OK                                                                                                |

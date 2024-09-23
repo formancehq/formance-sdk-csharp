@@ -1,0 +1,9 @@
+# V2CreateWorkflowResponse
+
+
+## Fields
+
+| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `HttpMeta`                                                                                        | [HTTPMetadata](../../Models/Components/HTTPMetadata.md)                                           | :heavy_check_mark:                                                                                | N/A                                                                                               |
+| `V2CreateWorkflowResponse`                                                                        | [Models.Components.V2CreateWorkflowResponse](../../Models/Components/V2CreateWorkflowResponse.md) | :heavy_minus_sign:                                                                                | Created workflow                                                                                  |

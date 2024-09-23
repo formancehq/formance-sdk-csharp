@@ -1,0 +1,9 @@
+# V2ListTriggersOccurrencesResponse
+
+
+## Fields
+
+| Field                                                                                                               | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `HttpMeta`                                                                                                          | [HTTPMetadata](../../Models/Components/HTTPMetadata.md)                                                             | :heavy_check_mark:                                                                                                  | N/A                                                                                                                 |
+| `V2ListTriggersOccurrencesResponse`                                                                                 | [Models.Components.V2ListTriggersOccurrencesResponse](../../Models/Components/V2ListTriggersOccurrencesResponse.md) | :heavy_minus_sign:                                                                                                  | List of triggers occurrences                                                                                        |

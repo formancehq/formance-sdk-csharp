@@ -1,0 +1,9 @@
+# V2CreateTriggerResponse
+
+
+## Fields
+
+| Field                                                                                           | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `HttpMeta`                                                                                      | [HTTPMetadata](../../Models/Components/HTTPMetadata.md)                                         | :heavy_check_mark:                                                                              | N/A                                                                                             |
+| `V2CreateTriggerResponse`                                                                       | [Models.Components.V2CreateTriggerResponse](../../Models/Components/V2CreateTriggerResponse.md) | :heavy_minus_sign:                                                                              | Created trigger                                                                                 |

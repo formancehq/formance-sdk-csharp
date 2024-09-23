@@ -1,0 +1,9 @@
+# V2GetInstanceStageHistoryResponse
+
+
+## Fields
+
+| Field                                                                                                             | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
+| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `HttpMeta`                                                                                                        | [HTTPMetadata](../../Models/Components/HTTPMetadata.md)                                                           | :heavy_check_mark:                                                                                                | N/A                                                                                                               |
+| `V2GetWorkflowInstanceHistoryStageResponse`                                                                       | [V2GetWorkflowInstanceHistoryStageResponse](../../Models/Components/V2GetWorkflowInstanceHistoryStageResponse.md) | :heavy_minus_sign:                                                                                                | The workflow instance stage history                                                                               |

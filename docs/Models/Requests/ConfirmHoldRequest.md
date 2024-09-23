@@ -1,0 +1,10 @@
+# ConfirmHoldRequest
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `HoldId`                                                                              | *string*                                                                              | :heavy_check_mark:                                                                    | N/A                                                                                   |
+| `IdempotencyKey`                                                                      | *string*                                                                              | :heavy_minus_sign:                                                                    | Use an idempotency key                                                                |
+| `ConfirmHoldRequest`                                                                  | [Models.Components.ConfirmHoldRequest](../../Models/Components/ConfirmHoldRequest.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |

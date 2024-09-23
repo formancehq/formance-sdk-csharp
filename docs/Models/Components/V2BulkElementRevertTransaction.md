@@ -1,0 +1,10 @@
+# V2BulkElementRevertTransaction
+
+
+## Fields
+
+| Field                                                                                               | Type                                                                                                | Required                                                                                            | Description                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `Action`                                                                                            | *string*                                                                                            | :heavy_check_mark:                                                                                  | N/A                                                                                                 |
+| `Ik`                                                                                                | *string*                                                                                            | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |
+| `Data`                                                                                              | [V2BulkElementRevertTransactionData](../../Models/Components/V2BulkElementRevertTransactionData.md) | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |

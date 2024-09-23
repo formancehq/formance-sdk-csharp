@@ -33,6 +33,6 @@ csharp:
   maxMethodParams: 4
   outputModelSuffix: output
   packageName: formance
-  packageTags: "formance SDK"
+  packageTags: formance SDK
   responseFormat: envelope-http
   sourceDirectory: src

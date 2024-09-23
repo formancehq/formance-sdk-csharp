@@ -48,6 +48,15 @@ and standard method from web, mobile and desktop applications.
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
+### NuGet
+
+To add the [NuGet](https://www.nuget.org/) package to a .NET project:
+```bash
+dotnet add package formance
+```
+
+### Locally
+
 To add a reference to a local instance of the SDK in a .NET project:
 ```bash
 dotnet add reference src/formance/formance.csproj

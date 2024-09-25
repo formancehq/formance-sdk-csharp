@@ -76,10 +76,15 @@ You can override the default server globally by passing a server index to the `s
 | # | Server | Variables |
 | - | ------ | --------- |
 | 0 | `http://localhost` | None |
-| 1 | `https://{stack}.sandbox.formance.cloud` | None |
+| 1 | `https://{organization}.{environment}.formance.cloud` | `organization` (default is `orgID-stackID`), `environment` (default is `sandbox`) |
 
 
 
+#### Variables
+
+Some of the server options above contain variables. If you want to set the values of those variables, the following options are provided for doing so:
+ * `organization: string`
+ * `environment: ServerEnvironment`
 
 ### Override Server URL Per-Client
 

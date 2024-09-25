@@ -15,11 +15,11 @@ namespace formance.Models.Components
     {
 
         [SpeakeasyMetadata("security:scheme=true,type=oauth2,subType=client_credentials,name=clientID")]
-        public string ClientID { get; set; } = default!;
+        public string? ClientID { get; set; }
 
         [SpeakeasyMetadata("security:scheme=true,type=oauth2,subType=client_credentials,name=clientSecret")]
-        public string ClientSecret { get; set; } = default!;
+        public string? ClientSecret { get; set; }
 
-        public string TokenURL { get; set; } = "/api/auth/oauth/token";
+        public string? TokenURL { get; set; } = "/api/auth/oauth/token";
     }
 }

@@ -21,6 +21,53 @@ namespace formance
     using formance.Utils.Retries;
     using formance.Utils;
 
+
+    /// <summary>
+    /// The environment name. Defaults to the production environment.
+    /// </summary>
+    public enum ServerEnvironment
+    {
+        [JsonProperty("sandbox")]
+        Sandbox,
+        [JsonProperty("eu-west-1")]
+        EuWest1,
+        [JsonProperty("us-east-1")]
+        UsEast1,
+    }
+
+    public static class ServerEnvironmentExtension
+    {
+        public static string Value(this ServerEnvironment value)
+        {
+            return ((JsonPropertyAttribute)value.GetType().GetMember(value.ToString())[0].GetCustomAttributes(typeof(JsonPropertyAttribute), false)[0]).PropertyName ?? value.ToString();
+        }
+
+        public static ServerEnvironment ToEnum(this string value)
+        {
+            foreach(var field in typeof(ServerEnvironment).GetFields())
+            {
+                var attributes = field.GetCustomAttributes(typeof(JsonPropertyAttribute), false);
+                if (attributes.Length == 0)
+                {
+                    continue;
+                }
+
+                var attribute = attributes[0] as JsonPropertyAttribute;
+                if (attribute != null && attribute.PropertyName == value)
+                {
+                    var enumVal = field.GetValue(null);
+
+                    if (enumVal is ServerEnvironment)
+                    {
+                        return (ServerEnvironment)enumVal;
+                    }
+                }
+            }
+
+            throw new Exception($"Unknown value {value} for enum ServerEnvironment");
+        }
+    }
+
     /// <summary>
     /// Formance Stack API: Open, modular foundation for unique payments flows<br/>
     /// 
@@ -62,11 +109,12 @@ namespace formance
         /// </summary>
         public static readonly string[] ServerList = {
             "http://localhost",
-            "https://{stack}.sandbox.formance.cloud",
+            "https://{organization}.{environment}.formance.cloud",
         };
 
         public string ServerUrl = "";
         public int ServerIndex = 0;
+        public List<Dictionary<string, string>> ServerDefaults = new List<Dictionary<string, string>>();
         public SDKHooks Hooks = new SDKHooks();
         public RetryConfig? RetryConfig = null;
 
@@ -76,7 +124,7 @@ namespace formance
             {
                 return Utilities.TemplateUrl(Utilities.RemoveSuffix(this.ServerUrl, "/"), new Dictionary<string, string>());
             }
-            return Utilities.TemplateUrl(SDKConfig.ServerList[this.ServerIndex], new Dictionary<string, string>());
+            return Utilities.TemplateUrl(SDKConfig.ServerList[this.ServerIndex], this.ServerDefaults[this.ServerIndex]);
         }
 
         public ISpeakeasyHttpClient InitHooks(ISpeakeasyHttpClient client)
@@ -113,10 +161,10 @@ namespace formance
         public SDKConfig SDKConfiguration { get; private set; }
 
         private const string _language = "csharp";
-        private const string _sdkVersion = "0.0.2";
-        private const string _sdkGenVersion = "2.421.3";
-        private const string _openapiDocVersion = "v2.1.0-beta.2";
-        private const string _userAgent = "speakeasy-sdk/csharp 0.0.2 2.421.3 v2.1.0-beta.2 formance";
+        private const string _sdkVersion = "0.0.3";
+        private const string _sdkGenVersion = "2.422.22";
+        private const string _openapiDocVersion = "v2.1.0-beta.3";
+        private const string _userAgent = "speakeasy-sdk/csharp 0.0.3 2.422.22 v2.1.0-beta.3 formance";
         private string _serverUrl = "";
         private int _serverIndex = 0;
         private ISpeakeasyHttpClient _client;
@@ -130,7 +178,7 @@ namespace formance
         public IOrchestration Orchestration { get; private set; }
         public IReconciliation Reconciliation { get; private set; }
 
-        public Formance(formance.Models.Components.Security? security = null, Func<formance.Models.Components.Security>? securitySource = null, int? serverIndex = null, string? serverUrl = null, Dictionary<string, string>? urlParams = null, ISpeakeasyHttpClient? client = null, RetryConfig? retryConfig = null)
+        public Formance(formance.Models.Components.Security? security = null, Func<formance.Models.Components.Security>? securitySource = null, int? serverIndex = null, string?  organization = null, ServerEnvironment? environment = null, string? serverUrl = null, Dictionary<string, string>? urlParams = null, ISpeakeasyHttpClient? client = null, RetryConfig? retryConfig = null)
         {
             if (serverIndex != null)
             {
@@ -149,6 +197,17 @@ namespace formance
                 }
                 _serverUrl = serverUrl;
             }
+            List<Dictionary<string, string>> serverDefaults = new List<Dictionary<string, string>>()
+            {
+                new Dictionary<string, string>()
+                {
+                },
+                new Dictionary<string, string>()
+                {
+                    {"organization", organization == null ? "orgID-stackID" : organization},
+                    {"environment", environment == null ? "sandbox" : ServerEnvironmentExtension.Value(environment.Value)},
+                },
+            };
 
             _client = client ?? new SpeakeasyHttpClient();
 
@@ -160,13 +219,10 @@ namespace formance
             {
                 _securitySource = () => security;
             }
-            else
-            {
-                throw new Exception("security and securitySource cannot both be null");
-            }
 
             SDKConfiguration = new SDKConfig()
             {
+                ServerDefaults = serverDefaults,
                 ServerIndex = _serverIndex,
                 ServerUrl = _serverUrl,
                 RetryConfig = retryConfig

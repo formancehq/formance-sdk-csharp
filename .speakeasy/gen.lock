@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: bb4a1c17-4efb-4cf4-a5bb-53737f9f624b
 management:
-  docChecksum: da9839425759ec1e92b6441bb2f3ca7c
-  docVersion: v2.1.0-beta.2
-  speakeasyVersion: 1.401.4
-  generationVersion: 2.421.3
-  releaseVersion: 0.0.2
-  configChecksum: c4f741a6d40c958756f9625b5345c2d9
+  docChecksum: d5d12540f5ed5f4996d23aae4cd97c31
+  docVersion: v2.1.0-beta.3
+  speakeasyVersion: 1.402.14
+  generationVersion: 2.422.22
+  releaseVersion: 0.0.3
+  configChecksum: 1b11249cd08c25b537f2ed034dd465c0
   repoURL: https://github.com/formancehq/formance-sdk-csharp.git
   published: true
 features:
   csharp:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.0.1
-    core: 3.10.0
+    core: 3.10.1
     deprecations: 2.81.2
     errors: 0.0.2
     flattening: 2.81.3
@@ -25,7 +25,7 @@ features:
     intellisenseMarkdownSupport: 0.1.0
     nameOverrides: 2.81.2
     nullables: 0.1.0
-    oauth2ClientCredentials: 0.1.0
+    oauth2ClientCredentials: 0.1.1
     responseFormat: 0.0.4
     sdkHooks: 0.1.0
     unions: 0.2.1
@@ -3200,7 +3200,7 @@ examples:
           instanceID: "xxx"
       responses:
         "200":
-          application/json: {"data": [{"name": "<value>", "input": {"event": "<value>"}, "terminated": false, "startedAt": "2022-01-03T13:54:16.848Z"}, {"name": "<value>", "terminated": true, "startedAt": "2022-01-08T05:52:07.535Z"}]}
+          application/json: {"data": [{"name": "<value>", "input": {"event": "<value>"}, "terminated": false, "startedAt": "2022-01-03T13:54:16.848Z"}, {"name": "<value>", "input": {"event": "<value>"}, "terminated": true, "startedAt": "2022-01-08T05:52:07.535Z"}]}
         default:
           application/json: {"errorCode": "INTERNAL", "errorMessage": "<value>"}
   v2GetInstanceStageHistory:

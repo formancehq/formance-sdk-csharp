@@ -3,7 +3,7 @@
   <PropertyGroup>
     <IsPackable>true</IsPackable>
     <PackageId>formance</PackageId>
-    <Version>0.0.2</Version>
+    <Version>0.0.3</Version>
     <TargetFramework>net8.0</TargetFramework>
     <Authors>Formance</Authors>
     <Copyright>Copyright (c) Formance 2024</Copyright>

@@ -14,9 +14,6 @@ namespace formance.Models.Errors
     using formance.Models.Components;
     using formance.Utils;
     
-    /// <summary>
-    /// Error
-    /// </summary>
     public class ErrorResponse : Exception
     {
 

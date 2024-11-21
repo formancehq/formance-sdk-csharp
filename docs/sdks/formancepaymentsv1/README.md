@@ -75,11 +75,10 @@ var res = await sdk.Payments.V1.PaymentsgetServerInfoAsync();
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## CreatePayment
 
@@ -99,7 +98,7 @@ var sdk = new Formance(security: new Security() {
 
 PaymentRequest req = new PaymentRequest() {
     Reference = "<value>",
-    ConnectorID = "<value>",
+    ConnectorID = "<id>",
     CreatedAt = System.DateTime.Parse("2024-11-09T01:03:21.011Z"),
     Amount = 100,
     Type = formance.Models.Components.PaymentType.Other,
@@ -125,11 +124,10 @@ var res = await sdk.Payments.V1.CreatePaymentAsync(req);
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## ListPayments
 
@@ -176,11 +174,10 @@ var res = await sdk.Payments.V1.ListPaymentsAsync(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## GetPayment
 
@@ -215,11 +212,10 @@ var res = await sdk.Payments.V1.GetPaymentAsync(paymentId: "XXX");
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## UpdateMetadata
 
@@ -261,11 +257,10 @@ var res = await sdk.Payments.V1.UpdateMetadataAsync(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## ListTransferInitiations
 
@@ -312,11 +307,10 @@ var res = await sdk.Payments.V1.ListTransferInitiationsAsync(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## CreateTransferInitiation
 
@@ -338,11 +332,11 @@ var sdk = new Formance(security: new Security() {
 TransferInitiationRequest req = new TransferInitiationRequest() {
     Reference = "XXX",
     ScheduledAt = System.DateTime.Parse("2022-10-09T08:11:40.585Z"),
-    Description = "Open-architected heuristic knowledge user",
-    SourceAccountID = "<value>",
-    DestinationAccountID = "<value>",
+    Description = "worthy pace vague ick liberalize between um",
+    SourceAccountID = "<id>",
+    DestinationAccountID = "<id>",
     Type = formance.Models.Components.TransferInitiationRequestType.Payout,
-    Amount = 658256,
+    Amount = 847873,
     Asset = "USD",
     Validated = false,
 };
@@ -364,11 +358,10 @@ var res = await sdk.Payments.V1.CreateTransferInitiationAsync(req);
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## GetTransferInitiation
 
@@ -403,11 +396,10 @@ var res = await sdk.Payments.V1.GetTransferInitiationAsync(transferId: "XXX");
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## DeleteTransferInitiation
 
@@ -442,11 +434,10 @@ var res = await sdk.Payments.V1.DeleteTransferInitiationAsync(transferId: "XXX")
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## UdpateTransferInitiationStatus
 
@@ -487,11 +478,10 @@ var res = await sdk.Payments.V1.UdpateTransferInitiationStatusAsync(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## ReverseTransferInitiation
 
@@ -515,8 +505,8 @@ var res = await sdk.Payments.V1.ReverseTransferInitiationAsync(
     transferId: "XXX",
     reverseTransferInitiationRequest: new Models.Components.ReverseTransferInitiationRequest() {
         Reference = "XXX",
-        Description = "Function-based high-level project",
-        Amount = 170849,
+        Description = "emerge whose mechanically outside kissingly",
+        Amount = 978360,
         Asset = "USD",
         Metadata = new Dictionary<string, string>() {
             { "key", "<value>" },
@@ -540,11 +530,10 @@ var res = await sdk.Payments.V1.ReverseTransferInitiationAsync(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## RetryTransferInitiation
 
@@ -579,11 +568,10 @@ var res = await sdk.Payments.V1.RetryTransferInitiationAsync(transferId: "XXX");
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## ListPools
 
@@ -630,11 +618,10 @@ var res = await sdk.Payments.V1.ListPoolsAsync(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## CreatePool
 
@@ -676,11 +663,10 @@ var res = await sdk.Payments.V1.CreatePoolAsync(req);
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## GetPool
 
@@ -715,11 +701,10 @@ var res = await sdk.Payments.V1.GetPoolAsync(poolId: "XXX");
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## DeletePool
 
@@ -754,11 +739,10 @@ var res = await sdk.Payments.V1.DeletePoolAsync(poolId: "XXX");
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## AddAccountToPool
 
@@ -779,7 +763,7 @@ var sdk = new Formance(security: new Security() {
 var res = await sdk.Payments.V1.AddAccountToPoolAsync(
     poolId: "XXX",
     addAccountToPoolRequest: new Models.Components.AddAccountToPoolRequest() {
-        AccountID = "<value>",
+        AccountID = "<id>",
     }
 );
 
@@ -799,11 +783,10 @@ var res = await sdk.Payments.V1.AddAccountToPoolAsync(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## RemoveAccountFromPool
 
@@ -842,11 +825,10 @@ var res = await sdk.Payments.V1.RemoveAccountFromPoolAsync(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## GetPoolBalances
 
@@ -885,11 +867,10 @@ var res = await sdk.Payments.V1.GetPoolBalancesAsync(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## CreateAccount
 
@@ -909,7 +890,7 @@ var sdk = new Formance(security: new Security() {
 
 AccountRequest req = new AccountRequest() {
     Reference = "<value>",
-    ConnectorID = "<value>",
+    ConnectorID = "<id>",
     CreatedAt = System.DateTime.Parse("2024-08-19T02:15:08.152Z"),
     Type = formance.Models.Components.AccountType.Internal,
 };
@@ -931,11 +912,10 @@ var res = await sdk.Payments.V1.CreateAccountAsync(req);
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## PaymentslistAccounts
 
@@ -980,11 +960,10 @@ var res = await sdk.Payments.V1.PaymentslistAccountsAsync(req);
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## PaymentsgetAccount
 
@@ -1019,11 +998,10 @@ var res = await sdk.Payments.V1.PaymentsgetAccountAsync(accountId: "XXX");
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## GetAccountBalances
 
@@ -1069,11 +1047,10 @@ var res = await sdk.Payments.V1.GetAccountBalancesAsync(req);
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## CreateBankAccount
 
@@ -1093,7 +1070,7 @@ var sdk = new Formance(security: new Security() {
 
 BankAccountRequest req = new BankAccountRequest() {
     Country = "GB",
-    ConnectorID = "<value>",
+    ConnectorID = "<id>",
     Name = "My account",
 };
 
@@ -1114,11 +1091,10 @@ var res = await sdk.Payments.V1.CreateBankAccountAsync(req);
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## ListBankAccounts
 
@@ -1163,11 +1139,10 @@ var res = await sdk.Payments.V1.ListBankAccountsAsync(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## GetBankAccount
 
@@ -1202,11 +1177,10 @@ var res = await sdk.Payments.V1.GetBankAccountAsync(bankAccountId: "XXX");
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## ForwardBankAccount
 
@@ -1227,7 +1201,7 @@ var sdk = new Formance(security: new Security() {
 var res = await sdk.Payments.V1.ForwardBankAccountAsync(
     bankAccountId: "XXX",
     forwardBankAccountRequest: new Models.Components.ForwardBankAccountRequest() {
-        ConnectorID = "<value>",
+        ConnectorID = "<id>",
     }
 );
 
@@ -1247,11 +1221,10 @@ var res = await sdk.Payments.V1.ForwardBankAccountAsync(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## UpdateBankAccountMetadata
 
@@ -1295,11 +1268,10 @@ var res = await sdk.Payments.V1.UpdateBankAccountMetadataAsync(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## ListAllConnectors
 
@@ -1327,11 +1299,10 @@ var res = await sdk.Payments.V1.ListAllConnectorsAsync();
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## ListConfigsAvailableConnectors
 
@@ -1359,11 +1330,10 @@ var res = await sdk.Payments.V1.ListConfigsAvailableConnectorsAsync();
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## InstallConnector
 
@@ -1412,11 +1382,10 @@ var res = await sdk.Payments.V1.InstallConnectorAsync(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## ~~UninstallConnector~~
 
@@ -1453,11 +1422,10 @@ var res = await sdk.Payments.V1.UninstallConnectorAsync(connector: formance.Mode
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## UninstallConnectorV1
 
@@ -1496,11 +1464,10 @@ var res = await sdk.Payments.V1.UninstallConnectorV1Async(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## ~~ReadConnectorConfig~~
 
@@ -1537,11 +1504,10 @@ var res = await sdk.Payments.V1.ReadConnectorConfigAsync(connector: formance.Mod
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## UpdateConnectorConfigV1
 
@@ -1590,11 +1556,10 @@ var res = await sdk.Payments.V1.UpdateConnectorConfigV1Async(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## ReadConnectorConfigV1
 
@@ -1633,11 +1598,10 @@ var res = await sdk.Payments.V1.ReadConnectorConfigV1Async(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## ~~ResetConnector~~
 
@@ -1676,11 +1640,10 @@ var res = await sdk.Payments.V1.ResetConnectorAsync(connector: formance.Models.C
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## ResetConnectorV1
 
@@ -1721,11 +1684,10 @@ var res = await sdk.Payments.V1.ResetConnectorV1Async(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## ~~ListConnectorTasks~~
 
@@ -1768,11 +1730,10 @@ var res = await sdk.Payments.V1.ListConnectorTasksAsync(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## ListConnectorTasksV1
 
@@ -1815,11 +1776,10 @@ var res = await sdk.Payments.V1.ListConnectorTasksV1Async(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## ~~GetConnectorTask~~
 
@@ -1860,11 +1820,10 @@ var res = await sdk.Payments.V1.GetConnectorTaskAsync(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## GetConnectorTaskV1
 
@@ -1905,11 +1864,10 @@ var res = await sdk.Payments.V1.GetConnectorTaskV1Async(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## ConnectorsTransfer
 
@@ -1954,7 +1912,7 @@ var res = await sdk.Payments.V1.ConnectorsTransferAsync(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |

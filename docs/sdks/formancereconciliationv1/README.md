@@ -40,11 +40,10 @@ var res = await sdk.Reconciliation.V1.ReconciliationgetServerInfoAsync();
 
 ### Errors
 
-| Error Object                                       | Status Code                                        | Content Type                                       |
+| Error Type                                         | Status Code                                        | Content Type                                       |
 | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
 | formance.Models.Errors.ReconciliationErrorResponse | default                                            | application/json                                   |
-| formance.Models.Errors.SDKException                | 4xx-5xx                                            | */*                                                |
-
+| formance.Models.Errors.SDKException                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## CreatePolicy
 
@@ -88,11 +87,10 @@ var res = await sdk.Reconciliation.V1.CreatePolicyAsync(req);
 
 ### Errors
 
-| Error Object                                       | Status Code                                        | Content Type                                       |
+| Error Type                                         | Status Code                                        | Content Type                                       |
 | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
 | formance.Models.Errors.ReconciliationErrorResponse | default                                            | application/json                                   |
-| formance.Models.Errors.SDKException                | 4xx-5xx                                            | */*                                                |
-
+| formance.Models.Errors.SDKException                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## ListPolicies
 
@@ -131,11 +129,10 @@ var res = await sdk.Reconciliation.V1.ListPoliciesAsync(
 
 ### Errors
 
-| Error Object                                       | Status Code                                        | Content Type                                       |
+| Error Type                                         | Status Code                                        | Content Type                                       |
 | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
 | formance.Models.Errors.ReconciliationErrorResponse | default                                            | application/json                                   |
-| formance.Models.Errors.SDKException                | 4xx-5xx                                            | */*                                                |
-
+| formance.Models.Errors.SDKException                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## DeletePolicy
 
@@ -170,11 +167,10 @@ var res = await sdk.Reconciliation.V1.DeletePolicyAsync(policyID: "XXX");
 
 ### Errors
 
-| Error Object                                       | Status Code                                        | Content Type                                       |
+| Error Type                                         | Status Code                                        | Content Type                                       |
 | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
 | formance.Models.Errors.ReconciliationErrorResponse | default                                            | application/json                                   |
-| formance.Models.Errors.SDKException                | 4xx-5xx                                            | */*                                                |
-
+| formance.Models.Errors.SDKException                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## GetPolicy
 
@@ -209,11 +205,10 @@ var res = await sdk.Reconciliation.V1.GetPolicyAsync(policyID: "XXX");
 
 ### Errors
 
-| Error Object                                       | Status Code                                        | Content Type                                       |
+| Error Type                                         | Status Code                                        | Content Type                                       |
 | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
 | formance.Models.Errors.ReconciliationErrorResponse | default                                            | application/json                                   |
-| formance.Models.Errors.SDKException                | 4xx-5xx                                            | */*                                                |
-
+| formance.Models.Errors.SDKException                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## Reconcile
 
@@ -255,11 +250,10 @@ var res = await sdk.Reconciliation.V1.ReconcileAsync(
 
 ### Errors
 
-| Error Object                                       | Status Code                                        | Content Type                                       |
+| Error Type                                         | Status Code                                        | Content Type                                       |
 | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
 | formance.Models.Errors.ReconciliationErrorResponse | default                                            | application/json                                   |
-| formance.Models.Errors.SDKException                | 4xx-5xx                                            | */*                                                |
-
+| formance.Models.Errors.SDKException                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## ListReconciliations
 
@@ -298,11 +292,10 @@ var res = await sdk.Reconciliation.V1.ListReconciliationsAsync(
 
 ### Errors
 
-| Error Object                                       | Status Code                                        | Content Type                                       |
+| Error Type                                         | Status Code                                        | Content Type                                       |
 | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
 | formance.Models.Errors.ReconciliationErrorResponse | default                                            | application/json                                   |
-| formance.Models.Errors.SDKException                | 4xx-5xx                                            | */*                                                |
-
+| formance.Models.Errors.SDKException                | 4XX, 5XX                                           | \*/\*                                              |
 
 ## GetReconciliation
 
@@ -337,7 +330,7 @@ var res = await sdk.Reconciliation.V1.GetReconciliationAsync(reconciliationID: "
 
 ### Errors
 
-| Error Object                                       | Status Code                                        | Content Type                                       |
+| Error Type                                         | Status Code                                        | Content Type                                       |
 | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
 | formance.Models.Errors.ReconciliationErrorResponse | default                                            | application/json                                   |
-| formance.Models.Errors.SDKException                | 4xx-5xx                                            | */*                                                |
+| formance.Models.Errors.SDKException                | 4XX, 5XX                                           | \*/\*                                              |

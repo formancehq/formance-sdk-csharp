@@ -1,21 +1,22 @@
 lockVersion: 2.0.0
 id: bb4a1c17-4efb-4cf4-a5bb-53737f9f624b
 management:
-  docChecksum: d5d12540f5ed5f4996d23aae4cd97c31
-  docVersion: v2.1.0-beta.3
-  speakeasyVersion: 1.402.14
-  generationVersion: 2.422.22
-  releaseVersion: 0.0.3
-  configChecksum: 1b11249cd08c25b537f2ed034dd465c0
+  docChecksum: 26dc51843f72f8922c6265f03b5e50f2
+  docVersion: v2.1.1
+  speakeasyVersion: 1.441.1
+  generationVersion: 2.461.2
+  releaseVersion: 0.1.0
+  configChecksum: 9d26f890888455d58bc4e3f9c61faf70
   repoURL: https://github.com/formancehq/formance-sdk-csharp.git
   published: true
 features:
   csharp:
     additionalDependencies: 0.1.0
+    bigint: 0.2.0
     constsAndDefaults: 0.0.1
-    core: 3.10.1
+    core: 3.10.5
     deprecations: 2.81.2
-    errors: 0.0.2
+    errors: 0.2.0
     flattening: 2.81.3
     getRequestBodies: 2.81.1
     globalSecurity: 2.83.6
@@ -23,12 +24,13 @@ features:
     globalServerURLs: 2.82.3
     ignores: 2.81.1
     intellisenseMarkdownSupport: 0.1.0
+    methodArguments: 0.1.0
     nameOverrides: 2.81.2
     nullables: 0.1.0
     oauth2ClientCredentials: 0.1.1
     responseFormat: 0.0.4
     sdkHooks: 0.1.0
-    unions: 0.2.1
+    unions: 0.2.2
 generatedFiles:
   - .gitattributes
   - CONTRIBUTING.md
@@ -123,6 +125,7 @@ generatedFiles:
   - docs/Models/Components/DebitWalletResponse.md
   - docs/Models/Components/Descriptor.md
   - docs/Models/Components/DummyPayConfig.md
+  - docs/Models/Components/ErrorResponse.md
   - docs/Models/Components/ErrorsEnum.md
   - docs/Models/Components/ExpandedDebitHold.md
   - docs/Models/Components/Expr.md
@@ -363,6 +366,7 @@ generatedFiles:
   - docs/Models/Components/V2CreateWorkflowResponse.md
   - docs/Models/Components/V2CreditWalletRequest.md
   - docs/Models/Components/V2DebitWalletRequest.md
+  - docs/Models/Components/V2ErrorResponse.md
   - docs/Models/Components/V2ErrorsEnum.md
   - docs/Models/Components/V2ExpandedTransaction.md
   - docs/Models/Components/V2GetLedgerResponse.md
@@ -922,6 +926,7 @@ generatedFiles:
   - src/formance/Models/Components/DebitWalletResponse.cs
   - src/formance/Models/Components/Descriptor.cs
   - src/formance/Models/Components/DummyPayConfig.cs
+  - src/formance/Models/Components/ErrorResponse.cs
   - src/formance/Models/Components/ErrorsEnum.cs
   - src/formance/Models/Components/ExpandedDebitHold.cs
   - src/formance/Models/Components/Expr.cs
@@ -1162,6 +1167,7 @@ generatedFiles:
   - src/formance/Models/Components/V2CreateWorkflowResponse.cs
   - src/formance/Models/Components/V2CreditWalletRequest.cs
   - src/formance/Models/Components/V2DebitWalletRequest.cs
+  - src/formance/Models/Components/V2ErrorResponse.cs
   - src/formance/Models/Components/V2ErrorsEnum.cs
   - src/formance/Models/Components/V2ExpandedTransaction.cs
   - src/formance/Models/Components/V2GetLedgerResponse.cs
@@ -2592,7 +2598,7 @@ examples:
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
       responses:
         "200":
-          application/json: {"cursor": {"pageSize": 15, "hasMore": false, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=", "next": "", "data": [{"id": "886943ab-ad61-4f7a-aa0d-991cf9266dd4", "connectorID": "<value>", "createdAt": "2022-05-16T07:33:51.038Z", "updatedAt": "2022-11-26T05:11:01.390Z", "status": "DISPUTE_LOST"}, {"id": "9c3f6783-51bc-4600-9cf3-effe2c5cad00", "connectorID": "<value>", "createdAt": "2024-07-09T22:31:35.113Z", "updatedAt": "2022-12-08T11:15:27.700Z", "status": "OTHER"}]}}
+          application/json: {"cursor": {"pageSize": 15, "hasMore": false, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=", "next": "", "data": [{"id": "886943ab-ad61-4f7a-aa0d-991cf9266dd4", "connectorID": "<id>", "createdAt": "2022-05-16T07:33:51.038Z", "updatedAt": "2022-11-26T05:11:01.390Z", "status": "DISPUTE_LOST"}, {"id": "9c3f6783-51bc-4600-9cf3-effe2c5cad00", "connectorID": "<id>", "createdAt": "2024-07-09T22:31:35.113Z", "updatedAt": "2022-12-08T11:15:27.700Z", "status": "OTHER"}]}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   listConnectorTasksV1:
@@ -2606,7 +2612,7 @@ examples:
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
       responses:
         "200":
-          application/json: {"cursor": {"pageSize": 15, "hasMore": false, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=", "next": "", "data": [{"id": "d98119bf-1d77-4f0d-b7a9-5f6d1de55906", "connectorID": "<value>", "createdAt": "2024-01-16T16:40:27.524Z", "updatedAt": "2023-02-09T19:28:55.619Z", "status": "SUCCEEDED"}, {"id": "06a636e7-72b1-4d53-be6e-1a0f8d94fbd4", "connectorID": "<value>", "createdAt": "2022-01-08T13:15:09.022Z", "updatedAt": "2023-08-12T22:43:33.297Z", "status": "DISPUTE_WON"}, {"id": "cdc3d5ed-c7f3-4fcd-82b1-43091094b059", "connectorID": "<value>", "createdAt": "2024-01-10T15:35:11.364Z", "updatedAt": "2023-12-01T06:30:11.766Z", "status": "DISPUTE"}]}}
+          application/json: {"cursor": {"pageSize": 15, "hasMore": false, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=", "next": "", "data": [{"id": "d98119bf-1d77-4f0d-b7a9-5f6d1de55906", "connectorID": "<id>", "createdAt": "2024-01-16T16:40:27.524Z", "updatedAt": "2023-02-09T19:28:55.619Z", "status": "SUCCEEDED"}, {"id": "06a636e7-72b1-4d53-be6e-1a0f8d94fbd4", "connectorID": "<id>", "createdAt": "2022-01-08T13:15:09.022Z", "updatedAt": "2023-08-12T22:43:33.297Z", "status": "DISPUTE_WON"}, {"id": "cdc3d5ed-c7f3-4fcd-82b1-43091094b059", "connectorID": "<id>", "createdAt": "2024-01-10T15:35:11.364Z", "updatedAt": "2023-12-01T06:30:11.766Z", "status": "DISPUTE"}]}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getConnectorTask:
@@ -2617,7 +2623,7 @@ examples:
           taskId: "task1"
       responses:
         "200":
-          application/json: {"data": {"id": "3b8d4a71-ba45-4754-b2af-db17eed3b13e", "connectorID": "<value>", "createdAt": "2023-05-12T00:30:44.775Z", "updatedAt": "2023-02-23T14:24:02.658Z", "status": "CANCELLED"}}
+          application/json: {"data": {"id": "3b8d4a71-ba45-4754-b2af-db17eed3b13e", "connectorID": "<id>", "createdAt": "2023-05-12T00:30:44.775Z", "updatedAt": "2023-02-23T14:24:02.658Z", "status": "CANCELLED"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getConnectorTaskV1:
@@ -2629,7 +2635,7 @@ examples:
           taskId: "task1"
       responses:
         "200":
-          application/json: {"data": {"id": "72592c3a-8ba2-486c-b923-fe1c798f795c", "connectorID": "<value>", "createdAt": "2023-06-06T06:02:13.035Z", "updatedAt": "2022-10-03T13:49:03.180Z", "status": "SUCCEEDED"}}
+          application/json: {"data": {"id": "72592c3a-8ba2-486c-b923-fe1c798f795c", "connectorID": "<id>", "createdAt": "2023-06-06T06:02:13.035Z", "updatedAt": "2022-10-03T13:49:03.180Z", "status": "SUCCEEDED"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   connectorsTransfer:

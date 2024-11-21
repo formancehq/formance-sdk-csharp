@@ -10,9 +10,7 @@
 namespace formance.Models.Requests
 {
     using Newtonsoft.Json;
-    using System;
     using formance.Models.Components;
-    using formance.Models.Errors;
     using formance.Utils;
     
     public class V2UpdateLedgerMetadataResponse
@@ -24,6 +22,6 @@ namespace formance.Models.Requests
         /// <summary>
         /// Error
         /// </summary>
-        public V2ErrorResponse? V2ErrorResponse { get; set; }
+        public Models.Components.V2ErrorResponse? V2ErrorResponse { get; set; }
     }
 }

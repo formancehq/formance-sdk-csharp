@@ -10,9 +10,7 @@
 namespace formance.Models.Requests
 {
     using Newtonsoft.Json;
-    using System;
     using formance.Models.Components;
-    using formance.Models.Errors;
     using formance.Utils;
     
     public class ListAccountsResponse
@@ -29,6 +27,6 @@ namespace formance.Models.Requests
         /// <summary>
         /// Not found
         /// </summary>
-        public ErrorResponse? ErrorResponse { get; set; }
+        public Models.Components.ErrorResponse? ErrorResponse { get; set; }
     }
 }

@@ -272,13 +272,13 @@ var res = await sdk.GetVersionsAsync();
 * [ListReconciliations](docs/sdks/formancereconciliationv1/README.md#listreconciliations) - List reconciliations
 * [GetReconciliation](docs/sdks/formancereconciliationv1/README.md#getreconciliation) - Get a reconciliation
 
-### [Search](docs/sdks/search/README.md)
+### [~~Search~~](docs/sdks/search/README.md)
 
 
-#### [Search.V1](docs/sdks/formancesearchv1/README.md)
+#### [~~Search.V1~~](docs/sdks/formancesearchv1/README.md)
 
-* [SearchgetServerInfo](docs/sdks/formancesearchv1/README.md#searchgetserverinfo) - Get server info
-* [Search](docs/sdks/formancesearchv1/README.md#search) - search.v1
+* [~~SearchgetServerInfo~~](docs/sdks/formancesearchv1/README.md#searchgetserverinfo) - Get server info :warning: **Deprecated**
+* [~~Search~~](docs/sdks/formancesearchv1/README.md#search) - search.v1 :warning: **Deprecated**
 
 ### [Wallets](docs/sdks/wallets/README.md)
 
@@ -321,12 +321,22 @@ var res = await sdk.GetVersionsAsync();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Handling errors in this SDK should largely match your expectations.  All operations return a response object or thow an exception.  If Error objects are specified in your OpenAPI Spec, the SDK will raise the appropriate type.
+Handling errors in this SDK should largely match your expectations. All operations return a response object or throw an exception.
 
-| Error Object                         | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| formance.Models.Errors.ErrorResponse | default                              | application/json                     |
-| formance.Models.Errors.SDKException  | 4xx-5xx                              | */*                                  |
+By default, an API error will raise a `formance.Models.Errors.SDKException` exception, which has the following properties:
+
+| Property      | Type                  | Description           |
+|---------------|-----------------------|-----------------------|
+| `Message`     | *string*              | The error message     |
+| `Request`     | *HttpRequestMessage*  | The HTTP request      |
+| `Response`    | *HttpResponseMessage* | The HTTP response     |
+
+When custom error responses are specified for an operation, the SDK may also throw their associated exceptions. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `GetInfoAsync` method throws the following exceptions:
+
+| Error Type                           | Status Code | Content Type     |
+| ------------------------------------ | ----------- | ---------------- |
+| formance.Models.Errors.ErrorResponse | default     | application/json |
+| formance.Models.Errors.SDKException  | 4XX, 5XX    | \*/\*            |
 
 ### Example
 
@@ -349,12 +359,12 @@ try
 }
 catch (Exception ex)
 {
-    if (ex is ErrorResponse)
+    if (ex is Models.Errors.ErrorResponse)
     {
         // Handle exception data
         throw;
     }
-    else if (ex is Models.Errors.SDKException)
+    else if (ex is formance.Models.Errors.SDKException)
     {
         // Handle default exception
         throw;
@@ -368,24 +378,53 @@ catch (Exception ex)
 
 ### Select Server by Index
 
-You can override the default server globally by passing a server index to the `serverIndex: number` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+You can override the default server globally by passing a server index to the `serverIndex: int` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `http://localhost` | None |
-| 1 | `https://{organization}.{environment}.formance.cloud` | `organization` (default is `orgID-stackID`), `environment` (default is `sandbox`) |
+| #   | Server                                                | Variables                                                   | Default values                    |
+| --- | ----------------------------------------------------- | ----------------------------------------------------------- | --------------------------------- |
+| 0   | `http://localhost`                                    |                                                             |                                   |
+| 1   | `https://{organization}.{environment}.formance.cloud` | `organization: string`<br/>`environment: ServerEnvironment` | `"orgID-stackID"`<br/>`"sandbox"` |
 
+If the selected server has variables, you may override their default values through the additional parameters made available in the SDK constructor.
 
+#### Example
 
-#### Variables
+```csharp
+using formance;
+using formance.Models.Components;
 
-Some of the server options above contain variables. If you want to set the values of those variables, the following options are provided for doing so:
- * `organization: string`
- * `environment: ServerEnvironment`
+var sdk = new Formance(
+    serverIndex: 1,
+    security: new Security() {
+        ClientID = "<YOUR_CLIENT_ID_HERE>",
+        ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+    }
+);
+
+var res = await sdk.GetVersionsAsync();
+
+// handle response
+```
 
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverUrl: str` optional parameter when initializing the SDK client instance. For example:
+The default server can also be overridden globally by passing a URL to the `serverUrl: string` optional parameter when initializing the SDK client instance. For example:
+```csharp
+using formance;
+using formance.Models.Components;
+
+var sdk = new Formance(
+    serverUrl: "http://localhost",
+    security: new Security() {
+        ClientID = "<YOUR_CLIENT_ID_HERE>",
+        ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+    }
+);
+
+var res = await sdk.GetVersionsAsync();
+
+// handle response
+```
 <!-- End Server Selection [server] -->
 
 <!-- Start Authentication [security] -->
@@ -395,9 +434,9 @@ The default server can also be overridden globally by passing a URL to the `serv
 
 This SDK supports the following security scheme globally:
 
-| Name                           | Type                           | Scheme                         |
-| ------------------------------ | ------------------------------ | ------------------------------ |
-| `ClientID` `ClientSecret`      | oauth2                         | OAuth2 Client Credentials Flow |
+| Name                          | Type   | Scheme                         |
+| ----------------------------- | ------ | ------------------------------ |
+| `ClientID`<br/>`ClientSecret` | oauth2 | OAuth2 Client Credentials Flow |
 
 You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
 ```csharp

@@ -48,11 +48,10 @@ var res = await sdk.Wallets.V1.WalletsgetServerInfoAsync();
 
 ### Errors
 
-| Error Object                                | Status Code                                 | Content Type                                |
+| Error Type                                  | Status Code                                 | Content Type                                |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
 | formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4xx-5xx                                     | */*                                         |
-
+| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
 
 ## GetTransactions
 
@@ -91,11 +90,10 @@ var res = await sdk.Wallets.V1.GetTransactionsAsync(
 
 ### Errors
 
-| Error Object                                | Status Code                                 | Content Type                                |
+| Error Type                                  | Status Code                                 | Content Type                                |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
 | formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4xx-5xx                                     | */*                                         |
-
+| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
 
 ## ListWallets
 
@@ -141,11 +139,10 @@ var res = await sdk.Wallets.V1.ListWalletsAsync(req);
 
 ### Errors
 
-| Error Object                                | Status Code                                 | Content Type                                |
+| Error Type                                  | Status Code                                 | Content Type                                |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
 | formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4xx-5xx                                     | */*                                         |
-
+| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
 
 ## CreateWallet
 
@@ -190,11 +187,10 @@ var res = await sdk.Wallets.V1.CreateWalletAsync(
 
 ### Errors
 
-| Error Object                                | Status Code                                 | Content Type                                |
+| Error Type                                  | Status Code                                 | Content Type                                |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
 | formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4xx-5xx                                     | */*                                         |
-
+| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
 
 ## GetWallet
 
@@ -229,11 +225,10 @@ var res = await sdk.Wallets.V1.GetWalletAsync(id: "<id>");
 
 ### Errors
 
-| Error Object                                | Status Code                                 | Content Type                                |
+| Error Type                                  | Status Code                                 | Content Type                                |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
 | formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4xx-5xx                                     | */*                                         |
-
+| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
 
 ## UpdateWallet
 
@@ -279,11 +274,10 @@ var res = await sdk.Wallets.V1.UpdateWalletAsync(
 
 ### Errors
 
-| Error Object                                | Status Code                                 | Content Type                                |
+| Error Type                                  | Status Code                                 | Content Type                                |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
 | formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4xx-5xx                                     | */*                                         |
-
+| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
 
 ## GetWalletSummary
 
@@ -318,11 +312,10 @@ var res = await sdk.Wallets.V1.GetWalletSummaryAsync(id: "<id>");
 
 ### Errors
 
-| Error Object                                | Status Code                                 | Content Type                                |
+| Error Type                                  | Status Code                                 | Content Type                                |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
 | formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4xx-5xx                                     | */*                                         |
-
+| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
 
 ## ListBalances
 
@@ -357,10 +350,9 @@ var res = await sdk.Wallets.V1.ListBalancesAsync(id: "<id>");
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4xx-5xx                             | */*                                 |
-
+| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
 
 ## CreateBalance
 
@@ -404,11 +396,10 @@ var res = await sdk.Wallets.V1.CreateBalanceAsync(
 
 ### Errors
 
-| Error Object                                | Status Code                                 | Content Type                                |
+| Error Type                                  | Status Code                                 | Content Type                                |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
 | formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4xx-5xx                                     | */*                                         |
-
+| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
 
 ## GetBalance
 
@@ -447,11 +438,10 @@ var res = await sdk.Wallets.V1.GetBalanceAsync(
 
 ### Errors
 
-| Error Object                                | Status Code                                 | Content Type                                |
+| Error Type                                  | Status Code                                 | Content Type                                |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
 | formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4xx-5xx                                     | */*                                         |
-
+| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
 
 ## DebitWallet
 
@@ -503,11 +493,10 @@ var res = await sdk.Wallets.V1.DebitWalletAsync(
 
 ### Errors
 
-| Error Object                                | Status Code                                 | Content Type                                |
+| Error Type                                  | Status Code                                 | Content Type                                |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
 | formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4xx-5xx                                     | */*                                         |
-
+| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
 
 ## CreditWallet
 
@@ -566,11 +555,10 @@ var res = await sdk.Wallets.V1.CreditWalletAsync(
 
 ### Errors
 
-| Error Object                                | Status Code                                 | Content Type                                |
+| Error Type                                  | Status Code                                 | Content Type                                |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
 | formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4xx-5xx                                     | */*                                         |
-
+| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
 
 ## GetHolds
 
@@ -616,11 +604,10 @@ var res = await sdk.Wallets.V1.GetHoldsAsync(
 
 ### Errors
 
-| Error Object                                | Status Code                                 | Content Type                                |
+| Error Type                                  | Status Code                                 | Content Type                                |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
 | formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4xx-5xx                                     | */*                                         |
-
+| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
 
 ## GetHold
 
@@ -638,7 +625,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Wallets.V1.GetHoldAsync(holdID: "<value>");
+var res = await sdk.Wallets.V1.GetHoldAsync(holdID: "<id>");
 
 // handle response
 ```
@@ -655,11 +642,10 @@ var res = await sdk.Wallets.V1.GetHoldAsync(holdID: "<value>");
 
 ### Errors
 
-| Error Object                                | Status Code                                 | Content Type                                |
+| Error Type                                  | Status Code                                 | Content Type                                |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
 | formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4xx-5xx                                     | */*                                         |
-
+| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
 
 ## ConfirmHold
 
@@ -679,7 +665,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Wallets.V1.ConfirmHoldAsync(
-    holdId: "<value>",
+    holdId: "<id>",
     idempotencyKey: "<value>",
     confirmHoldRequest: new Models.Components.ConfirmHoldRequest() {
         Amount = 100,
@@ -704,11 +690,10 @@ var res = await sdk.Wallets.V1.ConfirmHoldAsync(
 
 ### Errors
 
-| Error Object                                | Status Code                                 | Content Type                                |
+| Error Type                                  | Status Code                                 | Content Type                                |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
 | formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4xx-5xx                                     | */*                                         |
-
+| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
 
 ## VoidHold
 
@@ -727,7 +712,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Wallets.V1.VoidHoldAsync(
-    holdId: "<value>",
+    holdId: "<id>",
     idempotencyKey: "<value>"
 );
 
@@ -747,7 +732,7 @@ var res = await sdk.Wallets.V1.VoidHoldAsync(
 
 ### Errors
 
-| Error Object                                | Status Code                                 | Content Type                                |
+| Error Type                                  | Status Code                                 | Content Type                                |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
 | formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4xx-5xx                                     | */*                                         |
+| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |

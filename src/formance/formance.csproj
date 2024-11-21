@@ -3,24 +3,24 @@
   <PropertyGroup>
     <IsPackable>true</IsPackable>
     <PackageId>formance</PackageId>
-    <Version>0.0.3</Version>
+    <Version>0.1.0</Version>
     <TargetFramework>net8.0</TargetFramework>
     <Authors>Formance</Authors>
     <Copyright>Copyright (c) Formance 2024</Copyright>
     <RepositoryUrl>https://github.com/formancehq/formance-sdk-csharp.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>formance SDK</PackageTags>
-    <Description>Formance Stack API: Open, modular foundation for unique payments flows
-
-# Introduction
-This API is documented in **OpenAPI format**.
-
-# Authentication
-Formance Stack offers one forms of authentication:
-  - OAuth2
-OAuth2 - an open protocol to allow secure authorization in a simple
-and standard method from web, mobile and desktop applications.
-<SecurityDefinitions />
+    <Description>Formance Stack API: Open, modular foundation for unique payments flows<br/>
+<br/>
+# Introduction<br/>
+This API is documented in **OpenAPI format**.<br/>
+<br/>
+# Authentication<br/>
+Formance Stack offers one forms of authentication:<br/>
+  - OAuth2<br/>
+OAuth2 - an open protocol to allow secure authorization in a simple<br/>
+and standard method from web, mobile and desktop applications.<br/>
+&lt;SecurityDefinitions /&gt;<br/>
 </Description>
   </PropertyGroup>
 

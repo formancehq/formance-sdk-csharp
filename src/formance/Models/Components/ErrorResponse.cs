@@ -10,15 +10,19 @@
 namespace formance.Models.Components
 {
     using Newtonsoft.Json;
+    using formance.Models.Components;
     using formance.Utils;
     
-    /// <summary>
-    /// OK
-    /// </summary>
-    public class TransferResponse
+    public class ErrorResponse
     {
 
-        [JsonProperty("id")]
-        public string? Id { get; set; }
+        [JsonProperty("errorCode")]
+        public ErrorsEnum ErrorCode { get; set; } = default!;
+
+        [JsonProperty("errorMessage")]
+        public string ErrorMessage { get; set; } = default!;
+
+        [JsonProperty("details")]
+        public string? Details { get; set; }
     }
 }

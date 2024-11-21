@@ -45,6 +45,6 @@ var res = await sdk.GetVersionsAsync();
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4xx-5xx                             | */*                                 |
+| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |

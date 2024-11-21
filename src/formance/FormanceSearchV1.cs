@@ -37,17 +37,17 @@ namespace formance
         /// Elasticsearch.v1 query engine
         /// </remarks>
         /// </summary>
-        Task<SearchResponse> SearchAsync(Query request);
+        Task<SearchResponse> SearchAsync(Query? request = null);
     }
 
     public class FormanceSearchV1: IFormanceSearchV1
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "0.0.3";
-        private const string _sdkGenVersion = "2.422.22";
-        private const string _openapiDocVersion = "v2.1.0-beta.3";
-        private const string _userAgent = "speakeasy-sdk/csharp 0.0.3 2.422.22 v2.1.0-beta.3 formance";
+        private const string _sdkVersion = "0.1.0";
+        private const string _sdkGenVersion = "2.461.2";
+        private const string _openapiDocVersion = "v2.1.1";
+        private const string _userAgent = "speakeasy-sdk/csharp 0.1.0 2.461.2 v2.1.1 formance";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<formance.Models.Components.Security>? _securitySource;
@@ -60,6 +60,7 @@ namespace formance
             SDKConfiguration = config;
         }
 
+        [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
         public async Task<SearchgetServerInfoResponse> SearchgetServerInfoAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
@@ -135,7 +136,8 @@ namespace formance
             }
         }
 
-        public async Task<SearchResponse> SearchAsync(Query request)
+        [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
+        public async Task<SearchResponse> SearchAsync(Query? request = null)
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
 
@@ -144,7 +146,7 @@ namespace formance
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", _userAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, false);
+            var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, true);
             if (serializedBody != null)
             {
                 httpRequest.Content = serializedBody;
@@ -195,7 +197,7 @@ namespace formance
             {
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
-                    var obj = ResponseBodyDeserializer.Deserialize<Response>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var obj = ResponseBodyDeserializer.Deserialize<Response>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Include);
                     var response = new SearchResponse()
                     {
                         HttpMeta = new Models.Components.HTTPMetadata()

@@ -50,11 +50,10 @@ var res = await sdk.Webhooks.V1.GetManyConfigsAsync(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.WebhooksErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## InsertConfig
 
@@ -108,11 +107,10 @@ var res = await sdk.Webhooks.V1.InsertConfigAsync(req);
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.WebhooksErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## DeleteConfig
 
@@ -147,11 +145,10 @@ var res = await sdk.Webhooks.V1.DeleteConfigAsync(id: "4997257d-dfb6-445b-929c-c
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.WebhooksErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## TestConfig
 
@@ -186,11 +183,10 @@ var res = await sdk.Webhooks.V1.TestConfigAsync(id: "4997257d-dfb6-445b-929c-cbe
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.WebhooksErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## ActivateConfig
 
@@ -225,11 +221,10 @@ var res = await sdk.Webhooks.V1.ActivateConfigAsync(id: "4997257d-dfb6-445b-929c
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.WebhooksErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## DeactivateConfig
 
@@ -264,11 +259,10 @@ var res = await sdk.Webhooks.V1.DeactivateConfigAsync(id: "4997257d-dfb6-445b-92
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.WebhooksErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
-
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
 
 ## ChangeConfigSecret
 
@@ -313,7 +307,7 @@ var res = await sdk.Webhooks.V1.ChangeConfigSecretAsync(
 
 ### Errors
 
-| Error Object                                 | Status Code                                  | Content Type                                 |
+| Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | formance.Models.Errors.WebhooksErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4xx-5xx                                      | */*                                          |
+| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |

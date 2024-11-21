@@ -58,11 +58,10 @@ var res = await sdk.Ledger.V2.GetInfoAsync();
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## ListLedgers
 
@@ -101,11 +100,10 @@ var res = await sdk.Ledger.V2.ListLedgersAsync(
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## GetLedger
 
@@ -140,11 +138,10 @@ var res = await sdk.Ledger.V2.GetLedgerAsync(ledger: "ledger001");
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## CreateLedger
 
@@ -188,11 +185,10 @@ var res = await sdk.Ledger.V2.CreateLedgerAsync(
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## UpdateLedgerMetadata
 
@@ -234,11 +230,10 @@ var res = await sdk.Ledger.V2.UpdateLedgerMetadataAsync(
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## DeleteLedgerMetadata
 
@@ -277,11 +272,10 @@ var res = await sdk.Ledger.V2.DeleteLedgerMetadataAsync(
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## GetLedgerInfo
 
@@ -316,11 +310,10 @@ var res = await sdk.Ledger.V2.GetLedgerInfoAsync(ledger: "ledger001");
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## CreateBulk
 
@@ -394,11 +387,10 @@ var res = await sdk.Ledger.V2.CreateBulkAsync(
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## CountAccounts
 
@@ -442,11 +434,10 @@ var res = await sdk.Ledger.V2.CountAccountsAsync(
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## ListAccounts
 
@@ -488,11 +479,10 @@ var res = await sdk.Ledger.V2.ListAccountsAsync(req);
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## GetAccount
 
@@ -535,11 +525,10 @@ var res = await sdk.Ledger.V2.GetAccountAsync(
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## AddMetadataToAccount
 
@@ -584,11 +573,10 @@ var res = await sdk.Ledger.V2.AddMetadataToAccountAsync(req);
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## DeleteAccountMetadata
 
@@ -629,11 +617,10 @@ var res = await sdk.Ledger.V2.DeleteAccountMetadataAsync(
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## ReadStats
 
@@ -669,11 +656,10 @@ var res = await sdk.Ledger.V2.ReadStatsAsync(ledger: "ledger001");
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## CountTransactions
 
@@ -717,11 +703,10 @@ var res = await sdk.Ledger.V2.CountTransactionsAsync(
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## ListTransactions
 
@@ -763,11 +748,10 @@ var res = await sdk.Ledger.V2.ListTransactionsAsync(req);
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## CreateTransaction
 
@@ -838,11 +822,10 @@ var res = await sdk.Ledger.V2.CreateTransactionAsync(
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## GetTransaction
 
@@ -886,11 +869,10 @@ var res = await sdk.Ledger.V2.GetTransactionAsync(
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## AddMetadataOnTransaction
 
@@ -936,11 +918,10 @@ var res = await sdk.Ledger.V2.AddMetadataOnTransactionAsync(req);
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## DeleteTransactionMetadata
 
@@ -982,11 +963,10 @@ var res = await sdk.Ledger.V2.DeleteTransactionMetadataAsync(
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## RevertTransaction
 
@@ -1030,11 +1010,10 @@ var res = await sdk.Ledger.V2.RevertTransactionAsync(
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## GetBalancesAggregated
 
@@ -1080,11 +1059,10 @@ var res = await sdk.Ledger.V2.GetBalancesAggregatedAsync(
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## GetVolumesWithBalances
 
@@ -1127,11 +1105,10 @@ var res = await sdk.Ledger.V2.GetVolumesWithBalancesAsync(req);
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## ListLogs
 
@@ -1173,11 +1150,10 @@ var res = await sdk.Ledger.V2.ListLogsAsync(req);
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## ImportLogs
 
@@ -1214,11 +1190,10 @@ var res = await sdk.Ledger.V2.ImportLogsAsync(
 
 ### Errors
 
-| Error Object                           | Status Code                            | Content Type                           |
+| Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | formance.Models.Errors.V2ErrorResponse | default                                | application/json                       |
-| formance.Models.Errors.SDKException    | 4xx-5xx                                | */*                                    |
-
+| formance.Models.Errors.SDKException    | 4XX, 5XX                               | \*/\*                                  |
 
 ## ExportLogs
 
@@ -1253,6 +1228,6 @@ var res = await sdk.Ledger.V2.ExportLogsAsync(ledger: "ledger001");
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4xx-5xx                             | */*                                 |
+| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |

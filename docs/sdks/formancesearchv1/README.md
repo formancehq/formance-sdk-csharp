@@ -5,12 +5,14 @@
 
 ### Available Operations
 
-* [SearchgetServerInfo](#searchgetserverinfo) - Get server info
-* [Search](#search) - search.v1
+* [~~SearchgetServerInfo~~](#searchgetserverinfo) - Get server info :warning: **Deprecated**
+* [~~Search~~](#search) - search.v1 :warning: **Deprecated**
 
-## SearchgetServerInfo
+## ~~SearchgetServerInfo~~
 
 Get server info
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -34,14 +36,15 @@ var res = await sdk.Search.V1.SearchgetServerInfoAsync();
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4xx-5xx                             | */*                                 |
+| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
 
-
-## Search
+## ~~Search~~
 
 Elasticsearch.v1 query engine
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -88,6 +91,6 @@ var res = await sdk.Search.V1.SearchAsync(req);
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4xx-5xx                             | */*                                 |
+| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |

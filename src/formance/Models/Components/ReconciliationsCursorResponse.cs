@@ -13,6 +13,9 @@ namespace formance.Models.Components
     using formance.Models.Components;
     using formance.Utils;
     
+    /// <summary>
+    /// OK
+    /// </summary>
     public class ReconciliationsCursorResponse
     {
 

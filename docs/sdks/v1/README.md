@@ -43,10 +43,9 @@ var res = await sdk.Auth.V1.GetOIDCWellKnownsAsync();
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4xx-5xx                             | */*                                 |
-
+| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
 
 ## GetServerInfo
 
@@ -74,10 +73,9 @@ var res = await sdk.Auth.V1.GetServerInfoAsync();
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4xx-5xx                             | */*                                 |
-
+| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
 
 ## ListClients
 
@@ -105,10 +103,9 @@ var res = await sdk.Auth.V1.ListClientsAsync();
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4xx-5xx                             | */*                                 |
-
+| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
 
 ## CreateClient
 
@@ -147,10 +144,9 @@ var res = await sdk.Auth.V1.CreateClientAsync(req);
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4xx-5xx                             | */*                                 |
-
+| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
 
 ## ReadClient
 
@@ -168,7 +164,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Auth.V1.ReadClientAsync(clientId: "<value>");
+var res = await sdk.Auth.V1.ReadClientAsync(clientId: "<id>");
 
 // handle response
 ```
@@ -185,10 +181,9 @@ var res = await sdk.Auth.V1.ReadClientAsync(clientId: "<value>");
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4xx-5xx                             | */*                                 |
-
+| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
 
 ## UpdateClient
 
@@ -208,7 +203,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Auth.V1.UpdateClientAsync(
-    clientId: "<value>",
+    clientId: "<id>",
     updateClientRequest: new Models.Components.UpdateClientRequest() {
         Name = "<value>",
     }
@@ -230,10 +225,9 @@ var res = await sdk.Auth.V1.UpdateClientAsync(
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4xx-5xx                             | */*                                 |
-
+| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
 
 ## DeleteClient
 
@@ -251,7 +245,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Auth.V1.DeleteClientAsync(clientId: "<value>");
+var res = await sdk.Auth.V1.DeleteClientAsync(clientId: "<id>");
 
 // handle response
 ```
@@ -268,10 +262,9 @@ var res = await sdk.Auth.V1.DeleteClientAsync(clientId: "<value>");
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4xx-5xx                             | */*                                 |
-
+| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
 
 ## CreateSecret
 
@@ -291,7 +284,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Auth.V1.CreateSecretAsync(
-    clientId: "<value>",
+    clientId: "<id>",
     createSecretRequest: new Models.Components.CreateSecretRequest() {
         Name = "<value>",
     }
@@ -313,10 +306,9 @@ var res = await sdk.Auth.V1.CreateSecretAsync(
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4xx-5xx                             | */*                                 |
-
+| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
 
 ## DeleteSecret
 
@@ -335,8 +327,8 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Auth.V1.DeleteSecretAsync(
-    clientId: "<value>",
-    secretId: "<value>"
+    clientId: "<id>",
+    secretId: "<id>"
 );
 
 // handle response
@@ -355,10 +347,9 @@ var res = await sdk.Auth.V1.DeleteSecretAsync(
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4xx-5xx                             | */*                                 |
-
+| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
 
 ## ListUsers
 
@@ -386,10 +377,9 @@ var res = await sdk.Auth.V1.ListUsersAsync();
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4xx-5xx                             | */*                                 |
-
+| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
 
 ## ReadUser
 
@@ -407,7 +397,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Auth.V1.ReadUserAsync(userId: "<value>");
+var res = await sdk.Auth.V1.ReadUserAsync(userId: "<id>");
 
 // handle response
 ```
@@ -424,6 +414,6 @@ var res = await sdk.Auth.V1.ReadUserAsync(userId: "<value>");
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
+| Error Type                          | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4xx-5xx                             | */*                                 |
+| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |

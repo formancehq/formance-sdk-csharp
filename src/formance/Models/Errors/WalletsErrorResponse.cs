@@ -14,9 +14,6 @@ namespace formance.Models.Errors
     using formance.Models.Errors;
     using formance.Utils;
     
-    /// <summary>
-    /// Error
-    /// </summary>
     public class WalletsErrorResponse : Exception
     {
 

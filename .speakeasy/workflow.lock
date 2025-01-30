@@ -1,7 +1,7 @@
 speakeasyVersion: 1.441.1
 sources:
-    my-source:
-        sourceNamespace: my-source
+    stacks-source:
+        sourceNamespace: stacks-source
         sourceRevisionDigest: sha256:8431773989b71e061f93b9503dfe5f8daf84d47d61d5dbdf94cce4854d9c5a4c
         sourceBlobDigest: sha256:32629e12788197e47087a513dddd7268e312e34ebcdf92b037a278687f751892
         tags:
@@ -9,29 +9,29 @@ sources:
             - speakeasy-sdk-regen-1732202914
 targets:
     formance:
-        source: my-source
-        sourceNamespace: my-source
+        source: stacks-source
+        sourceNamespace: stacks-source
         sourceRevisionDigest: sha256:8431773989b71e061f93b9503dfe5f8daf84d47d61d5dbdf94cce4854d9c5a4c
         sourceBlobDigest: sha256:32629e12788197e47087a513dddd7268e312e34ebcdf92b037a278687f751892
-        codeSamplesNamespace: my-source-code-samples
+        codeSamplesNamespace: stacks-source-code-samples
         codeSamplesRevisionDigest: sha256:bd264dec47ba244368e8aae46861f445de42afb97588774ed221e225763e2ed4
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
-        my-source:
+        stacks-source:
             inputs:
-                - location: https://github.com/formancehq/stack/releases/download/v2.1.2/generate.json
+                - location: https://github.com/formancehq/stack/releases/download/v3.0.0-rc.1/generate.json
             registry:
-                location: registry.speakeasyapi.dev/formance/formance/my-source
+                location: registry.speakeasyapi.dev/formance/formance/stacks-source
     targets:
         formance:
             target: csharp
-            source: my-source
+            source: stacks-source
             publish:
                 nuget:
                     apiKey: $nuget_api_key
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/formance/formance/my-source-code-samples
+                    location: registry.speakeasyapi.dev/formance/formance/stacks-source-code-samples
                 blocking: false

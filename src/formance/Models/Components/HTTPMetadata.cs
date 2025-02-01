@@ -10,8 +10,8 @@
 namespace formance.Models.Components
 {
     using Newtonsoft.Json;
-    using System.Net.Http;
     using System;
+    using System.Net.Http;
     using formance.Utils;
     
     public class HTTPMetadata

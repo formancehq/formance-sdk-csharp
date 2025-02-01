@@ -9,8 +9,8 @@
 #nullable enable
 namespace formance.Models.Requests
 {
-    using System.Collections.Generic;
     using System;
+    using System.Collections.Generic;
     using formance.Utils;
     
     public class ListAccountsRequest

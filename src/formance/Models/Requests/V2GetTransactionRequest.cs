@@ -9,8 +9,8 @@
 #nullable enable
 namespace formance.Models.Requests
 {
-    using System.Numerics;
     using System;
+    using System.Numerics;
     using formance.Utils;
     
     public class V2GetTransactionRequest

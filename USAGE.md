@@ -8,7 +8,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.GetVersionsAsync();
+var res = await sdk.GetOIDCWellKnownsAsync();
 
 // handle response
 ```

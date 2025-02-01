@@ -17,7 +17,38 @@ and standard method from web, mobile and desktop applications.
 
 ### Available Operations
 
+* [GetOIDCWellKnowns](#getoidcwellknowns) - Retrieve OpenID connect well-knowns.
 * [GetVersions](#getversions) - Show stack version information
+
+## GetOIDCWellKnowns
+
+Retrieve OpenID connect well-knowns.
+
+### Example Usage
+
+```csharp
+using formance;
+using formance.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.GetOIDCWellKnownsAsync();
+
+// handle response
+```
+
+### Response
+
+**[GetOIDCWellKnownsResponse](../../Models/Requests/GetOIDCWellKnownsResponse.md)**
+
+### Errors
+
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
 
 ## GetVersions
 

@@ -71,7 +71,6 @@ List ledgers
 
 ```csharp
 using formance;
-using formance.Models.Requests;
 using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
@@ -113,7 +112,6 @@ Get a ledger
 
 ```csharp
 using formance;
-using formance.Models.Requests;
 using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
@@ -150,10 +148,9 @@ Create a ledger
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
 using System.Collections.Generic;
+using formance;
+using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -197,9 +194,8 @@ Update ledger metadata
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
 using System.Collections.Generic;
+using formance;
 using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
@@ -243,7 +239,6 @@ Delete ledger metadata by key
 
 ```csharp
 using formance;
-using formance.Models.Requests;
 using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
@@ -285,7 +280,6 @@ Get information about a ledger
 
 ```csharp
 using formance;
-using formance.Models.Requests;
 using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
@@ -322,11 +316,9 @@ Bulk request
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
 using System.Collections.Generic;
+using formance;
 using formance.Models.Components;
-using System.Numerics;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -336,7 +328,7 @@ var sdk = new Formance(security: new Security() {
 var res = await sdk.Ledger.V2.CreateBulkAsync(
     ledger: "ledger001",
     requestBody: new List<V2BulkElement>() {
-        V2BulkElement.CreateV2BulkElementCreateTransaction(
+        V2BulkElement.CreateCreateTransaction(
             new V2BulkElementCreateTransaction() {
                 Action = "<value>",
                 Data = new V2PostTransaction() {
@@ -349,7 +341,7 @@ var res = await sdk.Ledger.V2.CreateBulkAsync(
                         },
                     },
                     Script = new V2PostTransactionScript() {
-                        Plain = "vars {
+                        Plain = @"vars {
                         account $user
                         }
                         send [COIN 10] (
@@ -399,9 +391,9 @@ Count the accounts from a ledger
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
+using System;
 using System.Collections.Generic;
+using formance;
 using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
@@ -411,7 +403,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V2.CountAccountsAsync(
     ledger: "ledger001",
-    pit: System.DateTime.Parse("2022-10-10T12:32:37.688Z"),
+    pit: System.DateTime.Parse("2023-10-10T12:32:37.688Z"),
     requestBody: new Dictionary<string, object>() {
         { "key", "<value>" },
     }
@@ -447,9 +439,8 @@ List accounts from a ledger, sorted by address in descending order.
 
 ```csharp
 using formance;
-using formance.Models.Requests;
-using System.Collections.Generic;
 using formance.Models.Components;
+using formance.Models.Requests;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -491,8 +482,8 @@ Get account by its address
 ### Example Usage
 
 ```csharp
+using System;
 using formance;
-using formance.Models.Requests;
 using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
@@ -504,7 +495,7 @@ var res = await sdk.Ledger.V2.GetAccountAsync(
     ledger: "ledger001",
     address: "users:001",
     expand: "<value>",
-    pit: System.DateTime.Parse("2022-06-03T07:35:25.500Z")
+    pit: System.DateTime.Parse("2023-06-03T07:35:25.500Z")
 );
 
 // handle response
@@ -537,10 +528,10 @@ Add metadata to an account
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
 using System.Collections.Generic;
+using formance;
 using formance.Models.Components;
+using formance.Models.Requests;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -586,7 +577,6 @@ Delete metadata by key
 
 ```csharp
 using formance;
-using formance.Models.Requests;
 using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
@@ -631,7 +621,6 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 
 ```csharp
 using formance;
-using formance.Models.Requests;
 using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
@@ -668,9 +657,9 @@ Count the transactions from a ledger
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
+using System;
 using System.Collections.Generic;
+using formance;
 using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
@@ -680,7 +669,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V2.CountTransactionsAsync(
     ledger: "ledger001",
-    pit: System.DateTime.Parse("2023-09-24T09:44:43.699Z"),
+    pit: System.DateTime.Parse("2024-09-23T09:44:43.699Z"),
     requestBody: new Dictionary<string, object>() {
         { "key", "<value>" },
     }
@@ -716,9 +705,8 @@ List transactions from a ledger, sorted by id in descending order.
 
 ```csharp
 using formance;
-using formance.Models.Requests;
-using System.Collections.Generic;
 using formance.Models.Components;
+using formance.Models.Requests;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -760,11 +748,9 @@ Create a new transaction to a ledger
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
 using System.Collections.Generic;
-using System.Numerics;
+using formance;
+using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -783,7 +769,7 @@ var res = await sdk.Ledger.V2.CreateTransactionAsync(
             },
         },
         Script = new V2PostTransactionScript() {
-            Plain = "vars {
+            Plain = @"vars {
             account $user
             }
             send [COIN 10] (
@@ -834,9 +820,8 @@ Get transaction from a ledger by its ID
 ### Example Usage
 
 ```csharp
+using System;
 using formance;
-using formance.Models.Requests;
-using System.Numerics;
 using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
@@ -848,7 +833,7 @@ var res = await sdk.Ledger.V2.GetTransactionAsync(
     ledger: "ledger001",
     id: 1234,
     expand: "<value>",
-    pit: System.DateTime.Parse("2023-08-22T15:58:06.771Z")
+    pit: System.DateTime.Parse("2024-08-21T15:58:06.771Z")
 );
 
 // handle response
@@ -881,11 +866,10 @@ Set the metadata of a transaction by its ID
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using System.Numerics;
 using System.Collections.Generic;
+using formance;
 using formance.Models.Components;
+using formance.Models.Requests;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -931,8 +915,6 @@ Delete metadata by key
 
 ```csharp
 using formance;
-using formance.Models.Requests;
-using System.Numerics;
 using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
@@ -976,8 +958,6 @@ Revert a ledger transaction by its ID
 
 ```csharp
 using formance;
-using formance.Models.Requests;
-using System.Numerics;
 using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
@@ -1022,9 +1002,9 @@ Get the aggregated balances from selected accounts
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
+using System;
 using System.Collections.Generic;
+using formance;
 using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
@@ -1034,7 +1014,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V2.GetBalancesAggregatedAsync(
     ledger: "ledger001",
-    pit: System.DateTime.Parse("2023-02-24T06:23:10.848Z"),
+    pit: System.DateTime.Parse("2024-02-24T06:23:10.848Z"),
     useInsertionDate: false,
     requestBody: new Dictionary<string, object>() {
         { "key", "<value>" },
@@ -1072,9 +1052,8 @@ Get list of volumes with balances for (account/asset)
 
 ```csharp
 using formance;
-using formance.Models.Requests;
-using System.Collections.Generic;
 using formance.Models.Components;
+using formance.Models.Requests;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1118,9 +1097,8 @@ List the logs from a ledger, sorted by ID in descending order.
 
 ```csharp
 using formance;
-using formance.Models.Requests;
-using System.Collections.Generic;
 using formance.Models.Components;
+using formance.Models.Requests;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1161,7 +1139,6 @@ var res = await sdk.Ledger.V2.ListLogsAsync(req);
 
 ```csharp
 using formance;
-using formance.Models.Requests;
 using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
@@ -1203,7 +1180,6 @@ Export logs
 
 ```csharp
 using formance;
-using formance.Models.Requests;
 using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {

@@ -10,93 +10,153 @@
 namespace formance
 {
     using Newtonsoft.Json;
-    using System.Collections.Generic;
-    using System.Net.Http.Headers;
-    using System.Net.Http;
-    using System.Threading.Tasks;
     using System;
+    using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Numerics;
+    using System.Threading.Tasks;
     using formance.Hooks;
     using formance.Models.Components;
     using formance.Models.Errors;
     using formance.Models.Requests;
-    using formance.Utils.Retries;
     using formance.Utils;
+    using formance.Utils.Retries;
 
     public interface IV1
     {
 
         /// <summary>
-        /// Retrieve OpenID connect well-knowns.
+        /// Show server information
         /// </summary>
-        Task<GetOIDCWellKnownsResponse> GetOIDCWellKnownsAsync();
+        Task<GetInfoResponse> GetInfoAsync();
 
         /// <summary>
-        /// Get server info
+        /// Get information about a ledger
         /// </summary>
-        Task<GetServerInfoResponse> GetServerInfoAsync();
+        Task<GetLedgerInfoResponse> GetLedgerInfoAsync(string ledger);
 
         /// <summary>
-        /// List clients
+        /// Count the accounts from a ledger
         /// </summary>
-        Task<Models.Requests.ListClientsResponse> ListClientsAsync();
+        Task<CountAccountsResponse> CountAccountsAsync(string ledger, string? address = null, Dictionary<string, object>? metadata = null);
 
         /// <summary>
-        /// Create client
-        /// </summary>
-        Task<Models.Requests.CreateClientResponse> CreateClientAsync(CreateClientRequest? request = null);
-
-        /// <summary>
-        /// Read client
-        /// </summary>
-        Task<Models.Requests.ReadClientResponse> ReadClientAsync(string clientId);
-
-        /// <summary>
-        /// Update client
-        /// </summary>
-        Task<Models.Requests.UpdateClientResponse> UpdateClientAsync(string clientId, Models.Components.UpdateClientRequest? updateClientRequest = null);
-
-        /// <summary>
-        /// Delete client
-        /// </summary>
-        Task<DeleteClientResponse> DeleteClientAsync(string clientId);
-
-        /// <summary>
-        /// Add a secret to a client
-        /// </summary>
-        Task<Models.Requests.CreateSecretResponse> CreateSecretAsync(string clientId, Models.Components.CreateSecretRequest? createSecretRequest = null);
-
-        /// <summary>
-        /// Delete a secret from a client
-        /// </summary>
-        Task<DeleteSecretResponse> DeleteSecretAsync(string clientId, string secretId);
-
-        /// <summary>
-        /// List users
+        /// List accounts from a ledger
         /// 
         /// <remarks>
-        /// List users
+        /// List accounts from a ledger, sorted by address in descending order.
         /// </remarks>
         /// </summary>
-        Task<Models.Requests.ListUsersResponse> ListUsersAsync();
+        Task<ListAccountsResponse> ListAccountsAsync(ListAccountsRequest request);
 
         /// <summary>
-        /// Read user
+        /// Get account by its address
+        /// </summary>
+        Task<GetAccountResponse> GetAccountAsync(string ledger, string address);
+
+        /// <summary>
+        /// Add metadata to an account
+        /// </summary>
+        Task<AddMetadataToAccountResponse> AddMetadataToAccountAsync(string ledger, string address, Dictionary<string, object>? requestBody = null);
+
+        /// <summary>
+        /// Get the mapping of a ledger
+        /// </summary>
+        Task<GetMappingResponse> GetMappingAsync(string ledger);
+
+        /// <summary>
+        /// Update the mapping of a ledger
+        /// </summary>
+        Task<UpdateMappingResponse> UpdateMappingAsync(string ledger, Mapping? mapping = null);
+
+        /// <summary>
+        /// Execute a Numscript
         /// 
         /// <remarks>
-        /// Read user
+        /// This route is deprecated, and has been merged into `POST /{ledger}/transactions`.<br/>
+        /// 
         /// </remarks>
         /// </summary>
-        Task<Models.Requests.ReadUserResponse> ReadUserAsync(string userId);
+        Task<RunScriptResponse> RunScriptAsync(string ledger, Script script, bool? preview = null);
+
+        /// <summary>
+        /// Get statistics from a ledger
+        /// 
+        /// <remarks>
+        /// Get statistics from a ledger. (aggregate metrics on accounts and transactions)<br/>
+        /// 
+        /// </remarks>
+        /// </summary>
+        Task<ReadStatsResponse> ReadStatsAsync(string ledger);
+
+        /// <summary>
+        /// Count the transactions from a ledger
+        /// </summary>
+        Task<CountTransactionsResponse> CountTransactionsAsync(CountTransactionsRequest request);
+
+        /// <summary>
+        /// List transactions from a ledger
+        /// 
+        /// <remarks>
+        /// List transactions from a ledger, sorted by txid in descending order.
+        /// </remarks>
+        /// </summary>
+        Task<ListTransactionsResponse> ListTransactionsAsync(ListTransactionsRequest request);
+
+        /// <summary>
+        /// Create a new transaction to a ledger
+        /// </summary>
+        Task<CreateTransactionResponse> CreateTransactionAsync(string ledger, PostTransaction postTransaction, bool? preview = null);
+
+        /// <summary>
+        /// Get transaction from a ledger by its ID
+        /// </summary>
+        Task<GetTransactionResponse> GetTransactionAsync(string ledger, BigInteger txid);
+
+        /// <summary>
+        /// Set the metadata of a transaction by its ID
+        /// </summary>
+        Task<AddMetadataOnTransactionResponse> AddMetadataOnTransactionAsync(string ledger, BigInteger txid, Dictionary<string, object>? requestBody = null);
+
+        /// <summary>
+        /// Revert a ledger transaction by its ID
+        /// </summary>
+        Task<RevertTransactionResponse> RevertTransactionAsync(string ledger, BigInteger txid, bool? disableChecks = null);
+
+        /// <summary>
+        /// Create a new batch of transactions to a ledger
+        /// </summary>
+        Task<CreateTransactionsResponse> CreateTransactionsAsync(string ledger, Transactions transactions);
+
+        /// <summary>
+        /// Get the balances from a ledger&apos;s account
+        /// </summary>
+        Task<GetBalancesResponse> GetBalancesAsync(GetBalancesRequest request);
+
+        /// <summary>
+        /// Get the aggregated balances from selected accounts
+        /// </summary>
+        Task<GetBalancesAggregatedResponse> GetBalancesAggregatedAsync(string ledger, string? address = null, bool? useInsertionDate = null);
+
+        /// <summary>
+        /// List the logs from a ledger
+        /// 
+        /// <remarks>
+        /// List the logs from a ledger, sorted by ID in descending order.
+        /// </remarks>
+        /// </summary>
+        Task<ListLogsResponse> ListLogsAsync(ListLogsRequest request);
     }
 
     public class V1: IV1
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "0.1.0";
-        private const string _sdkGenVersion = "2.461.2";
-        private const string _openapiDocVersion = "v2.1.1";
-        private const string _userAgent = "speakeasy-sdk/csharp 0.1.0 2.461.2 v2.1.1 formance";
+        private const string _sdkVersion = "1.0.0";
+        private const string _sdkGenVersion = "2.500.5";
+        private const string _openapiDocVersion = "v2.1.2";
+        private const string _userAgent = "speakeasy-sdk/csharp 1.0.0 2.500.5 v2.1.2 formance";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<formance.Models.Components.Security>? _securitySource;
@@ -109,11 +169,11 @@ namespace formance
             SDKConfiguration = config;
         }
 
-        public async Task<GetOIDCWellKnownsResponse> GetOIDCWellKnownsAsync()
+        public async Task<GetInfoResponse> GetInfoAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
 
-            var urlString = baseUrl + "/api/auth/.well-known/openid-configuration";
+            var urlString = baseUrl + "/api/ledger/_info";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", _userAgent);
@@ -123,7 +183,177 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("getOIDCWellKnowns", new List<string> { "auth:read", "auth:read" }, _securitySource);
+            var hookCtx = new HookContext("getInfo", new List<string> { "ledger:read" }, _securitySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await _client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode == default)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<ConfigInfoResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new GetInfoResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.ConfigInfoResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Errors.ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+        }
+
+        public async Task<GetLedgerInfoResponse> GetLedgerInfoAsync(string ledger)
+        {
+            var request = new GetLedgerInfoRequest()
+            {
+                Ledger = ledger,
+            };
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/{ledger}/_info", request);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", _userAgent);
+
+            if (_securitySource != null)
+            {
+                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext("getLedgerInfo", new List<string> { "ledger:read" }, _securitySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await _client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode == default)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<LedgerInfoResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new GetLedgerInfoResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.LedgerInfoResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Errors.ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+        }
+
+        public async Task<CountAccountsResponse> CountAccountsAsync(string ledger, string? address = null, Dictionary<string, object>? metadata = null)
+        {
+            var request = new CountAccountsRequest()
+            {
+                Ledger = ledger,
+                Address = address,
+                Metadata = metadata,
+            };
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/{ledger}/accounts", request);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Head, urlString);
+            httpRequest.Headers.Add("user-agent", _userAgent);
+
+            if (_securitySource != null)
+            {
+                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext("countAccounts", new List<string> { "ledger:read" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -161,7 +391,7 @@ namespace formance
             int responseStatusCode = (int)httpResponse.StatusCode;
             if(responseStatusCode == 200)
             {                
-                return new GetOIDCWellKnownsResponse()
+                return new CountAccountsResponse()
                 {
                     HttpMeta = new Models.Components.HTTPMetadata()
                     {
@@ -172,15 +402,20 @@ namespace formance
             }
             else
             {
-                throw new Models.Errors.SDKException("API error occurred", httpRequest, httpResponse);
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Errors.ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
             }
         }
 
-        public async Task<GetServerInfoResponse> GetServerInfoAsync()
+        public async Task<ListAccountsResponse> ListAccountsAsync(ListAccountsRequest request)
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
-            var urlString = baseUrl + "/api/auth/_info";
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/{ledger}/accounts", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", _userAgent);
@@ -190,7 +425,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("getServerInfo", new List<string> { "auth:read", "auth:read" }, _securitySource);
+            var hookCtx = new HookContext("listAccounts", new List<string> { "ledger:read" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -230,8 +465,8 @@ namespace formance
             {
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
-                    var obj = ResponseBodyDeserializer.Deserialize<ServerInfo>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new GetServerInfoResponse()
+                    var obj = ResponseBodyDeserializer.Deserialize<AccountsCursorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new ListAccountsResponse()
                     {
                         HttpMeta = new Models.Components.HTTPMetadata()
                         {
@@ -239,7 +474,26 @@ namespace formance
                             Request = httpRequest
                         }
                     };
-                    response.ServerInfo = obj;
+                    response.AccountsCursorResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+            else if(responseStatusCode == 404)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Components.ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new ListAccountsResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.ErrorResponse = obj;
                     return response;
                 }
 
@@ -247,15 +501,25 @@ namespace formance
             }
             else
             {
-                throw new Models.Errors.SDKException("API error occurred", httpRequest, httpResponse);
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Errors.ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
             }
         }
 
-        public async Task<Models.Requests.ListClientsResponse> ListClientsAsync()
+        public async Task<GetAccountResponse> GetAccountAsync(string ledger, string address)
         {
+            var request = new GetAccountRequest()
+            {
+                Ledger = ledger,
+                Address = address,
+            };
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
-            var urlString = baseUrl + "/api/auth/clients";
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/{ledger}/accounts/{address}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", _userAgent);
@@ -265,7 +529,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("listClients", new List<string> { "auth:read", "auth:read" }, _securitySource);
+            var hookCtx = new HookContext("getAccount", new List<string> { "ledger:read" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -305,8 +569,8 @@ namespace formance
             {
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
-                    var obj = ResponseBodyDeserializer.Deserialize<Models.Components.ListClientsResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new Models.Requests.ListClientsResponse()
+                    var obj = ResponseBodyDeserializer.Deserialize<AccountResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new GetAccountResponse()
                     {
                         HttpMeta = new Models.Components.HTTPMetadata()
                         {
@@ -314,7 +578,7 @@ namespace formance
                             Request = httpRequest
                         }
                     };
-                    response.ListClientsResponseValue = obj;
+                    response.AccountResponse = obj;
                     return response;
                 }
 
@@ -322,20 +586,31 @@ namespace formance
             }
             else
             {
-                throw new Models.Errors.SDKException("API error occurred", httpRequest, httpResponse);
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Errors.ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
             }
         }
 
-        public async Task<Models.Requests.CreateClientResponse> CreateClientAsync(CreateClientRequest? request = null)
+        public async Task<AddMetadataToAccountResponse> AddMetadataToAccountAsync(string ledger, string address, Dictionary<string, object>? requestBody = null)
         {
+            var request = new AddMetadataToAccountRequest()
+            {
+                Ledger = ledger,
+                Address = address,
+                RequestBody = requestBody,
+            };
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
-            var urlString = baseUrl + "/api/auth/clients";
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/{ledger}/accounts/{address}/metadata", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", _userAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, true);
+            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", true, false);
             if (serializedBody != null)
             {
                 httpRequest.Content = serializedBody;
@@ -346,7 +621,844 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("createClient", new List<string> { "auth:read", "auth:write" }, _securitySource);
+            var hookCtx = new HookContext("addMetadataToAccount", new List<string> { "ledger:write" }, _securitySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await _client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode == default)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 204)
+            {                
+                return new AddMetadataToAccountResponse()
+                {
+                    HttpMeta = new Models.Components.HTTPMetadata()
+                    {
+                        Response = httpResponse,
+                        Request = httpRequest
+                    }
+                };
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Errors.ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+        }
+
+        public async Task<GetMappingResponse> GetMappingAsync(string ledger)
+        {
+            var request = new GetMappingRequest()
+            {
+                Ledger = ledger,
+            };
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/{ledger}/mapping", request);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", _userAgent);
+
+            if (_securitySource != null)
+            {
+                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext("getMapping", new List<string> { "ledger:read" }, _securitySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await _client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode == default)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<MappingResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new GetMappingResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.MappingResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Errors.ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+        }
+
+        public async Task<UpdateMappingResponse> UpdateMappingAsync(string ledger, Mapping? mapping = null)
+        {
+            var request = new UpdateMappingRequest()
+            {
+                Ledger = ledger,
+                Mapping = mapping,
+            };
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/{ledger}/mapping", request);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
+            httpRequest.Headers.Add("user-agent", _userAgent);
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "Mapping", "json", true, false);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (_securitySource != null)
+            {
+                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext("updateMapping", new List<string> { "ledger:write" }, _securitySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await _client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode == default)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<MappingResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new UpdateMappingResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.MappingResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Errors.ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+        }
+
+        [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
+        public async Task<RunScriptResponse> RunScriptAsync(string ledger, Script script, bool? preview = null)
+        {
+            var request = new RunScriptRequest()
+            {
+                Ledger = ledger,
+                Script = script,
+                Preview = preview,
+            };
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/{ledger}/script", request);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", _userAgent);
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "Script", "json", false, false);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (_securitySource != null)
+            {
+                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext("runScript", new List<string> { "ledger:write" }, _securitySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await _client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode == default)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<ScriptResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new RunScriptResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.ScriptResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+            else
+            {
+                throw new Models.Errors.SDKException("API error occurred", httpRequest, httpResponse);
+            }
+        }
+
+        public async Task<ReadStatsResponse> ReadStatsAsync(string ledger)
+        {
+            var request = new ReadStatsRequest()
+            {
+                Ledger = ledger,
+            };
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/{ledger}/stats", request);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", _userAgent);
+
+            if (_securitySource != null)
+            {
+                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext("readStats", new List<string> { "ledger:read" }, _securitySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await _client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode == default)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<StatsResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new ReadStatsResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.StatsResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Errors.ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+        }
+
+        public async Task<CountTransactionsResponse> CountTransactionsAsync(CountTransactionsRequest request)
+        {
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/{ledger}/transactions", request);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Head, urlString);
+            httpRequest.Headers.Add("user-agent", _userAgent);
+
+            if (_securitySource != null)
+            {
+                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext("countTransactions", new List<string> { "ledger:read" }, _securitySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await _client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode == default)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {                
+                return new CountTransactionsResponse()
+                {
+                    HttpMeta = new Models.Components.HTTPMetadata()
+                    {
+                        Response = httpResponse,
+                        Request = httpRequest
+                    }
+                };
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Errors.ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+        }
+
+        public async Task<ListTransactionsResponse> ListTransactionsAsync(ListTransactionsRequest request)
+        {
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/{ledger}/transactions", request);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", _userAgent);
+
+            if (_securitySource != null)
+            {
+                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext("listTransactions", new List<string> { "ledger:read" }, _securitySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await _client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode == default)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<TransactionsCursorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new ListTransactionsResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.TransactionsCursorResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Errors.ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+        }
+
+        public async Task<CreateTransactionResponse> CreateTransactionAsync(string ledger, PostTransaction postTransaction, bool? preview = null)
+        {
+            var request = new CreateTransactionRequest()
+            {
+                Ledger = ledger,
+                PostTransaction = postTransaction,
+                Preview = preview,
+            };
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/{ledger}/transactions", request);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", _userAgent);
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "PostTransaction", "json", false, false);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (_securitySource != null)
+            {
+                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext("createTransaction", new List<string> { "ledger:write" }, _securitySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await _client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode == default)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<TransactionsResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new CreateTransactionResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.TransactionsResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Errors.ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+        }
+
+        public async Task<GetTransactionResponse> GetTransactionAsync(string ledger, BigInteger txid)
+        {
+            var request = new GetTransactionRequest()
+            {
+                Ledger = ledger,
+                Txid = txid,
+            };
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/{ledger}/transactions/{txid}", request);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", _userAgent);
+
+            if (_securitySource != null)
+            {
+                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext("getTransaction", new List<string> { "ledger:read" }, _securitySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await _client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode == default)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<TransactionResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new GetTransactionResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.TransactionResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Errors.ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+        }
+
+        public async Task<AddMetadataOnTransactionResponse> AddMetadataOnTransactionAsync(string ledger, BigInteger txid, Dictionary<string, object>? requestBody = null)
+        {
+            var request = new AddMetadataOnTransactionRequest()
+            {
+                Ledger = ledger,
+                Txid = txid,
+                RequestBody = requestBody,
+            };
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/{ledger}/transactions/{txid}/metadata", request);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", _userAgent);
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", true, true);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (_securitySource != null)
+            {
+                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext("addMetadataOnTransaction", new List<string> { "ledger:write" }, _securitySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await _client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode == default)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 204)
+            {                
+                return new AddMetadataOnTransactionResponse()
+                {
+                    HttpMeta = new Models.Components.HTTPMetadata()
+                    {
+                        Response = httpResponse,
+                        Request = httpRequest
+                    }
+                };
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Errors.ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+        }
+
+        public async Task<RevertTransactionResponse> RevertTransactionAsync(string ledger, BigInteger txid, bool? disableChecks = null)
+        {
+            var request = new RevertTransactionRequest()
+            {
+                Ledger = ledger,
+                Txid = txid,
+                DisableChecks = disableChecks,
+            };
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/{ledger}/transactions/{txid}/revert", request);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", _userAgent);
+
+            if (_securitySource != null)
+            {
+                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext("revertTransaction", new List<string> { "ledger:write" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -386,8 +1498,8 @@ namespace formance
             {
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
-                    var obj = ResponseBodyDeserializer.Deserialize<Models.Components.CreateClientResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Include);
-                    var response = new Models.Requests.CreateClientResponse()
+                    var obj = ResponseBodyDeserializer.Deserialize<TransactionResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new RevertTransactionResponse()
                     {
                         HttpMeta = new Models.Components.HTTPMetadata()
                         {
@@ -395,265 +1507,38 @@ namespace formance
                             Request = httpRequest
                         }
                     };
-                    response.CreateClientResponseValue = obj;
+                    response.TransactionResponse = obj;
                     return response;
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
             }
             else
-            {
-                throw new Models.Errors.SDKException("API error occurred", httpRequest, httpResponse);
-            }
-        }
-
-        public async Task<Models.Requests.ReadClientResponse> ReadClientAsync(string clientId)
-        {
-            var request = new ReadClientRequest()
-            {
-                ClientId = clientId,
-            };
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}", request);
-
-            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
-
-            if (_securitySource != null)
-            {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
-            }
-
-            var hookCtx = new HookContext("readClient", new List<string> { "auth:read", "auth:read" }, _securitySource);
-
-            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
-
-            HttpResponseMessage httpResponse;
-            try
-            {
-                httpResponse = await _client.SendAsync(httpRequest);
-                int _statusCode = (int)httpResponse.StatusCode;
-
-                if (_statusCode == default)
-                {
-                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
-                    if (_httpResponse != null)
-                    {
-                        httpResponse = _httpResponse;
-                    }
-                }
-            }
-            catch (Exception error)
-            {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
-                if (_httpResponse != null)
-                {
-                    httpResponse = _httpResponse;
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
-
-            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
-            int responseStatusCode = (int)httpResponse.StatusCode;
-            if(responseStatusCode == 200)
             {
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
-                    var obj = ResponseBodyDeserializer.Deserialize<Models.Components.ReadClientResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new Models.Requests.ReadClientResponse()
-                    {
-                        HttpMeta = new Models.Components.HTTPMetadata()
-                        {
-                            Response = httpResponse,
-                            Request = httpRequest
-                        }
-                    };
-                    response.ReadClientResponseValue = obj;
-                    return response;
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Errors.ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
             }
-            else
-            {
-                throw new Models.Errors.SDKException("API error occurred", httpRequest, httpResponse);
-            }
         }
 
-        public async Task<Models.Requests.UpdateClientResponse> UpdateClientAsync(string clientId, Models.Components.UpdateClientRequest? updateClientRequest = null)
+        public async Task<CreateTransactionsResponse> CreateTransactionsAsync(string ledger, Transactions transactions)
         {
-            var request = new Models.Requests.UpdateClientRequest()
+            var request = new CreateTransactionsRequest()
             {
-                ClientId = clientId,
-                UpdateClientRequestValue = updateClientRequest,
+                Ledger = ledger,
+                Transactions = transactions,
             };
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}", request);
-
-            var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
-
-            var serializedBody = RequestBodySerializer.Serialize(request, "UpdateClientRequestValue", "json", false, true);
-            if (serializedBody != null)
-            {
-                httpRequest.Content = serializedBody;
-            }
-
-            if (_securitySource != null)
-            {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
-            }
-
-            var hookCtx = new HookContext("updateClient", new List<string> { "auth:read", "auth:write" }, _securitySource);
-
-            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
-
-            HttpResponseMessage httpResponse;
-            try
-            {
-                httpResponse = await _client.SendAsync(httpRequest);
-                int _statusCode = (int)httpResponse.StatusCode;
-
-                if (_statusCode == default)
-                {
-                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
-                    if (_httpResponse != null)
-                    {
-                        httpResponse = _httpResponse;
-                    }
-                }
-            }
-            catch (Exception error)
-            {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
-                if (_httpResponse != null)
-                {
-                    httpResponse = _httpResponse;
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
-
-            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
-            int responseStatusCode = (int)httpResponse.StatusCode;
-            if(responseStatusCode == 200)
-            {
-                if(Utilities.IsContentTypeMatch("application/json", contentType))
-                {
-                    var obj = ResponseBodyDeserializer.Deserialize<Models.Components.UpdateClientResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new Models.Requests.UpdateClientResponse()
-                    {
-                        HttpMeta = new Models.Components.HTTPMetadata()
-                        {
-                            Response = httpResponse,
-                            Request = httpRequest
-                        }
-                    };
-                    response.UpdateClientResponseValue = obj;
-                    return response;
-                }
-
-                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
-            }
-            else
-            {
-                throw new Models.Errors.SDKException("API error occurred", httpRequest, httpResponse);
-            }
-        }
-
-        public async Task<DeleteClientResponse> DeleteClientAsync(string clientId)
-        {
-            var request = new DeleteClientRequest()
-            {
-                ClientId = clientId,
-            };
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}", request);
-
-            var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
-
-            if (_securitySource != null)
-            {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
-            }
-
-            var hookCtx = new HookContext("deleteClient", new List<string> { "auth:read", "auth:write" }, _securitySource);
-
-            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
-
-            HttpResponseMessage httpResponse;
-            try
-            {
-                httpResponse = await _client.SendAsync(httpRequest);
-                int _statusCode = (int)httpResponse.StatusCode;
-
-                if (_statusCode == default)
-                {
-                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
-                    if (_httpResponse != null)
-                    {
-                        httpResponse = _httpResponse;
-                    }
-                }
-            }
-            catch (Exception error)
-            {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
-                if (_httpResponse != null)
-                {
-                    httpResponse = _httpResponse;
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
-
-            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
-            int responseStatusCode = (int)httpResponse.StatusCode;
-            if(responseStatusCode == 204)
-            {                
-                return new DeleteClientResponse()
-                {
-                    HttpMeta = new Models.Components.HTTPMetadata()
-                    {
-                        Response = httpResponse,
-                        Request = httpRequest
-                    }
-                };
-            }
-            else
-            {
-                throw new Models.Errors.SDKException("API error occurred", httpRequest, httpResponse);
-            }
-        }
-
-        public async Task<Models.Requests.CreateSecretResponse> CreateSecretAsync(string clientId, Models.Components.CreateSecretRequest? createSecretRequest = null)
-        {
-            var request = new Models.Requests.CreateSecretRequest()
-            {
-                ClientId = clientId,
-                CreateSecretRequestValue = createSecretRequest,
-            };
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}/secrets", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/{ledger}/transactions/batch", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", _userAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "CreateSecretRequestValue", "json", false, true);
+            var serializedBody = RequestBodySerializer.Serialize(request, "Transactions", "json", false, false);
             if (serializedBody != null)
             {
                 httpRequest.Content = serializedBody;
@@ -664,7 +1549,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("createSecret", new List<string> { "auth:read", "auth:write" }, _securitySource);
+            var hookCtx = new HookContext("CreateTransactions", new List<string> { "ledger:write" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -704,8 +1589,8 @@ namespace formance
             {
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
-                    var obj = ResponseBodyDeserializer.Deserialize<Models.Components.CreateSecretResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new Models.Requests.CreateSecretResponse()
+                    var obj = ResponseBodyDeserializer.Deserialize<TransactionsResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new CreateTransactionsResponse()
                     {
                         HttpMeta = new Models.Components.HTTPMetadata()
                         {
@@ -713,7 +1598,7 @@ namespace formance
                             Request = httpRequest
                         }
                     };
-                    response.CreateSecretResponseValue = obj;
+                    response.TransactionsResponse = obj;
                     return response;
                 }
 
@@ -721,86 +1606,20 @@ namespace formance
             }
             else
             {
-                throw new Models.Errors.SDKException("API error occurred", httpRequest, httpResponse);
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Errors.ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
             }
         }
 
-        public async Task<DeleteSecretResponse> DeleteSecretAsync(string clientId, string secretId)
-        {
-            var request = new DeleteSecretRequest()
-            {
-                ClientId = clientId,
-                SecretId = secretId,
-            };
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}/secrets/{secretId}", request);
-
-            var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
-
-            if (_securitySource != null)
-            {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
-            }
-
-            var hookCtx = new HookContext("deleteSecret", new List<string> { "auth:read", "auth:write" }, _securitySource);
-
-            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
-
-            HttpResponseMessage httpResponse;
-            try
-            {
-                httpResponse = await _client.SendAsync(httpRequest);
-                int _statusCode = (int)httpResponse.StatusCode;
-
-                if (_statusCode == default)
-                {
-                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
-                    if (_httpResponse != null)
-                    {
-                        httpResponse = _httpResponse;
-                    }
-                }
-            }
-            catch (Exception error)
-            {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
-                if (_httpResponse != null)
-                {
-                    httpResponse = _httpResponse;
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
-
-            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
-            int responseStatusCode = (int)httpResponse.StatusCode;
-            if(responseStatusCode == 204)
-            {                
-                return new DeleteSecretResponse()
-                {
-                    HttpMeta = new Models.Components.HTTPMetadata()
-                    {
-                        Response = httpResponse,
-                        Request = httpRequest
-                    }
-                };
-            }
-            else
-            {
-                throw new Models.Errors.SDKException("API error occurred", httpRequest, httpResponse);
-            }
-        }
-
-        public async Task<Models.Requests.ListUsersResponse> ListUsersAsync()
+        public async Task<GetBalancesResponse> GetBalancesAsync(GetBalancesRequest request)
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
-            var urlString = baseUrl + "/api/auth/users";
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/{ledger}/balances", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", _userAgent);
@@ -810,7 +1629,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("listUsers", new List<string> { "auth:read", "auth:read" }, _securitySource);
+            var hookCtx = new HookContext("getBalances", new List<string> { "ledger:read" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -850,8 +1669,8 @@ namespace formance
             {
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
-                    var obj = ResponseBodyDeserializer.Deserialize<Models.Components.ListUsersResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new Models.Requests.ListUsersResponse()
+                    var obj = ResponseBodyDeserializer.Deserialize<BalancesCursorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new GetBalancesResponse()
                     {
                         HttpMeta = new Models.Components.HTTPMetadata()
                         {
@@ -859,7 +1678,7 @@ namespace formance
                             Request = httpRequest
                         }
                     };
-                    response.ListUsersResponseValue = obj;
+                    response.BalancesCursorResponse = obj;
                     return response;
                 }
 
@@ -867,18 +1686,26 @@ namespace formance
             }
             else
             {
-                throw new Models.Errors.SDKException("API error occurred", httpRequest, httpResponse);
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Errors.ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
             }
         }
 
-        public async Task<Models.Requests.ReadUserResponse> ReadUserAsync(string userId)
+        public async Task<GetBalancesAggregatedResponse> GetBalancesAggregatedAsync(string ledger, string? address = null, bool? useInsertionDate = null)
         {
-            var request = new ReadUserRequest()
+            var request = new GetBalancesAggregatedRequest()
             {
-                UserId = userId,
+                Ledger = ledger,
+                Address = address,
+                UseInsertionDate = useInsertionDate,
             };
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/auth/users/{userId}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/{ledger}/aggregate/balances", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", _userAgent);
@@ -888,7 +1715,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("readUser", new List<string> { "auth:read", "auth:read" }, _securitySource);
+            var hookCtx = new HookContext("getBalancesAggregated", new List<string> { "ledger:read" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -928,8 +1755,8 @@ namespace formance
             {
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
-                    var obj = ResponseBodyDeserializer.Deserialize<Models.Components.ReadUserResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new Models.Requests.ReadUserResponse()
+                    var obj = ResponseBodyDeserializer.Deserialize<AggregateBalancesResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new GetBalancesAggregatedResponse()
                     {
                         HttpMeta = new Models.Components.HTTPMetadata()
                         {
@@ -937,7 +1764,7 @@ namespace formance
                             Request = httpRequest
                         }
                     };
-                    response.ReadUserResponseValue = obj;
+                    response.AggregateBalancesResponse = obj;
                     return response;
                 }
 
@@ -945,7 +1772,93 @@ namespace formance
             }
             else
             {
-                throw new Models.Errors.SDKException("API error occurred", httpRequest, httpResponse);
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Errors.ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+        }
+
+        public async Task<ListLogsResponse> ListLogsAsync(ListLogsRequest request)
+        {
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/{ledger}/logs", request);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", _userAgent);
+
+            if (_securitySource != null)
+            {
+                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext("listLogs", new List<string> { "ledger:read" }, _securitySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await _client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode == default)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<LogsCursorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new ListLogsResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.LogsCursorResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Errors.ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
             }
         }
     }

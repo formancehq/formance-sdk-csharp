@@ -15,7 +15,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.GetVersionsAsync();
+var res = await sdk.GetOIDCWellKnownsAsync();
 
 // handle response
 ```
@@ -46,7 +46,6 @@ When custom error responses are specified for an operation, the SDK may also thr
 ```csharp
 using formance;
 using formance.Models.Components;
-using System;
 using formance.Models.Errors;
 
 var sdk = new Formance(security: new Security() {
@@ -104,7 +103,7 @@ var sdk = new Formance(
     }
 );
 
-var res = await sdk.GetVersionsAsync();
+var res = await sdk.GetOIDCWellKnownsAsync();
 
 // handle response
 ```
@@ -124,7 +123,7 @@ var sdk = new Formance(
     }
 );
 
-var res = await sdk.GetVersionsAsync();
+var res = await sdk.GetOIDCWellKnownsAsync();
 
 // handle response
 ```
@@ -151,7 +150,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.GetVersionsAsync();
+var res = await sdk.GetOIDCWellKnownsAsync();
 
 // handle response
 ```

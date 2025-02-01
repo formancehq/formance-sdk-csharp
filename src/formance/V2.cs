@@ -10,18 +10,18 @@
 namespace formance
 {
     using Newtonsoft.Json;
+    using System;
     using System.Collections.Generic;
-    using System.Net.Http.Headers;
     using System.Net.Http;
+    using System.Net.Http.Headers;
     using System.Numerics;
     using System.Threading.Tasks;
-    using System;
     using formance.Hooks;
     using formance.Models.Components;
     using formance.Models.Errors;
     using formance.Models.Requests;
-    using formance.Utils.Retries;
     using formance.Utils;
+    using formance.Utils.Retries;
 
     public interface IV2
     {
@@ -182,10 +182,10 @@ namespace formance
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "0.1.0";
-        private const string _sdkGenVersion = "2.461.2";
-        private const string _openapiDocVersion = "v2.1.1";
-        private const string _userAgent = "speakeasy-sdk/csharp 0.1.0 2.461.2 v2.1.1 formance";
+        private const string _sdkVersion = "1.0.0";
+        private const string _sdkGenVersion = "2.500.5";
+        private const string _openapiDocVersion = "v2.1.2";
+        private const string _userAgent = "speakeasy-sdk/csharp 1.0.0 2.500.5 v2.1.2 formance";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<formance.Models.Components.Security>? _securitySource;
@@ -212,7 +212,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2GetInfo", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext("v2GetInfo", new List<string> { "ledger:read" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -316,7 +316,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2ListLedgers", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext("v2ListLedgers", new List<string> { "ledger:read" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -400,7 +400,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2GetLedger", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext("v2GetLedger", new List<string> { "ledger:read" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -491,7 +491,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2CreateLedger", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext("v2CreateLedger", new List<string> { "ledger:write" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -574,7 +574,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2UpdateLedgerMetadata", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext("v2UpdateLedgerMetadata", new List<string> { "ledger:write" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -670,7 +670,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2DeleteLedgerMetadata", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext("v2DeleteLedgerMetadata", new List<string> { "ledger:write" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -746,7 +746,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2GetLedgerInfo", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext("v2GetLedgerInfo", new List<string> { "ledger:read" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -837,7 +837,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2CreateBulk", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext("v2CreateBulk", new List<string> { "ledger:write" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -873,7 +873,26 @@ namespace formance
 
             var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
             int responseStatusCode = (int)httpResponse.StatusCode;
-            if(new List<int>{200, 400}.Contains(responseStatusCode))
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<V2BulkResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new V2CreateBulkResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.V2BulkResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+            else if(responseStatusCode == 400)
             {
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
@@ -929,7 +948,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2CountAccounts", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext("v2CountAccounts", new List<string> { "ledger:read" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1007,7 +1026,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2ListAccounts", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext("v2ListAccounts", new List<string> { "ledger:read" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1094,7 +1113,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2GetAccount", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext("v2GetAccount", new List<string> { "ledger:read" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1181,7 +1200,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2AddMetadataToAccount", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext("v2AddMetadataToAccount", new List<string> { "ledger:write" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1259,7 +1278,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2DeleteAccountMetadata", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext("v2DeleteAccountMetadata", new List<string> { "ledger:write" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1335,7 +1354,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2ReadStats", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext("v2ReadStats", new List<string> { "ledger:read" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1427,7 +1446,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2CountTransactions", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext("v2CountTransactions", new List<string> { "ledger:read" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1505,7 +1524,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2ListTransactions", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext("v2ListTransactions", new List<string> { "ledger:read" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1599,7 +1618,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2CreateTransaction", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext("v2CreateTransaction", new List<string> { "ledger:write" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1686,7 +1705,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2GetTransaction", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext("v2GetTransaction", new List<string> { "ledger:read" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1773,7 +1792,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2AddMetadataOnTransaction", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext("v2AddMetadataOnTransaction", new List<string> { "ledger:write" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1851,7 +1870,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2DeleteTransactionMetadata", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext("v2DeleteTransactionMetadata", new List<string> { "ledger:write" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1930,7 +1949,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2RevertTransaction", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext("v2RevertTransaction", new List<string> { "ledger:write" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2023,7 +2042,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2GetBalancesAggregated", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext("v2GetBalancesAggregated", new List<string> { "ledger:read" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2109,7 +2128,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2GetVolumesWithBalances", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext("v2GetVolumesWithBalances", new List<string> { "ledger:read" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2195,7 +2214,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2ListLogs", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext("v2ListLogs", new List<string> { "ledger:read" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2286,7 +2305,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2ImportLogs", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext("v2ImportLogs", new List<string> { "ledger:write" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2362,7 +2381,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2ExportLogs", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext("v2ExportLogs", new List<string> { "ledger:write" }, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 

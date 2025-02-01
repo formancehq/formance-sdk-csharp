@@ -10,9 +10,9 @@
 namespace formance.Models.Components
 {
     using Newtonsoft.Json;
+    using System;
     using System.Collections.Generic;
     using System.Numerics;
-    using System;
     using formance.Models.Components;
     using formance.Utils;
     

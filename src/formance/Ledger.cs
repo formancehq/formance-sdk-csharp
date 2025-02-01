@@ -16,7 +16,7 @@ namespace formance
 
     public interface ILedger
     {
-        public IFormanceV1 V1 { get; }
+        public IV1 V1 { get; }
         public IV2 V2 { get; }
     }
 
@@ -24,14 +24,14 @@ namespace formance
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "0.1.0";
-        private const string _sdkGenVersion = "2.461.2";
-        private const string _openapiDocVersion = "v2.1.1";
-        private const string _userAgent = "speakeasy-sdk/csharp 0.1.0 2.461.2 v2.1.1 formance";
+        private const string _sdkVersion = "1.0.0";
+        private const string _sdkGenVersion = "2.500.5";
+        private const string _openapiDocVersion = "v2.1.2";
+        private const string _userAgent = "speakeasy-sdk/csharp 1.0.0 2.500.5 v2.1.2 formance";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<formance.Models.Components.Security>? _securitySource;
-        public IFormanceV1 V1 { get; private set; }
+        public IV1 V1 { get; private set; }
         public IV2 V2 { get; private set; }
 
         public Ledger(ISpeakeasyHttpClient client, Func<formance.Models.Components.Security>? securitySource, string serverUrl, SDKConfig config)
@@ -40,7 +40,7 @@ namespace formance
             _securitySource = securitySource;
             _serverUrl = serverUrl;
             SDKConfiguration = config;
-            V1 = new FormanceV1(_client, _securitySource, _serverUrl, SDKConfiguration);
+            V1 = new V1(_client, _securitySource, _serverUrl, SDKConfiguration);
             V2 = new V2(_client, _securitySource, _serverUrl, SDKConfiguration);
         }
     }

@@ -10,8 +10,8 @@
 namespace formance.Models.Components
 {
     using Newtonsoft.Json;
-    using System.Numerics;
     using System;
+    using System.Numerics;
     using formance.Utils;
     
     public class CreateBalanceRequest

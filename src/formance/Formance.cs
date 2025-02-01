@@ -10,16 +10,16 @@
 namespace formance
 {
     using Newtonsoft.Json;
+    using System;
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Threading.Tasks;
-    using System;
     using formance.Hooks;
     using formance.Models.Components;
     using formance.Models.Errors;
     using formance.Models.Requests;
-    using formance.Utils.Retries;
     using formance.Utils;
+    using formance.Utils.Retries;
 
 
     /// <summary>
@@ -97,6 +97,11 @@ namespace formance
         public IReconciliation Reconciliation { get; }
 
         /// <summary>
+        /// Retrieve OpenID connect well-knowns.
+        /// </summary>
+        Task<GetOIDCWellKnownsResponse> GetOIDCWellKnownsAsync();
+
+        /// <summary>
         /// Show stack version information
         /// </summary>
         Task<Models.Requests.GetVersionsResponse> GetVersionsAsync();
@@ -161,10 +166,10 @@ namespace formance
         public SDKConfig SDKConfiguration { get; private set; }
 
         private const string _language = "csharp";
-        private const string _sdkVersion = "0.1.0";
-        private const string _sdkGenVersion = "2.461.2";
-        private const string _openapiDocVersion = "v2.1.1";
-        private const string _userAgent = "speakeasy-sdk/csharp 0.1.0 2.461.2 v2.1.1 formance";
+        private const string _sdkVersion = "1.0.0";
+        private const string _sdkGenVersion = "2.500.5";
+        private const string _openapiDocVersion = "v2.1.2";
+        private const string _userAgent = "speakeasy-sdk/csharp 1.0.0 2.500.5 v2.1.2 formance";
         private string _serverUrl = "";
         private int _serverIndex = 0;
         private ISpeakeasyHttpClient _client;
@@ -255,6 +260,73 @@ namespace formance
             Reconciliation = new Reconciliation(_client, _securitySource, _serverUrl, SDKConfiguration);
         }
 
+        public async Task<GetOIDCWellKnownsResponse> GetOIDCWellKnownsAsync()
+        {
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+
+            var urlString = baseUrl + "/api/auth/.well-known/openid-configuration";
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", _userAgent);
+
+            if (_securitySource != null)
+            {
+                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext("getOIDCWellKnowns", null, _securitySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await _client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode == default)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {                
+                return new GetOIDCWellKnownsResponse()
+                {
+                    HttpMeta = new Models.Components.HTTPMetadata()
+                    {
+                        Response = httpResponse,
+                        Request = httpRequest
+                    }
+                };
+            }
+            else
+            {
+                throw new Models.Errors.SDKException("API error occurred", httpRequest, httpResponse);
+            }
+        }
+
         public async Task<Models.Requests.GetVersionsResponse> GetVersionsAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
@@ -269,7 +341,7 @@ namespace formance
                 httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("getVersions", new List<string> { "auth:read" }, _securitySource);
+            var hookCtx = new HookContext("getVersions", null, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 

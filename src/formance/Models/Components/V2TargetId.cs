@@ -9,12 +9,12 @@
 #nullable enable
 namespace formance.Models.Components
 {
-    using Newtonsoft.Json.Linq;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+    using System;
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
-    using System;
     using formance.Utils;
     
 

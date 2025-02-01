@@ -10,8 +10,8 @@
 namespace formance.Models.Components
 {
     using Newtonsoft.Json;
-    using System.Collections.Generic;
     using System;
+    using System.Collections.Generic;
     using formance.Utils;
     
     public class Trigger

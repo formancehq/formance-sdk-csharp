@@ -1,0 +1,9 @@
+# V3RetryPaymentInitiationResponse
+
+
+## Fields
+
+| Field                                                                                                             | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
+| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `HttpMeta`                                                                                                        | [HTTPMetadata](../../Models/Components/HTTPMetadata.md)                                                           | :heavy_check_mark:                                                                                                | N/A                                                                                                               |
+| `V3RetryPaymentInitiationResponse`                                                                                | [Models.Components.V3RetryPaymentInitiationResponse](../../Models/Components/V3RetryPaymentInitiationResponse.md) | :heavy_minus_sign:                                                                                                | Accepted                                                                                                          |

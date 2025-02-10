@@ -29,8 +29,8 @@ Get server info
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -48,19 +48,18 @@ var res = await sdk.Wallets.V1.WalletsgetServerInfoAsync();
 
 ### Errors
 
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## GetTransactions
 
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -90,10 +89,10 @@ var res = await sdk.Wallets.V1.GetTransactionsAsync(
 
 ### Errors
 
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## ListWallets
 
@@ -102,10 +101,10 @@ List all wallets
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Requests;
 using System.Collections.Generic;
-using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -117,7 +116,6 @@ ListWalletsRequest req = new ListWalletsRequest() {
     Metadata = new Dictionary<string, string>() {
         { "admin", "true" },
     },
-    PageSize = 100,
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     Expand = "balances",
 };
@@ -139,10 +137,10 @@ var res = await sdk.Wallets.V1.ListWalletsAsync(req);
 
 ### Errors
 
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## CreateWallet
 
@@ -151,9 +149,8 @@ Create a new wallet
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
@@ -187,10 +184,10 @@ var res = await sdk.Wallets.V1.CreateWalletAsync(
 
 ### Errors
 
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## GetWallet
 
@@ -199,9 +196,8 @@ Get a wallet
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -225,10 +221,10 @@ var res = await sdk.Wallets.V1.GetWalletAsync(id: "<id>");
 
 ### Errors
 
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## UpdateWallet
 
@@ -237,10 +233,10 @@ Update a wallet
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Requests;
 using System.Collections.Generic;
-using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -274,10 +270,10 @@ var res = await sdk.Wallets.V1.UpdateWalletAsync(
 
 ### Errors
 
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## GetWalletSummary
 
@@ -286,9 +282,8 @@ Get wallet summary
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -312,10 +307,10 @@ var res = await sdk.Wallets.V1.GetWalletSummaryAsync(id: "<id>");
 
 ### Errors
 
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## ListBalances
 
@@ -324,9 +319,8 @@ List balances of a wallet
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -350,9 +344,9 @@ var res = await sdk.Wallets.V1.ListBalancesAsync(id: "<id>");
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## CreateBalance
 
@@ -361,10 +355,8 @@ Create a balance
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
-using System.Numerics;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -396,10 +388,10 @@ var res = await sdk.Wallets.V1.CreateBalanceAsync(
 
 ### Errors
 
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## GetBalance
 
@@ -408,9 +400,8 @@ Get detailed balance
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -438,10 +429,10 @@ var res = await sdk.Wallets.V1.GetBalanceAsync(
 
 ### Errors
 
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## DebitWallet
 
@@ -450,10 +441,8 @@ Debit a wallet
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
-using System.Numerics;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
@@ -493,10 +482,10 @@ var res = await sdk.Wallets.V1.DebitWalletAsync(
 
 ### Errors
 
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## CreditWallet
 
@@ -505,10 +494,8 @@ Credit a wallet
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
-using System.Numerics;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
@@ -528,12 +515,7 @@ var res = await sdk.Wallets.V1.CreditWalletAsync(
             { "key", "" },
         },
         Sources = new List<Subject>() {
-            Subject.CreateLedgerAccountSubject(
-                new LedgerAccountSubject() {
-                    Type = "<value>",
-                    Identifier = "<value>",
-                }
-            ),
+
         },
     }
 );
@@ -555,10 +537,10 @@ var res = await sdk.Wallets.V1.CreditWalletAsync(
 
 ### Errors
 
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## GetHolds
 
@@ -567,10 +549,9 @@ Get all holds for a wallet
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 using System.Collections.Generic;
-using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -604,10 +585,10 @@ var res = await sdk.Wallets.V1.GetHoldsAsync(
 
 ### Errors
 
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## GetHold
 
@@ -616,9 +597,8 @@ Get a hold
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -642,10 +622,10 @@ var res = await sdk.Wallets.V1.GetHoldAsync(holdID: "<id>");
 
 ### Errors
 
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## ConfirmHold
 
@@ -654,10 +634,8 @@ Confirm a hold
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
-using System.Numerics;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -690,10 +668,10 @@ var res = await sdk.Wallets.V1.ConfirmHoldAsync(
 
 ### Errors
 
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## VoidHold
 
@@ -702,9 +680,8 @@ Cancel a hold
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -732,7 +709,7 @@ var res = await sdk.Wallets.V1.VoidHoldAsync(
 
 ### Errors
 
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| formance.Models.Errors.WalletsErrorResponse | default                                     | application/json                            |
-| formance.Models.Errors.SDKException         | 4XX, 5XX                                    | \*/\*                                       |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |

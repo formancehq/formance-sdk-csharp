@@ -33,8 +33,8 @@ Show server information
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -52,10 +52,10 @@ var res = await sdk.Ledger.V1.GetInfoAsync();
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| formance.Models.Errors.ErrorResponse | default                              | application/json                     |
-| formance.Models.Errors.SDKException  | 4XX, 5XX                             | \*/\*                                |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
+| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
 
 ## GetLedgerInfo
 
@@ -64,9 +64,8 @@ Get information about a ledger
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -90,10 +89,10 @@ var res = await sdk.Ledger.V1.GetLedgerInfoAsync(ledger: "ledger001");
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| formance.Models.Errors.ErrorResponse | default                              | application/json                     |
-| formance.Models.Errors.SDKException  | 4XX, 5XX                             | \*/\*                                |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
+| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
 
 ## CountAccounts
 
@@ -102,10 +101,9 @@ Count the accounts from a ledger
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 using System.Collections.Generic;
-using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -186,10 +184,10 @@ var res = await sdk.Ledger.V1.CountAccountsAsync(
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| formance.Models.Errors.ErrorResponse | default                              | application/json                     |
-| formance.Models.Errors.SDKException  | 4XX, 5XX                             | \*/\*                                |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
+| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
 
 ## ListAccounts
 
@@ -198,10 +196,10 @@ List accounts from a ledger, sorted by address in descending order.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Requests;
 using System.Collections.Generic;
-using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -286,10 +284,10 @@ var res = await sdk.Ledger.V1.ListAccountsAsync(req);
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| formance.Models.Errors.ErrorResponse | default                              | application/json                     |
-| formance.Models.Errors.SDKException  | 4XX, 5XX                             | \*/\*                                |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
+| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
 
 ## GetAccount
 
@@ -298,9 +296,8 @@ Get account by its address
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -328,10 +325,10 @@ var res = await sdk.Ledger.V1.GetAccountAsync(
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| formance.Models.Errors.ErrorResponse | default                              | application/json                     |
-| formance.Models.Errors.SDKException  | 4XX, 5XX                             | \*/\*                                |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
+| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
 
 ## AddMetadataToAccount
 
@@ -340,10 +337,9 @@ Add metadata to an account
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 using System.Collections.Generic;
-using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -375,10 +371,10 @@ var res = await sdk.Ledger.V1.AddMetadataToAccountAsync(
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| formance.Models.Errors.ErrorResponse | default                              | application/json                     |
-| formance.Models.Errors.SDKException  | 4XX, 5XX                             | \*/\*                                |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
+| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
 
 ## GetMapping
 
@@ -387,9 +383,8 @@ Get the mapping of a ledger
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -413,10 +408,10 @@ var res = await sdk.Ledger.V1.GetMappingAsync(ledger: "ledger001");
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| formance.Models.Errors.ErrorResponse | default                              | application/json                     |
-| formance.Models.Errors.SDKException  | 4XX, 5XX                             | \*/\*                                |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
+| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
 
 ## UpdateMapping
 
@@ -425,9 +420,8 @@ Update the mapping of a ledger
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
@@ -463,10 +457,10 @@ var res = await sdk.Ledger.V1.UpdateMappingAsync(
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| formance.Models.Errors.ErrorResponse | default                              | application/json                     |
-| formance.Models.Errors.SDKException  | 4XX, 5XX                             | \*/\*                                |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
+| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
 
 ## ~~RunScript~~
 
@@ -478,9 +472,8 @@ This route is deprecated, and has been merged into `POST /{ledger}/transactions`
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
@@ -491,7 +484,7 @@ var sdk = new Formance(security: new Security() {
 var res = await sdk.Ledger.V1.RunScriptAsync(
     ledger: "ledger001",
     script: new Script() {
-        Plain = "vars {
+        Plain = @"vars {
         account $user
         }
         send [COIN 10] (
@@ -524,9 +517,9 @@ var res = await sdk.Ledger.V1.RunScriptAsync(
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## ReadStats
 
@@ -536,9 +529,8 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -562,10 +554,10 @@ var res = await sdk.Ledger.V1.ReadStatsAsync(ledger: "ledger001");
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| formance.Models.Errors.ErrorResponse | default                              | application/json                     |
-| formance.Models.Errors.SDKException  | 4XX, 5XX                             | \*/\*                                |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
+| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
 
 ## CountTransactions
 
@@ -574,9 +566,9 @@ Count the transactions from a ledger
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Requests;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -609,10 +601,10 @@ var res = await sdk.Ledger.V1.CountTransactionsAsync(req);
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| formance.Models.Errors.ErrorResponse | default                              | application/json                     |
-| formance.Models.Errors.SDKException  | 4XX, 5XX                             | \*/\*                                |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
+| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
 
 ## ListTransactions
 
@@ -621,10 +613,9 @@ List transactions from a ledger, sorted by txid in descending order.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using System.Collections.Generic;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Requests;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -659,10 +650,10 @@ var res = await sdk.Ledger.V1.ListTransactionsAsync(req);
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| formance.Models.Errors.ErrorResponse | default                              | application/json                     |
-| formance.Models.Errors.SDKException  | 4XX, 5XX                             | \*/\*                                |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
+| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
 
 ## CreateTransaction
 
@@ -671,11 +662,9 @@ Create a new transaction to a ledger
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 using System.Collections.Generic;
-using System.Numerics;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -694,7 +683,7 @@ var res = await sdk.Ledger.V1.CreateTransactionAsync(
             },
         },
         Script = new PostTransactionScript() {
-            Plain = "vars {
+            Plain = @"vars {
             account $user
             }
             send [COIN 10] (
@@ -728,10 +717,10 @@ var res = await sdk.Ledger.V1.CreateTransactionAsync(
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| formance.Models.Errors.ErrorResponse | default                              | application/json                     |
-| formance.Models.Errors.SDKException  | 4XX, 5XX                             | \*/\*                                |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
+| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
 
 ## GetTransaction
 
@@ -740,10 +729,8 @@ Get transaction from a ledger by its ID
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using System.Numerics;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -771,10 +758,10 @@ var res = await sdk.Ledger.V1.GetTransactionAsync(
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| formance.Models.Errors.ErrorResponse | default                              | application/json                     |
-| formance.Models.Errors.SDKException  | 4XX, 5XX                             | \*/\*                                |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
+| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
 
 ## AddMetadataOnTransaction
 
@@ -783,11 +770,9 @@ Set the metadata of a transaction by its ID
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using System.Numerics;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 using System.Collections.Generic;
-using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -819,10 +804,10 @@ var res = await sdk.Ledger.V1.AddMetadataOnTransactionAsync(
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| formance.Models.Errors.ErrorResponse | default                              | application/json                     |
-| formance.Models.Errors.SDKException  | 4XX, 5XX                             | \*/\*                                |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
+| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
 
 ## RevertTransaction
 
@@ -831,10 +816,8 @@ Revert a ledger transaction by its ID
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using System.Numerics;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -864,10 +847,10 @@ var res = await sdk.Ledger.V1.RevertTransactionAsync(
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| formance.Models.Errors.ErrorResponse | default                              | application/json                     |
-| formance.Models.Errors.SDKException  | 4XX, 5XX                             | \*/\*                                |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
+| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
 
 ## CreateTransactions
 
@@ -876,11 +859,9 @@ Create a new batch of transactions to a ledger
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 using System.Collections.Generic;
-using System.Numerics;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -922,10 +903,10 @@ var res = await sdk.Ledger.V1.CreateTransactionsAsync(
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| formance.Models.Errors.ErrorResponse | default                              | application/json                     |
-| formance.Models.Errors.SDKException  | 4XX, 5XX                             | \*/\*                                |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
+| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
 
 ## GetBalances
 
@@ -934,9 +915,9 @@ Get the balances from a ledger's account
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Requests;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -967,10 +948,10 @@ var res = await sdk.Ledger.V1.GetBalancesAsync(req);
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| formance.Models.Errors.ErrorResponse | default                              | application/json                     |
-| formance.Models.Errors.SDKException  | 4XX, 5XX                             | \*/\*                                |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
+| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
 
 ## GetBalancesAggregated
 
@@ -979,9 +960,8 @@ Get the aggregated balances from selected accounts
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1011,10 +991,10 @@ var res = await sdk.Ledger.V1.GetBalancesAggregatedAsync(
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| formance.Models.Errors.ErrorResponse | default                              | application/json                     |
-| formance.Models.Errors.SDKException  | 4XX, 5XX                             | \*/\*                                |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
+| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
 
 ## ListLogs
 
@@ -1023,9 +1003,9 @@ List the logs from a ledger, sorted by ID in descending order.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Requests;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1056,7 +1036,7 @@ var res = await sdk.Ledger.V1.ListLogsAsync(req);
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| formance.Models.Errors.ErrorResponse | default                              | application/json                     |
-| formance.Models.Errors.SDKException  | 4XX, 5XX                             | \*/\*                                |
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
+| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |

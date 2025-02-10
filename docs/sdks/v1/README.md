@@ -24,8 +24,8 @@ Retrieve OpenID connect well-knowns.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -43,9 +43,9 @@ var res = await sdk.Auth.V1.GetOIDCWellKnownsAsync();
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## GetServerInfo
 
@@ -54,8 +54,8 @@ Get server info
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -73,9 +73,9 @@ var res = await sdk.Auth.V1.GetServerInfoAsync();
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## ListClients
 
@@ -84,8 +84,8 @@ List clients
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -103,9 +103,9 @@ var res = await sdk.Auth.V1.ListClientsAsync();
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## CreateClient
 
@@ -114,9 +114,8 @@ Create client
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Components;
-using System.Collections.Generic;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -144,9 +143,9 @@ var res = await sdk.Auth.V1.CreateClientAsync(req);
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## ReadClient
 
@@ -155,9 +154,8 @@ Read client
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -181,9 +179,9 @@ var res = await sdk.Auth.V1.ReadClientAsync(clientId: "<id>");
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## UpdateClient
 
@@ -192,10 +190,8 @@ Update client
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
-using System.Collections.Generic;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -225,9 +221,9 @@ var res = await sdk.Auth.V1.UpdateClientAsync(
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## DeleteClient
 
@@ -236,9 +232,8 @@ Delete client
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -262,9 +257,9 @@ var res = await sdk.Auth.V1.DeleteClientAsync(clientId: "<id>");
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## CreateSecret
 
@@ -273,10 +268,8 @@ Add a secret to a client
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
-using System.Collections.Generic;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -306,9 +299,9 @@ var res = await sdk.Auth.V1.CreateSecretAsync(
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## DeleteSecret
 
@@ -317,9 +310,8 @@ Delete a secret from a client
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -347,9 +339,9 @@ var res = await sdk.Auth.V1.DeleteSecretAsync(
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## ListUsers
 
@@ -358,8 +350,8 @@ List users
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -377,9 +369,9 @@ var res = await sdk.Auth.V1.ListUsersAsync();
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## ReadUser
 
@@ -388,9 +380,8 @@ Read user
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -414,6 +405,6 @@ var res = await sdk.Auth.V1.ReadUserAsync(userId: "<id>");
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| formance.Models.Errors.SDKException | 4XX, 5XX                            | \*/\*                               |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |

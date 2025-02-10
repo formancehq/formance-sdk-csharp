@@ -21,8 +21,8 @@ Get server info
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -40,10 +40,10 @@ var res = await sdk.Reconciliation.V1.ReconciliationgetServerInfoAsync();
 
 ### Errors
 
-| Error Type                                         | Status Code                                        | Content Type                                       |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| formance.Models.Errors.ReconciliationErrorResponse | default                                            | application/json                                   |
-| formance.Models.Errors.SDKException                | 4XX, 5XX                                           | \*/\*                                              |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| FormanceSDK.Models.Errors.ReconciliationErrorResponse | default                                               | application/json                                      |
+| FormanceSDK.Models.Errors.SDKException                | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## CreatePolicy
 
@@ -52,8 +52,8 @@ Create a policy
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
@@ -87,10 +87,10 @@ var res = await sdk.Reconciliation.V1.CreatePolicyAsync(req);
 
 ### Errors
 
-| Error Type                                         | Status Code                                        | Content Type                                       |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| formance.Models.Errors.ReconciliationErrorResponse | default                                            | application/json                                   |
-| formance.Models.Errors.SDKException                | 4XX, 5XX                                           | \*/\*                                              |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| FormanceSDK.Models.Errors.ReconciliationErrorResponse | default                                               | application/json                                      |
+| FormanceSDK.Models.Errors.SDKException                | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## ListPolicies
 
@@ -99,9 +99,8 @@ List policies
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -129,10 +128,10 @@ var res = await sdk.Reconciliation.V1.ListPoliciesAsync(
 
 ### Errors
 
-| Error Type                                         | Status Code                                        | Content Type                                       |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| formance.Models.Errors.ReconciliationErrorResponse | default                                            | application/json                                   |
-| formance.Models.Errors.SDKException                | 4XX, 5XX                                           | \*/\*                                              |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| FormanceSDK.Models.Errors.ReconciliationErrorResponse | default                                               | application/json                                      |
+| FormanceSDK.Models.Errors.SDKException                | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## DeletePolicy
 
@@ -141,9 +140,8 @@ Delete a policy by its id.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -167,10 +165,10 @@ var res = await sdk.Reconciliation.V1.DeletePolicyAsync(policyID: "XXX");
 
 ### Errors
 
-| Error Type                                         | Status Code                                        | Content Type                                       |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| formance.Models.Errors.ReconciliationErrorResponse | default                                            | application/json                                   |
-| formance.Models.Errors.SDKException                | 4XX, 5XX                                           | \*/\*                                              |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| FormanceSDK.Models.Errors.ReconciliationErrorResponse | default                                               | application/json                                      |
+| FormanceSDK.Models.Errors.SDKException                | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## GetPolicy
 
@@ -179,9 +177,8 @@ Get a policy
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -205,10 +202,10 @@ var res = await sdk.Reconciliation.V1.GetPolicyAsync(policyID: "XXX");
 
 ### Errors
 
-| Error Type                                         | Status Code                                        | Content Type                                       |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| formance.Models.Errors.ReconciliationErrorResponse | default                                            | application/json                                   |
-| formance.Models.Errors.SDKException                | 4XX, 5XX                                           | \*/\*                                              |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| FormanceSDK.Models.Errors.ReconciliationErrorResponse | default                                               | application/json                                      |
+| FormanceSDK.Models.Errors.SDKException                | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## Reconcile
 
@@ -217,9 +214,9 @@ Reconcile using a policy
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using System;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -250,10 +247,10 @@ var res = await sdk.Reconciliation.V1.ReconcileAsync(
 
 ### Errors
 
-| Error Type                                         | Status Code                                        | Content Type                                       |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| formance.Models.Errors.ReconciliationErrorResponse | default                                            | application/json                                   |
-| formance.Models.Errors.SDKException                | 4XX, 5XX                                           | \*/\*                                              |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| FormanceSDK.Models.Errors.ReconciliationErrorResponse | default                                               | application/json                                      |
+| FormanceSDK.Models.Errors.SDKException                | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## ListReconciliations
 
@@ -262,9 +259,8 @@ List reconciliations
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -292,10 +288,10 @@ var res = await sdk.Reconciliation.V1.ListReconciliationsAsync(
 
 ### Errors
 
-| Error Type                                         | Status Code                                        | Content Type                                       |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| formance.Models.Errors.ReconciliationErrorResponse | default                                            | application/json                                   |
-| formance.Models.Errors.SDKException                | 4XX, 5XX                                           | \*/\*                                              |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| FormanceSDK.Models.Errors.ReconciliationErrorResponse | default                                               | application/json                                      |
+| FormanceSDK.Models.Errors.SDKException                | 4XX, 5XX                                              | \*/\*                                                 |
 
 ## GetReconciliation
 
@@ -304,9 +300,8 @@ Get a reconciliation
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -330,7 +325,7 @@ var res = await sdk.Reconciliation.V1.GetReconciliationAsync(reconciliationID: "
 
 ### Errors
 
-| Error Type                                         | Status Code                                        | Content Type                                       |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| formance.Models.Errors.ReconciliationErrorResponse | default                                            | application/json                                   |
-| formance.Models.Errors.SDKException                | 4XX, 5XX                                           | \*/\*                                              |
+| Error Type                                            | Status Code                                           | Content Type                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| FormanceSDK.Models.Errors.ReconciliationErrorResponse | default                                               | application/json                                      |
+| FormanceSDK.Models.Errors.SDKException                | 4XX, 5XX                                              | \*/\*                                                 |

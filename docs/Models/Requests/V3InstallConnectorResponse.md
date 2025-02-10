@@ -1,0 +1,9 @@
+# V3InstallConnectorResponse
+
+
+## Fields
+
+| Field                                                                                                 | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
+| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `HttpMeta`                                                                                            | [HTTPMetadata](../../Models/Components/HTTPMetadata.md)                                               | :heavy_check_mark:                                                                                    | N/A                                                                                                   |
+| `V3InstallConnectorResponse`                                                                          | [Models.Components.V3InstallConnectorResponse](../../Models/Components/V3InstallConnectorResponse.md) | :heavy_minus_sign:                                                                                    | Accepted                                                                                              |

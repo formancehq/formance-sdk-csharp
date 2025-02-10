@@ -1,0 +1,9 @@
+# V3InitiatePaymentResponse
+
+
+## Fields
+
+| Field                                                                                               | Type                                                                                                | Required                                                                                            | Description                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `HttpMeta`                                                                                          | [HTTPMetadata](../../Models/Components/HTTPMetadata.md)                                             | :heavy_check_mark:                                                                                  | N/A                                                                                                 |
+| `V3InitiatePaymentResponse`                                                                         | [Models.Components.V3InitiatePaymentResponse](../../Models/Components/V3InitiatePaymentResponse.md) | :heavy_minus_sign:                                                                                  | Accepted                                                                                            |

@@ -1,0 +1,9 @@
+# V3ListConnectorScheduleInstancesResponse
+
+
+## Fields
+
+| Field                                                                                                               | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `HttpMeta`                                                                                                          | [HTTPMetadata](../../Models/Components/HTTPMetadata.md)                                                             | :heavy_check_mark:                                                                                                  | N/A                                                                                                                 |
+| `V3ConnectorScheduleInstancesCursorResponse`                                                                        | [V3ConnectorScheduleInstancesCursorResponse](../../Models/Components/V3ConnectorScheduleInstancesCursorResponse.md) | :heavy_minus_sign:                                                                                                  | OK                                                                                                                  |

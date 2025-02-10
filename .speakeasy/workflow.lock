@@ -1,20 +1,21 @@
-speakeasyVersion: 1.441.1
+speakeasyVersion: 1.487.1
 sources:
     stacks-source:
         sourceNamespace: stacks-source
-        sourceRevisionDigest: sha256:8431773989b71e061f93b9503dfe5f8daf84d47d61d5dbdf94cce4854d9c5a4c
-        sourceBlobDigest: sha256:32629e12788197e47087a513dddd7268e312e34ebcdf92b037a278687f751892
+        sourceRevisionDigest: sha256:e9840ca1f03d358900f8232cfceb17ce33fbfff5d43e2a2f1a8afbecc8871b95
+        sourceBlobDigest: sha256:c4b18881641c3898b7b6dd5676a2f39abfbb54a22bbe8516e5135e67b373dbd5
         tags:
             - latest
-            - speakeasy-sdk-regen-1732202914
+            - speakeasy-sdk-regen-1737418195
+            - v3.0.0
 targets:
     formance:
         source: stacks-source
         sourceNamespace: stacks-source
-        sourceRevisionDigest: sha256:8431773989b71e061f93b9503dfe5f8daf84d47d61d5dbdf94cce4854d9c5a4c
-        sourceBlobDigest: sha256:32629e12788197e47087a513dddd7268e312e34ebcdf92b037a278687f751892
-        codeSamplesNamespace: stacks-source-code-samples
-        codeSamplesRevisionDigest: sha256:bd264dec47ba244368e8aae46861f445de42afb97588774ed221e225763e2ed4
+        sourceRevisionDigest: sha256:e9840ca1f03d358900f8232cfceb17ce33fbfff5d43e2a2f1a8afbecc8871b95
+        sourceBlobDigest: sha256:c4b18881641c3898b7b6dd5676a2f39abfbb54a22bbe8516e5135e67b373dbd5
+        codeSamplesNamespace: stacks-source-csharp-code-samples
+        codeSamplesRevisionDigest: sha256:8c23f661ae27b5b04abd59f2540c4d85831c9a9d84d1bffb2a70f8f866f71135
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -33,5 +34,7 @@ workflow:
                     apiKey: $nuget_api_key
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/formance/formance/stacks-source-code-samples
+                    location: registry.speakeasyapi.dev/formance/formance/stacks-source-csharp-code-samples
+                labelOverride:
+                    fixedValue: Csharp (SDK)
                 blocking: false

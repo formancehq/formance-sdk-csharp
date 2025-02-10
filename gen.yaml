@@ -36,7 +36,7 @@ csharp:
   maxMethodParams: 4
   methodArguments: infer-optional-args
   outputModelSuffix: output
-  packageName: formance
+  packageName: FormanceSDK
   packageTags: formance SDK
   responseFormat: envelope-http
   sourceDirectory: src

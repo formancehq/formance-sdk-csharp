@@ -8,6 +8,7 @@
 * [GetManyConfigs](#getmanyconfigs) - Get many configs
 * [InsertConfig](#insertconfig) - Insert a new config
 * [DeleteConfig](#deleteconfig) - Delete one config
+* [UpdateConfig](#updateconfig) - Update one config
 * [TestConfig](#testconfig) - Test one config
 * [ActivateConfig](#activateconfig) - Activate one config
 * [DeactivateConfig](#deactivateconfig) - Deactivate one config
@@ -20,9 +21,8 @@ Sorted by updated date descending
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -50,10 +50,10 @@ var res = await sdk.Webhooks.V1.GetManyConfigsAsync(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.WebhooksErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.WebhooksErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## InsertConfig
 
@@ -71,8 +71,8 @@ All eventTypes are converted to lower-case when inserted.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
@@ -107,10 +107,10 @@ var res = await sdk.Webhooks.V1.InsertConfigAsync(req);
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.WebhooksErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.WebhooksErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## DeleteConfig
 
@@ -119,9 +119,8 @@ Delete a webhooks config by ID.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -145,10 +144,60 @@ var res = await sdk.Webhooks.V1.DeleteConfigAsync(id: "4997257d-dfb6-445b-929c-c
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.WebhooksErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.WebhooksErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+
+## UpdateConfig
+
+Update a webhooks config by ID.
+
+### Example Usage
+
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using System.Collections.Generic;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Webhooks.V1.UpdateConfigAsync(
+    id: "4997257d-dfb6-445b-929c-cbe2ab182818",
+    configUser: new ConfigUser() {
+        Name = "customer_payment",
+        Endpoint = "https://example.com",
+        Secret = "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
+        EventTypes = new List<string>() {
+            "TYPE1",
+            "TYPE2",
+        },
+    }
+);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                           | Type                                                | Required                                            | Description                                         | Example                                             |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| `Id`                                                | *string*                                            | :heavy_check_mark:                                  | Config ID                                           | 4997257d-dfb6-445b-929c-cbe2ab182818                |
+| `ConfigUser`                                        | [ConfigUser](../../Models/Components/ConfigUser.md) | :heavy_check_mark:                                  | N/A                                                 |                                                     |
+
+### Response
+
+**[UpdateConfigResponse](../../Models/Requests/UpdateConfigResponse.md)**
+
+### Errors
+
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.WebhooksErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## TestConfig
 
@@ -157,9 +206,8 @@ Test a config by sending a webhook to its endpoint.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -183,10 +231,10 @@ var res = await sdk.Webhooks.V1.TestConfigAsync(id: "4997257d-dfb6-445b-929c-cbe
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.WebhooksErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.WebhooksErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## ActivateConfig
 
@@ -195,9 +243,8 @@ Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -221,10 +268,10 @@ var res = await sdk.Webhooks.V1.ActivateConfigAsync(id: "4997257d-dfb6-445b-929c
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.WebhooksErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.WebhooksErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## DeactivateConfig
 
@@ -233,9 +280,8 @@ Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -259,10 +305,10 @@ var res = await sdk.Webhooks.V1.DeactivateConfigAsync(id: "4997257d-dfb6-445b-92
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.WebhooksErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.WebhooksErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## ChangeConfigSecret
 
@@ -275,9 +321,8 @@ The format is a random string of bytes of size 24, base64 encoded. (larger size 
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -307,7 +352,7 @@ var res = await sdk.Webhooks.V1.ChangeConfigSecretAsync(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.WebhooksErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.WebhooksErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |

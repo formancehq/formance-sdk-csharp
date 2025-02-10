@@ -1,0 +1,12 @@
+# V3Balance
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `AccountID`                                                                           | *string*                                                                              | :heavy_check_mark:                                                                    | N/A                                                                                   |
+| `CreatedAt`                                                                           | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_check_mark:                                                                    | N/A                                                                                   |
+| `LastUpdatedAt`                                                                       | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_check_mark:                                                                    | N/A                                                                                   |
+| `Asset`                                                                               | *string*                                                                              | :heavy_check_mark:                                                                    | N/A                                                                                   |
+| `Balance`                                                                             | *BigInteger*                                                                          | :heavy_check_mark:                                                                    | N/A                                                                                   |

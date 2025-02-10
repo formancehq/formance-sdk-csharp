@@ -1,0 +1,9 @@
+# V3ResetConnectorResponse
+
+
+## Fields
+
+| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `HttpMeta`                                                                                        | [HTTPMetadata](../../Models/Components/HTTPMetadata.md)                                           | :heavy_check_mark:                                                                                | N/A                                                                                               |
+| `V3ResetConnectorResponse`                                                                        | [Models.Components.V3ResetConnectorResponse](../../Models/Components/V3ResetConnectorResponse.md) | :heavy_minus_sign:                                                                                | Accepted                                                                                          |

@@ -1,0 +1,9 @@
+# V3GetConnectorConfigResponse
+
+
+## Fields
+
+| Field                                                                                                     | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `HttpMeta`                                                                                                | [HTTPMetadata](../../Models/Components/HTTPMetadata.md)                                                   | :heavy_check_mark:                                                                                        | N/A                                                                                                       |
+| `V3GetConnectorConfigResponse`                                                                            | [Models.Components.V3GetConnectorConfigResponse](../../Models/Components/V3GetConnectorConfigResponse.md) | :heavy_minus_sign:                                                                                        | OK                                                                                                        |

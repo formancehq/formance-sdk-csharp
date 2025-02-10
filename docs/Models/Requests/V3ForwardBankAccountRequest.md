@@ -1,0 +1,9 @@
+# V3ForwardBankAccountRequest
+
+
+## Fields
+
+| Field                                                                                                   | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `BankAccountID`                                                                                         | *string*                                                                                                | :heavy_check_mark:                                                                                      | The bank account ID                                                                                     |
+| `V3ForwardBankAccountRequest`                                                                           | [Models.Components.V3ForwardBankAccountRequest](../../Models/Components/V3ForwardBankAccountRequest.md) | :heavy_minus_sign:                                                                                      | N/A                                                                                                     |

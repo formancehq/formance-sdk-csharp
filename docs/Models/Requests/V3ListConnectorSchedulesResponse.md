@@ -1,0 +1,9 @@
+# V3ListConnectorSchedulesResponse
+
+
+## Fields
+
+| Field                                                                                               | Type                                                                                                | Required                                                                                            | Description                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `HttpMeta`                                                                                          | [HTTPMetadata](../../Models/Components/HTTPMetadata.md)                                             | :heavy_check_mark:                                                                                  | N/A                                                                                                 |
+| `V3ConnectorSchedulesCursorResponse`                                                                | [V3ConnectorSchedulesCursorResponse](../../Models/Components/V3ConnectorSchedulesCursorResponse.md) | :heavy_minus_sign:                                                                                  | OK                                                                                                  |

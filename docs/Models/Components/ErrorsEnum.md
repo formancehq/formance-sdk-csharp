@@ -13,3 +13,4 @@
 | `CompilationFailed` | COMPILATION_FAILED  |
 | `MetadataOverride`  | METADATA_OVERRIDE   |
 | `NotFound`          | NOT_FOUND           |
+| `Timeout`           | TIMEOUT             |

@@ -1,0 +1,9 @@
+# V3InstallConnectorRequest
+
+
+## Fields
+
+| Field                                                                                               | Type                                                                                                | Required                                                                                            | Description                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `Connector`                                                                                         | *string*                                                                                            | :heavy_check_mark:                                                                                  | The connector to filter by                                                                          |
+| `V3InstallConnectorRequest`                                                                         | [Models.Components.V3InstallConnectorRequest](../../Models/Components/V3InstallConnectorRequest.md) | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |

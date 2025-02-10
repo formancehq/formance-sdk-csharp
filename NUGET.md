@@ -7,8 +7,8 @@
 ### Example
 
 ```csharp
-using formance;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -26,7 +26,7 @@ var res = await sdk.GetVersionsAsync();
 
 Handling errors in this SDK should largely match your expectations. All operations return a response object or throw an exception.
 
-By default, an API error will raise a `formance.Models.Errors.SDKException` exception, which has the following properties:
+By default, an API error will raise a `FormanceSDK.Models.Errors.SDKException` exception, which has the following properties:
 
 | Property      | Type                  | Description           |
 |---------------|-----------------------|-----------------------|
@@ -36,18 +36,17 @@ By default, an API error will raise a `formance.Models.Errors.SDKException` exce
 
 When custom error responses are specified for an operation, the SDK may also throw their associated exceptions. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `GetInfoAsync` method throws the following exceptions:
 
-| Error Type                           | Status Code | Content Type     |
-| ------------------------------------ | ----------- | ---------------- |
-| formance.Models.Errors.ErrorResponse | default     | application/json |
-| formance.Models.Errors.SDKException  | 4XX, 5XX    | \*/\*            |
+| Error Type                              | Status Code | Content Type     |
+| --------------------------------------- | ----------- | ---------------- |
+| FormanceSDK.Models.Errors.ErrorResponse | default     | application/json |
+| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX    | \*/\*            |
 
 ### Example
 
 ```csharp
-using formance;
-using formance.Models.Components;
-using System;
-using formance.Models.Errors;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Errors;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -67,7 +66,7 @@ catch (Exception ex)
         // Handle exception data
         throw;
     }
-    else if (ex is formance.Models.Errors.SDKException)
+    else if (ex is FormanceSDK.Models.Errors.SDKException)
     {
         // Handle default exception
         throw;
@@ -83,18 +82,18 @@ catch (Exception ex)
 
 You can override the default server globally by passing a server index to the `serverIndex: int` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| #   | Server                                                | Variables                                                   | Default values                    |
-| --- | ----------------------------------------------------- | ----------------------------------------------------------- | --------------------------------- |
-| 0   | `http://localhost`                                    |                                                             |                                   |
-| 1   | `https://{organization}.{environment}.formance.cloud` | `organization: string`<br/>`environment: ServerEnvironment` | `"orgID-stackID"`<br/>`"sandbox"` |
+| #   | Server                                                | Variables                                                   | Default values                       |
+| --- | ----------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------ |
+| 0   | `http://localhost`                                    |                                                             |                                      |
+| 1   | `https://{organization}.{environment}.formance.cloud` | `organization: string`<br/>`environment: ServerEnvironment` | `"orgID-stackID"`<br/>`"eu.sandbox"` |
 
 If the selected server has variables, you may override their default values through the additional parameters made available in the SDK constructor.
 
 #### Example
 
 ```csharp
-using formance;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(
     serverIndex: 1,
@@ -113,8 +112,8 @@ var res = await sdk.GetVersionsAsync();
 
 The default server can also be overridden globally by passing a URL to the `serverUrl: string` optional parameter when initializing the SDK client instance. For example:
 ```csharp
-using formance;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(
     serverUrl: "http://localhost",
@@ -143,8 +142,8 @@ This SDK supports the following security scheme globally:
 
 You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
 ```csharp
-using formance;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",

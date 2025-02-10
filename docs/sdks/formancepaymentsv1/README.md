@@ -56,8 +56,8 @@ Get server info
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -75,10 +75,10 @@ var res = await sdk.Payments.V1.PaymentsgetServerInfoAsync();
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## CreatePayment
 
@@ -87,9 +87,9 @@ Create a payment
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Components;
-using System.Numerics;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using System;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -99,11 +99,11 @@ var sdk = new Formance(security: new Security() {
 PaymentRequest req = new PaymentRequest() {
     Reference = "<value>",
     ConnectorID = "<id>",
-    CreatedAt = System.DateTime.Parse("2024-11-09T01:03:21.011Z"),
+    CreatedAt = System.DateTime.Parse("2025-11-09T01:03:21.011Z"),
     Amount = 100,
-    Type = formance.Models.Components.PaymentType.Other,
-    Status = formance.Models.Components.PaymentStatus.RefundedFailure,
-    Scheme = formance.Models.Components.PaymentScheme.SepaDebit,
+    Type = PaymentType.Other,
+    Status = PaymentStatus.RefundedFailure,
+    Scheme = PaymentScheme.SepaDebit,
     Asset = "USD",
 };
 
@@ -124,10 +124,10 @@ var res = await sdk.Payments.V1.CreatePaymentAsync(req);
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## ListPayments
 
@@ -136,10 +136,9 @@ List payments
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 using System.Collections.Generic;
-using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -174,10 +173,10 @@ var res = await sdk.Payments.V1.ListPaymentsAsync(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## GetPayment
 
@@ -186,9 +185,8 @@ Get a payment
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -212,10 +210,10 @@ var res = await sdk.Payments.V1.GetPaymentAsync(paymentId: "XXX");
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## UpdateMetadata
 
@@ -224,10 +222,9 @@ Update metadata
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 using System.Collections.Generic;
-using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -257,10 +254,10 @@ var res = await sdk.Payments.V1.UpdateMetadataAsync(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## ListTransferInitiations
 
@@ -269,10 +266,9 @@ List Transfer Initiations
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 using System.Collections.Generic;
-using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -307,10 +303,10 @@ var res = await sdk.Payments.V1.ListTransferInitiationsAsync(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## CreateTransferInitiation
 
@@ -319,10 +315,9 @@ Create a transfer initiation
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Components;
-using System.Numerics;
-using System.Collections.Generic;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using System;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -331,11 +326,11 @@ var sdk = new Formance(security: new Security() {
 
 TransferInitiationRequest req = new TransferInitiationRequest() {
     Reference = "XXX",
-    ScheduledAt = System.DateTime.Parse("2022-10-09T08:11:40.585Z"),
+    ScheduledAt = System.DateTime.Parse("2023-10-09T08:11:40.585Z"),
     Description = "worthy pace vague ick liberalize between um",
     SourceAccountID = "<id>",
     DestinationAccountID = "<id>",
-    Type = formance.Models.Components.TransferInitiationRequestType.Payout,
+    Type = TransferInitiationRequestType.Payout,
     Amount = 847873,
     Asset = "USD",
     Validated = false,
@@ -358,10 +353,10 @@ var res = await sdk.Payments.V1.CreateTransferInitiationAsync(req);
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## GetTransferInitiation
 
@@ -370,9 +365,8 @@ Get a transfer initiation
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -396,10 +390,10 @@ var res = await sdk.Payments.V1.GetTransferInitiationAsync(transferId: "XXX");
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## DeleteTransferInitiation
 
@@ -408,9 +402,8 @@ Delete a transfer initiation by its id.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -434,10 +427,10 @@ var res = await sdk.Payments.V1.DeleteTransferInitiationAsync(transferId: "XXX")
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## UdpateTransferInitiationStatus
 
@@ -446,9 +439,8 @@ Update a transfer initiation status
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -458,7 +450,7 @@ var sdk = new Formance(security: new Security() {
 var res = await sdk.Payments.V1.UdpateTransferInitiationStatusAsync(
     transferId: "XXX",
     updateTransferInitiationStatusRequest: new UpdateTransferInitiationStatusRequest() {
-        Status = formance.Models.Components.Status.Validated,
+        Status = Status.Validated,
     }
 );
 
@@ -478,10 +470,10 @@ var res = await sdk.Payments.V1.UdpateTransferInitiationStatusAsync(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## ReverseTransferInitiation
 
@@ -490,10 +482,8 @@ Reverse transfer initiation
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
-using System.Numerics;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
@@ -530,10 +520,10 @@ var res = await sdk.Payments.V1.ReverseTransferInitiationAsync(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## RetryTransferInitiation
 
@@ -542,9 +532,8 @@ Retry a failed transfer initiation
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -568,10 +557,10 @@ var res = await sdk.Payments.V1.RetryTransferInitiationAsync(transferId: "XXX");
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## ListPools
 
@@ -580,10 +569,9 @@ List Pools
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 using System.Collections.Generic;
-using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -618,10 +606,10 @@ var res = await sdk.Payments.V1.ListPoolsAsync(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## CreatePool
 
@@ -630,8 +618,8 @@ Create a Pool
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
@@ -663,10 +651,10 @@ var res = await sdk.Payments.V1.CreatePoolAsync(req);
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## GetPool
 
@@ -675,9 +663,8 @@ Get a Pool
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -701,10 +688,10 @@ var res = await sdk.Payments.V1.GetPoolAsync(poolId: "XXX");
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## DeletePool
 
@@ -713,9 +700,8 @@ Delete a pool by its id.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -739,10 +725,10 @@ var res = await sdk.Payments.V1.DeletePoolAsync(poolId: "XXX");
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## AddAccountToPool
 
@@ -751,9 +737,8 @@ Add an account to a pool
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -783,10 +768,10 @@ var res = await sdk.Payments.V1.AddAccountToPoolAsync(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## RemoveAccountFromPool
 
@@ -795,9 +780,8 @@ Remove an account from a pool by its id.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -825,10 +809,10 @@ var res = await sdk.Payments.V1.RemoveAccountFromPoolAsync(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## GetPoolBalances
 
@@ -837,9 +821,9 @@ Get pool balances
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using System;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -848,7 +832,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Payments.V1.GetPoolBalancesAsync(
     poolId: "XXX",
-    at: System.DateTime.Parse("2023-05-05T06:40:23.119Z")
+    at: System.DateTime.Parse("2024-05-04T06:40:23.119Z")
 );
 
 // handle response
@@ -867,10 +851,10 @@ var res = await sdk.Payments.V1.GetPoolBalancesAsync(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## CreateAccount
 
@@ -879,9 +863,9 @@ Create an account
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Components;
-using System.Collections.Generic;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using System;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -891,8 +875,8 @@ var sdk = new Formance(security: new Security() {
 AccountRequest req = new AccountRequest() {
     Reference = "<value>",
     ConnectorID = "<id>",
-    CreatedAt = System.DateTime.Parse("2024-08-19T02:15:08.152Z"),
-    Type = formance.Models.Components.AccountType.Internal,
+    CreatedAt = System.DateTime.Parse("2025-08-19T02:15:08.152Z"),
+    Type = AccountType.Internal,
 };
 
 var res = await sdk.Payments.V1.CreateAccountAsync(req);
@@ -912,10 +896,10 @@ var res = await sdk.Payments.V1.CreateAccountAsync(req);
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## PaymentslistAccounts
 
@@ -924,10 +908,10 @@ List accounts
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Requests;
 using System.Collections.Generic;
-using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -935,7 +919,6 @@ var sdk = new Formance(security: new Security() {
 });
 
 PaymentslistAccountsRequest req = new PaymentslistAccountsRequest() {
-    PageSize = 100,
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     Sort = new List<string>() {
         "date:asc",
@@ -960,10 +943,10 @@ var res = await sdk.Payments.V1.PaymentslistAccountsAsync(req);
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## PaymentsgetAccount
 
@@ -972,9 +955,8 @@ Get an account
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -998,10 +980,10 @@ var res = await sdk.Payments.V1.PaymentsgetAccountAsync(accountId: "XXX");
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## GetAccountBalances
 
@@ -1010,10 +992,10 @@ Get account balances
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Requests;
 using System.Collections.Generic;
-using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1022,7 +1004,6 @@ var sdk = new Formance(security: new Security() {
 
 GetAccountBalancesRequest req = new GetAccountBalancesRequest() {
     AccountId = "XXX",
-    PageSize = 100,
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     Sort = new List<string>() {
         "date:asc",
@@ -1047,10 +1028,10 @@ var res = await sdk.Payments.V1.GetAccountBalancesAsync(req);
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## CreateBankAccount
 
@@ -1059,9 +1040,8 @@ Create a bank account in Payments and on the PSP.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Components;
-using System.Collections.Generic;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1091,10 +1071,10 @@ var res = await sdk.Payments.V1.CreateBankAccountAsync(req);
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## ListBankAccounts
 
@@ -1103,10 +1083,9 @@ List all bank accounts created by user on Formance.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 using System.Collections.Generic;
-using formance.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1139,10 +1118,10 @@ var res = await sdk.Payments.V1.ListBankAccountsAsync(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## GetBankAccount
 
@@ -1151,9 +1130,8 @@ Get a bank account created by user on Formance
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1177,10 +1155,10 @@ var res = await sdk.Payments.V1.GetBankAccountAsync(bankAccountId: "XXX");
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## ForwardBankAccount
 
@@ -1189,9 +1167,8 @@ Forward a bank account to a connector
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1221,10 +1198,10 @@ var res = await sdk.Payments.V1.ForwardBankAccountAsync(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## UpdateBankAccountMetadata
 
@@ -1233,9 +1210,8 @@ Update metadata of a bank account
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
@@ -1268,10 +1244,10 @@ var res = await sdk.Payments.V1.UpdateBankAccountMetadataAsync(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## ListAllConnectors
 
@@ -1280,8 +1256,8 @@ List all installed connectors.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1299,10 +1275,10 @@ var res = await sdk.Payments.V1.ListAllConnectorsAsync();
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## ListConfigsAvailableConnectors
 
@@ -1311,8 +1287,8 @@ List the configs of each available connector.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1330,10 +1306,10 @@ var res = await sdk.Payments.V1.ListConfigsAvailableConnectorsAsync();
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## InstallConnector
 
@@ -1342,9 +1318,8 @@ Install a connector by its name and config.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1352,16 +1327,12 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.InstallConnectorAsync(
-    connector: formance.Models.Components.Connector.Wise,
+    connector: Connector.Wise,
     connectorConfig: ConnectorConfig.CreateAtlarConfig(
         new AtlarConfig() {
             Name = "My Atlar Account",
-            BaseUrl = "https://api.example.com",
-            PollingPeriod = "60s",
-            TransferInitiationStatusPollingPeriod = "60s",
             AccessKey = "XXX",
             Secret = "XXX",
-            PageSize = 50,
         }
     )
 );
@@ -1382,10 +1353,10 @@ var res = await sdk.Payments.V1.InstallConnectorAsync(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## ~~UninstallConnector~~
 
@@ -1396,16 +1367,15 @@ Uninstall a connector by its name.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Payments.V1.UninstallConnectorAsync(connector: formance.Models.Components.Connector.Modulr);
+var res = await sdk.Payments.V1.UninstallConnectorAsync(connector: Connector.Modulr);
 
 // handle response
 ```
@@ -1422,10 +1392,10 @@ var res = await sdk.Payments.V1.UninstallConnectorAsync(connector: formance.Mode
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## UninstallConnectorV1
 
@@ -1434,9 +1404,8 @@ Uninstall a connector by its name.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1444,7 +1413,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.UninstallConnectorV1Async(
-    connector: formance.Models.Components.Connector.Generic,
+    connector: Connector.Generic,
     connectorId: "XXX"
 );
 
@@ -1464,10 +1433,10 @@ var res = await sdk.Payments.V1.UninstallConnectorV1Async(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## ~~ReadConnectorConfig~~
 
@@ -1478,16 +1447,15 @@ Read connector config
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Payments.V1.ReadConnectorConfigAsync(connector: formance.Models.Components.Connector.Generic);
+var res = await sdk.Payments.V1.ReadConnectorConfigAsync(connector: Connector.Generic);
 
 // handle response
 ```
@@ -1504,10 +1472,10 @@ var res = await sdk.Payments.V1.ReadConnectorConfigAsync(connector: formance.Mod
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## UpdateConnectorConfigV1
 
@@ -1516,9 +1484,8 @@ Update connector config
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1526,7 +1493,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.UpdateConnectorConfigV1Async(
-    connector: formance.Models.Components.Connector.Stripe,
+    connector: Connector.Stripe,
     connectorId: "XXX",
     connectorConfig: ConnectorConfig.CreateAdyenConfig(
         new AdyenConfig() {
@@ -1534,7 +1501,6 @@ var res = await sdk.Payments.V1.UpdateConnectorConfigV1Async(
             ApiKey = "XXX",
             HmacKey = "XXX",
             LiveEndpointPrefix = "XXX",
-            PollingPeriod = "60s",
         }
     )
 );
@@ -1556,10 +1522,10 @@ var res = await sdk.Payments.V1.UpdateConnectorConfigV1Async(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## ReadConnectorConfigV1
 
@@ -1568,9 +1534,8 @@ Read connector config
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1578,7 +1543,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.ReadConnectorConfigV1Async(
-    connector: formance.Models.Components.Connector.CurrencyCloud,
+    connector: Connector.CurrencyCloud,
     connectorId: "XXX"
 );
 
@@ -1598,10 +1563,10 @@ var res = await sdk.Payments.V1.ReadConnectorConfigV1Async(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## ~~ResetConnector~~
 
@@ -1614,16 +1579,15 @@ It will remove the connector and ALL PAYMENTS generated with it.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Payments.V1.ResetConnectorAsync(connector: formance.Models.Components.Connector.Atlar);
+var res = await sdk.Payments.V1.ResetConnectorAsync(connector: Connector.Atlar);
 
 // handle response
 ```
@@ -1640,10 +1604,10 @@ var res = await sdk.Payments.V1.ResetConnectorAsync(connector: formance.Models.C
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## ResetConnectorV1
 
@@ -1654,9 +1618,8 @@ It will remove the connector and ALL PAYMENTS generated with it.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1664,7 +1627,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.ResetConnectorV1Async(
-    connector: formance.Models.Components.Connector.Generic,
+    connector: Connector.Generic,
     connectorId: "XXX"
 );
 
@@ -1684,10 +1647,10 @@ var res = await sdk.Payments.V1.ResetConnectorV1Async(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## ~~ListConnectorTasks~~
 
@@ -1698,9 +1661,8 @@ List all tasks associated with this connector.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1708,7 +1670,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.ListConnectorTasksAsync(
-    connector: formance.Models.Components.Connector.Modulr,
+    connector: Connector.Modulr,
     pageSize: 100,
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
 );
@@ -1730,10 +1692,10 @@ var res = await sdk.Payments.V1.ListConnectorTasksAsync(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## ListConnectorTasksV1
 
@@ -1742,9 +1704,8 @@ List all tasks associated with this connector.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1752,7 +1713,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.ListConnectorTasksV1Async(
-    connector: formance.Models.Components.Connector.BankingCircle,
+    connector: Connector.BankingCircle,
     connectorId: "XXX",
     pageSize: 100,
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
@@ -1776,10 +1737,10 @@ var res = await sdk.Payments.V1.ListConnectorTasksV1Async(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## ~~GetConnectorTask~~
 
@@ -1790,9 +1751,8 @@ Get a specific task associated to the connector.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1800,7 +1760,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.GetConnectorTaskAsync(
-    connector: formance.Models.Components.Connector.Adyen,
+    connector: Connector.Adyen,
     taskId: "task1"
 );
 
@@ -1820,10 +1780,10 @@ var res = await sdk.Payments.V1.GetConnectorTaskAsync(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## GetConnectorTaskV1
 
@@ -1832,9 +1792,8 @@ Get a specific task associated to the connector.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1842,7 +1801,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.GetConnectorTaskV1Async(
-    connector: formance.Models.Components.Connector.BankingCircle,
+    connector: Connector.BankingCircle,
     connectorId: "XXX",
     taskId: "task1"
 );
@@ -1864,10 +1823,10 @@ var res = await sdk.Payments.V1.GetConnectorTaskV1Async(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## ConnectorsTransfer
 
@@ -1876,10 +1835,8 @@ Execute a transfer between two accounts.
 ### Example Usage
 
 ```csharp
-using formance;
-using formance.Models.Requests;
-using formance.Models.Components;
-using System.Numerics;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1887,7 +1844,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.ConnectorsTransferAsync(
-    connector: formance.Models.Components.Connector.BankingCircle,
+    connector: Connector.BankingCircle,
     transferRequest: new TransferRequest() {
         Amount = 100,
         Asset = "USD",
@@ -1912,7 +1869,7 @@ var res = await sdk.Payments.V1.ConnectorsTransferAsync(
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| formance.Models.Errors.PaymentsErrorResponse | default                                      | application/json                             |
-| formance.Models.Errors.SDKException          | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |

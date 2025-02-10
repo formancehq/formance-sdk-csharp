@@ -36,13 +36,21 @@ and standard method from web, mobile and desktop applications.
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
-
-* [SDK Installation](#sdk-installation)
-* [SDK Example Usage](#sdk-example-usage)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
+<!-- $toc-max-depth=2 -->
+* [formance](#formance)
+  * [🏗 **Welcome to your new SDK!** 🏗](#welcome-to-your-new-sdk)
+* [Introduction](#introduction)
 * [Authentication](#authentication)
+  * [SDK Installation](#sdk-installation)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+  * [Authentication](#authentication-1)
+* [Development](#development)
+  * [Maturity](#maturity)
+  * [Contributions](#contributions)
+
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -52,14 +60,14 @@ and standard method from web, mobile and desktop applications.
 
 To add the [NuGet](https://www.nuget.org/) package to a .NET project:
 ```bash
-dotnet add package formance
+dotnet add package FormanceSDK
 ```
 
 ### Locally
 
 To add a reference to a local instance of the SDK in a .NET project:
 ```bash
-dotnet add reference src/formance/formance.csproj
+dotnet add reference src/FormanceSDK/FormanceSDK.csproj
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -69,8 +77,8 @@ dotnet add reference src/formance/formance.csproj
 ### Example
 
 ```csharp
-using formance;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -139,6 +147,7 @@ var res = await sdk.GetVersionsAsync();
 #### [Ledger.V2](docs/sdks/v2/README.md)
 
 * [GetInfo](docs/sdks/v2/README.md#getinfo) - Show server information
+* [GetMetrics](docs/sdks/v2/README.md#getmetrics) - Read in memory metrics
 * [ListLedgers](docs/sdks/v2/README.md#listledgers) - List ledgers
 * [GetLedger](docs/sdks/v2/README.md#getledger) - Get a ledger
 * [CreateLedger](docs/sdks/v2/README.md#createledger) - Create a ledger
@@ -258,6 +267,53 @@ var res = await sdk.GetVersionsAsync();
 * [GetConnectorTaskV1](docs/sdks/formancepaymentsv1/README.md#getconnectortaskv1) - Read a specific task of the connector
 * [ConnectorsTransfer](docs/sdks/formancepaymentsv1/README.md#connectorstransfer) - Transfer funds between Connector accounts
 
+#### [Payments.V3](docs/sdks/v3/README.md)
+
+* [GetInfo](docs/sdks/v3/README.md#getinfo) - Show server information
+* [CreateAccount](docs/sdks/v3/README.md#createaccount) - Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.
+
+* [ListAccounts](docs/sdks/v3/README.md#listaccounts) - List all accounts
+* [GetAccount](docs/sdks/v3/README.md#getaccount) - Get an account by ID
+* [GetAccountBalances](docs/sdks/v3/README.md#getaccountbalances) - Get account balances
+* [CreateBankAccount](docs/sdks/v3/README.md#createbankaccount) - Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.
+
+* [ListBankAccounts](docs/sdks/v3/README.md#listbankaccounts) - List all bank accounts
+* [GetBankAccount](docs/sdks/v3/README.md#getbankaccount) - Get a Bank Account by ID
+* [UpdateBankAccountMetadata](docs/sdks/v3/README.md#updatebankaccountmetadata) - Update a bank account's metadata
+* [ForwardBankAccount](docs/sdks/v3/README.md#forwardbankaccount) - Forward a Bank Account to a PSP for creation
+* [ListConnectors](docs/sdks/v3/README.md#listconnectors) - List all connectors
+* [InstallConnector](docs/sdks/v3/README.md#installconnector) - Install a connector
+* [ListConnectorConfigs](docs/sdks/v3/README.md#listconnectorconfigs) - List all connector configurations
+* [UninstallConnector](docs/sdks/v3/README.md#uninstallconnector) - Uninstall a connector
+* [GetConnectorConfig](docs/sdks/v3/README.md#getconnectorconfig) - Get a connector configuration by ID
+* [ResetConnector](docs/sdks/v3/README.md#resetconnector) - Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment initiations and bank account creations.
+* [ListConnectorSchedules](docs/sdks/v3/README.md#listconnectorschedules) - List all connector schedules
+* [GetConnectorSchedule](docs/sdks/v3/README.md#getconnectorschedule) - Get a connector schedule by ID
+* [ListConnectorScheduleInstances](docs/sdks/v3/README.md#listconnectorscheduleinstances) - List all connector schedule instances
+* [CreatePayment](docs/sdks/v3/README.md#createpayment) - Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
+
+* [ListPayments](docs/sdks/v3/README.md#listpayments) - List all payments
+* [GetPayment](docs/sdks/v3/README.md#getpayment) - Get a payment by ID
+* [UpdatePaymentMetadata](docs/sdks/v3/README.md#updatepaymentmetadata) - Update a payment's metadata
+* [InitiatePayment](docs/sdks/v3/README.md#initiatepayment) - Initiate a payment
+* [ListPaymentInitiations](docs/sdks/v3/README.md#listpaymentinitiations) - List all payment initiations
+* [DeletePaymentInitiation](docs/sdks/v3/README.md#deletepaymentinitiation) - Delete a payment initiation by ID
+* [GetPaymentInitiation](docs/sdks/v3/README.md#getpaymentinitiation) - Get a payment initiation by ID
+* [RetryPaymentInitiation](docs/sdks/v3/README.md#retrypaymentinitiation) - Retry a payment initiation
+* [ApprovePaymentInitiation](docs/sdks/v3/README.md#approvepaymentinitiation) - Approve a payment initiation
+* [RejectPaymentInitiation](docs/sdks/v3/README.md#rejectpaymentinitiation) - Reject a payment initiation
+* [ReversePaymentInitiation](docs/sdks/v3/README.md#reversepaymentinitiation) - Reverse a payment initiation
+* [ListPaymentInitiationAdjustments](docs/sdks/v3/README.md#listpaymentinitiationadjustments) - List all payment initiation adjustments
+* [ListPaymentInitiationRelatedPayments](docs/sdks/v3/README.md#listpaymentinitiationrelatedpayments) - List all payments related to a payment initiation
+* [CreatePool](docs/sdks/v3/README.md#createpool) - Create a formance pool object
+* [ListPools](docs/sdks/v3/README.md#listpools) - List all pools
+* [GetPool](docs/sdks/v3/README.md#getpool) - Get a pool by ID
+* [DeletePool](docs/sdks/v3/README.md#deletepool) - Delete a pool by ID
+* [GetPoolBalances](docs/sdks/v3/README.md#getpoolbalances) - Get pool balances
+* [AddAccountToPool](docs/sdks/v3/README.md#addaccounttopool) - Add an account to a pool
+* [RemoveAccountFromPool](docs/sdks/v3/README.md#removeaccountfrompool) - Remove an account from a pool
+* [GetTask](docs/sdks/v3/README.md#gettask) - Get a task and its result by ID
+
 ### [Reconciliation](docs/sdks/reconciliation/README.md)
 
 
@@ -310,6 +366,7 @@ var res = await sdk.GetVersionsAsync();
 * [GetManyConfigs](docs/sdks/formancewebhooksv1/README.md#getmanyconfigs) - Get many configs
 * [InsertConfig](docs/sdks/formancewebhooksv1/README.md#insertconfig) - Insert a new config
 * [DeleteConfig](docs/sdks/formancewebhooksv1/README.md#deleteconfig) - Delete one config
+* [UpdateConfig](docs/sdks/formancewebhooksv1/README.md#updateconfig) - Update one config
 * [TestConfig](docs/sdks/formancewebhooksv1/README.md#testconfig) - Test one config
 * [ActivateConfig](docs/sdks/formancewebhooksv1/README.md#activateconfig) - Activate one config
 * [DeactivateConfig](docs/sdks/formancewebhooksv1/README.md#deactivateconfig) - Deactivate one config
@@ -323,7 +380,7 @@ var res = await sdk.GetVersionsAsync();
 
 Handling errors in this SDK should largely match your expectations. All operations return a response object or throw an exception.
 
-By default, an API error will raise a `formance.Models.Errors.SDKException` exception, which has the following properties:
+By default, an API error will raise a `FormanceSDK.Models.Errors.SDKException` exception, which has the following properties:
 
 | Property      | Type                  | Description           |
 |---------------|-----------------------|-----------------------|
@@ -333,18 +390,17 @@ By default, an API error will raise a `formance.Models.Errors.SDKException` exce
 
 When custom error responses are specified for an operation, the SDK may also throw their associated exceptions. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `GetInfoAsync` method throws the following exceptions:
 
-| Error Type                           | Status Code | Content Type     |
-| ------------------------------------ | ----------- | ---------------- |
-| formance.Models.Errors.ErrorResponse | default     | application/json |
-| formance.Models.Errors.SDKException  | 4XX, 5XX    | \*/\*            |
+| Error Type                              | Status Code | Content Type     |
+| --------------------------------------- | ----------- | ---------------- |
+| FormanceSDK.Models.Errors.ErrorResponse | default     | application/json |
+| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX    | \*/\*            |
 
 ### Example
 
 ```csharp
-using formance;
-using formance.Models.Components;
-using System;
-using formance.Models.Errors;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Errors;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -364,7 +420,7 @@ catch (Exception ex)
         // Handle exception data
         throw;
     }
-    else if (ex is formance.Models.Errors.SDKException)
+    else if (ex is FormanceSDK.Models.Errors.SDKException)
     {
         // Handle default exception
         throw;
@@ -380,18 +436,18 @@ catch (Exception ex)
 
 You can override the default server globally by passing a server index to the `serverIndex: int` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| #   | Server                                                | Variables                                                   | Default values                    |
-| --- | ----------------------------------------------------- | ----------------------------------------------------------- | --------------------------------- |
-| 0   | `http://localhost`                                    |                                                             |                                   |
-| 1   | `https://{organization}.{environment}.formance.cloud` | `organization: string`<br/>`environment: ServerEnvironment` | `"orgID-stackID"`<br/>`"sandbox"` |
+| #   | Server                                                | Variables                                                   | Default values                       |
+| --- | ----------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------ |
+| 0   | `http://localhost`                                    |                                                             |                                      |
+| 1   | `https://{organization}.{environment}.formance.cloud` | `organization: string`<br/>`environment: ServerEnvironment` | `"orgID-stackID"`<br/>`"eu.sandbox"` |
 
 If the selected server has variables, you may override their default values through the additional parameters made available in the SDK constructor.
 
 #### Example
 
 ```csharp
-using formance;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(
     serverIndex: 1,
@@ -410,8 +466,8 @@ var res = await sdk.GetVersionsAsync();
 
 The default server can also be overridden globally by passing a URL to the `serverUrl: string` optional parameter when initializing the SDK client instance. For example:
 ```csharp
-using formance;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(
     serverUrl: "http://localhost",
@@ -440,8 +496,8 @@ This SDK supports the following security scheme globally:
 
 You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
 ```csharp
-using formance;
-using formance.Models.Components;
+using FormanceSDK;
+using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",

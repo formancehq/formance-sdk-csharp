@@ -1,0 +1,9 @@
+# V3UninstallConnectorResponse
+
+
+## Fields
+
+| Field                                                                                                     | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `HttpMeta`                                                                                                | [HTTPMetadata](../../Models/Components/HTTPMetadata.md)                                                   | :heavy_check_mark:                                                                                        | N/A                                                                                                       |
+| `V3UninstallConnectorResponse`                                                                            | [Models.Components.V3UninstallConnectorResponse](../../Models/Components/V3UninstallConnectorResponse.md) | :heavy_minus_sign:                                                                                        | Accepted                                                                                                  |

@@ -82,12 +82,17 @@ catch (Exception ex)
 
 You can override the default server globally by passing a server index to the `serverIndex: int` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| #   | Server                                                | Variables                                                   | Default values                       |
-| --- | ----------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------ |
-| 0   | `http://localhost`                                    |                                                             |                                      |
-| 1   | `https://{organization}.{environment}.formance.cloud` | `organization: string`<br/>`environment: ServerEnvironment` | `"orgID-stackID"`<br/>`"eu.sandbox"` |
+| #   | Server                                                | Variables                        | Description                                |
+| --- | ----------------------------------------------------- | -------------------------------- | ------------------------------------------ |
+| 0   | `http://localhost`                                    |                                  | local server                               |
+| 1   | `https://{organization}.{environment}.formance.cloud` | `organization`<br/>`environment` | A per-organization and per-environment API |
 
-If the selected server has variables, you may override their default values through the additional parameters made available in the SDK constructor.
+If the selected server has variables, you may override its default values through the additional parameters made available in the SDK constructor:
+
+| Variable       | Parameter                                           | Supported Values                                                           | Default           | Description                                                   |
+| -------------- | --------------------------------------------------- | -------------------------------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
+| `organization` | `organization: string`                              | string                                                                     | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
+| `environment`  | `environment: FormanceSDK.Models.ServerEnvironment` | - `"eu.sandbox"`<br/>- `"sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"eu.sandbox"`    | The environment name. Defaults to the production environment. |
 
 #### Example
 
@@ -97,6 +102,8 @@ using FormanceSDK.Models.Components;
 
 var sdk = new Formance(
     serverIndex: 1,
+    organization: "<value>",
+    environment: "us-east-1",
     security: new Security() {
         ClientID = "<YOUR_CLIENT_ID_HERE>",
         ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",

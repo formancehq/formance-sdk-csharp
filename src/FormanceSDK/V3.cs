@@ -26,11 +26,6 @@ namespace FormanceSDK
     {
 
         /// <summary>
-        /// Show server information
-        /// </summary>
-        Task<V3GetInfoResponse> GetInfoAsync();
-
-        /// <summary>
         /// Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.<br/>
         /// 
         /// </summary>
@@ -238,10 +233,10 @@ namespace FormanceSDK
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "1.0.0";
-        private const string _sdkGenVersion = "2.506.0";
-        private const string _openapiDocVersion = "v3.0.0";
-        private const string _userAgent = "speakeasy-sdk/csharp 1.0.0 2.506.0 v3.0.0 FormanceSDK";
+        private const string _sdkVersion = "1.0.1";
+        private const string _sdkGenVersion = "2.539.0";
+        private const string _openapiDocVersion = "v3.0.1";
+        private const string _userAgent = "speakeasy-sdk/csharp 1.0.1 2.539.0 v3.0.1 FormanceSDK";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<FormanceSDK.Models.Components.Security>? _securitySource;
@@ -252,87 +247,6 @@ namespace FormanceSDK
             _securitySource = securitySource;
             _serverUrl = serverUrl;
             SDKConfiguration = config;
-        }
-
-        public async Task<V3GetInfoResponse> GetInfoAsync()
-        {
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
-            var urlString = baseUrl + "/api/payments/v3/_info";
-
-            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
-
-            if (_securitySource != null)
-            {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
-            }
-
-            var hookCtx = new HookContext("v3GetInfo", new List<string> { "auth:read", "payments:read" }, _securitySource);
-
-            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
-
-            HttpResponseMessage httpResponse;
-            try
-            {
-                httpResponse = await _client.SendAsync(httpRequest);
-                int _statusCode = (int)httpResponse.StatusCode;
-
-                if (_statusCode == default)
-                {
-                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
-                    if (_httpResponse != null)
-                    {
-                        httpResponse = _httpResponse;
-                    }
-                }
-            }
-            catch (Exception error)
-            {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
-                if (_httpResponse != null)
-                {
-                    httpResponse = _httpResponse;
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
-
-            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
-            int responseStatusCode = (int)httpResponse.StatusCode;
-            if(responseStatusCode == 200)
-            {
-                if(Utilities.IsContentTypeMatch("application/json", contentType))
-                {
-                    var obj = ResponseBodyDeserializer.Deserialize<V3ConfigInfoResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new V3GetInfoResponse()
-                    {
-                        HttpMeta = new Models.Components.HTTPMetadata()
-                        {
-                            Response = httpResponse,
-                            Request = httpRequest
-                        }
-                    };
-                    response.V3ConfigInfoResponse = obj;
-                    return response;
-                }
-
-                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
-            }
-            else
-            {
-                if(Utilities.IsContentTypeMatch("application/json", contentType))
-                {
-                    var obj = ResponseBodyDeserializer.Deserialize<V3ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    throw obj!;
-                }
-
-                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
-            }
         }
 
         public async Task<Models.Requests.V3CreateAccountResponse> CreateAccountAsync(V3CreateAccountRequest? request = null)

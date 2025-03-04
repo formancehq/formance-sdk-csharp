@@ -36,6 +36,9 @@ namespace FormanceSDK.Models.Components
         [JsonProperty("swiftBicCode")]
         public string? SwiftBicCode { get; set; } = null;
 
+        [JsonProperty("country")]
+        public string? Country { get; set; } = null;
+
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
 

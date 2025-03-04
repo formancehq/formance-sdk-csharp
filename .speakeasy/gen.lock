@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: bb4a1c17-4efb-4cf4-a5bb-53737f9f624b
 management:
-  docChecksum: 98f21a9b47a7a10e2efba8e8081d5312
-  docVersion: v3.0.0
-  speakeasyVersion: 1.487.1
-  generationVersion: 2.506.0
-  releaseVersion: 1.0.0
-  configChecksum: bfef548f4f695cf0b00eb90bf24e6d5e
+  docChecksum: c41faf2a0390b8c6621c8b1cf31eb698
+  docVersion: v3.0.1
+  speakeasyVersion: 1.509.0
+  generationVersion: 2.539.0
+  releaseVersion: 1.0.1
+  configChecksum: 02abcc82b819b7a27c792e113359dc78
   repoURL: https://github.com/formancehq/formance-sdk-csharp.git
   published: true
 features:
@@ -14,19 +14,19 @@ features:
     additionalDependencies: 0.1.0
     bigint: 0.2.0
     constsAndDefaults: 0.0.1
-    core: 3.10.13
+    core: 3.10.14
     deprecations: 2.81.2
     errors: 0.2.0
     flattening: 2.81.3
     getRequestBodies: 2.81.1
-    globalSecurity: 2.83.6
+    globalSecurity: 2.83.7
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.3
     ignores: 2.81.1
     intellisenseMarkdownSupport: 0.1.0
     methodArguments: 0.2.0
     nameOverrides: 2.81.2
-    nullables: 0.1.0
+    nullables: 0.1.1
     oauth2ClientCredentials: 0.1.1
     responseFormat: 0.0.4
     sdkHooks: 0.1.0
@@ -477,7 +477,6 @@ generatedFiles:
   - docs/Models/Components/V3BankAccountsCursorResponse.md
   - docs/Models/Components/V3BankAccountsCursorResponseCursor.md
   - docs/Models/Components/V3BankingcircleConfig.md
-  - docs/Models/Components/V3ConfigInfoResponse.md
   - docs/Models/Components/V3Connector.md
   - docs/Models/Components/V3ConnectorConfig.md
   - docs/Models/Components/V3ConnectorConfig1.md
@@ -566,6 +565,7 @@ generatedFiles:
   - docs/Models/Components/Volume.md
   - docs/Models/Components/Wallet.md
   - docs/Models/Components/WalletSubject.md
+  - docs/Models/Components/WalletSummary.md
   - docs/Models/Components/WalletWithBalances.md
   - docs/Models/Components/WalletWithBalancesBalances.md
   - docs/Models/Components/WalletsTransaction.md
@@ -930,7 +930,6 @@ generatedFiles:
   - docs/Models/Requests/V3GetConnectorConfigResponse.md
   - docs/Models/Requests/V3GetConnectorScheduleRequest.md
   - docs/Models/Requests/V3GetConnectorScheduleResponse.md
-  - docs/Models/Requests/V3GetInfoResponse.md
   - docs/Models/Requests/V3GetPaymentInitiationRequest.md
   - docs/Models/Requests/V3GetPaymentInitiationResponse.md
   - docs/Models/Requests/V3GetPaymentRequest.md
@@ -1462,7 +1461,6 @@ generatedFiles:
   - src/FormanceSDK/Models/Components/V3BankAccountsCursorResponse.cs
   - src/FormanceSDK/Models/Components/V3BankAccountsCursorResponseCursor.cs
   - src/FormanceSDK/Models/Components/V3BankingcircleConfig.cs
-  - src/FormanceSDK/Models/Components/V3ConfigInfoResponse.cs
   - src/FormanceSDK/Models/Components/V3Connector.cs
   - src/FormanceSDK/Models/Components/V3ConnectorConfig.cs
   - src/FormanceSDK/Models/Components/V3ConnectorConfig1.cs
@@ -1551,6 +1549,7 @@ generatedFiles:
   - src/FormanceSDK/Models/Components/Volume.cs
   - src/FormanceSDK/Models/Components/Wallet.cs
   - src/FormanceSDK/Models/Components/WalletSubject.cs
+  - src/FormanceSDK/Models/Components/WalletSummary.cs
   - src/FormanceSDK/Models/Components/WalletWithBalances.cs
   - src/FormanceSDK/Models/Components/WalletWithBalancesBalances.cs
   - src/FormanceSDK/Models/Components/WalletsTransaction.cs
@@ -1916,7 +1915,6 @@ generatedFiles:
   - src/FormanceSDK/Models/Requests/V3GetConnectorConfigResponse.cs
   - src/FormanceSDK/Models/Requests/V3GetConnectorScheduleRequest.cs
   - src/FormanceSDK/Models/Requests/V3GetConnectorScheduleResponse.cs
-  - src/FormanceSDK/Models/Requests/V3GetInfoResponse.cs
   - src/FormanceSDK/Models/Requests/V3GetPaymentInitiationRequest.cs
   - src/FormanceSDK/Models/Requests/V3GetPaymentInitiationResponse.cs
   - src/FormanceSDK/Models/Requests/V3GetPaymentRequest.cs
@@ -2396,10 +2394,10 @@ examples:
           atomic: true
           parallel: true
       requestBody:
-        application/json: [{"action": "<value>"}]
+        application/json: [{"action": "<value>", "data": {"postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "script": {"plain": "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n", "vars": {"user": "users:042"}}, "reference": "ref:001", "metadata": {"admin": "true"}}}]
       responses:
         "200":
-          application/json: {"data": [{"responseType": "<value>", "logID": 642842, "data": {"timestamp": "2023-05-07T17:50:11.166Z", "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}, {"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "metadata": {"admin": "true"}, "id": 860718, "reverted": true, "preCommitVolumes": {"orders:1": {"USD": {"input": 100, "output": 20, "balance": 80}, "EUR": {"input": 100, "output": 20, "balance": 80}}, "orders:2": {"USD": {"input": 100, "output": 20, "balance": 80}, "EUR": {"input": 100, "output": 20, "balance": 80}}}, "postCommitVolumes": {"orders:1": {"USD": {"input": 100, "output": 20, "balance": 80}, "EUR": {"input": 100, "output": 20, "balance": 80}}, "orders:2": {"USD": {"input": 100, "output": 20, "balance": 80}, "EUR": {"input": 100, "output": 20, "balance": 80}}}, "preCommitEffectiveVolumes": {"orders:1": {"USD": {"input": 100, "output": 20, "balance": 80}, "EUR": {"input": 100, "output": 20, "balance": 80}}, "orders:2": {"USD": {"input": 100, "output": 20, "balance": 80}, "EUR": {"input": 100, "output": 20, "balance": 80}}}, "postCommitEffectiveVolumes": {"orders:1": {"USD": {"input": 100, "output": 20, "balance": 80}, "EUR": {"input": 100, "output": 20, "balance": 80}}, "orders:2": {"USD": {"input": 100, "output": 20, "balance": 80}, "EUR": {"input": 100, "output": 20, "balance": 80}}}}}], "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param", "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9"}
+          application/json: {"data": [{"responseType": "<value>", "logID": 53724}], "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param", "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9"}
         "400":
           application/json: {"data": [], "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param", "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9"}
         default:
@@ -2823,7 +2821,7 @@ examples:
           accountId: "XXX"
       responses:
         "200":
-          application/json: {"data": {"id": "<id>", "createdAt": "2024-11-12T03:25:46.461Z", "reference": "<value>", "connectorID": "<id>", "defaultCurrency": "<value>", "defaultAsset": "<value>", "accountName": "<value>", "type": "UNKNOWN", "raw": {}}}
+          application/json: {"data": {"id": "<id>", "createdAt": "2024-11-12T03:25:46.461Z", "reference": "<value>", "connectorID": "<id>", "defaultCurrency": "<value>", "defaultAsset": "<value>", "accountName": "<value>", "type": "UNKNOWN", "metadata": {"key": "<value>", "key1": "<value>"}, "raw": {}}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getAccountBalances:
@@ -2913,7 +2911,7 @@ examples:
         path:
           connector: "ATLAR"
       requestBody:
-        application/json: {"name": "My Wise Account", "apiKey": "XXX", "pollingPeriod": "60s"}
+        application/json: {"name": "My Stripe Account", "pollingPeriod": "60s", "apiKey": "XXX", "pageSize": 50}
       responses:
         "201":
           application/json: {"data": {"connectorID": "<id>"}}
@@ -3609,7 +3607,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"balances": [{"name": "<value>", "assets": {"key": 425645}}, {"name": "<value>", "assets": {"key": 2769}}], "availableFunds": {}, "expiredFunds": {"key": 937378, "key1": 696335, "key2": 846984}, "expirableFunds": {"key": 930990, "key1": 132783, "key2": 515347}, "holdFunds": {"key": 213691, "key1": 198747}}
+          application/json: {"data": {"balances": [{"name": "<value>", "assets": {"key": 425645}}, {"name": "<value>", "assets": {"key": 2769}}], "availableFunds": {}, "expiredFunds": {"key": 937378, "key1": 696335, "key2": 846984}, "expirableFunds": {"key": 930990, "key1": 132783, "key2": 515347}, "holdFunds": {"key": 213691, "key1": 198747}}}
         default:
           application/json: {"errorCode": "HOLD_CLOSED", "errorMessage": "<value>"}
   listBalances:

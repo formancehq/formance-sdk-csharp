@@ -5,7 +5,6 @@
 
 ### Available Operations
 
-* [GetInfo](#getinfo) - Show server information
 * [CreateAccount](#createaccount) - Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.
 
 * [ListAccounts](#listaccounts) - List all accounts
@@ -49,37 +48,6 @@
 * [AddAccountToPool](#addaccounttopool) - Add an account to a pool
 * [RemoveAccountFromPool](#removeaccountfrompool) - Remove an account from a pool
 * [GetTask](#gettask) - Get a task and its result by ID
-
-## GetInfo
-
-Show server information
-
-### Example Usage
-
-```csharp
-using FormanceSDK;
-using FormanceSDK.Models.Components;
-
-var sdk = new Formance(security: new Security() {
-    ClientID = "<YOUR_CLIENT_ID_HERE>",
-    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
-});
-
-var res = await sdk.Payments.V3.GetInfoAsync();
-
-// handle response
-```
-
-### Response
-
-**[V3GetInfoResponse](../../Models/Requests/V3GetInfoResponse.md)**
-
-### Errors
-
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V3ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## CreateAccount
 

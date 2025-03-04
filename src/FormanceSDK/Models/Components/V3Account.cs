@@ -37,7 +37,7 @@ namespace FormanceSDK.Models.Components
         public V3AccountTypeEnum Type { get; set; } = default!;
 
         [JsonProperty("name")]
-        public string? Name { get; set; }
+        public string? Name { get; set; } = null;
 
         [JsonProperty("defaultAsset")]
         public string? DefaultAsset { get; set; } = null;

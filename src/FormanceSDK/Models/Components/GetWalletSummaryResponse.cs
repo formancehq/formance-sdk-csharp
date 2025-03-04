@@ -12,25 +12,11 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    using System.Collections.Generic;
-    using System.Numerics;
     
     public class GetWalletSummaryResponse
     {
 
-        [JsonProperty("balances")]
-        public List<BalanceWithAssets> Balances { get; set; } = default!;
-
-        [JsonProperty("availableFunds")]
-        public Dictionary<string, BigInteger> AvailableFunds { get; set; } = default!;
-
-        [JsonProperty("expiredFunds")]
-        public Dictionary<string, BigInteger> ExpiredFunds { get; set; } = default!;
-
-        [JsonProperty("expirableFunds")]
-        public Dictionary<string, BigInteger> ExpirableFunds { get; set; } = default!;
-
-        [JsonProperty("holdFunds")]
-        public Dictionary<string, BigInteger> HoldFunds { get; set; } = default!;
+        [JsonProperty("data")]
+        public WalletSummary Data { get; set; } = default!;
     }
 }

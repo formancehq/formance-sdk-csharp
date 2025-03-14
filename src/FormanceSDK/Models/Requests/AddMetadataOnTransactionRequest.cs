@@ -32,6 +32,6 @@ namespace FormanceSDK.Models.Requests
         /// metadata
         /// </summary>
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public Dictionary<string, object>? RequestBody { get; set; } = null;
+        public Dictionary<string, object>? RequestBody { get; set; }
     }
 }

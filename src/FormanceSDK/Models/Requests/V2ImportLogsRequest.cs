@@ -21,6 +21,6 @@ namespace FormanceSDK.Models.Requests
         public string Ledger { get; set; } = default!;
 
         [SpeakeasyMetadata("request:mediaType=application/octet-stream")]
-        public string? RequestBody { get; set; }
+        public byte[] V2ImportLogsRequestValue { get; set; } = default!;
     }
 }

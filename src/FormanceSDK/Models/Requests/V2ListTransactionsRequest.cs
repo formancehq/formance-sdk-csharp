@@ -59,6 +59,6 @@ namespace FormanceSDK.Models.Requests
         public bool? Reverse { get; set; }
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public Dictionary<string, object>? RequestBody { get; set; }
+        public Dictionary<string, object> RequestBody { get; set; } = default!;
     }
 }

@@ -49,12 +49,12 @@ namespace FormanceSDK
         /// <summary>
         /// Create a ledger
         /// </summary>
-        Task<V2CreateLedgerResponse> CreateLedgerAsync(string ledger, Models.Components.V2CreateLedgerRequest? v2CreateLedgerRequest = null);
+        Task<V2CreateLedgerResponse> CreateLedgerAsync(string ledger, Models.Components.V2CreateLedgerRequest v2CreateLedgerRequest);
 
         /// <summary>
         /// Update ledger metadata
         /// </summary>
-        Task<V2UpdateLedgerMetadataResponse> UpdateLedgerMetadataAsync(string ledger, Dictionary<string, string>? requestBody = null);
+        Task<V2UpdateLedgerMetadataResponse> UpdateLedgerMetadataAsync(string ledger, Dictionary<string, string> requestBody);
 
         /// <summary>
         /// Delete ledger metadata by key
@@ -74,7 +74,7 @@ namespace FormanceSDK
         /// <summary>
         /// Count the accounts from a ledger
         /// </summary>
-        Task<V2CountAccountsResponse> CountAccountsAsync(string ledger, DateTime? pit = null, Dictionary<string, object>? requestBody = null);
+        Task<V2CountAccountsResponse> CountAccountsAsync(string ledger, Dictionary<string, object> requestBody, DateTime? pit = null);
 
         /// <summary>
         /// List accounts from a ledger
@@ -117,7 +117,7 @@ namespace FormanceSDK
         /// <summary>
         /// Count the transactions from a ledger
         /// </summary>
-        Task<V2CountTransactionsResponse> CountTransactionsAsync(string ledger, DateTime? pit = null, Dictionary<string, object>? requestBody = null);
+        Task<V2CountTransactionsResponse> CountTransactionsAsync(string ledger, Dictionary<string, object> requestBody, DateTime? pit = null);
 
         /// <summary>
         /// List transactions from a ledger
@@ -160,7 +160,7 @@ namespace FormanceSDK
         /// <summary>
         /// Get the aggregated balances from selected accounts
         /// </summary>
-        Task<V2GetBalancesAggregatedResponse> GetBalancesAggregatedAsync(string ledger, DateTime? pit = null, bool? useInsertionDate = null, Dictionary<string, object>? requestBody = null);
+        Task<V2GetBalancesAggregatedResponse> GetBalancesAggregatedAsync(string ledger, Dictionary<string, object> requestBody, DateTime? pit = null, bool? useInsertionDate = null);
 
         /// <summary>
         /// Get list of volumes with balances for (account/asset)
@@ -175,7 +175,7 @@ namespace FormanceSDK
         /// </remarks>
         /// </summary>
         Task<V2ListLogsResponse> ListLogsAsync(V2ListLogsRequest request);
-        Task<V2ImportLogsResponse> ImportLogsAsync(string ledger, string? requestBody = null);
+        Task<V2ImportLogsResponse> ImportLogsAsync(string ledger, byte[] v2ImportLogsRequest);
 
         /// <summary>
         /// Export logs
@@ -187,10 +187,10 @@ namespace FormanceSDK
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "1.0.1";
-        private const string _sdkGenVersion = "2.539.0";
-        private const string _openapiDocVersion = "v3.0.1";
-        private const string _userAgent = "speakeasy-sdk/csharp 1.0.1 2.539.0 v3.0.1 FormanceSDK";
+        private const string _sdkVersion = "1.0.2";
+        private const string _sdkGenVersion = "2.548.6";
+        private const string _openapiDocVersion = "v3.0.2";
+        private const string _userAgent = "speakeasy-sdk/csharp 1.0.2 2.548.6 v3.0.2 FormanceSDK";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<FormanceSDK.Models.Components.Security>? _securitySource;
@@ -553,7 +553,7 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2CreateLedgerResponse> CreateLedgerAsync(string ledger, Models.Components.V2CreateLedgerRequest? v2CreateLedgerRequest = null)
+        public async Task<V2CreateLedgerResponse> CreateLedgerAsync(string ledger, Models.Components.V2CreateLedgerRequest v2CreateLedgerRequest)
         {
             var request = new Models.Requests.V2CreateLedgerRequest()
             {
@@ -566,7 +566,7 @@ namespace FormanceSDK
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", _userAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "V2CreateLedgerRequestValue", "json", false, true);
+            var serializedBody = RequestBodySerializer.Serialize(request, "V2CreateLedgerRequestValue", "json", false, false);
             if (serializedBody != null)
             {
                 httpRequest.Content = serializedBody;
@@ -636,7 +636,7 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2UpdateLedgerMetadataResponse> UpdateLedgerMetadataAsync(string ledger, Dictionary<string, string>? requestBody = null)
+        public async Task<V2UpdateLedgerMetadataResponse> UpdateLedgerMetadataAsync(string ledger, Dictionary<string, string> requestBody)
         {
             var request = new V2UpdateLedgerMetadataRequest()
             {
@@ -649,7 +649,7 @@ namespace FormanceSDK
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
             httpRequest.Headers.Add("user-agent", _userAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
+            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
             {
                 httpRequest.Content = serializedBody;
@@ -907,7 +907,7 @@ namespace FormanceSDK
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", _userAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
+            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
             {
                 httpRequest.Content = serializedBody;
@@ -1004,13 +1004,13 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2CountAccountsResponse> CountAccountsAsync(string ledger, DateTime? pit = null, Dictionary<string, object>? requestBody = null)
+        public async Task<V2CountAccountsResponse> CountAccountsAsync(string ledger, Dictionary<string, object> requestBody, DateTime? pit = null)
         {
             var request = new V2CountAccountsRequest()
             {
                 Ledger = ledger,
-                Pit = pit,
                 RequestBody = requestBody,
+                Pit = pit,
             };
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/accounts", request);
@@ -1018,7 +1018,7 @@ namespace FormanceSDK
             var httpRequest = new HttpRequestMessage(HttpMethod.Head, urlString);
             httpRequest.Headers.Add("user-agent", _userAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
+            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
             {
                 httpRequest.Content = serializedBody;
@@ -1096,7 +1096,7 @@ namespace FormanceSDK
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", _userAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
+            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
             {
                 httpRequest.Content = serializedBody;
@@ -1502,13 +1502,13 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2CountTransactionsResponse> CountTransactionsAsync(string ledger, DateTime? pit = null, Dictionary<string, object>? requestBody = null)
+        public async Task<V2CountTransactionsResponse> CountTransactionsAsync(string ledger, Dictionary<string, object> requestBody, DateTime? pit = null)
         {
             var request = new V2CountTransactionsRequest()
             {
                 Ledger = ledger,
-                Pit = pit,
                 RequestBody = requestBody,
+                Pit = pit,
             };
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions", request);
@@ -1516,7 +1516,7 @@ namespace FormanceSDK
             var httpRequest = new HttpRequestMessage(HttpMethod.Head, urlString);
             httpRequest.Headers.Add("user-agent", _userAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
+            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
             {
                 httpRequest.Content = serializedBody;
@@ -1594,7 +1594,7 @@ namespace FormanceSDK
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", _userAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
+            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
             {
                 httpRequest.Content = serializedBody;
@@ -1855,7 +1855,7 @@ namespace FormanceSDK
             httpRequest.Headers.Add("user-agent", _userAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
+            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
             {
                 httpRequest.Content = serializedBody;
@@ -2083,14 +2083,14 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2GetBalancesAggregatedResponse> GetBalancesAggregatedAsync(string ledger, DateTime? pit = null, bool? useInsertionDate = null, Dictionary<string, object>? requestBody = null)
+        public async Task<V2GetBalancesAggregatedResponse> GetBalancesAggregatedAsync(string ledger, Dictionary<string, object> requestBody, DateTime? pit = null, bool? useInsertionDate = null)
         {
             var request = new V2GetBalancesAggregatedRequest()
             {
                 Ledger = ledger,
+                RequestBody = requestBody,
                 Pit = pit,
                 UseInsertionDate = useInsertionDate,
-                RequestBody = requestBody,
             };
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/aggregate/balances", request);
@@ -2098,7 +2098,7 @@ namespace FormanceSDK
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", _userAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
+            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
             {
                 httpRequest.Content = serializedBody;
@@ -2184,7 +2184,7 @@ namespace FormanceSDK
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", _userAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
+            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
             {
                 httpRequest.Content = serializedBody;
@@ -2270,7 +2270,7 @@ namespace FormanceSDK
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", _userAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
+            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
             {
                 httpRequest.Content = serializedBody;
@@ -2348,12 +2348,12 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2ImportLogsResponse> ImportLogsAsync(string ledger, string? requestBody = null)
+        public async Task<V2ImportLogsResponse> ImportLogsAsync(string ledger, byte[] v2ImportLogsRequest)
         {
             var request = new V2ImportLogsRequest()
             {
                 Ledger = ledger,
-                RequestBody = requestBody,
+                V2ImportLogsRequestValue = v2ImportLogsRequest,
             };
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/logs/import", request);
@@ -2361,7 +2361,7 @@ namespace FormanceSDK
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", _userAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "string", false, true);
+            var serializedBody = RequestBodySerializer.Serialize(request, "V2ImportLogsRequestValue", "raw", false, false);
             if (serializedBody != null)
             {
                 httpRequest.Content = serializedBody;

@@ -82,10 +82,10 @@ namespace FormanceSDK
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "1.0.1";
-        private const string _sdkGenVersion = "2.539.0";
-        private const string _openapiDocVersion = "v3.0.1";
-        private const string _userAgent = "speakeasy-sdk/csharp 1.0.1 2.539.0 v3.0.1 FormanceSDK";
+        private const string _sdkVersion = "1.0.2";
+        private const string _sdkGenVersion = "2.548.6";
+        private const string _openapiDocVersion = "v3.0.2";
+        private const string _userAgent = "speakeasy-sdk/csharp 1.0.2 2.548.6 v3.0.2 FormanceSDK";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<FormanceSDK.Models.Components.Security>? _securitySource;

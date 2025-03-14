@@ -22,6 +22,6 @@ namespace FormanceSDK.Models.Requests
         public string Ledger { get; set; } = default!;
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public Dictionary<string, string>? RequestBody { get; set; }
+        public Dictionary<string, string> RequestBody { get; set; } = default!;
     }
 }

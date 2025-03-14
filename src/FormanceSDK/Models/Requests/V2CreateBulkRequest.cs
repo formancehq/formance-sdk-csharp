@@ -41,6 +41,6 @@ namespace FormanceSDK.Models.Requests
         public bool? Parallel { get; set; }
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public List<V2BulkElement>? RequestBody { get; set; }
+        public List<V2BulkElement> RequestBody { get; set; } = default!;
     }
 }

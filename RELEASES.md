@@ -49,3 +49,13 @@ Based on:
 - [csharp v1.0.1] .
 ### Releases
 - [NuGet v1.0.1] https://www.nuget.org/packages/FormanceSDK/1.0.1 - .
+
+## 2025-03-14 09:35:20
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.517.3 (2.548.6) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [csharp v1.0.2] .
+### Releases
+- [NuGet v1.0.2] https://www.nuget.org/packages/FormanceSDK/1.0.2 - .

@@ -206,7 +206,7 @@ var res = await sdk.Ledger.V2.CreateLedgerAsync(
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 | Example                                                                                     |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `Ledger`                                                                                    | *string*                                                                                    | :heavy_check_mark:                                                                          | Name of the ledger.                                                                         | ledger001                                                                                   |
-| `V2CreateLedgerRequest`                                                                     | [Models.Components.V2CreateLedgerRequest](../../Models/Components/V2CreateLedgerRequest.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |                                                                                             |
+| `V2CreateLedgerRequest`                                                                     | [Models.Components.V2CreateLedgerRequest](../../Models/Components/V2CreateLedgerRequest.md) | :heavy_check_mark:                                                                          | N/A                                                                                         |                                                                                             |
 
 ### Response
 
@@ -250,7 +250,7 @@ var res = await sdk.Ledger.V2.UpdateLedgerMetadataAsync(
 | Parameter                    | Type                         | Required                     | Description                  | Example                      |
 | ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
 | `Ledger`                     | *string*                     | :heavy_check_mark:           | Name of the ledger.          | ledger001                    |
-| `RequestBody`                | Dictionary<String, *string*> | :heavy_minus_sign:           | N/A                          | {<br/>"admin": "true"<br/>}  |
+| `RequestBody`                | Dictionary<String, *string*> | :heavy_check_mark:           | N/A                          | {<br/>"admin": "true"<br/>}  |
 
 ### Response
 
@@ -440,10 +440,10 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V2.CountAccountsAsync(
     ledger: "ledger001",
-    pit: System.DateTime.Parse("2023-10-10T12:32:37.688Z"),
     requestBody: new Dictionary<string, object>() {
         { "key", "<value>" },
-    }
+    },
+    pit: System.DateTime.Parse("2023-10-10T12:32:37.688Z")
 );
 
 // handle response
@@ -454,8 +454,8 @@ var res = await sdk.Ledger.V2.CountAccountsAsync(
 | Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `Ledger`                                                                              | *string*                                                                              | :heavy_check_mark:                                                                    | Name of the ledger.                                                                   | ledger001                                                                             |
+| `RequestBody`                                                                         | Dictionary<String, *object*>                                                          | :heavy_check_mark:                                                                    | N/A                                                                                   |                                                                                       |
 | `Pit`                                                                                 | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
-| `RequestBody`                                                                         | Dictionary<String, *object*>                                                          | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
 
 ### Response
 
@@ -478,6 +478,7 @@ List accounts from a ledger, sorted by address in descending order.
 using FormanceSDK;
 using FormanceSDK.Models.Components;
 using FormanceSDK.Models.Requests;
+using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -488,6 +489,9 @@ V2ListAccountsRequest req = new V2ListAccountsRequest() {
     Ledger = "ledger001",
     PageSize = 100,
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    RequestBody = new Dictionary<string, object>() {
+        { "key", "<value>" },
+    },
 };
 
 var res = await sdk.Ledger.V2.ListAccountsAsync(req);
@@ -706,10 +710,10 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V2.CountTransactionsAsync(
     ledger: "ledger001",
-    pit: System.DateTime.Parse("2024-09-23T09:44:43.699Z"),
     requestBody: new Dictionary<string, object>() {
         { "key", "<value>" },
-    }
+    },
+    pit: System.DateTime.Parse("2024-09-23T09:44:43.699Z")
 );
 
 // handle response
@@ -720,8 +724,8 @@ var res = await sdk.Ledger.V2.CountTransactionsAsync(
 | Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `Ledger`                                                                              | *string*                                                                              | :heavy_check_mark:                                                                    | Name of the ledger.                                                                   | ledger001                                                                             |
+| `RequestBody`                                                                         | Dictionary<String, *object*>                                                          | :heavy_check_mark:                                                                    | N/A                                                                                   |                                                                                       |
 | `Pit`                                                                                 | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
-| `RequestBody`                                                                         | Dictionary<String, *object*>                                                          | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
 
 ### Response
 
@@ -744,6 +748,7 @@ List transactions from a ledger, sorted by id in descending order.
 using FormanceSDK;
 using FormanceSDK.Models.Components;
 using FormanceSDK.Models.Requests;
+using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -754,6 +759,9 @@ V2ListTransactionsRequest req = new V2ListTransactionsRequest() {
     Ledger = "ledger001",
     PageSize = 100,
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    RequestBody = new Dictionary<string, object>() {
+        { "key", "<value>" },
+    },
 };
 
 var res = await sdk.Ledger.V2.ListTransactionsAsync(req);
@@ -1050,11 +1058,11 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V2.GetBalancesAggregatedAsync(
     ledger: "ledger001",
-    pit: System.DateTime.Parse("2024-02-24T06:23:10.848Z"),
-    useInsertionDate: false,
     requestBody: new Dictionary<string, object>() {
         { "key", "<value>" },
-    }
+    },
+    pit: System.DateTime.Parse("2024-02-24T06:23:10.848Z"),
+    useInsertionDate: false
 );
 
 // handle response
@@ -1065,9 +1073,9 @@ var res = await sdk.Ledger.V2.GetBalancesAggregatedAsync(
 | Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `Ledger`                                                                              | *string*                                                                              | :heavy_check_mark:                                                                    | Name of the ledger.                                                                   | ledger001                                                                             |
+| `RequestBody`                                                                         | Dictionary<String, *object*>                                                          | :heavy_check_mark:                                                                    | N/A                                                                                   |                                                                                       |
 | `Pit`                                                                                 | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
 | `UseInsertionDate`                                                                    | *bool*                                                                                | :heavy_minus_sign:                                                                    | Use insertion date instead of effective date                                          |                                                                                       |
-| `RequestBody`                                                                         | Dictionary<String, *object*>                                                          | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
 
 ### Response
 
@@ -1090,6 +1098,7 @@ Get list of volumes with balances for (account/asset)
 using FormanceSDK;
 using FormanceSDK.Models.Components;
 using FormanceSDK.Models.Requests;
+using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1101,6 +1110,9 @@ V2GetVolumesWithBalancesRequest req = new V2GetVolumesWithBalancesRequest() {
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     Ledger = "ledger001",
     GroupBy = 3,
+    RequestBody = new Dictionary<string, object>() {
+        { "key", "<value>" },
+    },
 };
 
 var res = await sdk.Ledger.V2.GetVolumesWithBalancesAsync(req);
@@ -1135,6 +1147,7 @@ List the logs from a ledger, sorted by ID in descending order.
 using FormanceSDK;
 using FormanceSDK.Models.Components;
 using FormanceSDK.Models.Requests;
+using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1145,6 +1158,9 @@ V2ListLogsRequest req = new V2ListLogsRequest() {
     Ledger = "ledger001",
     PageSize = 100,
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    RequestBody = new Dictionary<string, object>() {
+        { "key", "<value>" },
+    },
 };
 
 var res = await sdk.Ledger.V2.ListLogsAsync(req);
@@ -1176,6 +1192,7 @@ var res = await sdk.Ledger.V2.ListLogsAsync(req);
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using System;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1184,7 +1201,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V2.ImportLogsAsync(
     ledger: "ledger001",
-    requestBody: "<value>"
+    v2ImportLogsRequest: System.Text.Encoding.UTF8.GetBytes("0xeC7ae8CBbd")
 );
 
 // handle response
@@ -1192,10 +1209,10 @@ var res = await sdk.Ledger.V2.ImportLogsAsync(
 
 ### Parameters
 
-| Parameter           | Type                | Required            | Description         | Example             |
-| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
-| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
-| `RequestBody`       | *string*            | :heavy_minus_sign:  | N/A                 |                     |
+| Parameter             | Type                  | Required              | Description           | Example               |
+| --------------------- | --------------------- | --------------------- | --------------------- | --------------------- |
+| `Ledger`              | *string*              | :heavy_check_mark:    | Name of the ledger.   | ledger001             |
+| `V2ImportLogsRequest` | *byte[]*              | :heavy_check_mark:    | N/A                   |                       |
 
 ### Response
 

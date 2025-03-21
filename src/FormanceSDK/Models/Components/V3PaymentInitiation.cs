@@ -25,6 +25,9 @@ namespace FormanceSDK.Models.Components
         [JsonProperty("connectorID")]
         public string ConnectorID { get; set; } = default!;
 
+        [JsonProperty("provider")]
+        public string Provider { get; set; } = default!;
+
         [JsonProperty("reference")]
         public string Reference { get; set; } = default!;
 

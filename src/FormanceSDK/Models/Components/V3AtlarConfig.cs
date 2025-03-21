@@ -18,8 +18,8 @@ namespace FormanceSDK.Models.Components
         [JsonProperty("accessKey")]
         public string AccessKey { get; set; } = default!;
 
-        [JsonProperty("baseURL")]
-        public string BaseURL { get; set; } = default!;
+        [JsonProperty("baseUrl")]
+        public string BaseUrl { get; set; } = default!;
 
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
@@ -29,6 +29,9 @@ namespace FormanceSDK.Models.Components
 
         [JsonProperty("pollingPeriod")]
         public string? PollingPeriod { get; set; } = "2m";
+
+        [JsonProperty("provider")]
+        public string? Provider { get; set; } = "Atlar";
 
         [JsonProperty("secret")]
         public string Secret { get; set; } = default!;

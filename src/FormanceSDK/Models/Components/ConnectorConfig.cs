@@ -24,45 +24,35 @@ namespace FormanceSDK.Models.Components
         private ConnectorConfigType(string value) { Value = value; }
 
         public string Value { get; private set; }
-        public static ConnectorConfigType StripeConfig { get { return new ConnectorConfigType("StripeConfig"); } }
         
-        public static ConnectorConfigType DummyPayConfig { get { return new ConnectorConfigType("DummyPayConfig"); } }
-        
-        public static ConnectorConfigType WiseConfig { get { return new ConnectorConfigType("WiseConfig"); } }
-        
-        public static ConnectorConfigType ModulrConfig { get { return new ConnectorConfigType("ModulrConfig"); } }
-        
-        public static ConnectorConfigType CurrencyCloudConfig { get { return new ConnectorConfigType("CurrencyCloudConfig"); } }
-        
-        public static ConnectorConfigType BankingCircleConfig { get { return new ConnectorConfigType("BankingCircleConfig"); } }
-        
-        public static ConnectorConfigType MangoPayConfig { get { return new ConnectorConfigType("MangoPayConfig"); } }
-        
-        public static ConnectorConfigType MoneycorpConfig { get { return new ConnectorConfigType("MoneycorpConfig"); } }
-        
-        public static ConnectorConfigType AtlarConfig { get { return new ConnectorConfigType("AtlarConfig"); } }
-        
-        public static ConnectorConfigType AdyenConfig { get { return new ConnectorConfigType("AdyenConfig"); } }
-        
-        public static ConnectorConfigType GenericConfig { get { return new ConnectorConfigType("GenericConfig"); } }
-        
+        public static ConnectorConfigType Stripe { get { return new ConnectorConfigType("Stripe"); } }
+        public static ConnectorConfigType Dummypay { get { return new ConnectorConfigType("Dummypay"); } }
+        public static ConnectorConfigType Wise { get { return new ConnectorConfigType("Wise"); } }
+        public static ConnectorConfigType Modulr { get { return new ConnectorConfigType("Modulr"); } }
+        public static ConnectorConfigType Currencycloud { get { return new ConnectorConfigType("Currencycloud"); } }
+        public static ConnectorConfigType Bankingcircle { get { return new ConnectorConfigType("Bankingcircle"); } }
+        public static ConnectorConfigType Mangopay { get { return new ConnectorConfigType("Mangopay"); } }
+        public static ConnectorConfigType Moneycorp { get { return new ConnectorConfigType("Moneycorp"); } }
+        public static ConnectorConfigType Atlar { get { return new ConnectorConfigType("Atlar"); } }
+        public static ConnectorConfigType Adyen { get { return new ConnectorConfigType("Adyen"); } }
+        public static ConnectorConfigType Generic { get { return new ConnectorConfigType("Generic"); } }
         public static ConnectorConfigType Null { get { return new ConnectorConfigType("null"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(ConnectorConfigType v) { return v.Value; }
         public static ConnectorConfigType FromString(string v) {
             switch(v) {
-                case "StripeConfig": return StripeConfig;
-                case "DummyPayConfig": return DummyPayConfig;
-                case "WiseConfig": return WiseConfig;
-                case "ModulrConfig": return ModulrConfig;
-                case "CurrencyCloudConfig": return CurrencyCloudConfig;
-                case "BankingCircleConfig": return BankingCircleConfig;
-                case "MangoPayConfig": return MangoPayConfig;
-                case "MoneycorpConfig": return MoneycorpConfig;
-                case "AtlarConfig": return AtlarConfig;
-                case "AdyenConfig": return AdyenConfig;
-                case "GenericConfig": return GenericConfig;
+                case "Stripe": return Stripe;
+                case "Dummypay": return Dummypay;
+                case "Wise": return Wise;
+                case "Modulr": return Modulr;
+                case "Currencycloud": return Currencycloud;
+                case "Bankingcircle": return Bankingcircle;
+                case "Mangopay": return Mangopay;
+                case "Moneycorp": return Moneycorp;
+                case "Atlar": return Atlar;
+                case "Adyen": return Adyen;
+                case "Generic": return Generic;
                 case "null": return Null;
                 default: throw new ArgumentException("Invalid value for ConnectorConfigType");
             }
@@ -125,94 +115,116 @@ namespace FormanceSDK.Models.Components
         public ConnectorConfigType Type { get; set; }
 
 
-        public static ConnectorConfig CreateStripeConfig(StripeConfig stripeConfig) {
-            ConnectorConfigType typ = ConnectorConfigType.StripeConfig;
-
+        public static ConnectorConfig CreateStripe(StripeConfig stripe) {
+            ConnectorConfigType typ = ConnectorConfigType.Stripe;
+        
+            string typStr = ConnectorConfigType.Stripe.ToString();
+            
+            stripe.Provider = typStr;
             ConnectorConfig res = new ConnectorConfig(typ);
-            res.StripeConfig = stripeConfig;
+            res.StripeConfig = stripe;
             return res;
         }
-
-        public static ConnectorConfig CreateDummyPayConfig(DummyPayConfig dummyPayConfig) {
-            ConnectorConfigType typ = ConnectorConfigType.DummyPayConfig;
-
+        public static ConnectorConfig CreateDummypay(DummyPayConfig dummypay) {
+            ConnectorConfigType typ = ConnectorConfigType.Dummypay;
+        
+            string typStr = ConnectorConfigType.Dummypay.ToString();
+            
+            dummypay.Provider = typStr;
             ConnectorConfig res = new ConnectorConfig(typ);
-            res.DummyPayConfig = dummyPayConfig;
+            res.DummyPayConfig = dummypay;
             return res;
         }
-
-        public static ConnectorConfig CreateWiseConfig(WiseConfig wiseConfig) {
-            ConnectorConfigType typ = ConnectorConfigType.WiseConfig;
-
+        public static ConnectorConfig CreateWise(WiseConfig wise) {
+            ConnectorConfigType typ = ConnectorConfigType.Wise;
+        
+            string typStr = ConnectorConfigType.Wise.ToString();
+            
+            wise.Provider = typStr;
             ConnectorConfig res = new ConnectorConfig(typ);
-            res.WiseConfig = wiseConfig;
+            res.WiseConfig = wise;
             return res;
         }
-
-        public static ConnectorConfig CreateModulrConfig(ModulrConfig modulrConfig) {
-            ConnectorConfigType typ = ConnectorConfigType.ModulrConfig;
-
+        public static ConnectorConfig CreateModulr(ModulrConfig modulr) {
+            ConnectorConfigType typ = ConnectorConfigType.Modulr;
+        
+            string typStr = ConnectorConfigType.Modulr.ToString();
+            
+            modulr.Provider = typStr;
             ConnectorConfig res = new ConnectorConfig(typ);
-            res.ModulrConfig = modulrConfig;
+            res.ModulrConfig = modulr;
             return res;
         }
-
-        public static ConnectorConfig CreateCurrencyCloudConfig(CurrencyCloudConfig currencyCloudConfig) {
-            ConnectorConfigType typ = ConnectorConfigType.CurrencyCloudConfig;
-
+        public static ConnectorConfig CreateCurrencycloud(CurrencyCloudConfig currencycloud) {
+            ConnectorConfigType typ = ConnectorConfigType.Currencycloud;
+        
+            string typStr = ConnectorConfigType.Currencycloud.ToString();
+            
+            currencycloud.Provider = typStr;
             ConnectorConfig res = new ConnectorConfig(typ);
-            res.CurrencyCloudConfig = currencyCloudConfig;
+            res.CurrencyCloudConfig = currencycloud;
             return res;
         }
-
-        public static ConnectorConfig CreateBankingCircleConfig(BankingCircleConfig bankingCircleConfig) {
-            ConnectorConfigType typ = ConnectorConfigType.BankingCircleConfig;
-
+        public static ConnectorConfig CreateBankingcircle(BankingCircleConfig bankingcircle) {
+            ConnectorConfigType typ = ConnectorConfigType.Bankingcircle;
+        
+            string typStr = ConnectorConfigType.Bankingcircle.ToString();
+            
+            bankingcircle.Provider = typStr;
             ConnectorConfig res = new ConnectorConfig(typ);
-            res.BankingCircleConfig = bankingCircleConfig;
+            res.BankingCircleConfig = bankingcircle;
             return res;
         }
-
-        public static ConnectorConfig CreateMangoPayConfig(MangoPayConfig mangoPayConfig) {
-            ConnectorConfigType typ = ConnectorConfigType.MangoPayConfig;
-
+        public static ConnectorConfig CreateMangopay(MangoPayConfig mangopay) {
+            ConnectorConfigType typ = ConnectorConfigType.Mangopay;
+        
+            string typStr = ConnectorConfigType.Mangopay.ToString();
+            
+            mangopay.Provider = typStr;
             ConnectorConfig res = new ConnectorConfig(typ);
-            res.MangoPayConfig = mangoPayConfig;
+            res.MangoPayConfig = mangopay;
             return res;
         }
-
-        public static ConnectorConfig CreateMoneycorpConfig(MoneycorpConfig moneycorpConfig) {
-            ConnectorConfigType typ = ConnectorConfigType.MoneycorpConfig;
-
+        public static ConnectorConfig CreateMoneycorp(MoneycorpConfig moneycorp) {
+            ConnectorConfigType typ = ConnectorConfigType.Moneycorp;
+        
+            string typStr = ConnectorConfigType.Moneycorp.ToString();
+            
+            moneycorp.Provider = typStr;
             ConnectorConfig res = new ConnectorConfig(typ);
-            res.MoneycorpConfig = moneycorpConfig;
+            res.MoneycorpConfig = moneycorp;
             return res;
         }
-
-        public static ConnectorConfig CreateAtlarConfig(AtlarConfig atlarConfig) {
-            ConnectorConfigType typ = ConnectorConfigType.AtlarConfig;
-
+        public static ConnectorConfig CreateAtlar(AtlarConfig atlar) {
+            ConnectorConfigType typ = ConnectorConfigType.Atlar;
+        
+            string typStr = ConnectorConfigType.Atlar.ToString();
+            
+            atlar.Provider = typStr;
             ConnectorConfig res = new ConnectorConfig(typ);
-            res.AtlarConfig = atlarConfig;
+            res.AtlarConfig = atlar;
             return res;
         }
-
-        public static ConnectorConfig CreateAdyenConfig(AdyenConfig adyenConfig) {
-            ConnectorConfigType typ = ConnectorConfigType.AdyenConfig;
-
+        public static ConnectorConfig CreateAdyen(AdyenConfig adyen) {
+            ConnectorConfigType typ = ConnectorConfigType.Adyen;
+        
+            string typStr = ConnectorConfigType.Adyen.ToString();
+            
+            adyen.Provider = typStr;
             ConnectorConfig res = new ConnectorConfig(typ);
-            res.AdyenConfig = adyenConfig;
+            res.AdyenConfig = adyen;
             return res;
         }
-
-        public static ConnectorConfig CreateGenericConfig(GenericConfig genericConfig) {
-            ConnectorConfigType typ = ConnectorConfigType.GenericConfig;
-
+        public static ConnectorConfig CreateGeneric(GenericConfig generic) {
+            ConnectorConfigType typ = ConnectorConfigType.Generic;
+        
+            string typStr = ConnectorConfigType.Generic.ToString();
+            
+            generic.Provider = typStr;
             ConnectorConfig res = new ConnectorConfig(typ);
-            res.GenericConfig = genericConfig;
+            res.GenericConfig = generic;
             return res;
         }
-
         public static ConnectorConfig CreateNull() {
             ConnectorConfigType typ = ConnectorConfigType.Null;
             return new ConnectorConfig(typ);
@@ -227,252 +239,62 @@ namespace FormanceSDK.Models.Components
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                var json = JRaw.Create(reader).ToString();
-                if (json == "null")
+                JObject jo = JObject.Load(reader);
+                string discriminator = jo.GetValue("provider")?.ToString() ?? throw new ArgumentNullException("Could not find discriminator field.");
+                if (discriminator == ConnectorConfigType.Stripe.ToString())
                 {
-                    return null;
+                    StripeConfig? stripeConfig = ResponseBodyDeserializer.Deserialize<StripeConfig>(jo.ToString());
+                    return CreateStripe(stripeConfig!);
                 }
-
-                var fallbackCandidates = new List<(System.Type, object, string)>();
-
-                try
+                if (discriminator == ConnectorConfigType.Dummypay.ToString())
                 {
-                    return new ConnectorConfig(ConnectorConfigType.WiseConfig)
-                    {
-                        WiseConfig = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<WiseConfig>(json)
-                    };
+                    DummyPayConfig? dummyPayConfig = ResponseBodyDeserializer.Deserialize<DummyPayConfig>(jo.ToString());
+                    return CreateDummypay(dummyPayConfig!);
                 }
-                catch (ResponseBodyDeserializer.MissingMemberException)
+                if (discriminator == ConnectorConfigType.Wise.ToString())
                 {
-                    fallbackCandidates.Add((typeof(WiseConfig), new ConnectorConfig(ConnectorConfigType.WiseConfig), "WiseConfig"));
+                    WiseConfig? wiseConfig = ResponseBodyDeserializer.Deserialize<WiseConfig>(jo.ToString());
+                    return CreateWise(wiseConfig!);
                 }
-                catch (ResponseBodyDeserializer.DeserializationException)
+                if (discriminator == ConnectorConfigType.Modulr.ToString())
                 {
-                    // try next option
+                    ModulrConfig? modulrConfig = ResponseBodyDeserializer.Deserialize<ModulrConfig>(jo.ToString());
+                    return CreateModulr(modulrConfig!);
                 }
-                catch (Exception)
+                if (discriminator == ConnectorConfigType.Currencycloud.ToString())
                 {
-                    throw;
+                    CurrencyCloudConfig? currencyCloudConfig = ResponseBodyDeserializer.Deserialize<CurrencyCloudConfig>(jo.ToString());
+                    return CreateCurrencycloud(currencyCloudConfig!);
                 }
-
-                try
+                if (discriminator == ConnectorConfigType.Bankingcircle.ToString())
                 {
-                    return new ConnectorConfig(ConnectorConfigType.StripeConfig)
-                    {
-                        StripeConfig = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<StripeConfig>(json)
-                    };
+                    BankingCircleConfig? bankingCircleConfig = ResponseBodyDeserializer.Deserialize<BankingCircleConfig>(jo.ToString());
+                    return CreateBankingcircle(bankingCircleConfig!);
                 }
-                catch (ResponseBodyDeserializer.MissingMemberException)
+                if (discriminator == ConnectorConfigType.Mangopay.ToString())
                 {
-                    fallbackCandidates.Add((typeof(StripeConfig), new ConnectorConfig(ConnectorConfigType.StripeConfig), "StripeConfig"));
+                    MangoPayConfig? mangoPayConfig = ResponseBodyDeserializer.Deserialize<MangoPayConfig>(jo.ToString());
+                    return CreateMangopay(mangoPayConfig!);
                 }
-                catch (ResponseBodyDeserializer.DeserializationException)
+                if (discriminator == ConnectorConfigType.Moneycorp.ToString())
                 {
-                    // try next option
+                    MoneycorpConfig? moneycorpConfig = ResponseBodyDeserializer.Deserialize<MoneycorpConfig>(jo.ToString());
+                    return CreateMoneycorp(moneycorpConfig!);
                 }
-                catch (Exception)
+                if (discriminator == ConnectorConfigType.Atlar.ToString())
                 {
-                    throw;
+                    AtlarConfig? atlarConfig = ResponseBodyDeserializer.Deserialize<AtlarConfig>(jo.ToString());
+                    return CreateAtlar(atlarConfig!);
                 }
-
-                try
+                if (discriminator == ConnectorConfigType.Adyen.ToString())
                 {
-                    return new ConnectorConfig(ConnectorConfigType.GenericConfig)
-                    {
-                        GenericConfig = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<GenericConfig>(json)
-                    };
+                    AdyenConfig? adyenConfig = ResponseBodyDeserializer.Deserialize<AdyenConfig>(jo.ToString());
+                    return CreateAdyen(adyenConfig!);
                 }
-                catch (ResponseBodyDeserializer.MissingMemberException)
+                if (discriminator == ConnectorConfigType.Generic.ToString())
                 {
-                    fallbackCandidates.Add((typeof(GenericConfig), new ConnectorConfig(ConnectorConfigType.GenericConfig), "GenericConfig"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new ConnectorConfig(ConnectorConfigType.ModulrConfig)
-                    {
-                        ModulrConfig = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ModulrConfig>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(ModulrConfig), new ConnectorConfig(ConnectorConfigType.ModulrConfig), "ModulrConfig"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new ConnectorConfig(ConnectorConfigType.CurrencyCloudConfig)
-                    {
-                        CurrencyCloudConfig = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CurrencyCloudConfig>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(CurrencyCloudConfig), new ConnectorConfig(ConnectorConfigType.CurrencyCloudConfig), "CurrencyCloudConfig"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new ConnectorConfig(ConnectorConfigType.MangoPayConfig)
-                    {
-                        MangoPayConfig = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<MangoPayConfig>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(MangoPayConfig), new ConnectorConfig(ConnectorConfigType.MangoPayConfig), "MangoPayConfig"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new ConnectorConfig(ConnectorConfigType.MoneycorpConfig)
-                    {
-                        MoneycorpConfig = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<MoneycorpConfig>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(MoneycorpConfig), new ConnectorConfig(ConnectorConfigType.MoneycorpConfig), "MoneycorpConfig"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new ConnectorConfig(ConnectorConfigType.AdyenConfig)
-                    {
-                        AdyenConfig = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<AdyenConfig>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(AdyenConfig), new ConnectorConfig(ConnectorConfigType.AdyenConfig), "AdyenConfig"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new ConnectorConfig(ConnectorConfigType.DummyPayConfig)
-                    {
-                        DummyPayConfig = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<DummyPayConfig>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(DummyPayConfig), new ConnectorConfig(ConnectorConfigType.DummyPayConfig), "DummyPayConfig"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new ConnectorConfig(ConnectorConfigType.AtlarConfig)
-                    {
-                        AtlarConfig = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<AtlarConfig>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(AtlarConfig), new ConnectorConfig(ConnectorConfigType.AtlarConfig), "AtlarConfig"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new ConnectorConfig(ConnectorConfigType.BankingCircleConfig)
-                    {
-                        BankingCircleConfig = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<BankingCircleConfig>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(BankingCircleConfig), new ConnectorConfig(ConnectorConfigType.BankingCircleConfig), "BankingCircleConfig"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                if (fallbackCandidates.Count > 0)
-                {
-                    fallbackCandidates.Sort((a, b) => ResponseBodyDeserializer.CompareFallbackCandidates(a.Item1, b.Item1, json));
-                    foreach(var (deserializationType, returnObject, propertyName) in fallbackCandidates)
-                    {
-                        try
-                        {
-                            return ResponseBodyDeserializer.DeserializeUndiscriminatedUnionFallback(deserializationType, returnObject, propertyName, json);
-                        }
-                        catch (ResponseBodyDeserializer.DeserializationException)
-                        {
-                            // try next fallback option
-                        }
-                        catch (Exception)
-                        {
-                            throw;
-                        }
-                    }
+                    GenericConfig? genericConfig = ResponseBodyDeserializer.Deserialize<GenericConfig>(jo.ToString());
+                    return CreateGeneric(genericConfig!);
                 }
 
                 throw new InvalidOperationException("Could not deserialize into any supported types.");

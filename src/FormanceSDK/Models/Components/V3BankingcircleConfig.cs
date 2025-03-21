@@ -33,6 +33,9 @@ namespace FormanceSDK.Models.Components
         [JsonProperty("pollingPeriod")]
         public string? PollingPeriod { get; set; } = "2m";
 
+        [JsonProperty("provider")]
+        public string? Provider { get; set; } = "Bankingcircle";
+
         [JsonProperty("userCertificate")]
         public string UserCertificate { get; set; } = default!;
 

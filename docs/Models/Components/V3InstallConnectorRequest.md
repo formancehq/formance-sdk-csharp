@@ -3,68 +3,68 @@
 
 ## Supported Types
 
-### V3AdyenConfig
+### Adyen
 
 ```csharp
-V3InstallConnectorRequest.CreateV3AdyenConfig(/* values here */);
+V3InstallConnectorRequest.CreateAdyen(/* values here */);
 ```
 
-### V3AtlarConfig
+### Atlar
 
 ```csharp
-V3InstallConnectorRequest.CreateV3AtlarConfig(/* values here */);
+V3InstallConnectorRequest.CreateAtlar(/* values here */);
 ```
 
-### V3BankingcircleConfig
+### Bankingcircle
 
 ```csharp
-V3InstallConnectorRequest.CreateV3BankingcircleConfig(/* values here */);
+V3InstallConnectorRequest.CreateBankingcircle(/* values here */);
 ```
 
-### V3CurrencycloudConfig
+### Currencycloud
 
 ```csharp
-V3InstallConnectorRequest.CreateV3CurrencycloudConfig(/* values here */);
+V3InstallConnectorRequest.CreateCurrencycloud(/* values here */);
 ```
 
-### V3DummypayConfig
+### Dummypay
 
 ```csharp
-V3InstallConnectorRequest.CreateV3DummypayConfig(/* values here */);
+V3InstallConnectorRequest.CreateDummypay(/* values here */);
 ```
 
-### V3GenericConfig
+### Generic
 
 ```csharp
-V3InstallConnectorRequest.CreateV3GenericConfig(/* values here */);
+V3InstallConnectorRequest.CreateGeneric(/* values here */);
 ```
 
-### V3MangopayConfig
+### Mangopay
 
 ```csharp
-V3InstallConnectorRequest.CreateV3MangopayConfig(/* values here */);
+V3InstallConnectorRequest.CreateMangopay(/* values here */);
 ```
 
-### V3ModulrConfig
+### Modulr
 
 ```csharp
-V3InstallConnectorRequest.CreateV3ModulrConfig(/* values here */);
+V3InstallConnectorRequest.CreateModulr(/* values here */);
 ```
 
-### V3MoneycorpConfig
+### Moneycorp
 
 ```csharp
-V3InstallConnectorRequest.CreateV3MoneycorpConfig(/* values here */);
+V3InstallConnectorRequest.CreateMoneycorp(/* values here */);
 ```
 
-### V3StripeConfig
+### Stripe
 
 ```csharp
-V3InstallConnectorRequest.CreateV3StripeConfig(/* values here */);
+V3InstallConnectorRequest.CreateStripe(/* values here */);
 ```
 
-### V3WiseConfig
+### Wise
 
 ```csharp
-V3InstallConnectorRequest.CreateV3WiseConfig(/* values here */);
+V3InstallConnectorRequest.CreateWise(/* values here */);
 ```

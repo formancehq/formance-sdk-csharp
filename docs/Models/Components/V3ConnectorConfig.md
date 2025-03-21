@@ -3,68 +3,68 @@
 
 ## Supported Types
 
-### V3AdyenConfig
+### Adyen
 
 ```csharp
-V3ConnectorConfig.CreateV3AdyenConfig(/* values here */);
+V3ConnectorConfig.CreateAdyen(/* values here */);
 ```
 
-### V3AtlarConfig
+### Atlar
 
 ```csharp
-V3ConnectorConfig.CreateV3AtlarConfig(/* values here */);
+V3ConnectorConfig.CreateAtlar(/* values here */);
 ```
 
-### V3BankingcircleConfig
+### Bankingcircle
 
 ```csharp
-V3ConnectorConfig.CreateV3BankingcircleConfig(/* values here */);
+V3ConnectorConfig.CreateBankingcircle(/* values here */);
 ```
 
-### V3CurrencycloudConfig
+### Currencycloud
 
 ```csharp
-V3ConnectorConfig.CreateV3CurrencycloudConfig(/* values here */);
+V3ConnectorConfig.CreateCurrencycloud(/* values here */);
 ```
 
-### V3DummypayConfig
+### Dummypay
 
 ```csharp
-V3ConnectorConfig.CreateV3DummypayConfig(/* values here */);
+V3ConnectorConfig.CreateDummypay(/* values here */);
 ```
 
-### V3GenericConfig
+### Generic
 
 ```csharp
-V3ConnectorConfig.CreateV3GenericConfig(/* values here */);
+V3ConnectorConfig.CreateGeneric(/* values here */);
 ```
 
-### V3MangopayConfig
+### Mangopay
 
 ```csharp
-V3ConnectorConfig.CreateV3MangopayConfig(/* values here */);
+V3ConnectorConfig.CreateMangopay(/* values here */);
 ```
 
-### V3ModulrConfig
+### Modulr
 
 ```csharp
-V3ConnectorConfig.CreateV3ModulrConfig(/* values here */);
+V3ConnectorConfig.CreateModulr(/* values here */);
 ```
 
-### V3MoneycorpConfig
+### Moneycorp
 
 ```csharp
-V3ConnectorConfig.CreateV3MoneycorpConfig(/* values here */);
+V3ConnectorConfig.CreateMoneycorp(/* values here */);
 ```
 
-### V3StripeConfig
+### Stripe
 
 ```csharp
-V3ConnectorConfig.CreateV3StripeConfig(/* values here */);
+V3ConnectorConfig.CreateStripe(/* values here */);
 ```
 
-### V3WiseConfig
+### Wise
 
 ```csharp
-V3ConnectorConfig.CreateV3WiseConfig(/* values here */);
+V3ConnectorConfig.CreateWise(/* values here */);
 ```

@@ -3,68 +3,68 @@
 
 ## Supported Types
 
-### StripeConfig
+### Stripe
 
 ```csharp
-ConnectorConfig.CreateStripeConfig(/* values here */);
+ConnectorConfig.CreateStripe(/* values here */);
 ```
 
-### DummyPayConfig
+### Dummypay
 
 ```csharp
-ConnectorConfig.CreateDummyPayConfig(/* values here */);
+ConnectorConfig.CreateDummypay(/* values here */);
 ```
 
-### WiseConfig
+### Wise
 
 ```csharp
-ConnectorConfig.CreateWiseConfig(/* values here */);
+ConnectorConfig.CreateWise(/* values here */);
 ```
 
-### ModulrConfig
+### Modulr
 
 ```csharp
-ConnectorConfig.CreateModulrConfig(/* values here */);
+ConnectorConfig.CreateModulr(/* values here */);
 ```
 
-### CurrencyCloudConfig
+### Currencycloud
 
 ```csharp
-ConnectorConfig.CreateCurrencyCloudConfig(/* values here */);
+ConnectorConfig.CreateCurrencycloud(/* values here */);
 ```
 
-### BankingCircleConfig
+### Bankingcircle
 
 ```csharp
-ConnectorConfig.CreateBankingCircleConfig(/* values here */);
+ConnectorConfig.CreateBankingcircle(/* values here */);
 ```
 
-### MangoPayConfig
+### Mangopay
 
 ```csharp
-ConnectorConfig.CreateMangoPayConfig(/* values here */);
+ConnectorConfig.CreateMangopay(/* values here */);
 ```
 
-### MoneycorpConfig
+### Moneycorp
 
 ```csharp
-ConnectorConfig.CreateMoneycorpConfig(/* values here */);
+ConnectorConfig.CreateMoneycorp(/* values here */);
 ```
 
-### AtlarConfig
+### Atlar
 
 ```csharp
-ConnectorConfig.CreateAtlarConfig(/* values here */);
+ConnectorConfig.CreateAtlar(/* values here */);
 ```
 
-### AdyenConfig
+### Adyen
 
 ```csharp
-ConnectorConfig.CreateAdyenConfig(/* values here */);
+ConnectorConfig.CreateAdyen(/* values here */);
 ```
 
-### GenericConfig
+### Generic
 
 ```csharp
-ConnectorConfig.CreateGenericConfig(/* values here */);
+ConnectorConfig.CreateGeneric(/* values here */);
 ```

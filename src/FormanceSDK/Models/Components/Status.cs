@@ -15,14 +15,6 @@ namespace FormanceSDK.Models.Components
     
     public enum Status
     {
-        [JsonProperty("WAITING_FOR_VALIDATION")]
-        WaitingForValidation,
-        [JsonProperty("PROCESSING")]
-        Processing,
-        [JsonProperty("PROCESSED")]
-        Processed,
-        [JsonProperty("FAILED")]
-        Failed,
         [JsonProperty("REJECTED")]
         Rejected,
         [JsonProperty("VALIDATED")]

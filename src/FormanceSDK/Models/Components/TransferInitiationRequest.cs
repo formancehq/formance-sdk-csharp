@@ -37,9 +37,6 @@ namespace FormanceSDK.Models.Components
         [JsonProperty("connectorID")]
         public string? ConnectorID { get; set; }
 
-        [JsonProperty("provider")]
-        public Connector? Provider { get; set; }
-
         [JsonProperty("type")]
         public TransferInitiationRequestType Type { get; set; } = default!;
 

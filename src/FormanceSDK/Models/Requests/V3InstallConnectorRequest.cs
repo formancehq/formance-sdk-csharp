@@ -23,5 +23,60 @@ namespace FormanceSDK.Models.Requests
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
         public Models.Components.V3InstallConnectorRequest? V3InstallConnectorRequestValue { get; set; }
+
+        public V3AdyenConfig? GetV3InstallConnectorRequestValueAdyen()
+        {
+            return V3InstallConnectorRequestValue != null ? V3InstallConnectorRequestValue.V3AdyenConfig : null;
+        }
+
+        public V3AtlarConfig? GetV3InstallConnectorRequestValueAtlar()
+        {
+            return V3InstallConnectorRequestValue != null ? V3InstallConnectorRequestValue.V3AtlarConfig : null;
+        }
+
+        public V3BankingcircleConfig? GetV3InstallConnectorRequestValueBankingcircle()
+        {
+            return V3InstallConnectorRequestValue != null ? V3InstallConnectorRequestValue.V3BankingcircleConfig : null;
+        }
+
+        public V3CurrencycloudConfig? GetV3InstallConnectorRequestValueCurrencycloud()
+        {
+            return V3InstallConnectorRequestValue != null ? V3InstallConnectorRequestValue.V3CurrencycloudConfig : null;
+        }
+
+        public V3DummypayConfig? GetV3InstallConnectorRequestValueDummypay()
+        {
+            return V3InstallConnectorRequestValue != null ? V3InstallConnectorRequestValue.V3DummypayConfig : null;
+        }
+
+        public V3GenericConfig? GetV3InstallConnectorRequestValueGeneric()
+        {
+            return V3InstallConnectorRequestValue != null ? V3InstallConnectorRequestValue.V3GenericConfig : null;
+        }
+
+        public V3MangopayConfig? GetV3InstallConnectorRequestValueMangopay()
+        {
+            return V3InstallConnectorRequestValue != null ? V3InstallConnectorRequestValue.V3MangopayConfig : null;
+        }
+
+        public V3ModulrConfig? GetV3InstallConnectorRequestValueModulr()
+        {
+            return V3InstallConnectorRequestValue != null ? V3InstallConnectorRequestValue.V3ModulrConfig : null;
+        }
+
+        public V3MoneycorpConfig? GetV3InstallConnectorRequestValueMoneycorp()
+        {
+            return V3InstallConnectorRequestValue != null ? V3InstallConnectorRequestValue.V3MoneycorpConfig : null;
+        }
+
+        public V3StripeConfig? GetV3InstallConnectorRequestValueStripe()
+        {
+            return V3InstallConnectorRequestValue != null ? V3InstallConnectorRequestValue.V3StripeConfig : null;
+        }
+
+        public V3WiseConfig? GetV3InstallConnectorRequestValueWise()
+        {
+            return V3InstallConnectorRequestValue != null ? V3InstallConnectorRequestValue.V3WiseConfig : null;
+        }
     }
 }

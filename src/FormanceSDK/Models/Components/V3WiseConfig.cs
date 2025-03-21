@@ -27,6 +27,9 @@ namespace FormanceSDK.Models.Components
         [JsonProperty("pollingPeriod")]
         public string? PollingPeriod { get; set; } = "2m";
 
+        [JsonProperty("provider")]
+        public string? Provider { get; set; } = "Wise";
+
         [JsonProperty("webhookPublicKey")]
         public string WebhookPublicKey { get; set; } = default!;
     }

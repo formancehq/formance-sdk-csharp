@@ -500,7 +500,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Payments.V3.InstallConnectorAsync(
     connector: "<value>",
-    v3InstallConnectorRequest: V3InstallConnectorRequest.CreateV3DummypayConfig(
+    v3InstallConnectorRequest: V3InstallConnectorRequest.CreateDummypay(
         new V3DummypayConfig() {
             Directory = "/private/tmp",
             Name = "<value>",

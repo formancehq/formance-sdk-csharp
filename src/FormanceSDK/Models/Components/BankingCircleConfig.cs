@@ -18,6 +18,9 @@ namespace FormanceSDK.Models.Components
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        [JsonProperty("provider")]
+        public string? Provider { get; set; } = "Bankingcircle";
+
         [JsonProperty("username")]
         public string Username { get; set; } = default!;
 

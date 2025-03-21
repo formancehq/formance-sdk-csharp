@@ -18,5 +18,60 @@ namespace FormanceSDK.Models.Components
 
         [JsonProperty("data")]
         public V3ConnectorConfig Data { get; set; } = default!;
+
+        public V3AdyenConfig? GetDataAdyen()
+        {
+            return Data.V3AdyenConfig;
+        }
+
+        public V3AtlarConfig? GetDataAtlar()
+        {
+            return Data.V3AtlarConfig;
+        }
+
+        public V3BankingcircleConfig? GetDataBankingcircle()
+        {
+            return Data.V3BankingcircleConfig;
+        }
+
+        public V3CurrencycloudConfig? GetDataCurrencycloud()
+        {
+            return Data.V3CurrencycloudConfig;
+        }
+
+        public V3DummypayConfig? GetDataDummypay()
+        {
+            return Data.V3DummypayConfig;
+        }
+
+        public V3GenericConfig? GetDataGeneric()
+        {
+            return Data.V3GenericConfig;
+        }
+
+        public V3MangopayConfig? GetDataMangopay()
+        {
+            return Data.V3MangopayConfig;
+        }
+
+        public V3ModulrConfig? GetDataModulr()
+        {
+            return Data.V3ModulrConfig;
+        }
+
+        public V3MoneycorpConfig? GetDataMoneycorp()
+        {
+            return Data.V3MoneycorpConfig;
+        }
+
+        public V3StripeConfig? GetDataStripe()
+        {
+            return Data.V3StripeConfig;
+        }
+
+        public V3WiseConfig? GetDataWise()
+        {
+            return Data.V3WiseConfig;
+        }
     }
 }

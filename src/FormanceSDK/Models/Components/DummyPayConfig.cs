@@ -18,6 +18,9 @@ namespace FormanceSDK.Models.Components
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        [JsonProperty("provider")]
+        public string? Provider { get; set; } = "Dummypay";
+
         /// <summary>
         /// The frequency at which the connector will try to fetch new payment objects from the directory
         /// </summary>

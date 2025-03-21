@@ -1328,7 +1328,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Payments.V1.InstallConnectorAsync(
     connector: Connector.Wise,
-    connectorConfig: ConnectorConfig.CreateAtlarConfig(
+    connectorConfig: ConnectorConfig.CreateAtlar(
         new AtlarConfig() {
             Name = "My Atlar Account",
             AccessKey = "XXX",
@@ -1495,7 +1495,7 @@ var sdk = new Formance(security: new Security() {
 var res = await sdk.Payments.V1.UpdateConnectorConfigV1Async(
     connector: Connector.Stripe,
     connectorId: "XXX",
-    connectorConfig: ConnectorConfig.CreateAdyenConfig(
+    connectorConfig: ConnectorConfig.CreateAdyen(
         new AdyenConfig() {
             Name = "My Adyen Account",
             ApiKey = "XXX",

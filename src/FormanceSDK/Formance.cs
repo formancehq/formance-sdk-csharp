@@ -163,10 +163,10 @@ namespace FormanceSDK
         public SDKConfig SDKConfiguration { get; private set; }
 
         private const string _language = "csharp";
-        private const string _sdkVersion = "1.0.2";
-        private const string _sdkGenVersion = "2.548.6";
-        private const string _openapiDocVersion = "v3.0.2";
-        private const string _userAgent = "speakeasy-sdk/csharp 1.0.2 2.548.6 v3.0.2 FormanceSDK";
+        private const string _sdkVersion = "1.0.3";
+        private const string _sdkGenVersion = "2.558.5";
+        private const string _openapiDocVersion = "v3.0.3";
+        private const string _userAgent = "speakeasy-sdk/csharp 1.0.3 2.558.5 v3.0.3 FormanceSDK";
         private string _serverUrl = "";
         private int _serverIndex = 0;
         private ISpeakeasyHttpClient _client;

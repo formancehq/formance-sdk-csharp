@@ -21,5 +21,60 @@ namespace FormanceSDK.Models.Components
 
         [JsonProperty("data")]
         public ConnectorConfig Data { get; set; } = default!;
+
+        public StripeConfig? GetDataStripe()
+        {
+            return Data.StripeConfig;
+        }
+
+        public DummyPayConfig? GetDataDummypay()
+        {
+            return Data.DummyPayConfig;
+        }
+
+        public WiseConfig? GetDataWise()
+        {
+            return Data.WiseConfig;
+        }
+
+        public ModulrConfig? GetDataModulr()
+        {
+            return Data.ModulrConfig;
+        }
+
+        public CurrencyCloudConfig? GetDataCurrencycloud()
+        {
+            return Data.CurrencyCloudConfig;
+        }
+
+        public BankingCircleConfig? GetDataBankingcircle()
+        {
+            return Data.BankingCircleConfig;
+        }
+
+        public MangoPayConfig? GetDataMangopay()
+        {
+            return Data.MangoPayConfig;
+        }
+
+        public MoneycorpConfig? GetDataMoneycorp()
+        {
+            return Data.MoneycorpConfig;
+        }
+
+        public AtlarConfig? GetDataAtlar()
+        {
+            return Data.AtlarConfig;
+        }
+
+        public AdyenConfig? GetDataAdyen()
+        {
+            return Data.AdyenConfig;
+        }
+
+        public GenericConfig? GetDataGeneric()
+        {
+            return Data.GenericConfig;
+        }
     }
 }

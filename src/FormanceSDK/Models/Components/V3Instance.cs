@@ -29,7 +29,7 @@ namespace FormanceSDK.Models.Components
         public DateTime CreatedAt { get; set; } = default!;
 
         [JsonProperty("updatedAt")]
-        public DateTime? UpdatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; } = default!;
 
         [JsonProperty("terminated")]
         public bool Terminated { get; set; } = default!;
@@ -38,6 +38,6 @@ namespace FormanceSDK.Models.Components
         public DateTime? TerminatedAt { get; set; }
 
         [JsonProperty("error")]
-        public string? Error { get; set; }
+        public string? Error { get; set; } = null;
     }
 }

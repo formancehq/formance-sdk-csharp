@@ -21,6 +21,7 @@
 * [ListConnectorConfigs](#listconnectorconfigs) - List all connector configurations
 * [UninstallConnector](#uninstallconnector) - Uninstall a connector
 * [GetConnectorConfig](#getconnectorconfig) - Get a connector configuration by ID
+* [V3UpdateConnectorConfig](#v3updateconnectorconfig) - Update the config of a connector
 * [ResetConnector](#resetconnector) - Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment initiations and bank account creations.
 * [ListConnectorSchedules](#listconnectorschedules) - List all connector schedules
 * [GetConnectorSchedule](#getconnectorschedule) - Get a connector schedule by ID
@@ -40,11 +41,17 @@
 * [ReversePaymentInitiation](#reversepaymentinitiation) - Reverse a payment initiation
 * [ListPaymentInitiationAdjustments](#listpaymentinitiationadjustments) - List all payment initiation adjustments
 * [ListPaymentInitiationRelatedPayments](#listpaymentinitiationrelatedpayments) - List all payments related to a payment initiation
+* [CreatePaymentServiceUser](#createpaymentserviceuser) - Create a formance payment service user object
+* [ListPaymentServiceUsers](#listpaymentserviceusers) - List all payment service users
+* [GetPaymentServiceUser](#getpaymentserviceuser) - Get a payment service user by ID
+* [AddBankAccountToPaymentServiceUser](#addbankaccounttopaymentserviceuser) - Add a bank account to a payment service user
+* [ForwardPaymentServiceUserBankAccount](#forwardpaymentserviceuserbankaccount) - Forward a payment service user's bank account to a connector
 * [CreatePool](#createpool) - Create a formance pool object
 * [ListPools](#listpools) - List all pools
 * [GetPool](#getpool) - Get a pool by ID
 * [DeletePool](#deletepool) - Delete a pool by ID
-* [GetPoolBalances](#getpoolbalances) - Get pool balances
+* [GetPoolBalances](#getpoolbalances) - Get historical pool balances from a particular point in time
+* [GetPoolBalancesLatest](#getpoolbalanceslatest) - Get latest pool balances
 * [AddAccountToPool](#addaccounttopool) - Add an account to a pool
 * [RemoveAccountFromPool](#removeaccountfrompool) - Remove an account from a pool
 * [GetTask](#gettask) - Get a task and its result by ID
@@ -59,20 +66,13 @@ Create a formance account object. This object will not be forwarded to the conne
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-V3CreateAccountRequest req = new V3CreateAccountRequest() {
-    Reference = "<value>",
-    ConnectorID = "<value>",
-    CreatedAt = System.DateTime.Parse("2023-08-09T11:34:36.410Z"),
-    AccountName = "<value>",
-    Type = V3AccountTypeEnum.Unknown,
-};
+V3CreateAccountRequest req = ;
 
 var res = await sdk.Payments.V3.CreateAccountAsync(req);
 
@@ -105,7 +105,6 @@ List all accounts
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -114,10 +113,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Payments.V3.ListAccountsAsync(
     pageSize: 100,
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    requestBody: new Dictionary<string, object>() {
-        { "key", "<value>" },
-    }
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
 );
 
 // handle response
@@ -239,9 +235,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-V3CreateBankAccountRequest req = new V3CreateBankAccountRequest() {
-    Name = "<value>",
-};
+V3CreateBankAccountRequest req = ;
 
 var res = await sdk.Payments.V3.CreateBankAccountAsync(req);
 
@@ -274,7 +268,6 @@ List all bank accounts
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -283,10 +276,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Payments.V3.ListBankAccountsAsync(
     pageSize: 100,
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    requestBody: new Dictionary<string, object>() {
-        { "key", "<value>" },
-    }
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
 );
 
 // handle response
@@ -357,21 +347,13 @@ Update a bank account's metadata
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Payments.V3.UpdateBankAccountMetadataAsync(
-    bankAccountID: "<id>",
-    v3UpdateBankAccountMetadataRequest: new Models.Components.V3UpdateBankAccountMetadataRequest() {
-        Metadata = new Dictionary<string, string>() {
-            { "key", "<value>" },
-        },
-    }
-);
+var res = await sdk.Payments.V3.UpdateBankAccountMetadataAsync(bankAccountID: "<id>");
 
 // handle response
 ```
@@ -409,12 +391,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Payments.V3.ForwardBankAccountAsync(
-    bankAccountID: "<id>",
-    v3ForwardBankAccountRequest: new Models.Components.V3ForwardBankAccountRequest() {
-        ConnectorID = "<value>",
-    }
-);
+var res = await sdk.Payments.V3.ForwardBankAccountAsync(bankAccountID: "<id>");
 
 // handle response
 ```
@@ -446,7 +423,6 @@ List all connectors
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -455,10 +431,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Payments.V3.ListConnectorsAsync(
     pageSize: 100,
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    requestBody: new Dictionary<string, object>() {
-        { "key", "<value>" },
-    }
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
 );
 
 // handle response
@@ -498,15 +471,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Payments.V3.InstallConnectorAsync(
-    connector: "<value>",
-    v3InstallConnectorRequest: V3InstallConnectorRequest.CreateDummypay(
-        new V3DummypayConfig() {
-            Directory = "/private/tmp",
-            Name = "<value>",
-        }
-    )
-);
+var res = await sdk.Payments.V3.InstallConnectorAsync(connector: "<value>");
 
 // handle response
 ```
@@ -634,6 +599,44 @@ var res = await sdk.Payments.V3.GetConnectorConfigAsync(connectorID: "<id>");
 | FormanceSDK.Models.Errors.V3ErrorResponse | default                                   | application/json                          |
 | FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
+## V3UpdateConnectorConfig
+
+Update connector config
+
+### Example Usage
+
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Payments.V3.V3UpdateConnectorConfigAsync(connectorID: "<id>");
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `ConnectorID`                                                                                       | *string*                                                                                            | :heavy_check_mark:                                                                                  | The connector ID                                                                                    |
+| `V3InstallConnectorRequest`                                                                         | [Models.Components.V3InstallConnectorRequest](../../Models/Components/V3InstallConnectorRequest.md) | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |
+
+### Response
+
+**[V3UpdateConnectorConfigResponse](../../Models/Requests/V3UpdateConnectorConfigResponse.md)**
+
+### Errors
+
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+
 ## ResetConnector
 
 Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment initiations and bank account creations.
@@ -680,7 +683,6 @@ List all connector schedules
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -690,10 +692,7 @@ var sdk = new Formance(security: new Security() {
 var res = await sdk.Payments.V3.ListConnectorSchedulesAsync(
     connectorID: "<id>",
     pageSize: 100,
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    requestBody: new Dictionary<string, object>() {
-        { "key", "<value>" },
-    }
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
 );
 
 // handle response
@@ -815,23 +814,13 @@ Create a formance payment object. This object will not be forwarded to the conne
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-V3CreatePaymentRequest req = new V3CreatePaymentRequest() {
-    Reference = "<value>",
-    ConnectorID = "<value>",
-    CreatedAt = System.DateTime.Parse("2023-10-04T19:11:41.956Z"),
-    Type = V3PaymentTypeEnum.Transfer,
-    InitialAmount = 581056,
-    Amount = 444061,
-    Asset = "<value>",
-    Scheme = "<value>",
-};
+V3CreatePaymentRequest req = ;
 
 var res = await sdk.Payments.V3.CreatePaymentAsync(req);
 
@@ -864,7 +853,6 @@ List all payments
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -873,10 +861,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Payments.V3.ListPaymentsAsync(
     pageSize: 100,
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    requestBody: new Dictionary<string, object>() {
-        { "key", "<value>" },
-    }
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
 );
 
 // handle response
@@ -947,21 +932,13 @@ Update a payment's metadata
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Payments.V3.UpdatePaymentMetadataAsync(
-    paymentID: "<id>",
-    v3UpdatePaymentMetadataRequest: new Models.Components.V3UpdatePaymentMetadataRequest() {
-        Metadata = new Dictionary<string, string>() {
-            { "key", "<value>" },
-        },
-    }
-);
+var res = await sdk.Payments.V3.UpdatePaymentMetadataAsync(paymentID: "<id>");
 
 // handle response
 ```
@@ -993,25 +970,13 @@ Initiate a payment
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Payments.V3.InitiatePaymentAsync(
-    noValidation: false,
-    v3InitiatePaymentRequest: new Models.Components.V3InitiatePaymentRequest() {
-        Reference = "<value>",
-        ScheduledAt = System.DateTime.Parse("2024-12-23T02:07:00.778Z"),
-        ConnectorID = "<value>",
-        Description = "decent uh-huh inject angrily",
-        Type = V3PaymentInitiationTypeEnum.Payout,
-        Amount = 645913,
-        Asset = "<value>",
-    }
-);
+var res = await sdk.Payments.V3.InitiatePaymentAsync(noValidation: false);
 
 // handle response
 ```
@@ -1043,7 +1008,6 @@ List all payment initiations
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1052,10 +1016,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Payments.V3.ListPaymentInitiationsAsync(
     pageSize: 100,
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    requestBody: new Dictionary<string, object>() {
-        { "key", "<value>" },
-    }
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
 );
 
 // handle response
@@ -1280,15 +1241,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Payments.V3.ReversePaymentInitiationAsync(
-    paymentInitiationID: "<id>",
-    v3ReversePaymentInitiationRequest: new Models.Components.V3ReversePaymentInitiationRequest() {
-        Reference = "<value>",
-        Description = "than juicy slowly faint so yum seldom",
-        Amount = 383763,
-        Asset = "<value>",
-    }
-);
+var res = await sdk.Payments.V3.ReversePaymentInitiationAsync(paymentInitiationID: "<id>");
 
 // handle response
 ```
@@ -1320,7 +1273,6 @@ List all payment initiation adjustments
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1330,10 +1282,7 @@ var sdk = new Formance(security: new Security() {
 var res = await sdk.Payments.V3.ListPaymentInitiationAdjustmentsAsync(
     paymentInitiationID: "<id>",
     pageSize: 100,
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    requestBody: new Dictionary<string, object>() {
-        { "key", "<value>" },
-    }
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
 );
 
 // handle response
@@ -1368,7 +1317,6 @@ List all payments related to a payment initiation
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1378,10 +1326,7 @@ var sdk = new Formance(security: new Security() {
 var res = await sdk.Payments.V3.ListPaymentInitiationRelatedPaymentsAsync(
     paymentInitiationID: "<id>",
     pageSize: 100,
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    requestBody: new Dictionary<string, object>() {
-        { "key", "<value>" },
-    }
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
 );
 
 // handle response
@@ -1407,6 +1352,207 @@ var res = await sdk.Payments.V3.ListPaymentInitiationRelatedPaymentsAsync(
 | FormanceSDK.Models.Errors.V3ErrorResponse | default                                   | application/json                          |
 | FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
+## CreatePaymentServiceUser
+
+Create a formance payment service user object
+
+### Example Usage
+
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+V3CreatePaymentServiceUserRequest req = ;
+
+var res = await sdk.Payments.V3.CreatePaymentServiceUserAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `request`                                                                                         | [V3CreatePaymentServiceUserRequest](../../Models/Components/V3CreatePaymentServiceUserRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
+
+### Response
+
+**[Models.Requests.V3CreatePaymentServiceUserResponse](../../Models/Requests/V3CreatePaymentServiceUserResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V3ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## ListPaymentServiceUsers
+
+List all payment service users
+
+### Example Usage
+
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Payments.V3.ListPaymentServiceUsersAsync(
+    pageSize: 100,
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                                                | Type                                                                                                                                                                                                                     | Required                                                                                                                                                                                                                 | Description                                                                                                                                                                                                              | Example                                                                                                                                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `PageSize`                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                       | The number of items to return                                                                                                                                                                                            | 100                                                                                                                                                                                                                      |
+| `Cursor`                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                       | Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                             |
+| `RequestBody`                                                                                                                                                                                                            | Dictionary<String, *object*>                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                       | N/A                                                                                                                                                                                                                      |                                                                                                                                                                                                                          |
+
+### Response
+
+**[V3ListPaymentServiceUsersResponse](../../Models/Requests/V3ListPaymentServiceUsersResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V3ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## GetPaymentServiceUser
+
+Get a payment service user by ID
+
+### Example Usage
+
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Payments.V3.GetPaymentServiceUserAsync(paymentServiceUserID: "<id>");
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                   | Type                        | Required                    | Description                 |
+| --------------------------- | --------------------------- | --------------------------- | --------------------------- |
+| `PaymentServiceUserID`      | *string*                    | :heavy_check_mark:          | The payment service user ID |
+
+### Response
+
+**[Models.Requests.V3GetPaymentServiceUserResponse](../../Models/Requests/V3GetPaymentServiceUserResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V3ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## AddBankAccountToPaymentServiceUser
+
+Add a bank account to a payment service user
+
+### Example Usage
+
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Payments.V3.AddBankAccountToPaymentServiceUserAsync(
+    paymentServiceUserID: "<id>",
+    bankAccountID: "<id>"
+);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                   | Type                        | Required                    | Description                 |
+| --------------------------- | --------------------------- | --------------------------- | --------------------------- |
+| `PaymentServiceUserID`      | *string*                    | :heavy_check_mark:          | The payment service user ID |
+| `BankAccountID`             | *string*                    | :heavy_check_mark:          | The bank account ID         |
+
+### Response
+
+**[V3AddBankAccountToPaymentServiceUserResponse](../../Models/Requests/V3AddBankAccountToPaymentServiceUserResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V3ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## ForwardPaymentServiceUserBankAccount
+
+Forward a payment service user's bank account to a connector
+
+### Example Usage
+
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Payments.V3.ForwardPaymentServiceUserBankAccountAsync(
+    paymentServiceUserID: "<id>",
+    bankAccountID: "<id>"
+);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                                                                                   | Type                                                                                                                                        | Required                                                                                                                                    | Description                                                                                                                                 |
+| ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `PaymentServiceUserID`                                                                                                                      | *string*                                                                                                                                    | :heavy_check_mark:                                                                                                                          | The payment service user ID                                                                                                                 |
+| `BankAccountID`                                                                                                                             | *string*                                                                                                                                    | :heavy_check_mark:                                                                                                                          | The bank account ID                                                                                                                         |
+| `V3ForwardPaymentServiceUserBankAccountRequest`                                                                                             | [Models.Components.V3ForwardPaymentServiceUserBankAccountRequest](../../Models/Components/V3ForwardPaymentServiceUserBankAccountRequest.md) | :heavy_minus_sign:                                                                                                                          | N/A                                                                                                                                         |
+
+### Response
+
+**[Models.Requests.V3ForwardPaymentServiceUserBankAccountResponse](../../Models/Requests/V3ForwardPaymentServiceUserBankAccountResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V3ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
 ## CreatePool
 
 Create a formance pool object
@@ -1416,19 +1562,13 @@ Create a formance pool object
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-V3CreatePoolRequest req = new V3CreatePoolRequest() {
-    Name = "<value>",
-    AccountIDs = new List<string>() {
-        "<value>",
-    },
-};
+V3CreatePoolRequest req = ;
 
 var res = await sdk.Payments.V3.CreatePoolAsync(req);
 
@@ -1461,7 +1601,6 @@ List all pools
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1470,10 +1609,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Payments.V3.ListPoolsAsync(
     pageSize: 100,
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    requestBody: new Dictionary<string, object>() {
-        { "key", "<value>" },
-    }
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
 );
 
 // handle response
@@ -1574,24 +1710,20 @@ var res = await sdk.Payments.V3.DeletePoolAsync(poolID: "<id>");
 
 ## GetPoolBalances
 
-Get pool balances
+Get historical pool balances from a particular point in time
 
 ### Example Usage
 
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Payments.V3.GetPoolBalancesAsync(
-    poolID: "<id>",
-    at: System.DateTime.Parse("2023-10-09T22:18:42.179Z")
-);
+var res = await sdk.Payments.V3.GetPoolBalancesAsync(poolID: "<id>");
 
 // handle response
 ```
@@ -1606,6 +1738,43 @@ var res = await sdk.Payments.V3.GetPoolBalancesAsync(
 ### Response
 
 **[V3GetPoolBalancesResponse](../../Models/Requests/V3GetPoolBalancesResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V3ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## GetPoolBalancesLatest
+
+Get latest pool balances
+
+### Example Usage
+
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Payments.V3.GetPoolBalancesLatestAsync(poolID: "<id>");
+
+// handle response
+```
+
+### Parameters
+
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `PoolID`           | *string*           | :heavy_check_mark: | The pool ID        |
+
+### Response
+
+**[V3GetPoolBalancesLatestResponse](../../Models/Requests/V3GetPoolBalancesLatestResponse.md)**
 
 ### Errors
 

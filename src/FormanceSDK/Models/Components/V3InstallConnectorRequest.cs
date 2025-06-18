@@ -28,12 +28,14 @@ namespace FormanceSDK.Models.Components
         public static V3InstallConnectorRequestType Adyen { get { return new V3InstallConnectorRequestType("Adyen"); } }
         public static V3InstallConnectorRequestType Atlar { get { return new V3InstallConnectorRequestType("Atlar"); } }
         public static V3InstallConnectorRequestType Bankingcircle { get { return new V3InstallConnectorRequestType("Bankingcircle"); } }
+        public static V3InstallConnectorRequestType Column { get { return new V3InstallConnectorRequestType("Column"); } }
         public static V3InstallConnectorRequestType Currencycloud { get { return new V3InstallConnectorRequestType("Currencycloud"); } }
         public static V3InstallConnectorRequestType Dummypay { get { return new V3InstallConnectorRequestType("Dummypay"); } }
         public static V3InstallConnectorRequestType Generic { get { return new V3InstallConnectorRequestType("Generic"); } }
         public static V3InstallConnectorRequestType Mangopay { get { return new V3InstallConnectorRequestType("Mangopay"); } }
         public static V3InstallConnectorRequestType Modulr { get { return new V3InstallConnectorRequestType("Modulr"); } }
         public static V3InstallConnectorRequestType Moneycorp { get { return new V3InstallConnectorRequestType("Moneycorp"); } }
+        public static V3InstallConnectorRequestType Qonto { get { return new V3InstallConnectorRequestType("Qonto"); } }
         public static V3InstallConnectorRequestType Stripe { get { return new V3InstallConnectorRequestType("Stripe"); } }
         public static V3InstallConnectorRequestType Wise { get { return new V3InstallConnectorRequestType("Wise"); } }
         public static V3InstallConnectorRequestType Null { get { return new V3InstallConnectorRequestType("null"); } }
@@ -45,12 +47,14 @@ namespace FormanceSDK.Models.Components
                 case "Adyen": return Adyen;
                 case "Atlar": return Atlar;
                 case "Bankingcircle": return Bankingcircle;
+                case "Column": return Column;
                 case "Currencycloud": return Currencycloud;
                 case "Dummypay": return Dummypay;
                 case "Generic": return Generic;
                 case "Mangopay": return Mangopay;
                 case "Modulr": return Modulr;
                 case "Moneycorp": return Moneycorp;
+                case "Qonto": return Qonto;
                 case "Stripe": return Stripe;
                 case "Wise": return Wise;
                 case "null": return Null;
@@ -89,6 +93,9 @@ namespace FormanceSDK.Models.Components
         public V3BankingcircleConfig? V3BankingcircleConfig { get; set; }
 
         [SpeakeasyMetadata("form:explode=true")]
+        public V3ColumnConfig? V3ColumnConfig { get; set; }
+
+        [SpeakeasyMetadata("form:explode=true")]
         public V3CurrencycloudConfig? V3CurrencycloudConfig { get; set; }
 
         [SpeakeasyMetadata("form:explode=true")]
@@ -105,6 +112,9 @@ namespace FormanceSDK.Models.Components
 
         [SpeakeasyMetadata("form:explode=true")]
         public V3MoneycorpConfig? V3MoneycorpConfig { get; set; }
+
+        [SpeakeasyMetadata("form:explode=true")]
+        public V3QontoConfig? V3QontoConfig { get; set; }
 
         [SpeakeasyMetadata("form:explode=true")]
         public V3StripeConfig? V3StripeConfig { get; set; }
@@ -143,6 +153,16 @@ namespace FormanceSDK.Models.Components
             bankingcircle.Provider = typStr;
             V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
             res.V3BankingcircleConfig = bankingcircle;
+            return res;
+        }
+        public static V3InstallConnectorRequest CreateColumn(V3ColumnConfig column) {
+            V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Column;
+        
+            string typStr = V3InstallConnectorRequestType.Column.ToString();
+            
+            column.Provider = typStr;
+            V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
+            res.V3ColumnConfig = column;
             return res;
         }
         public static V3InstallConnectorRequest CreateCurrencycloud(V3CurrencycloudConfig currencycloud) {
@@ -205,6 +225,16 @@ namespace FormanceSDK.Models.Components
             res.V3MoneycorpConfig = moneycorp;
             return res;
         }
+        public static V3InstallConnectorRequest CreateQonto(V3QontoConfig qonto) {
+            V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Qonto;
+        
+            string typStr = V3InstallConnectorRequestType.Qonto.ToString();
+            
+            qonto.Provider = typStr;
+            V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
+            res.V3QontoConfig = qonto;
+            return res;
+        }
         public static V3InstallConnectorRequest CreateStripe(V3StripeConfig stripe) {
             V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Stripe;
         
@@ -256,6 +286,11 @@ namespace FormanceSDK.Models.Components
                     V3BankingcircleConfig? v3BankingcircleConfig = ResponseBodyDeserializer.Deserialize<V3BankingcircleConfig>(jo.ToString());
                     return CreateBankingcircle(v3BankingcircleConfig!);
                 }
+                if (discriminator == V3InstallConnectorRequestType.Column.ToString())
+                {
+                    V3ColumnConfig? v3ColumnConfig = ResponseBodyDeserializer.Deserialize<V3ColumnConfig>(jo.ToString());
+                    return CreateColumn(v3ColumnConfig!);
+                }
                 if (discriminator == V3InstallConnectorRequestType.Currencycloud.ToString())
                 {
                     V3CurrencycloudConfig? v3CurrencycloudConfig = ResponseBodyDeserializer.Deserialize<V3CurrencycloudConfig>(jo.ToString());
@@ -285,6 +320,11 @@ namespace FormanceSDK.Models.Components
                 {
                     V3MoneycorpConfig? v3MoneycorpConfig = ResponseBodyDeserializer.Deserialize<V3MoneycorpConfig>(jo.ToString());
                     return CreateMoneycorp(v3MoneycorpConfig!);
+                }
+                if (discriminator == V3InstallConnectorRequestType.Qonto.ToString())
+                {
+                    V3QontoConfig? v3QontoConfig = ResponseBodyDeserializer.Deserialize<V3QontoConfig>(jo.ToString());
+                    return CreateQonto(v3QontoConfig!);
                 }
                 if (discriminator == V3InstallConnectorRequestType.Stripe.ToString())
                 {
@@ -327,6 +367,11 @@ namespace FormanceSDK.Models.Components
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V3BankingcircleConfig));
                     return;
                 }
+                if (res.V3ColumnConfig != null)
+                {
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.V3ColumnConfig));
+                    return;
+                }
                 if (res.V3CurrencycloudConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V3CurrencycloudConfig));
@@ -355,6 +400,11 @@ namespace FormanceSDK.Models.Components
                 if (res.V3MoneycorpConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V3MoneycorpConfig));
+                    return;
+                }
+                if (res.V3QontoConfig != null)
+                {
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.V3QontoConfig));
                     return;
                 }
                 if (res.V3StripeConfig != null)

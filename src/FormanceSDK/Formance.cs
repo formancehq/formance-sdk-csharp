@@ -104,42 +104,6 @@ namespace FormanceSDK
         Task<Models.Requests.GetVersionsResponse> GetVersionsAsync();
     }
 
-    public class SDKConfig
-    {
-        /// <summary>
-        /// List of server URLs available to the SDK.
-        /// </summary>
-        public static readonly string[] ServerList = {
-            "http://localhost",
-            "https://{organization}.{environment}.formance.cloud",
-        };
-
-        public string ServerUrl = "";
-        public int ServerIndex = 0;
-        public List<Dictionary<string, string>> ServerDefaults = new List<Dictionary<string, string>>();
-        public SDKHooks Hooks = new SDKHooks();
-        public RetryConfig? RetryConfig = null;
-
-        public string GetTemplatedServerUrl()
-        {
-            if (!String.IsNullOrEmpty(this.ServerUrl))
-            {
-                return Utilities.TemplateUrl(Utilities.RemoveSuffix(this.ServerUrl, "/"), new Dictionary<string, string>());
-            }
-            return Utilities.TemplateUrl(SDKConfig.ServerList[this.ServerIndex], this.ServerDefaults[this.ServerIndex]);
-        }
-
-        public ISpeakeasyHttpClient InitHooks(ISpeakeasyHttpClient client)
-        {
-            string preHooksUrl = GetTemplatedServerUrl();
-            var (postHooksUrl, postHooksClient) = this.Hooks.SDKInit(preHooksUrl, client);
-            if (preHooksUrl != postHooksUrl)
-            {
-                this.ServerUrl = postHooksUrl;
-            }
-            return postHooksClient;
-        }
-    }
 
     /// <summary>
     /// Formance Stack API: Open, modular foundation for unique payments flows<br/>
@@ -163,14 +127,9 @@ namespace FormanceSDK
         public SDKConfig SDKConfiguration { get; private set; }
 
         private const string _language = "csharp";
-        private const string _sdkVersion = "1.0.3";
-        private const string _sdkGenVersion = "2.558.5";
-        private const string _openapiDocVersion = "v3.0.3";
-        private const string _userAgent = "speakeasy-sdk/csharp 1.0.3 2.558.5 v3.0.3 FormanceSDK";
-        private string _serverUrl = "";
-        private int _serverIndex = 0;
-        private ISpeakeasyHttpClient _client;
-        private Func<FormanceSDK.Models.Components.Security>? _securitySource;
+        private const string _sdkVersion = "1.1.0";
+        private const string _sdkGenVersion = "2.630.9";
+        private const string _openapiDocVersion = "v3.0.5";
         public IAuth Auth { get; private set; }
         public ILedger Ledger { get; private set; }
         public IPayments Payments { get; private set; }
@@ -180,6 +139,28 @@ namespace FormanceSDK
         public IOrchestration Orchestration { get; private set; }
         public IReconciliation Reconciliation { get; private set; }
 
+        public Formance(SDKConfig config)
+        {
+            SDKConfiguration = config;
+            InitHooks();
+
+            Auth = new Auth(SDKConfiguration);
+
+            Ledger = new Ledger(SDKConfiguration);
+
+            Payments = new Payments(SDKConfiguration);
+
+            Search = new Search(SDKConfiguration);
+
+            Webhooks = new Webhooks(SDKConfiguration);
+
+            Wallets = new Wallets(SDKConfiguration);
+
+            Orchestration = new Orchestration(SDKConfiguration);
+
+            Reconciliation = new Reconciliation(SDKConfiguration);
+        }
+
         public Formance(FormanceSDK.Models.Components.Security? security = null, Func<FormanceSDK.Models.Components.Security>? securitySource = null, int? serverIndex = null, string?  organization = null, ServerEnvironment? environment = null, string? serverUrl = null, Dictionary<string, string>? urlParams = null, ISpeakeasyHttpClient? client = null, RetryConfig? retryConfig = null)
         {
             if (serverIndex != null)
@@ -188,7 +169,6 @@ namespace FormanceSDK
                 {
                     throw new Exception($"Invalid server index {serverIndex.Value}");
                 }
-                _serverIndex = serverIndex.Value;
             }
 
             if (serverUrl != null)
@@ -197,21 +177,8 @@ namespace FormanceSDK
                 {
                     serverUrl = Utilities.TemplateUrl(serverUrl, urlParams);
                 }
-                _serverUrl = serverUrl;
             }
-            List<Dictionary<string, string>> serverDefaults = new List<Dictionary<string, string>>()
-            {
-                new Dictionary<string, string>()
-                {
-                },
-                new Dictionary<string, string>()
-                {
-                    {"organization", organization == null ? "orgID-stackID" : organization},
-                    {"environment", environment == null ? "eu.sandbox" : ServerEnvironmentExtension.Value(environment.Value)},
-                },
-            };
-
-            _client = client ?? new SpeakeasyHttpClient();
+            Func<FormanceSDK.Models.Components.Security>? _securitySource = null;
 
             if(securitySource != null)
             {
@@ -222,39 +189,54 @@ namespace FormanceSDK
                 _securitySource = () => security;
             }
 
-            SDKConfiguration = new SDKConfig()
+            SDKConfiguration = new SDKConfig(client)
             {
-                ServerDefaults = serverDefaults,
-                ServerIndex = _serverIndex,
-                ServerUrl = _serverUrl,
+                ServerIndex = serverIndex == null ? 0 : serverIndex.Value,
+                ServerUrl = serverUrl == null ? "" : serverUrl,
+                SecuritySource = _securitySource,
                 RetryConfig = retryConfig
             };
 
-            _client = SDKConfiguration.InitHooks(_client);
+            if (organization != null)
+            {
+                SDKConfiguration.SetServerVariable("organization", organization);
+            }
 
+            if (environment != null)
+            {
+                SDKConfiguration.SetServerVariable("environment", ServerEnvironmentExtension.Value(environment.Value));
+            }
 
-            Auth = new Auth(_client, _securitySource, _serverUrl, SDKConfiguration);
+            InitHooks();
 
+            Auth = new Auth(SDKConfiguration);
 
-            Ledger = new Ledger(_client, _securitySource, _serverUrl, SDKConfiguration);
+            Ledger = new Ledger(SDKConfiguration);
 
+            Payments = new Payments(SDKConfiguration);
 
-            Payments = new Payments(_client, _securitySource, _serverUrl, SDKConfiguration);
+            Search = new Search(SDKConfiguration);
 
+            Webhooks = new Webhooks(SDKConfiguration);
 
-            Search = new Search(_client, _securitySource, _serverUrl, SDKConfiguration);
+            Wallets = new Wallets(SDKConfiguration);
 
+            Orchestration = new Orchestration(SDKConfiguration);
 
-            Webhooks = new Webhooks(_client, _securitySource, _serverUrl, SDKConfiguration);
+            Reconciliation = new Reconciliation(SDKConfiguration);
+        }
 
-
-            Wallets = new Wallets(_client, _securitySource, _serverUrl, SDKConfiguration);
-
-
-            Orchestration = new Orchestration(_client, _securitySource, _serverUrl, SDKConfiguration);
-
-
-            Reconciliation = new Reconciliation(_client, _securitySource, _serverUrl, SDKConfiguration);
+        private void InitHooks()
+        {
+            string preHooksUrl = SDKConfiguration.GetTemplatedServerUrl();
+            var (postHooksUrl, postHooksClient) = SDKConfiguration.Hooks.SDKInit(preHooksUrl, SDKConfiguration.Client);
+            var config = SDKConfiguration;
+            if (preHooksUrl != postHooksUrl)
+            {
+                config.ServerUrl = postHooksUrl;
+            }
+            config.Client = postHooksClient;
+            SDKConfiguration = config;
         }
 
         public async Task<Models.Requests.GetVersionsResponse> GetVersionsAsync()
@@ -264,21 +246,21 @@ namespace FormanceSDK
             var urlString = baseUrl + "/versions";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("getVersions", new List<string> { "auth:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getVersions", new List<string> { "auth:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -331,5 +313,76 @@ namespace FormanceSDK
                 throw new Models.Errors.SDKException("API error occurred", httpRequest, httpResponse);
             }
         }
+
+        public class SDKBuilder
+        {
+            private SDKConfig _sdkConfig = new SDKConfig(client: new SpeakeasyHttpClient());
+
+            public SDKBuilder() { }
+
+            public SDKBuilder WithServerIndex(int serverIndex)
+            {
+                if (serverIndex < 0 || serverIndex >= SDKConfig.ServerList.Length)
+                {
+                    throw new Exception($"Invalid server index {serverIndex}");
+                }
+                _sdkConfig.ServerIndex = serverIndex;
+                return this;
+            }
+
+            public SDKBuilder WithOrganization(string organization)
+            {
+                _sdkConfig.SetServerVariable("organization", organization);
+                return this;
+            }
+
+            public SDKBuilder WithEnvironment(ServerEnvironment environment)
+            {
+                _sdkConfig.SetServerVariable("environment", ServerEnvironmentExtension.Value(environment));
+                return this;
+            }
+
+            public SDKBuilder WithServerUrl(string serverUrl, Dictionary<string, string>? serverVariables = null)
+            {
+                if (serverVariables != null)
+                {
+                    serverUrl = Utilities.TemplateUrl(serverUrl, serverVariables);
+                }
+                _sdkConfig.ServerUrl = serverUrl;
+                return this;
+            }
+
+            public SDKBuilder WithSecuritySource(Func<FormanceSDK.Models.Components.Security> securitySource)
+            {
+                _sdkConfig.SecuritySource = securitySource;
+                return this;
+            }
+
+            public SDKBuilder WithSecurity(FormanceSDK.Models.Components.Security security)
+            {
+                _sdkConfig.SecuritySource = () => security;
+                return this;
+            }
+
+            public SDKBuilder WithClient(ISpeakeasyHttpClient client)
+            {
+                _sdkConfig.Client = client;
+                return this;
+            }
+
+            public SDKBuilder WithRetryConfig(RetryConfig retryConfig)
+            {
+                _sdkConfig.RetryConfig = retryConfig;
+                return this;
+            }
+
+            public Formance Build()
+            {
+              return new Formance(_sdkConfig);
+            }
+
+        }
+
+        public static SDKBuilder Builder() => new SDKBuilder();
     }
 }

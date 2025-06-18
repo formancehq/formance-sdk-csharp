@@ -36,7 +36,7 @@ namespace FormanceSDK.Models.Components
         public TaskWiseState? State { get; set; } = null;
 
         [JsonProperty("error")]
-        public string? Error { get; set; }
+        public string? Error { get; set; } = null;
 
         [JsonProperty("descriptor")]
         public TaskWiseDescriptor Descriptor { get; set; } = default!;

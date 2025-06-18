@@ -9,14 +9,19 @@
 #nullable enable
 namespace FormanceSDK.Models.Components
 {
-    using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     
     public class ConnectorsConfigsResponseData
     {
 
-        [JsonProperty("connector")]
-        public ConnectorsConfigsResponseConnector Connector { get; set; } = default!;
+        [JsonProperty("dataType")]
+        public string DataType { get; set; } = default!;
+
+        [JsonProperty("required")]
+        public bool Required { get; set; } = default!;
+
+        [JsonProperty("defaultValue")]
+        public string? DefaultValue { get; set; }
     }
 }

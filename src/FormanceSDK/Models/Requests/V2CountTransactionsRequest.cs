@@ -22,10 +22,10 @@ namespace FormanceSDK.Models.Requests
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")]
         public string Ledger { get; set; } = default!;
 
-        [SpeakeasyMetadata("request:mediaType=application/json")]
-        public Dictionary<string, object> RequestBody { get; set; } = default!;
-
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=pit")]
         public DateTime? Pit { get; set; }
+
+        [SpeakeasyMetadata("request:mediaType=application/json")]
+        public Dictionary<string, object> RequestBody { get; set; } = default!;
     }
 }

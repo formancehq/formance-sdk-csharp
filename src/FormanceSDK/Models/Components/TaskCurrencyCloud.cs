@@ -36,7 +36,7 @@ namespace FormanceSDK.Models.Components
         public TaskCurrencyCloudState? State { get; set; } = null;
 
         [JsonProperty("error")]
-        public string? Error { get; set; }
+        public string? Error { get; set; } = null;
 
         [JsonProperty("descriptor")]
         public TaskCurrencyCloudDescriptor Descriptor { get; set; } = default!;

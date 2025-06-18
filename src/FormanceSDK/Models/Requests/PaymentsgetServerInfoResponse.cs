@@ -22,6 +22,6 @@ namespace FormanceSDK.Models.Requests
         /// <summary>
         /// Server information
         /// </summary>
-        public ServerInfo? ServerInfo { get; set; }
+        public PaymentsServerInfo? PaymentsServerInfo { get; set; }
     }
 }

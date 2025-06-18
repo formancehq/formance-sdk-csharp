@@ -23,7 +23,7 @@ namespace FormanceSDK.Models.Components
         public ActivityCreateTransactionOutput? CreateTransaction { get; set; }
 
         [JsonProperty("RevertTransaction")]
-        public ActivityRevertTransactionOutput? RevertTransaction { get; set; }
+        public ActivityCreateTransactionOutput? RevertTransaction { get; set; }
 
         [JsonProperty("GetPayment")]
         public ActivityGetPaymentOutput? GetPayment { get; set; }
@@ -32,7 +32,7 @@ namespace FormanceSDK.Models.Components
         public ActivityDebitWalletOutput? DebitWallet { get; set; }
 
         [JsonProperty("GetWallet")]
-        public ActivityGetWalletOutput? GetWallet { get; set; }
+        public Models.Components.GetWalletResponse? GetWallet { get; set; }
 
         [JsonProperty("ListWallets")]
         public OrchestrationListWalletsResponse? ListWallets { get; set; }

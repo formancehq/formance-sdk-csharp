@@ -17,10 +17,10 @@ namespace FormanceSDK.Models.Components
     {
 
         [JsonProperty("wallet")]
-        public StageSendSourceWallet? Wallet { get; set; }
+        public StageSendDestinationWallet? Wallet { get; set; }
 
         [JsonProperty("account")]
-        public StageSendSourceAccount? Account { get; set; }
+        public StageSendDestinationAccount? Account { get; set; }
 
         [JsonProperty("payment")]
         public StageSendSourcePayment? Payment { get; set; }

@@ -72,8 +72,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Orchestration.V2.ListTriggersAsync(
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    pageSize: 100,
-    name: "<value>"
+    pageSize: 100
 );
 
 // handle response
@@ -113,10 +112,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-V2TriggerData req = new V2TriggerData() {
-    Event = "<value>",
-    WorkflowID = "<id>",
-};
+V2TriggerData req = ;
 
 var res = await sdk.Orchestration.V2.CreateTriggerAsync(req);
 
@@ -223,19 +219,13 @@ Test trigger
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Orchestration.V2.TestTriggerAsync(
-    triggerID: "<id>",
-    requestBody: new Dictionary<string, object>() {
-        { "key", "<value>" },
-    }
-);
+var res = await sdk.Orchestration.V2.TestTriggerAsync(triggerID: "<id>");
 
 // handle response
 ```
@@ -351,20 +341,13 @@ Create a workflow
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-V2CreateWorkflowRequest req = new V2CreateWorkflowRequest() {
-    Stages = new List<Dictionary<string, object>>() {
-        new Dictionary<string, object>() {
-            { "key", "<value>" },
-        },
-    },
-};
+V2WorkflowConfig req = ;
 
 var res = await sdk.Orchestration.V2.CreateWorkflowAsync(req);
 
@@ -373,9 +356,9 @@ var res = await sdk.Orchestration.V2.CreateWorkflowAsync(req);
 
 ### Parameters
 
-| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
-| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `request`                                                                     | [V2CreateWorkflowRequest](../../Models/Components/V2CreateWorkflowRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `request`                                                       | [V2WorkflowConfig](../../Models/Components/V2WorkflowConfig.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
 
 ### Response
 
@@ -471,20 +454,13 @@ Run workflow
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Orchestration.V2.RunWorkflowAsync(
-    workflowID: "xxx",
-    wait: false,
-    requestBody: new Dictionary<string, string>() {
-        { "key", "<value>" },
-    }
-);
+var res = await sdk.Orchestration.V2.RunWorkflowAsync(workflowID: "xxx");
 
 // handle response
 ```
@@ -599,19 +575,13 @@ Send an event to a running workflow
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using FormanceSDK.Models.Requests;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Orchestration.V2.SendEventAsync(
-    instanceID: "xxx",
-    requestBody: new V2SendEventRequestBody() {
-        Name = "<value>",
-    }
-);
+var res = await sdk.Orchestration.V2.SendEventAsync(instanceID: "xxx");
 
 // handle response
 ```

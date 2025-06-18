@@ -1,0 +1,12 @@
+# V3CreatePaymentServiceUserRequest
+
+
+## Fields
+
+| Field                                                                         | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `Name`                                                                        | *string*                                                                      | :heavy_check_mark:                                                            | N/A                                                                           |
+| `ContactDetails`                                                              | [V3ContactDetailsRequest](../../Models/Components/V3ContactDetailsRequest.md) | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `Address`                                                                     | [V3AddressRequest](../../Models/Components/V3AddressRequest.md)               | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `BankAccountIDs`                                                              | List<*string*>                                                                | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `Metadata`                                                                    | Dictionary<String, *string*>                                                  | :heavy_minus_sign:                                                            | N/A                                                                           |

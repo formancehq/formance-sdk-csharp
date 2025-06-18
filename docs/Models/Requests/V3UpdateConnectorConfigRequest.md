@@ -1,0 +1,9 @@
+# V3UpdateConnectorConfigRequest
+
+
+## Fields
+
+| Field                                                                                               | Type                                                                                                | Required                                                                                            | Description                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `ConnectorID`                                                                                       | *string*                                                                                            | :heavy_check_mark:                                                                                  | The connector ID                                                                                    |
+| `V3InstallConnectorRequest`                                                                         | [Models.Components.V3InstallConnectorRequest](../../Models/Components/V3InstallConnectorRequest.md) | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |

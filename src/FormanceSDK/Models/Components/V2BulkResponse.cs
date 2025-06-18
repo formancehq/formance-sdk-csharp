@@ -18,15 +18,12 @@ namespace FormanceSDK.Models.Components
     {
 
         [JsonProperty("data")]
-        public List<V2BulkElementResult> Data { get; set; } = default!;
+        public List<V2BulkElementResult>? Data { get; set; }
 
         [JsonProperty("errorCode")]
-        public V2ErrorsEnum ErrorCode { get; set; } = default!;
+        public V2ErrorsEnum? ErrorCode { get; set; }
 
         [JsonProperty("errorMessage")]
-        public string ErrorMessage { get; set; } = default!;
-
-        [JsonProperty("details")]
-        public string? Details { get; set; }
+        public string? ErrorMessage { get; set; }
     }
 }

@@ -39,6 +39,11 @@ namespace FormanceSDK.Models.Requests
             return V3InstallConnectorRequestValue != null ? V3InstallConnectorRequestValue.V3BankingcircleConfig : null;
         }
 
+        public V3ColumnConfig? GetV3InstallConnectorRequestValueColumn()
+        {
+            return V3InstallConnectorRequestValue != null ? V3InstallConnectorRequestValue.V3ColumnConfig : null;
+        }
+
         public V3CurrencycloudConfig? GetV3InstallConnectorRequestValueCurrencycloud()
         {
             return V3InstallConnectorRequestValue != null ? V3InstallConnectorRequestValue.V3CurrencycloudConfig : null;
@@ -67,6 +72,11 @@ namespace FormanceSDK.Models.Requests
         public V3MoneycorpConfig? GetV3InstallConnectorRequestValueMoneycorp()
         {
             return V3InstallConnectorRequestValue != null ? V3InstallConnectorRequestValue.V3MoneycorpConfig : null;
+        }
+
+        public V3QontoConfig? GetV3InstallConnectorRequestValueQonto()
+        {
+            return V3InstallConnectorRequestValue != null ? V3InstallConnectorRequestValue.V3QontoConfig : null;
         }
 
         public V3StripeConfig? GetV3InstallConnectorRequestValueStripe()

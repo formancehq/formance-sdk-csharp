@@ -10,6 +10,7 @@
 namespace FormanceSDK.Hooks
 {
     using FormanceSDK.Utils;
+    using FormanceSDK.Hooks.ClientCredentials;
     using System;
     using System.Collections.Generic;
     using System.Net.Http;
@@ -56,7 +57,7 @@ namespace FormanceSDK.Hooks
         {
             this.afterErrorHooks.Add(hook);
         }
-
+        
         public (string, ISpeakeasyHttpClient) SDKInit(string baseUrl, ISpeakeasyHttpClient client)
         {
             var urlAndClient = (baseUrl, client);
@@ -72,7 +73,7 @@ namespace FormanceSDK.Hooks
             }
             return urlAndClient;
         }
-
+        
         public async Task<HttpRequestMessage> BeforeRequestAsync(BeforeRequestContext hookCtx, HttpRequestMessage request)
         {
             foreach (var hook in this.beforeRequestHooks)

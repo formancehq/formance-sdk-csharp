@@ -351,6 +351,8 @@ var res = await sdk.Ledger.V1.AddMetadataToAccountAsync(
     address: "users:001",
     requestBody: new Dictionary<string, object>() {
         { "key", "<value>" },
+        { "key1", "<value>" },
+        { "key2", "<value>" },
     }
 );
 
@@ -422,7 +424,6 @@ Update the mapping of a ledger
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -431,14 +432,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V1.UpdateMappingAsync(
     ledger: "ledger001",
-    mapping: new Mapping() {
-        Contracts = new List<Contract>() {
-            new Contract() {
-                Account = "users:001",
-                Expr = new Expr() {},
-            },
-        },
-    }
+    mapping: null
 );
 
 // handle response
@@ -783,7 +777,7 @@ var res = await sdk.Ledger.V1.AddMetadataOnTransactionAsync(
     ledger: "ledger001",
     txid: 1234,
     requestBody: new Dictionary<string, object>() {
-        { "key", "<value>" },
+
     }
 );
 
@@ -826,8 +820,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V1.RevertTransactionAsync(
     ledger: "ledger001",
-    txid: 1234,
-    disableChecks: false
+    txid: 1234
 );
 
 // handle response
@@ -970,8 +963,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V1.GetBalancesAggregatedAsync(
     ledger: "ledger001",
-    address: "users:001",
-    useInsertionDate: false
+    address: "users:001"
 );
 
 // handle response

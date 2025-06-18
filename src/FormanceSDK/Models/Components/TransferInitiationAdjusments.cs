@@ -28,7 +28,7 @@ namespace FormanceSDK.Models.Components
         public TransferInitiationStatus Status { get; set; } = default!;
 
         [JsonProperty("error")]
-        public string Error { get; set; } = default!;
+        public string? Error { get; set; } = null;
 
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;

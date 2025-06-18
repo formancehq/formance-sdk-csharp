@@ -22,6 +22,6 @@ namespace FormanceSDK.Models.Requests
         /// <summary>
         /// Updated client
         /// </summary>
-        public Models.Components.UpdateClientResponse? UpdateClientResponseValue { get; set; }
+        public Models.Components.CreateClientResponse? CreateClientResponse { get; set; }
     }
 }

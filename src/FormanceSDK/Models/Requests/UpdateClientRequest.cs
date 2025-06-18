@@ -22,6 +22,6 @@ namespace FormanceSDK.Models.Requests
         public string ClientId { get; set; } = default!;
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public Models.Components.UpdateClientRequest? UpdateClientRequestValue { get; set; }
+        public ClientOptions? ClientOptions { get; set; }
     }
 }

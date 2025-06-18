@@ -59,7 +59,7 @@ namespace FormanceSDK.Models.Components
         public string? DestinationAccountID { get; set; }
 
         [JsonProperty("error")]
-        public string? Error { get; set; }
+        public string? Error { get; set; } = null;
 
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;

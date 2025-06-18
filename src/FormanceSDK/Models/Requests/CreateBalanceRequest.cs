@@ -25,6 +25,6 @@ namespace FormanceSDK.Models.Requests
         public string? IdempotencyKey { get; set; }
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public Models.Components.CreateBalanceRequest? CreateBalanceRequestValue { get; set; }
+        public Balance? Balance { get; set; }
     }
 }

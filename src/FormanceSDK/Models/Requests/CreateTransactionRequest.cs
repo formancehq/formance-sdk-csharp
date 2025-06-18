@@ -22,6 +22,12 @@ namespace FormanceSDK.Models.Requests
         public string Ledger { get; set; } = default!;
 
         /// <summary>
+        /// Set the preview mode. Preview mode doesn&apos;t add the logs to the database or publish a message to the message broker.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=preview")]
+        public bool? Preview { get; set; }
+
+        /// <summary>
         /// The request body must contain at least one of the following objects:<br/>
         /// 
         /// <remarks>
@@ -32,11 +38,5 @@ namespace FormanceSDK.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("request:mediaType=application/json")]
         public PostTransaction PostTransaction { get; set; } = default!;
-
-        /// <summary>
-        /// Set the preview mode. Preview mode doesn&apos;t add the logs to the database or publish a message to the message broker.
-        /// </summary>
-        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=preview")]
-        public bool? Preview { get; set; }
     }
 }

@@ -31,5 +31,11 @@ namespace FormanceSDK.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=key")]
         public string Key { get; set; } = default!;
+
+        /// <summary>
+        /// Use an idempotency key
+        /// </summary>
+        [SpeakeasyMetadata("header:style=simple,explode=false,name=Idempotency-Key")]
+        public string? IdempotencyKey { get; set; }
     }
 }

@@ -24,9 +24,9 @@ namespace FormanceSDK.Models.Components
         public DateTime CreatedAt { get; set; } = default!;
 
         [JsonProperty("status")]
-        public TransferInitiationStatus Status { get; set; } = default!;
+        public PaymentStatus Status { get; set; } = default!;
 
         [JsonProperty("error")]
-        public string Error { get; set; } = default!;
+        public string? Error { get; set; } = null;
     }
 }

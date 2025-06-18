@@ -21,6 +21,12 @@ V3InstallConnectorRequest.CreateAtlar(/* values here */);
 V3InstallConnectorRequest.CreateBankingcircle(/* values here */);
 ```
 
+### Column
+
+```csharp
+V3InstallConnectorRequest.CreateColumn(/* values here */);
+```
+
 ### Currencycloud
 
 ```csharp
@@ -55,6 +61,12 @@ V3InstallConnectorRequest.CreateModulr(/* values here */);
 
 ```csharp
 V3InstallConnectorRequest.CreateMoneycorp(/* values here */);
+```
+
+### Qonto
+
+```csharp
+V3InstallConnectorRequest.CreateQonto(/* values here */);
 ```
 
 ### Stripe

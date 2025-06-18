@@ -36,6 +36,6 @@ namespace FormanceSDK.Models.Components
         public string? CreatedObjectID { get; set; }
 
         [JsonProperty("error")]
-        public string? Error { get; set; }
+        public string? Error { get; set; } = null;
     }
 }

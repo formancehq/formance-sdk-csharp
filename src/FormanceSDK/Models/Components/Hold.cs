@@ -35,6 +35,9 @@ namespace FormanceSDK.Models.Components
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; } = default!;
 
+        [JsonProperty("asset")]
+        public string Asset { get; set; } = default!;
+
         [JsonProperty("description")]
         public string Description { get; set; } = default!;
 

@@ -17,7 +17,7 @@ namespace FormanceSDK.Models.Components
     {
 
         [JsonProperty("data")]
-        public V3ConnectorConfig Data { get; set; } = default!;
+        public Models.Components.V3InstallConnectorRequest Data { get; set; } = default!;
 
         public V3AdyenConfig? GetDataAdyen()
         {
@@ -32,6 +32,11 @@ namespace FormanceSDK.Models.Components
         public V3BankingcircleConfig? GetDataBankingcircle()
         {
             return Data.V3BankingcircleConfig;
+        }
+
+        public V3ColumnConfig? GetDataColumn()
+        {
+            return Data.V3ColumnConfig;
         }
 
         public V3CurrencycloudConfig? GetDataCurrencycloud()
@@ -62,6 +67,11 @@ namespace FormanceSDK.Models.Components
         public V3MoneycorpConfig? GetDataMoneycorp()
         {
             return Data.V3MoneycorpConfig;
+        }
+
+        public V3QontoConfig? GetDataQonto()
+        {
+            return Data.V3QontoConfig;
         }
 
         public V3StripeConfig? GetDataStripe()

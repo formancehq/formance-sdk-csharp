@@ -36,6 +36,6 @@ namespace FormanceSDK.Models.Components
         public bool ScheduledForDeletion { get; set; } = default!;
 
         [JsonProperty("config")]
-        public V3ConnectorConfig1 Config { get; set; } = default!;
+        public V3ConnectorConfig Config { get; set; } = default!;
     }
 }

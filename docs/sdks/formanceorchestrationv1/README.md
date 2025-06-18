@@ -69,7 +69,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Orchestration.V1.ListTriggersAsync(name: "<value>");
+var res = await sdk.Orchestration.V1.ListTriggersAsync();
 
 // handle response
 ```
@@ -106,10 +106,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-TriggerData req = new TriggerData() {
-    Event = "<value>",
-    WorkflowID = "<id>",
-};
+TriggerData req = ;
 
 var res = await sdk.Orchestration.V1.CreateTriggerAsync(req);
 
@@ -284,20 +281,13 @@ Create a workflow
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-CreateWorkflowRequest req = new CreateWorkflowRequest() {
-    Stages = new List<Dictionary<string, object>>() {
-        new Dictionary<string, object>() {
-            { "key", "<value>" },
-        },
-    },
-};
+WorkflowConfig req = ;
 
 var res = await sdk.Orchestration.V1.CreateWorkflowAsync(req);
 
@@ -306,9 +296,9 @@ var res = await sdk.Orchestration.V1.CreateWorkflowAsync(req);
 
 ### Parameters
 
-| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
-| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `request`                                                                 | [CreateWorkflowRequest](../../Models/Components/CreateWorkflowRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `request`                                                   | [WorkflowConfig](../../Models/Components/WorkflowConfig.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
 
 ### Response
 
@@ -404,20 +394,13 @@ Run workflow
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Orchestration.V1.RunWorkflowAsync(
-    workflowID: "xxx",
-    wait: false,
-    requestBody: new Dictionary<string, string>() {
-        { "key", "<value>" },
-    }
-);
+var res = await sdk.Orchestration.V1.RunWorkflowAsync(workflowID: "xxx");
 
 // handle response
 ```
@@ -528,19 +511,13 @@ Send an event to a running workflow
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using FormanceSDK.Models.Requests;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Orchestration.V1.SendEventAsync(
-    instanceID: "xxx",
-    requestBody: new SendEventRequestBody() {
-        Name = "<value>",
-    }
-);
+var res = await sdk.Orchestration.V1.SendEventAsync(instanceID: "xxx");
 
 // handle response
 ```

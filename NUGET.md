@@ -123,7 +123,7 @@ using FormanceSDK;
 using FormanceSDK.Models.Components;
 
 var sdk = new Formance(
-    serverUrl: "http://localhost",
+    serverUrl: "https://orgID-stackID.eu.sandbox.formance.cloud",
     security: new Security() {
         ClientID = "<YOUR_CLIENT_ID_HERE>",
         ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",

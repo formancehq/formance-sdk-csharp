@@ -12,6 +12,7 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     
     /// <summary>
     /// OK
@@ -20,6 +21,6 @@ namespace FormanceSDK.Models.Components
     {
 
         [JsonProperty("data")]
-        public ConnectorsConfigsResponseData Data { get; set; } = default!;
+        public Dictionary<string, Dictionary<string, ConnectorsConfigsResponseData>> Data { get; set; } = default!;
     }
 }

@@ -232,7 +232,7 @@ var res = await sdk.GetVersionsAsync();
 * [CreateTransferInitiation](docs/sdks/formancepaymentsv1/README.md#createtransferinitiation) - Create a TransferInitiation
 * [GetTransferInitiation](docs/sdks/formancepaymentsv1/README.md#gettransferinitiation) - Get a transfer initiation
 * [DeleteTransferInitiation](docs/sdks/formancepaymentsv1/README.md#deletetransferinitiation) - Delete a transfer initiation
-* [UdpateTransferInitiationStatus](docs/sdks/formancepaymentsv1/README.md#udpatetransferinitiationstatus) - Update the status of a transfer initiation
+* [UpdateTransferInitiationStatus](docs/sdks/formancepaymentsv1/README.md#updatetransferinitiationstatus) - Update the status of a transfer initiation
 * [ReverseTransferInitiation](docs/sdks/formancepaymentsv1/README.md#reversetransferinitiation) - Reverse a transfer initiation
 * [RetryTransferInitiation](docs/sdks/formancepaymentsv1/README.md#retrytransferinitiation) - Retry a failed transfer initiation
 * [ListPools](docs/sdks/formancepaymentsv1/README.md#listpools) - List Pools
@@ -241,7 +241,8 @@ var res = await sdk.GetVersionsAsync();
 * [DeletePool](docs/sdks/formancepaymentsv1/README.md#deletepool) - Delete a Pool
 * [AddAccountToPool](docs/sdks/formancepaymentsv1/README.md#addaccounttopool) - Add an account to a pool
 * [RemoveAccountFromPool](docs/sdks/formancepaymentsv1/README.md#removeaccountfrompool) - Remove an account from a pool
-* [GetPoolBalances](docs/sdks/formancepaymentsv1/README.md#getpoolbalances) - Get pool balances
+* [GetPoolBalances](docs/sdks/formancepaymentsv1/README.md#getpoolbalances) - Get historical pool balances at a particular point in time
+* [GetPoolBalancesLatest](docs/sdks/formancepaymentsv1/README.md#getpoolbalanceslatest) - Get latest pool balances
 * [CreateAccount](docs/sdks/formancepaymentsv1/README.md#createaccount) - Create an account
 * [PaymentslistAccounts](docs/sdks/formancepaymentsv1/README.md#paymentslistaccounts) - List accounts
 * [PaymentsgetAccount](docs/sdks/formancepaymentsv1/README.md#paymentsgetaccount) - Get an account
@@ -285,6 +286,7 @@ var res = await sdk.GetVersionsAsync();
 * [ListConnectorConfigs](docs/sdks/v3/README.md#listconnectorconfigs) - List all connector configurations
 * [UninstallConnector](docs/sdks/v3/README.md#uninstallconnector) - Uninstall a connector
 * [GetConnectorConfig](docs/sdks/v3/README.md#getconnectorconfig) - Get a connector configuration by ID
+* [V3UpdateConnectorConfig](docs/sdks/v3/README.md#v3updateconnectorconfig) - Update the config of a connector
 * [ResetConnector](docs/sdks/v3/README.md#resetconnector) - Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment initiations and bank account creations.
 * [ListConnectorSchedules](docs/sdks/v3/README.md#listconnectorschedules) - List all connector schedules
 * [GetConnectorSchedule](docs/sdks/v3/README.md#getconnectorschedule) - Get a connector schedule by ID
@@ -304,11 +306,17 @@ var res = await sdk.GetVersionsAsync();
 * [ReversePaymentInitiation](docs/sdks/v3/README.md#reversepaymentinitiation) - Reverse a payment initiation
 * [ListPaymentInitiationAdjustments](docs/sdks/v3/README.md#listpaymentinitiationadjustments) - List all payment initiation adjustments
 * [ListPaymentInitiationRelatedPayments](docs/sdks/v3/README.md#listpaymentinitiationrelatedpayments) - List all payments related to a payment initiation
+* [CreatePaymentServiceUser](docs/sdks/v3/README.md#createpaymentserviceuser) - Create a formance payment service user object
+* [ListPaymentServiceUsers](docs/sdks/v3/README.md#listpaymentserviceusers) - List all payment service users
+* [GetPaymentServiceUser](docs/sdks/v3/README.md#getpaymentserviceuser) - Get a payment service user by ID
+* [AddBankAccountToPaymentServiceUser](docs/sdks/v3/README.md#addbankaccounttopaymentserviceuser) - Add a bank account to a payment service user
+* [ForwardPaymentServiceUserBankAccount](docs/sdks/v3/README.md#forwardpaymentserviceuserbankaccount) - Forward a payment service user's bank account to a connector
 * [CreatePool](docs/sdks/v3/README.md#createpool) - Create a formance pool object
 * [ListPools](docs/sdks/v3/README.md#listpools) - List all pools
 * [GetPool](docs/sdks/v3/README.md#getpool) - Get a pool by ID
 * [DeletePool](docs/sdks/v3/README.md#deletepool) - Delete a pool by ID
-* [GetPoolBalances](docs/sdks/v3/README.md#getpoolbalances) - Get pool balances
+* [GetPoolBalances](docs/sdks/v3/README.md#getpoolbalances) - Get historical pool balances from a particular point in time
+* [GetPoolBalancesLatest](docs/sdks/v3/README.md#getpoolbalanceslatest) - Get latest pool balances
 * [AddAccountToPool](docs/sdks/v3/README.md#addaccounttopool) - Add an account to a pool
 * [RemoveAccountFromPool](docs/sdks/v3/README.md#removeaccountfrompool) - Remove an account from a pool
 * [GetTask](docs/sdks/v3/README.md#gettask) - Get a task and its result by ID
@@ -476,7 +484,7 @@ using FormanceSDK;
 using FormanceSDK.Models.Components;
 
 var sdk = new Formance(
-    serverUrl: "http://localhost",
+    serverUrl: "https://orgID-stackID.eu.sandbox.formance.cloud",
     security: new Security() {
         ClientID = "<YOUR_CLIENT_ID_HERE>",
         ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",

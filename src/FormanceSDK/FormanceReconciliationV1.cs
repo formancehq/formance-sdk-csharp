@@ -82,19 +82,12 @@ namespace FormanceSDK
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "1.0.3";
-        private const string _sdkGenVersion = "2.558.5";
-        private const string _openapiDocVersion = "v3.0.3";
-        private const string _userAgent = "speakeasy-sdk/csharp 1.0.3 2.558.5 v3.0.3 FormanceSDK";
-        private string _serverUrl = "";
-        private ISpeakeasyHttpClient _client;
-        private Func<FormanceSDK.Models.Components.Security>? _securitySource;
+        private const string _sdkVersion = "1.1.0";
+        private const string _sdkGenVersion = "2.630.9";
+        private const string _openapiDocVersion = "v3.0.5";
 
-        public FormanceReconciliationV1(ISpeakeasyHttpClient client, Func<FormanceSDK.Models.Components.Security>? securitySource, string serverUrl, SDKConfig config)
+        public FormanceReconciliationV1(SDKConfig config)
         {
-            _client = client;
-            _securitySource = securitySource;
-            _serverUrl = serverUrl;
             SDKConfiguration = config;
         }
 
@@ -105,21 +98,21 @@ namespace FormanceSDK
             var urlString = baseUrl + "/api/reconciliation/_info";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("reconciliationgetServerInfo", new List<string> { "auth:read", "reconciliation:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "reconciliationgetServerInfo", new List<string> { "auth:read", "reconciliation:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -186,7 +179,7 @@ namespace FormanceSDK
             var urlString = baseUrl + "/api/reconciliation/policies";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, false);
             if (serializedBody != null)
@@ -194,19 +187,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("createPolicy", new List<string> { "auth:read", "reconciliation:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createPolicy", new List<string> { "auth:read", "reconciliation:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -277,21 +270,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/policies", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("listPolicies", new List<string> { "auth:read", "reconciliation:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listPolicies", new List<string> { "auth:read", "reconciliation:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -361,21 +354,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/policies/{policyID}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("deletePolicy", new List<string> { "auth:read", "reconciliation:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deletePolicy", new List<string> { "auth:read", "reconciliation:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -437,21 +430,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/policies/{policyID}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("getPolicy", new List<string> { "auth:read", "reconciliation:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getPolicy", new List<string> { "auth:read", "reconciliation:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -522,7 +515,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/policies/{policyID}/reconciliation", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "ReconciliationRequest", "json", false, false);
             if (serializedBody != null)
@@ -530,19 +523,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("reconcile", new List<string> { "auth:read", "reconciliation:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "reconcile", new List<string> { "auth:read", "reconciliation:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -613,21 +606,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/reconciliations", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("listReconciliations", new List<string> { "auth:read", "reconciliation:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listReconciliations", new List<string> { "auth:read", "reconciliation:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -697,21 +690,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/reconciliations/{reconciliationID}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("getReconciliation", new List<string> { "auth:read", "reconciliation:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getReconciliation", new List<string> { "auth:read", "reconciliation:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)

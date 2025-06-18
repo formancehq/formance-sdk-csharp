@@ -36,7 +36,7 @@ namespace FormanceSDK.Models.Components
         public TaskModulrState? State { get; set; } = null;
 
         [JsonProperty("error")]
-        public string? Error { get; set; }
+        public string? Error { get; set; } = null;
 
         [JsonProperty("descriptor")]
         public TaskModulrDescriptor Descriptor { get; set; } = default!;

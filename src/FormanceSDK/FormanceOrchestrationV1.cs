@@ -91,7 +91,7 @@ namespace FormanceSDK
         /// Create a workflow
         /// </remarks>
         /// </summary>
-        Task<Models.Requests.CreateWorkflowResponse> CreateWorkflowAsync(CreateWorkflowRequest? request = null);
+        Task<Models.Requests.CreateWorkflowResponse> CreateWorkflowAsync(WorkflowConfig? request = null);
 
         /// <summary>
         /// Get a flow by id
@@ -179,19 +179,12 @@ namespace FormanceSDK
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "1.0.3";
-        private const string _sdkGenVersion = "2.558.5";
-        private const string _openapiDocVersion = "v3.0.3";
-        private const string _userAgent = "speakeasy-sdk/csharp 1.0.3 2.558.5 v3.0.3 FormanceSDK";
-        private string _serverUrl = "";
-        private ISpeakeasyHttpClient _client;
-        private Func<FormanceSDK.Models.Components.Security>? _securitySource;
+        private const string _sdkVersion = "1.1.0";
+        private const string _sdkGenVersion = "2.630.9";
+        private const string _openapiDocVersion = "v3.0.5";
 
-        public FormanceOrchestrationV1(ISpeakeasyHttpClient client, Func<FormanceSDK.Models.Components.Security>? securitySource, string serverUrl, SDKConfig config)
+        public FormanceOrchestrationV1(SDKConfig config)
         {
-            _client = client;
-            _securitySource = securitySource;
-            _serverUrl = serverUrl;
             SDKConfiguration = config;
         }
 
@@ -202,21 +195,21 @@ namespace FormanceSDK
             var urlString = baseUrl + "/api/orchestration/_info";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("orchestrationgetServerInfo", new List<string> { "auth:read", "orchestration:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "orchestrationgetServerInfo", new List<string> { "auth:read", "orchestration:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -286,21 +279,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/triggers", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("listTriggers", new List<string> { "auth:read", "orchestration:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listTriggers", new List<string> { "auth:read", "orchestration:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -367,7 +360,7 @@ namespace FormanceSDK
             var urlString = baseUrl + "/api/orchestration/triggers";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, true);
             if (serializedBody != null)
@@ -375,19 +368,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("createTrigger", new List<string> { "auth:read", "orchestration:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createTrigger", new List<string> { "auth:read", "orchestration:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -457,21 +450,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/triggers/{triggerID}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("readTrigger", new List<string> { "auth:read", "orchestration:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "readTrigger", new List<string> { "auth:read", "orchestration:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -541,21 +534,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/triggers/{triggerID}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("deleteTrigger", new List<string> { "auth:read", "orchestration:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteTrigger", new List<string> { "auth:read", "orchestration:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -617,21 +610,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/triggers/{triggerID}/occurrences", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("listTriggersOccurrences", new List<string> { "auth:read", "orchestration:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listTriggersOccurrences", new List<string> { "auth:read", "orchestration:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -698,21 +691,21 @@ namespace FormanceSDK
             var urlString = baseUrl + "/api/orchestration/workflows";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("listWorkflows", new List<string> { "auth:read", "orchestration:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listWorkflows", new List<string> { "auth:read", "orchestration:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -772,14 +765,14 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.CreateWorkflowResponse> CreateWorkflowAsync(CreateWorkflowRequest? request = null)
+        public async Task<Models.Requests.CreateWorkflowResponse> CreateWorkflowAsync(WorkflowConfig? request = null)
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
 
             var urlString = baseUrl + "/api/orchestration/workflows";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, true);
             if (serializedBody != null)
@@ -787,19 +780,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("createWorkflow", new List<string> { "auth:read", "orchestration:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createWorkflow", new List<string> { "auth:read", "orchestration:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -869,21 +862,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/workflows/{flowId}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("getWorkflow", new List<string> { "auth:read", "orchestration:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getWorkflow", new List<string> { "auth:read", "orchestration:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -953,21 +946,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/workflows/{flowId}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("deleteWorkflow", new List<string> { "auth:read", "orchestration:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteWorkflow", new List<string> { "auth:read", "orchestration:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1031,7 +1024,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/workflows/{workflowID}/instances", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
             if (serializedBody != null)
@@ -1039,19 +1032,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("runWorkflow", new List<string> { "auth:read", "orchestration:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "runWorkflow", new List<string> { "auth:read", "orchestration:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1122,21 +1115,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/instances", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("listInstances", new List<string> { "auth:read", "orchestration:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listInstances", new List<string> { "auth:read", "orchestration:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1206,21 +1199,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/instances/{instanceID}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("getInstance", new List<string> { "auth:read", "orchestration:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getInstance", new List<string> { "auth:read", "orchestration:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1291,7 +1284,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/instances/{instanceID}/events", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
             if (serializedBody != null)
@@ -1299,19 +1292,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("sendEvent", new List<string> { "auth:read", "orchestration:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "sendEvent", new List<string> { "auth:read", "orchestration:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1373,21 +1366,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/instances/{instanceID}/abort", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("cancelEvent", new List<string> { "auth:read", "orchestration:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "cancelEvent", new List<string> { "auth:read", "orchestration:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1449,21 +1442,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/instances/{instanceID}/history", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("getInstanceHistory", new List<string> { "auth:read", "orchestration:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getInstanceHistory", new List<string> { "auth:read", "orchestration:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1534,21 +1527,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/instances/{instanceID}/stages/{number}/history", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("getInstanceStageHistory", new List<string> { "auth:read", "orchestration:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getInstanceStageHistory", new List<string> { "auth:read", "orchestration:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)

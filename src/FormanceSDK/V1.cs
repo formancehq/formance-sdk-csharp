@@ -43,7 +43,7 @@ namespace FormanceSDK
         /// <summary>
         /// Create client
         /// </summary>
-        Task<Models.Requests.CreateClientResponse> CreateClientAsync(CreateClientRequest? request = null);
+        Task<Models.Requests.CreateClientResponse> CreateClientAsync(ClientOptions? request = null);
 
         /// <summary>
         /// Read client
@@ -53,7 +53,7 @@ namespace FormanceSDK
         /// <summary>
         /// Update client
         /// </summary>
-        Task<Models.Requests.UpdateClientResponse> UpdateClientAsync(string clientId, Models.Components.UpdateClientRequest? updateClientRequest = null);
+        Task<UpdateClientResponse> UpdateClientAsync(string clientId, ClientOptions? clientOptions = null);
 
         /// <summary>
         /// Delete client
@@ -93,19 +93,12 @@ namespace FormanceSDK
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "1.0.3";
-        private const string _sdkGenVersion = "2.558.5";
-        private const string _openapiDocVersion = "v3.0.3";
-        private const string _userAgent = "speakeasy-sdk/csharp 1.0.3 2.558.5 v3.0.3 FormanceSDK";
-        private string _serverUrl = "";
-        private ISpeakeasyHttpClient _client;
-        private Func<FormanceSDK.Models.Components.Security>? _securitySource;
+        private const string _sdkVersion = "1.1.0";
+        private const string _sdkGenVersion = "2.630.9";
+        private const string _openapiDocVersion = "v3.0.5";
 
-        public V1(ISpeakeasyHttpClient client, Func<FormanceSDK.Models.Components.Security>? securitySource, string serverUrl, SDKConfig config)
+        public V1(SDKConfig config)
         {
-            _client = client;
-            _securitySource = securitySource;
-            _serverUrl = serverUrl;
             SDKConfiguration = config;
         }
 
@@ -116,21 +109,21 @@ namespace FormanceSDK
             var urlString = baseUrl + "/api/auth/.well-known/openid-configuration";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("getOIDCWellKnowns", new List<string> { "auth:read", "auth:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getOIDCWellKnowns", new List<string> { "auth:read", "auth:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -183,21 +176,21 @@ namespace FormanceSDK
             var urlString = baseUrl + "/api/auth/_info";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("getServerInfo", new List<string> { "auth:read", "auth:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getServerInfo", new List<string> { "auth:read", "auth:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -258,21 +251,21 @@ namespace FormanceSDK
             var urlString = baseUrl + "/api/auth/clients";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("listClients", new List<string> { "auth:read", "auth:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listClients", new List<string> { "auth:read", "auth:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -326,14 +319,14 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.CreateClientResponse> CreateClientAsync(CreateClientRequest? request = null)
+        public async Task<Models.Requests.CreateClientResponse> CreateClientAsync(ClientOptions? request = null)
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
 
             var urlString = baseUrl + "/api/auth/clients";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, true);
             if (serializedBody != null)
@@ -341,19 +334,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("createClient", new List<string> { "auth:read", "auth:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createClient", new List<string> { "auth:read", "auth:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -417,21 +410,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("readClient", new List<string> { "auth:read", "auth:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "readClient", new List<string> { "auth:read", "auth:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -485,38 +478,38 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.UpdateClientResponse> UpdateClientAsync(string clientId, Models.Components.UpdateClientRequest? updateClientRequest = null)
+        public async Task<UpdateClientResponse> UpdateClientAsync(string clientId, ClientOptions? clientOptions = null)
         {
-            var request = new Models.Requests.UpdateClientRequest()
+            var request = new UpdateClientRequest()
             {
                 ClientId = clientId,
-                UpdateClientRequestValue = updateClientRequest,
+                ClientOptions = clientOptions,
             };
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "UpdateClientRequestValue", "json", false, true);
+            var serializedBody = RequestBodySerializer.Serialize(request, "ClientOptions", "json", false, true);
             if (serializedBody != null)
             {
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("updateClient", new List<string> { "auth:read", "auth:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "updateClient", new List<string> { "auth:read", "auth:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -549,8 +542,8 @@ namespace FormanceSDK
             {
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
-                    var obj = ResponseBodyDeserializer.Deserialize<Models.Components.UpdateClientResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new Models.Requests.UpdateClientResponse()
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Components.CreateClientResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new UpdateClientResponse()
                     {
                         HttpMeta = new Models.Components.HTTPMetadata()
                         {
@@ -558,7 +551,7 @@ namespace FormanceSDK
                             Request = httpRequest
                         }
                     };
-                    response.UpdateClientResponseValue = obj;
+                    response.CreateClientResponse = obj;
                     return response;
                 }
 
@@ -580,21 +573,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("deleteClient", new List<string> { "auth:read", "auth:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteClient", new List<string> { "auth:read", "auth:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -651,7 +644,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}/secrets", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "CreateSecretRequestValue", "json", false, true);
             if (serializedBody != null)
@@ -659,19 +652,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("createSecret", new List<string> { "auth:read", "auth:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createSecret", new List<string> { "auth:read", "auth:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -736,21 +729,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}/secrets/{secretId}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("deleteSecret", new List<string> { "auth:read", "auth:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteSecret", new List<string> { "auth:read", "auth:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -803,21 +796,21 @@ namespace FormanceSDK
             var urlString = baseUrl + "/api/auth/users";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("listUsers", new List<string> { "auth:read", "auth:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listUsers", new List<string> { "auth:read", "auth:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -881,21 +874,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/auth/users/{userId}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("readUser", new List<string> { "auth:read", "auth:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "readUser", new List<string> { "auth:read", "auth:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)

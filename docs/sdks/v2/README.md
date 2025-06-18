@@ -364,36 +364,9 @@ V2CreateBulkRequest req = new V2CreateBulkRequest() {
     Atomic = true,
     Parallel = true,
     RequestBody = new List<V2BulkElement>() {
-        V2BulkElement.CreateCreateTransaction(
-            new V2BulkElementCreateTransaction() {
-                Action = "<value>",
-                Data = new V2PostTransaction() {
-                    Postings = new List<V2Posting>() {
-                        new V2Posting() {
-                            Amount = 100,
-                            Asset = "COIN",
-                            Destination = "users:002",
-                            Source = "users:001",
-                        },
-                    },
-                    Script = new V2PostTransactionScript() {
-                        Plain = @"vars {
-                        account $user
-                        }
-                        send [COIN 10] (
-                        	source = @world
-                        	destination = $user
-                        )
-                        ",
-                        Vars = new Dictionary<string, string>() {
-                            { "user", "users:042" },
-                        },
-                    },
-                    Reference = "ref:001",
-                    Metadata = new Dictionary<string, string>() {
-                        { "admin", "true" },
-                    },
-                },
+        V2BulkElement.CreateDeleteMetadata(
+            new V2BulkElementDeleteMetadata() {
+                Action = "DELETE_METADATA",
             }
         ),
     },
@@ -430,7 +403,6 @@ Count the accounts from a ledger
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System;
 using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
@@ -442,8 +414,8 @@ var res = await sdk.Ledger.V2.CountAccountsAsync(
     ledger: "ledger001",
     requestBody: new Dictionary<string, object>() {
         { "key", "<value>" },
-    },
-    pit: System.DateTime.Parse("2023-10-10T12:32:37.688Z")
+        { "key1", "<value>" },
+    }
 );
 
 // handle response
@@ -490,7 +462,7 @@ V2ListAccountsRequest req = new V2ListAccountsRequest() {
     PageSize = 100,
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     RequestBody = new Dictionary<string, object>() {
-        { "key", "<value>" },
+
     },
 };
 
@@ -525,7 +497,6 @@ Get account by its address
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -534,9 +505,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V2.GetAccountAsync(
     ledger: "ledger001",
-    address: "users:001",
-    expand: "<value>",
-    pit: System.DateTime.Parse("2023-06-03T07:35:25.500Z")
+    address: "users:001"
 );
 
 // handle response
@@ -627,7 +596,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V2.DeleteAccountMetadataAsync(
     ledger: "ledger001",
-    address: "96609 Cummings Canyon",
+    address: "6753 S Washington Street",
     key: "foo"
 );
 
@@ -636,11 +605,12 @@ var res = await sdk.Ledger.V2.DeleteAccountMetadataAsync(
 
 ### Parameters
 
-| Parameter           | Type                | Required            | Description         | Example             |
-| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
-| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
-| `Address`           | *string*            | :heavy_check_mark:  | Account address     |                     |
-| `Key`               | *string*            | :heavy_check_mark:  | The key to remove.  | foo                 |
+| Parameter              | Type                   | Required               | Description            | Example                |
+| ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- |
+| `Ledger`               | *string*               | :heavy_check_mark:     | Name of the ledger.    | ledger001              |
+| `Address`              | *string*               | :heavy_check_mark:     | Account address        |                        |
+| `Key`                  | *string*               | :heavy_check_mark:     | The key to remove.     | foo                    |
+| `IdempotencyKey`       | *string*               | :heavy_minus_sign:     | Use an idempotency key |                        |
 
 ### Response
 
@@ -700,7 +670,6 @@ Count the transactions from a ledger
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System;
 using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
@@ -712,8 +681,7 @@ var res = await sdk.Ledger.V2.CountTransactionsAsync(
     ledger: "ledger001",
     requestBody: new Dictionary<string, object>() {
         { "key", "<value>" },
-    },
-    pit: System.DateTime.Parse("2024-09-23T09:44:43.699Z")
+    }
 );
 
 // handle response
@@ -760,7 +728,7 @@ V2ListTransactionsRequest req = new V2ListTransactionsRequest() {
     PageSize = 100,
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     RequestBody = new Dictionary<string, object>() {
-        { "key", "<value>" },
+
     },
 };
 
@@ -867,7 +835,6 @@ Get transaction from a ledger by its ID
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -876,9 +843,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V2.GetTransactionAsync(
     ledger: "ledger001",
-    id: 1234,
-    expand: "<value>",
-    pit: System.DateTime.Parse("2024-08-21T15:58:06.771Z")
+    id: 1234
 );
 
 // handle response
@@ -978,11 +943,12 @@ var res = await sdk.Ledger.V2.DeleteTransactionMetadataAsync(
 
 ### Parameters
 
-| Parameter           | Type                | Required            | Description         | Example             |
-| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
-| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
-| `Id`                | *BigInteger*        | :heavy_check_mark:  | Transaction ID.     | 1234                |
-| `Key`               | *string*            | :heavy_check_mark:  | The key to remove.  | foo                 |
+| Parameter              | Type                   | Required               | Description            | Example                |
+| ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- |
+| `Ledger`               | *string*               | :heavy_check_mark:     | Name of the ledger.    | ledger001              |
+| `Id`                   | *BigInteger*           | :heavy_check_mark:     | Transaction ID.        | 1234                   |
+| `Key`                  | *string*               | :heavy_check_mark:     | The key to remove.     | foo                    |
+| `IdempotencyKey`       | *string*               | :heavy_minus_sign:     | Use an idempotency key |                        |
 
 ### Response
 
@@ -1030,7 +996,7 @@ var res = await sdk.Ledger.V2.RevertTransactionAsync(req);
 
 ### Response
 
-**[Models.Requests.V2RevertTransactionResponse](../../Models/Requests/V2RevertTransactionResponse.md)**
+**[V2RevertTransactionResponse](../../Models/Requests/V2RevertTransactionResponse.md)**
 
 ### Errors
 
@@ -1048,7 +1014,6 @@ Get the aggregated balances from selected accounts
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System;
 using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
@@ -1060,9 +1025,9 @@ var res = await sdk.Ledger.V2.GetBalancesAggregatedAsync(
     ledger: "ledger001",
     requestBody: new Dictionary<string, object>() {
         { "key", "<value>" },
-    },
-    pit: System.DateTime.Parse("2024-02-24T06:23:10.848Z"),
-    useInsertionDate: false
+        { "key1", "<value>" },
+        { "key2", "<value>" },
+    }
 );
 
 // handle response
@@ -1159,7 +1124,7 @@ V2ListLogsRequest req = new V2ListLogsRequest() {
     PageSize = 100,
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     RequestBody = new Dictionary<string, object>() {
-        { "key", "<value>" },
+
     },
 };
 
@@ -1201,7 +1166,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V2.ImportLogsAsync(
     ledger: "ledger001",
-    v2ImportLogsRequest: System.Text.Encoding.UTF8.GetBytes("0xeC7ae8CBbd")
+    v2ImportLogsRequest: System.Text.Encoding.UTF8.GetBytes("0xde3EDEE9e6")
 );
 
 // handle response

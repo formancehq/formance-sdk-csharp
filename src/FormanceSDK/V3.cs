@@ -98,6 +98,15 @@ namespace FormanceSDK
         Task<Models.Requests.V3GetConnectorConfigResponse> GetConnectorConfigAsync(string connectorID);
 
         /// <summary>
+        /// Update the config of a connector
+        /// 
+        /// <remarks>
+        /// Update connector config
+        /// </remarks>
+        /// </summary>
+        Task<V3UpdateConnectorConfigResponse> V3UpdateConnectorConfigAsync(string connectorID, Models.Components.V3InstallConnectorRequest? v3InstallConnectorRequest = null);
+
+        /// <summary>
         /// Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment initiations and bank account creations.
         /// </summary>
         Task<Models.Requests.V3ResetConnectorResponse> ResetConnectorAsync(string connectorID);
@@ -189,6 +198,31 @@ namespace FormanceSDK
         Task<V3ListPaymentInitiationRelatedPaymentsResponse> ListPaymentInitiationRelatedPaymentsAsync(string paymentInitiationID, long? pageSize = null, string? cursor = null, Dictionary<string, object>? requestBody = null);
 
         /// <summary>
+        /// Create a formance payment service user object
+        /// </summary>
+        Task<Models.Requests.V3CreatePaymentServiceUserResponse> CreatePaymentServiceUserAsync(V3CreatePaymentServiceUserRequest? request = null);
+
+        /// <summary>
+        /// List all payment service users
+        /// </summary>
+        Task<V3ListPaymentServiceUsersResponse> ListPaymentServiceUsersAsync(long? pageSize = null, string? cursor = null, Dictionary<string, object>? requestBody = null);
+
+        /// <summary>
+        /// Get a payment service user by ID
+        /// </summary>
+        Task<Models.Requests.V3GetPaymentServiceUserResponse> GetPaymentServiceUserAsync(string paymentServiceUserID);
+
+        /// <summary>
+        /// Add a bank account to a payment service user
+        /// </summary>
+        Task<V3AddBankAccountToPaymentServiceUserResponse> AddBankAccountToPaymentServiceUserAsync(string paymentServiceUserID, string bankAccountID);
+
+        /// <summary>
+        /// Forward a payment service user&apos;s bank account to a connector
+        /// </summary>
+        Task<Models.Requests.V3ForwardPaymentServiceUserBankAccountResponse> ForwardPaymentServiceUserBankAccountAsync(string paymentServiceUserID, string bankAccountID, Models.Components.V3ForwardPaymentServiceUserBankAccountRequest? v3ForwardPaymentServiceUserBankAccountRequest = null);
+
+        /// <summary>
         /// Create a formance pool object
         /// </summary>
         Task<Models.Requests.V3CreatePoolResponse> CreatePoolAsync(V3CreatePoolRequest? request = null);
@@ -209,9 +243,14 @@ namespace FormanceSDK
         Task<V3DeletePoolResponse> DeletePoolAsync(string poolID);
 
         /// <summary>
-        /// Get pool balances
+        /// Get historical pool balances from a particular point in time
         /// </summary>
         Task<V3GetPoolBalancesResponse> GetPoolBalancesAsync(string poolID, DateTime? at = null);
+
+        /// <summary>
+        /// Get latest pool balances
+        /// </summary>
+        Task<V3GetPoolBalancesLatestResponse> GetPoolBalancesLatestAsync(string poolID);
 
         /// <summary>
         /// Add an account to a pool
@@ -233,19 +272,12 @@ namespace FormanceSDK
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "1.0.3";
-        private const string _sdkGenVersion = "2.558.5";
-        private const string _openapiDocVersion = "v3.0.3";
-        private const string _userAgent = "speakeasy-sdk/csharp 1.0.3 2.558.5 v3.0.3 FormanceSDK";
-        private string _serverUrl = "";
-        private ISpeakeasyHttpClient _client;
-        private Func<FormanceSDK.Models.Components.Security>? _securitySource;
+        private const string _sdkVersion = "1.1.0";
+        private const string _sdkGenVersion = "2.630.9";
+        private const string _openapiDocVersion = "v3.0.5";
 
-        public V3(ISpeakeasyHttpClient client, Func<FormanceSDK.Models.Components.Security>? securitySource, string serverUrl, SDKConfig config)
+        public V3(SDKConfig config)
         {
-            _client = client;
-            _securitySource = securitySource;
-            _serverUrl = serverUrl;
             SDKConfiguration = config;
         }
 
@@ -256,7 +288,7 @@ namespace FormanceSDK
             var urlString = baseUrl + "/api/payments/v3/accounts";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, true);
             if (serializedBody != null)
@@ -264,19 +296,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3CreateAccount", new List<string> { "auth:read", "payments:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3CreateAccount", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -348,7 +380,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/accounts", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
             if (serializedBody != null)
@@ -356,19 +388,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3ListAccounts", new List<string> { "auth:read", "payments:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListAccounts", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -438,21 +470,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/accounts/{accountID}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3GetAccount", new List<string> { "auth:read", "payments:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetAccount", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -518,21 +550,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/accounts/{accountID}/balances", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3GetAccountBalances", new List<string> { "auth:read", "payments:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetAccountBalances", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -599,7 +631,7 @@ namespace FormanceSDK
             var urlString = baseUrl + "/api/payments/v3/bank-accounts";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, true);
             if (serializedBody != null)
@@ -607,19 +639,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3CreateBankAccount", new List<string> { "auth:read", "payments:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3CreateBankAccount", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -691,7 +723,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/bank-accounts", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
             if (serializedBody != null)
@@ -699,19 +731,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3ListBankAccounts", new List<string> { "auth:read", "payments:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListBankAccounts", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -781,21 +813,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/bank-accounts/{bankAccountID}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3GetBankAccount", new List<string> { "auth:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetBankAccount", new List<string> { "auth:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -866,7 +898,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/bank-accounts/{bankAccountID}/metadata", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Patch, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "V3UpdateBankAccountMetadataRequestValue", "json", false, true);
             if (serializedBody != null)
@@ -874,19 +906,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3UpdateBankAccountMetadata", new List<string> { "auth:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3UpdateBankAccountMetadata", new List<string> { "auth:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -949,7 +981,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/bank-accounts/{bankAccountID}/forward", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "V3ForwardBankAccountRequestValue", "json", false, true);
             if (serializedBody != null)
@@ -957,19 +989,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3ForwardBankAccount", new List<string> { "auth:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ForwardBankAccount", new List<string> { "auth:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1041,7 +1073,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
             if (serializedBody != null)
@@ -1049,19 +1081,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3ListConnectors", new List<string> { "auth:read", "payments:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListConnectors", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1132,7 +1164,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/install/{connector}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "V3InstallConnectorRequestValue", "json", false, true);
             if (serializedBody != null)
@@ -1140,19 +1172,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3InstallConnector", new List<string> { "auth:read", "payments:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3InstallConnector", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1219,21 +1251,21 @@ namespace FormanceSDK
             var urlString = baseUrl + "/api/payments/v3/connectors/configs";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3ListConnectorConfigs", new List<string> { "auth:read", "payments:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListConnectorConfigs", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1303,21 +1335,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/{connectorID}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3UninstallConnector", new List<string> { "auth:read", "payments:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3UninstallConnector", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1387,21 +1419,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/{connectorID}/config", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3GetConnectorConfig", new List<string> { "auth:read", "payments:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetConnectorConfig", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1461,6 +1493,89 @@ namespace FormanceSDK
             }
         }
 
+        public async Task<V3UpdateConnectorConfigResponse> V3UpdateConnectorConfigAsync(string connectorID, Models.Components.V3InstallConnectorRequest? v3InstallConnectorRequest = null)
+        {
+            var request = new V3UpdateConnectorConfigRequest()
+            {
+                ConnectorID = connectorID,
+                V3InstallConnectorRequest = v3InstallConnectorRequest,
+            };
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/{connectorID}/config", request);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Patch, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "V3InstallConnectorRequest", "json", false, true);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3UpdateConnectorConfig", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode == default)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 204)
+            {                
+                return new V3UpdateConnectorConfigResponse()
+                {
+                    HttpMeta = new Models.Components.HTTPMetadata()
+                    {
+                        Response = httpResponse,
+                        Request = httpRequest
+                    }
+                };
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<PaymentsErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+        }
+
         public async Task<Models.Requests.V3ResetConnectorResponse> ResetConnectorAsync(string connectorID)
         {
             var request = new V3ResetConnectorRequest()
@@ -1471,21 +1586,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/{connectorID}/reset", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3ResetConnector", new List<string> { "auth:read", "payments:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ResetConnector", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1558,7 +1673,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/{connectorID}/schedules", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
             if (serializedBody != null)
@@ -1566,19 +1681,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3ListConnectorSchedules", new List<string> { "auth:read", "payments:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListConnectorSchedules", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1649,21 +1764,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/{connectorID}/schedules/{scheduleID}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3GetConnectorSchedule", new List<string> { "auth:read", "payments:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetConnectorSchedule", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1736,21 +1851,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/{connectorID}/schedules/{scheduleID}/instances", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3ListConnectorScheduleInstances", new List<string> { "auth:read", "payments:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListConnectorScheduleInstances", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1817,7 +1932,7 @@ namespace FormanceSDK
             var urlString = baseUrl + "/api/payments/v3/payments";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, true);
             if (serializedBody != null)
@@ -1825,19 +1940,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3CreatePayment", new List<string> { "auth:read", "payments:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3CreatePayment", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1909,7 +2024,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payments", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
             if (serializedBody != null)
@@ -1917,19 +2032,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3ListPayments", new List<string> { "auth:read", "payments:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListPayments", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1999,21 +2114,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payments/{paymentID}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3GetPayment", new List<string> { "auth:read", "payments:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetPayment", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -2084,7 +2199,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payments/{paymentID}/metadata", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Patch, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "V3UpdatePaymentMetadataRequestValue", "json", false, true);
             if (serializedBody != null)
@@ -2092,19 +2207,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3UpdatePaymentMetadata", new List<string> { "auth:read", "payments:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3UpdatePaymentMetadata", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -2167,7 +2282,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "V3InitiatePaymentRequestValue", "json", false, true);
             if (serializedBody != null)
@@ -2175,19 +2290,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3InitiatePayment", new List<string> { "auth:read", "payments:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3InitiatePayment", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -2259,7 +2374,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
             if (serializedBody != null)
@@ -2267,19 +2382,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3ListPaymentInitiations", new List<string> { "auth:read", "payments:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListPaymentInitiations", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -2349,21 +2464,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3DeletePaymentInitiation", new List<string> { "auth:read", "payments:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3DeletePaymentInitiation", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -2425,21 +2540,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3GetPaymentInitiation", new List<string> { "auth:read", "payments:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetPaymentInitiation", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -2509,21 +2624,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}/retry", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3RetryPaymentInitiation", new List<string> { "auth:read", "payments:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3RetryPaymentInitiation", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -2593,21 +2708,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}/approve", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3ApprovePaymentInitiation", new List<string> { "auth:read", "payments:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ApprovePaymentInitiation", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -2677,21 +2792,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}/reject", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3RejectPaymentInitiation", new List<string> { "auth:read", "payments:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3RejectPaymentInitiation", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -2754,7 +2869,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}/reverse", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "V3ReversePaymentInitiationRequestValue", "json", false, true);
             if (serializedBody != null)
@@ -2762,19 +2877,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3ReversePaymentInitiation", new List<string> { "auth:read", "payments:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ReversePaymentInitiation", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -2847,7 +2962,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}/adjustments", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
             if (serializedBody != null)
@@ -2855,19 +2970,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3ListPaymentInitiationAdjustments", new List<string> { "auth:read", "payments:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListPaymentInitiationAdjustments", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -2940,7 +3055,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}/payments", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
             if (serializedBody != null)
@@ -2948,19 +3063,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3ListPaymentInitiationRelatedPayments", new List<string> { "auth:read", "payments:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListPaymentInitiationRelatedPayments", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -3020,14 +3135,14 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V3CreatePoolResponse> CreatePoolAsync(V3CreatePoolRequest? request = null)
+        public async Task<Models.Requests.V3CreatePaymentServiceUserResponse> CreatePaymentServiceUserAsync(V3CreatePaymentServiceUserRequest? request = null)
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
 
-            var urlString = baseUrl + "/api/payments/v3/pools";
+            var urlString = baseUrl + "/api/payments/v3/payment-service-users";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, true);
             if (serializedBody != null)
@@ -3035,19 +3150,451 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3CreatePool", new List<string> { "auth:read", "payments:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3CreatePaymentServiceUser", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode == default)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 201)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Components.V3CreatePaymentServiceUserResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Include);
+                    var response = new Models.Requests.V3CreatePaymentServiceUserResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.V3CreatePaymentServiceUserResponseValue = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<V3ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Include);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+        }
+
+        public async Task<V3ListPaymentServiceUsersResponse> ListPaymentServiceUsersAsync(long? pageSize = null, string? cursor = null, Dictionary<string, object>? requestBody = null)
+        {
+            var request = new V3ListPaymentServiceUsersRequest()
+            {
+                PageSize = pageSize,
+                Cursor = cursor,
+                RequestBody = requestBody,
+            };
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-service-users", request);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListPaymentServiceUsers", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode == default)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<V3PaymentServiceUsersCursorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Include);
+                    var response = new V3ListPaymentServiceUsersResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.V3PaymentServiceUsersCursorResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<V3ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Include);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+        }
+
+        public async Task<Models.Requests.V3GetPaymentServiceUserResponse> GetPaymentServiceUserAsync(string paymentServiceUserID)
+        {
+            var request = new V3GetPaymentServiceUserRequest()
+            {
+                PaymentServiceUserID = paymentServiceUserID,
+            };
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-service-users/{paymentServiceUserID}", request);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetPaymentServiceUser", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode == default)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Components.V3GetPaymentServiceUserResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new Models.Requests.V3GetPaymentServiceUserResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.V3GetPaymentServiceUserResponseValue = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<V3ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+        }
+
+        public async Task<V3AddBankAccountToPaymentServiceUserResponse> AddBankAccountToPaymentServiceUserAsync(string paymentServiceUserID, string bankAccountID)
+        {
+            var request = new V3AddBankAccountToPaymentServiceUserRequest()
+            {
+                PaymentServiceUserID = paymentServiceUserID,
+                BankAccountID = bankAccountID,
+            };
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-service-users/{paymentServiceUserID}/bank-accounts/{bankAccountID}", request);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3AddBankAccountToPaymentServiceUser", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode == default)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 204)
+            {                
+                return new V3AddBankAccountToPaymentServiceUserResponse()
+                {
+                    HttpMeta = new Models.Components.HTTPMetadata()
+                    {
+                        Response = httpResponse,
+                        Request = httpRequest
+                    }
+                };
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<V3ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+        }
+
+        public async Task<Models.Requests.V3ForwardPaymentServiceUserBankAccountResponse> ForwardPaymentServiceUserBankAccountAsync(string paymentServiceUserID, string bankAccountID, Models.Components.V3ForwardPaymentServiceUserBankAccountRequest? v3ForwardPaymentServiceUserBankAccountRequest = null)
+        {
+            var request = new Models.Requests.V3ForwardPaymentServiceUserBankAccountRequest()
+            {
+                PaymentServiceUserID = paymentServiceUserID,
+                BankAccountID = bankAccountID,
+                V3ForwardPaymentServiceUserBankAccountRequestValue = v3ForwardPaymentServiceUserBankAccountRequest,
+            };
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-service-users/{paymentServiceUserID}/bank-accounts/{bankAccountID}/forward", request);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "V3ForwardPaymentServiceUserBankAccountRequestValue", "json", false, true);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ForwardPaymentServiceUserBankAccount", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode == default)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 202)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Components.V3ForwardPaymentServiceUserBankAccountResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new Models.Requests.V3ForwardPaymentServiceUserBankAccountResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.V3ForwardPaymentServiceUserBankAccountResponseValue = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<V3ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+        }
+
+        public async Task<Models.Requests.V3CreatePoolResponse> CreatePoolAsync(V3CreatePoolRequest? request = null)
+        {
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+
+            var urlString = baseUrl + "/api/payments/v3/pools";
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, true);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3CreatePool", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -3119,7 +3666,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/pools", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
             if (serializedBody != null)
@@ -3127,19 +3674,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3ListPools", new List<string> { "auth:read", "payments:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListPools", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -3209,21 +3756,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/pools/{poolID}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3GetPool", new List<string> { "auth:read", "payments:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetPool", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -3293,21 +3840,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/pools/{poolID}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3DeletePool", new List<string> { "auth:read", "payments:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3DeletePool", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -3370,21 +3917,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/pools/{poolID}/balances", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3GetPoolBalances", new List<string> { "auth:read", "payments:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetPoolBalances", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -3444,6 +3991,90 @@ namespace FormanceSDK
             }
         }
 
+        public async Task<V3GetPoolBalancesLatestResponse> GetPoolBalancesLatestAsync(string poolID)
+        {
+            var request = new V3GetPoolBalancesLatestRequest()
+            {
+                PoolID = poolID,
+            };
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/pools/{poolID}/balances/latest", request);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetPoolBalancesLatest", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode == default)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<V3PoolBalancesResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new V3GetPoolBalancesLatestResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.V3PoolBalancesResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var obj = ResponseBodyDeserializer.Deserialize<V3ErrorResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    throw obj!;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse);
+            }
+        }
+
         public async Task<V3AddAccountToPoolResponse> AddAccountToPoolAsync(string poolID, string accountID)
         {
             var request = new V3AddAccountToPoolRequest()
@@ -3455,21 +4086,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/pools/{poolID}/accounts/{accountID}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3AddAccountToPool", new List<string> { "auth:read", "payments:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3AddAccountToPool", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -3532,21 +4163,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/pools/{poolID}/accounts/{accountID}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3RemoveAccountFromPool", new List<string> { "auth:read", "payments:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3RemoveAccountFromPool", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -3608,21 +4239,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/tasks/{taskID}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v3GetTask", new List<string> { "auth:read", "payments:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetTask", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)

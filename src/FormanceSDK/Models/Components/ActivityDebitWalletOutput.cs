@@ -17,6 +17,6 @@ namespace FormanceSDK.Models.Components
     {
 
         [JsonProperty("data")]
-        public Hold Data { get; set; } = default!;
+        public OrchestrationHold Data { get; set; } = default!;
     }
 }

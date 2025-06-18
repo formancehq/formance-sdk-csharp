@@ -19,6 +19,8 @@ namespace FormanceSDK.Models.Components
         Unknown,
         [JsonProperty("WAITING_FOR_VALIDATION")]
         WaitingForValidation,
+        [JsonProperty("SCHEDULED_FOR_PROCESSING")]
+        ScheduledForProcessing,
         [JsonProperty("PROCESSING")]
         Processing,
         [JsonProperty("PROCESSED")]

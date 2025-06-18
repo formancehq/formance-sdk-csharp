@@ -14,7 +14,7 @@
 * [CreateTransferInitiation](#createtransferinitiation) - Create a TransferInitiation
 * [GetTransferInitiation](#gettransferinitiation) - Get a transfer initiation
 * [DeleteTransferInitiation](#deletetransferinitiation) - Delete a transfer initiation
-* [UdpateTransferInitiationStatus](#udpatetransferinitiationstatus) - Update the status of a transfer initiation
+* [UpdateTransferInitiationStatus](#updatetransferinitiationstatus) - Update the status of a transfer initiation
 * [ReverseTransferInitiation](#reversetransferinitiation) - Reverse a transfer initiation
 * [RetryTransferInitiation](#retrytransferinitiation) - Retry a failed transfer initiation
 * [ListPools](#listpools) - List Pools
@@ -23,7 +23,8 @@
 * [DeletePool](#deletepool) - Delete a Pool
 * [AddAccountToPool](#addaccounttopool) - Add an account to a pool
 * [RemoveAccountFromPool](#removeaccountfrompool) - Remove an account from a pool
-* [GetPoolBalances](#getpoolbalances) - Get pool balances
+* [GetPoolBalances](#getpoolbalances) - Get historical pool balances at a particular point in time
+* [GetPoolBalancesLatest](#getpoolbalanceslatest) - Get latest pool balances
 * [CreateAccount](#createaccount) - Create an account
 * [PaymentslistAccounts](#paymentslistaccounts) - List accounts
 * [PaymentsgetAccount](#paymentsgetaccount) - Get an account
@@ -99,11 +100,11 @@ var sdk = new Formance(security: new Security() {
 PaymentRequest req = new PaymentRequest() {
     Reference = "<value>",
     ConnectorID = "<id>",
-    CreatedAt = System.DateTime.Parse("2025-11-09T01:03:21.011Z"),
+    CreatedAt = System.DateTime.Parse("2025-08-26T06:29:11.777Z"),
     Amount = 100,
     Type = PaymentType.Other,
     Status = PaymentStatus.RefundedFailure,
-    Scheme = PaymentScheme.SepaDebit,
+    Scheme = PaymentScheme.Unionpay,
     Asset = "USD",
 };
 
@@ -151,8 +152,7 @@ var res = await sdk.Payments.V1.ListPaymentsAsync(
     sort: new List<string>() {
         "date:asc",
         "status:desc",
-    },
-    query: "<value>"
+    }
 );
 
 // handle response
@@ -281,8 +281,7 @@ var res = await sdk.Payments.V1.ListTransferInitiationsAsync(
     sort: new List<string>() {
         "date:asc",
         "status:desc",
-    },
-    query: "<value>"
+    }
 );
 
 // handle response
@@ -326,12 +325,12 @@ var sdk = new Formance(security: new Security() {
 
 TransferInitiationRequest req = new TransferInitiationRequest() {
     Reference = "XXX",
-    ScheduledAt = System.DateTime.Parse("2023-10-09T08:11:40.585Z"),
-    Description = "worthy pace vague ick liberalize between um",
+    ScheduledAt = System.DateTime.Parse("2023-04-02T01:40:50.195Z"),
+    Description = "flowery yum keenly operating knavishly commemorate recent apropos",
     SourceAccountID = "<id>",
     DestinationAccountID = "<id>",
     Type = TransferInitiationRequestType.Payout,
-    Amount = 847873,
+    Amount = 181752,
     Asset = "USD",
     Validated = false,
 };
@@ -432,7 +431,7 @@ var res = await sdk.Payments.V1.DeleteTransferInitiationAsync(transferId: "XXX")
 | FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
 | FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
-## UdpateTransferInitiationStatus
+## UpdateTransferInitiationStatus
 
 Update a transfer initiation status
 
@@ -447,9 +446,9 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Payments.V1.UdpateTransferInitiationStatusAsync(
+var res = await sdk.Payments.V1.UpdateTransferInitiationStatusAsync(
     transferId: "XXX",
-    updateTransferInitiationStatusRequest: new UpdateTransferInitiationStatusRequest() {
+    updateTransferInitiationStatusRequest: new Models.Components.UpdateTransferInitiationStatusRequest() {
         Status = Status.Validated,
     }
 );
@@ -459,14 +458,14 @@ var res = await sdk.Payments.V1.UdpateTransferInitiationStatusAsync(
 
 ### Parameters
 
-| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               | Example                                                                                                   |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `TransferId`                                                                                              | *string*                                                                                                  | :heavy_check_mark:                                                                                        | The transfer ID.                                                                                          | XXX                                                                                                       |
-| `UpdateTransferInitiationStatusRequest`                                                                   | [UpdateTransferInitiationStatusRequest](../../Models/Components/UpdateTransferInitiationStatusRequest.md) | :heavy_check_mark:                                                                                        | N/A                                                                                                       |                                                                                                           |
+| Parameter                                                                                                                   | Type                                                                                                                        | Required                                                                                                                    | Description                                                                                                                 | Example                                                                                                                     |
+| --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `TransferId`                                                                                                                | *string*                                                                                                                    | :heavy_check_mark:                                                                                                          | The transfer ID.                                                                                                            | XXX                                                                                                                         |
+| `UpdateTransferInitiationStatusRequest`                                                                                     | [Models.Components.UpdateTransferInitiationStatusRequest](../../Models/Components/UpdateTransferInitiationStatusRequest.md) | :heavy_check_mark:                                                                                                          | N/A                                                                                                                         |                                                                                                                             |
 
 ### Response
 
-**[UdpateTransferInitiationStatusResponse](../../Models/Requests/UdpateTransferInitiationStatusResponse.md)**
+**[UpdateTransferInitiationStatusResponse](../../Models/Requests/UpdateTransferInitiationStatusResponse.md)**
 
 ### Errors
 
@@ -484,7 +483,6 @@ Reverse transfer initiation
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -495,12 +493,10 @@ var res = await sdk.Payments.V1.ReverseTransferInitiationAsync(
     transferId: "XXX",
     reverseTransferInitiationRequest: new Models.Components.ReverseTransferInitiationRequest() {
         Reference = "XXX",
-        Description = "emerge whose mechanically outside kissingly",
-        Amount = 978360,
+        Description = "keel caption frenetically ew given fencing scratch yearningly quickly know",
+        Amount = 563034,
         Asset = "USD",
-        Metadata = new Dictionary<string, string>() {
-            { "key", "<value>" },
-        },
+        Metadata = null,
     }
 );
 
@@ -584,8 +580,7 @@ var res = await sdk.Payments.V1.ListPoolsAsync(
     sort: new List<string>() {
         "date:asc",
         "status:desc",
-    },
-    query: "<value>"
+    }
 );
 
 // handle response
@@ -630,7 +625,8 @@ var sdk = new Formance(security: new Security() {
 PoolRequest req = new PoolRequest() {
     Name = "<value>",
     AccountIDs = new List<string>() {
-        "<value>",
+        "<value 1>",
+        "<value 2>",
     },
 };
 
@@ -816,7 +812,7 @@ var res = await sdk.Payments.V1.RemoveAccountFromPoolAsync(
 
 ## GetPoolBalances
 
-Get pool balances
+Get historical pool balances at a particular point in time
 
 ### Example Usage
 
@@ -832,7 +828,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Payments.V1.GetPoolBalancesAsync(
     poolId: "XXX",
-    at: System.DateTime.Parse("2024-05-04T06:40:23.119Z")
+    at: System.DateTime.Parse("2024-11-27T10:59:51.663Z")
 );
 
 // handle response
@@ -848,6 +844,43 @@ var res = await sdk.Payments.V1.GetPoolBalancesAsync(
 ### Response
 
 **[GetPoolBalancesResponse](../../Models/Requests/GetPoolBalancesResponse.md)**
+
+### Errors
+
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+
+## GetPoolBalancesLatest
+
+Get latest pool balances
+
+### Example Usage
+
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Payments.V1.GetPoolBalancesLatestAsync(poolId: "XXX");
+
+// handle response
+```
+
+### Parameters
+
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `PoolId`           | *string*           | :heavy_check_mark: | The pool ID.       | XXX                |
+
+### Response
+
+**[GetPoolBalancesLatestResponse](../../Models/Requests/GetPoolBalancesLatestResponse.md)**
 
 ### Errors
 
@@ -875,8 +908,8 @@ var sdk = new Formance(security: new Security() {
 AccountRequest req = new AccountRequest() {
     Reference = "<value>",
     ConnectorID = "<id>",
-    CreatedAt = System.DateTime.Parse("2025-08-19T02:15:08.152Z"),
-    Type = AccountType.Internal,
+    CreatedAt = System.DateTime.Parse("2025-07-27T08:57:17.388Z"),
+    Type = AccountType.Unknown,
 };
 
 var res = await sdk.Payments.V1.CreateAccountAsync(req);
@@ -919,6 +952,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 PaymentslistAccountsRequest req = new PaymentslistAccountsRequest() {
+    PageSize = 100,
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     Sort = new List<string>() {
         "date:asc",
@@ -1004,6 +1038,7 @@ var sdk = new Formance(security: new Security() {
 
 GetAccountBalancesRequest req = new GetAccountBalancesRequest() {
     AccountId = "XXX",
+    PageSize = 100,
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     Sort = new List<string>() {
         "date:asc",
@@ -1050,7 +1085,6 @@ var sdk = new Formance(security: new Security() {
 
 BankAccountRequest req = new BankAccountRequest() {
     Country = "GB",
-    ConnectorID = "<id>",
     Name = "My account",
 };
 
@@ -1224,6 +1258,8 @@ var res = await sdk.Payments.V1.UpdateBankAccountMetadataAsync(
     updateBankAccountMetadataRequest: new Models.Components.UpdateBankAccountMetadataRequest() {
         Metadata = new Dictionary<string, string>() {
             { "key", "<value>" },
+            { "key1", "<value>" },
+            { "key2", "<value>" },
         },
     }
 );
@@ -1327,12 +1363,13 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.InstallConnectorAsync(
-    connector: Connector.Wise,
-    connectorConfig: ConnectorConfig.CreateAtlar(
-        new AtlarConfig() {
-            Name = "My Atlar Account",
-            AccessKey = "XXX",
-            Secret = "XXX",
+    connector: Connector.Mangopay,
+    connectorConfig: ConnectorConfig.CreateModulr(
+        new ModulrConfig() {
+            Name = "My Modulr Account",
+            ApiKey = "XXX",
+            ApiSecret = "XXX",
+            PollingPeriod = "60s",
         }
     )
 );
@@ -1375,7 +1412,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Payments.V1.UninstallConnectorAsync(connector: Connector.Modulr);
+var res = await sdk.Payments.V1.UninstallConnectorAsync(connector: Connector.Generic);
 
 // handle response
 ```
@@ -1413,7 +1450,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.UninstallConnectorV1Async(
-    connector: Connector.Generic,
+    connector: Connector.BankingCircle,
     connectorId: "XXX"
 );
 
@@ -1455,7 +1492,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Payments.V1.ReadConnectorConfigAsync(connector: Connector.Generic);
+var res = await sdk.Payments.V1.ReadConnectorConfigAsync(connector: Connector.Modulr);
 
 // handle response
 ```
@@ -1493,14 +1530,15 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.UpdateConnectorConfigV1Async(
-    connector: Connector.Stripe,
+    connector: Connector.Mangopay,
     connectorId: "XXX",
-    connectorConfig: ConnectorConfig.CreateAdyen(
-        new AdyenConfig() {
-            Name = "My Adyen Account",
+    connectorConfig: ConnectorConfig.CreateMoneycorp(
+        new MoneycorpConfig() {
+            Name = "My Moneycorp Account",
+            ClientID = "XXX",
             ApiKey = "XXX",
-            HmacKey = "XXX",
-            LiveEndpointPrefix = "XXX",
+            Endpoint = "XXX",
+            PollingPeriod = "60s",
         }
     )
 );
@@ -1543,7 +1581,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.ReadConnectorConfigV1Async(
-    connector: Connector.CurrencyCloud,
+    connector: Connector.Mangopay,
     connectorId: "XXX"
 );
 
@@ -1587,7 +1625,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Payments.V1.ResetConnectorAsync(connector: Connector.Atlar);
+var res = await sdk.Payments.V1.ResetConnectorAsync(connector: Connector.Wise);
 
 // handle response
 ```
@@ -1627,7 +1665,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.ResetConnectorV1Async(
-    connector: Connector.Generic,
+    connector: Connector.Wise,
     connectorId: "XXX"
 );
 
@@ -1713,7 +1751,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.ListConnectorTasksV1Async(
-    connector: Connector.BankingCircle,
+    connector: Connector.Wise,
     connectorId: "XXX",
     pageSize: 100,
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
@@ -1760,7 +1798,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.GetConnectorTaskAsync(
-    connector: Connector.Adyen,
+    connector: Connector.Moneycorp,
     taskId: "task1"
 );
 
@@ -1801,7 +1839,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.GetConnectorTaskV1Async(
-    connector: Connector.BankingCircle,
+    connector: Connector.Modulr,
     connectorId: "XXX",
     taskId: "task1"
 );
@@ -1844,7 +1882,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.ConnectorsTransferAsync(
-    connector: Connector.BankingCircle,
+    connector: Connector.Generic,
     transferRequest: new TransferRequest() {
         Amount = 100,
         Asset = "USD",

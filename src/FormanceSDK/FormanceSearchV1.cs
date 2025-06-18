@@ -37,26 +37,19 @@ namespace FormanceSDK
         /// Elasticsearch.v1 query engine
         /// </remarks>
         /// </summary>
-        Task<SearchResponse> SearchAsync(Query? request = null);
+        Task<SearchResponse> SearchAsync(Query request);
     }
 
     public class FormanceSearchV1: IFormanceSearchV1
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "1.0.3";
-        private const string _sdkGenVersion = "2.558.5";
-        private const string _openapiDocVersion = "v3.0.3";
-        private const string _userAgent = "speakeasy-sdk/csharp 1.0.3 2.558.5 v3.0.3 FormanceSDK";
-        private string _serverUrl = "";
-        private ISpeakeasyHttpClient _client;
-        private Func<FormanceSDK.Models.Components.Security>? _securitySource;
+        private const string _sdkVersion = "1.1.0";
+        private const string _sdkGenVersion = "2.630.9";
+        private const string _openapiDocVersion = "v3.0.5";
 
-        public FormanceSearchV1(ISpeakeasyHttpClient client, Func<FormanceSDK.Models.Components.Security>? securitySource, string serverUrl, SDKConfig config)
+        public FormanceSearchV1(SDKConfig config)
         {
-            _client = client;
-            _securitySource = securitySource;
-            _serverUrl = serverUrl;
             SDKConfiguration = config;
         }
 
@@ -68,21 +61,21 @@ namespace FormanceSDK
             var urlString = baseUrl + "/api/search/_info";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("searchgetServerInfo", new List<string> { "auth:read", "search:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "searchgetServerInfo", new List<string> { "auth:read", "search:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -137,34 +130,34 @@ namespace FormanceSDK
         }
 
         [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
-        public async Task<SearchResponse> SearchAsync(Query? request = null)
+        public async Task<SearchResponse> SearchAsync(Query request)
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
 
             var urlString = baseUrl + "/api/search/";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, true);
+            var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, false);
             if (serializedBody != null)
             {
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("search", new List<string> { "auth:read", "search:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "search", new List<string> { "auth:read", "search:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -197,7 +190,7 @@ namespace FormanceSDK
             {
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
-                    var obj = ResponseBodyDeserializer.Deserialize<Response>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Include);
+                    var obj = ResponseBodyDeserializer.Deserialize<Response>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
                     var response = new SearchResponse()
                     {
                         HttpMeta = new Models.Components.HTTPMetadata()

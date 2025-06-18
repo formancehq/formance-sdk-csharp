@@ -36,7 +36,7 @@ namespace FormanceSDK.Models.Components
         public TaskMangoPayState? State { get; set; } = null;
 
         [JsonProperty("error")]
-        public string? Error { get; set; }
+        public string? Error { get; set; } = null;
 
         [JsonProperty("descriptor")]
         public TaskMangoPayDescriptor Descriptor { get; set; } = default!;

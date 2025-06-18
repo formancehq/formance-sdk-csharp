@@ -22,6 +22,6 @@ namespace FormanceSDK.Models.Requests
         /// <summary>
         /// OK
         /// </summary>
-        public Models.Components.V2RevertTransactionResponse? V2RevertTransactionResponseValue { get; set; }
+        public Models.Components.V2CreateTransactionResponse? V2CreateTransactionResponse { get; set; }
     }
 }

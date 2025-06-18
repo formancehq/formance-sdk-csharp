@@ -20,7 +20,7 @@ namespace FormanceSDK.Models.Components
         public string Country { get; set; } = default!;
 
         [JsonProperty("connectorID")]
-        public string ConnectorID { get; set; } = default!;
+        public string? ConnectorID { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; } = default!;

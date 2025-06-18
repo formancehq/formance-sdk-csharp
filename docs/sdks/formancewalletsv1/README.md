@@ -116,6 +116,7 @@ ListWalletsRequest req = new ListWalletsRequest() {
     Metadata = new Dictionary<string, string>() {
         { "admin", "true" },
     },
+    PageSize = 100,
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     Expand = "balances",
 };
@@ -151,22 +152,13 @@ Create a new wallet
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Wallets.V1.CreateWalletAsync(
-    idempotencyKey: "<value>",
-    createWalletRequest: new Models.Components.CreateWalletRequest() {
-        Metadata = new Dictionary<string, string>() {
-            { "key", "<value>" },
-        },
-        Name = "<value>",
-    }
-);
+var res = await sdk.Wallets.V1.CreateWalletAsync();
 
 // handle response
 ```
@@ -235,23 +227,13 @@ Update a wallet
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using FormanceSDK.Models.Requests;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Wallets.V1.UpdateWalletAsync(
-    id: "<id>",
-    idempotencyKey: "<value>",
-    requestBody: new UpdateWalletRequestBody() {
-        Metadata = new Dictionary<string, string>() {
-            { "key", "<value>" },
-        },
-    }
-);
+var res = await sdk.Wallets.V1.UpdateWalletAsync(id: "<id>");
 
 // handle response
 ```
@@ -363,24 +345,18 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Wallets.V1.CreateBalanceAsync(
-    id: "<id>",
-    idempotencyKey: "<value>",
-    createBalanceRequest: new Models.Components.CreateBalanceRequest() {
-        Name = "<value>",
-    }
-);
+var res = await sdk.Wallets.V1.CreateBalanceAsync(id: "<id>");
 
 // handle response
 ```
 
 ### Parameters
 
-| Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
-| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `Id`                                                                                      | *string*                                                                                  | :heavy_check_mark:                                                                        | N/A                                                                                       |
-| `IdempotencyKey`                                                                          | *string*                                                                                  | :heavy_minus_sign:                                                                        | Use an idempotency key                                                                    |
-| `CreateBalanceRequest`                                                                    | [Models.Components.CreateBalanceRequest](../../Models/Components/CreateBalanceRequest.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| Parameter                                     | Type                                          | Required                                      | Description                                   |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| `Id`                                          | *string*                                      | :heavy_check_mark:                            | N/A                                           |
+| `IdempotencyKey`                              | *string*                                      | :heavy_minus_sign:                            | Use an idempotency key                        |
+| `Balance`                                     | [Balance](../../Models/Components/Balance.md) | :heavy_minus_sign:                            | N/A                                           |
 
 ### Response
 
@@ -452,7 +428,6 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Wallets.V1.DebitWalletAsync(
     id: "<id>",
-    idempotencyKey: "<value>",
     debitWalletRequest: new Models.Components.DebitWalletRequest() {
         Amount = new Monetary() {
             Asset = "USD/2",
@@ -505,7 +480,6 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Wallets.V1.CreditWalletAsync(
     id: "<id>",
-    idempotencyKey: "<value>",
     creditWalletRequest: new Models.Components.CreditWalletRequest() {
         Amount = new Monetary() {
             Asset = "USD/2",
@@ -514,9 +488,7 @@ var res = await sdk.Wallets.V1.CreditWalletAsync(
         Metadata = new Dictionary<string, string>() {
             { "key", "" },
         },
-        Sources = new List<Subject>() {
-
-        },
+        Sources = new List<Subject>() {},
     }
 );
 
@@ -644,7 +616,6 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Wallets.V1.ConfirmHoldAsync(
     holdId: "<id>",
-    idempotencyKey: "<value>",
     confirmHoldRequest: new Models.Components.ConfirmHoldRequest() {
         Amount = 100,
         Final = true,
@@ -688,10 +659,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Wallets.V1.VoidHoldAsync(
-    holdId: "<id>",
-    idempotencyKey: "<value>"
-);
+var res = await sdk.Wallets.V1.VoidHoldAsync(holdId: "<id>");
 
 // handle response
 ```

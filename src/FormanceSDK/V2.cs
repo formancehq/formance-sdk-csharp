@@ -102,7 +102,7 @@ namespace FormanceSDK
         /// Delete metadata by key
         /// </remarks>
         /// </summary>
-        Task<V2DeleteAccountMetadataResponse> DeleteAccountMetadataAsync(string ledger, string address, string key);
+        Task<V2DeleteAccountMetadataResponse> DeleteAccountMetadataAsync(string ledger, string address, string key, string? idempotencyKey = null);
 
         /// <summary>
         /// Get statistics from a ledger
@@ -150,12 +150,12 @@ namespace FormanceSDK
         /// Delete metadata by key
         /// </remarks>
         /// </summary>
-        Task<V2DeleteTransactionMetadataResponse> DeleteTransactionMetadataAsync(string ledger, BigInteger id, string key);
+        Task<V2DeleteTransactionMetadataResponse> DeleteTransactionMetadataAsync(string ledger, BigInteger id, string key, string? idempotencyKey = null);
 
         /// <summary>
         /// Revert a ledger transaction by its ID
         /// </summary>
-        Task<Models.Requests.V2RevertTransactionResponse> RevertTransactionAsync(V2RevertTransactionRequest request);
+        Task<V2RevertTransactionResponse> RevertTransactionAsync(V2RevertTransactionRequest request);
 
         /// <summary>
         /// Get the aggregated balances from selected accounts
@@ -187,19 +187,12 @@ namespace FormanceSDK
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "1.0.3";
-        private const string _sdkGenVersion = "2.558.5";
-        private const string _openapiDocVersion = "v3.0.3";
-        private const string _userAgent = "speakeasy-sdk/csharp 1.0.3 2.558.5 v3.0.3 FormanceSDK";
-        private string _serverUrl = "";
-        private ISpeakeasyHttpClient _client;
-        private Func<FormanceSDK.Models.Components.Security>? _securitySource;
+        private const string _sdkVersion = "1.1.0";
+        private const string _sdkGenVersion = "2.630.9";
+        private const string _openapiDocVersion = "v3.0.5";
 
-        public V2(ISpeakeasyHttpClient client, Func<FormanceSDK.Models.Components.Security>? securitySource, string serverUrl, SDKConfig config)
+        public V2(SDKConfig config)
         {
-            _client = client;
-            _securitySource = securitySource;
-            _serverUrl = serverUrl;
             SDKConfiguration = config;
         }
 
@@ -210,21 +203,21 @@ namespace FormanceSDK
             var urlString = baseUrl + "/api/ledger/_/info";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2GetInfo", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2GetInfo", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -310,21 +303,21 @@ namespace FormanceSDK
             var urlString = baseUrl + "/api/ledger/_/metrics";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("getMetrics", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getMetrics", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -395,21 +388,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2ListLedgers", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2ListLedgers", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -479,21 +472,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2GetLedger", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2GetLedger", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -564,7 +557,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "V2CreateLedgerRequestValue", "json", false, false);
             if (serializedBody != null)
@@ -572,19 +565,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2CreateLedger", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2CreateLedger", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -647,7 +640,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/metadata", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
@@ -655,19 +648,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2UpdateLedgerMetadata", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2UpdateLedgerMetadata", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -749,21 +742,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/metadata/{key}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2DeleteLedgerMetadata", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2DeleteLedgerMetadata", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -825,21 +818,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/_info", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2GetLedgerInfo", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2GetLedgerInfo", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -905,7 +898,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/_bulk", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
@@ -913,19 +906,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2CreateBulk", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2CreateBulk", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1016,7 +1009,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/accounts", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Head, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
@@ -1024,19 +1017,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2CountAccounts", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2CountAccounts", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1094,7 +1087,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/accounts", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
@@ -1102,19 +1095,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2ListAccounts", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2ListAccounts", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1187,21 +1180,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/accounts/{address}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2GetAccount", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2GetAccount", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1267,7 +1260,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/accounts/{address}/metadata", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
@@ -1276,19 +1269,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2AddMetadataToAccount", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2AddMetadataToAccount", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1340,33 +1333,35 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2DeleteAccountMetadataResponse> DeleteAccountMetadataAsync(string ledger, string address, string key)
+        public async Task<V2DeleteAccountMetadataResponse> DeleteAccountMetadataAsync(string ledger, string address, string key, string? idempotencyKey = null)
         {
             var request = new V2DeleteAccountMetadataRequest()
             {
                 Ledger = ledger,
                 Address = address,
                 Key = key,
+                IdempotencyKey = idempotencyKey,
             };
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/accounts/{address}/metadata/{key}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2DeleteAccountMetadata", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2DeleteAccountMetadata", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1428,21 +1423,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/stats", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2ReadStats", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2ReadStats", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1514,7 +1509,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Head, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
@@ -1522,19 +1517,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2CountTransactions", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2CountTransactions", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1592,7 +1587,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
@@ -1600,19 +1595,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2ListTransactions", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2ListTransactions", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1678,7 +1673,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "V2PostTransaction", "json", false, false);
@@ -1687,19 +1682,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2CreateTransaction", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2CreateTransaction", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1772,21 +1767,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions/{id}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2GetTransaction", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2GetTransaction", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1852,7 +1847,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions/{id}/metadata", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
@@ -1861,19 +1856,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2AddMetadataOnTransaction", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2AddMetadataOnTransaction", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -1925,33 +1920,35 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2DeleteTransactionMetadataResponse> DeleteTransactionMetadataAsync(string ledger, BigInteger id, string key)
+        public async Task<V2DeleteTransactionMetadataResponse> DeleteTransactionMetadataAsync(string ledger, BigInteger id, string key, string? idempotencyKey = null)
         {
             var request = new V2DeleteTransactionMetadataRequest()
             {
                 Ledger = ledger,
                 Id = id,
                 Key = key,
+                IdempotencyKey = idempotencyKey,
             };
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions/{id}/metadata/{key}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2DeleteTransactionMetadata", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2DeleteTransactionMetadata", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -2003,27 +2000,27 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V2RevertTransactionResponse> RevertTransactionAsync(V2RevertTransactionRequest request)
+        public async Task<V2RevertTransactionResponse> RevertTransactionAsync(V2RevertTransactionRequest request)
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions/{id}/revert", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2RevertTransaction", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2RevertTransaction", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -2056,8 +2053,8 @@ namespace FormanceSDK
             {
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
-                    var obj = ResponseBodyDeserializer.Deserialize<Models.Components.V2RevertTransactionResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new Models.Requests.V2RevertTransactionResponse()
+                    var obj = ResponseBodyDeserializer.Deserialize<Models.Components.V2CreateTransactionResponse>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var response = new V2RevertTransactionResponse()
                     {
                         HttpMeta = new Models.Components.HTTPMetadata()
                         {
@@ -2065,7 +2062,7 @@ namespace FormanceSDK
                             Request = httpRequest
                         }
                     };
-                    response.V2RevertTransactionResponseValue = obj;
+                    response.V2CreateTransactionResponse = obj;
                     return response;
                 }
 
@@ -2096,7 +2093,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/aggregate/balances", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
@@ -2104,19 +2101,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2GetBalancesAggregated", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2GetBalancesAggregated", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -2182,7 +2179,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/volumes", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
@@ -2190,19 +2187,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2GetVolumesWithBalances", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2GetVolumesWithBalances", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -2268,7 +2265,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/logs", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
@@ -2276,19 +2273,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2ListLogs", new List<string> { "auth:read", "ledger:read" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2ListLogs", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -2359,7 +2356,7 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/logs/import", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "V2ImportLogsRequestValue", "raw", false, false);
             if (serializedBody != null)
@@ -2367,19 +2364,19 @@ namespace FormanceSDK
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2ImportLogs", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2ImportLogs", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)
@@ -2441,21 +2438,21 @@ namespace FormanceSDK
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/logs/export", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("v2ExportLogs", new List<string> { "auth:read", "ledger:write" }, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2ExportLogs", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == default)

@@ -36,7 +36,7 @@ namespace FormanceSDK.Models.Components
         public TaskStripeState? State { get; set; } = null;
 
         [JsonProperty("error")]
-        public string? Error { get; set; }
+        public string? Error { get; set; } = null;
 
         [JsonProperty("descriptor")]
         public Descriptor Descriptor { get; set; } = default!;

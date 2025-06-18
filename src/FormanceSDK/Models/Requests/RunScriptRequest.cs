@@ -21,13 +21,13 @@ namespace FormanceSDK.Models.Requests
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")]
         public string Ledger { get; set; } = default!;
 
-        [SpeakeasyMetadata("request:mediaType=application/json")]
-        public Script Script { get; set; } = default!;
-
         /// <summary>
         /// Set the preview mode. Preview mode doesn&apos;t add the logs to the database or publish a message to the message broker.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=preview")]
         public bool? Preview { get; set; }
+
+        [SpeakeasyMetadata("request:mediaType=application/json")]
+        public Script Script { get; set; } = default!;
     }
 }

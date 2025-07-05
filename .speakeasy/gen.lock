@@ -3,10 +3,10 @@ id: bb4a1c17-4efb-4cf4-a5bb-53737f9f624b
 management:
   docChecksum: 2303b8447e474d428256a66f5ab2f945
   docVersion: v3.0.5
-  speakeasyVersion: 1.564.1
-  generationVersion: 2.630.9
-  releaseVersion: 1.1.0
-  configChecksum: 5f5506dbf58d4dd1d3468d7cb3f42409
+  speakeasyVersion: 1.575.5
+  generationVersion: 2.648.7
+  releaseVersion: 1.1.1
+  configChecksum: 431386030f8139d75f7bda55b6da594c
   repoURL: https://github.com/formancehq/formance-sdk-csharp.git
   published: true
 features:
@@ -27,7 +27,7 @@ features:
     methodArguments: 0.2.0
     nameOverrides: 2.81.2
     nullables: 0.1.1
-    oauth2ClientCredentials: 0.3.2
+    oauth2ClientCredentials: 0.3.3
     responseFormat: 0.0.4
     sdkHooks: 0.2.0
     unions: 0.2.2
@@ -2009,6 +2009,7 @@ generatedFiles:
   - src/FormanceSDK/Utils/FlexibleObjectDeserializer.cs
   - src/FormanceSDK/Utils/HeaderSerializer.cs
   - src/FormanceSDK/Utils/IsoDateTimeSerializer.cs
+  - src/FormanceSDK/Utils/OpenEnumConverter.cs
   - src/FormanceSDK/Utils/RequestBodySerializer.cs
   - src/FormanceSDK/Utils/ResponseBodyDeserializer.cs
   - src/FormanceSDK/Utils/Retries/BackoffStrategy.cs

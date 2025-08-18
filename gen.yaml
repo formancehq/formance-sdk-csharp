@@ -20,7 +20,7 @@ csharp:
   version: 1.1.0
   additionalDependencies: []
   author: Formance
-  baseErrorName: FormanceError
+  baseErrorName: SDKBaseException
   clientServerStatusCodesAsErrors: true
   defaultErrorName: SDKException
   disableNamespacePascalCasingApr2024: true

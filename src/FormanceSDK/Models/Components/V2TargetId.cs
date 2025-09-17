@@ -16,17 +16,17 @@ namespace FormanceSDK.Models.Components
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
-    
 
     public class V2TargetIdType
     {
         private V2TargetIdType(string value) { Value = value; }
 
         public string Value { get; private set; }
+
         public static V2TargetIdType Str { get { return new V2TargetIdType("str"); } }
-        
+
         public static V2TargetIdType Bigint { get { return new V2TargetIdType("bigint"); } }
-        
+
         public static V2TargetIdType Null { get { return new V2TargetIdType("null"); } }
 
         public override string ToString() { return Value; }
@@ -56,8 +56,10 @@ namespace FormanceSDK.Models.Components
 
 
     [JsonConverter(typeof(V2TargetId.V2TargetIdConverter))]
-    public class V2TargetId {
-        public V2TargetId(V2TargetIdType type) {
+    public class V2TargetId
+    {
+        public V2TargetId(V2TargetIdType type)
+        {
             Type = type;
         }
 
@@ -68,17 +70,16 @@ namespace FormanceSDK.Models.Components
         public BigInteger? Bigint { get; set; }
 
         public V2TargetIdType Type { get; set; }
-
-
-        public static V2TargetId CreateStr(string str) {
+        public static V2TargetId CreateStr(string str)
+        {
             V2TargetIdType typ = V2TargetIdType.Str;
 
             V2TargetId res = new V2TargetId(typ);
             res.Str = str;
             return res;
         }
-
-        public static V2TargetId CreateBigint(BigInteger bigint) {
+        public static V2TargetId CreateBigint(BigInteger bigint)
+        {
             V2TargetIdType typ = V2TargetIdType.Bigint;
 
             V2TargetId res = new V2TargetId(typ);
@@ -86,7 +87,8 @@ namespace FormanceSDK.Models.Components
             return res;
         }
 
-        public static V2TargetId CreateNull() {
+        public static V2TargetId CreateNull()
+        {
             V2TargetIdType typ = V2TargetIdType.Null;
             return new V2TargetId(typ);
         }
@@ -164,23 +166,25 @@ namespace FormanceSDK.Models.Components
                     writer.WriteRawValue("null");
                     return;
                 }
+
                 V2TargetId res = (V2TargetId)value;
                 if (V2TargetIdType.FromString(res.Type).Equals(V2TargetIdType.Null))
                 {
                     writer.WriteRawValue("null");
                     return;
                 }
+
                 if (res.Str != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.Str));
                     return;
                 }
+
                 if (res.Bigint != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.Bigint));
                     return;
                 }
-
             }
 
         }

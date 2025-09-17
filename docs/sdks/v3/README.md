@@ -63,6 +63,7 @@ Create a formance account object. This object will not be forwarded to the conne
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3CreateAccount" method="post" path="/api/payments/v3/accounts" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -72,7 +73,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-V3CreateAccountRequest req = ;
+V3CreateAccountRequest? req = null;
 
 var res = await sdk.Payments.V3.CreateAccountAsync(req);
 
@@ -102,6 +103,7 @@ List all accounts
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3ListAccounts" method="get" path="/api/payments/v3/accounts" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -144,6 +146,7 @@ Get an account by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3GetAccount" method="get" path="/api/payments/v3/accounts/{accountID}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -181,6 +184,7 @@ Get account balances
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3GetAccountBalances" method="get" path="/api/payments/v3/accounts/{accountID}/balances" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -226,6 +230,7 @@ Create a formance bank account object. This object will not be forwarded to the 
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3CreateBankAccount" method="post" path="/api/payments/v3/bank-accounts" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -235,7 +240,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-V3CreateBankAccountRequest req = ;
+V3CreateBankAccountRequest? req = null;
 
 var res = await sdk.Payments.V3.CreateBankAccountAsync(req);
 
@@ -265,6 +270,7 @@ List all bank accounts
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3ListBankAccounts" method="get" path="/api/payments/v3/bank-accounts" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -307,6 +313,7 @@ Get a Bank Account by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3GetBankAccount" method="get" path="/api/payments/v3/bank-accounts/{bankAccountID}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -344,6 +351,7 @@ Update a bank account's metadata
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3UpdateBankAccountMetadata" method="patch" path="/api/payments/v3/bank-accounts/{bankAccountID}/metadata" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -382,6 +390,7 @@ Forward a Bank Account to a PSP for creation
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3ForwardBankAccount" method="post" path="/api/payments/v3/bank-accounts/{bankAccountID}/forward" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -420,6 +429,7 @@ List all connectors
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3ListConnectors" method="get" path="/api/payments/v3/connectors" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -462,6 +472,7 @@ Install a connector
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3InstallConnector" method="post" path="/api/payments/v3/connectors/install/{connector}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -500,6 +511,7 @@ List all connector configurations
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3ListConnectorConfigs" method="get" path="/api/payments/v3/connectors/configs" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -531,6 +543,7 @@ Uninstall a connector
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3UninstallConnector" method="delete" path="/api/payments/v3/connectors/{connectorID}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -568,6 +581,7 @@ Get a connector configuration by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3GetConnectorConfig" method="get" path="/api/payments/v3/connectors/{connectorID}/config" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -605,6 +619,7 @@ Update connector config
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3UpdateConnectorConfig" method="patch" path="/api/payments/v3/connectors/{connectorID}/config" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -643,6 +658,7 @@ Reset a connector. Be aware that this will delete all data and stop all existing
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3ResetConnector" method="post" path="/api/payments/v3/connectors/{connectorID}/reset" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -680,6 +696,7 @@ List all connector schedules
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3ListConnectorSchedules" method="get" path="/api/payments/v3/connectors/{connectorID}/schedules" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -724,6 +741,7 @@ Get a connector schedule by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3GetConnectorSchedule" method="get" path="/api/payments/v3/connectors/{connectorID}/schedules/{scheduleID}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -765,6 +783,7 @@ List all connector schedule instances
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3ListConnectorScheduleInstances" method="get" path="/api/payments/v3/connectors/{connectorID}/schedules/{scheduleID}/instances" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -811,6 +830,7 @@ Create a formance payment object. This object will not be forwarded to the conne
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3CreatePayment" method="post" path="/api/payments/v3/payments" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -820,7 +840,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-V3CreatePaymentRequest req = ;
+V3CreatePaymentRequest? req = null;
 
 var res = await sdk.Payments.V3.CreatePaymentAsync(req);
 
@@ -850,6 +870,7 @@ List all payments
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3ListPayments" method="get" path="/api/payments/v3/payments" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -892,6 +913,7 @@ Get a payment by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3GetPayment" method="get" path="/api/payments/v3/payments/{paymentID}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -929,6 +951,7 @@ Update a payment's metadata
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3UpdatePaymentMetadata" method="patch" path="/api/payments/v3/payments/{paymentID}/metadata" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -967,6 +990,7 @@ Initiate a payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3InitiatePayment" method="post" path="/api/payments/v3/payment-initiations" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1005,6 +1029,7 @@ List all payment initiations
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3ListPaymentInitiations" method="get" path="/api/payments/v3/payment-initiations" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1047,6 +1072,7 @@ Delete a payment initiation by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3DeletePaymentInitiation" method="delete" path="/api/payments/v3/payment-initiations/{paymentInitiationID}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1084,6 +1110,7 @@ Get a payment initiation by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3GetPaymentInitiation" method="get" path="/api/payments/v3/payment-initiations/{paymentInitiationID}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1121,6 +1148,7 @@ Retry a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3RetryPaymentInitiation" method="post" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/retry" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1158,6 +1186,7 @@ Approve a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3ApprovePaymentInitiation" method="post" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/approve" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1195,6 +1224,7 @@ Reject a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3RejectPaymentInitiation" method="post" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/reject" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1232,6 +1262,7 @@ Reverse a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3ReversePaymentInitiation" method="post" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/reverse" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1270,6 +1301,7 @@ List all payment initiation adjustments
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3ListPaymentInitiationAdjustments" method="get" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/adjustments" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1314,6 +1346,7 @@ List all payments related to a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3ListPaymentInitiationRelatedPayments" method="get" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/payments" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1358,6 +1391,7 @@ Create a formance payment service user object
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3CreatePaymentServiceUser" method="post" path="/api/payments/v3/payment-service-users" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1367,7 +1401,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-V3CreatePaymentServiceUserRequest req = ;
+V3CreatePaymentServiceUserRequest? req = null;
 
 var res = await sdk.Payments.V3.CreatePaymentServiceUserAsync(req);
 
@@ -1397,6 +1431,7 @@ List all payment service users
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3ListPaymentServiceUsers" method="get" path="/api/payments/v3/payment-service-users" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1439,6 +1474,7 @@ Get a payment service user by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3GetPaymentServiceUser" method="get" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1476,6 +1512,7 @@ Add a bank account to a payment service user
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3AddBankAccountToPaymentServiceUser" method="post" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/bank-accounts/{bankAccountID}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1517,6 +1554,7 @@ Forward a payment service user's bank account to a connector
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3ForwardPaymentServiceUserBankAccount" method="post" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/bank-accounts/{bankAccountID}/forward" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1559,6 +1597,7 @@ Create a formance pool object
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3CreatePool" method="post" path="/api/payments/v3/pools" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1568,7 +1607,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-V3CreatePoolRequest req = ;
+V3CreatePoolRequest? req = null;
 
 var res = await sdk.Payments.V3.CreatePoolAsync(req);
 
@@ -1598,6 +1637,7 @@ List all pools
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3ListPools" method="get" path="/api/payments/v3/pools" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1640,6 +1680,7 @@ Get a pool by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3GetPool" method="get" path="/api/payments/v3/pools/{poolID}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1677,6 +1718,7 @@ Delete a pool by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3DeletePool" method="delete" path="/api/payments/v3/pools/{poolID}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1714,6 +1756,7 @@ Get historical pool balances from a particular point in time
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3GetPoolBalances" method="get" path="/api/payments/v3/pools/{poolID}/balances" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1752,6 +1795,7 @@ Get latest pool balances
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3GetPoolBalancesLatest" method="get" path="/api/payments/v3/pools/{poolID}/balances/latest" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1789,6 +1833,7 @@ Add an account to a pool
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3AddAccountToPool" method="post" path="/api/payments/v3/pools/{poolID}/accounts/{accountID}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1830,6 +1875,7 @@ Remove an account from a pool
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3RemoveAccountFromPool" method="delete" path="/api/payments/v3/pools/{poolID}/accounts/{accountID}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1871,6 +1917,7 @@ Get a task and its result by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v3GetTask" method="get" path="/api/payments/v3/tasks/{taskID}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;

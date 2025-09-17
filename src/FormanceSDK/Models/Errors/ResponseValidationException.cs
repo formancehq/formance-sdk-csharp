@@ -13,16 +13,18 @@ namespace FormanceSDK.Models.Errors
     using System;
     using System.Net.Http;
 
-    public class SDKException : FormanceError
+    /// <summary>
+    /// Raised if the response data could not be deserialized into the expected model.
+    /// </summary>
+    public class ResponseValidationException : FormanceError
     {
-        /// <summary>
-        /// Default API exception.
-        /// </summary>
-        public SDKException(
+
+        public ResponseValidationException(
             string message,
             HttpRequestMessage request,
             HttpResponseMessage response,
-            string body
-        ): base(message, request, response, body) {}
+            string body,
+            Exception innerException
+        ): base(message, request, response, body, innerException) {}
     }
 }

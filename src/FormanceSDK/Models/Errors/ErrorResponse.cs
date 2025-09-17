@@ -13,10 +13,10 @@ namespace FormanceSDK.Models.Errors
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
-    public class ErrorResponse : Exception
-    {
+    using System.Net.Http;
 
+    public class ErrorResponsePayload
+    {
         [JsonProperty("errorCode")]
         public ErrorsEnum ErrorCode { get; set; } = default!;
 
@@ -26,4 +26,38 @@ namespace FormanceSDK.Models.Errors
         [JsonProperty("details")]
         public string? Details { get; set; }
     }
+
+    public class ErrorResponse : FormanceError
+    {
+        /// <summary>
+        ///  The original data that was passed to this exception.
+        /// </summary>
+        public ErrorResponsePayload Payload { get; }
+
+        [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible. Use ErrorResponse.Payload.ErrorCode instead.")]
+        public ErrorsEnum ErrorCode { get; set; } = default!;
+
+        [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible. Use ErrorResponse.Payload.ErrorMessage instead.")]
+        public string ErrorMessage { get; set; } = default!;
+
+        [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible. Use ErrorResponse.Payload.Details instead.")]
+        public string? Details { get; set; }
+
+        public ErrorResponse(
+            ErrorResponsePayload payload,
+            HttpRequestMessage request,
+            HttpResponseMessage response,
+            string body
+        ): base("API error occurred", request, response, body)
+        {
+           Payload = payload;
+
+           #pragma warning disable CS0618
+           ErrorCode = payload.ErrorCode;
+           ErrorMessage = payload.ErrorMessage;
+           Details = payload.Details;
+           #pragma warning restore CS0618
+        }
+    }
+
 }

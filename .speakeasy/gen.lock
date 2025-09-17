@@ -3,10 +3,10 @@ id: bb4a1c17-4efb-4cf4-a5bb-53737f9f624b
 management:
   docChecksum: 2303b8447e474d428256a66f5ab2f945
   docVersion: v3.0.5
-  speakeasyVersion: 1.564.1
-  generationVersion: 2.630.9
-  releaseVersion: 1.1.0
-  configChecksum: 5f5506dbf58d4dd1d3468d7cb3f42409
+  speakeasyVersion: 1.617.1
+  generationVersion: 2.701.8
+  releaseVersion: 2.0.0
+  configChecksum: 3f9978b404d8bdb106094dd31ed3303b
   repoURL: https://github.com/formancehq/formance-sdk-csharp.git
   published: true
 features:
@@ -14,20 +14,20 @@ features:
     additionalDependencies: 0.1.0
     bigint: 0.2.0
     constsAndDefaults: 0.0.1
-    core: 3.11.1
+    core: 3.12.2
     deprecations: 2.81.2
-    errors: 0.2.1
+    errors: 1.0.0
     flattening: 2.81.3
     getRequestBodies: 2.81.1
-    globalSecurity: 2.83.7
+    globalSecurity: 2.83.8
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.4
     ignores: 2.81.1
     intellisenseMarkdownSupport: 0.1.0
-    methodArguments: 0.2.0
+    methodArguments: 0.2.1
     nameOverrides: 2.81.2
     nullables: 0.1.1
-    oauth2ClientCredentials: 0.3.2
+    oauth2ClientCredentials: 0.3.3
     responseFormat: 0.0.4
     sdkHooks: 0.2.0
     unions: 0.2.2
@@ -1581,8 +1581,10 @@ generatedFiles:
   - src/FormanceSDK/Models/Errors/ErrorCode.cs
   - src/FormanceSDK/Models/Errors/ErrorErrorCode.cs
   - src/FormanceSDK/Models/Errors/ErrorResponse.cs
+  - src/FormanceSDK/Models/Errors/FormanceError.cs
   - src/FormanceSDK/Models/Errors/PaymentsErrorResponse.cs
   - src/FormanceSDK/Models/Errors/ReconciliationErrorResponse.cs
+  - src/FormanceSDK/Models/Errors/ResponseValidationException.cs
   - src/FormanceSDK/Models/Errors/SDKException.cs
   - src/FormanceSDK/Models/Errors/V2Error.cs
   - src/FormanceSDK/Models/Errors/V2ErrorErrorCode.cs
@@ -2009,6 +2011,7 @@ generatedFiles:
   - src/FormanceSDK/Utils/FlexibleObjectDeserializer.cs
   - src/FormanceSDK/Utils/HeaderSerializer.cs
   - src/FormanceSDK/Utils/IsoDateTimeSerializer.cs
+  - src/FormanceSDK/Utils/OpenEnumConverter.cs
   - src/FormanceSDK/Utils/RequestBodySerializer.cs
   - src/FormanceSDK/Utils/ResponseBodyDeserializer.cs
   - src/FormanceSDK/Utils/Retries/BackoffStrategy.cs

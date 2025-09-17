@@ -25,6 +25,7 @@ Show stack version information
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getVersions" method="get" path="/versions" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;

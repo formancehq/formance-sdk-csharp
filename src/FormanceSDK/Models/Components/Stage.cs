@@ -17,21 +17,21 @@ namespace FormanceSDK.Models.Components
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
-    
 
     public class StageType
     {
         private StageType(string value) { Value = value; }
 
         public string Value { get; private set; }
+
         public static StageType StageSend { get { return new StageType("StageSend"); } }
-        
+
         public static StageType StageDelay { get { return new StageType("StageDelay"); } }
-        
+
         public static StageType StageWaitEvent { get { return new StageType("StageWaitEvent"); } }
-        
+
         public static StageType Update { get { return new StageType("Update"); } }
-        
+
         public static StageType Null { get { return new StageType("null"); } }
 
         public override string ToString() { return Value; }
@@ -63,8 +63,10 @@ namespace FormanceSDK.Models.Components
 
 
     [JsonConverter(typeof(Stage.StageConverter))]
-    public class Stage {
-        public Stage(StageType type) {
+    public class Stage
+    {
+        public Stage(StageType type)
+        {
             Type = type;
         }
 
@@ -81,33 +83,32 @@ namespace FormanceSDK.Models.Components
         public Update? Update { get; set; }
 
         public StageType Type { get; set; }
-
-
-        public static Stage CreateStageSend(StageSend stageSend) {
+        public static Stage CreateStageSend(StageSend stageSend)
+        {
             StageType typ = StageType.StageSend;
 
             Stage res = new Stage(typ);
             res.StageSend = stageSend;
             return res;
         }
-
-        public static Stage CreateStageDelay(StageDelay stageDelay) {
+        public static Stage CreateStageDelay(StageDelay stageDelay)
+        {
             StageType typ = StageType.StageDelay;
 
             Stage res = new Stage(typ);
             res.StageDelay = stageDelay;
             return res;
         }
-
-        public static Stage CreateStageWaitEvent(StageWaitEvent stageWaitEvent) {
+        public static Stage CreateStageWaitEvent(StageWaitEvent stageWaitEvent)
+        {
             StageType typ = StageType.StageWaitEvent;
 
             Stage res = new Stage(typ);
             res.StageWaitEvent = stageWaitEvent;
             return res;
         }
-
-        public static Stage CreateUpdate(Update update) {
+        public static Stage CreateUpdate(Update update)
+        {
             StageType typ = StageType.Update;
 
             Stage res = new Stage(typ);
@@ -115,7 +116,8 @@ namespace FormanceSDK.Models.Components
             return res;
         }
 
-        public static Stage CreateNull() {
+        public static Stage CreateNull()
+        {
             StageType typ = StageType.Null;
             return new Stage(typ);
         }
@@ -246,33 +248,37 @@ namespace FormanceSDK.Models.Components
                     writer.WriteRawValue("null");
                     return;
                 }
+
                 Stage res = (Stage)value;
                 if (StageType.FromString(res.Type).Equals(StageType.Null))
                 {
                     writer.WriteRawValue("null");
                     return;
                 }
+
                 if (res.StageSend != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.StageSend));
                     return;
                 }
+
                 if (res.StageDelay != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.StageDelay));
                     return;
                 }
+
                 if (res.StageWaitEvent != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.StageWaitEvent));
                     return;
                 }
+
                 if (res.Update != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.Update));
                     return;
                 }
-
             }
 
         }

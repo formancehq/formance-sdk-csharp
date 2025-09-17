@@ -17,16 +17,17 @@ namespace FormanceSDK.Models.Components
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
-    
 
     public class SubjectType
     {
         private SubjectType(string value) { Value = value; }
 
         public string Value { get; private set; }
-        
+
         public static SubjectType Account { get { return new SubjectType("ACCOUNT"); } }
+
         public static SubjectType Wallet { get { return new SubjectType("WALLET"); } }
+
         public static SubjectType Null { get { return new SubjectType("null"); } }
 
         public override string ToString() { return Value; }
@@ -56,8 +57,10 @@ namespace FormanceSDK.Models.Components
 
 
     [JsonConverter(typeof(Subject.SubjectConverter))]
-    public class Subject {
-        public Subject(SubjectType type) {
+    public class Subject
+    {
+        public Subject(SubjectType type)
+        {
             Type = type;
         }
 
@@ -69,28 +72,28 @@ namespace FormanceSDK.Models.Components
 
         public SubjectType Type { get; set; }
 
-
-        public static Subject CreateAccount(LedgerAccountSubject account) {
+        public static Subject CreateAccount(LedgerAccountSubject account)
+        {
             SubjectType typ = SubjectType.Account;
-        
             string typStr = SubjectType.Account.ToString();
-            
             account.Type = typStr;
             Subject res = new Subject(typ);
             res.LedgerAccountSubject = account;
             return res;
         }
-        public static Subject CreateWallet(WalletSubject wallet) {
+
+        public static Subject CreateWallet(WalletSubject wallet)
+        {
             SubjectType typ = SubjectType.Wallet;
-        
             string typStr = SubjectType.Wallet.ToString();
-            
             wallet.Type = typStr;
             Subject res = new Subject(typ);
             res.WalletSubject = wallet;
             return res;
         }
-        public static Subject CreateNull() {
+
+        public static Subject CreateNull()
+        {
             SubjectType typ = SubjectType.Null;
             return new Subject(typ);
         }
@@ -108,13 +111,13 @@ namespace FormanceSDK.Models.Components
                 string discriminator = jo.GetValue("type")?.ToString() ?? throw new ArgumentNullException("Could not find discriminator field.");
                 if (discriminator == SubjectType.Account.ToString())
                 {
-                    LedgerAccountSubject? ledgerAccountSubject = ResponseBodyDeserializer.Deserialize<LedgerAccountSubject>(jo.ToString());
-                    return CreateAccount(ledgerAccountSubject!);
+                    LedgerAccountSubject ledgerAccountSubject = ResponseBodyDeserializer.DeserializeNotNull<LedgerAccountSubject>(jo.ToString());
+                    return CreateAccount(ledgerAccountSubject);
                 }
                 if (discriminator == SubjectType.Wallet.ToString())
                 {
-                    WalletSubject? walletSubject = ResponseBodyDeserializer.Deserialize<WalletSubject>(jo.ToString());
-                    return CreateWallet(walletSubject!);
+                    WalletSubject walletSubject = ResponseBodyDeserializer.DeserializeNotNull<WalletSubject>(jo.ToString());
+                    return CreateWallet(walletSubject);
                 }
 
                 throw new InvalidOperationException("Could not deserialize into any supported types.");
@@ -126,23 +129,25 @@ namespace FormanceSDK.Models.Components
                     writer.WriteRawValue("null");
                     return;
                 }
+
                 Subject res = (Subject)value;
                 if (SubjectType.FromString(res.Type).Equals(SubjectType.Null))
                 {
                     writer.WriteRawValue("null");
                     return;
                 }
+
                 if (res.LedgerAccountSubject != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.LedgerAccountSubject));
                     return;
                 }
+
                 if (res.WalletSubject != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.WalletSubject));
                     return;
                 }
-
             }
 
         }

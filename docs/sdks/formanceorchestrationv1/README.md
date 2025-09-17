@@ -29,6 +29,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="orchestrationgetServerInfo" method="get" path="/api/orchestration/_info" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -60,6 +61,7 @@ List triggers
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="listTriggers" method="get" path="/api/orchestration/triggers" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -97,6 +99,7 @@ Create trigger
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="createTrigger" method="post" path="/api/orchestration/triggers" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -106,7 +109,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-TriggerData req = ;
+TriggerData? req = null;
 
 var res = await sdk.Orchestration.V1.CreateTriggerAsync(req);
 
@@ -136,6 +139,7 @@ Read trigger
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="readTrigger" method="get" path="/api/orchestration/triggers/{triggerID}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -173,6 +177,7 @@ Read trigger
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="deleteTrigger" method="delete" path="/api/orchestration/triggers/{triggerID}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -210,6 +215,7 @@ List triggers occurrences
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="listTriggersOccurrences" method="get" path="/api/orchestration/triggers/{triggerID}/occurrences" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -247,6 +253,7 @@ List registered workflows
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="listWorkflows" method="get" path="/api/orchestration/workflows" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -278,6 +285,7 @@ Create a workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="createWorkflow" method="post" path="/api/orchestration/workflows" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -287,7 +295,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-WorkflowConfig req = ;
+WorkflowConfig? req = null;
 
 var res = await sdk.Orchestration.V1.CreateWorkflowAsync(req);
 
@@ -317,6 +325,7 @@ Get a flow by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getWorkflow" method="get" path="/api/orchestration/workflows/{flowId}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -354,6 +363,7 @@ Delete a flow by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="deleteWorkflow" method="delete" path="/api/orchestration/workflows/{flowId}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -391,6 +401,7 @@ Run workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="runWorkflow" method="post" path="/api/orchestration/workflows/{workflowID}/instances" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -430,6 +441,7 @@ List instances of a workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="listInstances" method="get" path="/api/orchestration/instances" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -471,6 +483,7 @@ Get a workflow instance by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getInstance" method="get" path="/api/orchestration/instances/{instanceID}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -508,6 +521,7 @@ Send an event to a running workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="sendEvent" method="post" path="/api/orchestration/instances/{instanceID}/events" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -546,6 +560,7 @@ Cancel a running workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="cancelEvent" method="put" path="/api/orchestration/instances/{instanceID}/abort" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -583,6 +598,7 @@ Get a workflow instance history by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getInstanceHistory" method="get" path="/api/orchestration/instances/{instanceID}/history" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -620,6 +636,7 @@ Get a workflow instance stage history
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getInstanceStageHistory" method="get" path="/api/orchestration/instances/{instanceID}/stages/{number}/history" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;

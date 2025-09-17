@@ -17,27 +17,39 @@ namespace FormanceSDK.Models.Components
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
-    
 
     public class V3InstallConnectorRequestType
     {
         private V3InstallConnectorRequestType(string value) { Value = value; }
 
         public string Value { get; private set; }
-        
+
         public static V3InstallConnectorRequestType Adyen { get { return new V3InstallConnectorRequestType("Adyen"); } }
+
         public static V3InstallConnectorRequestType Atlar { get { return new V3InstallConnectorRequestType("Atlar"); } }
+
         public static V3InstallConnectorRequestType Bankingcircle { get { return new V3InstallConnectorRequestType("Bankingcircle"); } }
+
         public static V3InstallConnectorRequestType Column { get { return new V3InstallConnectorRequestType("Column"); } }
+
         public static V3InstallConnectorRequestType Currencycloud { get { return new V3InstallConnectorRequestType("Currencycloud"); } }
+
         public static V3InstallConnectorRequestType Dummypay { get { return new V3InstallConnectorRequestType("Dummypay"); } }
+
         public static V3InstallConnectorRequestType Generic { get { return new V3InstallConnectorRequestType("Generic"); } }
+
         public static V3InstallConnectorRequestType Mangopay { get { return new V3InstallConnectorRequestType("Mangopay"); } }
+
         public static V3InstallConnectorRequestType Modulr { get { return new V3InstallConnectorRequestType("Modulr"); } }
+
         public static V3InstallConnectorRequestType Moneycorp { get { return new V3InstallConnectorRequestType("Moneycorp"); } }
+
         public static V3InstallConnectorRequestType Qonto { get { return new V3InstallConnectorRequestType("Qonto"); } }
+
         public static V3InstallConnectorRequestType Stripe { get { return new V3InstallConnectorRequestType("Stripe"); } }
+
         public static V3InstallConnectorRequestType Wise { get { return new V3InstallConnectorRequestType("Wise"); } }
+
         public static V3InstallConnectorRequestType Null { get { return new V3InstallConnectorRequestType("null"); } }
 
         public override string ToString() { return Value; }
@@ -78,8 +90,10 @@ namespace FormanceSDK.Models.Components
 
 
     [JsonConverter(typeof(V3InstallConnectorRequest.V3InstallConnectorRequestConverter))]
-    public class V3InstallConnectorRequest {
-        public V3InstallConnectorRequest(V3InstallConnectorRequestType type) {
+    public class V3InstallConnectorRequest
+    {
+        public V3InstallConnectorRequest(V3InstallConnectorRequestType type)
+        {
             Type = type;
         }
 
@@ -124,138 +138,138 @@ namespace FormanceSDK.Models.Components
 
         public V3InstallConnectorRequestType Type { get; set; }
 
-
-        public static V3InstallConnectorRequest CreateAdyen(V3AdyenConfig adyen) {
+        public static V3InstallConnectorRequest CreateAdyen(V3AdyenConfig adyen)
+        {
             V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Adyen;
-        
             string typStr = V3InstallConnectorRequestType.Adyen.ToString();
-            
             adyen.Provider = typStr;
             V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
             res.V3AdyenConfig = adyen;
             return res;
         }
-        public static V3InstallConnectorRequest CreateAtlar(V3AtlarConfig atlar) {
+
+        public static V3InstallConnectorRequest CreateAtlar(V3AtlarConfig atlar)
+        {
             V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Atlar;
-        
             string typStr = V3InstallConnectorRequestType.Atlar.ToString();
-            
             atlar.Provider = typStr;
             V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
             res.V3AtlarConfig = atlar;
             return res;
         }
-        public static V3InstallConnectorRequest CreateBankingcircle(V3BankingcircleConfig bankingcircle) {
+
+        public static V3InstallConnectorRequest CreateBankingcircle(V3BankingcircleConfig bankingcircle)
+        {
             V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Bankingcircle;
-        
             string typStr = V3InstallConnectorRequestType.Bankingcircle.ToString();
-            
             bankingcircle.Provider = typStr;
             V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
             res.V3BankingcircleConfig = bankingcircle;
             return res;
         }
-        public static V3InstallConnectorRequest CreateColumn(V3ColumnConfig column) {
+
+        public static V3InstallConnectorRequest CreateColumn(V3ColumnConfig column)
+        {
             V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Column;
-        
             string typStr = V3InstallConnectorRequestType.Column.ToString();
-            
             column.Provider = typStr;
             V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
             res.V3ColumnConfig = column;
             return res;
         }
-        public static V3InstallConnectorRequest CreateCurrencycloud(V3CurrencycloudConfig currencycloud) {
+
+        public static V3InstallConnectorRequest CreateCurrencycloud(V3CurrencycloudConfig currencycloud)
+        {
             V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Currencycloud;
-        
             string typStr = V3InstallConnectorRequestType.Currencycloud.ToString();
-            
             currencycloud.Provider = typStr;
             V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
             res.V3CurrencycloudConfig = currencycloud;
             return res;
         }
-        public static V3InstallConnectorRequest CreateDummypay(V3DummypayConfig dummypay) {
+
+        public static V3InstallConnectorRequest CreateDummypay(V3DummypayConfig dummypay)
+        {
             V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Dummypay;
-        
             string typStr = V3InstallConnectorRequestType.Dummypay.ToString();
-            
             dummypay.Provider = typStr;
             V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
             res.V3DummypayConfig = dummypay;
             return res;
         }
-        public static V3InstallConnectorRequest CreateGeneric(V3GenericConfig generic) {
+
+        public static V3InstallConnectorRequest CreateGeneric(V3GenericConfig generic)
+        {
             V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Generic;
-        
             string typStr = V3InstallConnectorRequestType.Generic.ToString();
-            
             generic.Provider = typStr;
             V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
             res.V3GenericConfig = generic;
             return res;
         }
-        public static V3InstallConnectorRequest CreateMangopay(V3MangopayConfig mangopay) {
+
+        public static V3InstallConnectorRequest CreateMangopay(V3MangopayConfig mangopay)
+        {
             V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Mangopay;
-        
             string typStr = V3InstallConnectorRequestType.Mangopay.ToString();
-            
             mangopay.Provider = typStr;
             V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
             res.V3MangopayConfig = mangopay;
             return res;
         }
-        public static V3InstallConnectorRequest CreateModulr(V3ModulrConfig modulr) {
+
+        public static V3InstallConnectorRequest CreateModulr(V3ModulrConfig modulr)
+        {
             V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Modulr;
-        
             string typStr = V3InstallConnectorRequestType.Modulr.ToString();
-            
             modulr.Provider = typStr;
             V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
             res.V3ModulrConfig = modulr;
             return res;
         }
-        public static V3InstallConnectorRequest CreateMoneycorp(V3MoneycorpConfig moneycorp) {
+
+        public static V3InstallConnectorRequest CreateMoneycorp(V3MoneycorpConfig moneycorp)
+        {
             V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Moneycorp;
-        
             string typStr = V3InstallConnectorRequestType.Moneycorp.ToString();
-            
             moneycorp.Provider = typStr;
             V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
             res.V3MoneycorpConfig = moneycorp;
             return res;
         }
-        public static V3InstallConnectorRequest CreateQonto(V3QontoConfig qonto) {
+
+        public static V3InstallConnectorRequest CreateQonto(V3QontoConfig qonto)
+        {
             V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Qonto;
-        
             string typStr = V3InstallConnectorRequestType.Qonto.ToString();
-            
             qonto.Provider = typStr;
             V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
             res.V3QontoConfig = qonto;
             return res;
         }
-        public static V3InstallConnectorRequest CreateStripe(V3StripeConfig stripe) {
+
+        public static V3InstallConnectorRequest CreateStripe(V3StripeConfig stripe)
+        {
             V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Stripe;
-        
             string typStr = V3InstallConnectorRequestType.Stripe.ToString();
-            
             stripe.Provider = typStr;
             V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
             res.V3StripeConfig = stripe;
             return res;
         }
-        public static V3InstallConnectorRequest CreateWise(V3WiseConfig wise) {
+
+        public static V3InstallConnectorRequest CreateWise(V3WiseConfig wise)
+        {
             V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Wise;
-        
             string typStr = V3InstallConnectorRequestType.Wise.ToString();
-            
             wise.Provider = typStr;
             V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
             res.V3WiseConfig = wise;
             return res;
         }
-        public static V3InstallConnectorRequest CreateNull() {
+
+        public static V3InstallConnectorRequest CreateNull()
+        {
             V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Null;
             return new V3InstallConnectorRequest(typ);
         }
@@ -273,68 +287,68 @@ namespace FormanceSDK.Models.Components
                 string discriminator = jo.GetValue("provider")?.ToString() ?? throw new ArgumentNullException("Could not find discriminator field.");
                 if (discriminator == V3InstallConnectorRequestType.Adyen.ToString())
                 {
-                    V3AdyenConfig? v3AdyenConfig = ResponseBodyDeserializer.Deserialize<V3AdyenConfig>(jo.ToString());
-                    return CreateAdyen(v3AdyenConfig!);
+                    V3AdyenConfig v3AdyenConfig = ResponseBodyDeserializer.DeserializeNotNull<V3AdyenConfig>(jo.ToString());
+                    return CreateAdyen(v3AdyenConfig);
                 }
                 if (discriminator == V3InstallConnectorRequestType.Atlar.ToString())
                 {
-                    V3AtlarConfig? v3AtlarConfig = ResponseBodyDeserializer.Deserialize<V3AtlarConfig>(jo.ToString());
-                    return CreateAtlar(v3AtlarConfig!);
+                    V3AtlarConfig v3AtlarConfig = ResponseBodyDeserializer.DeserializeNotNull<V3AtlarConfig>(jo.ToString());
+                    return CreateAtlar(v3AtlarConfig);
                 }
                 if (discriminator == V3InstallConnectorRequestType.Bankingcircle.ToString())
                 {
-                    V3BankingcircleConfig? v3BankingcircleConfig = ResponseBodyDeserializer.Deserialize<V3BankingcircleConfig>(jo.ToString());
-                    return CreateBankingcircle(v3BankingcircleConfig!);
+                    V3BankingcircleConfig v3BankingcircleConfig = ResponseBodyDeserializer.DeserializeNotNull<V3BankingcircleConfig>(jo.ToString());
+                    return CreateBankingcircle(v3BankingcircleConfig);
                 }
                 if (discriminator == V3InstallConnectorRequestType.Column.ToString())
                 {
-                    V3ColumnConfig? v3ColumnConfig = ResponseBodyDeserializer.Deserialize<V3ColumnConfig>(jo.ToString());
-                    return CreateColumn(v3ColumnConfig!);
+                    V3ColumnConfig v3ColumnConfig = ResponseBodyDeserializer.DeserializeNotNull<V3ColumnConfig>(jo.ToString());
+                    return CreateColumn(v3ColumnConfig);
                 }
                 if (discriminator == V3InstallConnectorRequestType.Currencycloud.ToString())
                 {
-                    V3CurrencycloudConfig? v3CurrencycloudConfig = ResponseBodyDeserializer.Deserialize<V3CurrencycloudConfig>(jo.ToString());
-                    return CreateCurrencycloud(v3CurrencycloudConfig!);
+                    V3CurrencycloudConfig v3CurrencycloudConfig = ResponseBodyDeserializer.DeserializeNotNull<V3CurrencycloudConfig>(jo.ToString());
+                    return CreateCurrencycloud(v3CurrencycloudConfig);
                 }
                 if (discriminator == V3InstallConnectorRequestType.Dummypay.ToString())
                 {
-                    V3DummypayConfig? v3DummypayConfig = ResponseBodyDeserializer.Deserialize<V3DummypayConfig>(jo.ToString());
-                    return CreateDummypay(v3DummypayConfig!);
+                    V3DummypayConfig v3DummypayConfig = ResponseBodyDeserializer.DeserializeNotNull<V3DummypayConfig>(jo.ToString());
+                    return CreateDummypay(v3DummypayConfig);
                 }
                 if (discriminator == V3InstallConnectorRequestType.Generic.ToString())
                 {
-                    V3GenericConfig? v3GenericConfig = ResponseBodyDeserializer.Deserialize<V3GenericConfig>(jo.ToString());
-                    return CreateGeneric(v3GenericConfig!);
+                    V3GenericConfig v3GenericConfig = ResponseBodyDeserializer.DeserializeNotNull<V3GenericConfig>(jo.ToString());
+                    return CreateGeneric(v3GenericConfig);
                 }
                 if (discriminator == V3InstallConnectorRequestType.Mangopay.ToString())
                 {
-                    V3MangopayConfig? v3MangopayConfig = ResponseBodyDeserializer.Deserialize<V3MangopayConfig>(jo.ToString());
-                    return CreateMangopay(v3MangopayConfig!);
+                    V3MangopayConfig v3MangopayConfig = ResponseBodyDeserializer.DeserializeNotNull<V3MangopayConfig>(jo.ToString());
+                    return CreateMangopay(v3MangopayConfig);
                 }
                 if (discriminator == V3InstallConnectorRequestType.Modulr.ToString())
                 {
-                    V3ModulrConfig? v3ModulrConfig = ResponseBodyDeserializer.Deserialize<V3ModulrConfig>(jo.ToString());
-                    return CreateModulr(v3ModulrConfig!);
+                    V3ModulrConfig v3ModulrConfig = ResponseBodyDeserializer.DeserializeNotNull<V3ModulrConfig>(jo.ToString());
+                    return CreateModulr(v3ModulrConfig);
                 }
                 if (discriminator == V3InstallConnectorRequestType.Moneycorp.ToString())
                 {
-                    V3MoneycorpConfig? v3MoneycorpConfig = ResponseBodyDeserializer.Deserialize<V3MoneycorpConfig>(jo.ToString());
-                    return CreateMoneycorp(v3MoneycorpConfig!);
+                    V3MoneycorpConfig v3MoneycorpConfig = ResponseBodyDeserializer.DeserializeNotNull<V3MoneycorpConfig>(jo.ToString());
+                    return CreateMoneycorp(v3MoneycorpConfig);
                 }
                 if (discriminator == V3InstallConnectorRequestType.Qonto.ToString())
                 {
-                    V3QontoConfig? v3QontoConfig = ResponseBodyDeserializer.Deserialize<V3QontoConfig>(jo.ToString());
-                    return CreateQonto(v3QontoConfig!);
+                    V3QontoConfig v3QontoConfig = ResponseBodyDeserializer.DeserializeNotNull<V3QontoConfig>(jo.ToString());
+                    return CreateQonto(v3QontoConfig);
                 }
                 if (discriminator == V3InstallConnectorRequestType.Stripe.ToString())
                 {
-                    V3StripeConfig? v3StripeConfig = ResponseBodyDeserializer.Deserialize<V3StripeConfig>(jo.ToString());
-                    return CreateStripe(v3StripeConfig!);
+                    V3StripeConfig v3StripeConfig = ResponseBodyDeserializer.DeserializeNotNull<V3StripeConfig>(jo.ToString());
+                    return CreateStripe(v3StripeConfig);
                 }
                 if (discriminator == V3InstallConnectorRequestType.Wise.ToString())
                 {
-                    V3WiseConfig? v3WiseConfig = ResponseBodyDeserializer.Deserialize<V3WiseConfig>(jo.ToString());
-                    return CreateWise(v3WiseConfig!);
+                    V3WiseConfig v3WiseConfig = ResponseBodyDeserializer.DeserializeNotNull<V3WiseConfig>(jo.ToString());
+                    return CreateWise(v3WiseConfig);
                 }
 
                 throw new InvalidOperationException("Could not deserialize into any supported types.");
@@ -346,78 +360,91 @@ namespace FormanceSDK.Models.Components
                     writer.WriteRawValue("null");
                     return;
                 }
+
                 V3InstallConnectorRequest res = (V3InstallConnectorRequest)value;
                 if (V3InstallConnectorRequestType.FromString(res.Type).Equals(V3InstallConnectorRequestType.Null))
                 {
                     writer.WriteRawValue("null");
                     return;
                 }
+
                 if (res.V3AdyenConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V3AdyenConfig));
                     return;
                 }
+
                 if (res.V3AtlarConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V3AtlarConfig));
                     return;
                 }
+
                 if (res.V3BankingcircleConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V3BankingcircleConfig));
                     return;
                 }
+
                 if (res.V3ColumnConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V3ColumnConfig));
                     return;
                 }
+
                 if (res.V3CurrencycloudConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V3CurrencycloudConfig));
                     return;
                 }
+
                 if (res.V3DummypayConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V3DummypayConfig));
                     return;
                 }
+
                 if (res.V3GenericConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V3GenericConfig));
                     return;
                 }
+
                 if (res.V3MangopayConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V3MangopayConfig));
                     return;
                 }
+
                 if (res.V3ModulrConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V3ModulrConfig));
                     return;
                 }
+
                 if (res.V3MoneycorpConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V3MoneycorpConfig));
                     return;
                 }
+
                 if (res.V3QontoConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V3QontoConfig));
                     return;
                 }
+
                 if (res.V3StripeConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V3StripeConfig));
                     return;
                 }
+
                 if (res.V3WiseConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V3WiseConfig));
                     return;
                 }
-
             }
 
         }

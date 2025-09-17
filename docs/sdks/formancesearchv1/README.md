@@ -16,6 +16,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="searchgetServerInfo" method="get" path="/api/search/_info" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -48,6 +49,7 @@ Elasticsearch.v1 query engine
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="search" method="post" path="/api/search/" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;

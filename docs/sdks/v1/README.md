@@ -23,6 +23,7 @@ Retrieve OpenID connect well-knowns.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getOIDCWellKnowns" method="get" path="/api/auth/.well-known/openid-configuration" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -53,6 +54,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getServerInfo" method="get" path="/api/auth/_info" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -83,6 +85,7 @@ List clients
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="listClients" method="get" path="/api/auth/clients" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -113,6 +116,7 @@ Create client
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="createClient" method="post" path="/api/auth/clients" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -122,7 +126,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-ClientOptions req = ;
+ClientOptions? req = null;
 
 var res = await sdk.Auth.V1.CreateClientAsync(req);
 
@@ -151,6 +155,7 @@ Read client
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="readClient" method="get" path="/api/auth/clients/{clientId}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -187,6 +192,7 @@ Update client
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="updateClient" method="put" path="/api/auth/clients/{clientId}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -224,6 +230,7 @@ Delete client
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="deleteClient" method="delete" path="/api/auth/clients/{clientId}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -260,6 +267,7 @@ Add a secret to a client
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="createSecret" method="post" path="/api/auth/clients/{clientId}/secrets" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -297,6 +305,7 @@ Delete a secret from a client
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="deleteSecret" method="delete" path="/api/auth/clients/{clientId}/secrets/{secretId}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -337,6 +346,7 @@ List users
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="listUsers" method="get" path="/api/auth/users" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -367,6 +377,7 @@ Read user
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="readUser" method="get" path="/api/auth/users/{userId}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;

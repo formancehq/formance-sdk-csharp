@@ -20,6 +20,7 @@ Sorted by updated date descending
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getManyConfigs" method="get" path="/api/webhooks/configs" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -70,6 +71,7 @@ All eventTypes are converted to lower-case when inserted.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="insertConfig" method="post" path="/api/webhooks/configs" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -118,6 +120,7 @@ Delete a webhooks config by ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="deleteConfig" method="delete" path="/api/webhooks/configs/{id}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -155,6 +158,7 @@ Update a webhooks config by ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="updateConfig" method="put" path="/api/webhooks/configs/{id}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -205,6 +209,7 @@ Test a config by sending a webhook to its endpoint.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="testConfig" method="get" path="/api/webhooks/configs/{id}/test" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -242,6 +247,7 @@ Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="activateConfig" method="put" path="/api/webhooks/configs/{id}/activate" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -279,6 +285,7 @@ Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="deactivateConfig" method="put" path="/api/webhooks/configs/{id}/deactivate" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -320,6 +327,7 @@ The format is a random string of bytes of size 24, base64 encoded. (larger size 
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="changeConfigSecret" method="put" path="/api/webhooks/configs/{id}/secret/change" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;

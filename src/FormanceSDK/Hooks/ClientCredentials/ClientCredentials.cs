@@ -14,6 +14,7 @@ namespace FormanceSDK.Hooks.ClientCredentials
         using FormanceSDK.Utils;
         using Newtonsoft.Json;
         using System;
+        using System.Collections.Concurrent;
         using System.Collections.Generic;
         using System.Linq;
         using System.Net.Http;
@@ -67,7 +68,7 @@ namespace FormanceSDK.Hooks.ClientCredentials
 
     public class ClientCredentialsHook : ISDKInitHook, IBeforeRequestHook, IAfterErrorHook
     {
-        public Dictionary<string, Session> Sessions { get; private set; } = new Dictionary<string, Session>();
+        public ConcurrentDictionary<string, Session> Sessions { get; private set; } = new ConcurrentDictionary<string, Session>();
         public ISpeakeasyHttpClient Client = default!;
         
         public (string, ISpeakeasyHttpClient) SDKInit(string baseUrl, ISpeakeasyHttpClient client)
@@ -134,11 +135,7 @@ namespace FormanceSDK.Hooks.ClientCredentials
             if (response != null && response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
             {
                 var sessionKey = GetSessionKey(credentials.ClientID, credentials.ClientSecret);
-
-                if (Sessions.ContainsKey(sessionKey))
-                {
-                    Sessions.Remove(sessionKey);
-                }
+                Sessions.TryRemove(sessionKey, out _);
             }
 
             return (response, error);
@@ -237,7 +234,7 @@ namespace FormanceSDK.Hooks.ClientCredentials
                 throw new Exception("Failed to decode token response");
             }
 
-            if (tokenResponse!.TokenType != "Bearer")
+            if (!string.Equals(tokenResponse!.TokenType, "Bearer", StringComparison.OrdinalIgnoreCase))
             {
                 throw new Exception($"Unexpected token type {tokenResponse!.TokenType}");
             }

@@ -28,6 +28,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="walletsgetServerInfo" method="get" path="/api/wallets/_info" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -57,6 +58,7 @@ var res = await sdk.Wallets.V1.WalletsgetServerInfoAsync();
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getTransactions" method="get" path="/api/wallets/transactions" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -100,6 +102,7 @@ List all wallets
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="listWallets" method="get" path="/api/wallets/wallets" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -149,6 +152,7 @@ Create a new wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="createWallet" method="post" path="/api/wallets/wallets" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -187,6 +191,7 @@ Get a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getWallet" method="get" path="/api/wallets/wallets/{id}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -224,6 +229,7 @@ Update a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="updateWallet" method="patch" path="/api/wallets/wallets/{id}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -263,6 +269,7 @@ Get wallet summary
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getWalletSummary" method="get" path="/api/wallets/wallets/{id}/summary" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -300,6 +307,7 @@ List balances of a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="listBalances" method="get" path="/api/wallets/wallets/{id}/balances" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -336,6 +344,7 @@ Create a balance
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="createBalance" method="post" path="/api/wallets/wallets/{id}/balances" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -375,6 +384,7 @@ Get detailed balance
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getBalance" method="get" path="/api/wallets/wallets/{id}/balances/{balanceName}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -416,6 +426,7 @@ Debit a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="debitWallet" method="post" path="/api/wallets/wallets/{id}/debit" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -428,7 +439,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Wallets.V1.DebitWalletAsync(
     id: "<id>",
-    debitWalletRequest: new Models.Components.DebitWalletRequest() {
+    debitWalletRequest: new FormanceSDK.Models.Components.DebitWalletRequest() {
         Amount = new Monetary() {
             Asset = "USD/2",
             Amount = 100,
@@ -468,6 +479,7 @@ Credit a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="creditWallet" method="post" path="/api/wallets/wallets/{id}/credit" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -480,7 +492,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Wallets.V1.CreditWalletAsync(
     id: "<id>",
-    creditWalletRequest: new Models.Components.CreditWalletRequest() {
+    creditWalletRequest: new FormanceSDK.Models.Components.CreditWalletRequest() {
         Amount = new Monetary() {
             Asset = "USD/2",
             Amount = 100,
@@ -520,6 +532,7 @@ Get all holds for a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getHolds" method="get" path="/api/wallets/holds" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -568,6 +581,7 @@ Get a hold
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getHold" method="get" path="/api/wallets/holds/{holdID}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -605,6 +619,7 @@ Confirm a hold
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="confirmHold" method="post" path="/api/wallets/holds/{hold_id}/confirm" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -616,7 +631,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Wallets.V1.ConfirmHoldAsync(
     holdId: "<id>",
-    confirmHoldRequest: new Models.Components.ConfirmHoldRequest() {
+    confirmHoldRequest: new FormanceSDK.Models.Components.ConfirmHoldRequest() {
         Amount = 100,
         Final = true,
     }
@@ -650,6 +665,7 @@ Cancel a hold
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="voidHold" method="post" path="/api/wallets/holds/{hold_id}/void" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;

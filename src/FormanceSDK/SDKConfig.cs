@@ -55,7 +55,7 @@ namespace FormanceSDK
                     {"environment", "eu.sandbox"},
                 },
             };
-            UserAgent = "speakeasy-sdk/csharp 1.1.0 2.630.9 v3.0.5 FormanceSDK";
+            UserAgent = "speakeasy-sdk/csharp 2.0.0 2.701.8 v3.0.5 FormanceSDK";
             SecuritySource = null;
             Hooks = new SDKHooks();
             RetryConfig = null;

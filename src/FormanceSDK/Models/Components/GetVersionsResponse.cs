@@ -24,6 +24,6 @@ namespace FormanceSDK.Models.Components
         public string Env { get; set; } = default!;
 
         [JsonProperty("versions")]
-        public List<FormanceSDK.Models.Components.Version> Versions { get; set; } = default!;
+        public List<Models.Components.Version> Versions { get; set; } = default!;
     }
 }

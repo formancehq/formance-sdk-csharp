@@ -39,6 +39,7 @@ Show server information
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2GetInfo" method="get" path="/api/ledger/_/info" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -70,6 +71,7 @@ Read in memory metrics
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getMetrics" method="get" path="/api/ledger/_/metrics" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -101,6 +103,7 @@ List ledgers
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2ListLedgers" method="get" path="/api/ledger/v2" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -142,6 +145,7 @@ Get a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2GetLedger" method="get" path="/api/ledger/v2/{ledger}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -179,6 +183,7 @@ Create a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2CreateLedger" method="post" path="/api/ledger/v2/{ledger}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -191,7 +196,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V2.CreateLedgerAsync(
     ledger: "ledger001",
-    v2CreateLedgerRequest: new Models.Components.V2CreateLedgerRequest() {
+    v2CreateLedgerRequest: new FormanceSDK.Models.Components.V2CreateLedgerRequest() {
         Metadata = new Dictionary<string, string>() {
             { "admin", "true" },
         },
@@ -225,6 +230,7 @@ Update ledger metadata
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2UpdateLedgerMetadata" method="put" path="/api/ledger/v2/{ledger}/metadata" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -269,6 +275,7 @@ Delete ledger metadata by key
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2DeleteLedgerMetadata" method="delete" path="/api/ledger/v2/{ledger}/metadata/{key}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -310,6 +317,7 @@ Get information about a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2GetLedgerInfo" method="get" path="/api/ledger/v2/{ledger}/_info" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -347,6 +355,7 @@ Bulk request
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2CreateBulk" method="post" path="/api/ledger/v2/{ledger}/_bulk" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -400,6 +409,7 @@ Count the accounts from a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2CountAccounts" method="head" path="/api/ledger/v2/{ledger}/accounts" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -446,6 +456,7 @@ List accounts from a ledger, sorted by address in descending order.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2ListAccounts" method="get" path="/api/ledger/v2/{ledger}/accounts" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -494,6 +505,7 @@ Get account by its address
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2GetAccount" method="get" path="/api/ledger/v2/{ledger}/accounts/{address}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -537,6 +549,7 @@ Add metadata to an account
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2AddMetadataToAccount" method="post" path="/api/ledger/v2/{ledger}/accounts/{address}/metadata" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -585,6 +598,7 @@ Delete metadata by key
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2DeleteAccountMetadata" method="delete" path="/api/ledger/v2/{ledger}/accounts/{address}/metadata/{key}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -630,6 +644,7 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2ReadStats" method="get" path="/api/ledger/v2/{ledger}/stats" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -667,6 +682,7 @@ Count the transactions from a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2CountTransactions" method="head" path="/api/ledger/v2/{ledger}/transactions" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -712,6 +728,7 @@ List transactions from a ledger, sorted by id in descending order.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2ListTransactions" method="get" path="/api/ledger/v2/{ledger}/transactions" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -760,6 +777,7 @@ Create a new transaction to a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2CreateTransaction" method="post" path="/api/ledger/v2/{ledger}/transactions" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -832,6 +850,7 @@ Get transaction from a ledger by its ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2GetTransaction" method="get" path="/api/ledger/v2/{ledger}/transactions/{id}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -875,6 +894,7 @@ Set the metadata of a transaction by its ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2AddMetadataOnTransaction" method="post" path="/api/ledger/v2/{ledger}/transactions/{id}/metadata" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -923,6 +943,7 @@ Delete metadata by key
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2DeleteTransactionMetadata" method="delete" path="/api/ledger/v2/{ledger}/transactions/{id}/metadata/{key}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -967,6 +988,7 @@ Revert a ledger transaction by its ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2RevertTransaction" method="post" path="/api/ledger/v2/{ledger}/transactions/{id}/revert" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1011,6 +1033,7 @@ Get the aggregated balances from selected accounts
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2GetBalancesAggregated" method="get" path="/api/ledger/v2/{ledger}/aggregate/balances" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1059,6 +1082,7 @@ Get list of volumes with balances for (account/asset)
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2GetVolumesWithBalances" method="get" path="/api/ledger/v2/{ledger}/volumes" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1108,6 +1132,7 @@ List the logs from a ledger, sorted by ID in descending order.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2ListLogs" method="get" path="/api/ledger/v2/{ledger}/logs" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1154,6 +1179,7 @@ var res = await sdk.Ledger.V2.ListLogsAsync(req);
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2ImportLogs" method="post" path="/api/ledger/v2/{ledger}/logs/import" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1196,6 +1222,7 @@ Export logs
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="v2ExportLogs" method="post" path="/api/ledger/v2/{ledger}/logs/export" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;

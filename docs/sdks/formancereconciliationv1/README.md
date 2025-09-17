@@ -20,6 +20,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="reconciliationgetServerInfo" method="get" path="/api/reconciliation/_info" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -51,6 +52,7 @@ Create a policy
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="createPolicy" method="post" path="/api/reconciliation/policies" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -98,6 +100,7 @@ List policies
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="listPolicies" method="get" path="/api/reconciliation/policies" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -139,6 +142,7 @@ Delete a policy by its id.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="deletePolicy" method="delete" path="/api/reconciliation/policies/{policyID}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -176,6 +180,7 @@ Get a policy
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getPolicy" method="get" path="/api/reconciliation/policies/{policyID}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -213,6 +218,7 @@ Reconcile using a policy
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="reconcile" method="post" path="/api/reconciliation/policies/{policyID}/reconciliation" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -258,6 +264,7 @@ List reconciliations
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="listReconciliations" method="get" path="/api/reconciliation/reconciliations" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -299,6 +306,7 @@ Get a reconciliation
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getReconciliation" method="get" path="/api/reconciliation/reconciliations/{reconciliationID}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;

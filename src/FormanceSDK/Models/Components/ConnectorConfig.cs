@@ -17,25 +17,35 @@ namespace FormanceSDK.Models.Components
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
-    
 
     public class ConnectorConfigType
     {
         private ConnectorConfigType(string value) { Value = value; }
 
         public string Value { get; private set; }
-        
+
         public static ConnectorConfigType Stripe { get { return new ConnectorConfigType("Stripe"); } }
+
         public static ConnectorConfigType Dummypay { get { return new ConnectorConfigType("Dummypay"); } }
+
         public static ConnectorConfigType Wise { get { return new ConnectorConfigType("Wise"); } }
+
         public static ConnectorConfigType Modulr { get { return new ConnectorConfigType("Modulr"); } }
+
         public static ConnectorConfigType Currencycloud { get { return new ConnectorConfigType("Currencycloud"); } }
+
         public static ConnectorConfigType Bankingcircle { get { return new ConnectorConfigType("Bankingcircle"); } }
+
         public static ConnectorConfigType Mangopay { get { return new ConnectorConfigType("Mangopay"); } }
+
         public static ConnectorConfigType Moneycorp { get { return new ConnectorConfigType("Moneycorp"); } }
+
         public static ConnectorConfigType Atlar { get { return new ConnectorConfigType("Atlar"); } }
+
         public static ConnectorConfigType Adyen { get { return new ConnectorConfigType("Adyen"); } }
+
         public static ConnectorConfigType Generic { get { return new ConnectorConfigType("Generic"); } }
+
         public static ConnectorConfigType Null { get { return new ConnectorConfigType("null"); } }
 
         public override string ToString() { return Value; }
@@ -74,8 +84,10 @@ namespace FormanceSDK.Models.Components
 
 
     [JsonConverter(typeof(ConnectorConfig.ConnectorConfigConverter))]
-    public class ConnectorConfig {
-        public ConnectorConfig(ConnectorConfigType type) {
+    public class ConnectorConfig
+    {
+        public ConnectorConfig(ConnectorConfigType type)
+        {
             Type = type;
         }
 
@@ -114,118 +126,118 @@ namespace FormanceSDK.Models.Components
 
         public ConnectorConfigType Type { get; set; }
 
-
-        public static ConnectorConfig CreateStripe(StripeConfig stripe) {
+        public static ConnectorConfig CreateStripe(StripeConfig stripe)
+        {
             ConnectorConfigType typ = ConnectorConfigType.Stripe;
-        
             string typStr = ConnectorConfigType.Stripe.ToString();
-            
             stripe.Provider = typStr;
             ConnectorConfig res = new ConnectorConfig(typ);
             res.StripeConfig = stripe;
             return res;
         }
-        public static ConnectorConfig CreateDummypay(DummyPayConfig dummypay) {
+
+        public static ConnectorConfig CreateDummypay(DummyPayConfig dummypay)
+        {
             ConnectorConfigType typ = ConnectorConfigType.Dummypay;
-        
             string typStr = ConnectorConfigType.Dummypay.ToString();
-            
             dummypay.Provider = typStr;
             ConnectorConfig res = new ConnectorConfig(typ);
             res.DummyPayConfig = dummypay;
             return res;
         }
-        public static ConnectorConfig CreateWise(WiseConfig wise) {
+
+        public static ConnectorConfig CreateWise(WiseConfig wise)
+        {
             ConnectorConfigType typ = ConnectorConfigType.Wise;
-        
             string typStr = ConnectorConfigType.Wise.ToString();
-            
             wise.Provider = typStr;
             ConnectorConfig res = new ConnectorConfig(typ);
             res.WiseConfig = wise;
             return res;
         }
-        public static ConnectorConfig CreateModulr(ModulrConfig modulr) {
+
+        public static ConnectorConfig CreateModulr(ModulrConfig modulr)
+        {
             ConnectorConfigType typ = ConnectorConfigType.Modulr;
-        
             string typStr = ConnectorConfigType.Modulr.ToString();
-            
             modulr.Provider = typStr;
             ConnectorConfig res = new ConnectorConfig(typ);
             res.ModulrConfig = modulr;
             return res;
         }
-        public static ConnectorConfig CreateCurrencycloud(CurrencyCloudConfig currencycloud) {
+
+        public static ConnectorConfig CreateCurrencycloud(CurrencyCloudConfig currencycloud)
+        {
             ConnectorConfigType typ = ConnectorConfigType.Currencycloud;
-        
             string typStr = ConnectorConfigType.Currencycloud.ToString();
-            
             currencycloud.Provider = typStr;
             ConnectorConfig res = new ConnectorConfig(typ);
             res.CurrencyCloudConfig = currencycloud;
             return res;
         }
-        public static ConnectorConfig CreateBankingcircle(BankingCircleConfig bankingcircle) {
+
+        public static ConnectorConfig CreateBankingcircle(BankingCircleConfig bankingcircle)
+        {
             ConnectorConfigType typ = ConnectorConfigType.Bankingcircle;
-        
             string typStr = ConnectorConfigType.Bankingcircle.ToString();
-            
             bankingcircle.Provider = typStr;
             ConnectorConfig res = new ConnectorConfig(typ);
             res.BankingCircleConfig = bankingcircle;
             return res;
         }
-        public static ConnectorConfig CreateMangopay(MangoPayConfig mangopay) {
+
+        public static ConnectorConfig CreateMangopay(MangoPayConfig mangopay)
+        {
             ConnectorConfigType typ = ConnectorConfigType.Mangopay;
-        
             string typStr = ConnectorConfigType.Mangopay.ToString();
-            
             mangopay.Provider = typStr;
             ConnectorConfig res = new ConnectorConfig(typ);
             res.MangoPayConfig = mangopay;
             return res;
         }
-        public static ConnectorConfig CreateMoneycorp(MoneycorpConfig moneycorp) {
+
+        public static ConnectorConfig CreateMoneycorp(MoneycorpConfig moneycorp)
+        {
             ConnectorConfigType typ = ConnectorConfigType.Moneycorp;
-        
             string typStr = ConnectorConfigType.Moneycorp.ToString();
-            
             moneycorp.Provider = typStr;
             ConnectorConfig res = new ConnectorConfig(typ);
             res.MoneycorpConfig = moneycorp;
             return res;
         }
-        public static ConnectorConfig CreateAtlar(AtlarConfig atlar) {
+
+        public static ConnectorConfig CreateAtlar(AtlarConfig atlar)
+        {
             ConnectorConfigType typ = ConnectorConfigType.Atlar;
-        
             string typStr = ConnectorConfigType.Atlar.ToString();
-            
             atlar.Provider = typStr;
             ConnectorConfig res = new ConnectorConfig(typ);
             res.AtlarConfig = atlar;
             return res;
         }
-        public static ConnectorConfig CreateAdyen(AdyenConfig adyen) {
+
+        public static ConnectorConfig CreateAdyen(AdyenConfig adyen)
+        {
             ConnectorConfigType typ = ConnectorConfigType.Adyen;
-        
             string typStr = ConnectorConfigType.Adyen.ToString();
-            
             adyen.Provider = typStr;
             ConnectorConfig res = new ConnectorConfig(typ);
             res.AdyenConfig = adyen;
             return res;
         }
-        public static ConnectorConfig CreateGeneric(GenericConfig generic) {
+
+        public static ConnectorConfig CreateGeneric(GenericConfig generic)
+        {
             ConnectorConfigType typ = ConnectorConfigType.Generic;
-        
             string typStr = ConnectorConfigType.Generic.ToString();
-            
             generic.Provider = typStr;
             ConnectorConfig res = new ConnectorConfig(typ);
             res.GenericConfig = generic;
             return res;
         }
-        public static ConnectorConfig CreateNull() {
+
+        public static ConnectorConfig CreateNull()
+        {
             ConnectorConfigType typ = ConnectorConfigType.Null;
             return new ConnectorConfig(typ);
         }
@@ -243,58 +255,58 @@ namespace FormanceSDK.Models.Components
                 string discriminator = jo.GetValue("provider")?.ToString() ?? throw new ArgumentNullException("Could not find discriminator field.");
                 if (discriminator == ConnectorConfigType.Stripe.ToString())
                 {
-                    StripeConfig? stripeConfig = ResponseBodyDeserializer.Deserialize<StripeConfig>(jo.ToString());
-                    return CreateStripe(stripeConfig!);
+                    StripeConfig stripeConfig = ResponseBodyDeserializer.DeserializeNotNull<StripeConfig>(jo.ToString());
+                    return CreateStripe(stripeConfig);
                 }
                 if (discriminator == ConnectorConfigType.Dummypay.ToString())
                 {
-                    DummyPayConfig? dummyPayConfig = ResponseBodyDeserializer.Deserialize<DummyPayConfig>(jo.ToString());
-                    return CreateDummypay(dummyPayConfig!);
+                    DummyPayConfig dummyPayConfig = ResponseBodyDeserializer.DeserializeNotNull<DummyPayConfig>(jo.ToString());
+                    return CreateDummypay(dummyPayConfig);
                 }
                 if (discriminator == ConnectorConfigType.Wise.ToString())
                 {
-                    WiseConfig? wiseConfig = ResponseBodyDeserializer.Deserialize<WiseConfig>(jo.ToString());
-                    return CreateWise(wiseConfig!);
+                    WiseConfig wiseConfig = ResponseBodyDeserializer.DeserializeNotNull<WiseConfig>(jo.ToString());
+                    return CreateWise(wiseConfig);
                 }
                 if (discriminator == ConnectorConfigType.Modulr.ToString())
                 {
-                    ModulrConfig? modulrConfig = ResponseBodyDeserializer.Deserialize<ModulrConfig>(jo.ToString());
-                    return CreateModulr(modulrConfig!);
+                    ModulrConfig modulrConfig = ResponseBodyDeserializer.DeserializeNotNull<ModulrConfig>(jo.ToString());
+                    return CreateModulr(modulrConfig);
                 }
                 if (discriminator == ConnectorConfigType.Currencycloud.ToString())
                 {
-                    CurrencyCloudConfig? currencyCloudConfig = ResponseBodyDeserializer.Deserialize<CurrencyCloudConfig>(jo.ToString());
-                    return CreateCurrencycloud(currencyCloudConfig!);
+                    CurrencyCloudConfig currencyCloudConfig = ResponseBodyDeserializer.DeserializeNotNull<CurrencyCloudConfig>(jo.ToString());
+                    return CreateCurrencycloud(currencyCloudConfig);
                 }
                 if (discriminator == ConnectorConfigType.Bankingcircle.ToString())
                 {
-                    BankingCircleConfig? bankingCircleConfig = ResponseBodyDeserializer.Deserialize<BankingCircleConfig>(jo.ToString());
-                    return CreateBankingcircle(bankingCircleConfig!);
+                    BankingCircleConfig bankingCircleConfig = ResponseBodyDeserializer.DeserializeNotNull<BankingCircleConfig>(jo.ToString());
+                    return CreateBankingcircle(bankingCircleConfig);
                 }
                 if (discriminator == ConnectorConfigType.Mangopay.ToString())
                 {
-                    MangoPayConfig? mangoPayConfig = ResponseBodyDeserializer.Deserialize<MangoPayConfig>(jo.ToString());
-                    return CreateMangopay(mangoPayConfig!);
+                    MangoPayConfig mangoPayConfig = ResponseBodyDeserializer.DeserializeNotNull<MangoPayConfig>(jo.ToString());
+                    return CreateMangopay(mangoPayConfig);
                 }
                 if (discriminator == ConnectorConfigType.Moneycorp.ToString())
                 {
-                    MoneycorpConfig? moneycorpConfig = ResponseBodyDeserializer.Deserialize<MoneycorpConfig>(jo.ToString());
-                    return CreateMoneycorp(moneycorpConfig!);
+                    MoneycorpConfig moneycorpConfig = ResponseBodyDeserializer.DeserializeNotNull<MoneycorpConfig>(jo.ToString());
+                    return CreateMoneycorp(moneycorpConfig);
                 }
                 if (discriminator == ConnectorConfigType.Atlar.ToString())
                 {
-                    AtlarConfig? atlarConfig = ResponseBodyDeserializer.Deserialize<AtlarConfig>(jo.ToString());
-                    return CreateAtlar(atlarConfig!);
+                    AtlarConfig atlarConfig = ResponseBodyDeserializer.DeserializeNotNull<AtlarConfig>(jo.ToString());
+                    return CreateAtlar(atlarConfig);
                 }
                 if (discriminator == ConnectorConfigType.Adyen.ToString())
                 {
-                    AdyenConfig? adyenConfig = ResponseBodyDeserializer.Deserialize<AdyenConfig>(jo.ToString());
-                    return CreateAdyen(adyenConfig!);
+                    AdyenConfig adyenConfig = ResponseBodyDeserializer.DeserializeNotNull<AdyenConfig>(jo.ToString());
+                    return CreateAdyen(adyenConfig);
                 }
                 if (discriminator == ConnectorConfigType.Generic.ToString())
                 {
-                    GenericConfig? genericConfig = ResponseBodyDeserializer.Deserialize<GenericConfig>(jo.ToString());
-                    return CreateGeneric(genericConfig!);
+                    GenericConfig genericConfig = ResponseBodyDeserializer.DeserializeNotNull<GenericConfig>(jo.ToString());
+                    return CreateGeneric(genericConfig);
                 }
 
                 throw new InvalidOperationException("Could not deserialize into any supported types.");
@@ -306,68 +318,79 @@ namespace FormanceSDK.Models.Components
                     writer.WriteRawValue("null");
                     return;
                 }
+
                 ConnectorConfig res = (ConnectorConfig)value;
                 if (ConnectorConfigType.FromString(res.Type).Equals(ConnectorConfigType.Null))
                 {
                     writer.WriteRawValue("null");
                     return;
                 }
+
                 if (res.StripeConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.StripeConfig));
                     return;
                 }
+
                 if (res.DummyPayConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.DummyPayConfig));
                     return;
                 }
+
                 if (res.WiseConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.WiseConfig));
                     return;
                 }
+
                 if (res.ModulrConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ModulrConfig));
                     return;
                 }
+
                 if (res.CurrencyCloudConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.CurrencyCloudConfig));
                     return;
                 }
+
                 if (res.BankingCircleConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.BankingCircleConfig));
                     return;
                 }
+
                 if (res.MangoPayConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.MangoPayConfig));
                     return;
                 }
+
                 if (res.MoneycorpConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.MoneycorpConfig));
                     return;
                 }
+
                 if (res.AtlarConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.AtlarConfig));
                     return;
                 }
+
                 if (res.AdyenConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.AdyenConfig));
                     return;
                 }
+
                 if (res.GenericConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.GenericConfig));
                     return;
                 }
-
             }
 
         }

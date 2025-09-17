@@ -17,21 +17,21 @@ namespace FormanceSDK.Models.Components
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
-    
 
     public class V2StageType
     {
         private V2StageType(string value) { Value = value; }
 
         public string Value { get; private set; }
+
         public static V2StageType V2StageSend { get { return new V2StageType("V2StageSend"); } }
-        
+
         public static V2StageType V2StageDelay { get { return new V2StageType("V2StageDelay"); } }
-        
+
         public static V2StageType V2StageWaitEvent { get { return new V2StageType("V2StageWaitEvent"); } }
-        
+
         public static V2StageType V2Update { get { return new V2StageType("V2Update"); } }
-        
+
         public static V2StageType Null { get { return new V2StageType("null"); } }
 
         public override string ToString() { return Value; }
@@ -63,8 +63,10 @@ namespace FormanceSDK.Models.Components
 
 
     [JsonConverter(typeof(V2Stage.V2StageConverter))]
-    public class V2Stage {
-        public V2Stage(V2StageType type) {
+    public class V2Stage
+    {
+        public V2Stage(V2StageType type)
+        {
             Type = type;
         }
 
@@ -81,33 +83,32 @@ namespace FormanceSDK.Models.Components
         public V2Update? V2Update { get; set; }
 
         public V2StageType Type { get; set; }
-
-
-        public static V2Stage CreateV2StageSend(V2StageSend v2StageSend) {
+        public static V2Stage CreateV2StageSend(V2StageSend v2StageSend)
+        {
             V2StageType typ = V2StageType.V2StageSend;
 
             V2Stage res = new V2Stage(typ);
             res.V2StageSend = v2StageSend;
             return res;
         }
-
-        public static V2Stage CreateV2StageDelay(V2StageDelay v2StageDelay) {
+        public static V2Stage CreateV2StageDelay(V2StageDelay v2StageDelay)
+        {
             V2StageType typ = V2StageType.V2StageDelay;
 
             V2Stage res = new V2Stage(typ);
             res.V2StageDelay = v2StageDelay;
             return res;
         }
-
-        public static V2Stage CreateV2StageWaitEvent(V2StageWaitEvent v2StageWaitEvent) {
+        public static V2Stage CreateV2StageWaitEvent(V2StageWaitEvent v2StageWaitEvent)
+        {
             V2StageType typ = V2StageType.V2StageWaitEvent;
 
             V2Stage res = new V2Stage(typ);
             res.V2StageWaitEvent = v2StageWaitEvent;
             return res;
         }
-
-        public static V2Stage CreateV2Update(V2Update v2Update) {
+        public static V2Stage CreateV2Update(V2Update v2Update)
+        {
             V2StageType typ = V2StageType.V2Update;
 
             V2Stage res = new V2Stage(typ);
@@ -115,7 +116,8 @@ namespace FormanceSDK.Models.Components
             return res;
         }
 
-        public static V2Stage CreateNull() {
+        public static V2Stage CreateNull()
+        {
             V2StageType typ = V2StageType.Null;
             return new V2Stage(typ);
         }
@@ -246,33 +248,37 @@ namespace FormanceSDK.Models.Components
                     writer.WriteRawValue("null");
                     return;
                 }
+
                 V2Stage res = (V2Stage)value;
                 if (V2StageType.FromString(res.Type).Equals(V2StageType.Null))
                 {
                     writer.WriteRawValue("null");
                     return;
                 }
+
                 if (res.V2StageSend != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V2StageSend));
                     return;
                 }
+
                 if (res.V2StageDelay != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V2StageDelay));
                     return;
                 }
+
                 if (res.V2StageWaitEvent != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V2StageWaitEvent));
                     return;
                 }
+
                 if (res.V2Update != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V2Update));
                     return;
                 }
-
             }
 
         }

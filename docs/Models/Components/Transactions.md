@@ -5,4 +5,4 @@
 
 | Field                                                               | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `Transactions`                                                      | List<[TransactionData](../../Models/Components/TransactionData.md)> | :heavy_check_mark:                                                  | N/A                                                                 |
+| `TransactionsValue`                                                 | List<[TransactionData](../../Models/Components/TransactionData.md)> | :heavy_check_mark:                                                  | N/A                                                                 |

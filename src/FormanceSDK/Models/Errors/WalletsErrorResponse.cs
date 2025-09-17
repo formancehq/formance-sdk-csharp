@@ -13,14 +13,44 @@ namespace FormanceSDK.Models.Errors
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
-    public class WalletsErrorResponse : Exception
-    {
+    using System.Net.Http;
 
+    public class WalletsErrorResponsePayload
+    {
         [JsonProperty("errorCode")]
         public ErrorCode ErrorCode { get; set; } = default!;
 
         [JsonProperty("errorMessage")]
         public string ErrorMessage { get; set; } = default!;
     }
+
+    public class WalletsErrorResponse : FormanceError
+    {
+        /// <summary>
+        ///  The original data that was passed to this exception.
+        /// </summary>
+        public WalletsErrorResponsePayload Payload { get; }
+
+        [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible. Use WalletsErrorResponse.Payload.ErrorCode instead.")]
+        public ErrorCode ErrorCode { get; set; } = default!;
+
+        [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible. Use WalletsErrorResponse.Payload.ErrorMessage instead.")]
+        public string ErrorMessage { get; set; } = default!;
+
+        public WalletsErrorResponse(
+            WalletsErrorResponsePayload payload,
+            HttpRequestMessage request,
+            HttpResponseMessage response,
+            string body
+        ): base("API error occurred", request, response, body)
+        {
+           Payload = payload;
+
+           #pragma warning disable CS0618
+           ErrorCode = payload.ErrorCode;
+           ErrorMessage = payload.ErrorMessage;
+           #pragma warning restore CS0618
+        }
+    }
+
 }

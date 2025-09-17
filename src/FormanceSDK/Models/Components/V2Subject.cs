@@ -17,16 +17,17 @@ namespace FormanceSDK.Models.Components
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
-    
 
     public class V2SubjectType
     {
         private V2SubjectType(string value) { Value = value; }
 
         public string Value { get; private set; }
-        
+
         public static V2SubjectType Account { get { return new V2SubjectType("ACCOUNT"); } }
+
         public static V2SubjectType Wallet { get { return new V2SubjectType("WALLET"); } }
+
         public static V2SubjectType Null { get { return new V2SubjectType("null"); } }
 
         public override string ToString() { return Value; }
@@ -56,8 +57,10 @@ namespace FormanceSDK.Models.Components
 
 
     [JsonConverter(typeof(V2Subject.V2SubjectConverter))]
-    public class V2Subject {
-        public V2Subject(V2SubjectType type) {
+    public class V2Subject
+    {
+        public V2Subject(V2SubjectType type)
+        {
             Type = type;
         }
 
@@ -69,28 +72,28 @@ namespace FormanceSDK.Models.Components
 
         public V2SubjectType Type { get; set; }
 
-
-        public static V2Subject CreateAccount(V2LedgerAccountSubject account) {
+        public static V2Subject CreateAccount(V2LedgerAccountSubject account)
+        {
             V2SubjectType typ = V2SubjectType.Account;
-        
             string typStr = V2SubjectType.Account.ToString();
-            
             account.Type = typStr;
             V2Subject res = new V2Subject(typ);
             res.V2LedgerAccountSubject = account;
             return res;
         }
-        public static V2Subject CreateWallet(V2WalletSubject wallet) {
+
+        public static V2Subject CreateWallet(V2WalletSubject wallet)
+        {
             V2SubjectType typ = V2SubjectType.Wallet;
-        
             string typStr = V2SubjectType.Wallet.ToString();
-            
             wallet.Type = typStr;
             V2Subject res = new V2Subject(typ);
             res.V2WalletSubject = wallet;
             return res;
         }
-        public static V2Subject CreateNull() {
+
+        public static V2Subject CreateNull()
+        {
             V2SubjectType typ = V2SubjectType.Null;
             return new V2Subject(typ);
         }
@@ -108,13 +111,13 @@ namespace FormanceSDK.Models.Components
                 string discriminator = jo.GetValue("type")?.ToString() ?? throw new ArgumentNullException("Could not find discriminator field.");
                 if (discriminator == V2SubjectType.Account.ToString())
                 {
-                    V2LedgerAccountSubject? v2LedgerAccountSubject = ResponseBodyDeserializer.Deserialize<V2LedgerAccountSubject>(jo.ToString());
-                    return CreateAccount(v2LedgerAccountSubject!);
+                    V2LedgerAccountSubject v2LedgerAccountSubject = ResponseBodyDeserializer.DeserializeNotNull<V2LedgerAccountSubject>(jo.ToString());
+                    return CreateAccount(v2LedgerAccountSubject);
                 }
                 if (discriminator == V2SubjectType.Wallet.ToString())
                 {
-                    V2WalletSubject? v2WalletSubject = ResponseBodyDeserializer.Deserialize<V2WalletSubject>(jo.ToString());
-                    return CreateWallet(v2WalletSubject!);
+                    V2WalletSubject v2WalletSubject = ResponseBodyDeserializer.DeserializeNotNull<V2WalletSubject>(jo.ToString());
+                    return CreateWallet(v2WalletSubject);
                 }
 
                 throw new InvalidOperationException("Could not deserialize into any supported types.");
@@ -126,23 +129,25 @@ namespace FormanceSDK.Models.Components
                     writer.WriteRawValue("null");
                     return;
                 }
+
                 V2Subject res = (V2Subject)value;
                 if (V2SubjectType.FromString(res.Type).Equals(V2SubjectType.Null))
                 {
                     writer.WriteRawValue("null");
                     return;
                 }
+
                 if (res.V2LedgerAccountSubject != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V2LedgerAccountSubject));
                     return;
                 }
+
                 if (res.V2WalletSubject != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V2WalletSubject));
                     return;
                 }
-
             }
 
         }

@@ -56,6 +56,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="paymentsgetServerInfo" method="get" path="/api/payments/_info" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -87,6 +88,7 @@ Create a payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="createPayment" method="post" path="/api/payments/payments" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -136,6 +138,7 @@ List payments
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="listPayments" method="get" path="/api/payments/payments" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -184,6 +187,7 @@ Get a payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getPayment" method="get" path="/api/payments/payments/{paymentId}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -221,6 +225,7 @@ Update metadata
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="updateMetadata" method="patch" path="/api/payments/payments/{paymentId}/metadata" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -265,6 +270,7 @@ List Transfer Initiations
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="listTransferInitiations" method="get" path="/api/payments/transfer-initiations" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -313,6 +319,7 @@ Create a transfer initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="createTransferInitiation" method="post" path="/api/payments/transfer-initiations" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -363,6 +370,7 @@ Get a transfer initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getTransferInitiation" method="get" path="/api/payments/transfer-initiations/{transferId}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -400,6 +408,7 @@ Delete a transfer initiation by its id.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="deleteTransferInitiation" method="delete" path="/api/payments/transfer-initiations/{transferId}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -437,6 +446,7 @@ Update a transfer initiation status
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="updateTransferInitiationStatus" method="post" path="/api/payments/transfer-initiations/{transferId}/status" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -448,7 +458,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Payments.V1.UpdateTransferInitiationStatusAsync(
     transferId: "XXX",
-    updateTransferInitiationStatusRequest: new Models.Components.UpdateTransferInitiationStatusRequest() {
+    updateTransferInitiationStatusRequest: new FormanceSDK.Models.Components.UpdateTransferInitiationStatusRequest() {
         Status = Status.Validated,
     }
 );
@@ -480,6 +490,7 @@ Reverse transfer initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="reverseTransferInitiation" method="post" path="/api/payments/transfer-initiations/{transferId}/reverse" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -491,7 +502,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Payments.V1.ReverseTransferInitiationAsync(
     transferId: "XXX",
-    reverseTransferInitiationRequest: new Models.Components.ReverseTransferInitiationRequest() {
+    reverseTransferInitiationRequest: new FormanceSDK.Models.Components.ReverseTransferInitiationRequest() {
         Reference = "XXX",
         Description = "keel caption frenetically ew given fencing scratch yearningly quickly know",
         Amount = 563034,
@@ -527,6 +538,7 @@ Retry a failed transfer initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="retryTransferInitiation" method="post" path="/api/payments/transfer-initiations/{transferId}/retry" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -564,6 +576,7 @@ List Pools
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="listPools" method="get" path="/api/payments/pools" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -612,6 +625,7 @@ Create a Pool
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="createPool" method="post" path="/api/payments/pools" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -658,6 +672,7 @@ Get a Pool
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getPool" method="get" path="/api/payments/pools/{poolId}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -695,6 +710,7 @@ Delete a pool by its id.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="deletePool" method="delete" path="/api/payments/pools/{poolId}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -732,6 +748,7 @@ Add an account to a pool
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="addAccountToPool" method="post" path="/api/payments/pools/{poolId}/accounts" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -743,7 +760,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Payments.V1.AddAccountToPoolAsync(
     poolId: "XXX",
-    addAccountToPoolRequest: new Models.Components.AddAccountToPoolRequest() {
+    addAccountToPoolRequest: new FormanceSDK.Models.Components.AddAccountToPoolRequest() {
         AccountID = "<id>",
     }
 );
@@ -775,6 +792,7 @@ Remove an account from a pool by its id.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="removeAccountFromPool" method="delete" path="/api/payments/pools/{poolId}/accounts/{accountId}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -816,6 +834,7 @@ Get historical pool balances at a particular point in time
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getPoolBalances" method="get" path="/api/payments/pools/{poolId}/balances" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -858,6 +877,7 @@ Get latest pool balances
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getPoolBalancesLatest" method="get" path="/api/payments/pools/{poolId}/balances/latest" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -895,6 +915,7 @@ Create an account
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="createAccount" method="post" path="/api/payments/accounts" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -940,6 +961,7 @@ List accounts
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="paymentslistAccounts" method="get" path="/api/payments/accounts" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -988,6 +1010,7 @@ Get an account
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="paymentsgetAccount" method="get" path="/api/payments/accounts/{accountId}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1025,6 +1048,7 @@ Get account balances
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getAccountBalances" method="get" path="/api/payments/accounts/{accountId}/balances" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1074,6 +1098,7 @@ Create a bank account in Payments and on the PSP.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="createBankAccount" method="post" path="/api/payments/bank-accounts" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1116,6 +1141,7 @@ List all bank accounts created by user on Formance.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="listBankAccounts" method="get" path="/api/payments/bank-accounts" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1163,6 +1189,7 @@ Get a bank account created by user on Formance
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getBankAccount" method="get" path="/api/payments/bank-accounts/{bankAccountId}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1200,6 +1227,7 @@ Forward a bank account to a connector
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="forwardBankAccount" method="post" path="/api/payments/bank-accounts/{bankAccountId}/forward" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1211,7 +1239,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Payments.V1.ForwardBankAccountAsync(
     bankAccountId: "XXX",
-    forwardBankAccountRequest: new Models.Components.ForwardBankAccountRequest() {
+    forwardBankAccountRequest: new FormanceSDK.Models.Components.ForwardBankAccountRequest() {
         ConnectorID = "<id>",
     }
 );
@@ -1243,6 +1271,7 @@ Update metadata of a bank account
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="updateBankAccountMetadata" method="patch" path="/api/payments/bank-accounts/{bankAccountId}/metadata" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1255,7 +1284,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Payments.V1.UpdateBankAccountMetadataAsync(
     bankAccountId: "XXX",
-    updateBankAccountMetadataRequest: new Models.Components.UpdateBankAccountMetadataRequest() {
+    updateBankAccountMetadataRequest: new FormanceSDK.Models.Components.UpdateBankAccountMetadataRequest() {
         Metadata = new Dictionary<string, string>() {
             { "key", "<value>" },
             { "key1", "<value>" },
@@ -1291,6 +1320,7 @@ List all installed connectors.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="listAllConnectors" method="get" path="/api/payments/connectors" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1322,6 +1352,7 @@ List the configs of each available connector.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="listConfigsAvailableConnectors" method="get" path="/api/payments/connectors/configs" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1353,6 +1384,7 @@ Install a connector by its name and config.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="installConnector" method="post" path="/api/payments/connectors/{connector}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1403,6 +1435,7 @@ Uninstall a connector by its name.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="uninstallConnector" method="delete" path="/api/payments/connectors/{connector}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1440,6 +1473,7 @@ Uninstall a connector by its name.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="uninstallConnectorV1" method="delete" path="/api/payments/connectors/{connector}/{connectorId}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1483,6 +1517,7 @@ Read connector config
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="readConnectorConfig" method="get" path="/api/payments/connectors/{connector}/config" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1520,6 +1555,7 @@ Update connector config
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="updateConnectorConfigV1" method="post" path="/api/payments/connectors/{connector}/{connectorId}/config" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1571,6 +1607,7 @@ Read connector config
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="readConnectorConfigV1" method="get" path="/api/payments/connectors/{connector}/{connectorId}/config" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1616,6 +1653,7 @@ It will remove the connector and ALL PAYMENTS generated with it.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="resetConnector" method="post" path="/api/payments/connectors/{connector}/reset" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1655,6 +1693,7 @@ It will remove the connector and ALL PAYMENTS generated with it.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="resetConnectorV1" method="post" path="/api/payments/connectors/{connector}/{connectorId}/reset" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1698,6 +1737,7 @@ List all tasks associated with this connector.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="listConnectorTasks" method="get" path="/api/payments/connectors/{connector}/tasks" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1741,6 +1781,7 @@ List all tasks associated with this connector.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="listConnectorTasksV1" method="get" path="/api/payments/connectors/{connector}/{connectorId}/tasks" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1788,6 +1829,7 @@ Get a specific task associated to the connector.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getConnectorTask" method="get" path="/api/payments/connectors/{connector}/tasks/{taskId}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1829,6 +1871,7 @@ Get a specific task associated to the connector.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="getConnectorTaskV1" method="get" path="/api/payments/connectors/{connector}/{connectorId}/tasks/{taskId}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1872,6 +1915,7 @@ Execute a transfer between two accounts.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="connectorsTransfer" method="post" path="/api/payments/connectors/{connector}/transfers" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;

@@ -17,29 +17,29 @@ namespace FormanceSDK.Models.Components
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
-    
 
     public class TasksCursorDataType
     {
         private TasksCursorDataType(string value) { Value = value; }
 
         public string Value { get; private set; }
+
         public static TasksCursorDataType TaskStripe { get { return new TasksCursorDataType("TaskStripe"); } }
-        
+
         public static TasksCursorDataType TaskWise { get { return new TasksCursorDataType("TaskWise"); } }
-        
+
         public static TasksCursorDataType TaskCurrencyCloud { get { return new TasksCursorDataType("TaskCurrencyCloud"); } }
-        
+
         public static TasksCursorDataType TaskDummyPay { get { return new TasksCursorDataType("TaskDummyPay"); } }
-        
+
         public static TasksCursorDataType TaskModulr { get { return new TasksCursorDataType("TaskModulr"); } }
-        
+
         public static TasksCursorDataType TaskBankingCircle { get { return new TasksCursorDataType("TaskBankingCircle"); } }
-        
+
         public static TasksCursorDataType TaskMangoPay { get { return new TasksCursorDataType("TaskMangoPay"); } }
-        
+
         public static TasksCursorDataType TaskMoneycorp { get { return new TasksCursorDataType("TaskMoneycorp"); } }
-        
+
         public static TasksCursorDataType Null { get { return new TasksCursorDataType("null"); } }
 
         public override string ToString() { return Value; }
@@ -75,8 +75,10 @@ namespace FormanceSDK.Models.Components
 
 
     [JsonConverter(typeof(TasksCursorData.TasksCursorDataConverter))]
-    public class TasksCursorData {
-        public TasksCursorData(TasksCursorDataType type) {
+    public class TasksCursorData
+    {
+        public TasksCursorData(TasksCursorDataType type)
+        {
             Type = type;
         }
 
@@ -105,65 +107,64 @@ namespace FormanceSDK.Models.Components
         public TaskMoneycorp? TaskMoneycorp { get; set; }
 
         public TasksCursorDataType Type { get; set; }
-
-
-        public static TasksCursorData CreateTaskStripe(TaskStripe taskStripe) {
+        public static TasksCursorData CreateTaskStripe(TaskStripe taskStripe)
+        {
             TasksCursorDataType typ = TasksCursorDataType.TaskStripe;
 
             TasksCursorData res = new TasksCursorData(typ);
             res.TaskStripe = taskStripe;
             return res;
         }
-
-        public static TasksCursorData CreateTaskWise(TaskWise taskWise) {
+        public static TasksCursorData CreateTaskWise(TaskWise taskWise)
+        {
             TasksCursorDataType typ = TasksCursorDataType.TaskWise;
 
             TasksCursorData res = new TasksCursorData(typ);
             res.TaskWise = taskWise;
             return res;
         }
-
-        public static TasksCursorData CreateTaskCurrencyCloud(TaskCurrencyCloud taskCurrencyCloud) {
+        public static TasksCursorData CreateTaskCurrencyCloud(TaskCurrencyCloud taskCurrencyCloud)
+        {
             TasksCursorDataType typ = TasksCursorDataType.TaskCurrencyCloud;
 
             TasksCursorData res = new TasksCursorData(typ);
             res.TaskCurrencyCloud = taskCurrencyCloud;
             return res;
         }
-
-        public static TasksCursorData CreateTaskDummyPay(TaskDummyPay taskDummyPay) {
+        public static TasksCursorData CreateTaskDummyPay(TaskDummyPay taskDummyPay)
+        {
             TasksCursorDataType typ = TasksCursorDataType.TaskDummyPay;
 
             TasksCursorData res = new TasksCursorData(typ);
             res.TaskDummyPay = taskDummyPay;
             return res;
         }
-
-        public static TasksCursorData CreateTaskModulr(TaskModulr taskModulr) {
+        public static TasksCursorData CreateTaskModulr(TaskModulr taskModulr)
+        {
             TasksCursorDataType typ = TasksCursorDataType.TaskModulr;
 
             TasksCursorData res = new TasksCursorData(typ);
             res.TaskModulr = taskModulr;
             return res;
         }
-
-        public static TasksCursorData CreateTaskBankingCircle(TaskBankingCircle taskBankingCircle) {
+        public static TasksCursorData CreateTaskBankingCircle(TaskBankingCircle taskBankingCircle)
+        {
             TasksCursorDataType typ = TasksCursorDataType.TaskBankingCircle;
 
             TasksCursorData res = new TasksCursorData(typ);
             res.TaskBankingCircle = taskBankingCircle;
             return res;
         }
-
-        public static TasksCursorData CreateTaskMangoPay(TaskMangoPay taskMangoPay) {
+        public static TasksCursorData CreateTaskMangoPay(TaskMangoPay taskMangoPay)
+        {
             TasksCursorDataType typ = TasksCursorDataType.TaskMangoPay;
 
             TasksCursorData res = new TasksCursorData(typ);
             res.TaskMangoPay = taskMangoPay;
             return res;
         }
-
-        public static TasksCursorData CreateTaskMoneycorp(TaskMoneycorp taskMoneycorp) {
+        public static TasksCursorData CreateTaskMoneycorp(TaskMoneycorp taskMoneycorp)
+        {
             TasksCursorDataType typ = TasksCursorDataType.TaskMoneycorp;
 
             TasksCursorData res = new TasksCursorData(typ);
@@ -171,7 +172,8 @@ namespace FormanceSDK.Models.Components
             return res;
         }
 
-        public static TasksCursorData CreateNull() {
+        public static TasksCursorData CreateNull()
+        {
             TasksCursorDataType typ = TasksCursorDataType.Null;
             return new TasksCursorData(typ);
         }
@@ -382,53 +384,61 @@ namespace FormanceSDK.Models.Components
                     writer.WriteRawValue("null");
                     return;
                 }
+
                 TasksCursorData res = (TasksCursorData)value;
                 if (TasksCursorDataType.FromString(res.Type).Equals(TasksCursorDataType.Null))
                 {
                     writer.WriteRawValue("null");
                     return;
                 }
+
                 if (res.TaskStripe != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.TaskStripe));
                     return;
                 }
+
                 if (res.TaskWise != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.TaskWise));
                     return;
                 }
+
                 if (res.TaskCurrencyCloud != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.TaskCurrencyCloud));
                     return;
                 }
+
                 if (res.TaskDummyPay != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.TaskDummyPay));
                     return;
                 }
+
                 if (res.TaskModulr != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.TaskModulr));
                     return;
                 }
+
                 if (res.TaskBankingCircle != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.TaskBankingCircle));
                     return;
                 }
+
                 if (res.TaskMangoPay != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.TaskMangoPay));
                     return;
                 }
+
                 if (res.TaskMoneycorp != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.TaskMoneycorp));
                     return;
                 }
-
             }
 
         }

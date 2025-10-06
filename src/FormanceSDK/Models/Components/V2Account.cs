@@ -12,6 +12,7 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
+    using System;
     using System.Collections.Generic;
     
     public class V2Account
@@ -22,6 +23,15 @@ namespace FormanceSDK.Models.Components
 
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; } = default!;
+
+        [JsonProperty("insertionDate")]
+        public DateTime? InsertionDate { get; set; }
+
+        [JsonProperty("updatedAt")]
+        public DateTime? UpdatedAt { get; set; }
+
+        [JsonProperty("firstUsage")]
+        public DateTime? FirstUsage { get; set; }
 
         [JsonProperty("volumes")]
         public Dictionary<string, V2Volume>? Volumes { get; set; }

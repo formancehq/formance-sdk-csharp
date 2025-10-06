@@ -52,11 +52,26 @@ namespace FormanceSDK.Models.Requests
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=pit")]
         public DateTime? Pit { get; set; }
 
+        /// <summary>
+        /// Deprecated: Use sort param
+        /// </summary>
+        [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible")]
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=order")]
         public Order? Order { get; set; }
 
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=reverse")]
         public bool? Reverse { get; set; }
+
+        /// <summary>
+        /// Sort results using a field name and order (ascending or descending). <br/>
+        /// 
+        /// <remarks>
+        /// Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;` is either `asc` or `desc`.<br/>
+        /// 
+        /// </remarks>
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")]
+        public string? Sort { get; set; }
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
         public Dictionary<string, object> RequestBody { get; set; } = default!;

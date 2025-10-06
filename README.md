@@ -29,7 +29,6 @@ and standard method from web, mobile and desktop applications.
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
 * [formance](#formance)
-  * [🏗 **Welcome to your new SDK!** 🏗](#welcome-to-your-new-sdk)
 * [Introduction](#introduction)
 * [Authentication](#authentication)
   * [SDK Installation](#sdk-installation)
@@ -111,6 +110,8 @@ var res = await sdk.GetVersionsAsync();
 
 ### [Ledger](docs/sdks/ledger/README.md)
 
+* [GetInfo](docs/sdks/ledger/README.md#getinfo) - Show server information
+* [GetMetrics](docs/sdks/ledger/README.md#getmetrics) - Read in memory metrics
 
 #### [Ledger.V1](docs/sdks/formancev1/README.md)
 
@@ -137,8 +138,6 @@ var res = await sdk.GetVersionsAsync();
 
 #### [Ledger.V2](docs/sdks/v2/README.md)
 
-* [GetInfo](docs/sdks/v2/README.md#getinfo) - Show server information
-* [GetMetrics](docs/sdks/v2/README.md#getmetrics) - Read in memory metrics
 * [ListLedgers](docs/sdks/v2/README.md#listledgers) - List ledgers
 * [GetLedger](docs/sdks/v2/README.md#getledger) - Get a ledger
 * [CreateLedger](docs/sdks/v2/README.md#createledger) - Create a ledger
@@ -164,6 +163,17 @@ var res = await sdk.GetVersionsAsync();
 * [ListLogs](docs/sdks/v2/README.md#listlogs) - List the logs from a ledger
 * [ImportLogs](docs/sdks/v2/README.md#importlogs)
 * [ExportLogs](docs/sdks/v2/README.md#exportlogs) - Export logs
+* [ListExporters](docs/sdks/v2/README.md#listexporters) - List exporters
+* [CreateExporter](docs/sdks/v2/README.md#createexporter) - Create exporter
+* [GetExporterState](docs/sdks/v2/README.md#getexporterstate) - Get exporter state
+* [DeleteExporter](docs/sdks/v2/README.md#deleteexporter) - Delete exporter
+* [ListPipelines](docs/sdks/v2/README.md#listpipelines) - List pipelines
+* [CreatePipeline](docs/sdks/v2/README.md#createpipeline) - Create pipeline
+* [GetPipelineState](docs/sdks/v2/README.md#getpipelinestate) - Get pipeline state
+* [DeletePipeline](docs/sdks/v2/README.md#deletepipeline) - Delete pipeline
+* [ResetPipeline](docs/sdks/v2/README.md#resetpipeline) - Reset pipeline
+* [StartPipeline](docs/sdks/v2/README.md#startpipeline) - Start pipeline
+* [StopPipeline](docs/sdks/v2/README.md#stoppipeline) - Stop pipeline
 
 ### [Orchestration](docs/sdks/orchestration/README.md)
 
@@ -376,7 +386,7 @@ var res = await sdk.GetVersionsAsync();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-[`FormanceError`](./src/FormanceSDK/Models/Errors/FormanceError.cs) is the base exception class for all HTTP error responses. It has the following properties:
+[`SDKBaseException`](./src/FormanceSDK/Models/Errors/SDKBaseException.cs) is the base exception class for all HTTP error responses. It has the following properties:
 
 | Property      | Type                  | Description           |
 |---------------|-----------------------|-----------------------|
@@ -400,11 +410,11 @@ var sdk = new Formance(security: new Security() {
 
 try
 {
-    var res = await sdk.Ledger.V1.GetInfoAsync();
+    var res = await sdk.Ledger.GetInfoAsync();
 
     // handle response
 }
-catch (FormanceError ex)  // all SDK exceptions inherit from FormanceError
+catch (SDKBaseException ex)  // all SDK exceptions inherit from SDKBaseException
 {
     // ex.ToString() provides a detailed error message
     System.Console.WriteLine(ex);
@@ -415,11 +425,11 @@ catch (FormanceError ex)  // all SDK exceptions inherit from FormanceError
     var statusCode = (int)response.StatusCode;
     var responseBody = ex.Body;
 
-    if (ex is Models.Errors.ErrorResponse) // different exceptions may be thrown depending on the method
+    if (ex is Models.Errors.V2ErrorResponse) // different exceptions may be thrown depending on the method
     {
         // Check error data fields
-        Models.Errors.ErrorResponsePayload payload = ex.Payload;
-        ErrorsEnum ErrorCode = payload.ErrorCode;
+        Models.Errors.V2ErrorResponsePayload payload = ex.Payload;
+        V2ErrorsEnum ErrorCode = payload.ErrorCode;
         string ErrorMessage = payload.ErrorMessage;
         // ...
     }
@@ -439,22 +449,22 @@ catch (System.Net.Http.HttpRequestException ex)
 ### Error Classes
 
 **Primary exception:**
-* [`FormanceError`](./src/FormanceSDK/Models/Errors/FormanceError.cs): The base class for HTTP error responses.
+* [`SDKBaseException`](./src/FormanceSDK/Models/Errors/SDKBaseException.cs): The base class for HTTP error responses.
 
 <details><summary>Less common exceptions (11)</summary>
 
 * [`System.Net.Http.HttpRequestException`](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httprequestexception): Network connectivity error. For more details about the underlying cause, inspect the `ex.InnerException`.
 
-* Inheriting from [`FormanceError`](./src/FormanceSDK/Models/Errors/FormanceError.cs):
-  * [`V3ErrorResponse`](./src/FormanceSDK/Models/Errors/V3ErrorResponse.cs): Error. Applicable to 46 of 219 methods.*
-  * [`PaymentsErrorResponse`](./src/FormanceSDK/Models/Errors/PaymentsErrorResponse.cs): Error. Applicable to 45 of 219 methods.*
-  * [`V2ErrorResponse`](./src/FormanceSDK/Models/Errors/V2ErrorResponse.cs): Error. Applicable to 26 of 219 methods.*
-  * [`ErrorResponse`](./src/FormanceSDK/Models/Errors/ErrorResponse.cs): Applicable to 19 of 219 methods.*
-  * [`V2Error`](./src/FormanceSDK/Models/Errors/V2Error.cs): General error. Applicable to 18 of 219 methods.*
-  * [`Error`](./src/FormanceSDK/Models/Errors/Error.cs): General error. Applicable to 17 of 219 methods.*
-  * [`WalletsErrorResponse`](./src/FormanceSDK/Models/Errors/WalletsErrorResponse.cs): Applicable to 15 of 219 methods.*
-  * [`WebhooksErrorResponse`](./src/FormanceSDK/Models/Errors/WebhooksErrorResponse.cs): Error. Applicable to 8 of 219 methods.*
-  * [`ReconciliationErrorResponse`](./src/FormanceSDK/Models/Errors/ReconciliationErrorResponse.cs): Error response. Applicable to 8 of 219 methods.*
+* Inheriting from [`SDKBaseException`](./src/FormanceSDK/Models/Errors/SDKBaseException.cs):
+  * [`V3ErrorResponse`](./src/FormanceSDK/Models/Errors/V3ErrorResponse.cs): Error. Applicable to 46 of 230 methods.*
+  * [`PaymentsErrorResponse`](./src/FormanceSDK/Models/Errors/PaymentsErrorResponse.cs): Error. Applicable to 45 of 230 methods.*
+  * [`V2ErrorResponse`](./src/FormanceSDK/Models/Errors/V2ErrorResponse.cs): Error. Applicable to 37 of 230 methods.*
+  * [`ErrorResponse`](./src/FormanceSDK/Models/Errors/ErrorResponse.cs): Applicable to 19 of 230 methods.*
+  * [`V2Error`](./src/FormanceSDK/Models/Errors/V2Error.cs): General error. Applicable to 18 of 230 methods.*
+  * [`Error`](./src/FormanceSDK/Models/Errors/Error.cs): General error. Applicable to 17 of 230 methods.*
+  * [`WalletsErrorResponse`](./src/FormanceSDK/Models/Errors/WalletsErrorResponse.cs): Applicable to 15 of 230 methods.*
+  * [`WebhooksErrorResponse`](./src/FormanceSDK/Models/Errors/WebhooksErrorResponse.cs): Error. Applicable to 8 of 230 methods.*
+  * [`ReconciliationErrorResponse`](./src/FormanceSDK/Models/Errors/ReconciliationErrorResponse.cs): Error response. Applicable to 8 of 230 methods.*
   * [`ResponseValidationError`](./src/FormanceSDK/Models/Errors/ResponseValidationError.cs): Thrown when the response data could not be deserialized into the expected type.
 </details>
 
@@ -475,10 +485,10 @@ You can override the default server globally by passing a server index to the `s
 
 If the selected server has variables, you may override its default values through the additional parameters made available in the SDK constructor:
 
-| Variable       | Parameter                                           | Supported Values                                                           | Default           | Description                                                   |
-| -------------- | --------------------------------------------------- | -------------------------------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
-| `organization` | `organization: string`                              | string                                                                     | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
-| `environment`  | `environment: FormanceSDK.Models.ServerEnvironment` | - `"eu.sandbox"`<br/>- `"sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"eu.sandbox"`    | The environment name. Defaults to the production environment. |
+| Variable       | Parameter                                           | Supported Values                                      | Default           | Description                                                   |
+| -------------- | --------------------------------------------------- | ----------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
+| `organization` | `organization: string`                              | string                                                | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
+| `environment`  | `environment: FormanceSDK.Models.ServerEnvironment` | - `"sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"sandbox"`       | The environment name. Defaults to the production environment. |
 
 #### Example
 
@@ -509,7 +519,7 @@ using FormanceSDK;
 using FormanceSDK.Models.Components;
 
 var sdk = new Formance(
-    serverUrl: "https://orgID-stackID.eu.sandbox.formance.cloud",
+    serverUrl: "https://orgID-stackID.sandbox.formance.cloud",
     security: new Security() {
         ClientID = "<YOUR_CLIENT_ID_HERE>",
         ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",

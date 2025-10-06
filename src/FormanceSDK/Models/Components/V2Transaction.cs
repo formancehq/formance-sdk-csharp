@@ -22,6 +22,9 @@ namespace FormanceSDK.Models.Components
         [JsonProperty("insertedAt")]
         public DateTime? InsertedAt { get; set; }
 
+        [JsonProperty("updatedAt")]
+        public DateTime? UpdatedAt { get; set; }
+
         [JsonProperty("timestamp")]
         public DateTime Timestamp { get; set; } = default!;
 

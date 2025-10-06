@@ -24,7 +24,7 @@ namespace FormanceSDK.Models.Errors
         public string ErrorMessage { get; set; } = default!;
     }
 
-    public class WalletsErrorResponse : FormanceError
+    public class WalletsErrorResponse : SDKBaseException
     {
         /// <summary>
         ///  The original data that was passed to this exception.

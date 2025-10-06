@@ -17,7 +17,7 @@ namespace FormanceSDK.Models.Components
     {
 
         [JsonProperty("GetAccount")]
-        public V2AccountResponse? GetAccount { get; set; }
+        public V2ActivityGetAccountOutput? GetAccount { get; set; }
 
         [JsonProperty("CreateTransaction")]
         public V2ActivityCreateTransactionOutput? CreateTransaction { get; set; }

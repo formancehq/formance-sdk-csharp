@@ -1,0 +1,9 @@
+# V2CreateExporterResponse
+
+
+## Fields
+
+| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `HttpMeta`                                                                                        | [HTTPMetadata](../../Models/Components/HTTPMetadata.md)                                           | :heavy_check_mark:                                                                                | N/A                                                                                               |
+| `V2CreateExporterResponseValue`                                                                   | [Models.Components.V2CreateExporterResponse](../../Models/Components/V2CreateExporterResponse.md) | :heavy_minus_sign:                                                                                | Created exporter                                                                                  |

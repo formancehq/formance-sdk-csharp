@@ -20,7 +20,7 @@ namespace FormanceSDK.Models.Components
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
-        [JsonProperty("input")]
+        [JsonProperty("input", NullValueHandling = NullValueHandling.Include)]
         public V2Stage Input { get; set; } = default!;
 
         [JsonProperty("error")]

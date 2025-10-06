@@ -16,7 +16,7 @@ namespace FormanceSDK.Models.Components
     public class V3GetConnectorConfigResponse
     {
 
-        [JsonProperty("data")]
+        [JsonProperty("data", NullValueHandling = NullValueHandling.Include)]
         public Models.Components.V3InstallConnectorRequest Data { get; set; } = default!;
 
         public V3AdyenConfig? GetDataAdyen()

@@ -1,0 +1,9 @@
+# V2GetPipelineStateResponse
+
+
+## Fields
+
+| Field                                                                                                 | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
+| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `HttpMeta`                                                                                            | [HTTPMetadata](../../Models/Components/HTTPMetadata.md)                                               | :heavy_check_mark:                                                                                    | N/A                                                                                                   |
+| `V2GetPipelineStateResponseValue`                                                                     | [Models.Components.V2GetPipelineStateResponse](../../Models/Components/V2GetPipelineStateResponse.md) | :heavy_minus_sign:                                                                                    | Pipeline information                                                                                  |

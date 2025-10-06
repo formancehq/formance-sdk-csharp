@@ -1,0 +1,9 @@
+# V2ListExportersResponse
+
+
+## Fields
+
+| Field                                                                                           | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `HttpMeta`                                                                                      | [HTTPMetadata](../../Models/Components/HTTPMetadata.md)                                         | :heavy_check_mark:                                                                              | N/A                                                                                             |
+| `V2ListExportersResponseValue`                                                                  | [Models.Components.V2ListExportersResponse](../../Models/Components/V2ListExportersResponse.md) | :heavy_minus_sign:                                                                              | Exporters list                                                                                  |

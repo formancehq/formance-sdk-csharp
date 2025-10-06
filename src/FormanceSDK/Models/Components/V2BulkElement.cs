@@ -32,8 +32,6 @@ namespace FormanceSDK.Models.Components
 
         public static V2BulkElementType DeleteMetadata { get { return new V2BulkElementType("DELETE_METADATA"); } }
 
-        public static V2BulkElementType Null { get { return new V2BulkElementType("null"); } }
-
         public override string ToString() { return Value; }
         public static implicit operator String(V2BulkElementType v) { return v.Value; }
         public static V2BulkElementType FromString(string v) {
@@ -42,7 +40,6 @@ namespace FormanceSDK.Models.Components
                 case "ADD_METADATA": return AddMetadata;
                 case "REVERT_TRANSACTION": return RevertTransaction;
                 case "DELETE_METADATA": return DeleteMetadata;
-                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for V2BulkElementType");
             }
         }
@@ -124,21 +121,19 @@ namespace FormanceSDK.Models.Components
             return res;
         }
 
-        public static V2BulkElement CreateNull()
-        {
-            V2BulkElementType typ = V2BulkElementType.Null;
-            return new V2BulkElement(typ);
-        }
-
         public class V2BulkElementConverter : JsonConverter
         {
-
             public override bool CanConvert(System.Type objectType) => objectType == typeof(V2BulkElement);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
+                if (reader.TokenType == JsonToken.Null)
+                {
+                    throw new InvalidOperationException("Received unexpected null JSON value");
+                }
+
                 JObject jo = JObject.Load(reader);
                 string discriminator = jo.GetValue("action")?.ToString() ?? throw new ArgumentNullException("Could not find discriminator field.");
                 if (discriminator == V2BulkElementType.CreateTransaction.ToString())
@@ -167,17 +162,12 @@ namespace FormanceSDK.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null) {
-                    writer.WriteRawValue("null");
-                    return;
+                if (value == null)
+                {
+                    throw new InvalidOperationException("Unexpected null JSON value.");
                 }
 
                 V2BulkElement res = (V2BulkElement)value;
-                if (V2BulkElementType.FromString(res.Type).Equals(V2BulkElementType.Null))
-                {
-                    writer.WriteRawValue("null");
-                    return;
-                }
 
                 if (res.V2BulkElementCreateTransaction != null)
                 {

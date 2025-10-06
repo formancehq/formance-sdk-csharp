@@ -27,15 +27,12 @@ namespace FormanceSDK.Models.Components
 
         public static V2TargetIdType Bigint { get { return new V2TargetIdType("bigint"); } }
 
-        public static V2TargetIdType Null { get { return new V2TargetIdType("null"); } }
-
         public override string ToString() { return Value; }
         public static implicit operator String(V2TargetIdType v) { return v.Value; }
         public static V2TargetIdType FromString(string v) {
             switch(v) {
                 case "str": return Str;
                 case "bigint": return Bigint;
-                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for V2TargetIdType");
             }
         }
@@ -87,27 +84,20 @@ namespace FormanceSDK.Models.Components
             return res;
         }
 
-        public static V2TargetId CreateNull()
-        {
-            V2TargetIdType typ = V2TargetIdType.Null;
-            return new V2TargetId(typ);
-        }
-
         public class V2TargetIdConverter : JsonConverter
         {
-
             public override bool CanConvert(System.Type objectType) => objectType == typeof(V2TargetId);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                var json = JRaw.Create(reader).ToString();
-                if (json == "null")
+                if (reader.TokenType == JsonToken.Null)
                 {
-                    return null;
+                    throw new InvalidOperationException("Received unexpected null JSON value");
                 }
 
+                var json = JRaw.Create(reader).ToString();
                 var fallbackCandidates = new List<(System.Type, object, string)>();
 
                 if (json[0] == '"' && json[^1] == '"'){
@@ -162,17 +152,12 @@ namespace FormanceSDK.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null) {
-                    writer.WriteRawValue("null");
-                    return;
+                if (value == null)
+                {
+                    throw new InvalidOperationException("Unexpected null JSON value.");
                 }
 
                 V2TargetId res = (V2TargetId)value;
-                if (V2TargetIdType.FromString(res.Type).Equals(V2TargetIdType.Null))
-                {
-                    writer.WriteRawValue("null");
-                    return;
-                }
 
                 if (res.Str != null)
                 {

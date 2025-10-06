@@ -19,7 +19,7 @@ namespace FormanceSDK.Models.Components
     public class ConnectorConfigResponse
     {
 
-        [JsonProperty("data")]
+        [JsonProperty("data", NullValueHandling = NullValueHandling.Include)]
         public ConnectorConfig Data { get; set; } = default!;
 
         public StripeConfig? GetDataStripe()

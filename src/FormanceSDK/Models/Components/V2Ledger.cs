@@ -28,5 +28,11 @@ namespace FormanceSDK.Models.Components
 
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; }
+
+        [JsonProperty("features")]
+        public Dictionary<string, string>? Features { get; set; }
+
+        [JsonProperty("id")]
+        public long? Id { get; set; }
     }
 }

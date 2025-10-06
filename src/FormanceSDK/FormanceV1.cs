@@ -153,9 +153,9 @@ namespace FormanceSDK
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "2.0.0";
-        private const string _sdkGenVersion = "2.701.8";
-        private const string _openapiDocVersion = "v3.0.5";
+        private const string _sdkVersion = "3.0.0";
+        private const string _sdkGenVersion = "2.721.3";
+        private const string _openapiDocVersion = "v3.1.0";
 
         public FormanceV1(SDKConfig config)
         {
@@ -422,7 +422,7 @@ namespace FormanceSDK
 
             var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
             int responseStatusCode = (int)httpResponse.StatusCode;
-            if(responseStatusCode == 200)
+            if(responseStatusCode == 204)
             {
                 return new CountAccountsResponse()
                 {

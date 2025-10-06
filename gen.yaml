@@ -22,7 +22,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 csharp:
-  version: 2.0.0
+  version: 3.0.0
   additionalDependencies: []
   author: Formance
   baseErrorName: SDKBaseException
@@ -30,6 +30,7 @@ csharp:
   defaultErrorName: SDKException
   disableNamespacePascalCasingApr2024: true
   dotnetVersion: net8.0
+  enableCancellationToken: false
   enableSourceLink: true
   flattenGlobalSecurity: true
   flatteningOrder: ""
@@ -51,3 +52,4 @@ csharp:
   packageTags: formance SDK
   responseFormat: envelope-http
   sourceDirectory: src
+  useNodatime: true

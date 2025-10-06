@@ -23,6 +23,9 @@ namespace FormanceSDK.Models.Components
         [JsonProperty("workflowID")]
         public string WorkflowID { get; set; } = default!;
 
+        [JsonProperty("version")]
+        public string? Version { get; set; }
+
         [JsonProperty("filter")]
         public string? Filter { get; set; }
 

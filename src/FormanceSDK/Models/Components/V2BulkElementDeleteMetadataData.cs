@@ -16,7 +16,7 @@ namespace FormanceSDK.Models.Components
     public class V2BulkElementDeleteMetadataData
     {
 
-        [JsonProperty("targetId")]
+        [JsonProperty("targetId", NullValueHandling = NullValueHandling.Include)]
         public V2TargetId TargetId { get; set; } = default!;
 
         [JsonProperty("targetType")]

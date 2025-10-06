@@ -27,7 +27,7 @@ namespace FormanceSDK.Models.Errors
         public string? Details { get; set; }
     }
 
-    public class WebhooksErrorResponse : FormanceError
+    public class WebhooksErrorResponse : SDKBaseException
     {
         /// <summary>
         ///  The original data that was passed to this exception.

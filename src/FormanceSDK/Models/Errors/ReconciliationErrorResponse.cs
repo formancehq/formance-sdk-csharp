@@ -29,7 +29,7 @@ namespace FormanceSDK.Models.Errors
     /// <summary>
     /// Error response
     /// </summary>
-    public class ReconciliationErrorResponse : FormanceError
+    public class ReconciliationErrorResponse : SDKBaseException
     {
         /// <summary>
         ///  The original data that was passed to this exception.

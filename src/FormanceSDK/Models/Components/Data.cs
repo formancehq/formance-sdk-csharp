@@ -17,7 +17,7 @@ namespace FormanceSDK.Models.Components
     public class Data
     {
 
-        [JsonProperty("targetId")]
+        [JsonProperty("targetId", NullValueHandling = NullValueHandling.Include)]
         public V2TargetId TargetId { get; set; } = default!;
 
         [JsonProperty("targetType")]

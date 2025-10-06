@@ -1,0 +1,9 @@
+# V2ListPipelinesResponseCursor
+
+
+## Fields
+
+| Field                                                                                                 | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
+| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `Cursor`                                                                                              | [V2ListPipelinesResponseCursorCursor](../../Models/Components/V2ListPipelinesResponseCursorCursor.md) | :heavy_check_mark:                                                                                    | N/A                                                                                                   |
+| `Data`                                                                                                | List<[V2Pipeline](../../Models/Components/V2Pipeline.md)>                                             | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |

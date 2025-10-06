@@ -9,6 +9,7 @@
 #nullable enable
 namespace FormanceSDK.Models.Requests
 {
+    using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using System.Numerics;
     
@@ -44,5 +45,8 @@ namespace FormanceSDK.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=dryRun")]
         public bool? DryRun { get; set; }
+
+        [SpeakeasyMetadata("request:mediaType=application/json")]
+        public Models.Components.V2RevertTransactionRequest? V2RevertTransactionRequestValue { get; set; }
     }
 }

@@ -32,8 +32,6 @@ namespace FormanceSDK.Models.Components
 
         public static V2StageType V2Update { get { return new V2StageType("V2Update"); } }
 
-        public static V2StageType Null { get { return new V2StageType("null"); } }
-
         public override string ToString() { return Value; }
         public static implicit operator String(V2StageType v) { return v.Value; }
         public static V2StageType FromString(string v) {
@@ -42,7 +40,6 @@ namespace FormanceSDK.Models.Components
                 case "V2StageDelay": return V2StageDelay;
                 case "V2StageWaitEvent": return V2StageWaitEvent;
                 case "V2Update": return V2Update;
-                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for V2StageType");
             }
         }
@@ -116,27 +113,20 @@ namespace FormanceSDK.Models.Components
             return res;
         }
 
-        public static V2Stage CreateNull()
-        {
-            V2StageType typ = V2StageType.Null;
-            return new V2Stage(typ);
-        }
-
         public class V2StageConverter : JsonConverter
         {
-
             public override bool CanConvert(System.Type objectType) => objectType == typeof(V2Stage);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                var json = JRaw.Create(reader).ToString();
-                if (json == "null")
+                if (reader.TokenType == JsonToken.Null)
                 {
-                    return null;
+                    throw new InvalidOperationException("Received unexpected null JSON value");
                 }
 
+                var json = JRaw.Create(reader).ToString();
                 var fallbackCandidates = new List<(System.Type, object, string)>();
 
                 try
@@ -244,17 +234,12 @@ namespace FormanceSDK.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null) {
-                    writer.WriteRawValue("null");
-                    return;
+                if (value == null)
+                {
+                    throw new InvalidOperationException("Unexpected null JSON value.");
                 }
 
                 V2Stage res = (V2Stage)value;
-                if (V2StageType.FromString(res.Type).Equals(V2StageType.Null))
-                {
-                    writer.WriteRawValue("null");
-                    return;
-                }
 
                 if (res.V2StageSend != null)
                 {

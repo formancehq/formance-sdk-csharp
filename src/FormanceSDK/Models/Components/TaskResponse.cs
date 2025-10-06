@@ -19,7 +19,7 @@ namespace FormanceSDK.Models.Components
     public class TaskResponse
     {
 
-        [JsonProperty("data")]
+        [JsonProperty("data", NullValueHandling = NullValueHandling.Include)]
         public TaskResponseData Data { get; set; } = default!;
     }
 }

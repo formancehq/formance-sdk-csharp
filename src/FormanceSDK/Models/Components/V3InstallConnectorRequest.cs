@@ -50,8 +50,6 @@ namespace FormanceSDK.Models.Components
 
         public static V3InstallConnectorRequestType Wise { get { return new V3InstallConnectorRequestType("Wise"); } }
 
-        public static V3InstallConnectorRequestType Null { get { return new V3InstallConnectorRequestType("null"); } }
-
         public override string ToString() { return Value; }
         public static implicit operator String(V3InstallConnectorRequestType v) { return v.Value; }
         public static V3InstallConnectorRequestType FromString(string v) {
@@ -69,7 +67,6 @@ namespace FormanceSDK.Models.Components
                 case "Qonto": return Qonto;
                 case "Stripe": return Stripe;
                 case "Wise": return Wise;
-                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for V3InstallConnectorRequestType");
             }
         }
@@ -268,21 +265,19 @@ namespace FormanceSDK.Models.Components
             return res;
         }
 
-        public static V3InstallConnectorRequest CreateNull()
-        {
-            V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Null;
-            return new V3InstallConnectorRequest(typ);
-        }
-
         public class V3InstallConnectorRequestConverter : JsonConverter
         {
-
             public override bool CanConvert(System.Type objectType) => objectType == typeof(V3InstallConnectorRequest);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
+                if (reader.TokenType == JsonToken.Null)
+                {
+                    throw new InvalidOperationException("Received unexpected null JSON value");
+                }
+
                 JObject jo = JObject.Load(reader);
                 string discriminator = jo.GetValue("provider")?.ToString() ?? throw new ArgumentNullException("Could not find discriminator field.");
                 if (discriminator == V3InstallConnectorRequestType.Adyen.ToString())
@@ -356,17 +351,12 @@ namespace FormanceSDK.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null) {
-                    writer.WriteRawValue("null");
-                    return;
+                if (value == null)
+                {
+                    throw new InvalidOperationException("Unexpected null JSON value.");
                 }
 
                 V3InstallConnectorRequest res = (V3InstallConnectorRequest)value;
-                if (V3InstallConnectorRequestType.FromString(res.Type).Equals(V3InstallConnectorRequestType.Null))
-                {
-                    writer.WriteRawValue("null");
-                    return;
-                }
 
                 if (res.V3AdyenConfig != null)
                 {

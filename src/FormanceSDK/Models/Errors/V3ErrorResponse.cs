@@ -27,7 +27,7 @@ namespace FormanceSDK.Models.Errors
         public string? Details { get; set; }
     }
 
-    public class V3ErrorResponse : FormanceError
+    public class V3ErrorResponse : SDKBaseException
     {
         /// <summary>
         ///  The original data that was passed to this exception.

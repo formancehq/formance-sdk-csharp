@@ -34,8 +34,6 @@ namespace FormanceSDK.Models.Components
 
         public static V2BulkElementResultType Error { get { return new V2BulkElementResultType("ERROR"); } }
 
-        public static V2BulkElementResultType Null { get { return new V2BulkElementResultType("null"); } }
-
         public override string ToString() { return Value; }
         public static implicit operator String(V2BulkElementResultType v) { return v.Value; }
         public static V2BulkElementResultType FromString(string v) {
@@ -45,7 +43,6 @@ namespace FormanceSDK.Models.Components
                 case "REVERT_TRANSACTION": return RevertTransaction;
                 case "DELETE_METADATA": return DeleteMetadata;
                 case "ERROR": return Error;
-                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for V2BulkElementResultType");
             }
         }
@@ -140,21 +137,19 @@ namespace FormanceSDK.Models.Components
             return res;
         }
 
-        public static V2BulkElementResult CreateNull()
-        {
-            V2BulkElementResultType typ = V2BulkElementResultType.Null;
-            return new V2BulkElementResult(typ);
-        }
-
         public class V2BulkElementResultConverter : JsonConverter
         {
-
             public override bool CanConvert(System.Type objectType) => objectType == typeof(V2BulkElementResult);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
+                if (reader.TokenType == JsonToken.Null)
+                {
+                    throw new InvalidOperationException("Received unexpected null JSON value");
+                }
+
                 JObject jo = JObject.Load(reader);
                 string discriminator = jo.GetValue("responseType")?.ToString() ?? throw new ArgumentNullException("Could not find discriminator field.");
                 if (discriminator == V2BulkElementResultType.CreateTransaction.ToString())
@@ -188,17 +183,12 @@ namespace FormanceSDK.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null) {
-                    writer.WriteRawValue("null");
-                    return;
+                if (value == null)
+                {
+                    throw new InvalidOperationException("Unexpected null JSON value.");
                 }
 
                 V2BulkElementResult res = (V2BulkElementResult)value;
-                if (V2BulkElementResultType.FromString(res.Type).Equals(V2BulkElementResultType.Null))
-                {
-                    writer.WriteRawValue("null");
-                    return;
-                }
 
                 if (res.V2BulkElementResultCreateTransaction != null)
                 {

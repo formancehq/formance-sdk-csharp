@@ -52,10 +52,10 @@ namespace FormanceSDK
                 new Dictionary<string, string>()
                 {
                     {"organization", "orgID-stackID"},
-                    {"environment", "eu.sandbox"},
+                    {"environment", "sandbox"},
                 },
             };
-            UserAgent = "speakeasy-sdk/csharp 2.0.0 2.701.8 v3.0.5 FormanceSDK";
+            UserAgent = "speakeasy-sdk/csharp 3.0.0 2.721.3 v3.1.0 FormanceSDK";
             SecuritySource = null;
             Hooks = new SDKHooks();
             RetryConfig = null;

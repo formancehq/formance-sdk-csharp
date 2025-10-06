@@ -27,10 +27,22 @@ namespace FormanceSDK.Models.Components
         [JsonProperty("script")]
         public V2PostTransactionScript? Script { get; set; }
 
+        /// <summary>
+        /// The numscript runtime used to execute the script. Uses &quot;machine&quot; by default, unless the &quot;--experimental-numscript-interpreter&quot; feature flag is passed.
+        /// </summary>
+        [JsonProperty("runtime")]
+        public Runtime? Runtime { get; set; }
+
         [JsonProperty("reference")]
         public string? Reference { get; set; }
 
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; } = default!;
+
+        [JsonProperty("accountMetadata")]
+        public Dictionary<string, Dictionary<string, string>>? AccountMetadata { get; set; }
+
+        [JsonProperty("force")]
+        public bool? Force { get; set; }
     }
 }

@@ -28,15 +28,12 @@ namespace FormanceSDK.Models.Components
 
         public static SubjectType Wallet { get { return new SubjectType("WALLET"); } }
 
-        public static SubjectType Null { get { return new SubjectType("null"); } }
-
         public override string ToString() { return Value; }
         public static implicit operator String(SubjectType v) { return v.Value; }
         public static SubjectType FromString(string v) {
             switch(v) {
                 case "ACCOUNT": return Account;
                 case "WALLET": return Wallet;
-                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for SubjectType");
             }
         }
@@ -92,21 +89,19 @@ namespace FormanceSDK.Models.Components
             return res;
         }
 
-        public static Subject CreateNull()
-        {
-            SubjectType typ = SubjectType.Null;
-            return new Subject(typ);
-        }
-
         public class SubjectConverter : JsonConverter
         {
-
             public override bool CanConvert(System.Type objectType) => objectType == typeof(Subject);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
+                if (reader.TokenType == JsonToken.Null)
+                {
+                    throw new InvalidOperationException("Received unexpected null JSON value");
+                }
+
                 JObject jo = JObject.Load(reader);
                 string discriminator = jo.GetValue("type")?.ToString() ?? throw new ArgumentNullException("Could not find discriminator field.");
                 if (discriminator == SubjectType.Account.ToString())
@@ -125,17 +120,12 @@ namespace FormanceSDK.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null) {
-                    writer.WriteRawValue("null");
-                    return;
+                if (value == null)
+                {
+                    throw new InvalidOperationException("Unexpected null JSON value.");
                 }
 
                 Subject res = (Subject)value;
-                if (SubjectType.FromString(res.Type).Equals(SubjectType.Null))
-                {
-                    writer.WriteRawValue("null");
-                    return;
-                }
 
                 if (res.LedgerAccountSubject != null)
                 {

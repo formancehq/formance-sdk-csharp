@@ -40,8 +40,6 @@ namespace FormanceSDK.Models.Components
 
         public static TaskResponseDataType TaskMoneycorp { get { return new TaskResponseDataType("TaskMoneycorp"); } }
 
-        public static TaskResponseDataType Null { get { return new TaskResponseDataType("null"); } }
-
         public override string ToString() { return Value; }
         public static implicit operator String(TaskResponseDataType v) { return v.Value; }
         public static TaskResponseDataType FromString(string v) {
@@ -54,7 +52,6 @@ namespace FormanceSDK.Models.Components
                 case "TaskBankingCircle": return TaskBankingCircle;
                 case "TaskMangoPay": return TaskMangoPay;
                 case "TaskMoneycorp": return TaskMoneycorp;
-                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for TaskResponseDataType");
             }
         }
@@ -172,27 +169,20 @@ namespace FormanceSDK.Models.Components
             return res;
         }
 
-        public static TaskResponseData CreateNull()
-        {
-            TaskResponseDataType typ = TaskResponseDataType.Null;
-            return new TaskResponseData(typ);
-        }
-
         public class TaskResponseDataConverter : JsonConverter
         {
-
             public override bool CanConvert(System.Type objectType) => objectType == typeof(TaskResponseData);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                var json = JRaw.Create(reader).ToString();
-                if (json == "null")
+                if (reader.TokenType == JsonToken.Null)
                 {
-                    return null;
+                    throw new InvalidOperationException("Received unexpected null JSON value");
                 }
 
+                var json = JRaw.Create(reader).ToString();
                 var fallbackCandidates = new List<(System.Type, object, string)>();
 
                 try
@@ -380,17 +370,12 @@ namespace FormanceSDK.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null) {
-                    writer.WriteRawValue("null");
-                    return;
+                if (value == null)
+                {
+                    throw new InvalidOperationException("Unexpected null JSON value.");
                 }
 
                 TaskResponseData res = (TaskResponseData)value;
-                if (TaskResponseDataType.FromString(res.Type).Equals(TaskResponseDataType.Null))
-                {
-                    writer.WriteRawValue("null");
-                    return;
-                }
 
                 if (res.TaskStripe != null)
                 {

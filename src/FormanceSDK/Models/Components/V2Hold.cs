@@ -38,7 +38,7 @@ namespace FormanceSDK.Models.Components
         [JsonProperty("description")]
         public string Description { get; set; } = default!;
 
-        [JsonProperty("destination")]
+        [JsonProperty("destination", NullValueHandling = NullValueHandling.Include)]
         public V2Subject? Destination { get; set; }
 
         public V2LedgerAccountSubject? GetDestinationAccount()

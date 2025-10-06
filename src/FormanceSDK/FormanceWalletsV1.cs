@@ -106,9 +106,9 @@ namespace FormanceSDK
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "2.0.0";
-        private const string _sdkGenVersion = "2.701.8";
-        private const string _openapiDocVersion = "v3.0.5";
+        private const string _sdkVersion = "3.0.0";
+        private const string _sdkGenVersion = "2.721.3";
+        private const string _openapiDocVersion = "v3.1.0";
 
         public FormanceWalletsV1(SDKConfig config)
         {

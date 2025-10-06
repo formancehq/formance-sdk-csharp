@@ -41,5 +41,8 @@ namespace FormanceSDK.Models.Components
 
         [JsonProperty("error")]
         public string? Error { get; set; }
+
+        [JsonProperty("workflow")]
+        public V2Workflow? Workflow { get; set; }
     }
 }

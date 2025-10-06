@@ -13,7 +13,7 @@ namespace FormanceSDK.Models.Errors
     using System;
     using System.Net.Http;
 
-    public class SDKException : FormanceError
+    public class SDKException : SDKBaseException
     {
         /// <summary>
         /// Default API exception.

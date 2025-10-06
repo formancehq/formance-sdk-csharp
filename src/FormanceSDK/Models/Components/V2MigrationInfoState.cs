@@ -19,6 +19,8 @@ namespace FormanceSDK.Models.Components
         ToDo,
         [JsonProperty("DONE")]
         Done,
+        [JsonProperty("PROGRESS")]
+        Progress,
     }
 
     public static class V2MigrationInfoStateExtension

@@ -27,7 +27,7 @@ namespace FormanceSDK.Models.Errors
     /// <summary>
     /// General error
     /// </summary>
-    public class Error : FormanceError
+    public class Error : SDKBaseException
     {
         /// <summary>
         ///  The original data that was passed to this exception.

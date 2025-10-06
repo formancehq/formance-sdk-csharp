@@ -27,8 +27,6 @@ namespace FormanceSDK
     /// </summary>
     public enum ServerEnvironment
     {
-        [JsonProperty("eu.sandbox")]
-        EuSandbox,
         [JsonProperty("sandbox")]
         Sandbox,
         [JsonProperty("eu-west-1")]
@@ -127,9 +125,9 @@ namespace FormanceSDK
         public SDKConfig SDKConfiguration { get; private set; }
 
         private const string _language = "csharp";
-        private const string _sdkVersion = "2.0.0";
-        private const string _sdkGenVersion = "2.701.8";
-        private const string _openapiDocVersion = "v3.0.5";
+        private const string _sdkVersion = "3.0.0";
+        private const string _sdkGenVersion = "2.721.3";
+        private const string _openapiDocVersion = "v3.1.0";
         public IAuth Auth { get; private set; }
         public ILedger Ledger { get; private set; }
         public IPayments Payments { get; private set; }

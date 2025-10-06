@@ -46,8 +46,6 @@ namespace FormanceSDK.Models.Components
 
         public static ConnectorConfigType Generic { get { return new ConnectorConfigType("Generic"); } }
 
-        public static ConnectorConfigType Null { get { return new ConnectorConfigType("null"); } }
-
         public override string ToString() { return Value; }
         public static implicit operator String(ConnectorConfigType v) { return v.Value; }
         public static ConnectorConfigType FromString(string v) {
@@ -63,7 +61,6 @@ namespace FormanceSDK.Models.Components
                 case "Atlar": return Atlar;
                 case "Adyen": return Adyen;
                 case "Generic": return Generic;
-                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for ConnectorConfigType");
             }
         }
@@ -236,21 +233,19 @@ namespace FormanceSDK.Models.Components
             return res;
         }
 
-        public static ConnectorConfig CreateNull()
-        {
-            ConnectorConfigType typ = ConnectorConfigType.Null;
-            return new ConnectorConfig(typ);
-        }
-
         public class ConnectorConfigConverter : JsonConverter
         {
-
             public override bool CanConvert(System.Type objectType) => objectType == typeof(ConnectorConfig);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
+                if (reader.TokenType == JsonToken.Null)
+                {
+                    throw new InvalidOperationException("Received unexpected null JSON value");
+                }
+
                 JObject jo = JObject.Load(reader);
                 string discriminator = jo.GetValue("provider")?.ToString() ?? throw new ArgumentNullException("Could not find discriminator field.");
                 if (discriminator == ConnectorConfigType.Stripe.ToString())
@@ -314,17 +309,12 @@ namespace FormanceSDK.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null) {
-                    writer.WriteRawValue("null");
-                    return;
+                if (value == null)
+                {
+                    throw new InvalidOperationException("Unexpected null JSON value.");
                 }
 
                 ConnectorConfig res = (ConnectorConfig)value;
-                if (ConnectorConfigType.FromString(res.Type).Equals(ConnectorConfigType.Null))
-                {
-                    writer.WriteRawValue("null");
-                    return;
-                }
 
                 if (res.StripeConfig != null)
                 {

@@ -14,7 +14,7 @@ namespace FormanceSDK.Models.Errors
     using System.Net.Http;
     using System.Net.Http.Headers;
 
-    public class FormanceError : Exception
+    public class SDKBaseException : Exception
     {
         /// <summary>
         /// Error Message
@@ -36,14 +36,14 @@ namespace FormanceSDK.Models.Errors
         /// </summary>
         public string Body { get; }
 
-        public FormanceError(
+        public SDKBaseException(
             string message,
             HttpRequestMessage request,
             HttpResponseMessage response,
             string body
         ) : this(message, request, response, body, null) {}
 
-        public FormanceError(
+        public SDKBaseException(
             string message,
             HttpRequestMessage request,
             HttpResponseMessage response,

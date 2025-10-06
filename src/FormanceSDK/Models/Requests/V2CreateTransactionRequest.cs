@@ -11,6 +11,7 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
+    using System;
     
     public class V2CreateTransactionRequest
     {
@@ -36,6 +37,7 @@ namespace FormanceSDK.Models.Requests
         /// <summary>
         /// Disable balance checks when passing postings
         /// </summary>
+        [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible")]
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=force")]
         public bool? Force { get; set; }
 

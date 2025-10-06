@@ -81,7 +81,8 @@ namespace FormanceSDK.Hooks
                 try
                 {
                     request = await hook.BeforeRequestAsync(hookCtx, request);
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     throw new Exception("An error occurred while calling BeforeRequestAsync hook", ex);
                 }
@@ -107,17 +108,18 @@ namespace FormanceSDK.Hooks
 
         public async Task<HttpResponseMessage?> AfterErrorAsync(AfterErrorContext hookCtx, HttpResponseMessage? response, Exception? error)
         {
-
             (HttpResponseMessage?, Exception?) responseAndError = (response, error);
             foreach (var hook in this.afterErrorHooks)
             {
                 try
                 {
                     responseAndError = await hook.AfterErrorAsync(hookCtx, responseAndError.Item1, responseAndError.Item2);
-                } catch (FailEarlyException)
+                }
+                catch (FailEarlyException)
                 {
                     throw;
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     throw new Exception("An error occurred while calling AfterErrorAsync hook", ex);
                 }

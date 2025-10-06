@@ -1,0 +1,9 @@
+# V2ListPipelinesResponse
+
+
+## Fields
+
+| Field                                                                                           | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `HttpMeta`                                                                                      | [HTTPMetadata](../../Models/Components/HTTPMetadata.md)                                         | :heavy_check_mark:                                                                              | N/A                                                                                             |
+| `V2ListPipelinesResponseValue`                                                                  | [Models.Components.V2ListPipelinesResponse](../../Models/Components/V2ListPipelinesResponse.md) | :heavy_minus_sign:                                                                              | Pipelines list                                                                                  |

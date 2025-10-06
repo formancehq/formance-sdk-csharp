@@ -28,15 +28,12 @@ namespace FormanceSDK.Models.Components
 
         public static V2SubjectType Wallet { get { return new V2SubjectType("WALLET"); } }
 
-        public static V2SubjectType Null { get { return new V2SubjectType("null"); } }
-
         public override string ToString() { return Value; }
         public static implicit operator String(V2SubjectType v) { return v.Value; }
         public static V2SubjectType FromString(string v) {
             switch(v) {
                 case "ACCOUNT": return Account;
                 case "WALLET": return Wallet;
-                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for V2SubjectType");
             }
         }
@@ -92,21 +89,19 @@ namespace FormanceSDK.Models.Components
             return res;
         }
 
-        public static V2Subject CreateNull()
-        {
-            V2SubjectType typ = V2SubjectType.Null;
-            return new V2Subject(typ);
-        }
-
         public class V2SubjectConverter : JsonConverter
         {
-
             public override bool CanConvert(System.Type objectType) => objectType == typeof(V2Subject);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
+                if (reader.TokenType == JsonToken.Null)
+                {
+                    throw new InvalidOperationException("Received unexpected null JSON value");
+                }
+
                 JObject jo = JObject.Load(reader);
                 string discriminator = jo.GetValue("type")?.ToString() ?? throw new ArgumentNullException("Could not find discriminator field.");
                 if (discriminator == V2SubjectType.Account.ToString())
@@ -125,17 +120,12 @@ namespace FormanceSDK.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null) {
-                    writer.WriteRawValue("null");
-                    return;
+                if (value == null)
+                {
+                    throw new InvalidOperationException("Unexpected null JSON value.");
                 }
 
                 V2Subject res = (V2Subject)value;
-                if (V2SubjectType.FromString(res.Type).Equals(V2SubjectType.Null))
-                {
-                    writer.WriteRawValue("null");
-                    return;
-                }
 
                 if (res.V2LedgerAccountSubject != null)
                 {

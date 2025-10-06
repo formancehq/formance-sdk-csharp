@@ -32,8 +32,6 @@ namespace FormanceSDK.Models.Components
 
         public static StageType Update { get { return new StageType("Update"); } }
 
-        public static StageType Null { get { return new StageType("null"); } }
-
         public override string ToString() { return Value; }
         public static implicit operator String(StageType v) { return v.Value; }
         public static StageType FromString(string v) {
@@ -42,7 +40,6 @@ namespace FormanceSDK.Models.Components
                 case "StageDelay": return StageDelay;
                 case "StageWaitEvent": return StageWaitEvent;
                 case "Update": return Update;
-                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for StageType");
             }
         }
@@ -116,27 +113,20 @@ namespace FormanceSDK.Models.Components
             return res;
         }
 
-        public static Stage CreateNull()
-        {
-            StageType typ = StageType.Null;
-            return new Stage(typ);
-        }
-
         public class StageConverter : JsonConverter
         {
-
             public override bool CanConvert(System.Type objectType) => objectType == typeof(Stage);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                var json = JRaw.Create(reader).ToString();
-                if (json == "null")
+                if (reader.TokenType == JsonToken.Null)
                 {
-                    return null;
+                    throw new InvalidOperationException("Received unexpected null JSON value");
                 }
 
+                var json = JRaw.Create(reader).ToString();
                 var fallbackCandidates = new List<(System.Type, object, string)>();
 
                 try
@@ -244,17 +234,12 @@ namespace FormanceSDK.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null) {
-                    writer.WriteRawValue("null");
-                    return;
+                if (value == null)
+                {
+                    throw new InvalidOperationException("Unexpected null JSON value.");
                 }
 
                 Stage res = (Stage)value;
-                if (StageType.FromString(res.Type).Equals(StageType.Null))
-                {
-                    writer.WriteRawValue("null");
-                    return;
-                }
 
                 if (res.StageSend != null)
                 {

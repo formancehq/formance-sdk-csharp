@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Requests
     using Newtonsoft.Json;
     using System;
     
+    /// <summary>
+    /// Deprecated: Use sort param
+    /// </summary>
     public enum Order
     {
         [JsonProperty("effective")]

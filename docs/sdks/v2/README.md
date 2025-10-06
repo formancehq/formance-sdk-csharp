@@ -5,8 +5,6 @@
 
 ### Available Operations
 
-* [GetInfo](#getinfo) - Show server information
-* [GetMetrics](#getmetrics) - Read in memory metrics
 * [ListLedgers](#listledgers) - List ledgers
 * [GetLedger](#getledger) - Get a ledger
 * [CreateLedger](#createledger) - Create a ledger
@@ -32,70 +30,17 @@
 * [ListLogs](#listlogs) - List the logs from a ledger
 * [ImportLogs](#importlogs)
 * [ExportLogs](#exportlogs) - Export logs
-
-## GetInfo
-
-Show server information
-
-### Example Usage
-
-<!-- UsageSnippet language="csharp" operationID="v2GetInfo" method="get" path="/api/ledger/_/info" -->
-```csharp
-using FormanceSDK;
-using FormanceSDK.Models.Components;
-
-var sdk = new Formance(security: new Security() {
-    ClientID = "<YOUR_CLIENT_ID_HERE>",
-    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
-});
-
-var res = await sdk.Ledger.V2.GetInfoAsync();
-
-// handle response
-```
-
-### Response
-
-**[V2GetInfoResponse](../../Models/Requests/V2GetInfoResponse.md)**
-
-### Errors
-
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
-
-## GetMetrics
-
-Read in memory metrics
-
-### Example Usage
-
-<!-- UsageSnippet language="csharp" operationID="getMetrics" method="get" path="/api/ledger/_/metrics" -->
-```csharp
-using FormanceSDK;
-using FormanceSDK.Models.Components;
-
-var sdk = new Formance(security: new Security() {
-    ClientID = "<YOUR_CLIENT_ID_HERE>",
-    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
-});
-
-var res = await sdk.Ledger.V2.GetMetricsAsync();
-
-// handle response
-```
-
-### Response
-
-**[GetMetricsResponse](../../Models/Requests/GetMetricsResponse.md)**
-
-### Errors
-
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+* [ListExporters](#listexporters) - List exporters
+* [CreateExporter](#createexporter) - Create exporter
+* [GetExporterState](#getexporterstate) - Get exporter state
+* [DeleteExporter](#deleteexporter) - Delete exporter
+* [ListPipelines](#listpipelines) - List pipelines
+* [CreatePipeline](#createpipeline) - Create pipeline
+* [GetPipelineState](#getpipelinestate) - Get pipeline state
+* [DeletePipeline](#deletepipeline) - Delete pipeline
+* [ResetPipeline](#resetpipeline) - Reset pipeline
+* [StartPipeline](#startpipeline) - Start pipeline
+* [StopPipeline](#stoppipeline) - Stop pipeline
 
 ## ListLedgers
 
@@ -107,6 +52,7 @@ List ledgers
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -114,8 +60,14 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Ledger.V2.ListLedgersAsync(
+    requestBody: new Dictionary<string, object>() {
+        { "key", "<value>" },
+        { "key1", "<value>" },
+        { "key2", "<value>" },
+    },
     pageSize: 100,
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    sort: "id:desc"
 );
 
 // handle response
@@ -125,8 +77,10 @@ var res = await sdk.Ledger.V2.ListLedgersAsync(
 
 | Parameter                                                                                                                                                                                                                                                | Type                                                                                                                                                                                                                                                     | Required                                                                                                                                                                                                                                                 | Description                                                                                                                                                                                                                                              | Example                                                                                                                                                                                                                                                  |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `RequestBody`                                                                                                                                                                                                                                            | Dictionary<String, *object*>                                                                                                                                                                                                                             | :heavy_check_mark:                                                                                                                                                                                                                                       | N/A                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                          |
 | `PageSize`                                                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                       | The maximum number of results to return per page.<br/>                                                                                                                                                                                                   | 100                                                                                                                                                                                                                                                      |
 | `Cursor`                                                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Parameter used in pagination requests. Maximum page size is set to 15.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                                             |
+| `Sort`                                                                                                                                                                                                                                                   | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Sort results using a field name and order (ascending or descending). <br/>Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.<br/>                                                                     | id:desc                                                                                                                                                                                                                                                  |
 
 ### Response
 
@@ -472,6 +426,7 @@ V2ListAccountsRequest req = new V2ListAccountsRequest() {
     Ledger = "ledger001",
     PageSize = 100,
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    Sort = "id:desc",
     RequestBody = new Dictionary<string, object>() {
 
     },
@@ -744,6 +699,7 @@ V2ListTransactionsRequest req = new V2ListTransactionsRequest() {
     Ledger = "ledger001",
     PageSize = 100,
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    Sort = "id:desc",
     RequestBody = new Dictionary<string, object>() {
 
     },
@@ -818,6 +774,17 @@ V2CreateTransactionRequest req = new V2CreateTransactionRequest() {
         Reference = "ref:001",
         Metadata = new Dictionary<string, string>() {
             { "admin", "true" },
+        },
+        AccountMetadata = new Dictionary<string, Dictionary<string, string>>() {
+            { "key", new Dictionary<string, string>() {
+                { "admin", "true" },
+            } },
+            { "key1", new Dictionary<string, string>() {
+                { "admin", "true" },
+            } },
+            { "key2", new Dictionary<string, string>() {
+                { "admin", "true" },
+            } },
         },
     },
 };
@@ -992,14 +959,13 @@ Revert a ledger transaction by its ID
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using FormanceSDK.Models.Requests;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-V2RevertTransactionRequest req = new V2RevertTransactionRequest() {
+Models.Requests.V2RevertTransactionRequest req = new FormanceSDK.Models.Requests.V2RevertTransactionRequest() {
     Ledger = "ledger001",
     Id = 1234,
     DryRun = true,
@@ -1012,9 +978,9 @@ var res = await sdk.Ledger.V2.RevertTransactionAsync(req);
 
 ### Parameters
 
-| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
-| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `request`                                                                         | [V2RevertTransactionRequest](../../Models/Requests/V2RevertTransactionRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `request`                                                                                         | [Models.Requests.V2RevertTransactionRequest](../../Models/Requests/V2RevertTransactionRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
 
 ### Response
 
@@ -1099,6 +1065,7 @@ V2GetVolumesWithBalancesRequest req = new V2GetVolumesWithBalancesRequest() {
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     Ledger = "ledger001",
     GroupBy = 3,
+    Sort = "id:desc",
     RequestBody = new Dictionary<string, object>() {
         { "key", "<value>" },
     },
@@ -1148,6 +1115,7 @@ V2ListLogsRequest req = new V2ListLogsRequest() {
     Ledger = "ledger001",
     PageSize = 100,
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    Sort = "id:desc",
     RequestBody = new Dictionary<string, object>() {
 
     },
@@ -1252,3 +1220,444 @@ var res = await sdk.Ledger.V2.ExportLogsAsync(ledger: "ledger001");
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
+
+## ListExporters
+
+List exporters
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="v2ListExporters" method="get" path="/api/ledger/v2/_/exporters" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Ledger.V2.ListExportersAsync();
+
+// handle response
+```
+
+### Response
+
+**[Models.Requests.V2ListExportersResponse](../../Models/Requests/V2ListExportersResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## CreateExporter
+
+Create exporter
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="v2CreateExporter" method="post" path="/api/ledger/v2/_/exporters" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using System.Collections.Generic;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+V2ExporterConfiguration req = new V2ExporterConfiguration() {
+    Driver = "<value>",
+    Config = new Dictionary<string, object>() {
+        { "key", "<value>" },
+    },
+};
+
+var res = await sdk.Ledger.V2.CreateExporterAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [V2ExporterConfiguration](../../Models/Components/V2ExporterConfiguration.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+
+### Response
+
+**[Models.Requests.V2CreateExporterResponse](../../Models/Requests/V2CreateExporterResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## GetExporterState
+
+Get exporter state
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="v2GetExporterState" method="get" path="/api/ledger/v2/_/exporters/{exporterID}" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Ledger.V2.GetExporterStateAsync(exporterID: "<id>");
+
+// handle response
+```
+
+### Parameters
+
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `ExporterID`       | *string*           | :heavy_check_mark: | The exporter id    |
+
+### Response
+
+**[Models.Requests.V2GetExporterStateResponse](../../Models/Requests/V2GetExporterStateResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## DeleteExporter
+
+Delete exporter
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="v2DeleteExporter" method="delete" path="/api/ledger/v2/_/exporters/{exporterID}" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Ledger.V2.DeleteExporterAsync(exporterID: "<id>");
+
+// handle response
+```
+
+### Parameters
+
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `ExporterID`       | *string*           | :heavy_check_mark: | The exporter id    |
+
+### Response
+
+**[V2DeleteExporterResponse](../../Models/Requests/V2DeleteExporterResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## ListPipelines
+
+List pipelines
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="v2ListPipelines" method="get" path="/api/ledger/v2/{ledger}/pipelines" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Ledger.V2.ListPipelinesAsync(ledger: "ledger001");
+
+// handle response
+```
+
+### Parameters
+
+| Parameter           | Type                | Required            | Description         | Example             |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
+
+### Response
+
+**[Models.Requests.V2ListPipelinesResponse](../../Models/Requests/V2ListPipelinesResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## CreatePipeline
+
+Create pipeline
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="v2CreatePipeline" method="post" path="/api/ledger/v2/{ledger}/pipelines" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Ledger.V2.CreatePipelineAsync(ledger: "ledger001");
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     | Example                                                                                         |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `Ledger`                                                                                        | *string*                                                                                        | :heavy_check_mark:                                                                              | Name of the ledger.                                                                             | ledger001                                                                                       |
+| `V2CreatePipelineRequest`                                                                       | [Models.Components.V2CreatePipelineRequest](../../Models/Components/V2CreatePipelineRequest.md) | :heavy_minus_sign:                                                                              | N/A                                                                                             |                                                                                                 |
+
+### Response
+
+**[Models.Requests.V2CreatePipelineResponse](../../Models/Requests/V2CreatePipelineResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## GetPipelineState
+
+Get pipeline state
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="v2GetPipelineState" method="get" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Ledger.V2.GetPipelineStateAsync(
+    ledger: "ledger001",
+    pipelineID: "<id>"
+);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter           | Type                | Required            | Description         | Example             |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
+| `PipelineID`        | *string*            | :heavy_check_mark:  | The pipeline id     |                     |
+
+### Response
+
+**[Models.Requests.V2GetPipelineStateResponse](../../Models/Requests/V2GetPipelineStateResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## DeletePipeline
+
+Delete pipeline
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="v2DeletePipeline" method="delete" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Ledger.V2.DeletePipelineAsync(
+    ledger: "ledger001",
+    pipelineID: "<id>"
+);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter           | Type                | Required            | Description         | Example             |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
+| `PipelineID`        | *string*            | :heavy_check_mark:  | The pipeline id     |                     |
+
+### Response
+
+**[V2DeletePipelineResponse](../../Models/Requests/V2DeletePipelineResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## ResetPipeline
+
+Reset pipeline
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="v2ResetPipeline" method="post" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}/reset" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Ledger.V2.ResetPipelineAsync(
+    ledger: "ledger001",
+    pipelineID: "<id>"
+);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter           | Type                | Required            | Description         | Example             |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
+| `PipelineID`        | *string*            | :heavy_check_mark:  | The pipeline id     |                     |
+
+### Response
+
+**[V2ResetPipelineResponse](../../Models/Requests/V2ResetPipelineResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## StartPipeline
+
+Start pipeline
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="v2StartPipeline" method="post" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}/start" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Ledger.V2.StartPipelineAsync(
+    ledger: "ledger001",
+    pipelineID: "<id>"
+);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter           | Type                | Required            | Description         | Example             |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
+| `PipelineID`        | *string*            | :heavy_check_mark:  | The pipeline id     |                     |
+
+### Response
+
+**[V2StartPipelineResponse](../../Models/Requests/V2StartPipelineResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## StopPipeline
+
+Stop pipeline
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="v2StopPipeline" method="post" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}/stop" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Ledger.V2.StopPipelineAsync(
+    ledger: "ledger001",
+    pipelineID: "<id>"
+);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter           | Type                | Required            | Description         | Example             |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
+| `PipelineID`        | *string*            | :heavy_check_mark:  | The pipeline id     |                     |
+
+### Response
+
+**[V2StopPipelineResponse](../../Models/Requests/V2StopPipelineResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |

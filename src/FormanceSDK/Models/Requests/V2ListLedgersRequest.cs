@@ -10,6 +10,7 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
+    using System.Collections.Generic;
     
     public class V2ListLedgersRequest
     {
@@ -36,5 +37,19 @@ namespace FormanceSDK.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")]
         public string? Cursor { get; set; }
+
+        /// <summary>
+        /// Sort results using a field name and order (ascending or descending). <br/>
+        /// 
+        /// <remarks>
+        /// Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;` is either `asc` or `desc`.<br/>
+        /// 
+        /// </remarks>
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")]
+        public string? Sort { get; set; }
+
+        [SpeakeasyMetadata("request:mediaType=application/json")]
+        public Dictionary<string, object> RequestBody { get; set; } = default!;
     }
 }

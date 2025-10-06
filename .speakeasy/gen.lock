@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: bb4a1c17-4efb-4cf4-a5bb-53737f9f624b
 management:
-  docChecksum: 2303b8447e474d428256a66f5ab2f945
+  docChecksum: fb444f688b96b35960ea0ebe55aa834f
   docVersion: v3.1.0
-  speakeasyVersion: 1.617.1
-  generationVersion: 2.701.8
-  releaseVersion: 2.0.0
-  configChecksum: 3f9978b404d8bdb106094dd31ed3303b
+  speakeasyVersion: 1.634.2
+  generationVersion: 2.721.3
+  releaseVersion: 3.0.0
+  configChecksum: 694519bbaf52eccf5b68d4bd3689a7fd
   repoURL: https://github.com/formancehq/formance-sdk-csharp.git
   published: true
 features:
@@ -14,7 +14,7 @@ features:
     additionalDependencies: 0.1.0
     bigint: 0.2.0
     constsAndDefaults: 0.0.1
-    core: 3.12.2
+    core: 3.13.0
     deprecations: 2.81.2
     errors: 1.0.0
     flattening: 2.81.3
@@ -30,7 +30,7 @@ features:
     oauth2ClientCredentials: 0.3.3
     responseFormat: 0.0.4
     sdkHooks: 0.2.0
-    unions: 0.2.2
+    unions: 1.1.0
 generatedFiles:
   - .gitattributes
   - FormanceSDK.sln
@@ -183,6 +183,7 @@ generatedFiles:
   - docs/Models/Components/OrchestrationPostTransaction.md
   - docs/Models/Components/OrchestrationPostTransactionScript.md
   - docs/Models/Components/OrchestrationTransaction.md
+  - docs/Models/Components/OrchestrationV2Account.md
   - docs/Models/Components/OrchestrationV2PostTransaction.md
   - docs/Models/Components/OrchestrationV2PostTransactionScript.md
   - docs/Models/Components/OrchestrationV2Transaction.md
@@ -233,6 +234,7 @@ generatedFiles:
   - docs/Models/Components/ResponseCursor.md
   - docs/Models/Components/ReverseTransferInitiationRequest.md
   - docs/Models/Components/RunWorkflowResponse.md
+  - docs/Models/Components/Runtime.md
   - docs/Models/Components/Scheme.md
   - docs/Models/Components/Script.md
   - docs/Models/Components/ScriptResponse.md
@@ -327,6 +329,7 @@ generatedFiles:
   - docs/Models/Components/V2ActivityDebitWallet.md
   - docs/Models/Components/V2ActivityDebitWalletOutput.md
   - docs/Models/Components/V2ActivityGetAccount.md
+  - docs/Models/Components/V2ActivityGetAccountOutput.md
   - docs/Models/Components/V2ActivityGetPayment.md
   - docs/Models/Components/V2ActivityGetPaymentOutput.md
   - docs/Models/Components/V2ActivityGetWallet.md
@@ -353,7 +356,10 @@ generatedFiles:
   - docs/Models/Components/V2BulkResponse.md
   - docs/Models/Components/V2ConfigInfoResponse.md
   - docs/Models/Components/V2Connector.md
+  - docs/Models/Components/V2CreateExporterResponse.md
   - docs/Models/Components/V2CreateLedgerRequest.md
+  - docs/Models/Components/V2CreatePipelineRequest.md
+  - docs/Models/Components/V2CreatePipelineResponse.md
   - docs/Models/Components/V2CreateTransactionResponse.md
   - docs/Models/Components/V2CreateTriggerResponse.md
   - docs/Models/Components/V2CreateWorkflowResponse.md
@@ -361,7 +367,11 @@ generatedFiles:
   - docs/Models/Components/V2DebitWalletRequest.md
   - docs/Models/Components/V2ErrorResponse.md
   - docs/Models/Components/V2ErrorsEnum.md
+  - docs/Models/Components/V2Exporter.md
+  - docs/Models/Components/V2ExporterConfiguration.md
+  - docs/Models/Components/V2GetExporterStateResponse.md
   - docs/Models/Components/V2GetLedgerResponse.md
+  - docs/Models/Components/V2GetPipelineStateResponse.md
   - docs/Models/Components/V2GetTransactionResponse.md
   - docs/Models/Components/V2GetWorkflowInstanceHistoryResponse.md
   - docs/Models/Components/V2GetWorkflowInstanceHistoryStageResponse.md
@@ -375,6 +385,12 @@ generatedFiles:
   - docs/Models/Components/V2LedgerInfoStorage.md
   - docs/Models/Components/V2LedgerListResponse.md
   - docs/Models/Components/V2LedgerListResponseCursor.md
+  - docs/Models/Components/V2ListExportersResponse.md
+  - docs/Models/Components/V2ListExportersResponseCursor.md
+  - docs/Models/Components/V2ListExportersResponseCursorCursor.md
+  - docs/Models/Components/V2ListPipelinesResponse.md
+  - docs/Models/Components/V2ListPipelinesResponseCursor.md
+  - docs/Models/Components/V2ListPipelinesResponseCursorCursor.md
   - docs/Models/Components/V2ListRunsResponse.md
   - docs/Models/Components/V2ListRunsResponseCursor.md
   - docs/Models/Components/V2ListTriggersOccurrencesResponse.md
@@ -400,10 +416,12 @@ generatedFiles:
   - docs/Models/Components/V2PaymentScheme.md
   - docs/Models/Components/V2PaymentStatus.md
   - docs/Models/Components/V2PaymentType.md
+  - docs/Models/Components/V2Pipeline.md
   - docs/Models/Components/V2PostTransaction.md
   - docs/Models/Components/V2PostTransactionScript.md
   - docs/Models/Components/V2Posting.md
   - docs/Models/Components/V2ReadTriggerResponse.md
+  - docs/Models/Components/V2RevertTransactionRequest.md
   - docs/Models/Components/V2RunWorkflowResponse.md
   - docs/Models/Components/V2ServerInfo.md
   - docs/Models/Components/V2Stage.md
@@ -836,16 +854,23 @@ generatedFiles:
   - docs/Models/Requests/V2CountTransactionsResponse.md
   - docs/Models/Requests/V2CreateBulkRequest.md
   - docs/Models/Requests/V2CreateBulkResponse.md
+  - docs/Models/Requests/V2CreateExporterResponse.md
   - docs/Models/Requests/V2CreateLedgerRequest.md
   - docs/Models/Requests/V2CreateLedgerResponse.md
+  - docs/Models/Requests/V2CreatePipelineRequest.md
+  - docs/Models/Requests/V2CreatePipelineResponse.md
   - docs/Models/Requests/V2CreateTransactionRequest.md
   - docs/Models/Requests/V2CreateTransactionResponse.md
   - docs/Models/Requests/V2CreateTriggerResponse.md
   - docs/Models/Requests/V2CreateWorkflowResponse.md
   - docs/Models/Requests/V2DeleteAccountMetadataRequest.md
   - docs/Models/Requests/V2DeleteAccountMetadataResponse.md
+  - docs/Models/Requests/V2DeleteExporterRequest.md
+  - docs/Models/Requests/V2DeleteExporterResponse.md
   - docs/Models/Requests/V2DeleteLedgerMetadataRequest.md
   - docs/Models/Requests/V2DeleteLedgerMetadataResponse.md
+  - docs/Models/Requests/V2DeletePipelineRequest.md
+  - docs/Models/Requests/V2DeletePipelineResponse.md
   - docs/Models/Requests/V2DeleteTransactionMetadataRequest.md
   - docs/Models/Requests/V2DeleteTransactionMetadataResponse.md
   - docs/Models/Requests/V2DeleteTriggerRequest.md
@@ -858,6 +883,8 @@ generatedFiles:
   - docs/Models/Requests/V2GetAccountResponse.md
   - docs/Models/Requests/V2GetBalancesAggregatedRequest.md
   - docs/Models/Requests/V2GetBalancesAggregatedResponse.md
+  - docs/Models/Requests/V2GetExporterStateRequest.md
+  - docs/Models/Requests/V2GetExporterStateResponse.md
   - docs/Models/Requests/V2GetInfoResponse.md
   - docs/Models/Requests/V2GetInstanceHistoryRequest.md
   - docs/Models/Requests/V2GetInstanceHistoryResponse.md
@@ -869,6 +896,8 @@ generatedFiles:
   - docs/Models/Requests/V2GetLedgerInfoResponse.md
   - docs/Models/Requests/V2GetLedgerRequest.md
   - docs/Models/Requests/V2GetLedgerResponse.md
+  - docs/Models/Requests/V2GetPipelineStateRequest.md
+  - docs/Models/Requests/V2GetPipelineStateResponse.md
   - docs/Models/Requests/V2GetServerInfoResponse.md
   - docs/Models/Requests/V2GetTransactionRequest.md
   - docs/Models/Requests/V2GetTransactionResponse.md
@@ -880,12 +909,15 @@ generatedFiles:
   - docs/Models/Requests/V2ImportLogsResponse.md
   - docs/Models/Requests/V2ListAccountsRequest.md
   - docs/Models/Requests/V2ListAccountsResponse.md
+  - docs/Models/Requests/V2ListExportersResponse.md
   - docs/Models/Requests/V2ListInstancesRequest.md
   - docs/Models/Requests/V2ListInstancesResponse.md
   - docs/Models/Requests/V2ListLedgersRequest.md
   - docs/Models/Requests/V2ListLedgersResponse.md
   - docs/Models/Requests/V2ListLogsRequest.md
   - docs/Models/Requests/V2ListLogsResponse.md
+  - docs/Models/Requests/V2ListPipelinesRequest.md
+  - docs/Models/Requests/V2ListPipelinesResponse.md
   - docs/Models/Requests/V2ListTransactionsRequest.md
   - docs/Models/Requests/V2ListTransactionsResponse.md
   - docs/Models/Requests/V2ListTriggersOccurrencesRequest.md
@@ -898,6 +930,8 @@ generatedFiles:
   - docs/Models/Requests/V2ReadStatsResponse.md
   - docs/Models/Requests/V2ReadTriggerRequest.md
   - docs/Models/Requests/V2ReadTriggerResponse.md
+  - docs/Models/Requests/V2ResetPipelineRequest.md
+  - docs/Models/Requests/V2ResetPipelineResponse.md
   - docs/Models/Requests/V2RevertTransactionRequest.md
   - docs/Models/Requests/V2RevertTransactionResponse.md
   - docs/Models/Requests/V2RunWorkflowRequest.md
@@ -905,6 +939,10 @@ generatedFiles:
   - docs/Models/Requests/V2SendEventRequest.md
   - docs/Models/Requests/V2SendEventRequestBody.md
   - docs/Models/Requests/V2SendEventResponse.md
+  - docs/Models/Requests/V2StartPipelineRequest.md
+  - docs/Models/Requests/V2StartPipelineResponse.md
+  - docs/Models/Requests/V2StopPipelineRequest.md
+  - docs/Models/Requests/V2StopPipelineResponse.md
   - docs/Models/Requests/V2UpdateLedgerMetadataRequest.md
   - docs/Models/Requests/V2UpdateLedgerMetadataResponse.md
   - docs/Models/Requests/V3AddAccountToPoolRequest.md
@@ -1181,6 +1219,7 @@ generatedFiles:
   - src/FormanceSDK/Models/Components/OrchestrationPostTransaction.cs
   - src/FormanceSDK/Models/Components/OrchestrationPostTransactionScript.cs
   - src/FormanceSDK/Models/Components/OrchestrationTransaction.cs
+  - src/FormanceSDK/Models/Components/OrchestrationV2Account.cs
   - src/FormanceSDK/Models/Components/OrchestrationV2PostTransaction.cs
   - src/FormanceSDK/Models/Components/OrchestrationV2PostTransactionScript.cs
   - src/FormanceSDK/Models/Components/OrchestrationV2Transaction.cs
@@ -1231,6 +1270,7 @@ generatedFiles:
   - src/FormanceSDK/Models/Components/ResponseCursor.cs
   - src/FormanceSDK/Models/Components/ReverseTransferInitiationRequest.cs
   - src/FormanceSDK/Models/Components/RunWorkflowResponse.cs
+  - src/FormanceSDK/Models/Components/Runtime.cs
   - src/FormanceSDK/Models/Components/Scheme.cs
   - src/FormanceSDK/Models/Components/Script.cs
   - src/FormanceSDK/Models/Components/ScriptResponse.cs
@@ -1325,6 +1365,7 @@ generatedFiles:
   - src/FormanceSDK/Models/Components/V2ActivityDebitWallet.cs
   - src/FormanceSDK/Models/Components/V2ActivityDebitWalletOutput.cs
   - src/FormanceSDK/Models/Components/V2ActivityGetAccount.cs
+  - src/FormanceSDK/Models/Components/V2ActivityGetAccountOutput.cs
   - src/FormanceSDK/Models/Components/V2ActivityGetPayment.cs
   - src/FormanceSDK/Models/Components/V2ActivityGetPaymentOutput.cs
   - src/FormanceSDK/Models/Components/V2ActivityGetWallet.cs
@@ -1351,7 +1392,10 @@ generatedFiles:
   - src/FormanceSDK/Models/Components/V2BulkResponse.cs
   - src/FormanceSDK/Models/Components/V2ConfigInfoResponse.cs
   - src/FormanceSDK/Models/Components/V2Connector.cs
+  - src/FormanceSDK/Models/Components/V2CreateExporterResponse.cs
   - src/FormanceSDK/Models/Components/V2CreateLedgerRequest.cs
+  - src/FormanceSDK/Models/Components/V2CreatePipelineRequest.cs
+  - src/FormanceSDK/Models/Components/V2CreatePipelineResponse.cs
   - src/FormanceSDK/Models/Components/V2CreateTransactionResponse.cs
   - src/FormanceSDK/Models/Components/V2CreateTriggerResponse.cs
   - src/FormanceSDK/Models/Components/V2CreateWorkflowResponse.cs
@@ -1359,7 +1403,11 @@ generatedFiles:
   - src/FormanceSDK/Models/Components/V2DebitWalletRequest.cs
   - src/FormanceSDK/Models/Components/V2ErrorResponse.cs
   - src/FormanceSDK/Models/Components/V2ErrorsEnum.cs
+  - src/FormanceSDK/Models/Components/V2Exporter.cs
+  - src/FormanceSDK/Models/Components/V2ExporterConfiguration.cs
+  - src/FormanceSDK/Models/Components/V2GetExporterStateResponse.cs
   - src/FormanceSDK/Models/Components/V2GetLedgerResponse.cs
+  - src/FormanceSDK/Models/Components/V2GetPipelineStateResponse.cs
   - src/FormanceSDK/Models/Components/V2GetTransactionResponse.cs
   - src/FormanceSDK/Models/Components/V2GetWorkflowInstanceHistoryResponse.cs
   - src/FormanceSDK/Models/Components/V2GetWorkflowInstanceHistoryStageResponse.cs
@@ -1373,6 +1421,12 @@ generatedFiles:
   - src/FormanceSDK/Models/Components/V2LedgerInfoStorage.cs
   - src/FormanceSDK/Models/Components/V2LedgerListResponse.cs
   - src/FormanceSDK/Models/Components/V2LedgerListResponseCursor.cs
+  - src/FormanceSDK/Models/Components/V2ListExportersResponse.cs
+  - src/FormanceSDK/Models/Components/V2ListExportersResponseCursor.cs
+  - src/FormanceSDK/Models/Components/V2ListExportersResponseCursorCursor.cs
+  - src/FormanceSDK/Models/Components/V2ListPipelinesResponse.cs
+  - src/FormanceSDK/Models/Components/V2ListPipelinesResponseCursor.cs
+  - src/FormanceSDK/Models/Components/V2ListPipelinesResponseCursorCursor.cs
   - src/FormanceSDK/Models/Components/V2ListRunsResponse.cs
   - src/FormanceSDK/Models/Components/V2ListRunsResponseCursor.cs
   - src/FormanceSDK/Models/Components/V2ListTriggersOccurrencesResponse.cs
@@ -1398,10 +1452,12 @@ generatedFiles:
   - src/FormanceSDK/Models/Components/V2PaymentScheme.cs
   - src/FormanceSDK/Models/Components/V2PaymentStatus.cs
   - src/FormanceSDK/Models/Components/V2PaymentType.cs
+  - src/FormanceSDK/Models/Components/V2Pipeline.cs
   - src/FormanceSDK/Models/Components/V2PostTransaction.cs
   - src/FormanceSDK/Models/Components/V2PostTransactionScript.cs
   - src/FormanceSDK/Models/Components/V2Posting.cs
   - src/FormanceSDK/Models/Components/V2ReadTriggerResponse.cs
+  - src/FormanceSDK/Models/Components/V2RevertTransactionRequest.cs
   - src/FormanceSDK/Models/Components/V2RunWorkflowResponse.cs
   - src/FormanceSDK/Models/Components/V2ServerInfo.cs
   - src/FormanceSDK/Models/Components/V2Stage.cs
@@ -1581,10 +1637,10 @@ generatedFiles:
   - src/FormanceSDK/Models/Errors/ErrorCode.cs
   - src/FormanceSDK/Models/Errors/ErrorErrorCode.cs
   - src/FormanceSDK/Models/Errors/ErrorResponse.cs
-  - src/FormanceSDK/Models/Errors/FormanceError.cs
   - src/FormanceSDK/Models/Errors/PaymentsErrorResponse.cs
   - src/FormanceSDK/Models/Errors/ReconciliationErrorResponse.cs
   - src/FormanceSDK/Models/Errors/ResponseValidationException.cs
+  - src/FormanceSDK/Models/Errors/SDKBaseException.cs
   - src/FormanceSDK/Models/Errors/SDKException.cs
   - src/FormanceSDK/Models/Errors/V2Error.cs
   - src/FormanceSDK/Models/Errors/V2ErrorErrorCode.cs
@@ -1837,16 +1893,23 @@ generatedFiles:
   - src/FormanceSDK/Models/Requests/V2CountTransactionsResponse.cs
   - src/FormanceSDK/Models/Requests/V2CreateBulkRequest.cs
   - src/FormanceSDK/Models/Requests/V2CreateBulkResponse.cs
+  - src/FormanceSDK/Models/Requests/V2CreateExporterResponse.cs
   - src/FormanceSDK/Models/Requests/V2CreateLedgerRequest.cs
   - src/FormanceSDK/Models/Requests/V2CreateLedgerResponse.cs
+  - src/FormanceSDK/Models/Requests/V2CreatePipelineRequest.cs
+  - src/FormanceSDK/Models/Requests/V2CreatePipelineResponse.cs
   - src/FormanceSDK/Models/Requests/V2CreateTransactionRequest.cs
   - src/FormanceSDK/Models/Requests/V2CreateTransactionResponse.cs
   - src/FormanceSDK/Models/Requests/V2CreateTriggerResponse.cs
   - src/FormanceSDK/Models/Requests/V2CreateWorkflowResponse.cs
   - src/FormanceSDK/Models/Requests/V2DeleteAccountMetadataRequest.cs
   - src/FormanceSDK/Models/Requests/V2DeleteAccountMetadataResponse.cs
+  - src/FormanceSDK/Models/Requests/V2DeleteExporterRequest.cs
+  - src/FormanceSDK/Models/Requests/V2DeleteExporterResponse.cs
   - src/FormanceSDK/Models/Requests/V2DeleteLedgerMetadataRequest.cs
   - src/FormanceSDK/Models/Requests/V2DeleteLedgerMetadataResponse.cs
+  - src/FormanceSDK/Models/Requests/V2DeletePipelineRequest.cs
+  - src/FormanceSDK/Models/Requests/V2DeletePipelineResponse.cs
   - src/FormanceSDK/Models/Requests/V2DeleteTransactionMetadataRequest.cs
   - src/FormanceSDK/Models/Requests/V2DeleteTransactionMetadataResponse.cs
   - src/FormanceSDK/Models/Requests/V2DeleteTriggerRequest.cs
@@ -1859,6 +1922,8 @@ generatedFiles:
   - src/FormanceSDK/Models/Requests/V2GetAccountResponse.cs
   - src/FormanceSDK/Models/Requests/V2GetBalancesAggregatedRequest.cs
   - src/FormanceSDK/Models/Requests/V2GetBalancesAggregatedResponse.cs
+  - src/FormanceSDK/Models/Requests/V2GetExporterStateRequest.cs
+  - src/FormanceSDK/Models/Requests/V2GetExporterStateResponse.cs
   - src/FormanceSDK/Models/Requests/V2GetInfoResponse.cs
   - src/FormanceSDK/Models/Requests/V2GetInstanceHistoryRequest.cs
   - src/FormanceSDK/Models/Requests/V2GetInstanceHistoryResponse.cs
@@ -1870,6 +1935,8 @@ generatedFiles:
   - src/FormanceSDK/Models/Requests/V2GetLedgerInfoResponse.cs
   - src/FormanceSDK/Models/Requests/V2GetLedgerRequest.cs
   - src/FormanceSDK/Models/Requests/V2GetLedgerResponse.cs
+  - src/FormanceSDK/Models/Requests/V2GetPipelineStateRequest.cs
+  - src/FormanceSDK/Models/Requests/V2GetPipelineStateResponse.cs
   - src/FormanceSDK/Models/Requests/V2GetServerInfoResponse.cs
   - src/FormanceSDK/Models/Requests/V2GetTransactionRequest.cs
   - src/FormanceSDK/Models/Requests/V2GetTransactionResponse.cs
@@ -1881,12 +1948,15 @@ generatedFiles:
   - src/FormanceSDK/Models/Requests/V2ImportLogsResponse.cs
   - src/FormanceSDK/Models/Requests/V2ListAccountsRequest.cs
   - src/FormanceSDK/Models/Requests/V2ListAccountsResponse.cs
+  - src/FormanceSDK/Models/Requests/V2ListExportersResponse.cs
   - src/FormanceSDK/Models/Requests/V2ListInstancesRequest.cs
   - src/FormanceSDK/Models/Requests/V2ListInstancesResponse.cs
   - src/FormanceSDK/Models/Requests/V2ListLedgersRequest.cs
   - src/FormanceSDK/Models/Requests/V2ListLedgersResponse.cs
   - src/FormanceSDK/Models/Requests/V2ListLogsRequest.cs
   - src/FormanceSDK/Models/Requests/V2ListLogsResponse.cs
+  - src/FormanceSDK/Models/Requests/V2ListPipelinesRequest.cs
+  - src/FormanceSDK/Models/Requests/V2ListPipelinesResponse.cs
   - src/FormanceSDK/Models/Requests/V2ListTransactionsRequest.cs
   - src/FormanceSDK/Models/Requests/V2ListTransactionsResponse.cs
   - src/FormanceSDK/Models/Requests/V2ListTriggersOccurrencesRequest.cs
@@ -1899,6 +1969,8 @@ generatedFiles:
   - src/FormanceSDK/Models/Requests/V2ReadStatsResponse.cs
   - src/FormanceSDK/Models/Requests/V2ReadTriggerRequest.cs
   - src/FormanceSDK/Models/Requests/V2ReadTriggerResponse.cs
+  - src/FormanceSDK/Models/Requests/V2ResetPipelineRequest.cs
+  - src/FormanceSDK/Models/Requests/V2ResetPipelineResponse.cs
   - src/FormanceSDK/Models/Requests/V2RevertTransactionRequest.cs
   - src/FormanceSDK/Models/Requests/V2RevertTransactionResponse.cs
   - src/FormanceSDK/Models/Requests/V2RunWorkflowRequest.cs
@@ -1906,6 +1978,10 @@ generatedFiles:
   - src/FormanceSDK/Models/Requests/V2SendEventRequest.cs
   - src/FormanceSDK/Models/Requests/V2SendEventRequestBody.cs
   - src/FormanceSDK/Models/Requests/V2SendEventResponse.cs
+  - src/FormanceSDK/Models/Requests/V2StartPipelineRequest.cs
+  - src/FormanceSDK/Models/Requests/V2StartPipelineResponse.cs
+  - src/FormanceSDK/Models/Requests/V2StopPipelineRequest.cs
+  - src/FormanceSDK/Models/Requests/V2StopPipelineResponse.cs
   - src/FormanceSDK/Models/Requests/V2UpdateLedgerMetadataRequest.cs
   - src/FormanceSDK/Models/Requests/V2UpdateLedgerMetadataResponse.cs
   - src/FormanceSDK/Models/Requests/V3AddAccountToPoolRequest.cs
@@ -2363,6 +2439,9 @@ examples:
         query:
           pageSize: 100
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+          sort: "id:desc"
+      requestBody:
+        application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
       responses:
         "200":
           application/json: {"cursor": {"pageSize": 15, "hasMore": false, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=", "next": "", "data": [{"name": "<value>", "addedAt": "2024-03-14T02:30:05.506Z", "bucket": "<value>", "metadata": {"admin": "true"}}]}}
@@ -2455,6 +2534,7 @@ examples:
         query:
           pageSize: 100
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+          sort: "id:desc"
       requestBody:
         application/json: {}
       responses:
@@ -2470,7 +2550,7 @@ examples:
           address: "users:001"
       responses:
         "200":
-          application/json: {"data": {"address": "users:001", "metadata": {"admin": "true"}, "volumes": {"USD": {"input": 100, "output": 10, "balance": 90}, "EUR": {"input": 100, "output": 10, "balance": 90}}, "effectiveVolumes": {"USD": {"input": 100, "output": 10, "balance": 90}, "EUR": {"input": 100, "output": 10, "balance": 90}}}}
+          application/json: {"data": {"address": "users:001", "metadata": {"admin": "true"}, "insertionDate": "2023-01-01T00:00:00Z", "updatedAt": "2023-01-01T00:00:00Z", "firstUsage": "2023-01-01T00:00:00Z", "volumes": {"USD": {"input": 100, "output": 10, "balance": 90}, "EUR": {"input": 100, "output": 10, "balance": 90}}, "effectiveVolumes": {"USD": {"input": 100, "output": 10, "balance": 90}, "EUR": {"input": 100, "output": 10, "balance": 90}}}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param", "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9"}
   v2AddMetadataToAccount:
@@ -2524,6 +2604,7 @@ examples:
         query:
           pageSize: 100
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+          sort: "id:desc"
       requestBody:
         application/json: {}
       responses:
@@ -2540,7 +2621,7 @@ examples:
           dryRun: true
           force: true
       requestBody:
-        application/json: {"postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "script": {"plain": "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n", "vars": {"user": "users:042"}}, "reference": "ref:001", "metadata": {"admin": "true"}}
+        application/json: {"postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "script": {"plain": "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n", "vars": {"user": "users:042"}}, "reference": "ref:001", "metadata": {"admin": "true"}, "accountMetadata": {"key": {"admin": "true"}, "key1": {"admin": "true"}, "key2": {"admin": "true"}}}
       responses:
         "200":
           application/json: {"data": {"timestamp": "2025-08-04T13:41:02.755Z", "postings": [], "reference": "ref:001", "metadata": {"admin": "true"}, "id": 538229, "reverted": true, "preCommitVolumes": {"orders:1": {"USD": {"input": 100, "output": 10, "balance": 90}}, "orders:2": {"USD": {"input": 100, "output": 10, "balance": 90}}}, "postCommitVolumes": {"orders:1": {"USD": {"input": 100, "output": 10, "balance": 90}}, "orders:2": {"USD": {"input": 100, "output": 10, "balance": 90}}}, "preCommitEffectiveVolumes": {"orders:1": {"USD": {"input": 100, "output": 10, "balance": 90}}, "orders:2": {"USD": {"input": 100, "output": 10, "balance": 90}}}, "postCommitEffectiveVolumes": {"orders:1": {"USD": {"input": 100, "output": 10, "balance": 90}}, "orders:2": {"USD": {"input": 100, "output": 10, "balance": 90}}}}}
@@ -2614,6 +2695,7 @@ examples:
           pageSize: 100
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
           groupBy: 3
+          sort: "id:desc"
       requestBody:
         application/json: {"key": "<value>"}
       responses:
@@ -2629,6 +2711,7 @@ examples:
         query:
           pageSize: 100
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+          sort: "id:desc"
       requestBody:
         application/json: {}
       responses:
@@ -4211,5 +4294,107 @@ examples:
           application/json: {"data": {"id": "XXX", "policyID": "XXX", "createdAt": "2021-01-01T00:00:00.000Z", "reconciledAtLedger": "2021-01-01T00:00:00.000Z", "reconciledAtPayments": "2021-01-01T00:00:00.000Z", "status": "COMPLETED", "paymentsBalances": {"key": 322664}, "ledgerBalances": {"key": 490256}, "driftBalances": {"key": 939590, "key1": 489050}}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
+  v2ListExporters:
+    speakeasy-default-v2-list-exporters:
+      responses:
+        "200":
+          application/json: {"cursor": {"cursor": {"pageSize": 15, "hasMore": false, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=", "next": "", "data": []}}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param", "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9"}
+  v2CreateExporter:
+    speakeasy-default-v2-create-exporter:
+      requestBody:
+        application/json: {"driver": "<value>", "config": {"key": "<value>"}}
+      responses:
+        "201":
+          application/json: {"data": {"driver": "<value>", "config": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "id": "<id>", "createdAt": "2023-09-20T22:58:09.492Z"}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param", "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9"}
+  v2GetExporterState:
+    speakeasy-default-v2-get-exporter-state:
+      parameters:
+        path:
+          exporterID: "<id>"
+      responses:
+        "200":
+          application/json: {"data": {"driver": "<value>", "config": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "id": "<id>", "createdAt": "2025-12-16T02:14:09.876Z"}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param", "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9"}
+  v2DeleteExporter:
+    speakeasy-default-v2-delete-exporter:
+      parameters:
+        path:
+          exporterID: "<id>"
+      responses:
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param", "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9"}
+  v2ListPipelines:
+    speakeasy-default-v2-list-pipelines:
+      parameters:
+        path:
+          ledger: "ledger001"
+      responses:
+        "200":
+          application/json: {"cursor": {"cursor": {"pageSize": 15, "hasMore": false, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=", "next": "", "data": [{"ledger": "<value>", "exporterID": "<id>", "id": "<id>", "createdAt": "2023-07-10T16:30:37.234Z"}]}}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param", "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9"}
+  v2CreatePipeline:
+    speakeasy-default-v2-create-pipeline:
+      parameters:
+        path:
+          ledger: "ledger001"
+      responses:
+        "201":
+          application/json: {"data": {"ledger": "<value>", "exporterID": "<id>", "id": "<id>", "createdAt": "2023-10-13T04:07:21.184Z"}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param", "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9"}
+  v2GetPipelineState:
+    speakeasy-default-v2-get-pipeline-state:
+      parameters:
+        path:
+          ledger: "ledger001"
+          pipelineID: "<id>"
+      responses:
+        "200":
+          application/json: {"data": {"ledger": "<value>", "exporterID": "<id>", "id": "<id>", "createdAt": "2024-06-04T21:05:32.605Z"}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param", "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9"}
+  v2DeletePipeline:
+    speakeasy-default-v2-delete-pipeline:
+      parameters:
+        path:
+          ledger: "ledger001"
+          pipelineID: "<id>"
+      responses:
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param", "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9"}
+  v2ResetPipeline:
+    speakeasy-default-v2-reset-pipeline:
+      parameters:
+        path:
+          ledger: "ledger001"
+          pipelineID: "<id>"
+      responses:
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param", "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9"}
+  v2StartPipeline:
+    speakeasy-default-v2-start-pipeline:
+      parameters:
+        path:
+          ledger: "ledger001"
+          pipelineID: "<id>"
+      responses:
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param", "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9"}
+  v2StopPipeline:
+    speakeasy-default-v2-stop-pipeline:
+      parameters:
+        path:
+          ledger: "ledger001"
+          pipelineID: "<id>"
+      responses:
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param", "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Csharp SDK Changes Detected:\n* `Formance.Ledger.V1.CountAccounts()`:  `response` **Changed** **Breaking** :warning:\n* `Formance.Ledger.V2.ListLedgers()`: \n  *  `request` **Changed** **Breaking** :warning:\n  *  `response.cursor.Data.[]` **Changed**\n* `Formance.Ledger.V2.GetAccount()`:  `response.data` **Changed**\n* `Formance.Ledger.V2.CreateBulk()`: \n  *  `request.RequestBody.[].[createTransaction].Data` **Changed**\n  *  `response.data.[]` **Changed**\n* `Formance.Ledger.V2.GetExporterState()`: **Added**\n* `Formance.Ledger.V2.DeleteExporter()`: **Added**\n* `Formance.Ledger.V2.ListPipelines()`: **Added**\n* `Formance.Ledger.V2.CreatePipeline()`: **Added**\n* `Formance.Ledger.V2.GetPipelineState()`: **Added**\n* `Formance.Ledger.V2.DeletePipeline()`: **Added**\n* `Formance.Ledger.V2.ResetPipeline()`: **Added**\n* `Formance.Ledger.V2.StartPipeline()`: **Added**\n* `Formance.Ledger.V2.StopPipeline()`: **Added**\n* `Formance.Ledger.V2.GetInfo()`: **Deleted** **Breaking** :warning:\n* `Formance.Ledger.V2.GetMetrics()`: **Deleted** **Breaking** :warning:\n* `Formance.Ledger.V2.ListExporters()`: **Added**\n* `Formance.Ledger.GetMetrics()`: **Added**\n* `Formance.Ledger.V2.GetLedger()`:  `response.data` **Changed**\n* `Formance.Ledger.V2.ListTransactions()`: \n  *  `request.Sort` **Added**\n  *  `response.cursor.Data.[].UpdatedAt` **Added**\n* `Formance.Ledger.V2.ListAccounts()`: \n  *  `request.Sort` **Added**\n  *  `response.cursor.Data.[]` **Changed**\n* `Formance.Ledger.V2.CreateExporter()`: **Added**\n* `Formance.Ledger.GetInfo()`: **Added**\n* `Formance.Ledger.V2.GetVolumesWithBalances()`: \n  *  `request.Sort` **Added**\n* `Formance.Ledger.V2.GetTransaction()`:  `response.data.UpdatedAt` **Added**\n* `Formance.Ledger.V2.RevertTransaction()`: \n  *  `request.V2RevertTransactionRequest` **Added**\n  *  `response.data.UpdatedAt` **Added**\n* `Formance.Ledger.V2.CreateTransaction()`: \n  *  `request.V2PostTransaction` **Changed**\n  *  `response.data.UpdatedAt` **Added**\n* `Formance.Ledger.V2.ListLogs()`: \n  *  `request.Sort` **Added**\n* `Formance.Orchestration.V1.ListTriggers()`:  `response.data.[].Version` **Added**\n* `Formance.Orchestration.V1.CreateTrigger()`: \n  *  `request.Version` **Added**\n  *  `response.data.Version` **Added**\n* `Formance.Orchestration.V1.ReadTrigger()`:  `response.data.Version` **Added**\n* `Formance.Orchestration.V1.ListTriggersOccurrences()`:  `response.data.[].WorkflowInstance.Workflow` **Added**\n* `Formance.Orchestration.V1.RunWorkflow()`:  `response.data.Workflow` **Added**\n* `Formance.Orchestration.V1.ListInstances()`:  `response.data.[].Workflow` **Added**\n* `Formance.Orchestration.V1.GetInstance()`:  `response.data.Workflow` **Added**\n* `Formance.Orchestration.V2.ListTriggers()`:  `response.cursor.Data.[].Version` **Added**\n* `Formance.Orchestration.V2.CreateTrigger()`: \n  *  `request.Version` **Added**\n  *  `response.data.Version` **Added**\n* `Formance.Orchestration.V2.ReadTrigger()`:  `response.data.Version` **Added**\n* `Formance.Orchestration.V2.ListTriggersOccurrences()`:  `response.cursor.Data.[].WorkflowInstance.Workflow` **Added**\n* `Formance.Orchestration.V2.RunWorkflow()`:  `response.data.Workflow` **Added**\n* `Formance.Orchestration.V2.ListInstances()`:  `response.cursor.Data.[].Workflow` **Added**\n* `Formance.Orchestration.V2.GetInstance()`:  `response.data.Workflow` **Added**\n"

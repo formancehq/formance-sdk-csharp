@@ -11,16 +11,11 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V3UninstallConnectorResponseData
     {
-
         /// <summary>
-        /// Since this call is asynchronous, the response will contain the ID of the task that was created to uninstall the connector. You can use the task API to check the status of the task and get the results.<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// Since this call is asynchronous, the response will contain the ID of the task that was created to uninstall the connector. You can use the task API to check the status of the task and get the results.
         /// </summary>
         [JsonProperty("taskID")]
         public string TaskID { get; set; } = default!;

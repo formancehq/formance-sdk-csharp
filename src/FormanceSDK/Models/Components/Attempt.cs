@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     public class Attempt
     {
-
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 

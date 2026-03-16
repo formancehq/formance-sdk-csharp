@@ -12,13 +12,12 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// Exporters list
+    /// Exporters list.
     /// </summary>
     public class V2ListExportersResponse
     {
-
         [JsonProperty("cursor")]
         public V2ListExportersResponseCursor? Cursor { get; set; }
     }

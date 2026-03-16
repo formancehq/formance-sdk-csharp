@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     public class V2Pipeline
     {
-
         [JsonProperty("ledger")]
         public string Ledger { get; set; } = default!;
 

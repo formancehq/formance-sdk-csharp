@@ -12,15 +12,14 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V3CreatePaymentServiceUserResponse
     {
-
         [JsonProperty("-")]
         public HTTPMetadata HttpMeta { get; set; } = default!;
 
         /// <summary>
-        /// Created
+        /// Created.
         /// </summary>
         public Models.Components.V3CreatePaymentServiceUserResponse? V3CreatePaymentServiceUserResponseValue { get; set; }
     }

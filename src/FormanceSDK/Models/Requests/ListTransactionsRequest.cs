@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Utils;
     using System;
     using System.Collections.Generic;
-    
+
     public class ListTransactionsRequest
     {
-
         /// <summary>
         /// Name of the ledger.
         /// </summary>
@@ -23,11 +22,7 @@ namespace FormanceSDK.Models.Requests
         public string Ledger { get; set; } = default!;
 
         /// <summary>
-        /// The maximum number of results to return per page.<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// The maximum number of results to return per page.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")]
         public long? PageSize { get; set; }
@@ -64,35 +59,23 @@ namespace FormanceSDK.Models.Requests
 
         /// <summary>
         /// Filter transactions that occurred after this timestamp.<br/>
-        /// 
-        /// <remarks>
-        /// The format is RFC3339 and is inclusive (for example, &quot;2023-01-02T15:04:01Z&quot; includes the first second of 4th minute).<br/>
-        /// 
-        /// </remarks>
+        /// The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=startTime")]
         public DateTime? StartTime { get; set; }
 
         /// <summary>
         /// Filter transactions that occurred before this timestamp.<br/>
-        /// 
-        /// <remarks>
-        /// The format is RFC3339 and is exclusive (for example, &quot;2023-01-02T15:04:01Z&quot; excludes the first second of 4th minute).<br/>
-        /// 
-        /// </remarks>
+        /// The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=endTime")]
         public DateTime? EndTime { get; set; }
 
         /// <summary>
         /// Parameter used in pagination requests. Maximum page size is set to 1000.<br/>
-        /// 
-        /// <remarks>
         /// Set to the value of next for the next page of results.<br/>
         /// Set to the value of previous for the previous page of results.<br/>
-        /// No other parameters can be set when this parameter is set.<br/>
-        /// 
-        /// </remarks>
+        /// No other parameters can be set when this parameter is set.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")]
         public string? Cursor { get; set; }

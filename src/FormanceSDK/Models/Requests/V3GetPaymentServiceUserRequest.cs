@@ -10,12 +10,11 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class V3GetPaymentServiceUserRequest
     {
-
         /// <summary>
-        /// The payment service user ID
+        /// The payment service user ID.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=paymentServiceUserID")]
         public string PaymentServiceUserID { get; set; } = default!;

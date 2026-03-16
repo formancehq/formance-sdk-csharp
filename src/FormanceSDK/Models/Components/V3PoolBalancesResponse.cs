@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class V3PoolBalancesResponse
     {
-
         [JsonProperty("data")]
         public List<V3PoolBalance> Data { get; set; } = default!;
     }

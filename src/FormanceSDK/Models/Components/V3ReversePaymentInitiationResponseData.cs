@@ -11,26 +11,17 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V3ReversePaymentInitiationResponseData
     {
-
         /// <summary>
-        /// Since this call is asynchronous, the response will contain the ID of the task that was created to reverse the payment initiation. You can use the task API to check the status of the task and get the resulting payment ID.<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// Since this call is asynchronous, the response will contain the ID of the task that was created to reverse the payment initiation. You can use the task API to check the status of the task and get the resulting payment ID.
         /// </summary>
         [JsonProperty("taskID")]
         public string? TaskID { get; set; }
 
         /// <summary>
-        /// Related payment initiation reversal object ID created.<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// Related payment initiation reversal object ID created.
         /// </summary>
         [JsonProperty("paymentInitiationReversalID")]
         public string? PaymentInitiationReversalID { get; set; }

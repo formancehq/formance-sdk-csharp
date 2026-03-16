@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V3PoolsCursorResponse
     {
-
         [JsonProperty("cursor")]
         public V3PoolsCursorResponseCursor Cursor { get; set; } = default!;
     }

@@ -10,12 +10,11 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class V2GetExporterStateRequest
     {
-
         /// <summary>
-        /// The exporter id
+        /// The exporter id.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=exporterID")]
         public string ExporterID { get; set; } = default!;

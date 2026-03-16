@@ -12,9 +12,11 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V2VolumesWithBalanceCursorResponse
     {
+        [JsonProperty("resource")]
+        public V2VolumesWithBalanceCursorResponseResource? Resource { get; set; }
 
         [JsonProperty("cursor")]
         public V2VolumesWithBalanceCursorResponseCursor Cursor { get; set; } = default!;

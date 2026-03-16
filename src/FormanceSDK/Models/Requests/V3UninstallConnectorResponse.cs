@@ -12,15 +12,14 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V3UninstallConnectorResponse
     {
-
         [JsonProperty("-")]
         public HTTPMetadata HttpMeta { get; set; } = default!;
 
         /// <summary>
-        /// Accepted
+        /// Accepted.
         /// </summary>
         public Models.Components.V3UninstallConnectorResponse? V3UninstallConnectorResponseValue { get; set; }
     }

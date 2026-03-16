@@ -11,18 +11,17 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
     using System.Collections.Generic;
-    
+
     public class V2RunWorkflowRequest
     {
-
         /// <summary>
-        /// The flow id
+        /// The flow id.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=workflowID")]
         public string WorkflowID { get; set; } = default!;
 
         /// <summary>
-        /// Wait end of the workflow before return
+        /// Wait end of the workflow before return.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=wait")]
         public bool? Wait { get; set; }

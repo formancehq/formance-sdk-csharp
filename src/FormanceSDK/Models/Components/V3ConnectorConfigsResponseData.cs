@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V3ConnectorConfigsResponseData
     {
-
         [JsonProperty("dataType")]
         public string DataType { get; set; } = default!;
 

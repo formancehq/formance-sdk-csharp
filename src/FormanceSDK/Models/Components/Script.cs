@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class Script
     {
-
         [JsonProperty("plain")]
         public string Plain { get; set; } = default!;
 
@@ -23,7 +22,7 @@ namespace FormanceSDK.Models.Components
         public Dictionary<string, object>? Vars { get; set; }
 
         /// <summary>
-        /// Reference to attach to the generated transaction
+        /// Reference to attach to the generated transaction.
         /// </summary>
         [JsonProperty("reference")]
         public string? Reference { get; set; }

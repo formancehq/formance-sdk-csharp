@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using Newtonsoft.Json;
     using System.Collections.Generic;
     using System.Numerics;
-    
+
     public class V2AggregateBalancesResponse
     {
-
         [JsonProperty("data")]
         public Dictionary<string, BigInteger> Data { get; set; } = default!;
     }

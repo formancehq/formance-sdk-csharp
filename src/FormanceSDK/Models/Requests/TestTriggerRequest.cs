@@ -11,12 +11,11 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
     using System.Collections.Generic;
-    
+
     public class TestTriggerRequest
     {
-
         /// <summary>
-        /// The trigger id
+        /// The trigger id.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=triggerID")]
         public string TriggerID { get; set; } = default!;

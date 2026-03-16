@@ -1,5 +1,13 @@
 # TaskStatus
 
+## Example Usage
+
+```csharp
+using FormanceSDK.Models.Components;
+
+var value = TaskStatus.Pending;
+```
+
 
 ## Values
 

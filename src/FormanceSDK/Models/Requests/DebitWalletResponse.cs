@@ -12,15 +12,14 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class DebitWalletResponse
     {
-
         [JsonProperty("-")]
         public HTTPMetadata HttpMeta { get; set; } = default!;
 
         /// <summary>
-        /// Wallet successfully debited as a pending hold
+        /// Wallet successfully debited as a pending hold.
         /// </summary>
         public Models.Components.DebitWalletResponse? DebitWalletResponseValue { get; set; }
     }

@@ -12,7 +12,7 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     public enum V2ErrorsEnum
     {
         [JsonProperty("INTERNAL")]
@@ -49,6 +49,10 @@ namespace FormanceSDK.Models.Components
         InterpreterRuntime,
         [JsonProperty("LEDGER_ALREADY_EXISTS")]
         LedgerAlreadyExists,
+        [JsonProperty("SCHEMA_ALREADY_EXISTS")]
+        SchemaAlreadyExists,
+        [JsonProperty("SCHEMA_NOT_SPECIFIED")]
+        SchemaNotSpecified,
         [JsonProperty("OUTDATED_SCHEMA")]
         OutdatedSchema,
     }
@@ -85,5 +89,4 @@ namespace FormanceSDK.Models.Components
             throw new Exception($"Unknown value {value} for enum V2ErrorsEnum");
         }
     }
-
 }

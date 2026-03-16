@@ -14,10 +14,9 @@ namespace FormanceSDK.Models.Components
     using Newtonsoft.Json;
     using System.Collections.Generic;
     using System.Numerics;
-    
+
     public class ExpandedDebitHold
     {
-
         /// <summary>
         /// The unique ID of the hold.
         /// </summary>
@@ -56,13 +55,13 @@ namespace FormanceSDK.Models.Components
         }
 
         /// <summary>
-        /// Remaining amount on hold
+        /// Remaining amount on hold.
         /// </summary>
         [JsonProperty("remaining")]
         public BigInteger Remaining { get; set; } = default!;
 
         /// <summary>
-        /// Original amount on hold
+        /// Original amount on hold.
         /// </summary>
         [JsonProperty("originalAmount")]
         public BigInteger OriginalAmount { get; set; } = default!;

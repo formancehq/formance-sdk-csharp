@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class ConfigChangeSecret
     {
-
         [JsonProperty("secret")]
         public string Secret { get; set; } = default!;
     }

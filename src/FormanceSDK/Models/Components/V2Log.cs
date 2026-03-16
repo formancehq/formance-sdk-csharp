@@ -13,25 +13,54 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
-    using System.Collections.Generic;
     using System.Numerics;
-    
+
+    /// <summary>
+    /// Represents an immutable log entry in the ledger. Each log captures an atomic operation<br/>
+    /// with its full payload, enabling audit trails and event sourcing patterns.<br/>
+    /// The data field structure depends on the log type.
+    /// </summary>
     public class V2Log
     {
-
+        /// <summary>
+        /// Unique sequential identifier for this log entry within the ledger.
+        /// </summary>
         [JsonProperty("id")]
         public BigInteger Id { get; set; } = default!;
 
+        /// <summary>
+        /// The type of operation this log represents.
+        /// </summary>
         [JsonProperty("type")]
         public V2LogType Type { get; set; } = default!;
 
-        [JsonProperty("data")]
-        public Dictionary<string, object> Data { get; set; } = default!;
+        /// <summary>
+        /// The payload of the log entry. Structure depends on the log type:<br/>
+        /// - NEW_TRANSACTION: V2LogDataNewTransaction<br/>
+        /// - SET_METADATA: V2LogDataSetMetadata<br/>
+        /// - REVERTED_TRANSACTION: V2LogDataRevertedTransaction<br/>
+        /// - DELETE_METADATA: V2LogDataDeleteMetadata<br/>
+        /// - INSERTED_SCHEMA: V2LogDataInsertedSchema.
+        /// </summary>
+        [JsonProperty("data", NullValueHandling = NullValueHandling.Include)]
+        public V2LogData Data { get; set; } = default!;
 
+        /// <summary>
+        /// SHA256 hash of the log entry, chained from the previous log for integrity verification.
+        /// </summary>
         [JsonProperty("hash")]
         public string Hash { get; set; } = default!;
 
+        /// <summary>
+        /// Timestamp when the operation was recorded.
+        /// </summary>
         [JsonProperty("date")]
         public DateTime Date { get; set; } = default!;
+
+        /// <summary>
+        /// Schema version used for validation when the log was created.
+        /// </summary>
+        [JsonProperty("schemaVersion")]
+        public string? SchemaVersion { get; set; }
     }
 }

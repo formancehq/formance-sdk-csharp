@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class Stats
     {
-
         [JsonProperty("accounts")]
         public long Accounts { get; set; } = default!;
 

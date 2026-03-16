@@ -12,15 +12,14 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class RunWorkflowResponse
     {
-
         [JsonProperty("-")]
         public HTTPMetadata HttpMeta { get; set; } = default!;
 
         /// <summary>
-        /// The workflow instance
+        /// The workflow instance.
         /// </summary>
         public Models.Components.RunWorkflowResponse? RunWorkflowResponseValue { get; set; }
     }

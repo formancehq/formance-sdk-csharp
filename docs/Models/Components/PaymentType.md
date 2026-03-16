@@ -1,5 +1,13 @@
 # PaymentType
 
+## Example Usage
+
+```csharp
+using FormanceSDK.Models.Components;
+
+var value = PaymentType.PayIn;
+```
+
 
 ## Values
 

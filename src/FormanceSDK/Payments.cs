@@ -17,17 +17,28 @@ namespace FormanceSDK
     public interface IPayments
     {
         public IFormancePaymentsV1 V1 { get; }
+
         public IV3 V3 { get; }
     }
 
     public class Payments: IPayments
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-        private const string _language = "csharp";
-        private const string _sdkVersion = "3.0.0";
-        private const string _sdkGenVersion = "2.721.3";
-        private const string _openapiDocVersion = "v3.1.0";
+
+        /// <summary>
+        /// V1 SubSDK.
+        /// <see cref="IFormancePaymentsV1"/>
+        /// </summary>
         public IFormancePaymentsV1 V1 { get; private set; }
+
+        /// <summary>
+        /// V3 SubSDK.
+        /// <see cref="IV3"/>
+        /// </summary>
         public IV3 V3 { get; private set; }
 
         public Payments(SDKConfig config)

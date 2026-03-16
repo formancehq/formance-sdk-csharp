@@ -1,0 +1,9 @@
+# V3CreateLinkForPaymentServiceUserResponse
+
+
+## Fields
+
+| Field                                                                                                       | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
+| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `HttpMeta`                                                                                                  | [HTTPMetadata](../../Models/Components/HTTPMetadata.md)                                                     | :heavy_check_mark:                                                                                          | N/A                                                                                                         |
+| `V3PaymentServiceUserCreateLinkResponse`                                                                    | [V3PaymentServiceUserCreateLinkResponse](../../Models/Components/V3PaymentServiceUserCreateLinkResponse.md) | :heavy_minus_sign:                                                                                          | Created                                                                                                     |

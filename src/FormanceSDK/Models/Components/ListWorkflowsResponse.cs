@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class ListWorkflowsResponse
     {
-
         [JsonProperty("data")]
         public List<Workflow> Data { get; set; } = default!;
     }

@@ -12,20 +12,19 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V2GetInfoResponse
     {
-
         [JsonProperty("-")]
         public HTTPMetadata HttpMeta { get; set; } = default!;
 
         /// <summary>
-        /// OK
+        /// OK.
         /// </summary>
         public V2ConfigInfoResponse? V2ConfigInfoResponse { get; set; }
 
         /// <summary>
-        /// Error
+        /// Error.
         /// </summary>
         public Models.Components.V2ErrorResponse? V2ErrorResponse { get; set; }
     }

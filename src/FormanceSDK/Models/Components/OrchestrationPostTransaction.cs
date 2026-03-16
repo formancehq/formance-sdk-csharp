@@ -14,10 +14,9 @@ namespace FormanceSDK.Models.Components
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+
     public class OrchestrationPostTransaction
     {
-
         [JsonProperty("timestamp")]
         public DateTime? Timestamp { get; set; }
 

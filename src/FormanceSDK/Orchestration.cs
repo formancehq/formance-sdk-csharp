@@ -17,17 +17,28 @@ namespace FormanceSDK
     public interface IOrchestration
     {
         public IFormanceOrchestrationV1 V1 { get; }
+
         public IFormanceV2 V2 { get; }
     }
 
     public class Orchestration: IOrchestration
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-        private const string _language = "csharp";
-        private const string _sdkVersion = "3.0.0";
-        private const string _sdkGenVersion = "2.721.3";
-        private const string _openapiDocVersion = "v3.1.0";
+
+        /// <summary>
+        /// V1 SubSDK.
+        /// <see cref="IFormanceOrchestrationV1"/>
+        /// </summary>
         public IFormanceOrchestrationV1 V1 { get; private set; }
+
+        /// <summary>
+        /// V2 SubSDK.
+        /// <see cref="IFormanceV2"/>
+        /// </summary>
         public IFormanceV2 V2 { get; private set; }
 
         public Orchestration(SDKConfig config)

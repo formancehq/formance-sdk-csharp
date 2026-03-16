@@ -12,16 +12,18 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+    using System.Collections.Generic;
+
     public class V2RevertTransactionResponse
     {
-
         [JsonProperty("-")]
         public HTTPMetadata HttpMeta { get; set; } = default!;
 
         /// <summary>
-        /// OK
+        /// OK.
         /// </summary>
-        public Models.Components.V2CreateTransactionResponse? V2CreateTransactionResponse { get; set; }
+        public Models.Components.V2RevertTransactionResponse? V2RevertTransactionResponseValue { get; set; }
+
+        public Dictionary<string, List<string>> Headers { get; set; } = new Dictionary<string, List<string>>();
     }
 }

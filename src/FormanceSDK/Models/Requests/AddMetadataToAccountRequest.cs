@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
     using System.Collections.Generic;
-    
+
     public class AddMetadataToAccountRequest
     {
-
         /// <summary>
         /// Name of the ledger.
         /// </summary>
@@ -23,19 +22,15 @@ namespace FormanceSDK.Models.Requests
 
         /// <summary>
         /// Exact address of the account. It must match the following regular expressions pattern:<br/>
-        /// 
-        /// <remarks>
         /// ```<br/>
         /// ^\w+(:\w+)*$<br/>
-        /// ```<br/>
-        /// 
-        /// </remarks>
+        /// ```
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=address")]
         public string Address { get; set; } = default!;
 
         /// <summary>
-        /// metadata
+        /// metadata.
         /// </summary>
         [SpeakeasyMetadata("request:mediaType=application/json")]
         public Dictionary<string, object>? RequestBody { get; set; }

@@ -10,12 +10,11 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class V3RejectPaymentInitiationRequest
     {
-
         /// <summary>
-        /// The payment initiation ID
+        /// The payment initiation ID.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=paymentInitiationID")]
         public string PaymentInitiationID { get; set; } = default!;

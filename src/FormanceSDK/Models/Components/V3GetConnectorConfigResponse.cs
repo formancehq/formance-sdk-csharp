@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V3GetConnectorConfigResponse
     {
-
         [JsonProperty("data", NullValueHandling = NullValueHandling.Include)]
         public Models.Components.V3InstallConnectorRequest Data { get; set; } = default!;
 
@@ -34,6 +33,11 @@ namespace FormanceSDK.Models.Components
             return Data.V3BankingcircleConfig;
         }
 
+        public V3CoinbaseprimeConfig? GetDataCoinbaseprime()
+        {
+            return Data.V3CoinbaseprimeConfig;
+        }
+
         public V3ColumnConfig? GetDataColumn()
         {
             return Data.V3ColumnConfig;
@@ -49,9 +53,19 @@ namespace FormanceSDK.Models.Components
             return Data.V3DummypayConfig;
         }
 
+        public V3FireblocksConfig? GetDataFireblocks()
+        {
+            return Data.V3FireblocksConfig;
+        }
+
         public V3GenericConfig? GetDataGeneric()
         {
             return Data.V3GenericConfig;
+        }
+
+        public V3IncreaseConfig? GetDataIncrease()
+        {
+            return Data.V3IncreaseConfig;
         }
 
         public V3MangopayConfig? GetDataMangopay()
@@ -69,6 +83,16 @@ namespace FormanceSDK.Models.Components
             return Data.V3MoneycorpConfig;
         }
 
+        public V3PlaidConfig? GetDataPlaid()
+        {
+            return Data.V3PlaidConfig;
+        }
+
+        public V3PowensConfig? GetDataPowens()
+        {
+            return Data.V3PowensConfig;
+        }
+
         public V3QontoConfig? GetDataQonto()
         {
             return Data.V3QontoConfig;
@@ -77,6 +101,11 @@ namespace FormanceSDK.Models.Components
         public V3StripeConfig? GetDataStripe()
         {
             return Data.V3StripeConfig;
+        }
+
+        public V3TinkConfig? GetDataTink()
+        {
+            return Data.V3TinkConfig;
         }
 
         public V3WiseConfig? GetDataWise()

@@ -10,18 +10,17 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class V3GetConnectorScheduleRequest
     {
-
         /// <summary>
-        /// The connector ID
+        /// The connector ID.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=connectorID")]
         public string ConnectorID { get; set; } = default!;
 
         /// <summary>
-        /// The schedule ID
+        /// The schedule ID.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=scheduleID")]
         public string ScheduleID { get; set; } = default!;

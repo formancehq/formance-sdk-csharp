@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Numerics;
-    
+
     public class ConfirmHoldRequest
     {
-
         /// <summary>
         /// Define the amount to transfer.
         /// </summary>

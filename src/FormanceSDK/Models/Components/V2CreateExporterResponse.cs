@@ -12,13 +12,12 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// Created exporter
+    /// Created exporter.
     /// </summary>
     public class V2CreateExporterResponse
     {
-
         [JsonProperty("data")]
         public V2Exporter Data { get; set; } = default!;
     }

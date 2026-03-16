@@ -1,5 +1,4 @@
-# FormanceV2
-(*Orchestration.V2*)
+# Orchestration.V2
 
 ## Overview
 
@@ -356,7 +355,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-V2WorkflowConfig? req = null;
+V2CreateWorkflowRequest? req = null;
 
 var res = await sdk.Orchestration.V2.CreateWorkflowAsync(req);
 
@@ -365,9 +364,9 @@ var res = await sdk.Orchestration.V2.CreateWorkflowAsync(req);
 
 ### Parameters
 
-| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
-| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
-| `request`                                                       | [V2WorkflowConfig](../../Models/Components/V2WorkflowConfig.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [V2CreateWorkflowRequest](../../Models/Components/V2CreateWorkflowRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
 
 ### Response
 

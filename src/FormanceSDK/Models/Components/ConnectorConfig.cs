@@ -79,7 +79,6 @@ namespace FormanceSDK.Models.Components
         }
     }
 
-
     [JsonConverter(typeof(ConnectorConfig.ConnectorConfigConverter))]
     public class ConnectorConfig
     {

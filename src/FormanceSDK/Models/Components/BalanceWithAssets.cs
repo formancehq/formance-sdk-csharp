@@ -14,10 +14,9 @@ namespace FormanceSDK.Models.Components
     using System;
     using System.Collections.Generic;
     using System.Numerics;
-    
+
     public class BalanceWithAssets
     {
-
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 

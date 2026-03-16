@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class ModulrConfig
     {
-
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
@@ -31,13 +30,9 @@ namespace FormanceSDK.Models.Components
         public string? Endpoint { get; set; }
 
         /// <summary>
-        /// The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr API.<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr API.
         /// </summary>
         [JsonProperty("pollingPeriod")]
-        public string? PollingPeriod { get; set; } = "120s";
+        public string? PollingPeriod { get; set; } = "30m";
     }
 }

@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class Filter
     {
-
         [JsonProperty("match")]
         public bool? Match { get; set; }
 

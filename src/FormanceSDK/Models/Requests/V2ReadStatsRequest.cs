@@ -10,12 +10,11 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class V2ReadStatsRequest
     {
-
         /// <summary>
-        /// name of the ledger
+        /// name of the ledger.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")]
         public string Ledger { get; set; } = default!;

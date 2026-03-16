@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V2BulkElementResultError
     {
-
         [JsonProperty("responseType")]
         public string ResponseType { get; set; } = default!;
 

@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using Newtonsoft.Json;
     using System;
     using System.Numerics;
-    
+
     public class AccountBalance
     {
-
         [JsonProperty("accountId")]
         public string AccountId { get; set; } = default!;
 

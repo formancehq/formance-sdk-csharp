@@ -12,7 +12,7 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     public enum TaskStatus
     {
         [JsonProperty("PENDING")]
@@ -59,5 +59,4 @@ namespace FormanceSDK.Models.Components
             throw new Exception($"Unknown value {value} for enum TaskStatus");
         }
     }
-
 }

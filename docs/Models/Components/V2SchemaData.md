@@ -1,0 +1,12 @@
+# V2SchemaData
+
+Schema data structure for ledger schemas
+
+
+## Fields
+
+| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   | Example                                                                                       |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `Chart`                                                                                       | Dictionary<String, [V2ChartSegment](../../Models/Components/V2ChartSegment.md)>               | :heavy_check_mark:                                                                            | Chart of account                                                                              | {<br/>"users": {<br/>"$userID": {<br/>".pattern": "^[0-9]{16}$"<br/>}<br/>}<br/>}             |
+| `Transactions`                                                                                | Dictionary<String, [V2TransactionTemplate](../../Models/Components/V2TransactionTemplate.md)> | :heavy_minus_sign:                                                                            | Transaction templates                                                                         |                                                                                               |
+| `Queries`                                                                                     | Dictionary<String, [V2QueryTemplate](../../Models/Components/V2QueryTemplate.md)>             | :heavy_minus_sign:                                                                            | Query templates                                                                               |                                                                                               |

@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V2WalletWithBalancesBalances
     {
-
         [JsonProperty("main")]
         public V2AssetHolder Main { get; set; } = default!;
     }

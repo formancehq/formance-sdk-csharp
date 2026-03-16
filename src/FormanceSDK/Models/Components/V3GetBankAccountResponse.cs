@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V3GetBankAccountResponse
     {
-
         [JsonProperty("data")]
         public V3BankAccount Data { get; set; } = default!;
     }

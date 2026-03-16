@@ -24,271 +24,881 @@ namespace FormanceSDK
 
     public interface IV3
     {
-
         /// <summary>
-        /// Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.<br/>
-        /// 
+        /// Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.
         /// </summary>
-        Task<Models.Requests.V3CreateAccountResponse> CreateAccountAsync(V3CreateAccountRequest? request = null);
+        /// <param name="request">A <see cref="V3CreateAccountRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3CreateAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V3CreateAccountResponse> CreateAccountAsync(V3CreateAccountRequest? request = null);
 
         /// <summary>
-        /// List all accounts
+        /// List all accounts.
         /// </summary>
-        Task<V3ListAccountsResponse> ListAccountsAsync(long? pageSize = null, string? cursor = null, Dictionary<string, object>? requestBody = null);
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListAccountsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3ListAccountsResponse> ListAccountsAsync(long? pageSize = null, string? cursor = null);
 
         /// <summary>
-        /// Get an account by ID
+        /// Get an account by ID.
         /// </summary>
-        Task<Models.Requests.V3GetAccountResponse> GetAccountAsync(string accountID);
+        /// <param name="accountID">The account ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3GetAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="accountID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V3GetAccountResponse> GetAccountAsync(string accountID);
 
         /// <summary>
-        /// Get account balances
+        /// Get account balances.
         /// </summary>
-        Task<V3GetAccountBalancesResponse> GetAccountBalancesAsync(V3GetAccountBalancesRequest request);
+        /// <param name="request">A <see cref="V3GetAccountBalancesRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3GetAccountBalancesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3GetAccountBalancesResponse> GetAccountBalancesAsync(V3GetAccountBalancesRequest request);
 
         /// <summary>
-        /// Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.<br/>
-        /// 
+        /// Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.
         /// </summary>
-        Task<Models.Requests.V3CreateBankAccountResponse> CreateBankAccountAsync(V3CreateBankAccountRequest? request = null);
+        /// <param name="request">A <see cref="V3CreateBankAccountRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3CreateBankAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V3CreateBankAccountResponse> CreateBankAccountAsync(
+            V3CreateBankAccountRequest? request = null
+        );
 
         /// <summary>
-        /// List all bank accounts
+        /// List all bank accounts.
         /// </summary>
-        Task<V3ListBankAccountsResponse> ListBankAccountsAsync(long? pageSize = null, string? cursor = null, Dictionary<string, object>? requestBody = null);
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListBankAccountsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3ListBankAccountsResponse> ListBankAccountsAsync(long? pageSize = null, string? cursor = null);
 
         /// <summary>
-        /// Get a Bank Account by ID
+        /// Get a Bank Account by ID.
         /// </summary>
-        Task<Models.Requests.V3GetBankAccountResponse> GetBankAccountAsync(string bankAccountID);
+        /// <param name="bankAccountID">The bank account ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3GetBankAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="bankAccountID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V3GetBankAccountResponse> GetBankAccountAsync(string bankAccountID);
 
         /// <summary>
-        /// Update a bank account&apos;s metadata
+        /// Update a bank account's metadata.
         /// </summary>
-        Task<V3UpdateBankAccountMetadataResponse> UpdateBankAccountMetadataAsync(string bankAccountID, Models.Components.V3UpdateBankAccountMetadataRequest? v3UpdateBankAccountMetadataRequest = null);
+        /// <param name="bankAccountID">The bank account ID.</param>
+        /// <param name="v3UpdateBankAccountMetadataRequest">A <see cref="FormanceSDK.Models.Components.V3UpdateBankAccountMetadataRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3UpdateBankAccountMetadataResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="bankAccountID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3UpdateBankAccountMetadataResponse> UpdateBankAccountMetadataAsync(
+            string bankAccountID,
+            Models.Components.V3UpdateBankAccountMetadataRequest? v3UpdateBankAccountMetadataRequest = null
+        );
 
         /// <summary>
-        /// Forward a Bank Account to a PSP for creation
+        /// Forward a Bank Account to a PSP for creation.
         /// </summary>
-        Task<Models.Requests.V3ForwardBankAccountResponse> ForwardBankAccountAsync(string bankAccountID, Models.Components.V3ForwardBankAccountRequest? v3ForwardBankAccountRequest = null);
+        /// <param name="bankAccountID">The bank account ID.</param>
+        /// <param name="v3ForwardBankAccountRequest">A <see cref="FormanceSDK.Models.Components.V3ForwardBankAccountRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3ForwardBankAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="bankAccountID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V3ForwardBankAccountResponse> ForwardBankAccountAsync(
+            string bankAccountID,
+            Models.Components.V3ForwardBankAccountRequest? v3ForwardBankAccountRequest = null
+        );
 
         /// <summary>
-        /// List all connectors
+        /// List all connectors.
         /// </summary>
-        Task<V3ListConnectorsResponse> ListConnectorsAsync(long? pageSize = null, string? cursor = null, Dictionary<string, object>? requestBody = null);
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListConnectorsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3ListConnectorsResponse> ListConnectorsAsync(long? pageSize = null, string? cursor = null);
 
         /// <summary>
-        /// Install a connector
+        /// Install a connector.
         /// </summary>
-        Task<Models.Requests.V3InstallConnectorResponse> InstallConnectorAsync(string connector, Models.Components.V3InstallConnectorRequest? v3InstallConnectorRequest = null);
+        /// <param name="connector">The connector to filter by.</param>
+        /// <param name="v3InstallConnectorRequest">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3InstallConnectorResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connector"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V3InstallConnectorResponse> InstallConnectorAsync(
+            string connector,
+            Models.Components.V3InstallConnectorRequest? v3InstallConnectorRequest = null
+        );
 
         /// <summary>
-        /// List all connector configurations
+        /// List all connector configurations.
         /// </summary>
-        Task<V3ListConnectorConfigsResponse> ListConnectorConfigsAsync();
+        /// <returns>An awaitable task that returns a <see cref="V3ListConnectorConfigsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3ListConnectorConfigsResponse> ListConnectorConfigsAsync();
 
         /// <summary>
-        /// Uninstall a connector
+        /// Uninstall a connector.
         /// </summary>
-        Task<Models.Requests.V3UninstallConnectorResponse> UninstallConnectorAsync(string connectorID);
+        /// <param name="connectorID">The connector ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3UninstallConnectorResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V3UninstallConnectorResponse> UninstallConnectorAsync(string connectorID);
 
         /// <summary>
-        /// Get a connector configuration by ID
+        /// Get a connector configuration by ID.
         /// </summary>
-        Task<Models.Requests.V3GetConnectorConfigResponse> GetConnectorConfigAsync(string connectorID);
+        /// <param name="connectorID">The connector ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3GetConnectorConfigResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V3GetConnectorConfigResponse> GetConnectorConfigAsync(string connectorID);
 
         /// <summary>
-        /// Update the config of a connector
-        /// 
+        /// Update the config of a connector.
+        /// </summary>
         /// <remarks>
-        /// Update connector config
+        /// Update connector config.
         /// </remarks>
-        /// </summary>
-        Task<V3UpdateConnectorConfigResponse> V3UpdateConnectorConfigAsync(string connectorID, Models.Components.V3InstallConnectorRequest? v3InstallConnectorRequest = null);
+        /// <param name="connectorID">The connector ID.</param>
+        /// <param name="v3InstallConnectorRequest">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3UpdateConnectorConfigResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3UpdateConnectorConfigResponse> V3UpdateConnectorConfigAsync(
+            string connectorID,
+            Models.Components.V3InstallConnectorRequest? v3InstallConnectorRequest = null
+        );
 
         /// <summary>
         /// Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment initiations and bank account creations.
         /// </summary>
-        Task<Models.Requests.V3ResetConnectorResponse> ResetConnectorAsync(string connectorID);
+        /// <param name="connectorID">The connector ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3ResetConnectorResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V3ResetConnectorResponse> ResetConnectorAsync(string connectorID);
 
         /// <summary>
-        /// List all connector schedules
+        /// List all connector schedules.
         /// </summary>
-        Task<V3ListConnectorSchedulesResponse> ListConnectorSchedulesAsync(string connectorID, long? pageSize = null, string? cursor = null, Dictionary<string, object>? requestBody = null);
+        /// <param name="connectorID">The connector ID.</param>
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListConnectorSchedulesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3ListConnectorSchedulesResponse> ListConnectorSchedulesAsync(
+            string connectorID,
+            long? pageSize = null,
+            string? cursor = null
+        );
 
         /// <summary>
-        /// Get a connector schedule by ID
+        /// Get a connector schedule by ID.
         /// </summary>
-        Task<V3GetConnectorScheduleResponse> GetConnectorScheduleAsync(string connectorID, string scheduleID);
+        /// <param name="connectorID">The connector ID.</param>
+        /// <param name="scheduleID">The schedule ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3GetConnectorScheduleResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="connectorID"/> or <paramref name="scheduleID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3GetConnectorScheduleResponse> GetConnectorScheduleAsync(string connectorID, string scheduleID);
 
         /// <summary>
-        /// List all connector schedule instances
+        /// List all connector schedule instances.
         /// </summary>
-        Task<V3ListConnectorScheduleInstancesResponse> ListConnectorScheduleInstancesAsync(string connectorID, string scheduleID, long? pageSize = null, string? cursor = null);
+        /// <param name="connectorID">The connector ID.</param>
+        /// <param name="scheduleID">The schedule ID.</param>
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListConnectorScheduleInstancesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="connectorID"/> or <paramref name="scheduleID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3ListConnectorScheduleInstancesResponse> ListConnectorScheduleInstancesAsync(
+            string connectorID,
+            string scheduleID,
+            long? pageSize = null,
+            string? cursor = null
+        );
 
         /// <summary>
-        /// Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.<br/>
-        /// 
+        /// Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
         /// </summary>
-        Task<Models.Requests.V3CreatePaymentResponse> CreatePaymentAsync(V3CreatePaymentRequest? request = null);
+        /// <param name="request">A <see cref="V3CreatePaymentRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3CreatePaymentResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V3CreatePaymentResponse> CreatePaymentAsync(V3CreatePaymentRequest? request = null);
 
         /// <summary>
-        /// List all payments
+        /// List all payments.
         /// </summary>
-        Task<V3ListPaymentsResponse> ListPaymentsAsync(long? pageSize = null, string? cursor = null, Dictionary<string, object>? requestBody = null);
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListPaymentsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3ListPaymentsResponse> ListPaymentsAsync(long? pageSize = null, string? cursor = null);
 
         /// <summary>
-        /// Get a payment by ID
+        /// Get a payment by ID.
         /// </summary>
-        Task<Models.Requests.V3GetPaymentResponse> GetPaymentAsync(string paymentID);
+        /// <param name="paymentID">The payment ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3GetPaymentResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V3GetPaymentResponse> GetPaymentAsync(string paymentID);
 
         /// <summary>
-        /// Update a payment&apos;s metadata
+        /// Update a payment's metadata.
         /// </summary>
-        Task<V3UpdatePaymentMetadataResponse> UpdatePaymentMetadataAsync(string paymentID, Models.Components.V3UpdatePaymentMetadataRequest? v3UpdatePaymentMetadataRequest = null);
+        /// <param name="paymentID">The payment ID.</param>
+        /// <param name="v3UpdatePaymentMetadataRequest">A <see cref="FormanceSDK.Models.Components.V3UpdatePaymentMetadataRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3UpdatePaymentMetadataResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3UpdatePaymentMetadataResponse> UpdatePaymentMetadataAsync(
+            string paymentID,
+            Models.Components.V3UpdatePaymentMetadataRequest? v3UpdatePaymentMetadataRequest = null
+        );
 
         /// <summary>
-        /// Initiate a payment
+        /// Initiate a payment.
         /// </summary>
-        Task<Models.Requests.V3InitiatePaymentResponse> InitiatePaymentAsync(bool? noValidation = false, Models.Components.V3InitiatePaymentRequest? v3InitiatePaymentRequest = null);
+        /// <param name="noValidation">If set to true, the request will not have to be validated. This is useful if we want to directly forward the request to the PSP.</param>
+        /// <param name="v3InitiatePaymentRequest">A <see cref="FormanceSDK.Models.Components.V3InitiatePaymentRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3InitiatePaymentResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V3InitiatePaymentResponse> InitiatePaymentAsync(
+            bool? noValidation = false,
+            Models.Components.V3InitiatePaymentRequest? v3InitiatePaymentRequest = null
+        );
 
         /// <summary>
-        /// List all payment initiations
+        /// List all payment initiations.
         /// </summary>
-        Task<V3ListPaymentInitiationsResponse> ListPaymentInitiationsAsync(long? pageSize = null, string? cursor = null, Dictionary<string, object>? requestBody = null);
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListPaymentInitiationsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3ListPaymentInitiationsResponse> ListPaymentInitiationsAsync(
+            long? pageSize = null,
+            string? cursor = null
+        );
 
         /// <summary>
-        /// Delete a payment initiation by ID
+        /// Delete a payment initiation by ID.
         /// </summary>
-        Task<V3DeletePaymentInitiationResponse> DeletePaymentInitiationAsync(string paymentInitiationID);
+        /// <param name="paymentInitiationID">The payment initiation ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3DeletePaymentInitiationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentInitiationID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3DeletePaymentInitiationResponse> DeletePaymentInitiationAsync(string paymentInitiationID);
 
         /// <summary>
-        /// Get a payment initiation by ID
+        /// Get a payment initiation by ID.
         /// </summary>
-        Task<Models.Requests.V3GetPaymentInitiationResponse> GetPaymentInitiationAsync(string paymentInitiationID);
+        /// <param name="paymentInitiationID">The payment initiation ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3GetPaymentInitiationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentInitiationID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V3GetPaymentInitiationResponse> GetPaymentInitiationAsync(
+            string paymentInitiationID
+        );
 
         /// <summary>
-        /// Retry a payment initiation
+        /// Retry a payment initiation.
         /// </summary>
-        Task<Models.Requests.V3RetryPaymentInitiationResponse> RetryPaymentInitiationAsync(string paymentInitiationID);
+        /// <param name="paymentInitiationID">The payment initiation ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3RetryPaymentInitiationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentInitiationID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V3RetryPaymentInitiationResponse> RetryPaymentInitiationAsync(
+            string paymentInitiationID
+        );
 
         /// <summary>
-        /// Approve a payment initiation
+        /// Approve a payment initiation.
         /// </summary>
-        Task<Models.Requests.V3ApprovePaymentInitiationResponse> ApprovePaymentInitiationAsync(string paymentInitiationID);
+        /// <param name="paymentInitiationID">The payment initiation ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3ApprovePaymentInitiationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentInitiationID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V3ApprovePaymentInitiationResponse> ApprovePaymentInitiationAsync(
+            string paymentInitiationID
+        );
 
         /// <summary>
-        /// Reject a payment initiation
+        /// Reject a payment initiation.
         /// </summary>
-        Task<V3RejectPaymentInitiationResponse> RejectPaymentInitiationAsync(string paymentInitiationID);
+        /// <param name="paymentInitiationID">The payment initiation ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3RejectPaymentInitiationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentInitiationID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3RejectPaymentInitiationResponse> RejectPaymentInitiationAsync(string paymentInitiationID);
 
         /// <summary>
-        /// Reverse a payment initiation
+        /// Reverse a payment initiation.
         /// </summary>
-        Task<Models.Requests.V3ReversePaymentInitiationResponse> ReversePaymentInitiationAsync(string paymentInitiationID, Models.Components.V3ReversePaymentInitiationRequest? v3ReversePaymentInitiationRequest = null);
+        /// <param name="paymentInitiationID">The payment initiation ID.</param>
+        /// <param name="v3ReversePaymentInitiationRequest">A <see cref="FormanceSDK.Models.Components.V3ReversePaymentInitiationRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3ReversePaymentInitiationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentInitiationID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V3ReversePaymentInitiationResponse> ReversePaymentInitiationAsync(
+            string paymentInitiationID,
+            Models.Components.V3ReversePaymentInitiationRequest? v3ReversePaymentInitiationRequest = null
+        );
 
         /// <summary>
-        /// List all payment initiation adjustments
+        /// List all payment initiation adjustments.
         /// </summary>
-        Task<V3ListPaymentInitiationAdjustmentsResponse> ListPaymentInitiationAdjustmentsAsync(string paymentInitiationID, long? pageSize = null, string? cursor = null, Dictionary<string, object>? requestBody = null);
+        /// <param name="paymentInitiationID">The payment initiation ID.</param>
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListPaymentInitiationAdjustmentsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentInitiationID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3ListPaymentInitiationAdjustmentsResponse> ListPaymentInitiationAdjustmentsAsync(
+            string paymentInitiationID,
+            long? pageSize = null,
+            string? cursor = null
+        );
 
         /// <summary>
-        /// List all payments related to a payment initiation
+        /// List all payments related to a payment initiation.
         /// </summary>
-        Task<V3ListPaymentInitiationRelatedPaymentsResponse> ListPaymentInitiationRelatedPaymentsAsync(string paymentInitiationID, long? pageSize = null, string? cursor = null, Dictionary<string, object>? requestBody = null);
+        /// <param name="paymentInitiationID">The payment initiation ID.</param>
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListPaymentInitiationRelatedPaymentsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentInitiationID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3ListPaymentInitiationRelatedPaymentsResponse> ListPaymentInitiationRelatedPaymentsAsync(
+            string paymentInitiationID,
+            long? pageSize = null,
+            string? cursor = null
+        );
 
         /// <summary>
-        /// Create a formance payment service user object
+        /// Create a formance payment service user object.
         /// </summary>
-        Task<Models.Requests.V3CreatePaymentServiceUserResponse> CreatePaymentServiceUserAsync(V3CreatePaymentServiceUserRequest? request = null);
+        /// <param name="request">A <see cref="V3CreatePaymentServiceUserRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3CreatePaymentServiceUserResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V3CreatePaymentServiceUserResponse> CreatePaymentServiceUserAsync(
+            V3CreatePaymentServiceUserRequest? request = null
+        );
 
         /// <summary>
-        /// List all payment service users
+        /// List all payment service users.
         /// </summary>
-        Task<V3ListPaymentServiceUsersResponse> ListPaymentServiceUsersAsync(long? pageSize = null, string? cursor = null, Dictionary<string, object>? requestBody = null);
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListPaymentServiceUsersResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3ListPaymentServiceUsersResponse> ListPaymentServiceUsersAsync(
+            long? pageSize = null,
+            string? cursor = null
+        );
 
         /// <summary>
-        /// Get a payment service user by ID
+        /// Get a payment service user by ID.
         /// </summary>
-        Task<Models.Requests.V3GetPaymentServiceUserResponse> GetPaymentServiceUserAsync(string paymentServiceUserID);
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3GetPaymentServiceUserResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentServiceUserID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V3GetPaymentServiceUserResponse> GetPaymentServiceUserAsync(
+            string paymentServiceUserID
+        );
 
         /// <summary>
-        /// Add a bank account to a payment service user
+        /// Delete a payment service user by ID.
         /// </summary>
-        Task<V3AddBankAccountToPaymentServiceUserResponse> AddBankAccountToPaymentServiceUserAsync(string paymentServiceUserID, string bankAccountID);
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3DeletePaymentServiceUserResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentServiceUserID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3DeletePaymentServiceUserResponse> DeletePaymentServiceUserAsync(string paymentServiceUserID);
 
         /// <summary>
-        /// Forward a payment service user&apos;s bank account to a connector
+        /// List all connections for a payment service user.
         /// </summary>
-        Task<Models.Requests.V3ForwardPaymentServiceUserBankAccountResponse> ForwardPaymentServiceUserBankAccountAsync(string paymentServiceUserID, string bankAccountID, Models.Components.V3ForwardPaymentServiceUserBankAccountRequest? v3ForwardPaymentServiceUserBankAccountRequest = null);
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListPaymentServiceUserConnectionsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentServiceUserID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3ListPaymentServiceUserConnectionsResponse> ListPaymentServiceUserConnectionsAsync(
+            string paymentServiceUserID,
+            long? pageSize = null,
+            string? cursor = null
+        );
 
         /// <summary>
-        /// Create a formance pool object
+        /// Remove a payment service user from a connector, the PSU will still exist in Formance.
         /// </summary>
-        Task<Models.Requests.V3CreatePoolResponse> CreatePoolAsync(V3CreatePoolRequest? request = null);
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3DeletePaymentServiceUserConnectorResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="paymentServiceUserID"/> or <paramref name="connectorID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3DeletePaymentServiceUserConnectorResponse> DeletePaymentServiceUserConnectorAsync(
+            string paymentServiceUserID,
+            string connectorID
+        );
 
         /// <summary>
-        /// List all pools
+        /// Register/forward a payment service user on/to a connector.
         /// </summary>
-        Task<V3ListPoolsResponse> ListPoolsAsync(long? pageSize = null, string? cursor = null, Dictionary<string, object>? requestBody = null);
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ForwardPaymentServiceUserToProviderResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="paymentServiceUserID"/> or <paramref name="connectorID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3ForwardPaymentServiceUserToProviderResponse> ForwardPaymentServiceUserToProviderAsync(
+            string paymentServiceUserID,
+            string connectorID
+        );
 
         /// <summary>
-        /// Get a pool by ID
+        /// Create an authentication link for a payment service user on a connector, for oauth flow.
         /// </summary>
-        Task<Models.Requests.V3GetPoolResponse> GetPoolAsync(string poolID);
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <param name="v3PaymentServiceUserCreateLinkRequest">A <see cref="V3PaymentServiceUserCreateLinkRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3CreateLinkForPaymentServiceUserResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="paymentServiceUserID"/> or <paramref name="connectorID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3CreateLinkForPaymentServiceUserResponse> CreateLinkForPaymentServiceUserAsync(
+            string paymentServiceUserID,
+            string connectorID,
+            V3PaymentServiceUserCreateLinkRequest? v3PaymentServiceUserCreateLinkRequest = null
+        );
 
         /// <summary>
-        /// Delete a pool by ID
+        /// List enabled connections for a payment service user on a connector (i.e. the various banks PSUser has enabled on the connector).
         /// </summary>
-        Task<V3DeletePoolResponse> DeletePoolAsync(string poolID);
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListPaymentServiceUserConnectionsFromConnectorIDResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="paymentServiceUserID"/> or <paramref name="connectorID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3ListPaymentServiceUserConnectionsFromConnectorIDResponse> ListPaymentServiceUserConnectionsFromConnectorIDAsync(
+            string paymentServiceUserID,
+            string connectorID,
+            long? pageSize = null,
+            string? cursor = null
+        );
 
         /// <summary>
-        /// Get historical pool balances from a particular point in time
+        /// List all link attempts for a payment service user on a connector.<br/>
+        /// Allows to check if users used the link and completed the oauth flow.
         /// </summary>
-        Task<V3GetPoolBalancesResponse> GetPoolBalancesAsync(string poolID, DateTime? at = null);
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="paymentServiceUserID"/> or <paramref name="connectorID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse> ListPaymentServiceUserLinkAttemptsFromConnectorIDAsync(
+            string paymentServiceUserID,
+            string connectorID,
+            long? pageSize = null,
+            string? cursor = null
+        );
 
         /// <summary>
-        /// Get latest pool balances
+        /// Get a link attempt for a payment service user on a connector.
         /// </summary>
-        Task<V3GetPoolBalancesLatestResponse> GetPoolBalancesLatestAsync(string poolID);
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <param name="attemptID">The attempt ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="paymentServiceUserID"/>, <paramref name="connectorID"/> or <paramref name="attemptID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse> GetPaymentServiceUserLinkAttemptFromConnectorIDAsync(
+            string paymentServiceUserID,
+            string connectorID,
+            string attemptID
+        );
 
         /// <summary>
-        /// Add an account to a pool
+        /// Delete a connection for a payment service user on a connector.
         /// </summary>
-        Task<V3AddAccountToPoolResponse> AddAccountToPoolAsync(string poolID, string accountID);
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <param name="connectionID">The connection ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3DeletePaymentServiceUserConnectionFromConnectorIDResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="paymentServiceUserID"/>, <paramref name="connectorID"/> or <paramref name="connectionID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3DeletePaymentServiceUserConnectionFromConnectorIDResponse> DeletePaymentServiceUserConnectionFromConnectorIDAsync(
+            string paymentServiceUserID,
+            string connectorID,
+            string connectionID
+        );
 
         /// <summary>
-        /// Remove an account from a pool
+        /// Update/Regenerate a link for a payment service user on a connector.
         /// </summary>
-        Task<V3RemoveAccountFromPoolResponse> RemoveAccountFromPoolAsync(string poolID, string accountID);
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <param name="connectionID">The connection ID.</param>
+        /// <param name="v3PaymentServiceUserUpdateLinkRequest">A <see cref="V3PaymentServiceUserUpdateLinkRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3UpdateLinkForPaymentServiceUserOnConnectorResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="paymentServiceUserID"/>, <paramref name="connectorID"/> or <paramref name="connectionID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3UpdateLinkForPaymentServiceUserOnConnectorResponse> UpdateLinkForPaymentServiceUserOnConnectorAsync(
+            string paymentServiceUserID,
+            string connectorID,
+            string connectionID,
+            V3PaymentServiceUserUpdateLinkRequest? v3PaymentServiceUserUpdateLinkRequest = null
+        );
 
         /// <summary>
-        /// Get a task and its result by ID
+        /// Add a bank account to a payment service user.
         /// </summary>
-        Task<Models.Requests.V3GetTaskResponse> GetTaskAsync(string taskID);
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <param name="bankAccountID">The bank account ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3AddBankAccountToPaymentServiceUserResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="paymentServiceUserID"/> or <paramref name="bankAccountID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3AddBankAccountToPaymentServiceUserResponse> AddBankAccountToPaymentServiceUserAsync(
+            string paymentServiceUserID,
+            string bankAccountID
+        );
+
+        /// <summary>
+        /// Forward a payment service user's bank account to a connector.
+        /// </summary>
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <param name="bankAccountID">The bank account ID.</param>
+        /// <param name="v3ForwardPaymentServiceUserBankAccountRequest">A <see cref="FormanceSDK.Models.Components.V3ForwardPaymentServiceUserBankAccountRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3ForwardPaymentServiceUserBankAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="paymentServiceUserID"/> or <paramref name="bankAccountID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V3ForwardPaymentServiceUserBankAccountResponse> ForwardPaymentServiceUserBankAccountAsync(
+            string paymentServiceUserID,
+            string bankAccountID,
+            Models.Components.V3ForwardPaymentServiceUserBankAccountRequest? v3ForwardPaymentServiceUserBankAccountRequest = null
+        );
+
+        /// <summary>
+        /// Create a formance pool object.
+        /// </summary>
+        /// <param name="request">A <see cref="V3CreatePoolRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3CreatePoolResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V3CreatePoolResponse> CreatePoolAsync(V3CreatePoolRequest? request = null);
+
+        /// <summary>
+        /// List all pools.
+        /// </summary>
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListPoolsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3ListPoolsResponse> ListPoolsAsync(long? pageSize = null, string? cursor = null);
+
+        /// <summary>
+        /// Get a pool by ID.
+        /// </summary>
+        /// <param name="poolID">The pool ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3GetPoolResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V3GetPoolResponse> GetPoolAsync(string poolID);
+
+        /// <summary>
+        /// Delete a pool by ID.
+        /// </summary>
+        /// <param name="poolID">The pool ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3DeletePoolResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3DeletePoolResponse> DeletePoolAsync(string poolID);
+
+        /// <summary>
+        /// Update the query of a pool.
+        /// </summary>
+        /// <param name="poolID">The pool ID.</param>
+        /// <param name="v3UpdatePoolQueryRequest">A <see cref="FormanceSDK.Models.Components.V3UpdatePoolQueryRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3UpdatePoolQueryResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3UpdatePoolQueryResponse> UpdatePoolQueryAsync(
+            string poolID,
+            Models.Components.V3UpdatePoolQueryRequest? v3UpdatePoolQueryRequest = null
+        );
+
+        /// <summary>
+        /// Get historical pool balances from a particular point in time.
+        /// </summary>
+        /// <param name="poolID">The pool ID.</param>
+        /// <param name="at">The time to filter by.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3GetPoolBalancesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3GetPoolBalancesResponse> GetPoolBalancesAsync(string poolID, DateTime? at = null);
+
+        /// <summary>
+        /// Get latest pool balances.
+        /// </summary>
+        /// <param name="poolID">The pool ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3GetPoolBalancesLatestResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3GetPoolBalancesLatestResponse> GetPoolBalancesLatestAsync(string poolID);
+
+        /// <summary>
+        /// Add an account to a pool.
+        /// </summary>
+        /// <param name="poolID">The pool ID.</param>
+        /// <param name="accountID">The account ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3AddAccountToPoolResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="poolID"/> or <paramref name="accountID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3AddAccountToPoolResponse> AddAccountToPoolAsync(string poolID, string accountID);
+
+        /// <summary>
+        /// Remove an account from a pool.
+        /// </summary>
+        /// <param name="poolID">The pool ID.</param>
+        /// <param name="accountID">The account ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3RemoveAccountFromPoolResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="poolID"/> or <paramref name="accountID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3RemoveAccountFromPoolResponse> RemoveAccountFromPoolAsync(string poolID, string accountID);
+
+        /// <summary>
+        /// Get a task and its result by ID.
+        /// </summary>
+        /// <param name="taskID">The task ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3GetTaskResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="taskID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V3GetTaskResponse> GetTaskAsync(string taskID);
     }
 
     public class V3: IV3
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-        private const string _language = "csharp";
-        private const string _sdkVersion = "3.0.0";
-        private const string _sdkGenVersion = "2.721.3";
-        private const string _openapiDocVersion = "v3.1.0";
 
         public V3(SDKConfig config)
         {
             SDKConfiguration = config;
         }
 
-        public async Task<Models.Requests.V3CreateAccountResponse> CreateAccountAsync(V3CreateAccountRequest? request = null)
+        /// <summary>
+        /// Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.
+        /// </summary>
+        /// <param name="request">A <see cref="V3CreateAccountRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3CreateAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V3CreateAccountResponse> CreateAccountAsync(
+            V3CreateAccountRequest? request = null
+        )
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/api/payments/v3/accounts";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, true);
             if (serializedBody != null)
@@ -301,7 +911,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3CreateAccount", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3CreateAccount", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -311,7 +921,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 201)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -320,9 +930,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -388,24 +998,34 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3ListAccountsResponse> ListAccountsAsync(long? pageSize = null, string? cursor = null, Dictionary<string, object>? requestBody = null)
+
+        /// <summary>
+        /// List all accounts.
+        /// </summary>
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListAccountsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3ListAccountsResponse> ListAccountsAsync(long? pageSize = null, string? cursor = null)
         {
             var request = new V3ListAccountsRequest()
             {
                 PageSize = pageSize,
                 Cursor = cursor,
-                RequestBody = requestBody,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/accounts", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/accounts", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
-            if (serializedBody != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest.Content = serializedBody;
+                httpRequest.Headers.Add("Accept", "application/json");
             }
 
             if (SDKConfiguration.SecuritySource != null)
@@ -413,7 +1033,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListAccounts", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListAccounts", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -423,7 +1043,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -432,9 +1052,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -500,24 +1120,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V3GetAccountResponse> GetAccountAsync(string accountID)
+
+        /// <summary>
+        /// Get an account by ID.
+        /// </summary>
+        /// <param name="accountID">The account ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3GetAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="accountID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V3GetAccountResponse> GetAccountAsync(string accountID)
         {
+            if (accountID == null) throw new ArgumentNullException(nameof(accountID));
+
             var request = new V3GetAccountRequest()
             {
                 AccountID = accountID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/accounts/{accountID}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/accounts/{accountID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetAccount", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetAccount", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -527,7 +1166,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -536,9 +1175,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -604,20 +1243,38 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3GetAccountBalancesResponse> GetAccountBalancesAsync(V3GetAccountBalancesRequest request)
+
+        /// <summary>
+        /// Get account balances.
+        /// </summary>
+        /// <param name="request">A <see cref="V3GetAccountBalancesRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3GetAccountBalancesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3GetAccountBalancesResponse> GetAccountBalancesAsync(V3GetAccountBalancesRequest request)
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/accounts/{accountID}/balances", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/accounts/{accountID}/balances", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetAccountBalances", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetAccountBalances", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -627,7 +1284,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -636,9 +1293,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -704,14 +1361,30 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V3CreateBankAccountResponse> CreateBankAccountAsync(V3CreateBankAccountRequest? request = null)
+
+        /// <summary>
+        /// Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.
+        /// </summary>
+        /// <param name="request">A <see cref="V3CreateBankAccountRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3CreateBankAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V3CreateBankAccountResponse> CreateBankAccountAsync(
+            V3CreateBankAccountRequest? request = null
+        )
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/api/payments/v3/bank-accounts";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, true);
             if (serializedBody != null)
@@ -724,7 +1397,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3CreateBankAccount", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3CreateBankAccount", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -734,7 +1407,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 201)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -743,9 +1416,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -811,24 +1484,37 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3ListBankAccountsResponse> ListBankAccountsAsync(long? pageSize = null, string? cursor = null, Dictionary<string, object>? requestBody = null)
+
+        /// <summary>
+        /// List all bank accounts.
+        /// </summary>
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListBankAccountsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3ListBankAccountsResponse> ListBankAccountsAsync(
+            long? pageSize = null,
+            string? cursor = null
+        )
         {
             var request = new V3ListBankAccountsRequest()
             {
                 PageSize = pageSize,
                 Cursor = cursor,
-                RequestBody = requestBody,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/bank-accounts", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/bank-accounts", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
-            if (serializedBody != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest.Content = serializedBody;
+                httpRequest.Headers.Add("Accept", "application/json");
             }
 
             if (SDKConfiguration.SecuritySource != null)
@@ -836,7 +1522,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListBankAccounts", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListBankAccounts", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -846,7 +1532,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -855,9 +1541,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -923,17 +1609,36 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V3GetBankAccountResponse> GetBankAccountAsync(string bankAccountID)
+
+        /// <summary>
+        /// Get a Bank Account by ID.
+        /// </summary>
+        /// <param name="bankAccountID">The bank account ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3GetBankAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="bankAccountID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V3GetBankAccountResponse> GetBankAccountAsync(string bankAccountID)
         {
+            if (bankAccountID == null) throw new ArgumentNullException(nameof(bankAccountID));
+
             var request = new V3GetBankAccountRequest()
             {
                 BankAccountID = bankAccountID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/bank-accounts/{bankAccountID}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/bank-accounts/{bankAccountID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -950,7 +1655,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -959,9 +1664,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1027,18 +1732,41 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3UpdateBankAccountMetadataResponse> UpdateBankAccountMetadataAsync(string bankAccountID, Models.Components.V3UpdateBankAccountMetadataRequest? v3UpdateBankAccountMetadataRequest = null)
+
+        /// <summary>
+        /// Update a bank account's metadata.
+        /// </summary>
+        /// <param name="bankAccountID">The bank account ID.</param>
+        /// <param name="v3UpdateBankAccountMetadataRequest">A <see cref="FormanceSDK.Models.Components.V3UpdateBankAccountMetadataRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3UpdateBankAccountMetadataResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="bankAccountID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3UpdateBankAccountMetadataResponse> UpdateBankAccountMetadataAsync(
+            string bankAccountID,
+            Models.Components.V3UpdateBankAccountMetadataRequest? v3UpdateBankAccountMetadataRequest = null
+        )
         {
+            if (bankAccountID == null) throw new ArgumentNullException(nameof(bankAccountID));
+
             var request = new Models.Requests.V3UpdateBankAccountMetadataRequest()
             {
                 BankAccountID = bankAccountID,
                 V3UpdateBankAccountMetadataRequestValue = v3UpdateBankAccountMetadataRequest,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/bank-accounts/{bankAccountID}/metadata", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/bank-accounts/{bankAccountID}/metadata", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Patch, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "V3UpdateBankAccountMetadataRequestValue", "json", false, true);
             if (serializedBody != null)
@@ -1061,7 +1789,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1070,9 +1798,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1120,18 +1848,41 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V3ForwardBankAccountResponse> ForwardBankAccountAsync(string bankAccountID, Models.Components.V3ForwardBankAccountRequest? v3ForwardBankAccountRequest = null)
+
+        /// <summary>
+        /// Forward a Bank Account to a PSP for creation.
+        /// </summary>
+        /// <param name="bankAccountID">The bank account ID.</param>
+        /// <param name="v3ForwardBankAccountRequest">A <see cref="FormanceSDK.Models.Components.V3ForwardBankAccountRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3ForwardBankAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="bankAccountID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V3ForwardBankAccountResponse> ForwardBankAccountAsync(
+            string bankAccountID,
+            Models.Components.V3ForwardBankAccountRequest? v3ForwardBankAccountRequest = null
+        )
         {
+            if (bankAccountID == null) throw new ArgumentNullException(nameof(bankAccountID));
+
             var request = new Models.Requests.V3ForwardBankAccountRequest()
             {
                 BankAccountID = bankAccountID,
                 V3ForwardBankAccountRequestValue = v3ForwardBankAccountRequest,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/bank-accounts/{bankAccountID}/forward", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/bank-accounts/{bankAccountID}/forward", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "V3ForwardBankAccountRequestValue", "json", false, true);
             if (serializedBody != null)
@@ -1154,7 +1905,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 202)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1163,9 +1914,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1231,24 +1982,34 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3ListConnectorsResponse> ListConnectorsAsync(long? pageSize = null, string? cursor = null, Dictionary<string, object>? requestBody = null)
+
+        /// <summary>
+        /// List all connectors.
+        /// </summary>
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListConnectorsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3ListConnectorsResponse> ListConnectorsAsync(long? pageSize = null, string? cursor = null)
         {
             var request = new V3ListConnectorsRequest()
             {
                 PageSize = pageSize,
                 Cursor = cursor,
-                RequestBody = requestBody,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
-            if (serializedBody != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest.Content = serializedBody;
+                httpRequest.Headers.Add("Accept", "application/json");
             }
 
             if (SDKConfiguration.SecuritySource != null)
@@ -1256,7 +2017,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListConnectors", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListConnectors", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1266,7 +2027,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1275,9 +2036,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1343,18 +2104,41 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V3InstallConnectorResponse> InstallConnectorAsync(string connector, Models.Components.V3InstallConnectorRequest? v3InstallConnectorRequest = null)
+
+        /// <summary>
+        /// Install a connector.
+        /// </summary>
+        /// <param name="connector">The connector to filter by.</param>
+        /// <param name="v3InstallConnectorRequest">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3InstallConnectorResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connector"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V3InstallConnectorResponse> InstallConnectorAsync(
+            string connector,
+            Models.Components.V3InstallConnectorRequest? v3InstallConnectorRequest = null
+        )
         {
+            if (connector == null) throw new ArgumentNullException(nameof(connector));
+
             var request = new Models.Requests.V3InstallConnectorRequest()
             {
                 Connector = connector,
                 V3InstallConnectorRequestValue = v3InstallConnectorRequest,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/install/{connector}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/install/{connector}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "V3InstallConnectorRequestValue", "json", false, true);
             if (serializedBody != null)
@@ -1367,7 +2151,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3InstallConnector", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3InstallConnector", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1377,7 +2161,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 202)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1386,9 +2170,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1454,21 +2238,34 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3ListConnectorConfigsResponse> ListConnectorConfigsAsync()
+
+        /// <summary>
+        /// List all connector configurations.
+        /// </summary>
+        /// <returns>An awaitable task that returns a <see cref="V3ListConnectorConfigsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3ListConnectorConfigsResponse> ListConnectorConfigsAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/api/payments/v3/connectors/configs";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListConnectorConfigs", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListConnectorConfigs", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1478,7 +2275,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1487,9 +2284,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1555,24 +2352,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V3UninstallConnectorResponse> UninstallConnectorAsync(string connectorID)
+
+        /// <summary>
+        /// Uninstall a connector.
+        /// </summary>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3UninstallConnectorResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V3UninstallConnectorResponse> UninstallConnectorAsync(string connectorID)
         {
+            if (connectorID == null) throw new ArgumentNullException(nameof(connectorID));
+
             var request = new V3UninstallConnectorRequest()
             {
                 ConnectorID = connectorID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/{connectorID}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/{connectorID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3UninstallConnector", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3UninstallConnector", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1582,7 +2398,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 202)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1591,9 +2407,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1659,24 +2475,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V3GetConnectorConfigResponse> GetConnectorConfigAsync(string connectorID)
+
+        /// <summary>
+        /// Get a connector configuration by ID.
+        /// </summary>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3GetConnectorConfigResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V3GetConnectorConfigResponse> GetConnectorConfigAsync(string connectorID)
         {
+            if (connectorID == null) throw new ArgumentNullException(nameof(connectorID));
+
             var request = new V3GetConnectorConfigRequest()
             {
                 ConnectorID = connectorID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/{connectorID}/config", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/{connectorID}/config", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetConnectorConfig", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetConnectorConfig", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1686,7 +2521,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1695,9 +2530,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1763,18 +2598,44 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3UpdateConnectorConfigResponse> V3UpdateConnectorConfigAsync(string connectorID, Models.Components.V3InstallConnectorRequest? v3InstallConnectorRequest = null)
+
+        /// <summary>
+        /// Update the config of a connector.
+        /// </summary>
+        /// <remarks>
+        /// Update connector config.
+        /// </remarks>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <param name="v3InstallConnectorRequest">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3UpdateConnectorConfigResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3UpdateConnectorConfigResponse> V3UpdateConnectorConfigAsync(
+            string connectorID,
+            Models.Components.V3InstallConnectorRequest? v3InstallConnectorRequest = null
+        )
         {
+            if (connectorID == null) throw new ArgumentNullException(nameof(connectorID));
+
             var request = new V3UpdateConnectorConfigRequest()
             {
                 ConnectorID = connectorID,
                 V3InstallConnectorRequest = v3InstallConnectorRequest,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/{connectorID}/config", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/{connectorID}/config", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Patch, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "V3InstallConnectorRequest", "json", false, true);
             if (serializedBody != null)
@@ -1787,7 +2648,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3UpdateConnectorConfig", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3UpdateConnectorConfig", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1797,7 +2658,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1806,9 +2667,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1856,24 +2717,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V3ResetConnectorResponse> ResetConnectorAsync(string connectorID)
+
+        /// <summary>
+        /// Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment initiations and bank account creations.
+        /// </summary>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3ResetConnectorResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V3ResetConnectorResponse> ResetConnectorAsync(string connectorID)
         {
+            if (connectorID == null) throw new ArgumentNullException(nameof(connectorID));
+
             var request = new V3ResetConnectorRequest()
             {
                 ConnectorID = connectorID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/{connectorID}/reset", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/{connectorID}/reset", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ResetConnector", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ResetConnector", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1883,7 +2763,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 202)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1892,9 +2772,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1960,25 +2840,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3ListConnectorSchedulesResponse> ListConnectorSchedulesAsync(string connectorID, long? pageSize = null, string? cursor = null, Dictionary<string, object>? requestBody = null)
+
+        /// <summary>
+        /// List all connector schedules.
+        /// </summary>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListConnectorSchedulesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3ListConnectorSchedulesResponse> ListConnectorSchedulesAsync(
+            string connectorID,
+            long? pageSize = null,
+            string? cursor = null
+        )
         {
+            if (connectorID == null) throw new ArgumentNullException(nameof(connectorID));
+
             var request = new V3ListConnectorSchedulesRequest()
             {
                 ConnectorID = connectorID,
                 PageSize = pageSize,
                 Cursor = cursor,
-                RequestBody = requestBody,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/{connectorID}/schedules", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/{connectorID}/schedules", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
-            if (serializedBody != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest.Content = serializedBody;
+                httpRequest.Headers.Add("Accept", "application/json");
             }
 
             if (SDKConfiguration.SecuritySource != null)
@@ -1986,7 +2884,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListConnectorSchedules", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListConnectorSchedules", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1996,7 +2894,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2005,9 +2903,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2073,25 +2971,49 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3GetConnectorScheduleResponse> GetConnectorScheduleAsync(string connectorID, string scheduleID)
+
+        /// <summary>
+        /// Get a connector schedule by ID.
+        /// </summary>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <param name="scheduleID">The schedule ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3GetConnectorScheduleResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="connectorID"/> or <paramref name="scheduleID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3GetConnectorScheduleResponse> GetConnectorScheduleAsync(
+            string connectorID,
+            string scheduleID
+        )
         {
+            if (connectorID == null) throw new ArgumentNullException(nameof(connectorID));
+            if (scheduleID == null) throw new ArgumentNullException(nameof(scheduleID));
+
             var request = new V3GetConnectorScheduleRequest()
             {
                 ConnectorID = connectorID,
                 ScheduleID = scheduleID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/{connectorID}/schedules/{scheduleID}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/{connectorID}/schedules/{scheduleID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetConnectorSchedule", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetConnectorSchedule", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2101,7 +3023,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2110,9 +3032,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2178,8 +3100,30 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3ListConnectorScheduleInstancesResponse> ListConnectorScheduleInstancesAsync(string connectorID, string scheduleID, long? pageSize = null, string? cursor = null)
+
+        /// <summary>
+        /// List all connector schedule instances.
+        /// </summary>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <param name="scheduleID">The schedule ID.</param>
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListConnectorScheduleInstancesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="connectorID"/> or <paramref name="scheduleID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3ListConnectorScheduleInstancesResponse> ListConnectorScheduleInstancesAsync(
+            string connectorID,
+            string scheduleID,
+            long? pageSize = null,
+            string? cursor = null
+        )
         {
+            if (connectorID == null) throw new ArgumentNullException(nameof(connectorID));
+            if (scheduleID == null) throw new ArgumentNullException(nameof(scheduleID));
+
             var request = new V3ListConnectorScheduleInstancesRequest()
             {
                 ConnectorID = connectorID,
@@ -2187,18 +3131,24 @@ namespace FormanceSDK
                 PageSize = pageSize,
                 Cursor = cursor,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/{connectorID}/schedules/{scheduleID}/instances", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/{connectorID}/schedules/{scheduleID}/instances", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListConnectorScheduleInstances", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListConnectorScheduleInstances", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2208,7 +3158,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2217,9 +3167,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2285,14 +3235,30 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V3CreatePaymentResponse> CreatePaymentAsync(V3CreatePaymentRequest? request = null)
+
+        /// <summary>
+        /// Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
+        /// </summary>
+        /// <param name="request">A <see cref="V3CreatePaymentRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3CreatePaymentResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V3CreatePaymentResponse> CreatePaymentAsync(
+            V3CreatePaymentRequest? request = null
+        )
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/api/payments/v3/payments";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, true);
             if (serializedBody != null)
@@ -2305,7 +3271,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3CreatePayment", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3CreatePayment", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2315,7 +3281,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 201)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2324,9 +3290,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2392,24 +3358,34 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3ListPaymentsResponse> ListPaymentsAsync(long? pageSize = null, string? cursor = null, Dictionary<string, object>? requestBody = null)
+
+        /// <summary>
+        /// List all payments.
+        /// </summary>
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListPaymentsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3ListPaymentsResponse> ListPaymentsAsync(long? pageSize = null, string? cursor = null)
         {
             var request = new V3ListPaymentsRequest()
             {
                 PageSize = pageSize,
                 Cursor = cursor,
-                RequestBody = requestBody,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payments", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payments", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
-            if (serializedBody != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest.Content = serializedBody;
+                httpRequest.Headers.Add("Accept", "application/json");
             }
 
             if (SDKConfiguration.SecuritySource != null)
@@ -2417,7 +3393,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListPayments", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListPayments", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2427,7 +3403,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2436,9 +3412,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2504,24 +3480,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V3GetPaymentResponse> GetPaymentAsync(string paymentID)
+
+        /// <summary>
+        /// Get a payment by ID.
+        /// </summary>
+        /// <param name="paymentID">The payment ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3GetPaymentResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V3GetPaymentResponse> GetPaymentAsync(string paymentID)
         {
+            if (paymentID == null) throw new ArgumentNullException(nameof(paymentID));
+
             var request = new V3GetPaymentRequest()
             {
                 PaymentID = paymentID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payments/{paymentID}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payments/{paymentID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetPayment", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetPayment", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2531,7 +3526,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2540,9 +3535,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2608,18 +3603,41 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3UpdatePaymentMetadataResponse> UpdatePaymentMetadataAsync(string paymentID, Models.Components.V3UpdatePaymentMetadataRequest? v3UpdatePaymentMetadataRequest = null)
+
+        /// <summary>
+        /// Update a payment's metadata.
+        /// </summary>
+        /// <param name="paymentID">The payment ID.</param>
+        /// <param name="v3UpdatePaymentMetadataRequest">A <see cref="FormanceSDK.Models.Components.V3UpdatePaymentMetadataRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3UpdatePaymentMetadataResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3UpdatePaymentMetadataResponse> UpdatePaymentMetadataAsync(
+            string paymentID,
+            Models.Components.V3UpdatePaymentMetadataRequest? v3UpdatePaymentMetadataRequest = null
+        )
         {
+            if (paymentID == null) throw new ArgumentNullException(nameof(paymentID));
+
             var request = new Models.Requests.V3UpdatePaymentMetadataRequest()
             {
                 PaymentID = paymentID,
                 V3UpdatePaymentMetadataRequestValue = v3UpdatePaymentMetadataRequest,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payments/{paymentID}/metadata", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payments/{paymentID}/metadata", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Patch, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "V3UpdatePaymentMetadataRequestValue", "json", false, true);
             if (serializedBody != null)
@@ -2632,7 +3650,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3UpdatePaymentMetadata", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3UpdatePaymentMetadata", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2642,7 +3660,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2651,9 +3669,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2701,18 +3719,38 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V3InitiatePaymentResponse> InitiatePaymentAsync(bool? noValidation = false, Models.Components.V3InitiatePaymentRequest? v3InitiatePaymentRequest = null)
+
+        /// <summary>
+        /// Initiate a payment.
+        /// </summary>
+        /// <param name="noValidation">If set to true, the request will not have to be validated. This is useful if we want to directly forward the request to the PSP.</param>
+        /// <param name="v3InitiatePaymentRequest">A <see cref="FormanceSDK.Models.Components.V3InitiatePaymentRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3InitiatePaymentResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V3InitiatePaymentResponse> InitiatePaymentAsync(
+            bool? noValidation = false,
+            Models.Components.V3InitiatePaymentRequest? v3InitiatePaymentRequest = null
+        )
         {
             var request = new Models.Requests.V3InitiatePaymentRequest()
             {
                 NoValidation = noValidation,
                 V3InitiatePaymentRequestValue = v3InitiatePaymentRequest,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "V3InitiatePaymentRequestValue", "json", false, true);
             if (serializedBody != null)
@@ -2725,7 +3763,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3InitiatePayment", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3InitiatePayment", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2735,7 +3773,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 202)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2744,9 +3782,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2812,24 +3850,37 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3ListPaymentInitiationsResponse> ListPaymentInitiationsAsync(long? pageSize = null, string? cursor = null, Dictionary<string, object>? requestBody = null)
+
+        /// <summary>
+        /// List all payment initiations.
+        /// </summary>
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListPaymentInitiationsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3ListPaymentInitiationsResponse> ListPaymentInitiationsAsync(
+            long? pageSize = null,
+            string? cursor = null
+        )
         {
             var request = new V3ListPaymentInitiationsRequest()
             {
                 PageSize = pageSize,
                 Cursor = cursor,
-                RequestBody = requestBody,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
-            if (serializedBody != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest.Content = serializedBody;
+                httpRequest.Headers.Add("Accept", "application/json");
             }
 
             if (SDKConfiguration.SecuritySource != null)
@@ -2837,7 +3888,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListPaymentInitiations", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListPaymentInitiations", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2847,7 +3898,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2856,9 +3907,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2924,24 +3975,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3DeletePaymentInitiationResponse> DeletePaymentInitiationAsync(string paymentInitiationID)
+
+        /// <summary>
+        /// Delete a payment initiation by ID.
+        /// </summary>
+        /// <param name="paymentInitiationID">The payment initiation ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3DeletePaymentInitiationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentInitiationID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3DeletePaymentInitiationResponse> DeletePaymentInitiationAsync(string paymentInitiationID)
         {
+            if (paymentInitiationID == null) throw new ArgumentNullException(nameof(paymentInitiationID));
+
             var request = new V3DeletePaymentInitiationRequest()
             {
                 PaymentInitiationID = paymentInitiationID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3DeletePaymentInitiation", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3DeletePaymentInitiation", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2951,7 +4021,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2960,9 +4030,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3010,24 +4080,45 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V3GetPaymentInitiationResponse> GetPaymentInitiationAsync(string paymentInitiationID)
+
+        /// <summary>
+        /// Get a payment initiation by ID.
+        /// </summary>
+        /// <param name="paymentInitiationID">The payment initiation ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3GetPaymentInitiationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentInitiationID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V3GetPaymentInitiationResponse> GetPaymentInitiationAsync(
+            string paymentInitiationID
+        )
         {
+            if (paymentInitiationID == null) throw new ArgumentNullException(nameof(paymentInitiationID));
+
             var request = new V3GetPaymentInitiationRequest()
             {
                 PaymentInitiationID = paymentInitiationID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetPaymentInitiation", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetPaymentInitiation", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -3037,7 +4128,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3046,9 +4137,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3114,24 +4205,45 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V3RetryPaymentInitiationResponse> RetryPaymentInitiationAsync(string paymentInitiationID)
+
+        /// <summary>
+        /// Retry a payment initiation.
+        /// </summary>
+        /// <param name="paymentInitiationID">The payment initiation ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3RetryPaymentInitiationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentInitiationID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V3RetryPaymentInitiationResponse> RetryPaymentInitiationAsync(
+            string paymentInitiationID
+        )
         {
+            if (paymentInitiationID == null) throw new ArgumentNullException(nameof(paymentInitiationID));
+
             var request = new V3RetryPaymentInitiationRequest()
             {
                 PaymentInitiationID = paymentInitiationID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}/retry", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}/retry", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3RetryPaymentInitiation", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3RetryPaymentInitiation", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -3141,7 +4253,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 202)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3150,9 +4262,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3218,24 +4330,45 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V3ApprovePaymentInitiationResponse> ApprovePaymentInitiationAsync(string paymentInitiationID)
+
+        /// <summary>
+        /// Approve a payment initiation.
+        /// </summary>
+        /// <param name="paymentInitiationID">The payment initiation ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3ApprovePaymentInitiationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentInitiationID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V3ApprovePaymentInitiationResponse> ApprovePaymentInitiationAsync(
+            string paymentInitiationID
+        )
         {
+            if (paymentInitiationID == null) throw new ArgumentNullException(nameof(paymentInitiationID));
+
             var request = new V3ApprovePaymentInitiationRequest()
             {
                 PaymentInitiationID = paymentInitiationID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}/approve", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}/approve", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ApprovePaymentInitiation", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ApprovePaymentInitiation", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -3245,7 +4378,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 202)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3254,9 +4387,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3322,24 +4455,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3RejectPaymentInitiationResponse> RejectPaymentInitiationAsync(string paymentInitiationID)
+
+        /// <summary>
+        /// Reject a payment initiation.
+        /// </summary>
+        /// <param name="paymentInitiationID">The payment initiation ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3RejectPaymentInitiationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentInitiationID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3RejectPaymentInitiationResponse> RejectPaymentInitiationAsync(string paymentInitiationID)
         {
+            if (paymentInitiationID == null) throw new ArgumentNullException(nameof(paymentInitiationID));
+
             var request = new V3RejectPaymentInitiationRequest()
             {
                 PaymentInitiationID = paymentInitiationID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}/reject", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}/reject", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3RejectPaymentInitiation", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3RejectPaymentInitiation", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -3349,7 +4501,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3358,9 +4510,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3408,18 +4560,41 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V3ReversePaymentInitiationResponse> ReversePaymentInitiationAsync(string paymentInitiationID, Models.Components.V3ReversePaymentInitiationRequest? v3ReversePaymentInitiationRequest = null)
+
+        /// <summary>
+        /// Reverse a payment initiation.
+        /// </summary>
+        /// <param name="paymentInitiationID">The payment initiation ID.</param>
+        /// <param name="v3ReversePaymentInitiationRequest">A <see cref="FormanceSDK.Models.Components.V3ReversePaymentInitiationRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3ReversePaymentInitiationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentInitiationID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V3ReversePaymentInitiationResponse> ReversePaymentInitiationAsync(
+            string paymentInitiationID,
+            Models.Components.V3ReversePaymentInitiationRequest? v3ReversePaymentInitiationRequest = null
+        )
         {
+            if (paymentInitiationID == null) throw new ArgumentNullException(nameof(paymentInitiationID));
+
             var request = new Models.Requests.V3ReversePaymentInitiationRequest()
             {
                 PaymentInitiationID = paymentInitiationID,
                 V3ReversePaymentInitiationRequestValue = v3ReversePaymentInitiationRequest,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}/reverse", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}/reverse", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "V3ReversePaymentInitiationRequestValue", "json", false, true);
             if (serializedBody != null)
@@ -3432,7 +4607,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ReversePaymentInitiation", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ReversePaymentInitiation", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -3442,7 +4617,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 202)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3451,9 +4626,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3519,25 +4694,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3ListPaymentInitiationAdjustmentsResponse> ListPaymentInitiationAdjustmentsAsync(string paymentInitiationID, long? pageSize = null, string? cursor = null, Dictionary<string, object>? requestBody = null)
+
+        /// <summary>
+        /// List all payment initiation adjustments.
+        /// </summary>
+        /// <param name="paymentInitiationID">The payment initiation ID.</param>
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListPaymentInitiationAdjustmentsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentInitiationID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3ListPaymentInitiationAdjustmentsResponse> ListPaymentInitiationAdjustmentsAsync(
+            string paymentInitiationID,
+            long? pageSize = null,
+            string? cursor = null
+        )
         {
+            if (paymentInitiationID == null) throw new ArgumentNullException(nameof(paymentInitiationID));
+
             var request = new V3ListPaymentInitiationAdjustmentsRequest()
             {
                 PaymentInitiationID = paymentInitiationID,
                 PageSize = pageSize,
                 Cursor = cursor,
-                RequestBody = requestBody,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}/adjustments", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}/adjustments", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
-            if (serializedBody != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest.Content = serializedBody;
+                httpRequest.Headers.Add("Accept", "application/json");
             }
 
             if (SDKConfiguration.SecuritySource != null)
@@ -3545,7 +4738,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListPaymentInitiationAdjustments", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListPaymentInitiationAdjustments", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -3555,7 +4748,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3564,9 +4757,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3632,25 +4825,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3ListPaymentInitiationRelatedPaymentsResponse> ListPaymentInitiationRelatedPaymentsAsync(string paymentInitiationID, long? pageSize = null, string? cursor = null, Dictionary<string, object>? requestBody = null)
+
+        /// <summary>
+        /// List all payments related to a payment initiation.
+        /// </summary>
+        /// <param name="paymentInitiationID">The payment initiation ID.</param>
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListPaymentInitiationRelatedPaymentsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentInitiationID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3ListPaymentInitiationRelatedPaymentsResponse> ListPaymentInitiationRelatedPaymentsAsync(
+            string paymentInitiationID,
+            long? pageSize = null,
+            string? cursor = null
+        )
         {
+            if (paymentInitiationID == null) throw new ArgumentNullException(nameof(paymentInitiationID));
+
             var request = new V3ListPaymentInitiationRelatedPaymentsRequest()
             {
                 PaymentInitiationID = paymentInitiationID,
                 PageSize = pageSize,
                 Cursor = cursor,
-                RequestBody = requestBody,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}/payments", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-initiations/{paymentInitiationID}/payments", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
-            if (serializedBody != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest.Content = serializedBody;
+                httpRequest.Headers.Add("Accept", "application/json");
             }
 
             if (SDKConfiguration.SecuritySource != null)
@@ -3658,7 +4869,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListPaymentInitiationRelatedPayments", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListPaymentInitiationRelatedPayments", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -3668,7 +4879,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3677,9 +4888,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3745,14 +4956,30 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V3CreatePaymentServiceUserResponse> CreatePaymentServiceUserAsync(V3CreatePaymentServiceUserRequest? request = null)
+
+        /// <summary>
+        /// Create a formance payment service user object.
+        /// </summary>
+        /// <param name="request">A <see cref="V3CreatePaymentServiceUserRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3CreatePaymentServiceUserResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V3CreatePaymentServiceUserResponse> CreatePaymentServiceUserAsync(
+            V3CreatePaymentServiceUserRequest? request = null
+        )
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/api/payments/v3/payment-service-users";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, true);
             if (serializedBody != null)
@@ -3765,7 +4992,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3CreatePaymentServiceUser", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3CreatePaymentServiceUser", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -3775,7 +5002,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 201)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3784,9 +5011,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3852,24 +5079,37 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3ListPaymentServiceUsersResponse> ListPaymentServiceUsersAsync(long? pageSize = null, string? cursor = null, Dictionary<string, object>? requestBody = null)
+
+        /// <summary>
+        /// List all payment service users.
+        /// </summary>
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListPaymentServiceUsersResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3ListPaymentServiceUsersResponse> ListPaymentServiceUsersAsync(
+            long? pageSize = null,
+            string? cursor = null
+        )
         {
             var request = new V3ListPaymentServiceUsersRequest()
             {
                 PageSize = pageSize,
                 Cursor = cursor,
-                RequestBody = requestBody,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-service-users", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-service-users", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
-            if (serializedBody != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest.Content = serializedBody;
+                httpRequest.Headers.Add("Accept", "application/json");
             }
 
             if (SDKConfiguration.SecuritySource != null)
@@ -3877,7 +5117,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListPaymentServiceUsers", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListPaymentServiceUsers", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -3887,7 +5127,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3896,9 +5136,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3964,24 +5204,45 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V3GetPaymentServiceUserResponse> GetPaymentServiceUserAsync(string paymentServiceUserID)
+
+        /// <summary>
+        /// Get a payment service user by ID.
+        /// </summary>
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3GetPaymentServiceUserResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentServiceUserID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V3GetPaymentServiceUserResponse> GetPaymentServiceUserAsync(
+            string paymentServiceUserID
+        )
         {
+            if (paymentServiceUserID == null) throw new ArgumentNullException(nameof(paymentServiceUserID));
+
             var request = new V3GetPaymentServiceUserRequest()
             {
                 PaymentServiceUserID = paymentServiceUserID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-service-users/{paymentServiceUserID}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-service-users/{paymentServiceUserID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetPaymentServiceUser", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetPaymentServiceUser", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -3991,7 +5252,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -4000,9 +5261,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -4068,25 +5329,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3AddBankAccountToPaymentServiceUserResponse> AddBankAccountToPaymentServiceUserAsync(string paymentServiceUserID, string bankAccountID)
+
+        /// <summary>
+        /// Delete a payment service user by ID.
+        /// </summary>
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3DeletePaymentServiceUserResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentServiceUserID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3DeletePaymentServiceUserResponse> DeletePaymentServiceUserAsync(string paymentServiceUserID)
         {
-            var request = new V3AddBankAccountToPaymentServiceUserRequest()
+            if (paymentServiceUserID == null) throw new ArgumentNullException(nameof(paymentServiceUserID));
+
+            var request = new V3DeletePaymentServiceUserRequest()
             {
                 PaymentServiceUserID = paymentServiceUserID,
-                BankAccountID = bankAccountID,
             };
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-service-users/{paymentServiceUserID}/bank-accounts/{bankAccountID}", request);
 
-            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-service-users/{paymentServiceUserID}", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3AddBankAccountToPaymentServiceUser", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3DeletePaymentServiceUser", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -4096,7 +5375,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 202)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -4105,9 +5384,1326 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 202)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3PaymentServiceUserDeleteResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<V3PaymentServiceUserDeleteResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3PaymentServiceUserDeleteResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new V3DeletePaymentServiceUserResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.V3PaymentServiceUserDeleteResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V3ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new V3ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// List all connections for a payment service user.
+        /// </summary>
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListPaymentServiceUserConnectionsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentServiceUserID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3ListPaymentServiceUserConnectionsResponse> ListPaymentServiceUserConnectionsAsync(
+            string paymentServiceUserID,
+            long? pageSize = null,
+            string? cursor = null
+        )
+        {
+            if (paymentServiceUserID == null) throw new ArgumentNullException(nameof(paymentServiceUserID));
+
+            var request = new V3ListPaymentServiceUserConnectionsRequest()
+            {
+                PaymentServiceUserID = paymentServiceUserID,
+                PageSize = pageSize,
+                Cursor = cursor,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-service-users/{paymentServiceUserID}/connections", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListPaymentServiceUserConnections", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3PaymentServiceUserConnectionsCursorResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<V3PaymentServiceUserConnectionsCursorResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3PaymentServiceUserConnectionsCursorResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new V3ListPaymentServiceUserConnectionsResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.V3PaymentServiceUserConnectionsCursorResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V3ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new V3ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Remove a payment service user from a connector, the PSU will still exist in Formance.
+        /// </summary>
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3DeletePaymentServiceUserConnectorResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="paymentServiceUserID"/> or <paramref name="connectorID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3DeletePaymentServiceUserConnectorResponse> DeletePaymentServiceUserConnectorAsync(
+            string paymentServiceUserID,
+            string connectorID
+        )
+        {
+            if (paymentServiceUserID == null) throw new ArgumentNullException(nameof(paymentServiceUserID));
+            if (connectorID == null) throw new ArgumentNullException(nameof(connectorID));
+
+            var request = new V3DeletePaymentServiceUserConnectorRequest()
+            {
+                PaymentServiceUserID = paymentServiceUserID,
+                ConnectorID = connectorID,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3DeletePaymentServiceUserConnector", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 202)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 202)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3PaymentServiceUserDeleteConnectorResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<V3PaymentServiceUserDeleteConnectorResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3PaymentServiceUserDeleteConnectorResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new V3DeletePaymentServiceUserConnectorResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.V3PaymentServiceUserDeleteConnectorResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V3ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new V3ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Register/forward a payment service user on/to a connector.
+        /// </summary>
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ForwardPaymentServiceUserToProviderResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="paymentServiceUserID"/> or <paramref name="connectorID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3ForwardPaymentServiceUserToProviderResponse> ForwardPaymentServiceUserToProviderAsync(
+            string paymentServiceUserID,
+            string connectorID
+        )
+        {
+            if (paymentServiceUserID == null) throw new ArgumentNullException(nameof(paymentServiceUserID));
+            if (connectorID == null) throw new ArgumentNullException(nameof(connectorID));
+
+            var request = new V3ForwardPaymentServiceUserToProviderRequest()
+            {
+                PaymentServiceUserID = paymentServiceUserID,
+                ConnectorID = connectorID,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/forward", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ForwardPaymentServiceUserToProvider", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 204)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 204)
+            {
+                return new V3ForwardPaymentServiceUserToProviderResponse()
+                {
+                    HttpMeta = new Models.Components.HTTPMetadata()
+                    {
+                        Response = httpResponse,
+                        Request = httpRequest
+                    }
+                };
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V3ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new V3ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Create an authentication link for a payment service user on a connector, for oauth flow.
+        /// </summary>
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <param name="v3PaymentServiceUserCreateLinkRequest">A <see cref="V3PaymentServiceUserCreateLinkRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3CreateLinkForPaymentServiceUserResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="paymentServiceUserID"/> or <paramref name="connectorID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3CreateLinkForPaymentServiceUserResponse> CreateLinkForPaymentServiceUserAsync(
+            string paymentServiceUserID,
+            string connectorID,
+            V3PaymentServiceUserCreateLinkRequest? v3PaymentServiceUserCreateLinkRequest = null
+        )
+        {
+            if (paymentServiceUserID == null) throw new ArgumentNullException(nameof(paymentServiceUserID));
+            if (connectorID == null) throw new ArgumentNullException(nameof(connectorID));
+
+            var request = new V3CreateLinkForPaymentServiceUserRequest()
+            {
+                PaymentServiceUserID = paymentServiceUserID,
+                ConnectorID = connectorID,
+                V3PaymentServiceUserCreateLinkRequest = v3PaymentServiceUserCreateLinkRequest,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/create-link", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "V3PaymentServiceUserCreateLinkRequest", "json", false, true);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3CreateLinkForPaymentServiceUser", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 201)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 201)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3PaymentServiceUserCreateLinkResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<V3PaymentServiceUserCreateLinkResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3PaymentServiceUserCreateLinkResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new V3CreateLinkForPaymentServiceUserResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.V3PaymentServiceUserCreateLinkResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V3ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new V3ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// List enabled connections for a payment service user on a connector (i.e. the various banks PSUser has enabled on the connector).
+        /// </summary>
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListPaymentServiceUserConnectionsFromConnectorIDResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="paymentServiceUserID"/> or <paramref name="connectorID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3ListPaymentServiceUserConnectionsFromConnectorIDResponse> ListPaymentServiceUserConnectionsFromConnectorIDAsync(
+            string paymentServiceUserID,
+            string connectorID,
+            long? pageSize = null,
+            string? cursor = null
+        )
+        {
+            if (paymentServiceUserID == null) throw new ArgumentNullException(nameof(paymentServiceUserID));
+            if (connectorID == null) throw new ArgumentNullException(nameof(connectorID));
+
+            var request = new V3ListPaymentServiceUserConnectionsFromConnectorIDRequest()
+            {
+                PaymentServiceUserID = paymentServiceUserID,
+                ConnectorID = connectorID,
+                PageSize = pageSize,
+                Cursor = cursor,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/connections", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListPaymentServiceUserConnectionsFromConnectorID", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3PaymentServiceUserConnectionsCursorResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<V3PaymentServiceUserConnectionsCursorResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3PaymentServiceUserConnectionsCursorResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new V3ListPaymentServiceUserConnectionsFromConnectorIDResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.V3PaymentServiceUserConnectionsCursorResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V3ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new V3ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// List all link attempts for a payment service user on a connector.<br/>
+        /// Allows to check if users used the link and completed the oauth flow.
+        /// </summary>
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="paymentServiceUserID"/> or <paramref name="connectorID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse> ListPaymentServiceUserLinkAttemptsFromConnectorIDAsync(
+            string paymentServiceUserID,
+            string connectorID,
+            long? pageSize = null,
+            string? cursor = null
+        )
+        {
+            if (paymentServiceUserID == null) throw new ArgumentNullException(nameof(paymentServiceUserID));
+            if (connectorID == null) throw new ArgumentNullException(nameof(connectorID));
+
+            var request = new V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest()
+            {
+                PaymentServiceUserID = paymentServiceUserID,
+                ConnectorID = connectorID,
+                PageSize = pageSize,
+                Cursor = cursor,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/link-attempts", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListPaymentServiceUserLinkAttemptsFromConnectorID", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3PaymentServiceUserLinkAttemptsCursorResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<V3PaymentServiceUserLinkAttemptsCursorResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3PaymentServiceUserLinkAttemptsCursorResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.V3PaymentServiceUserLinkAttemptsCursorResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V3ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new V3ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Get a link attempt for a payment service user on a connector.
+        /// </summary>
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <param name="attemptID">The attempt ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="paymentServiceUserID"/>, <paramref name="connectorID"/> or <paramref name="attemptID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse> GetPaymentServiceUserLinkAttemptFromConnectorIDAsync(
+            string paymentServiceUserID,
+            string connectorID,
+            string attemptID
+        )
+        {
+            if (paymentServiceUserID == null) throw new ArgumentNullException(nameof(paymentServiceUserID));
+            if (connectorID == null) throw new ArgumentNullException(nameof(connectorID));
+            if (attemptID == null) throw new ArgumentNullException(nameof(attemptID));
+
+            var request = new V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest()
+            {
+                PaymentServiceUserID = paymentServiceUserID,
+                ConnectorID = connectorID,
+                AttemptID = attemptID,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/link-attempts/{attemptID}", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetPaymentServiceUserLinkAttemptFromConnectorID", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3PaymentServiceUserLinkAttempt obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<V3PaymentServiceUserLinkAttempt>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3PaymentServiceUserLinkAttempt.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.V3PaymentServiceUserLinkAttempt = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V3ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new V3ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Delete a connection for a payment service user on a connector.
+        /// </summary>
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <param name="connectionID">The connection ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3DeletePaymentServiceUserConnectionFromConnectorIDResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="paymentServiceUserID"/>, <paramref name="connectorID"/> or <paramref name="connectionID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3DeletePaymentServiceUserConnectionFromConnectorIDResponse> DeletePaymentServiceUserConnectionFromConnectorIDAsync(
+            string paymentServiceUserID,
+            string connectorID,
+            string connectionID
+        )
+        {
+            if (paymentServiceUserID == null) throw new ArgumentNullException(nameof(paymentServiceUserID));
+            if (connectorID == null) throw new ArgumentNullException(nameof(connectorID));
+            if (connectionID == null) throw new ArgumentNullException(nameof(connectionID));
+
+            var request = new V3DeletePaymentServiceUserConnectionFromConnectorIDRequest()
+            {
+                PaymentServiceUserID = paymentServiceUserID,
+                ConnectorID = connectorID,
+                ConnectionID = connectionID,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/connections/{connectionID}", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3DeletePaymentServiceUserConnectionFromConnectorID", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 202)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 202)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3PaymentServiceUserDeleteConnectionResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<V3PaymentServiceUserDeleteConnectionResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3PaymentServiceUserDeleteConnectionResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new V3DeletePaymentServiceUserConnectionFromConnectorIDResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.V3PaymentServiceUserDeleteConnectionResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V3ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new V3ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Update/Regenerate a link for a payment service user on a connector.
+        /// </summary>
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <param name="connectionID">The connection ID.</param>
+        /// <param name="v3PaymentServiceUserUpdateLinkRequest">A <see cref="V3PaymentServiceUserUpdateLinkRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3UpdateLinkForPaymentServiceUserOnConnectorResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="paymentServiceUserID"/>, <paramref name="connectorID"/> or <paramref name="connectionID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3UpdateLinkForPaymentServiceUserOnConnectorResponse> UpdateLinkForPaymentServiceUserOnConnectorAsync(
+            string paymentServiceUserID,
+            string connectorID,
+            string connectionID,
+            V3PaymentServiceUserUpdateLinkRequest? v3PaymentServiceUserUpdateLinkRequest = null
+        )
+        {
+            if (paymentServiceUserID == null) throw new ArgumentNullException(nameof(paymentServiceUserID));
+            if (connectorID == null) throw new ArgumentNullException(nameof(connectorID));
+            if (connectionID == null) throw new ArgumentNullException(nameof(connectionID));
+
+            var request = new V3UpdateLinkForPaymentServiceUserOnConnectorRequest()
+            {
+                PaymentServiceUserID = paymentServiceUserID,
+                ConnectorID = connectorID,
+                ConnectionID = connectionID,
+                V3PaymentServiceUserUpdateLinkRequest = v3PaymentServiceUserUpdateLinkRequest,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/connections/{connectionID}/update-link", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "V3PaymentServiceUserUpdateLinkRequest", "json", false, true);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3UpdateLinkForPaymentServiceUserOnConnector", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 201)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 201)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3PaymentServiceUserUpdateLinkResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<V3PaymentServiceUserUpdateLinkResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3PaymentServiceUserUpdateLinkResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new V3UpdateLinkForPaymentServiceUserOnConnectorResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.V3PaymentServiceUserUpdateLinkResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V3ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new V3ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Add a bank account to a payment service user.
+        /// </summary>
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <param name="bankAccountID">The bank account ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3AddBankAccountToPaymentServiceUserResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="paymentServiceUserID"/> or <paramref name="bankAccountID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3AddBankAccountToPaymentServiceUserResponse> AddBankAccountToPaymentServiceUserAsync(
+            string paymentServiceUserID,
+            string bankAccountID
+        )
+        {
+            if (paymentServiceUserID == null) throw new ArgumentNullException(nameof(paymentServiceUserID));
+            if (bankAccountID == null) throw new ArgumentNullException(nameof(bankAccountID));
+
+            var request = new V3AddBankAccountToPaymentServiceUserRequest()
+            {
+                PaymentServiceUserID = paymentServiceUserID,
+                BankAccountID = bankAccountID,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-service-users/{paymentServiceUserID}/bank-accounts/{bankAccountID}", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3AddBankAccountToPaymentServiceUser", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 204)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -4155,19 +6751,45 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V3ForwardPaymentServiceUserBankAccountResponse> ForwardPaymentServiceUserBankAccountAsync(string paymentServiceUserID, string bankAccountID, Models.Components.V3ForwardPaymentServiceUserBankAccountRequest? v3ForwardPaymentServiceUserBankAccountRequest = null)
+
+        /// <summary>
+        /// Forward a payment service user's bank account to a connector.
+        /// </summary>
+        /// <param name="paymentServiceUserID">The payment service user ID.</param>
+        /// <param name="bankAccountID">The bank account ID.</param>
+        /// <param name="v3ForwardPaymentServiceUserBankAccountRequest">A <see cref="FormanceSDK.Models.Components.V3ForwardPaymentServiceUserBankAccountRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3ForwardPaymentServiceUserBankAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="paymentServiceUserID"/> or <paramref name="bankAccountID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V3ForwardPaymentServiceUserBankAccountResponse> ForwardPaymentServiceUserBankAccountAsync(
+            string paymentServiceUserID,
+            string bankAccountID,
+            Models.Components.V3ForwardPaymentServiceUserBankAccountRequest? v3ForwardPaymentServiceUserBankAccountRequest = null
+        )
         {
+            if (paymentServiceUserID == null) throw new ArgumentNullException(nameof(paymentServiceUserID));
+            if (bankAccountID == null) throw new ArgumentNullException(nameof(bankAccountID));
+
             var request = new Models.Requests.V3ForwardPaymentServiceUserBankAccountRequest()
             {
                 PaymentServiceUserID = paymentServiceUserID,
                 BankAccountID = bankAccountID,
                 V3ForwardPaymentServiceUserBankAccountRequestValue = v3ForwardPaymentServiceUserBankAccountRequest,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-service-users/{paymentServiceUserID}/bank-accounts/{bankAccountID}/forward", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/payment-service-users/{paymentServiceUserID}/bank-accounts/{bankAccountID}/forward", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "V3ForwardPaymentServiceUserBankAccountRequestValue", "json", false, true);
             if (serializedBody != null)
@@ -4180,7 +6802,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ForwardPaymentServiceUserBankAccount", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ForwardPaymentServiceUserBankAccount", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -4190,7 +6812,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 202)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -4199,9 +6821,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -4267,14 +6889,28 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V3CreatePoolResponse> CreatePoolAsync(V3CreatePoolRequest? request = null)
+
+        /// <summary>
+        /// Create a formance pool object.
+        /// </summary>
+        /// <param name="request">A <see cref="V3CreatePoolRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3CreatePoolResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V3CreatePoolResponse> CreatePoolAsync(V3CreatePoolRequest? request = null)
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/api/payments/v3/pools";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, true);
             if (serializedBody != null)
@@ -4287,7 +6923,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3CreatePool", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3CreatePool", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -4297,7 +6933,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 201)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -4306,9 +6942,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -4374,24 +7010,34 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3ListPoolsResponse> ListPoolsAsync(long? pageSize = null, string? cursor = null, Dictionary<string, object>? requestBody = null)
+
+        /// <summary>
+        /// List all pools.
+        /// </summary>
+        /// <param name="pageSize">The number of items to return.</param>
+        /// <param name="cursor">Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListPoolsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3ListPoolsResponse> ListPoolsAsync(long? pageSize = null, string? cursor = null)
         {
             var request = new V3ListPoolsRequest()
             {
                 PageSize = pageSize,
                 Cursor = cursor,
-                RequestBody = requestBody,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/pools", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/pools", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
-            if (serializedBody != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest.Content = serializedBody;
+                httpRequest.Headers.Add("Accept", "application/json");
             }
 
             if (SDKConfiguration.SecuritySource != null)
@@ -4399,7 +7045,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListPools", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListPools", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -4409,7 +7055,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -4418,9 +7064,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -4486,24 +7132,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V3GetPoolResponse> GetPoolAsync(string poolID)
+
+        /// <summary>
+        /// Get a pool by ID.
+        /// </summary>
+        /// <param name="poolID">The pool ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3GetPoolResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V3GetPoolResponse> GetPoolAsync(string poolID)
         {
+            if (poolID == null) throw new ArgumentNullException(nameof(poolID));
+
             var request = new V3GetPoolRequest()
             {
                 PoolID = poolID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/pools/{poolID}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/pools/{poolID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetPool", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetPool", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -4513,7 +7178,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -4522,9 +7187,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -4590,24 +7255,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3DeletePoolResponse> DeletePoolAsync(string poolID)
+
+        /// <summary>
+        /// Delete a pool by ID.
+        /// </summary>
+        /// <param name="poolID">The pool ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3DeletePoolResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3DeletePoolResponse> DeletePoolAsync(string poolID)
         {
+            if (poolID == null) throw new ArgumentNullException(nameof(poolID));
+
             var request = new V3DeletePoolRequest()
             {
                 PoolID = poolID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/pools/{poolID}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/pools/{poolID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3DeletePool", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3DeletePool", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -4617,7 +7301,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -4626,9 +7310,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -4676,25 +7360,54 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3GetPoolBalancesResponse> GetPoolBalancesAsync(string poolID, DateTime? at = null)
+
+        /// <summary>
+        /// Update the query of a pool.
+        /// </summary>
+        /// <param name="poolID">The pool ID.</param>
+        /// <param name="v3UpdatePoolQueryRequest">A <see cref="FormanceSDK.Models.Components.V3UpdatePoolQueryRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3UpdatePoolQueryResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3UpdatePoolQueryResponse> UpdatePoolQueryAsync(
+            string poolID,
+            Models.Components.V3UpdatePoolQueryRequest? v3UpdatePoolQueryRequest = null
+        )
         {
-            var request = new V3GetPoolBalancesRequest()
+            if (poolID == null) throw new ArgumentNullException(nameof(poolID));
+
+            var request = new Models.Requests.V3UpdatePoolQueryRequest()
             {
                 PoolID = poolID,
-                At = at,
+                V3UpdatePoolQueryRequestValue = v3UpdatePoolQueryRequest,
             };
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/pools/{poolID}/balances", request);
 
-            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/pools/{poolID}/query", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Patch, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "V3UpdatePoolQueryRequestValue", "json", false, true);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetPoolBalances", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3UpdatePoolQuery", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -4704,7 +7417,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -4713,9 +7426,116 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 204)
+            {
+                return new V3UpdatePoolQueryResponse()
+                {
+                    HttpMeta = new Models.Components.HTTPMetadata()
+                    {
+                        Response = httpResponse,
+                        Request = httpRequest
+                    }
+                };
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V3ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new V3ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Get historical pool balances from a particular point in time.
+        /// </summary>
+        /// <param name="poolID">The pool ID.</param>
+        /// <param name="at">The time to filter by.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3GetPoolBalancesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3GetPoolBalancesResponse> GetPoolBalancesAsync(string poolID, DateTime? at = null)
+        {
+            if (poolID == null) throw new ArgumentNullException(nameof(poolID));
+
+            var request = new V3GetPoolBalancesRequest()
+            {
+                PoolID = poolID,
+                At = at,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/pools/{poolID}/balances", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetPoolBalances", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -4781,24 +7601,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3GetPoolBalancesLatestResponse> GetPoolBalancesLatestAsync(string poolID)
+
+        /// <summary>
+        /// Get latest pool balances.
+        /// </summary>
+        /// <param name="poolID">The pool ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3GetPoolBalancesLatestResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3GetPoolBalancesLatestResponse> GetPoolBalancesLatestAsync(string poolID)
         {
+            if (poolID == null) throw new ArgumentNullException(nameof(poolID));
+
             var request = new V3GetPoolBalancesLatestRequest()
             {
                 PoolID = poolID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/pools/{poolID}/balances/latest", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/pools/{poolID}/balances/latest", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetPoolBalancesLatest", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetPoolBalancesLatest", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -4808,7 +7647,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -4817,9 +7656,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -4885,25 +7724,46 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3AddAccountToPoolResponse> AddAccountToPoolAsync(string poolID, string accountID)
+
+        /// <summary>
+        /// Add an account to a pool.
+        /// </summary>
+        /// <param name="poolID">The pool ID.</param>
+        /// <param name="accountID">The account ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3AddAccountToPoolResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="poolID"/> or <paramref name="accountID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3AddAccountToPoolResponse> AddAccountToPoolAsync(string poolID, string accountID)
         {
+            if (poolID == null) throw new ArgumentNullException(nameof(poolID));
+            if (accountID == null) throw new ArgumentNullException(nameof(accountID));
+
             var request = new V3AddAccountToPoolRequest()
             {
                 PoolID = poolID,
                 AccountID = accountID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/pools/{poolID}/accounts/{accountID}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/pools/{poolID}/accounts/{accountID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3AddAccountToPool", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3AddAccountToPool", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -4913,7 +7773,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -4922,9 +7782,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -4972,25 +7832,46 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V3RemoveAccountFromPoolResponse> RemoveAccountFromPoolAsync(string poolID, string accountID)
+
+        /// <summary>
+        /// Remove an account from a pool.
+        /// </summary>
+        /// <param name="poolID">The pool ID.</param>
+        /// <param name="accountID">The account ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3RemoveAccountFromPoolResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="poolID"/> or <paramref name="accountID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3RemoveAccountFromPoolResponse> RemoveAccountFromPoolAsync(string poolID, string accountID)
         {
+            if (poolID == null) throw new ArgumentNullException(nameof(poolID));
+            if (accountID == null) throw new ArgumentNullException(nameof(accountID));
+
             var request = new V3RemoveAccountFromPoolRequest()
             {
                 PoolID = poolID,
                 AccountID = accountID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/pools/{poolID}/accounts/{accountID}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/pools/{poolID}/accounts/{accountID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3RemoveAccountFromPool", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3RemoveAccountFromPool", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -5000,7 +7881,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -5009,9 +7890,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -5059,24 +7940,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V3GetTaskResponse> GetTaskAsync(string taskID)
+
+        /// <summary>
+        /// Get a task and its result by ID.
+        /// </summary>
+        /// <param name="taskID">The task ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V3GetTaskResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="taskID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V3GetTaskResponse> GetTaskAsync(string taskID)
         {
+            if (taskID == null) throw new ArgumentNullException(nameof(taskID));
+
             var request = new V3GetTaskRequest()
             {
                 TaskID = taskID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/tasks/{taskID}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/tasks/{taskID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetTask", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetTask", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -5086,7 +7986,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -5095,9 +7995,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -5162,5 +8062,6 @@ namespace FormanceSDK
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
         }
+
     }
 }

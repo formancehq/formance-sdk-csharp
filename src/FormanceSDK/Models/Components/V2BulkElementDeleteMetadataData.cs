@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V2BulkElementDeleteMetadataData
     {
-
         [JsonProperty("targetId", NullValueHandling = NullValueHandling.Include)]
         public V2TargetId TargetId { get; set; } = default!;
 

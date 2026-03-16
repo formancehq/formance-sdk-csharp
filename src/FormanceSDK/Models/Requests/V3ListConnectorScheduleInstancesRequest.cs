@@ -10,34 +10,29 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class V3ListConnectorScheduleInstancesRequest
     {
-
         /// <summary>
-        /// The connector ID
+        /// The connector ID.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=connectorID")]
         public string ConnectorID { get; set; } = default!;
 
         /// <summary>
-        /// The schedule ID
+        /// The schedule ID.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=scheduleID")]
         public string ScheduleID { get; set; } = default!;
 
         /// <summary>
-        /// The number of items to return
+        /// The number of items to return.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")]
         public long? PageSize { get; set; }
 
         /// <summary>
-        /// Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")]
         public string? Cursor { get; set; }

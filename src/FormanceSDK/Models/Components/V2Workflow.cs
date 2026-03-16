@@ -13,12 +13,11 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     public class V2Workflow
     {
-
         [JsonProperty("config")]
-        public V2WorkflowConfig Config { get; set; } = default!;
+        public V2CreateWorkflowRequest Config { get; set; } = default!;
 
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;

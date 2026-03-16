@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class CurrencyCloudConfig
     {
-
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
@@ -25,19 +24,19 @@ namespace FormanceSDK.Models.Components
         public string ApiKey { get; set; } = default!;
 
         /// <summary>
-        /// Username of the API Key holder
+        /// Username of the API Key holder.
         /// </summary>
         [JsonProperty("loginID")]
         public string LoginID { get; set; } = default!;
 
         /// <summary>
-        /// The frequency at which the connector will fetch transactions
+        /// The frequency at which the connector will fetch transactions.
         /// </summary>
         [JsonProperty("pollingPeriod")]
-        public string? PollingPeriod { get; set; } = "120s";
+        public string? PollingPeriod { get; set; } = "30m";
 
         /// <summary>
-        /// The endpoint to use for the API. Defaults to https://devapi.currencycloud.com
+        /// The endpoint to use for the API. Defaults to https://devapi.currencycloud.com.
         /// </summary>
         [JsonProperty("endpoint")]
         public string? Endpoint { get; set; }

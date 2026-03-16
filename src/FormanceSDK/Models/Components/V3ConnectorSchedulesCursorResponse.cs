@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V3ConnectorSchedulesCursorResponse
     {
-
         [JsonProperty("cursor")]
         public V3ConnectorSchedulesCursorResponseCursor Cursor { get; set; } = default!;
     }

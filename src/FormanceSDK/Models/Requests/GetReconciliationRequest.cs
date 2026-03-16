@@ -10,10 +10,9 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class GetReconciliationRequest
     {
-
         /// <summary>
         /// The reconciliation ID.
         /// </summary>

@@ -52,7 +52,6 @@ namespace FormanceSDK.Models.Components
         }
     }
 
-
     [JsonConverter(typeof(Subject.SubjectConverter))]
     public class Subject
     {

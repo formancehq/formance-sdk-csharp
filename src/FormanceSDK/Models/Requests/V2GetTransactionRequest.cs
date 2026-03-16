@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Utils;
     using System;
     using System.Numerics;
-    
+
     public class V2GetTransactionRequest
     {
-
         /// <summary>
         /// Name of the ledger.
         /// </summary>

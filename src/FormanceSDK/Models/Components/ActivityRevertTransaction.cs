@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class ActivityRevertTransaction
     {
-
         [JsonProperty("ledger")]
         public string Ledger { get; set; } = default!;
 

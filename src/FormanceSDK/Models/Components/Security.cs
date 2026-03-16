@@ -10,10 +10,9 @@
 namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
-    
+
     public class Security
     {
-
         [SpeakeasyMetadata("security:scheme=true,type=oauth2,subType=client_credentials,name=clientID")]
         public string? ClientID { get; set; }
 

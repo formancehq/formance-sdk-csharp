@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class StatsResponse
     {
-
         [JsonProperty("data")]
         public Stats Data { get; set; } = default!;
     }

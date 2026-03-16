@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Numerics;
-    
+
     public class V2Volume
     {
-
         [JsonProperty("input")]
         public BigInteger Input { get; set; } = default!;
 

@@ -12,16 +12,15 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class UpdateClientResponse
     {
-
         [JsonProperty("-")]
         public HTTPMetadata HttpMeta { get; set; } = default!;
 
         /// <summary>
-        /// Updated client
+        /// Updated client.
         /// </summary>
-        public Models.Components.CreateClientResponse? CreateClientResponse { get; set; }
+        public Models.Components.UpdateClientResponse? UpdateClientResponseValue { get; set; }
     }
 }

@@ -12,15 +12,14 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class ReadClientResponse
     {
-
         [JsonProperty("-")]
         public HTTPMetadata HttpMeta { get; set; } = default!;
 
         /// <summary>
-        /// Retrieved client
+        /// Retrieved client.
         /// </summary>
         public Models.Components.ReadClientResponse? ReadClientResponseValue { get; set; }
     }

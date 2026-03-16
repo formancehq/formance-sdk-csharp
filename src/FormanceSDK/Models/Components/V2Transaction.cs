@@ -15,10 +15,9 @@ namespace FormanceSDK.Models.Components
     using System;
     using System.Collections.Generic;
     using System.Numerics;
-    
+
     public class V2Transaction
     {
-
         [JsonProperty("insertedAt")]
         public DateTime? InsertedAt { get; set; }
 
@@ -57,5 +56,8 @@ namespace FormanceSDK.Models.Components
 
         [JsonProperty("postCommitEffectiveVolumes")]
         public Dictionary<string, Dictionary<string, V2Volume>>? PostCommitEffectiveVolumes { get; set; }
+
+        [JsonProperty("template")]
+        public string? Template { get; set; }
     }
 }

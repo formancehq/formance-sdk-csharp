@@ -12,7 +12,7 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     public enum Scheme
     {
         [JsonProperty("visa")]
@@ -85,5 +85,4 @@ namespace FormanceSDK.Models.Components
             throw new Exception($"Unknown value {value} for enum Scheme");
         }
     }
-
 }

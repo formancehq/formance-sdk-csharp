@@ -58,7 +58,6 @@ namespace FormanceSDK.Models.Components
         }
     }
 
-
     [JsonConverter(typeof(Stage.StageConverter))]
     public class Stage
     {

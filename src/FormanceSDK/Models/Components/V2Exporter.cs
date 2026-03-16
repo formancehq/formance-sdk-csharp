@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+
     public class V2Exporter
     {
-
         [JsonProperty("driver")]
         public string Driver { get; set; } = default!;
 

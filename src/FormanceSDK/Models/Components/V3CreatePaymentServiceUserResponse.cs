@@ -11,12 +11,11 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V3CreatePaymentServiceUserResponse
     {
-
         /// <summary>
-        /// The ID of the created payment service user
+        /// The ID of the created payment service user.
         /// </summary>
         [JsonProperty("data")]
         public string Data { get; set; } = default!;

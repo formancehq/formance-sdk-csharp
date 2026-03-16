@@ -10,10 +10,9 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class GetBankAccountRequest
     {
-
         /// <summary>
         /// The bank account ID.
         /// </summary>

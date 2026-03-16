@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class UpdateWalletRequestBody
     {
-
         /// <summary>
         /// Custom metadata to attach to this wallet.
         /// </summary>

@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class V2TriggerTest
     {
-
         [JsonProperty("filter")]
         public Filter? Filter { get; set; }
 

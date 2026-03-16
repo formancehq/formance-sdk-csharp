@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class AggregateBalancesResponse
     {
-
         [JsonProperty("data")]
         public Dictionary<string, long> Data { get; set; } = default!;
     }

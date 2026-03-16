@@ -15,10 +15,9 @@ namespace FormanceSDK.Models.Components
     using System;
     using System.Collections.Generic;
     using System.Numerics;
-    
+
     public class OrchestrationTransaction
     {
-
         [JsonProperty("timestamp")]
         public DateTime Timestamp { get; set; } = default!;
 

@@ -12,7 +12,10 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
+    /// <summary>
+    /// The type of operation this log represents.
+    /// </summary>
     public enum V2LogType
     {
         [JsonProperty("NEW_TRANSACTION")]
@@ -23,6 +26,8 @@ namespace FormanceSDK.Models.Components
         RevertedTransaction,
         [JsonProperty("DELETE_METADATA")]
         DeleteMetadata,
+        [JsonProperty("INSERTED_SCHEMA")]
+        InsertedSchema,
     }
 
     public static class V2LogTypeExtension
@@ -57,5 +62,4 @@ namespace FormanceSDK.Models.Components
             throw new Exception($"Unknown value {value} for enum V2LogType");
         }
     }
-
 }

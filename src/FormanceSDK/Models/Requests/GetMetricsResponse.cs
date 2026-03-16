@@ -13,15 +13,14 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class GetMetricsResponse
     {
-
         [JsonProperty("-")]
         public HTTPMetadata HttpMeta { get; set; } = default!;
 
         /// <summary>
-        /// OK
+        /// OK.
         /// </summary>
         public Dictionary<string, object>? Object { get; set; }
     }

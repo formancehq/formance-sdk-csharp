@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class V2BulkResponse
     {
-
         [JsonProperty("data")]
         public List<V2BulkElementResult>? Data { get; set; }
 

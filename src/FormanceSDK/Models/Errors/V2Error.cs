@@ -25,7 +25,7 @@ namespace FormanceSDK.Models.Errors
     }
 
     /// <summary>
-    /// General error
+    /// General error.
     /// </summary>
     public class V2Error : SDKBaseException
     {
@@ -55,5 +55,4 @@ namespace FormanceSDK.Models.Errors
            #pragma warning restore CS0618
         }
     }
-
 }

@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
     using System;
-    
+
     public class GetPoolBalancesRequest
     {
-
         /// <summary>
         /// The pool ID.
         /// </summary>
@@ -22,11 +21,7 @@ namespace FormanceSDK.Models.Requests
         public string PoolId { get; set; } = default!;
 
         /// <summary>
-        /// Filter balances by date.<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// Filter balances by date.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=at")]
         public DateTime At { get; set; } = default!;

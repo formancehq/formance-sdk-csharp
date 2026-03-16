@@ -17,6 +17,9 @@ namespace FormanceSDK
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>
+    /// Main configuration for the SDK.
+    /// </summary>
     public struct SDKConfig
     {
         /// <summary>
@@ -52,10 +55,10 @@ namespace FormanceSDK
                 new Dictionary<string, string>()
                 {
                     {"organization", "orgID-stackID"},
-                    {"environment", "sandbox"},
+                    {"environment", "eu.sandbox"},
                 },
             };
-            UserAgent = "speakeasy-sdk/csharp 3.0.0 2.721.3 v3.1.0 FormanceSDK";
+            UserAgent = "speakeasy-sdk/csharp 4.0.0 2.865.2 v0.0.0 FormanceSDK";
             SecuritySource = null;
             Hooks = new SDKHooks();
             RetryConfig = null;

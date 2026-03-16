@@ -24,125 +24,194 @@ namespace FormanceSDK
 
     public interface IFormanceWebhooksV1
     {
-
         /// <summary>
-        /// Get many configs
-        /// 
-        /// <remarks>
-        /// Sorted by updated date descending
-        /// </remarks>
+        /// Get many configs.
         /// </summary>
-        Task<GetManyConfigsResponse> GetManyConfigsAsync(string? id = null, string? endpoint = null);
+        /// <remarks>
+        /// Sorted by updated date descending.
+        /// </remarks>
+        /// <param name="id">Optional filter by Config ID.</param>
+        /// <param name="endpoint">Optional filter by endpoint URL.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetManyConfigsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="WebhooksErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<GetManyConfigsResponse> GetManyConfigsAsync(string? id = null, string? endpoint = null);
 
         /// <summary>
-        /// Insert a new config
-        /// 
+        /// Insert a new config.
+        /// </summary>
         /// <remarks>
         /// Insert a new webhooks config.<br/>
         /// <br/>
         /// The endpoint should be a valid https URL and be unique.<br/>
         /// <br/>
-        /// The secret is the endpoint&apos;s verification secret.<br/>
+        /// The secret is the endpoint's verification secret.<br/>
         /// If not passed or empty, a secret is automatically generated.<br/>
         /// The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)<br/>
         /// <br/>
-        /// All eventTypes are converted to lower-case when inserted.<br/>
-        /// 
+        /// All eventTypes are converted to lower-case when inserted.
         /// </remarks>
-        /// </summary>
-        Task<InsertConfigResponse> InsertConfigAsync(ConfigUser request);
+        /// <param name="request">A <see cref="ConfigUser"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="InsertConfigResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="WebhooksErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<InsertConfigResponse> InsertConfigAsync(ConfigUser request);
 
         /// <summary>
-        /// Delete one config
-        /// 
+        /// Delete one config.
+        /// </summary>
         /// <remarks>
         /// Delete a webhooks config by ID.
         /// </remarks>
-        /// </summary>
-        Task<DeleteConfigResponse> DeleteConfigAsync(string id);
+        /// <param name="id">Config ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeleteConfigResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="WebhooksErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<DeleteConfigResponse> DeleteConfigAsync(string id);
 
         /// <summary>
-        /// Update one config
-        /// 
+        /// Update one config.
+        /// </summary>
         /// <remarks>
         /// Update a webhooks config by ID.
         /// </remarks>
-        /// </summary>
-        Task<UpdateConfigResponse> UpdateConfigAsync(string id, ConfigUser configUser);
+        /// <param name="id">Config ID.</param>
+        /// <param name="configUser">A <see cref="ConfigUser"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="UpdateConfigResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="id"/> or <paramref name="configUser"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="WebhooksErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<UpdateConfigResponse> UpdateConfigAsync(string id, ConfigUser configUser);
 
         /// <summary>
-        /// Test one config
-        /// 
+        /// Test one config.
+        /// </summary>
         /// <remarks>
         /// Test a config by sending a webhook to its endpoint.
         /// </remarks>
-        /// </summary>
-        Task<TestConfigResponse> TestConfigAsync(string id);
+        /// <param name="id">Config ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="TestConfigResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="WebhooksErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<TestConfigResponse> TestConfigAsync(string id);
 
         /// <summary>
-        /// Activate one config
-        /// 
+        /// Activate one config.
+        /// </summary>
         /// <remarks>
         /// Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
         /// </remarks>
-        /// </summary>
-        Task<ActivateConfigResponse> ActivateConfigAsync(string id);
+        /// <param name="id">Config ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="ActivateConfigResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="WebhooksErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ActivateConfigResponse> ActivateConfigAsync(string id);
 
         /// <summary>
-        /// Deactivate one config
-        /// 
+        /// Deactivate one config.
+        /// </summary>
         /// <remarks>
         /// Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
         /// </remarks>
-        /// </summary>
-        Task<DeactivateConfigResponse> DeactivateConfigAsync(string id);
+        /// <param name="id">Config ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeactivateConfigResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="WebhooksErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<DeactivateConfigResponse> DeactivateConfigAsync(string id);
 
         /// <summary>
-        /// Change the signing secret of a config
-        /// 
+        /// Change the signing secret of a config.
+        /// </summary>
         /// <remarks>
         /// Change the signing secret of the endpoint of a webhooks config.<br/>
         /// <br/>
         /// If not passed or empty, a secret is automatically generated.<br/>
-        /// The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)<br/>
-        /// 
+        /// The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding).
         /// </remarks>
-        /// </summary>
-        Task<ChangeConfigSecretResponse> ChangeConfigSecretAsync(string id, ConfigChangeSecret? configChangeSecret = null);
+        /// <param name="id">Config ID.</param>
+        /// <param name="configChangeSecret">A <see cref="ConfigChangeSecret"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ChangeConfigSecretResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="WebhooksErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ChangeConfigSecretResponse> ChangeConfigSecretAsync(
+            string id,
+            ConfigChangeSecret? configChangeSecret = null
+        );
     }
 
     public class FormanceWebhooksV1: IFormanceWebhooksV1
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-        private const string _language = "csharp";
-        private const string _sdkVersion = "3.0.0";
-        private const string _sdkGenVersion = "2.721.3";
-        private const string _openapiDocVersion = "v3.1.0";
 
         public FormanceWebhooksV1(SDKConfig config)
         {
             SDKConfiguration = config;
         }
 
-        public async Task<GetManyConfigsResponse> GetManyConfigsAsync(string? id = null, string? endpoint = null)
+        /// <summary>
+        /// Get many configs.
+        /// </summary>
+        /// <remarks>
+        /// Sorted by updated date descending.
+        /// </remarks>
+        /// <param name="id">Optional filter by Config ID.</param>
+        /// <param name="endpoint">Optional filter by endpoint URL.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetManyConfigsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="WebhooksErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<GetManyConfigsResponse> GetManyConfigsAsync(string? id = null, string? endpoint = null)
         {
             var request = new GetManyConfigsRequest()
             {
                 Id = id,
                 Endpoint = endpoint,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/configs", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/configs", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getManyConfigs", new List<string> { "auth:read", "webhooks:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getManyConfigs", new List<string> { "webhooks:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -152,7 +221,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -161,9 +230,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -229,14 +298,42 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<InsertConfigResponse> InsertConfigAsync(ConfigUser request)
-        {
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
 
+        /// <summary>
+        /// Insert a new config.
+        /// </summary>
+        /// <remarks>
+        /// Insert a new webhooks config.<br/>
+        /// <br/>
+        /// The endpoint should be a valid https URL and be unique.<br/>
+        /// <br/>
+        /// The secret is the endpoint's verification secret.<br/>
+        /// If not passed or empty, a secret is automatically generated.<br/>
+        /// The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)<br/>
+        /// <br/>
+        /// All eventTypes are converted to lower-case when inserted.
+        /// </remarks>
+        /// <param name="request">A <see cref="ConfigUser"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="InsertConfigResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="WebhooksErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<InsertConfigResponse> InsertConfigAsync(ConfigUser request)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/webhooks/configs";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, false);
             if (serializedBody != null)
@@ -249,7 +346,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "insertConfig", new List<string> { "auth:read", "webhooks:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "insertConfig", new List<string> { "webhooks:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -259,7 +356,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -268,9 +365,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -336,24 +433,46 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<DeleteConfigResponse> DeleteConfigAsync(string id)
+
+        /// <summary>
+        /// Delete one config.
+        /// </summary>
+        /// <remarks>
+        /// Delete a webhooks config by ID.
+        /// </remarks>
+        /// <param name="id">Config ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeleteConfigResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="WebhooksErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<DeleteConfigResponse> DeleteConfigAsync(string id)
         {
+            if (id == null) throw new ArgumentNullException(nameof(id));
+
             var request = new DeleteConfigRequest()
             {
                 Id = id,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/configs/{id}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/configs/{id}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteConfig", new List<string> { "auth:read", "webhooks:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteConfig", new List<string> { "webhooks:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -363,7 +482,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -372,9 +491,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -422,18 +541,42 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<UpdateConfigResponse> UpdateConfigAsync(string id, ConfigUser configUser)
+
+        /// <summary>
+        /// Update one config.
+        /// </summary>
+        /// <remarks>
+        /// Update a webhooks config by ID.
+        /// </remarks>
+        /// <param name="id">Config ID.</param>
+        /// <param name="configUser">A <see cref="ConfigUser"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="UpdateConfigResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="id"/> or <paramref name="configUser"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="WebhooksErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<UpdateConfigResponse> UpdateConfigAsync(string id, ConfigUser configUser)
         {
+            if (id == null) throw new ArgumentNullException(nameof(id));
+            if (configUser == null) throw new ArgumentNullException(nameof(configUser));
+
             var request = new UpdateConfigRequest()
             {
                 Id = id,
                 ConfigUser = configUser,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/configs/{id}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/configs/{id}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "ConfigUser", "json", false, false);
             if (serializedBody != null)
@@ -446,7 +589,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "updateConfig", new List<string> { "auth:read", "webhooks:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "updateConfig", new List<string> { "webhooks:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -456,7 +599,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -465,9 +608,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -515,24 +658,46 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<TestConfigResponse> TestConfigAsync(string id)
+
+        /// <summary>
+        /// Test one config.
+        /// </summary>
+        /// <remarks>
+        /// Test a config by sending a webhook to its endpoint.
+        /// </remarks>
+        /// <param name="id">Config ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="TestConfigResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="WebhooksErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<TestConfigResponse> TestConfigAsync(string id)
         {
+            if (id == null) throw new ArgumentNullException(nameof(id));
+
             var request = new TestConfigRequest()
             {
                 Id = id,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/configs/{id}/test", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/configs/{id}/test", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "testConfig", new List<string> { "auth:read", "webhooks:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "testConfig", new List<string> { "webhooks:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -542,7 +707,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -551,9 +716,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -619,24 +784,46 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<ActivateConfigResponse> ActivateConfigAsync(string id)
+
+        /// <summary>
+        /// Activate one config.
+        /// </summary>
+        /// <remarks>
+        /// Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
+        /// </remarks>
+        /// <param name="id">Config ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="ActivateConfigResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="WebhooksErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ActivateConfigResponse> ActivateConfigAsync(string id)
         {
+            if (id == null) throw new ArgumentNullException(nameof(id));
+
             var request = new ActivateConfigRequest()
             {
                 Id = id,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/configs/{id}/activate", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/configs/{id}/activate", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "activateConfig", new List<string> { "auth:read", "webhooks:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "activateConfig", new List<string> { "webhooks:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -646,7 +833,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -655,9 +842,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -723,24 +910,46 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<DeactivateConfigResponse> DeactivateConfigAsync(string id)
+
+        /// <summary>
+        /// Deactivate one config.
+        /// </summary>
+        /// <remarks>
+        /// Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
+        /// </remarks>
+        /// <param name="id">Config ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeactivateConfigResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="WebhooksErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<DeactivateConfigResponse> DeactivateConfigAsync(string id)
         {
+            if (id == null) throw new ArgumentNullException(nameof(id));
+
             var request = new DeactivateConfigRequest()
             {
                 Id = id,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/configs/{id}/deactivate", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/configs/{id}/deactivate", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deactivateConfig", new List<string> { "auth:read", "webhooks:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deactivateConfig", new List<string> { "webhooks:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -750,7 +959,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -759,9 +968,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -827,18 +1036,47 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<ChangeConfigSecretResponse> ChangeConfigSecretAsync(string id, ConfigChangeSecret? configChangeSecret = null)
+
+        /// <summary>
+        /// Change the signing secret of a config.
+        /// </summary>
+        /// <remarks>
+        /// Change the signing secret of the endpoint of a webhooks config.<br/>
+        /// <br/>
+        /// If not passed or empty, a secret is automatically generated.<br/>
+        /// The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding).
+        /// </remarks>
+        /// <param name="id">Config ID.</param>
+        /// <param name="configChangeSecret">A <see cref="ConfigChangeSecret"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ChangeConfigSecretResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="WebhooksErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ChangeConfigSecretResponse> ChangeConfigSecretAsync(
+            string id,
+            ConfigChangeSecret? configChangeSecret = null
+        )
         {
+            if (id == null) throw new ArgumentNullException(nameof(id));
+
             var request = new ChangeConfigSecretRequest()
             {
                 Id = id,
                 ConfigChangeSecret = configChangeSecret,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/configs/{id}/secret/change", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/configs/{id}/secret/change", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "ConfigChangeSecret", "json", false, true);
             if (serializedBody != null)
@@ -851,7 +1089,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "changeConfigSecret", new List<string> { "auth:read", "webhooks:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "changeConfigSecret", new List<string> { "webhooks:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -861,7 +1099,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -870,9 +1108,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -937,5 +1175,6 @@ namespace FormanceSDK
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
         }
+
     }
 }

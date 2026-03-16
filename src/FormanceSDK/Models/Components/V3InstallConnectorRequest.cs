@@ -30,13 +30,19 @@ namespace FormanceSDK.Models.Components
 
         public static V3InstallConnectorRequestType Bankingcircle { get { return new V3InstallConnectorRequestType("Bankingcircle"); } }
 
+        public static V3InstallConnectorRequestType Coinbaseprime { get { return new V3InstallConnectorRequestType("Coinbaseprime"); } }
+
         public static V3InstallConnectorRequestType Column { get { return new V3InstallConnectorRequestType("Column"); } }
 
         public static V3InstallConnectorRequestType Currencycloud { get { return new V3InstallConnectorRequestType("Currencycloud"); } }
 
         public static V3InstallConnectorRequestType Dummypay { get { return new V3InstallConnectorRequestType("Dummypay"); } }
 
+        public static V3InstallConnectorRequestType Fireblocks { get { return new V3InstallConnectorRequestType("Fireblocks"); } }
+
         public static V3InstallConnectorRequestType Generic { get { return new V3InstallConnectorRequestType("Generic"); } }
+
+        public static V3InstallConnectorRequestType Increase { get { return new V3InstallConnectorRequestType("Increase"); } }
 
         public static V3InstallConnectorRequestType Mangopay { get { return new V3InstallConnectorRequestType("Mangopay"); } }
 
@@ -44,9 +50,15 @@ namespace FormanceSDK.Models.Components
 
         public static V3InstallConnectorRequestType Moneycorp { get { return new V3InstallConnectorRequestType("Moneycorp"); } }
 
+        public static V3InstallConnectorRequestType Plaid { get { return new V3InstallConnectorRequestType("Plaid"); } }
+
+        public static V3InstallConnectorRequestType Powens { get { return new V3InstallConnectorRequestType("Powens"); } }
+
         public static V3InstallConnectorRequestType Qonto { get { return new V3InstallConnectorRequestType("Qonto"); } }
 
         public static V3InstallConnectorRequestType Stripe { get { return new V3InstallConnectorRequestType("Stripe"); } }
+
+        public static V3InstallConnectorRequestType Tink { get { return new V3InstallConnectorRequestType("Tink"); } }
 
         public static V3InstallConnectorRequestType Wise { get { return new V3InstallConnectorRequestType("Wise"); } }
 
@@ -57,15 +69,21 @@ namespace FormanceSDK.Models.Components
                 case "Adyen": return Adyen;
                 case "Atlar": return Atlar;
                 case "Bankingcircle": return Bankingcircle;
+                case "Coinbaseprime": return Coinbaseprime;
                 case "Column": return Column;
                 case "Currencycloud": return Currencycloud;
                 case "Dummypay": return Dummypay;
+                case "Fireblocks": return Fireblocks;
                 case "Generic": return Generic;
+                case "Increase": return Increase;
                 case "Mangopay": return Mangopay;
                 case "Modulr": return Modulr;
                 case "Moneycorp": return Moneycorp;
+                case "Plaid": return Plaid;
+                case "Powens": return Powens;
                 case "Qonto": return Qonto;
                 case "Stripe": return Stripe;
+                case "Tink": return Tink;
                 case "Wise": return Wise;
                 default: throw new ArgumentException("Invalid value for V3InstallConnectorRequestType");
             }
@@ -84,7 +102,6 @@ namespace FormanceSDK.Models.Components
             return Value.GetHashCode();
         }
     }
-
 
     [JsonConverter(typeof(V3InstallConnectorRequest.V3InstallConnectorRequestConverter))]
     public class V3InstallConnectorRequest
@@ -116,6 +133,9 @@ namespace FormanceSDK.Models.Components
         public V3GenericConfig? V3GenericConfig { get; set; }
 
         [SpeakeasyMetadata("form:explode=true")]
+        public V3IncreaseConfig? V3IncreaseConfig { get; set; }
+
+        [SpeakeasyMetadata("form:explode=true")]
         public V3MangopayConfig? V3MangopayConfig { get; set; }
 
         [SpeakeasyMetadata("form:explode=true")]
@@ -125,13 +145,28 @@ namespace FormanceSDK.Models.Components
         public V3MoneycorpConfig? V3MoneycorpConfig { get; set; }
 
         [SpeakeasyMetadata("form:explode=true")]
+        public V3PlaidConfig? V3PlaidConfig { get; set; }
+
+        [SpeakeasyMetadata("form:explode=true")]
+        public V3PowensConfig? V3PowensConfig { get; set; }
+
+        [SpeakeasyMetadata("form:explode=true")]
         public V3QontoConfig? V3QontoConfig { get; set; }
 
         [SpeakeasyMetadata("form:explode=true")]
         public V3StripeConfig? V3StripeConfig { get; set; }
 
         [SpeakeasyMetadata("form:explode=true")]
+        public V3TinkConfig? V3TinkConfig { get; set; }
+
+        [SpeakeasyMetadata("form:explode=true")]
         public V3WiseConfig? V3WiseConfig { get; set; }
+
+        [SpeakeasyMetadata("form:explode=true")]
+        public V3CoinbaseprimeConfig? V3CoinbaseprimeConfig { get; set; }
+
+        [SpeakeasyMetadata("form:explode=true")]
+        public V3FireblocksConfig? V3FireblocksConfig { get; set; }
 
         public V3InstallConnectorRequestType Type { get; set; }
 
@@ -165,6 +200,16 @@ namespace FormanceSDK.Models.Components
             return res;
         }
 
+        public static V3InstallConnectorRequest CreateCoinbaseprime(V3CoinbaseprimeConfig coinbaseprime)
+        {
+            V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Coinbaseprime;
+            string typStr = V3InstallConnectorRequestType.Coinbaseprime.ToString();
+            coinbaseprime.Provider = typStr;
+            V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
+            res.V3CoinbaseprimeConfig = coinbaseprime;
+            return res;
+        }
+
         public static V3InstallConnectorRequest CreateColumn(V3ColumnConfig column)
         {
             V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Column;
@@ -195,6 +240,16 @@ namespace FormanceSDK.Models.Components
             return res;
         }
 
+        public static V3InstallConnectorRequest CreateFireblocks(V3FireblocksConfig fireblocks)
+        {
+            V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Fireblocks;
+            string typStr = V3InstallConnectorRequestType.Fireblocks.ToString();
+            fireblocks.Provider = typStr;
+            V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
+            res.V3FireblocksConfig = fireblocks;
+            return res;
+        }
+
         public static V3InstallConnectorRequest CreateGeneric(V3GenericConfig generic)
         {
             V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Generic;
@@ -202,6 +257,16 @@ namespace FormanceSDK.Models.Components
             generic.Provider = typStr;
             V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
             res.V3GenericConfig = generic;
+            return res;
+        }
+
+        public static V3InstallConnectorRequest CreateIncrease(V3IncreaseConfig increase)
+        {
+            V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Increase;
+            string typStr = V3InstallConnectorRequestType.Increase.ToString();
+            increase.Provider = typStr;
+            V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
+            res.V3IncreaseConfig = increase;
             return res;
         }
 
@@ -235,6 +300,26 @@ namespace FormanceSDK.Models.Components
             return res;
         }
 
+        public static V3InstallConnectorRequest CreatePlaid(V3PlaidConfig plaid)
+        {
+            V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Plaid;
+            string typStr = V3InstallConnectorRequestType.Plaid.ToString();
+            plaid.Provider = typStr;
+            V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
+            res.V3PlaidConfig = plaid;
+            return res;
+        }
+
+        public static V3InstallConnectorRequest CreatePowens(V3PowensConfig powens)
+        {
+            V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Powens;
+            string typStr = V3InstallConnectorRequestType.Powens.ToString();
+            powens.Provider = typStr;
+            V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
+            res.V3PowensConfig = powens;
+            return res;
+        }
+
         public static V3InstallConnectorRequest CreateQonto(V3QontoConfig qonto)
         {
             V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Qonto;
@@ -252,6 +337,16 @@ namespace FormanceSDK.Models.Components
             stripe.Provider = typStr;
             V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
             res.V3StripeConfig = stripe;
+            return res;
+        }
+
+        public static V3InstallConnectorRequest CreateTink(V3TinkConfig tink)
+        {
+            V3InstallConnectorRequestType typ = V3InstallConnectorRequestType.Tink;
+            string typStr = V3InstallConnectorRequestType.Tink.ToString();
+            tink.Provider = typStr;
+            V3InstallConnectorRequest res = new V3InstallConnectorRequest(typ);
+            res.V3TinkConfig = tink;
             return res;
         }
 
@@ -295,6 +390,11 @@ namespace FormanceSDK.Models.Components
                     V3BankingcircleConfig v3BankingcircleConfig = ResponseBodyDeserializer.DeserializeNotNull<V3BankingcircleConfig>(jo.ToString());
                     return CreateBankingcircle(v3BankingcircleConfig);
                 }
+                if (discriminator == V3InstallConnectorRequestType.Coinbaseprime.ToString())
+                {
+                    V3CoinbaseprimeConfig v3CoinbaseprimeConfig = ResponseBodyDeserializer.DeserializeNotNull<V3CoinbaseprimeConfig>(jo.ToString());
+                    return CreateCoinbaseprime(v3CoinbaseprimeConfig);
+                }
                 if (discriminator == V3InstallConnectorRequestType.Column.ToString())
                 {
                     V3ColumnConfig v3ColumnConfig = ResponseBodyDeserializer.DeserializeNotNull<V3ColumnConfig>(jo.ToString());
@@ -310,10 +410,20 @@ namespace FormanceSDK.Models.Components
                     V3DummypayConfig v3DummypayConfig = ResponseBodyDeserializer.DeserializeNotNull<V3DummypayConfig>(jo.ToString());
                     return CreateDummypay(v3DummypayConfig);
                 }
+                if (discriminator == V3InstallConnectorRequestType.Fireblocks.ToString())
+                {
+                    V3FireblocksConfig v3FireblocksConfig = ResponseBodyDeserializer.DeserializeNotNull<V3FireblocksConfig>(jo.ToString());
+                    return CreateFireblocks(v3FireblocksConfig);
+                }
                 if (discriminator == V3InstallConnectorRequestType.Generic.ToString())
                 {
                     V3GenericConfig v3GenericConfig = ResponseBodyDeserializer.DeserializeNotNull<V3GenericConfig>(jo.ToString());
                     return CreateGeneric(v3GenericConfig);
+                }
+                if (discriminator == V3InstallConnectorRequestType.Increase.ToString())
+                {
+                    V3IncreaseConfig v3IncreaseConfig = ResponseBodyDeserializer.DeserializeNotNull<V3IncreaseConfig>(jo.ToString());
+                    return CreateIncrease(v3IncreaseConfig);
                 }
                 if (discriminator == V3InstallConnectorRequestType.Mangopay.ToString())
                 {
@@ -330,6 +440,16 @@ namespace FormanceSDK.Models.Components
                     V3MoneycorpConfig v3MoneycorpConfig = ResponseBodyDeserializer.DeserializeNotNull<V3MoneycorpConfig>(jo.ToString());
                     return CreateMoneycorp(v3MoneycorpConfig);
                 }
+                if (discriminator == V3InstallConnectorRequestType.Plaid.ToString())
+                {
+                    V3PlaidConfig v3PlaidConfig = ResponseBodyDeserializer.DeserializeNotNull<V3PlaidConfig>(jo.ToString());
+                    return CreatePlaid(v3PlaidConfig);
+                }
+                if (discriminator == V3InstallConnectorRequestType.Powens.ToString())
+                {
+                    V3PowensConfig v3PowensConfig = ResponseBodyDeserializer.DeserializeNotNull<V3PowensConfig>(jo.ToString());
+                    return CreatePowens(v3PowensConfig);
+                }
                 if (discriminator == V3InstallConnectorRequestType.Qonto.ToString())
                 {
                     V3QontoConfig v3QontoConfig = ResponseBodyDeserializer.DeserializeNotNull<V3QontoConfig>(jo.ToString());
@@ -339,6 +459,11 @@ namespace FormanceSDK.Models.Components
                 {
                     V3StripeConfig v3StripeConfig = ResponseBodyDeserializer.DeserializeNotNull<V3StripeConfig>(jo.ToString());
                     return CreateStripe(v3StripeConfig);
+                }
+                if (discriminator == V3InstallConnectorRequestType.Tink.ToString())
+                {
+                    V3TinkConfig v3TinkConfig = ResponseBodyDeserializer.DeserializeNotNull<V3TinkConfig>(jo.ToString());
+                    return CreateTink(v3TinkConfig);
                 }
                 if (discriminator == V3InstallConnectorRequestType.Wise.ToString())
                 {
@@ -400,6 +525,12 @@ namespace FormanceSDK.Models.Components
                     return;
                 }
 
+                if (res.V3IncreaseConfig != null)
+                {
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.V3IncreaseConfig));
+                    return;
+                }
+
                 if (res.V3MangopayConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V3MangopayConfig));
@@ -418,6 +549,18 @@ namespace FormanceSDK.Models.Components
                     return;
                 }
 
+                if (res.V3PlaidConfig != null)
+                {
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.V3PlaidConfig));
+                    return;
+                }
+
+                if (res.V3PowensConfig != null)
+                {
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.V3PowensConfig));
+                    return;
+                }
+
                 if (res.V3QontoConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V3QontoConfig));
@@ -430,9 +573,27 @@ namespace FormanceSDK.Models.Components
                     return;
                 }
 
+                if (res.V3TinkConfig != null)
+                {
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.V3TinkConfig));
+                    return;
+                }
+
                 if (res.V3WiseConfig != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.V3WiseConfig));
+                    return;
+                }
+
+                if (res.V3CoinbaseprimeConfig != null)
+                {
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.V3CoinbaseprimeConfig));
+                    return;
+                }
+
+                if (res.V3FireblocksConfig != null)
+                {
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.V3FireblocksConfig));
                     return;
                 }
             }

@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class Client
     {
-
         [JsonProperty("public")]
         public bool? Public { get; set; }
 
@@ -36,7 +35,7 @@ namespace FormanceSDK.Models.Components
         public List<string>? PostLogoutRedirectUris { get; set; }
 
         [JsonProperty("metadata")]
-        public Dictionary<string, object>? Metadata { get; set; } = null;
+        public Dictionary<string, string>? Metadata { get; set; } = null;
 
         [JsonProperty("scopes")]
         public List<string>? Scopes { get; set; }

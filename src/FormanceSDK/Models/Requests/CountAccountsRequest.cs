@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
     using System.Collections.Generic;
-    
+
     public class CountAccountsRequest
     {
-
         /// <summary>
         /// Name of the ledger.
         /// </summary>
@@ -28,7 +27,7 @@ namespace FormanceSDK.Models.Requests
         public string? Address { get; set; }
 
         /// <summary>
-        /// Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&amp;metadata[a.nested.key]=value2
+        /// Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&amp;metadata[a.nested.key]=value2.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=metadata")]
         public Dictionary<string, object>? Metadata { get; set; }

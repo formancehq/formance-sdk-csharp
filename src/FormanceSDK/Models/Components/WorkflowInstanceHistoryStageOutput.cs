@@ -12,18 +12,17 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class WorkflowInstanceHistoryStageOutput
     {
-
         [JsonProperty("GetAccount")]
         public ActivityGetAccountOutput? GetAccount { get; set; }
 
         [JsonProperty("CreateTransaction")]
-        public ActivityCreateTransactionOutput? CreateTransaction { get; set; }
+        public Models.Components.RevertTransactionResponse? CreateTransaction { get; set; }
 
         [JsonProperty("RevertTransaction")]
-        public ActivityCreateTransactionOutput? RevertTransaction { get; set; }
+        public Models.Components.RevertTransactionResponse? RevertTransaction { get; set; }
 
         [JsonProperty("GetPayment")]
         public ActivityGetPaymentOutput? GetPayment { get; set; }
@@ -32,7 +31,7 @@ namespace FormanceSDK.Models.Components
         public ActivityDebitWalletOutput? DebitWallet { get; set; }
 
         [JsonProperty("GetWallet")]
-        public Models.Components.GetWalletResponse? GetWallet { get; set; }
+        public ActivityGetWalletOutput? GetWallet { get; set; }
 
         [JsonProperty("ListWallets")]
         public OrchestrationListWalletsResponse? ListWallets { get; set; }

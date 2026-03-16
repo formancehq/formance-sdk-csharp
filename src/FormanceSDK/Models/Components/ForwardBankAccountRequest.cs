@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class ForwardBankAccountRequest
     {
-
         [JsonProperty("connectorID")]
         public string ConnectorID { get; set; } = default!;
     }

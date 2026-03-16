@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V2LedgerAccountSubject
     {
-
         [JsonProperty("type")]
         public string Type { get; set; } = default!;
 

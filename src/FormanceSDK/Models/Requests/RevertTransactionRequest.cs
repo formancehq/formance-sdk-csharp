@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
     using System.Numerics;
-    
+
     public class RevertTransactionRequest
     {
-
         /// <summary>
         /// Name of the ledger.
         /// </summary>
@@ -28,7 +27,7 @@ namespace FormanceSDK.Models.Requests
         public BigInteger Txid { get; set; } = default!;
 
         /// <summary>
-        /// Allow to disable balances checks
+        /// Allow to disable balances checks.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=disableChecks")]
         public bool? DisableChecks { get; set; }

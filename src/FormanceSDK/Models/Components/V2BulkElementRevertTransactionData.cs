@@ -11,11 +11,11 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using System.Numerics;
-    
+
     public class V2BulkElementRevertTransactionData
     {
-
         [JsonProperty("id")]
         public BigInteger Id { get; set; } = default!;
 
@@ -24,5 +24,8 @@ namespace FormanceSDK.Models.Components
 
         [JsonProperty("atEffectiveDate")]
         public bool? AtEffectiveDate { get; set; }
+
+        [JsonProperty("metadata")]
+        public Dictionary<string, string>? Metadata { get; set; }
     }
 }

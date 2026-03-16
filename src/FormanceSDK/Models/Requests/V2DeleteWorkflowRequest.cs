@@ -10,12 +10,11 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class V2DeleteWorkflowRequest
     {
-
         /// <summary>
-        /// The flow id
+        /// The flow id.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=flowId")]
         public string FlowId { get; set; } = default!;

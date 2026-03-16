@@ -10,10 +10,9 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class DeleteTransferInitiationRequest
     {
-
         /// <summary>
         /// The transfer ID.
         /// </summary>

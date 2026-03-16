@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class DummyPayConfig
     {
-
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
@@ -22,10 +21,10 @@ namespace FormanceSDK.Models.Components
         public string? Provider { get; set; } = "Dummypay";
 
         /// <summary>
-        /// The frequency at which the connector will try to fetch new payment objects from the directory
+        /// The frequency at which the connector will try to fetch new payment objects from the directory.
         /// </summary>
         [JsonProperty("filePollingPeriod")]
-        public string? FilePollingPeriod { get; set; } = "10s";
+        public string? FilePollingPeriod { get; set; } = "30s";
 
         [JsonProperty("directory")]
         public string Directory { get; set; } = default!;

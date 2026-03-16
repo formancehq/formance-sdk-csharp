@@ -1,5 +1,4 @@
-# FormancePaymentsV1
-(*Payments.V1*)
+# Payments.V1
 
 ## Overview
 
@@ -21,6 +20,7 @@
 * [CreatePool](#createpool) - Create a Pool
 * [GetPool](#getpool) - Get a Pool
 * [DeletePool](#deletepool) - Delete a Pool
+* [UpdatePoolQuery](#updatepoolquery) - Update the query of a pool
 * [AddAccountToPool](#addaccounttopool) - Add an account to a pool
 * [RemoveAccountFromPool](#removeaccountfrompool) - Remove an account from a pool
 * [GetPoolBalances](#getpoolbalances) - Get historical pool balances at a particular point in time
@@ -93,6 +93,7 @@ Create a payment
 using FormanceSDK;
 using FormanceSDK.Models.Components;
 using System;
+using System.Numerics;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -102,8 +103,8 @@ var sdk = new Formance(security: new Security() {
 PaymentRequest req = new PaymentRequest() {
     Reference = "<value>",
     ConnectorID = "<id>",
-    CreatedAt = System.DateTime.Parse("2025-08-26T06:29:11.777Z"),
-    Amount = 100,
+    CreatedAt = System.DateTime.Parse("2025-08-26T06:29:11.777Z").ToUniversalTime(),
+    Amount = BigInteger.Parse("100"),
     Type = PaymentType.Other,
     Status = PaymentStatus.RefundedFailure,
     Scheme = PaymentScheme.Unionpay,
@@ -324,6 +325,7 @@ Create a transfer initiation
 using FormanceSDK;
 using FormanceSDK.Models.Components;
 using System;
+using System.Numerics;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -332,12 +334,12 @@ var sdk = new Formance(security: new Security() {
 
 TransferInitiationRequest req = new TransferInitiationRequest() {
     Reference = "XXX",
-    ScheduledAt = System.DateTime.Parse("2023-04-02T01:40:50.195Z"),
+    ScheduledAt = System.DateTime.Parse("2023-04-02T01:40:50.195Z").ToUniversalTime(),
     Description = "flowery yum keenly operating knavishly commemorate recent apropos",
     SourceAccountID = "<id>",
     DestinationAccountID = "<id>",
     Type = TransferInitiationRequestType.Payout,
-    Amount = 181752,
+    Amount = BigInteger.Parse("181752"),
     Asset = "USD",
     Validated = false,
 };
@@ -494,6 +496,7 @@ Reverse transfer initiation
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using System.Numerics;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -505,7 +508,7 @@ var res = await sdk.Payments.V1.ReverseTransferInitiationAsync(
     reverseTransferInitiationRequest: new FormanceSDK.Models.Components.ReverseTransferInitiationRequest() {
         Reference = "XXX",
         Description = "keel caption frenetically ew given fencing scratch yearningly quickly know",
-        Amount = 563034,
+        Amount = BigInteger.Parse("563034"),
         Asset = "USD",
         Metadata = null,
     }
@@ -629,7 +632,6 @@ Create a Pool
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -638,10 +640,6 @@ var sdk = new Formance(security: new Security() {
 
 PoolRequest req = new PoolRequest() {
     Name = "<value>",
-    AccountIDs = new List<string>() {
-        "<value 1>",
-        "<value 2>",
-    },
 };
 
 var res = await sdk.Payments.V1.CreatePoolAsync(req);
@@ -734,6 +732,53 @@ var res = await sdk.Payments.V1.DeletePoolAsync(poolId: "XXX");
 ### Response
 
 **[DeletePoolResponse](../../Models/Requests/DeletePoolResponse.md)**
+
+### Errors
+
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+
+## UpdatePoolQuery
+
+Update the query of a pool
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="updatePoolQuery" method="patch" path="/api/payments/pools/{poolId}/query" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using System.Collections.Generic;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Payments.V1.UpdatePoolQueryAsync(
+    poolId: "XXX",
+    updatePoolQueryRequest: new FormanceSDK.Models.Components.UpdatePoolQueryRequest() {
+        Query = new Dictionary<string, object>() {
+            { "key", "<value>" },
+        },
+    }
+);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   | Example                                                                                       |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `PoolId`                                                                                      | *string*                                                                                      | :heavy_check_mark:                                                                            | The pool ID.                                                                                  | XXX                                                                                           |
+| `UpdatePoolQueryRequest`                                                                      | [Models.Components.UpdatePoolQueryRequest](../../Models/Components/UpdatePoolQueryRequest.md) | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
+
+### Response
+
+**[UpdatePoolQueryResponse](../../Models/Requests/UpdatePoolQueryResponse.md)**
 
 ### Errors
 
@@ -847,7 +892,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Payments.V1.GetPoolBalancesAsync(
     poolId: "XXX",
-    at: System.DateTime.Parse("2024-11-27T10:59:51.663Z")
+    at: System.DateTime.Parse("2024-11-27T10:59:51.663Z").ToUniversalTime()
 );
 
 // handle response
@@ -929,7 +974,7 @@ var sdk = new Formance(security: new Security() {
 AccountRequest req = new AccountRequest() {
     Reference = "<value>",
     ConnectorID = "<id>",
-    CreatedAt = System.DateTime.Parse("2025-07-27T08:57:17.388Z"),
+    CreatedAt = System.DateTime.Parse("2025-07-27T08:57:17.388Z").ToUniversalTime(),
     Type = AccountType.Unknown,
 };
 
@@ -965,7 +1010,6 @@ List accounts
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using FormanceSDK.Models.Requests;
 using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
@@ -973,25 +1017,26 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-PaymentslistAccountsRequest req = new PaymentslistAccountsRequest() {
-    PageSize = 100,
-    Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    Sort = new List<string>() {
+var res = await sdk.Payments.V1.PaymentslistAccountsAsync(
+    pageSize: 100,
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    sort: new List<string>() {
         "date:asc",
         "status:desc",
-    },
-};
-
-var res = await sdk.Payments.V1.PaymentslistAccountsAsync(req);
+    }
+);
 
 // handle response
 ```
 
 ### Parameters
 
-| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `request`                                                                           | [PaymentslistAccountsRequest](../../Models/Requests/PaymentslistAccountsRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
+| Parameter                                                                                                                                                                                                                                                | Type                                                                                                                                                                                                                                                     | Required                                                                                                                                                                                                                                                 | Description                                                                                                                                                                                                                                              | Example                                                                                                                                                                                                                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `PageSize`                                                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                       | The maximum number of results to return per page.<br/>                                                                                                                                                                                                   | 100                                                                                                                                                                                                                                                      |
+| `Cursor`                                                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Parameter used in pagination requests. Maximum page size is set to 15.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                                             |
+| `Sort`                                                                                                                                                                                                                                                   | List<*string*>                                                                                                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                                                                                                       | Fields used to sort payments (default is date:desc).                                                                                                                                                                                                     | [<br/>"date:asc",<br/>"status:desc"<br/>]                                                                                                                                                                                                                |
+| `Query`                                                                                                                                                                                                                                                  | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Filters used to filter resources.<br/>                                                                                                                                                                                                                   |                                                                                                                                                                                                                                                          |
 
 ### Response
 
@@ -1919,6 +1964,7 @@ Execute a transfer between two accounts.
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using System.Numerics;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1928,7 +1974,7 @@ var sdk = new Formance(security: new Security() {
 var res = await sdk.Payments.V1.ConnectorsTransferAsync(
     connector: Connector.Generic,
     transferRequest: new TransferRequest() {
-        Amount = 100,
+        Amount = BigInteger.Parse("100"),
         Asset = "USD",
         Destination = "acct_1Gqj58KZcSIg2N2q",
         Source = "acct_1Gqj58KZcSIg2N2q",

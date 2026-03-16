@@ -11,12 +11,11 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V3CreateBankAccountResponse
     {
-
         /// <summary>
-        /// The ID of the created bank account
+        /// The ID of the created bank account.
         /// </summary>
         [JsonProperty("data")]
         public string Data { get; set; } = default!;

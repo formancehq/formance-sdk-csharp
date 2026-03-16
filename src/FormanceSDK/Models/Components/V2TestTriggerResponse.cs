@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V2TestTriggerResponse
     {
-
         [JsonProperty("data")]
         public V2TriggerTest Data { get; set; } = default!;
     }

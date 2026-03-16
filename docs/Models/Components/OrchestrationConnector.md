@@ -1,5 +1,13 @@
 # OrchestrationConnector
 
+## Example Usage
+
+```csharp
+using FormanceSDK.Models.Components;
+
+var value = OrchestrationConnector.Stripe;
+```
+
 
 ## Values
 

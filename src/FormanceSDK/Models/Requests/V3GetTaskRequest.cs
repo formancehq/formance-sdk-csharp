@@ -10,12 +10,11 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class V3GetTaskRequest
     {
-
         /// <summary>
-        /// The task ID
+        /// The task ID.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=taskID")]
         public string TaskID { get; set; } = default!;

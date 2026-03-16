@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
-    
+
     public class ReadConnectorConfigRequest
     {
-
         /// <summary>
         /// The name of the connector.
         /// </summary>

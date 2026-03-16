@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class Account
     {
-
         [JsonProperty("address")]
         public string Address { get; set; } = default!;
 

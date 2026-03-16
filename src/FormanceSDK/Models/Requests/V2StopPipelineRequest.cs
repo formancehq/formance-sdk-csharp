@@ -10,10 +10,9 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class V2StopPipelineRequest
     {
-
         /// <summary>
         /// Name of the ledger.
         /// </summary>
@@ -21,7 +20,7 @@ namespace FormanceSDK.Models.Requests
         public string Ledger { get; set; } = default!;
 
         /// <summary>
-        /// The pipeline id
+        /// The pipeline id.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=pipelineID")]
         public string PipelineID { get; set; } = default!;

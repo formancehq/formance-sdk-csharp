@@ -1,5 +1,4 @@
-# V2
-(*Ledger.V2*)
+# Ledger.V2
 
 ## Overview
 
@@ -8,6 +7,9 @@
 * [ListLedgers](#listledgers) - List ledgers
 * [GetLedger](#getledger) - Get a ledger
 * [CreateLedger](#createledger) - Create a ledger
+* [InsertSchema](#insertschema) - Insert a schema for a ledger
+* [GetSchema](#getschema) - Get a schema for a ledger by version
+* [ListSchemas](#listschemas) - List all schemas for a ledger
 * [UpdateLedgerMetadata](#updateledgermetadata) - Update ledger metadata
 * [DeleteLedgerMetadata](#deleteledgermetadata) - Delete ledger metadata by key
 * [GetLedgerInfo](#getledgerinfo) - Get information about a ledger
@@ -30,10 +32,14 @@
 * [ListLogs](#listlogs) - List the logs from a ledger
 * [ImportLogs](#importlogs)
 * [ExportLogs](#exportlogs) - Export logs
+* [RunQuery](#runquery) - Run a query template
 * [ListExporters](#listexporters) - List exporters
 * [CreateExporter](#createexporter) - Create exporter
 * [GetExporterState](#getexporterstate) - Get exporter state
+* [UpdateExporter](#updateexporter) - Update exporter
 * [DeleteExporter](#deleteexporter) - Delete exporter
+* [DeleteBucket](#deletebucket) - Delete bucket
+* [RestoreBucket](#restorebucket) - Restore bucket
 * [ListPipelines](#listpipelines) - List pipelines
 * [CreatePipeline](#createpipeline) - Create pipeline
 * [GetPipelineState](#getpipelinestate) - Get pipeline state
@@ -52,7 +58,6 @@ List ledgers
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -60,13 +65,9 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Ledger.V2.ListLedgersAsync(
-    requestBody: new Dictionary<string, object>() {
-        { "key", "<value>" },
-        { "key1", "<value>" },
-        { "key2", "<value>" },
-    },
     pageSize: 100,
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    includeDeleted: false,
     sort: "id:desc"
 );
 
@@ -77,10 +78,10 @@ var res = await sdk.Ledger.V2.ListLedgersAsync(
 
 | Parameter                                                                                                                                                                                                                                                | Type                                                                                                                                                                                                                                                     | Required                                                                                                                                                                                                                                                 | Description                                                                                                                                                                                                                                              | Example                                                                                                                                                                                                                                                  |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `RequestBody`                                                                                                                                                                                                                                            | Dictionary<String, *object*>                                                                                                                                                                                                                             | :heavy_check_mark:                                                                                                                                                                                                                                       | N/A                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                          |
 | `PageSize`                                                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                       | The maximum number of results to return per page.<br/>                                                                                                                                                                                                   | 100                                                                                                                                                                                                                                                      |
 | `Cursor`                                                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Parameter used in pagination requests. Maximum page size is set to 15.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                                             |
-| `Sort`                                                                                                                                                                                                                                                   | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Sort results using a field name and order (ascending or descending). <br/>Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.<br/>                                                                     | id:desc                                                                                                                                                                                                                                                  |
+| `IncludeDeleted`                                                                                                                                                                                                                                         | *bool*                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                       | If true, include deleted ledgers in the results. By default, deleted ledgers are excluded.<br/>                                                                                                                                                          | false                                                                                                                                                                                                                                                    |
+| `Sort`                                                                                                                                                                                                                                                   | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Sort results using a field name and order (ascending or descending).<br/>Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.<br/>                                                                      | id:desc                                                                                                                                                                                                                                                  |
 
 ### Response
 
@@ -170,6 +171,158 @@ var res = await sdk.Ledger.V2.CreateLedgerAsync(
 ### Response
 
 **[V2CreateLedgerResponse](../../Models/Requests/V2CreateLedgerResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## InsertSchema
+
+Insert a schema for a ledger
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="v2InsertSchema" method="post" path="/api/ledger/v2/{ledger}/schemas/{version}" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using System.Collections.Generic;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Ledger.V2.InsertSchemaAsync(
+    ledger: "ledger001",
+    version: "v1.0.0",
+    v2SchemaData: new V2SchemaData() {
+        Chart = new Dictionary<string, V2ChartSegment>() {
+            { "users", new V2ChartSegment() {
+                AdditionalProperties = new Dictionary<string, V2ChartSegment>() {
+                    { "$userID", new V2ChartSegment() {
+                        DotPattern = "^[0-9]{16}$",
+                    } },
+                },
+            } },
+        },
+        Queries = new Dictionary<string, V2QueryTemplate>() {
+            { "key", new V2QueryTemplate() {
+                Params = V2QueryParams.CreateQueryTemplateAccountParams(
+                    new QueryTemplateAccountParams() {
+                        PageSize = 100,
+                        Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+                        Sort = "id:desc",
+                    }
+                ),
+            } },
+        },
+    }
+);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `Ledger`                                                | *string*                                                | :heavy_check_mark:                                      | Name of the ledger.                                     | ledger001                                               |
+| `Version`                                               | *string*                                                | :heavy_check_mark:                                      | Schema version.                                         | v1.0.0                                                  |
+| `V2SchemaData`                                          | [V2SchemaData](../../Models/Components/V2SchemaData.md) | :heavy_check_mark:                                      | N/A                                                     |                                                         |
+| `IdempotencyKey`                                        | *string*                                                | :heavy_minus_sign:                                      | Use an idempotency key                                  |                                                         |
+
+### Response
+
+**[V2InsertSchemaResponse](../../Models/Requests/V2InsertSchemaResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## GetSchema
+
+Get a schema for a ledger by version
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="v2GetSchema" method="get" path="/api/ledger/v2/{ledger}/schemas/{version}" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Ledger.V2.GetSchemaAsync(
+    ledger: "ledger001",
+    version: "v1.0.0"
+);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter           | Type                | Required            | Description         | Example             |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
+| `Version`           | *string*            | :heavy_check_mark:  | Schema version.     | v1.0.0              |
+
+### Response
+
+**[V2GetSchemaResponse](../../Models/Requests/V2GetSchemaResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## ListSchemas
+
+List all schemas for a ledger
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="v2ListSchemas" method="get" path="/api/ledger/v2/{ledger}/schemas" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Requests;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+V2ListSchemasRequest req = new V2ListSchemasRequest() {
+    Ledger = "ledger001",
+};
+
+var res = await sdk.Ledger.V2.ListSchemasAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [V2ListSchemasRequest](../../Models/Requests/V2ListSchemasRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+
+### Response
+
+**[V2ListSchemasResponse](../../Models/Requests/V2ListSchemasResponse.md)**
 
 ### Errors
 
@@ -326,6 +479,7 @@ V2CreateBulkRequest req = new V2CreateBulkRequest() {
     ContinueOnFailure = true,
     Atomic = true,
     Parallel = true,
+    SchemaVersion = "v1.0.0",
     RequestBody = new List<V2BulkElement>() {
         V2BulkElement.CreateDeleteMetadata(
             new V2BulkElementDeleteMetadata() {
@@ -367,20 +521,13 @@ Count the accounts from a ledger
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Ledger.V2.CountAccountsAsync(
-    ledger: "ledger001",
-    requestBody: new Dictionary<string, object>() {
-        { "key", "<value>" },
-        { "key1", "<value>" },
-    }
-);
+var res = await sdk.Ledger.V2.CountAccountsAsync(ledger: "ledger001");
 
 // handle response
 ```
@@ -390,7 +537,6 @@ var res = await sdk.Ledger.V2.CountAccountsAsync(
 | Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `Ledger`                                                                              | *string*                                                                              | :heavy_check_mark:                                                                    | Name of the ledger.                                                                   | ledger001                                                                             |
-| `RequestBody`                                                                         | Dictionary<String, *object*>                                                          | :heavy_check_mark:                                                                    | N/A                                                                                   |                                                                                       |
 | `Pit`                                                                                 | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
 
 ### Response
@@ -415,7 +561,6 @@ List accounts from a ledger, sorted by address in descending order.
 using FormanceSDK;
 using FormanceSDK.Models.Components;
 using FormanceSDK.Models.Requests;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -427,9 +572,6 @@ V2ListAccountsRequest req = new V2ListAccountsRequest() {
     PageSize = 100,
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     Sort = "id:desc",
-    RequestBody = new Dictionary<string, object>() {
-
-    },
 };
 
 var res = await sdk.Ledger.V2.ListAccountsAsync(req);
@@ -520,6 +662,7 @@ V2AddMetadataToAccountRequest req = new V2AddMetadataToAccountRequest() {
     Ledger = "ledger001",
     Address = "users:001",
     DryRun = true,
+    SchemaVersion = "v1.0.0",
     RequestBody = new Dictionary<string, string>() {
         { "admin", "true" },
     },
@@ -641,19 +784,13 @@ Count the transactions from a ledger
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Ledger.V2.CountTransactionsAsync(
-    ledger: "ledger001",
-    requestBody: new Dictionary<string, object>() {
-        { "key", "<value>" },
-    }
-);
+var res = await sdk.Ledger.V2.CountTransactionsAsync(ledger: "ledger001");
 
 // handle response
 ```
@@ -663,7 +800,6 @@ var res = await sdk.Ledger.V2.CountTransactionsAsync(
 | Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `Ledger`                                                                              | *string*                                                                              | :heavy_check_mark:                                                                    | Name of the ledger.                                                                   | ledger001                                                                             |
-| `RequestBody`                                                                         | Dictionary<String, *object*>                                                          | :heavy_check_mark:                                                                    | N/A                                                                                   |                                                                                       |
 | `Pit`                                                                                 | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
 
 ### Response
@@ -688,7 +824,6 @@ List transactions from a ledger, sorted by id in descending order.
 using FormanceSDK;
 using FormanceSDK.Models.Components;
 using FormanceSDK.Models.Requests;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -700,9 +835,6 @@ V2ListTransactionsRequest req = new V2ListTransactionsRequest() {
     PageSize = 100,
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     Sort = "id:desc",
-    RequestBody = new Dictionary<string, object>() {
-
-    },
 };
 
 var res = await sdk.Ledger.V2.ListTransactionsAsync(req);
@@ -739,6 +871,7 @@ using FormanceSDK;
 using FormanceSDK.Models.Components;
 using FormanceSDK.Models.Requests;
 using System.Collections.Generic;
+using System.Numerics;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -749,16 +882,18 @@ V2CreateTransactionRequest req = new V2CreateTransactionRequest() {
     Ledger = "ledger001",
     DryRun = true,
     Force = true,
+    SchemaVersion = "v1.0.0",
     V2PostTransaction = new V2PostTransaction() {
         Postings = new List<V2Posting>() {
             new V2Posting() {
-                Amount = 100,
+                Amount = BigInteger.Parse("100"),
                 Asset = "COIN",
                 Destination = "users:002",
                 Source = "users:001",
             },
         },
         Script = new V2PostTransactionScript() {
+            Template = "CUSTOMER_DEPOSIT",
             Plain = @"vars {
             account $user
             }
@@ -821,6 +956,7 @@ Get transaction from a ledger by its ID
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using System.Numerics;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -829,7 +965,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V2.GetTransactionAsync(
     ledger: "ledger001",
-    id: 1234
+    id: BigInteger.Parse("1234")
 );
 
 // handle response
@@ -867,6 +1003,7 @@ using FormanceSDK;
 using FormanceSDK.Models.Components;
 using FormanceSDK.Models.Requests;
 using System.Collections.Generic;
+using System.Numerics;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -875,8 +1012,9 @@ var sdk = new Formance(security: new Security() {
 
 V2AddMetadataOnTransactionRequest req = new V2AddMetadataOnTransactionRequest() {
     Ledger = "ledger001",
-    Id = 1234,
+    Id = BigInteger.Parse("1234"),
     DryRun = true,
+    SchemaVersion = "v1.0.0",
     RequestBody = new Dictionary<string, string>() {
         { "admin", "true" },
     },
@@ -914,6 +1052,7 @@ Delete metadata by key
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using System.Numerics;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -922,7 +1061,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V2.DeleteTransactionMetadataAsync(
     ledger: "ledger001",
-    id: 1234,
+    id: BigInteger.Parse("1234"),
     key: "foo"
 );
 
@@ -959,6 +1098,7 @@ Revert a ledger transaction by its ID
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using System.Numerics;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -967,8 +1107,9 @@ var sdk = new Formance(security: new Security() {
 
 Models.Requests.V2RevertTransactionRequest req = new FormanceSDK.Models.Requests.V2RevertTransactionRequest() {
     Ledger = "ledger001",
-    Id = 1234,
+    Id = BigInteger.Parse("1234"),
     DryRun = true,
+    SchemaVersion = "v1.0.0",
 };
 
 var res = await sdk.Ledger.V2.RevertTransactionAsync(req);
@@ -984,7 +1125,7 @@ var res = await sdk.Ledger.V2.RevertTransactionAsync(req);
 
 ### Response
 
-**[V2RevertTransactionResponse](../../Models/Requests/V2RevertTransactionResponse.md)**
+**[Models.Requests.V2RevertTransactionResponse](../../Models/Requests/V2RevertTransactionResponse.md)**
 
 ### Errors
 
@@ -1003,21 +1144,13 @@ Get the aggregated balances from selected accounts
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Ledger.V2.GetBalancesAggregatedAsync(
-    ledger: "ledger001",
-    requestBody: new Dictionary<string, object>() {
-        { "key", "<value>" },
-        { "key1", "<value>" },
-        { "key2", "<value>" },
-    }
-);
+var res = await sdk.Ledger.V2.GetBalancesAggregatedAsync(ledger: "ledger001");
 
 // handle response
 ```
@@ -1027,7 +1160,6 @@ var res = await sdk.Ledger.V2.GetBalancesAggregatedAsync(
 | Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `Ledger`                                                                              | *string*                                                                              | :heavy_check_mark:                                                                    | Name of the ledger.                                                                   | ledger001                                                                             |
-| `RequestBody`                                                                         | Dictionary<String, *object*>                                                          | :heavy_check_mark:                                                                    | N/A                                                                                   |                                                                                       |
 | `Pit`                                                                                 | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
 | `UseInsertionDate`                                                                    | *bool*                                                                                | :heavy_minus_sign:                                                                    | Use insertion date instead of effective date                                          |                                                                                       |
 
@@ -1053,7 +1185,6 @@ Get list of volumes with balances for (account/asset)
 using FormanceSDK;
 using FormanceSDK.Models.Components;
 using FormanceSDK.Models.Requests;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1066,9 +1197,6 @@ V2GetVolumesWithBalancesRequest req = new V2GetVolumesWithBalancesRequest() {
     Ledger = "ledger001",
     GroupBy = 3,
     Sort = "id:desc",
-    RequestBody = new Dictionary<string, object>() {
-        { "key", "<value>" },
-    },
 };
 
 var res = await sdk.Ledger.V2.GetVolumesWithBalancesAsync(req);
@@ -1104,7 +1232,6 @@ List the logs from a ledger, sorted by ID in descending order.
 using FormanceSDK;
 using FormanceSDK.Models.Components;
 using FormanceSDK.Models.Requests;
-using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1116,9 +1243,6 @@ V2ListLogsRequest req = new V2ListLogsRequest() {
     PageSize = 100,
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     Sort = "id:desc",
-    RequestBody = new Dictionary<string, object>() {
-
-    },
 };
 
 var res = await sdk.Ledger.V2.ListLogsAsync(req);
@@ -1221,6 +1345,63 @@ var res = await sdk.Ledger.V2.ExportLogsAsync(ledger: "ledger001");
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
+## RunQuery
+
+Run a query template on a ledger
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="v2RunQuery" method="post" path="/api/ledger/v2/{ledger}/queries/{id}/run" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Requests;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+V2RunQueryRequest req = new V2RunQueryRequest() {
+    Ledger = "ledger001",
+    SchemaVersion = "v1.0.0",
+    Id = "CUSTOMER_DEPOSIT",
+    PageSize = 100,
+    Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    Sort = "id:desc",
+    RequestBody = new V2RunQueryRequestBody() {
+        Params = V2QueryParams.CreateQueryTemplateAccountParams(
+            new QueryTemplateAccountParams() {
+                PageSize = 100,
+                Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+                Sort = "id:desc",
+            }
+        ),
+    },
+};
+
+var res = await sdk.Ledger.V2.RunQueryAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `request`                                                       | [V2RunQueryRequest](../../Models/Requests/V2RunQueryRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
+
+### Response
+
+**[V2RunQueryResponse](../../Models/Requests/V2RunQueryResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
 ## ListExporters
 
 List exporters
@@ -1270,7 +1451,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-V2ExporterConfiguration req = new V2ExporterConfiguration() {
+V2CreateExporterRequest req = new V2CreateExporterRequest() {
     Driver = "<value>",
     Config = new Dictionary<string, object>() {
         { "key", "<value>" },
@@ -1286,7 +1467,7 @@ var res = await sdk.Ledger.V2.CreateExporterAsync(req);
 
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `request`                                                                     | [V2ExporterConfiguration](../../Models/Components/V2ExporterConfiguration.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| `request`                                                                     | [V2CreateExporterRequest](../../Models/Components/V2CreateExporterRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
 
 ### Response
 
@@ -1337,6 +1518,56 @@ var res = await sdk.Ledger.V2.GetExporterStateAsync(exporterID: "<id>");
 | FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
 | FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
+## UpdateExporter
+
+Update exporter
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="v2UpdateExporter" method="put" path="/api/ledger/v2/_/exporters/{exporterID}" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using System.Collections.Generic;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Ledger.V2.UpdateExporterAsync(
+    exporterID: "<id>",
+    v2CreateExporterRequest: new V2CreateExporterRequest() {
+        Driver = "<value>",
+        Config = new Dictionary<string, object>() {
+            { "key", "<value>" },
+            { "key1", "<value>" },
+            { "key2", "<value>" },
+        },
+    }
+);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `ExporterID`                                                                  | *string*                                                                      | :heavy_check_mark:                                                            | The exporter id                                                               |
+| `V2CreateExporterRequest`                                                     | [V2CreateExporterRequest](../../Models/Components/V2CreateExporterRequest.md) | :heavy_check_mark:                                                            | N/A                                                                           |
+
+### Response
+
+**[V2UpdateExporterResponse](../../Models/Requests/V2UpdateExporterResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
 ## DeleteExporter
 
 Delete exporter
@@ -1367,6 +1598,82 @@ var res = await sdk.Ledger.V2.DeleteExporterAsync(exporterID: "<id>");
 ### Response
 
 **[V2DeleteExporterResponse](../../Models/Requests/V2DeleteExporterResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## DeleteBucket
+
+Delete a bucket by marking all ledgers in the bucket as deleted (soft delete). All ledgers in the bucket will have their deleted_at field set to the current timestamp.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="v2DeleteBucket" method="delete" path="/api/ledger/v2/_/buckets/{bucket}" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Ledger.V2.DeleteBucketAsync(bucket: "<value>");
+
+// handle response
+```
+
+### Parameters
+
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `Bucket`           | *string*           | :heavy_check_mark: | The bucket name    |
+
+### Response
+
+**[V2DeleteBucketResponse](../../Models/Requests/V2DeleteBucketResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## RestoreBucket
+
+Restore a deleted bucket by unmarking all ledgers in the bucket as deleted. All ledgers in the bucket will have their deleted_at field set to NULL.
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="v2RestoreBucket" method="post" path="/api/ledger/v2/_/buckets/{bucket}/restore" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Ledger.V2.RestoreBucketAsync(bucket: "<value>");
+
+// handle response
+```
+
+### Parameters
+
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `Bucket`           | *string*           | :heavy_check_mark: | The bucket name    |
+
+### Response
+
+**[V2RestoreBucketResponse](../../Models/Requests/V2RestoreBucketResponse.md)**
 
 ### Errors
 

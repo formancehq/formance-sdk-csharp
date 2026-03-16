@@ -11,13 +11,12 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// OK
+    /// OK.
     /// </summary>
     public class TransferResponse
     {
-
         [JsonProperty("id")]
         public string? Id { get; set; }
     }

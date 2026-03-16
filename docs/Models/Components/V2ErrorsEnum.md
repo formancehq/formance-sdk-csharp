@@ -1,5 +1,13 @@
 # V2ErrorsEnum
 
+## Example Usage
+
+```csharp
+using FormanceSDK.Models.Components;
+
+var value = V2ErrorsEnum.Internal;
+```
+
 
 ## Values
 
@@ -22,4 +30,6 @@
 | `InterpreterParse`    | INTERPRETER_PARSE     |
 | `InterpreterRuntime`  | INTERPRETER_RUNTIME   |
 | `LedgerAlreadyExists` | LEDGER_ALREADY_EXISTS |
+| `SchemaAlreadyExists` | SCHEMA_ALREADY_EXISTS |
+| `SchemaNotSpecified`  | SCHEMA_NOT_SPECIFIED  |
 | `OutdatedSchema`      | OUTDATED_SCHEMA       |

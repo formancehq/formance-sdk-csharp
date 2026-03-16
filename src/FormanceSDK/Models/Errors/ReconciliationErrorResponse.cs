@@ -27,7 +27,7 @@ namespace FormanceSDK.Models.Errors
     }
 
     /// <summary>
-    /// Error response
+    /// Error response.
     /// </summary>
     public class ReconciliationErrorResponse : SDKBaseException
     {
@@ -61,5 +61,4 @@ namespace FormanceSDK.Models.Errors
            #pragma warning restore CS0618
         }
     }
-
 }

@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V2ServerInfo
     {
-
         [JsonProperty("version")]
         public string Version { get; set; } = default!;
     }

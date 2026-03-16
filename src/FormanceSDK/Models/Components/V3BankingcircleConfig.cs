@@ -11,10 +11,10 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+    using System;
+
     public class V3BankingcircleConfig
     {
-
         [JsonProperty("authorizationEndpoint")]
         public string AuthorizationEndpoint { get; set; } = default!;
 
@@ -24,6 +24,7 @@ namespace FormanceSDK.Models.Components
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible")]
         [JsonProperty("pageSize")]
         public long? PageSize { get; set; } = 25;
 
@@ -31,7 +32,7 @@ namespace FormanceSDK.Models.Components
         public string Password { get; set; } = default!;
 
         [JsonProperty("pollingPeriod")]
-        public string? PollingPeriod { get; set; } = "2m";
+        public string? PollingPeriod { get; set; } = "30m";
 
         [JsonProperty("provider")]
         public string? Provider { get; set; } = "Bankingcircle";

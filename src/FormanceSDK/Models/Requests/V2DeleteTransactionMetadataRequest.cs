@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
     using System.Numerics;
-    
+
     public class V2DeleteTransactionMetadataRequest
     {
-
         /// <summary>
         /// Name of the ledger.
         /// </summary>
@@ -34,7 +33,7 @@ namespace FormanceSDK.Models.Requests
         public string Key { get; set; } = default!;
 
         /// <summary>
-        /// Use an idempotency key
+        /// Use an idempotency key.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=Idempotency-Key")]
         public string? IdempotencyKey { get; set; }

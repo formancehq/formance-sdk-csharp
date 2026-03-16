@@ -11,16 +11,11 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V3ApprovePaymentInitiationResponseData
     {
-
         /// <summary>
-        /// Since this call is asynchronous, the response will contain the ID of the task that was created to approve the payment initiation. You can use the task API to check the status of the task and get the resulting payment ID.<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// Since this call is asynchronous, the response will contain the ID of the task that was created to approve the payment initiation. You can use the task API to check the status of the task and get the resulting payment ID.
         /// </summary>
         [JsonProperty("taskID")]
         public string TaskID { get; set; } = default!;

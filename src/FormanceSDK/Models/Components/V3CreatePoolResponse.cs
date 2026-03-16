@@ -11,12 +11,11 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V3CreatePoolResponse
     {
-
         /// <summary>
-        /// The ID of the created pool
+        /// The ID of the created pool.
         /// </summary>
         [JsonProperty("data")]
         public string Data { get; set; } = default!;

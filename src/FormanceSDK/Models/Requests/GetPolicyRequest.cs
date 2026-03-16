@@ -10,10 +10,9 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class GetPolicyRequest
     {
-
         /// <summary>
         /// The policy ID.
         /// </summary>

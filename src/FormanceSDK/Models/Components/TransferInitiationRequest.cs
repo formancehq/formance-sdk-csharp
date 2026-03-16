@@ -15,10 +15,9 @@ namespace FormanceSDK.Models.Components
     using System;
     using System.Collections.Generic;
     using System.Numerics;
-    
+
     public class TransferInitiationRequest
     {
-
         [JsonProperty("reference")]
         public string Reference { get; set; } = default!;
 

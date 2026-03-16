@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V2CreatePipelineRequest
     {
-
         [JsonProperty("exporterID")]
         public string ExporterID { get; set; } = default!;
     }

@@ -10,10 +10,9 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class V2ImportLogsRequest
     {
-
         /// <summary>
         /// Name of the ledger.
         /// </summary>

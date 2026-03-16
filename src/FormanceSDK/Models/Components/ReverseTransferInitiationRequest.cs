@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using Newtonsoft.Json;
     using System.Collections.Generic;
     using System.Numerics;
-    
+
     public class ReverseTransferInitiationRequest
     {
-
         [JsonProperty("reference")]
         public string Reference { get; set; } = default!;
 

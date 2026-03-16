@@ -10,20 +10,23 @@
 
 namespace FormanceSDK.Hooks.ClientCredentials
 {
-        using FormanceSDK.Models.Components;
-        using FormanceSDK.Utils;
-        using Newtonsoft.Json;
-        using System;
-        using System.Collections.Concurrent;
-        using System.Collections.Generic;
-        using System.Linq;
-        using System.Net.Http;
-        using System.Security.Cryptography;
-        using System.Text;
-        using System.Threading.Tasks;
+    using FormanceSDK.Models.Components;
+    using FormanceSDK.Utils;
+    using Newtonsoft.Json;
+    using System;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net.Http;
+    using System.Security.Cryptography;
+    using System.Text;
+    using System.Threading.Tasks;
 
     using PayloadValue = System.Collections.Generic.KeyValuePair<string?, string?>;
 
+    /// <summary>
+    /// Represents the response from the token endpoint.
+    /// </summary>
     public class TokenResponse
     {
         [JsonProperty("access_token")]
@@ -36,20 +39,35 @@ namespace FormanceSDK.Hooks.ClientCredentials
         public long? ExpiresIn { get; private set; }
     }
 
+    /// <summary>
+    /// Represents OAuth2 client credentials.
+    /// </summary>
     public class Credentials
     {
         public string ClientID { get; private set; }
         public string ClientSecret { get; private set; }
         public string TokenURL { get; private set; }
+        public List<string>? Scopes { get; private set; }
 
-        public Credentials(string clientID, string clientSecret, string tokenURL)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Credentials"/> class.
+        /// </summary>
+        /// <param name="clientID">The client ID.</param>
+        /// <param name="clientSecret">The client secret.</param>
+        /// <param name="tokenURL">The authorization server token endpoint.</param>
+        /// <param name="scopes">The list of scopes for the token request.</param>
+        public Credentials(string clientID, string clientSecret, string tokenURL, List<string>? scopes)
         {
             ClientID = clientID;
             ClientSecret = clientSecret;
             TokenURL = tokenURL;
+            Scopes = scopes;
         }
     }
 
+    /// <summary>
+    /// Represents an OAuth2 session with access token and associated metadata.
+    /// </summary>
     public class Session
     {
         public Credentials Credentials { get; private set; }
@@ -57,6 +75,13 @@ namespace FormanceSDK.Hooks.ClientCredentials
         public List<string> Scopes { get; private set; }
         public DateTime? ExpiresAt { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Session"/> class.
+        /// </summary>
+        /// <param name="credentials">The client credentials for this session.</param>
+        /// <param name="token">The access token.</param>
+        /// <param name="scopes">The list of scopes associated with the token.</param>
+        /// <param name="expiresAt">The expiration time of the token.</param>
         public Session(Credentials credentials, string token, List<string> scopes, DateTime? expiresAt = null)
         {
             Credentials = credentials;
@@ -66,23 +91,51 @@ namespace FormanceSDK.Hooks.ClientCredentials
         }
     }
 
+    /// <summary>
+    /// Hook that handles the OAuth2 client credentials flow.
+    /// Implements <see cref="ISDKInitHook"/>, <see cref="IBeforeRequestHook"/>, and <see cref="IAfterErrorHook"/>.
+    /// </summary>
     public class ClientCredentialsHook : ISDKInitHook, IBeforeRequestHook, IAfterErrorHook
     {
-        public ConcurrentDictionary<string, Session> Sessions { get; private set; } = new ConcurrentDictionary<string, Session>();
+        /// <summary>In-memory store for OAuth2 sessions.</summary>
+        public ConcurrentDictionary<string, ConcurrentDictionary<string, Session>> Sessions { get; private set; } = new ConcurrentDictionary<string, ConcurrentDictionary<string, Session>>();
+
+        /// <summary>The HTTP client used to make requests.</summary>
         public ISpeakeasyHttpClient Client = default!;
-        
+
+        /// <summary>
+        /// Sets the base URL and HTTP client to be used by the Hook.
+        /// </summary>
+        /// <param name="baseUrl">The base URL for the SDK.</param>
+        /// <param name="client">The HTTP client to be used by the SDK.</param>
+        /// <returns>A tuple containing the base URL and the HTTP client.</returns>
         public (string, ISpeakeasyHttpClient) SDKInit(string baseUrl, ISpeakeasyHttpClient client)
         {
             Client = client;
 
             return (baseUrl, client);
         }
-        
+
+        /// <summary>
+        /// Checks whether the hook is disabled based on the presence of OAuth2 scopes in the hook context.
+        /// </summary>
+        private Boolean IsHookDisabled(HookContext hookCtx)
+        {
+            return hookCtx.Oauth2Scopes == null;
+        }
+
+        /// <summary>
+        /// Performs the OAuth2 client credentials flow before sending the HTTP request.
+        /// First it checks for an existing valid session with the required scopes.
+        /// If no valid session is found, a token request is made to obtain a new access token.
+        /// </summary>
+        /// <param name="hookCtx">The hook context containing request metadata.</param>
+        /// <param name="request">The HTTP request message.</param>
+        /// <returns>The modified HTTP request message with the Authorization header set.</returns>
         public async Task<HttpRequestMessage> BeforeRequestAsync(BeforeRequestContext hookCtx, HttpRequestMessage request)
         {
-            if (hookCtx.Oauth2Scopes == null)
+            if (IsHookDisabled(hookCtx))
             {
-                // OAuth2 not in use
                 return request;
             }
 
@@ -93,30 +146,45 @@ namespace FormanceSDK.Hooks.ClientCredentials
             }
 
             var sessionKey = GetSessionKey(credentials.ClientID, credentials.ClientSecret);
+            var scopes = GetRequiredScopes(credentials, hookCtx);
+            var session = GetExistingSession(sessionKey, scopes);
 
-            if (!Sessions.ContainsKey(sessionKey) || !HasRequiredScopes(Sessions[sessionKey].Scopes, hookCtx.Oauth2Scopes) || HasTokenExpired(Sessions[sessionKey].ExpiresAt))
+            if (session == null)
             {
-                var session = await DoTokenRequestAsync(
+                // Create new session
+                session = await DoTokenRequestAsync(
                     hookCtx.BaseURL,
                     credentials,
-                    GetScopes(hookCtx.Oauth2Scopes, Sessions.GetValueOrDefault(sessionKey))
+                    scopes
                 );
 
-                Sessions[sessionKey] = session;
+                var clientSessions = Sessions.GetOrAdd(
+                    sessionKey,
+                    _ => new ConcurrentDictionary<string, Session>()
+                );
+
+                var scopeKey = GetScopeKey(scopes);
+                clientSessions[scopeKey] = session;
             }
 
             request.Headers.Remove("Authorization");
-            request.Headers.Add("Authorization", $"Bearer {Sessions[sessionKey].Token}");
+            request.Headers.Add("Authorization", $"Bearer {session.Token}");
 
             return request;
         }
 
         #pragma warning disable CS1998
+        /// <summary>
+        /// Removes the session if the last HTTP request resulted in an unauthorized error.
+        /// </summary>
+        /// <param name="hookCtx">The hook context containing request metadata.</param>
+        /// <param name="response">The HTTP response message.</param>
+        /// <param name="error">The exception that occurred during the request.</param>
+        /// <returns>The original response and error.</returns>
         public async Task<(HttpResponseMessage?, Exception?)> AfterErrorAsync(AfterErrorContext hookCtx, HttpResponseMessage? response, Exception? error)
         {
-            if (hookCtx.Oauth2Scopes == null)
+            if (IsHookDisabled(hookCtx))
             {
-                // OAuth2 not in use
                 return (response, error);
             }
 
@@ -134,14 +202,19 @@ namespace FormanceSDK.Hooks.ClientCredentials
 
             if (response != null && response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
             {
-                var sessionKey = GetSessionKey(credentials.ClientID, credentials.ClientSecret);
-                Sessions.TryRemove(sessionKey, out _);
+                var scopeKey = GetScopeKey(GetRequiredScopes(credentials, hookCtx));
+                RemoveSession(GetSessionKey(credentials.ClientID, credentials.ClientSecret), scopeKey);
             }
 
             return (response, error);
         }
         #pragma warning restore CS1998
 
+        /// <summary>
+        /// Retrieves the client credentials from the appropriate security source.
+        /// </summary>
+        /// <param name="hookCtx">The hook context containing security information.</param>
+        /// <returns>The client credentials, or null if not available.</returns>
         private Credentials? GetCredentials(HookContext hookCtx)
         {
 
@@ -154,6 +227,11 @@ namespace FormanceSDK.Hooks.ClientCredentials
         }
 
 
+        /// <summary>
+        /// Retrieves Client Credentials OAuth2 credentials from the security source.
+        /// </summary>
+        /// <param name="securitySource">A callback function that provides the security object.</param>
+        /// <returns>Credentials if available, null otherwise.</returns>
         private Credentials? GetCredentialsGlobal(Func<object> securitySource)
         {
             var security = securitySource() as Security;
@@ -166,27 +244,23 @@ namespace FormanceSDK.Hooks.ClientCredentials
             return new Credentials(
                 security?.ClientID!,
                 security?.ClientSecret!,
-                security?.TokenURL!
+                security?.TokenURL!,
+                null
             );
         }
 
+        /// <summary>
+        /// Performs the token request to the authorization server.
+        /// </summary>
+        /// <param name="baseURL">The base URL of the authorization server.</param>
+        /// <param name="credentials">The client credentials to authenticate with.</param>
+        /// <param name="scopes">The list of scopes for the token request.</param>
+        /// <returns>A session containing the access token and associated metadata.</returns>
         private async Task<Session> DoTokenRequestAsync(string baseURL, Credentials credentials, List<string> scopes)
         {
             if( Client == null )
             {
                 throw new Exception("SpeakeasyHttpClient not provided");
-            }
-
-            var payload = new List<PayloadValue>
-            {
-                new PayloadValue("grant_type", "client_credentials"),
-                new PayloadValue("client_id", credentials.ClientID),
-                new PayloadValue("client_secret", credentials.ClientSecret),
-            };
-
-            if (scopes.Count > 0)
-            {
-                payload.Add(new PayloadValue("scope", string.Join(" ", scopes)));
             }
 
             Uri tokenUri;
@@ -202,9 +276,22 @@ namespace FormanceSDK.Hooks.ClientCredentials
             var request = new HttpRequestMessage
                 {
                     Method = HttpMethod.Post,
-                    RequestUri = tokenUri,
-                    Content = new FormUrlEncodedContent(payload)
+                    RequestUri = tokenUri
                 };
+
+            var payload = new List<PayloadValue>
+            {
+                new PayloadValue("grant_type", "client_credentials"),
+            };
+            payload.Add(new PayloadValue("client_id", credentials.ClientID));
+            payload.Add(new PayloadValue("client_secret", credentials.ClientSecret));
+
+            if (scopes.Count > 0)
+            {
+                payload.Add(new PayloadValue("scope", string.Join(" ", scopes)));
+            }
+
+            request.Content = new FormUrlEncodedContent(payload);
 
             var response = await Client.SendAsync(request);
             var responseBody = await response.Content.ReadAsStringAsync();
@@ -247,12 +334,18 @@ namespace FormanceSDK.Hooks.ClientCredentials
             DateTime? expiresAt = null;
             if (tokenResponse!.ExpiresIn != null)
             {
-                expiresAt = DateTime.Now.AddSeconds(tokenResponse!.ExpiresIn!.Value);
+                expiresAt = DateTime.UtcNow.AddSeconds(tokenResponse!.ExpiresIn!.Value);
             }
 
             return new Session(credentials, tokenResponse!.AccessToken, scopes, expiresAt);
         }
 
+        /// <summary>
+        /// Generates a unique key associated with the client credentials.
+        /// </summary>
+        /// <param name="clientID">The client ID.</param>
+        /// <param name="clientSecret">The client secret.</param>
+        /// <returns>A unique session key.</returns>
         private string GetSessionKey(string clientID, string clientSecret)
         {
             using (MD5 md5 = MD5.Create())
@@ -262,26 +355,120 @@ namespace FormanceSDK.Hooks.ClientCredentials
             }
         }
 
+        /// <summary>
+        /// Returns the list of required scopes for the token request.
+        /// </summary>
+        /// <param name="credentials">The client credentials containing optional scopes.</param>
+        /// <param name="hookCtx">The hook context containing OAuth2 scopes.</param>
+        /// <returns>The list of required scopes.</returns>
+        private List<string> GetRequiredScopes(Credentials credentials, HookContext hookCtx)
+        {
+            return credentials.Scopes ?? hookCtx.Oauth2Scopes!;
+        }
+
+        /// <summary>
+        /// Generates a unique key for a given set of scopes.
+        /// </summary>
+        /// <param name="scopes">The list of scopes.</param>
+        /// <returns>A unique scope key.</returns>
+        private string GetScopeKey(List<string> scopes)
+        {
+            if (scopes == null)
+            {
+                return "";
+            }
+
+            if (scopes.Count == 0)
+            {
+                return "none";
+            }
+
+            return string.Join("&", scopes.OrderBy(s => s).ToList());
+        }
+
+        /// <summary>
+        /// Tries retrieving an existing session with the required scopes.
+        /// </summary>
+        /// <param name="sessionKey">The session key associated with the client credentials.</param>
+        /// <param name="requiredScopes">The list of required scopes.</param>
+        /// <returns>The existing session if found; otherwise, null.</returns>
+        private Session? GetExistingSession(string sessionKey, List<string> requiredScopes)
+        {
+            if (!Sessions.TryGetValue(sessionKey, out var clientSessions))
+            {
+                return null;
+            }
+
+            var scopeKey = GetScopeKey(requiredScopes);
+
+            if (clientSessions.TryGetValue(scopeKey, out var exactSession))
+            {
+                if (HasTokenExpired(exactSession.ExpiresAt))
+                {
+                    RemoveSession(sessionKey, scopeKey);
+                }
+                else
+                {
+                    return exactSession;
+                }
+            }
+
+            // If no exact match was found, look for superset match
+            foreach (var kvp in clientSessions)
+            {
+                var session = kvp.Value;
+                if (HasTokenExpired(session.ExpiresAt))
+                {
+                    RemoveSession(sessionKey, kvp.Key);
+                }
+                else if (HasRequiredScopes(session.Scopes, requiredScopes))
+                {
+                    return session;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Removes a session from the session store.
+        /// </summary>
+        /// <param name="sessionKey">The session key associated with the client credentials.</param>
+        /// <param name="scopeKey">The scope key associated with the session.</param>
+        private void RemoveSession(string sessionKey, string scopeKey)
+        {
+            if (Sessions.TryGetValue(sessionKey, out var clientSessions))
+            {
+                clientSessions.TryRemove(scopeKey, out _);
+                if (clientSessions.IsEmpty)
+                {
+                    Sessions.TryRemove(sessionKey, out _);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Checks whether the scope list for the current session includes all required scopes.
+        /// </summary>
+        /// <param name="sessionScopes">The list of scopes associated with the current session.</param>
+        /// <param name="requiredScopes">The list of required scopes.</param>
+        /// <returns>True if all required scopes are present; otherwise, false.</returns>
         private bool HasRequiredScopes(List<string> sessionScopes, List<string> requiredScopes)
         {
             return requiredScopes.All(requiredScope => sessionScopes.Contains(requiredScope));
         }
 
-        private List<string> GetScopes(List<string> requiredScopes, Session? session)
-        {
-            if (session?.Scopes != null)
-            {
-                var scopes = new List<string>(requiredScopes);
-                scopes.AddRange(session.Scopes);
-                return scopes.Distinct().ToList();
-            }
-
-            return requiredScopes;
-        }
-
+        /// <summary>
+        /// Checks if the token has expired.
+        /// If no `expires_in` field was returned by the authorization server, the token is considered to never expire.
+        /// A 60-second buffer is applied to refresh tokens before they actually expire.
+        /// </summary>
+        /// <param name="expiresAt">The expiration time of the token.</param>
+        /// <returns>True if the token has expired; otherwise, false.</returns>
         private bool HasTokenExpired(DateTime? expiresAt)
         {
-            return expiresAt == null || DateTime.UtcNow.AddSeconds(60) >= expiresAt;
+            return expiresAt != null && DateTime.UtcNow.AddSeconds(60) >= expiresAt;
         }
+
     }
 }

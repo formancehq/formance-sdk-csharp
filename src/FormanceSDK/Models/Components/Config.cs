@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class Config
     {
-
         [JsonProperty("storage")]
         public LedgerStorage Storage { get; set; } = default!;
     }

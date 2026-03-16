@@ -61,7 +61,6 @@ namespace FormanceSDK.Models.Components
         }
     }
 
-
     [JsonConverter(typeof(V2BulkElementResult.V2BulkElementResultConverter))]
     public class V2BulkElementResult
     {

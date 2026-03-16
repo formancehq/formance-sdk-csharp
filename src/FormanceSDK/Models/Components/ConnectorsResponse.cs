@@ -13,13 +13,12 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     /// <summary>
-    /// OK
+    /// OK.
     /// </summary>
     public class ConnectorsResponse
     {
-
         [JsonProperty("data")]
         public List<ConnectorsResponseData> Data { get; set; } = default!;
     }

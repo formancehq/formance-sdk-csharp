@@ -12,7 +12,7 @@ namespace FormanceSDK.Models.Errors
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     public enum V2ErrorErrorCode
     {
         [JsonProperty("VALIDATION")]
@@ -55,5 +55,4 @@ namespace FormanceSDK.Models.Errors
             throw new Exception($"Unknown value {value} for enum V2ErrorErrorCode");
         }
     }
-
 }

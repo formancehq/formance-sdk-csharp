@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V2GetWorkflowInstanceResponse
     {
-
         [JsonProperty("data")]
         public V2WorkflowInstance Data { get; set; } = default!;
     }

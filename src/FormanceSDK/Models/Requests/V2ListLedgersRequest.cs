@@ -10,46 +10,35 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    using System.Collections.Generic;
-    
+
     public class V2ListLedgersRequest
     {
-
         /// <summary>
-        /// The maximum number of results to return per page.<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// The maximum number of results to return per page.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")]
         public long? PageSize { get; set; }
 
         /// <summary>
         /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
-        /// 
-        /// <remarks>
         /// Set to the value of next for the next page of results.<br/>
         /// Set to the value of previous for the previous page of results.<br/>
-        /// No other parameters can be set when this parameter is set.<br/>
-        /// 
-        /// </remarks>
+        /// No other parameters can be set when this parameter is set.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")]
         public string? Cursor { get; set; }
 
         /// <summary>
-        /// Sort results using a field name and order (ascending or descending). <br/>
-        /// 
-        /// <remarks>
-        /// Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;` is either `asc` or `desc`.<br/>
-        /// 
-        /// </remarks>
+        /// If true, include deleted ledgers in the results. By default, deleted ledgers are excluded.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeDeleted")]
+        public bool? IncludeDeleted { get; set; } = false;
+
+        /// <summary>
+        /// Sort results using a field name and order (ascending or descending).<br/>
+        /// Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;` is either `asc` or `desc`.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")]
         public string? Sort { get; set; }
-
-        [SpeakeasyMetadata("request:mediaType=application/json")]
-        public Dictionary<string, object> RequestBody { get; set; } = default!;
     }
 }

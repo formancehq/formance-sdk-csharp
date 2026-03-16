@@ -37,6 +37,7 @@ and standard method from web, mobile and desktop applications.
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
   * [Authentication](#authentication-1)
+  * [Custom HTTP Client](#custom-http-client)
 * [Development](#development)
   * [Maturity](#maturity)
   * [Contributions](#contributions)
@@ -68,12 +69,8 @@ dotnet add reference src/FormanceSDK/FormanceSDK.csproj
 
 ```csharp
 using FormanceSDK;
-using FormanceSDK.Models.Components;
 
-var sdk = new Formance(security: new Security() {
-    ClientID = "<YOUR_CLIENT_ID_HERE>",
-    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
-});
+var sdk = new Formance();
 
 var res = await sdk.GetVersionsAsync();
 
@@ -87,10 +84,11 @@ var res = await sdk.GetVersionsAsync();
 <details open>
 <summary>Available methods</summary>
 
-### [Auth](docs/sdks/auth/README.md)
+### [Formance SDK](docs/sdks/formance/README.md)
 
+* [GetVersions](docs/sdks/formance/README.md#getversions) - Show stack version information
 
-#### [Auth.V1](docs/sdks/v1/README.md)
+### [Auth.V1](docs/sdks/v1/README.md)
 
 * [GetOIDCWellKnowns](docs/sdks/v1/README.md#getoidcwellknowns) - Retrieve OpenID connect well-knowns.
 * [GetServerInfo](docs/sdks/v1/README.md#getserverinfo) - Get server info
@@ -103,10 +101,6 @@ var res = await sdk.GetVersionsAsync();
 * [DeleteSecret](docs/sdks/v1/README.md#deletesecret) - Delete a secret from a client
 * [ListUsers](docs/sdks/v1/README.md#listusers) - List users
 * [ReadUser](docs/sdks/v1/README.md#readuser) - Read user
-
-### [Formance SDK](docs/sdks/formance/README.md)
-
-* [GetVersions](docs/sdks/formance/README.md#getversions) - Show stack version information
 
 ### [Ledger](docs/sdks/ledger/README.md)
 
@@ -141,6 +135,9 @@ var res = await sdk.GetVersionsAsync();
 * [ListLedgers](docs/sdks/v2/README.md#listledgers) - List ledgers
 * [GetLedger](docs/sdks/v2/README.md#getledger) - Get a ledger
 * [CreateLedger](docs/sdks/v2/README.md#createledger) - Create a ledger
+* [InsertSchema](docs/sdks/v2/README.md#insertschema) - Insert a schema for a ledger
+* [GetSchema](docs/sdks/v2/README.md#getschema) - Get a schema for a ledger by version
+* [ListSchemas](docs/sdks/v2/README.md#listschemas) - List all schemas for a ledger
 * [UpdateLedgerMetadata](docs/sdks/v2/README.md#updateledgermetadata) - Update ledger metadata
 * [DeleteLedgerMetadata](docs/sdks/v2/README.md#deleteledgermetadata) - Delete ledger metadata by key
 * [GetLedgerInfo](docs/sdks/v2/README.md#getledgerinfo) - Get information about a ledger
@@ -163,10 +160,14 @@ var res = await sdk.GetVersionsAsync();
 * [ListLogs](docs/sdks/v2/README.md#listlogs) - List the logs from a ledger
 * [ImportLogs](docs/sdks/v2/README.md#importlogs)
 * [ExportLogs](docs/sdks/v2/README.md#exportlogs) - Export logs
+* [RunQuery](docs/sdks/v2/README.md#runquery) - Run a query template
 * [ListExporters](docs/sdks/v2/README.md#listexporters) - List exporters
 * [CreateExporter](docs/sdks/v2/README.md#createexporter) - Create exporter
 * [GetExporterState](docs/sdks/v2/README.md#getexporterstate) - Get exporter state
+* [UpdateExporter](docs/sdks/v2/README.md#updateexporter) - Update exporter
 * [DeleteExporter](docs/sdks/v2/README.md#deleteexporter) - Delete exporter
+* [DeleteBucket](docs/sdks/v2/README.md#deletebucket) - Delete bucket
+* [RestoreBucket](docs/sdks/v2/README.md#restorebucket) - Restore bucket
 * [ListPipelines](docs/sdks/v2/README.md#listpipelines) - List pipelines
 * [CreatePipeline](docs/sdks/v2/README.md#createpipeline) - Create pipeline
 * [GetPipelineState](docs/sdks/v2/README.md#getpipelinestate) - Get pipeline state
@@ -175,10 +176,7 @@ var res = await sdk.GetVersionsAsync();
 * [StartPipeline](docs/sdks/v2/README.md#startpipeline) - Start pipeline
 * [StopPipeline](docs/sdks/v2/README.md#stoppipeline) - Stop pipeline
 
-### [Orchestration](docs/sdks/orchestration/README.md)
-
-
-#### [Orchestration.V1](docs/sdks/formanceorchestrationv1/README.md)
+### [Orchestration.V1](docs/sdks/formanceorchestrationv1/README.md)
 
 * [OrchestrationgetServerInfo](docs/sdks/formanceorchestrationv1/README.md#orchestrationgetserverinfo) - Get server info
 * [ListTriggers](docs/sdks/formanceorchestrationv1/README.md#listtriggers) - List triggers
@@ -198,7 +196,7 @@ var res = await sdk.GetVersionsAsync();
 * [GetInstanceHistory](docs/sdks/formanceorchestrationv1/README.md#getinstancehistory) - Get a workflow instance history by id
 * [GetInstanceStageHistory](docs/sdks/formanceorchestrationv1/README.md#getinstancestagehistory) - Get a workflow instance stage history
 
-#### [Orchestration.V2](docs/sdks/formancev2/README.md)
+### [Orchestration.V2](docs/sdks/formancev2/README.md)
 
 * [GetServerInfo](docs/sdks/formancev2/README.md#getserverinfo) - Get server info
 * [ListTriggers](docs/sdks/formancev2/README.md#listtriggers) - List triggers
@@ -219,10 +217,7 @@ var res = await sdk.GetVersionsAsync();
 * [GetInstanceHistory](docs/sdks/formancev2/README.md#getinstancehistory) - Get a workflow instance history by id
 * [GetInstanceStageHistory](docs/sdks/formancev2/README.md#getinstancestagehistory) - Get a workflow instance stage history
 
-### [Payments](docs/sdks/payments/README.md)
-
-
-#### [Payments.V1](docs/sdks/formancepaymentsv1/README.md)
+### [Payments.V1](docs/sdks/formancepaymentsv1/README.md)
 
 * [PaymentsgetServerInfo](docs/sdks/formancepaymentsv1/README.md#paymentsgetserverinfo) - Get server info
 * [CreatePayment](docs/sdks/formancepaymentsv1/README.md#createpayment) - Create a payment
@@ -240,6 +235,7 @@ var res = await sdk.GetVersionsAsync();
 * [CreatePool](docs/sdks/formancepaymentsv1/README.md#createpool) - Create a Pool
 * [GetPool](docs/sdks/formancepaymentsv1/README.md#getpool) - Get a Pool
 * [DeletePool](docs/sdks/formancepaymentsv1/README.md#deletepool) - Delete a Pool
+* [UpdatePoolQuery](docs/sdks/formancepaymentsv1/README.md#updatepoolquery) - Update the query of a pool
 * [AddAccountToPool](docs/sdks/formancepaymentsv1/README.md#addaccounttopool) - Add an account to a pool
 * [RemoveAccountFromPool](docs/sdks/formancepaymentsv1/README.md#removeaccountfrompool) - Remove an account from a pool
 * [GetPoolBalances](docs/sdks/formancepaymentsv1/README.md#getpoolbalances) - Get historical pool balances at a particular point in time
@@ -269,7 +265,7 @@ var res = await sdk.GetVersionsAsync();
 * [GetConnectorTaskV1](docs/sdks/formancepaymentsv1/README.md#getconnectortaskv1) - Read a specific task of the connector
 * [ConnectorsTransfer](docs/sdks/formancepaymentsv1/README.md#connectorstransfer) - Transfer funds between Connector accounts
 
-#### [Payments.V3](docs/sdks/v3/README.md)
+### [Payments.V3](docs/sdks/v3/README.md)
 
 * [CreateAccount](docs/sdks/v3/README.md#createaccount) - Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.
 
@@ -310,22 +306,32 @@ var res = await sdk.GetVersionsAsync();
 * [CreatePaymentServiceUser](docs/sdks/v3/README.md#createpaymentserviceuser) - Create a formance payment service user object
 * [ListPaymentServiceUsers](docs/sdks/v3/README.md#listpaymentserviceusers) - List all payment service users
 * [GetPaymentServiceUser](docs/sdks/v3/README.md#getpaymentserviceuser) - Get a payment service user by ID
+* [DeletePaymentServiceUser](docs/sdks/v3/README.md#deletepaymentserviceuser) - Delete a payment service user by ID
+* [ListPaymentServiceUserConnections](docs/sdks/v3/README.md#listpaymentserviceuserconnections) - List all connections for a payment service user
+* [DeletePaymentServiceUserConnector](docs/sdks/v3/README.md#deletepaymentserviceuserconnector) - Remove a payment service user from a connector, the PSU will still exist in Formance
+* [ForwardPaymentServiceUserToProvider](docs/sdks/v3/README.md#forwardpaymentserviceusertoprovider) - Register/forward a payment service user on/to a connector
+* [CreateLinkForPaymentServiceUser](docs/sdks/v3/README.md#createlinkforpaymentserviceuser) - Create an authentication link for a payment service user on a connector, for oauth flow
+* [ListPaymentServiceUserConnectionsFromConnectorID](docs/sdks/v3/README.md#listpaymentserviceuserconnectionsfromconnectorid) - List enabled connections for a payment service user on a connector (i.e. the various banks PSUser has enabled on the connector)
+* [ListPaymentServiceUserLinkAttemptsFromConnectorID](docs/sdks/v3/README.md#listpaymentserviceuserlinkattemptsfromconnectorid) - List all link attempts for a payment service user on a connector.
+Allows to check if users used the link and completed the oauth flow.
+
+* [GetPaymentServiceUserLinkAttemptFromConnectorID](docs/sdks/v3/README.md#getpaymentserviceuserlinkattemptfromconnectorid) - Get a link attempt for a payment service user on a connector
+* [DeletePaymentServiceUserConnectionFromConnectorID](docs/sdks/v3/README.md#deletepaymentserviceuserconnectionfromconnectorid) - Delete a connection for a payment service user on a connector
+* [UpdateLinkForPaymentServiceUserOnConnector](docs/sdks/v3/README.md#updatelinkforpaymentserviceuseronconnector) - Update/Regenerate a link for a payment service user on a connector
 * [AddBankAccountToPaymentServiceUser](docs/sdks/v3/README.md#addbankaccounttopaymentserviceuser) - Add a bank account to a payment service user
 * [ForwardPaymentServiceUserBankAccount](docs/sdks/v3/README.md#forwardpaymentserviceuserbankaccount) - Forward a payment service user's bank account to a connector
 * [CreatePool](docs/sdks/v3/README.md#createpool) - Create a formance pool object
 * [ListPools](docs/sdks/v3/README.md#listpools) - List all pools
 * [GetPool](docs/sdks/v3/README.md#getpool) - Get a pool by ID
 * [DeletePool](docs/sdks/v3/README.md#deletepool) - Delete a pool by ID
+* [UpdatePoolQuery](docs/sdks/v3/README.md#updatepoolquery) - Update the query of a pool
 * [GetPoolBalances](docs/sdks/v3/README.md#getpoolbalances) - Get historical pool balances from a particular point in time
 * [GetPoolBalancesLatest](docs/sdks/v3/README.md#getpoolbalanceslatest) - Get latest pool balances
 * [AddAccountToPool](docs/sdks/v3/README.md#addaccounttopool) - Add an account to a pool
 * [RemoveAccountFromPool](docs/sdks/v3/README.md#removeaccountfrompool) - Remove an account from a pool
 * [GetTask](docs/sdks/v3/README.md#gettask) - Get a task and its result by ID
 
-### [Reconciliation](docs/sdks/reconciliation/README.md)
-
-
-#### [Reconciliation.V1](docs/sdks/formancereconciliationv1/README.md)
+### [Reconciliation.V1](docs/sdks/formancereconciliationv1/README.md)
 
 * [ReconciliationgetServerInfo](docs/sdks/formancereconciliationv1/README.md#reconciliationgetserverinfo) - Get server info
 * [CreatePolicy](docs/sdks/formancereconciliationv1/README.md#createpolicy) - Create a policy
@@ -336,18 +342,12 @@ var res = await sdk.GetVersionsAsync();
 * [ListReconciliations](docs/sdks/formancereconciliationv1/README.md#listreconciliations) - List reconciliations
 * [GetReconciliation](docs/sdks/formancereconciliationv1/README.md#getreconciliation) - Get a reconciliation
 
-### [~~Search~~](docs/sdks/search/README.md)
-
-
-#### [~~Search.V1~~](docs/sdks/formancesearchv1/README.md)
+### [~~Search.V1~~](docs/sdks/formancesearchv1/README.md)
 
 * [~~SearchgetServerInfo~~](docs/sdks/formancesearchv1/README.md#searchgetserverinfo) - Get server info :warning: **Deprecated**
 * [~~Search~~](docs/sdks/formancesearchv1/README.md#search) - search.v1 :warning: **Deprecated**
 
-### [Wallets](docs/sdks/wallets/README.md)
-
-
-#### [Wallets.V1](docs/sdks/formancewalletsv1/README.md)
+### [Wallets.V1](docs/sdks/formancewalletsv1/README.md)
 
 * [WalletsgetServerInfo](docs/sdks/formancewalletsv1/README.md#walletsgetserverinfo) - Get server info
 * [GetTransactions](docs/sdks/formancewalletsv1/README.md#gettransactions)
@@ -366,10 +366,7 @@ var res = await sdk.GetVersionsAsync();
 * [ConfirmHold](docs/sdks/formancewalletsv1/README.md#confirmhold) - Confirm a hold
 * [VoidHold](docs/sdks/formancewalletsv1/README.md#voidhold) - Cancel a hold
 
-### [Webhooks](docs/sdks/webhooks/README.md)
-
-
-#### [Webhooks.V1](docs/sdks/formancewebhooksv1/README.md)
+### [Webhooks.V1](docs/sdks/formancewebhooksv1/README.md)
 
 * [GetManyConfigs](docs/sdks/formancewebhooksv1/README.md#getmanyconfigs) - Get many configs
 * [InsertConfig](docs/sdks/formancewebhooksv1/README.md#insertconfig) - Insert a new config
@@ -456,15 +453,15 @@ catch (System.Net.Http.HttpRequestException ex)
 * [`System.Net.Http.HttpRequestException`](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httprequestexception): Network connectivity error. For more details about the underlying cause, inspect the `ex.InnerException`.
 
 * Inheriting from [`SDKBaseException`](./src/FormanceSDK/Models/Errors/SDKBaseException.cs):
-  * [`V3ErrorResponse`](./src/FormanceSDK/Models/Errors/V3ErrorResponse.cs): Error. Applicable to 46 of 230 methods.*
-  * [`PaymentsErrorResponse`](./src/FormanceSDK/Models/Errors/PaymentsErrorResponse.cs): Error. Applicable to 45 of 230 methods.*
-  * [`V2ErrorResponse`](./src/FormanceSDK/Models/Errors/V2ErrorResponse.cs): Error. Applicable to 37 of 230 methods.*
-  * [`ErrorResponse`](./src/FormanceSDK/Models/Errors/ErrorResponse.cs): Applicable to 19 of 230 methods.*
-  * [`V2Error`](./src/FormanceSDK/Models/Errors/V2Error.cs): General error. Applicable to 18 of 230 methods.*
-  * [`Error`](./src/FormanceSDK/Models/Errors/Error.cs): General error. Applicable to 17 of 230 methods.*
-  * [`WalletsErrorResponse`](./src/FormanceSDK/Models/Errors/WalletsErrorResponse.cs): Applicable to 15 of 230 methods.*
-  * [`WebhooksErrorResponse`](./src/FormanceSDK/Models/Errors/WebhooksErrorResponse.cs): Error. Applicable to 8 of 230 methods.*
-  * [`ReconciliationErrorResponse`](./src/FormanceSDK/Models/Errors/ReconciliationErrorResponse.cs): Error response. Applicable to 8 of 230 methods.*
+  * [`V3ErrorResponse`](./src/FormanceSDK/Models/Errors/V3ErrorResponse.cs): Error. Applicable to 57 of 249 methods.*
+  * [`PaymentsErrorResponse`](./src/FormanceSDK/Models/Errors/PaymentsErrorResponse.cs): Error. Applicable to 46 of 249 methods.*
+  * [`V2ErrorResponse`](./src/FormanceSDK/Models/Errors/V2ErrorResponse.cs): Applicable to 44 of 249 methods.*
+  * [`ErrorResponse`](./src/FormanceSDK/Models/Errors/ErrorResponse.cs): Applicable to 19 of 249 methods.*
+  * [`V2Error`](./src/FormanceSDK/Models/Errors/V2Error.cs): General error. Applicable to 18 of 249 methods.*
+  * [`Error`](./src/FormanceSDK/Models/Errors/Error.cs): General error. Applicable to 17 of 249 methods.*
+  * [`WalletsErrorResponse`](./src/FormanceSDK/Models/Errors/WalletsErrorResponse.cs): Applicable to 15 of 249 methods.*
+  * [`WebhooksErrorResponse`](./src/FormanceSDK/Models/Errors/WebhooksErrorResponse.cs): Error. Applicable to 8 of 249 methods.*
+  * [`ReconciliationErrorResponse`](./src/FormanceSDK/Models/Errors/ReconciliationErrorResponse.cs): Error response. Applicable to 8 of 249 methods.*
   * [`ResponseValidationError`](./src/FormanceSDK/Models/Errors/ResponseValidationError.cs): Thrown when the response data could not be deserialized into the expected type.
 </details>
 
@@ -485,25 +482,20 @@ You can override the default server globally by passing a server index to the `s
 
 If the selected server has variables, you may override its default values through the additional parameters made available in the SDK constructor:
 
-| Variable       | Parameter                                           | Supported Values                                      | Default           | Description                                                   |
-| -------------- | --------------------------------------------------- | ----------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
-| `organization` | `organization: string`                              | string                                                | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
-| `environment`  | `environment: FormanceSDK.Models.ServerEnvironment` | - `"sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"sandbox"`       | The environment name. Defaults to the production environment. |
+| Variable       | Parameter                                           | Supported Values                                         | Default           | Description                                                   |
+| -------------- | --------------------------------------------------- | -------------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
+| `organization` | `organization: string`                              | string                                                   | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
+| `environment`  | `environment: FormanceSDK.Models.ServerEnvironment` | - `"eu.sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"eu.sandbox"`    | The environment name. Defaults to the production environment. |
 
 #### Example
 
 ```csharp
 using FormanceSDK;
-using FormanceSDK.Models.Components;
 
 var sdk = new Formance(
     serverIndex: 1,
-    organization: "<value>",
-    environment: "us-east-1",
-    security: new Security() {
-        ClientID = "<YOUR_CLIENT_ID_HERE>",
-        ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
-    }
+    organization: "orgID-stackID",
+    environment: "us-east-1"
 );
 
 var res = await sdk.GetVersionsAsync();
@@ -516,15 +508,8 @@ var res = await sdk.GetVersionsAsync();
 The default server can also be overridden globally by passing a URL to the `serverUrl: string` optional parameter when initializing the SDK client instance. For example:
 ```csharp
 using FormanceSDK;
-using FormanceSDK.Models.Components;
 
-var sdk = new Formance(
-    serverUrl: "https://orgID-stackID.sandbox.formance.cloud",
-    security: new Security() {
-        ClientID = "<YOUR_CLIENT_ID_HERE>",
-        ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
-    }
-);
+var sdk = new Formance(serverUrl: "https://orgID-stackID.eu.sandbox.formance.cloud");
 
 var res = await sdk.GetVersionsAsync();
 
@@ -539,9 +524,9 @@ var res = await sdk.GetVersionsAsync();
 
 This SDK supports the following security scheme globally:
 
-| Name                          | Type   | Scheme                         |
-| ----------------------------- | ------ | ------------------------------ |
-| `ClientID`<br/>`ClientSecret` | oauth2 | OAuth2 Client Credentials Flow |
+| Name                                         | Type   | Scheme                         |
+| -------------------------------------------- | ------ | ------------------------------ |
+| `ClientID`<br/>`ClientSecret`<br/>`TokenURL` | oauth2 | OAuth2 Client Credentials Flow |
 
 You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
 ```csharp
@@ -558,6 +543,152 @@ var res = await sdk.GetVersionsAsync();
 // handle response
 ```
 <!-- End Authentication [security] -->
+
+<!-- Start Custom HTTP Client [http-client] -->
+## Custom HTTP Client
+
+The C# SDK makes API calls using an `ISpeakeasyHttpClient` that wraps the native
+[HttpClient](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient). This
+client provides the ability to attach hooks around the request lifecycle that can be used to modify the request or handle
+errors and response.
+
+The `ISpeakeasyHttpClient` interface allows you to either use the default `SpeakeasyHttpClient` that comes with the SDK,
+or provide your own custom implementation with customized configuration such as custom message handlers, timeouts,
+connection pooling, and other HTTP client settings.
+
+The following example shows how to create a custom HTTP client with request modification and error handling:
+
+```csharp
+using FormanceSDK;
+using FormanceSDK.Utils;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+
+// Create a custom HTTP client
+public class CustomHttpClient : ISpeakeasyHttpClient
+{
+    private readonly ISpeakeasyHttpClient _defaultClient;
+
+    public CustomHttpClient()
+    {
+        _defaultClient = new SpeakeasyHttpClient();
+    }
+
+    public async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken? cancellationToken = null)
+    {
+        // Add custom header and timeout
+        request.Headers.Add("x-custom-header", "custom value");
+        request.Headers.Add("x-request-timeout", "30");
+        
+        try
+        {
+            var response = await _defaultClient.SendAsync(request, cancellationToken);
+            // Log successful response
+            Console.WriteLine($"Request successful: {response.StatusCode}");
+            return response;
+        }
+        catch (Exception error)
+        {
+            // Log error
+            Console.WriteLine($"Request failed: {error.Message}");
+            throw;
+        }
+    }
+
+    public void Dispose()
+    {
+        _httpClient?.Dispose();
+        _defaultClient?.Dispose();
+    }
+}
+
+// Use the custom HTTP client with the SDK
+var customHttpClient = new CustomHttpClient();
+var sdk = new Formance(client: customHttpClient);
+```
+
+<details>
+<summary>You can also provide a completely custom HTTP client with your own configuration:</summary>
+
+```csharp
+using FormanceSDK.Utils;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+
+// Custom HTTP client with custom configuration
+public class AdvancedHttpClient : ISpeakeasyHttpClient
+{
+    private readonly HttpClient _httpClient;
+
+    public AdvancedHttpClient()
+    {
+        var handler = new HttpClientHandler()
+        {
+            MaxConnectionsPerServer = 10,
+            // ServerCertificateCustomValidationCallback = customCertValidation, // Custom SSL validation if needed
+        };
+
+        _httpClient = new HttpClient(handler)
+        {
+            Timeout = TimeSpan.FromSeconds(30)
+        };
+    }
+
+    public async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken? cancellationToken = null)
+    {
+        return await _httpClient.SendAsync(request, cancellationToken ?? CancellationToken.None);
+    }
+
+    public void Dispose()
+    {
+        _httpClient?.Dispose();
+    }
+}
+
+var sdk = Formance.Builder()
+    .WithClient(new AdvancedHttpClient())
+    .Build();
+```
+</details>
+
+<details>
+<summary>For simple debugging, you can enable request/response logging by implementing a custom client:</summary>
+
+```csharp
+public class LoggingHttpClient : ISpeakeasyHttpClient
+{
+    private readonly ISpeakeasyHttpClient _innerClient;
+
+    public LoggingHttpClient(ISpeakeasyHttpClient innerClient = null)
+    {
+        _innerClient = innerClient ?? new SpeakeasyHttpClient();
+    }
+
+    public async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken? cancellationToken = null)
+    {
+        // Log request
+        Console.WriteLine($"Sending {request.Method} request to {request.RequestUri}");
+        
+        var response = await _innerClient.SendAsync(request, cancellationToken);
+        
+        // Log response
+        Console.WriteLine($"Received {response.StatusCode} response");
+        
+        return response;
+    }
+
+    public void Dispose() => _innerClient?.Dispose();
+}
+
+var sdk = new Formance(client: new LoggingHttpClient());
+```
+</details>
+
+The SDK also provides built-in hook support through the `SDKConfiguration.Hooks` system, which automatically handles
+`BeforeRequestAsync`, `AfterSuccessAsync`, and `AfterErrorAsync` hooks for advanced request lifecycle management.
+<!-- End Custom HTTP Client [http-client] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

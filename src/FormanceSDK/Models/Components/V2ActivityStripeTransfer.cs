@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Numerics;
-    
+
     public class V2ActivityStripeTransfer
     {
-
         [JsonProperty("connectorID")]
         public string? ConnectorID { get; set; }
 
@@ -34,11 +33,7 @@ namespace FormanceSDK.Models.Components
 
         /// <summary>
         /// A set of key/value pairs that you can attach to a transfer object.<br/>
-        /// 
-        /// <remarks>
-        /// It can be useful for storing additional information about the transfer in a structured format.<br/>
-        /// 
-        /// </remarks>
+        /// It can be useful for storing additional information about the transfer in a structured format.
         /// </summary>
         [JsonProperty("metadata")]
         public V2ActivityStripeTransferMetadata? Metadata { get; set; }

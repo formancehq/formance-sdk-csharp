@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
     using System.Numerics;
-    
+
     public class GetTransactionRequest
     {
-
         /// <summary>
         /// Name of the ledger.
         /// </summary>

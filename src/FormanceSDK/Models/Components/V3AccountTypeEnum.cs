@@ -12,7 +12,7 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     public enum V3AccountTypeEnum
     {
         [JsonProperty("UNKNOWN")]
@@ -55,5 +55,4 @@ namespace FormanceSDK.Models.Components
             throw new Exception($"Unknown value {value} for enum V3AccountTypeEnum");
         }
     }
-
 }

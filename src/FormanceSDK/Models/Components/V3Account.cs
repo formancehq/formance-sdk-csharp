@@ -14,15 +14,17 @@ namespace FormanceSDK.Models.Components
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+
     public class V3Account
     {
-
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
         [JsonProperty("connectorID")]
         public string ConnectorID { get; set; } = default!;
+
+        [JsonProperty("connector")]
+        public V3ConnectorBase? Connector { get; set; }
 
         [JsonProperty("provider")]
         public string Provider { get; set; } = default!;

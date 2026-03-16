@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     public class V2WorkflowInstanceHistory
     {
-
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 

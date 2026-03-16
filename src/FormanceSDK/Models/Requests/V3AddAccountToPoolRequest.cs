@@ -10,18 +10,17 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class V3AddAccountToPoolRequest
     {
-
         /// <summary>
-        /// The pool ID
+        /// The pool ID.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=poolID")]
         public string PoolID { get; set; } = default!;
 
         /// <summary>
-        /// The account ID
+        /// The account ID.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=accountID")]
         public string AccountID { get; set; } = default!;

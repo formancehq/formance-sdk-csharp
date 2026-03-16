@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class V2ListPipelinesResponseCursor
     {
-
         [JsonProperty("cursor")]
         public V2ListPipelinesResponseCursorCursor Cursor { get; set; } = default!;
 

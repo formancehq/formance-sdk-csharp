@@ -1,0 +1,9 @@
+# V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse
+
+
+## Fields
+
+| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `HttpMeta`                                                                                    | [HTTPMetadata](../../Models/Components/HTTPMetadata.md)                                       | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `V3PaymentServiceUserLinkAttempt`                                                             | [V3PaymentServiceUserLinkAttempt](../../Models/Components/V3PaymentServiceUserLinkAttempt.md) | :heavy_minus_sign:                                                                            | OK                                                                                            |

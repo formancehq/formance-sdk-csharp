@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using System.Collections.Generic;
-    
+
     public class V2CreateBulkRequest
     {
-
         /// <summary>
         /// Name of the ledger.
         /// </summary>
@@ -23,22 +22,28 @@ namespace FormanceSDK.Models.Requests
         public string Ledger { get; set; } = default!;
 
         /// <summary>
-        /// Continue on failure
+        /// Continue on failure.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=continueOnFailure")]
         public bool? ContinueOnFailure { get; set; }
 
         /// <summary>
-        /// Make bulk atomic
+        /// Make bulk atomic.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=atomic")]
         public bool? Atomic { get; set; }
 
         /// <summary>
-        /// Process bulk elements in parallel
+        /// Process bulk elements in parallel.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=parallel")]
         public bool? Parallel { get; set; }
+
+        /// <summary>
+        /// Default schema version to use for validation (can be overridden per element).
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=schemaVersion")]
+        public string? SchemaVersion { get; set; }
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
         public List<V2BulkElement> RequestBody { get; set; } = default!;

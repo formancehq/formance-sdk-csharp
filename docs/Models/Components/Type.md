@@ -1,5 +1,13 @@
 # Type
 
+## Example Usage
+
+```csharp
+using FormanceSDK.Models.Components;
+
+var value = Type.NewTransaction;
+```
+
 
 ## Values
 

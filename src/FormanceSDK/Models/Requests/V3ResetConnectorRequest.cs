@@ -10,12 +10,11 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class V3ResetConnectorRequest
     {
-
         /// <summary>
-        /// The connector ID
+        /// The connector ID.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=connectorID")]
         public string ConnectorID { get; set; } = default!;

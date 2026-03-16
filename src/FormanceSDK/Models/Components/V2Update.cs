@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V2Update
     {
-
         [JsonProperty("account")]
         public V2UpdateAccount? Account { get; set; }
     }

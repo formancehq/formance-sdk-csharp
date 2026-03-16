@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class ActivityDebitWalletOutput
     {
-
         [JsonProperty("data")]
         public OrchestrationHold Data { get; set; } = default!;
     }

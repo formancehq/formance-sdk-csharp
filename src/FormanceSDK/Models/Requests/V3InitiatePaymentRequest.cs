@@ -11,16 +11,11 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
-    
+
     public class V3InitiatePaymentRequest
     {
-
         /// <summary>
-        /// If set to true, the request will not have to be validated. This is useful if we want to directly forward the request to the PSP.<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// If set to true, the request will not have to be validated. This is useful if we want to directly forward the request to the PSP.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=noValidation")]
         public bool? NoValidation { get; set; } = false;

@@ -1,5 +1,13 @@
 # ErrorCode
 
+## Example Usage
+
+```csharp
+using FormanceSDK.Models.Errors;
+
+var value = ErrorCode.Validation;
+```
+
 
 ## Values
 

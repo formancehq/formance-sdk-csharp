@@ -12,13 +12,12 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// Created ipeline
+    /// Created ipeline.
     /// </summary>
     public class V2CreatePipelineResponse
     {
-
         [JsonProperty("data")]
         public V2Pipeline Data { get; set; } = default!;
     }

@@ -12,15 +12,14 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class TestConfigResponse
     {
-
         [JsonProperty("-")]
         public HTTPMetadata HttpMeta { get; set; } = default!;
 
         /// <summary>
-        /// OK
+        /// OK.
         /// </summary>
         public AttemptResponse? AttemptResponse { get; set; }
     }

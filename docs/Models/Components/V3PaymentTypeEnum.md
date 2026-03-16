@@ -1,5 +1,13 @@
 # V3PaymentTypeEnum
 
+## Example Usage
+
+```csharp
+using FormanceSDK.Models.Components;
+
+var value = V3PaymentTypeEnum.Unknown;
+```
+
 
 ## Values
 

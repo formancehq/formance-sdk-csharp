@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
-    
+
     public class AddAccountToPoolRequest
     {
-
         /// <summary>
         /// The pool ID.
         /// </summary>

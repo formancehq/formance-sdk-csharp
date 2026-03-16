@@ -11,12 +11,11 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
-    
+
     public class V3ForwardBankAccountRequest
     {
-
         /// <summary>
-        /// The bank account ID
+        /// The bank account ID.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=bankAccountID")]
         public string BankAccountID { get; set; } = default!;

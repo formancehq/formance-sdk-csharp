@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
     using System.Collections.Generic;
-    
+
     public class V2AddMetadataToAccountRequest
     {
-
         /// <summary>
         /// Name of the ledger.
         /// </summary>
@@ -23,31 +22,33 @@ namespace FormanceSDK.Models.Requests
 
         /// <summary>
         /// Exact address of the account. It must match the following regular expressions pattern:<br/>
-        /// 
-        /// <remarks>
         /// ```<br/>
         /// ^\w+(:\w+)*$<br/>
-        /// ```<br/>
-        /// 
-        /// </remarks>
+        /// ```
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=address")]
         public string Address { get; set; } = default!;
 
         /// <summary>
-        /// Set the dry run mode. Dry run mode doesn&apos;t add the logs to the database or publish a message to the message broker.
+        /// Set the dry run mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=dryRun")]
         public bool? DryRun { get; set; }
 
         /// <summary>
-        /// Use an idempotency key
+        /// Use an idempotency key.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=Idempotency-Key")]
         public string? IdempotencyKey { get; set; }
 
         /// <summary>
-        /// metadata
+        /// Schema version to use for validation.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=schemaVersion")]
+        public string? SchemaVersion { get; set; }
+
+        /// <summary>
+        /// metadata.
         /// </summary>
         [SpeakeasyMetadata("request:mediaType=application/json")]
         public Dictionary<string, string> RequestBody { get; set; } = default!;

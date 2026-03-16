@@ -11,17 +11,16 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
-    
+
     public class UpdateClientRequest
     {
-
         /// <summary>
-        /// Client ID
+        /// Client ID.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=clientId")]
         public string ClientId { get; set; } = default!;
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public ClientOptions? ClientOptions { get; set; }
+        public CreateClientRequest? CreateClientRequest { get; set; }
     }
 }

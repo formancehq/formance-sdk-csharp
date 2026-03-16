@@ -14,10 +14,9 @@ namespace FormanceSDK.Models.Components
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+
     public class V2WorkflowInstance
     {
-
         [JsonProperty("workflowID")]
         public string WorkflowID { get; set; } = default!;
 

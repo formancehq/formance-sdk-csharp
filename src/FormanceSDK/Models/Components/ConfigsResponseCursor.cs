@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class ConfigsResponseCursor
     {
-
         [JsonProperty("hasMore")]
         public bool HasMore { get; set; } = default!;
 

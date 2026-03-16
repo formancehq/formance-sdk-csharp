@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Requests;
     using FormanceSDK.Utils;
     using System;
-    
+
     public class CountTransactionsRequest
     {
-
         /// <summary>
         /// Name of the ledger.
         /// </summary>
@@ -48,22 +47,14 @@ namespace FormanceSDK.Models.Requests
 
         /// <summary>
         /// Filter transactions that occurred after this timestamp.<br/>
-        /// 
-        /// <remarks>
-        /// The format is RFC3339 and is inclusive (for example, &quot;2023-01-02T15:04:01Z&quot; includes the first second of 4th minute).<br/>
-        /// 
-        /// </remarks>
+        /// The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=startTime")]
         public DateTime? StartTime { get; set; }
 
         /// <summary>
         /// Filter transactions that occurred before this timestamp.<br/>
-        /// 
-        /// <remarks>
-        /// The format is RFC3339 and is exclusive (for example, &quot;2023-01-02T15:04:01Z&quot; excludes the first second of 4th minute).<br/>
-        /// 
-        /// </remarks>
+        /// The format is RFC3339 and is exclusive (for example, "2023-01-02T15:04:01Z" excludes the first second of 4th minute).
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=endTime")]
         public DateTime? EndTime { get; set; }

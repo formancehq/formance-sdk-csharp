@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V2ActivityGetAccountOutput
     {
-
         [JsonProperty("data")]
         public OrchestrationV2Account Data { get; set; } = default!;
     }

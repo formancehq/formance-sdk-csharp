@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V3InitiatePaymentResponse
     {
-
         [JsonProperty("data")]
         public V3InitiatePaymentResponseData Data { get; set; } = default!;
     }

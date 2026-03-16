@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
-    
+
     public class RunScriptRequest
     {
-
         /// <summary>
         /// Name of the ledger.
         /// </summary>
@@ -22,7 +21,7 @@ namespace FormanceSDK.Models.Requests
         public string Ledger { get; set; } = default!;
 
         /// <summary>
-        /// Set the preview mode. Preview mode doesn&apos;t add the logs to the database or publish a message to the message broker.
+        /// Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=preview")]
         public bool? Preview { get; set; }

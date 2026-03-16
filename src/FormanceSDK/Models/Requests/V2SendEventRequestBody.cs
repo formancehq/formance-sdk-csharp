@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V2SendEventRequestBody
     {
-
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
     }

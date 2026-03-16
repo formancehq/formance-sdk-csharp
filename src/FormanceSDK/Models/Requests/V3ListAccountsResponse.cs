@@ -12,15 +12,14 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V3ListAccountsResponse
     {
-
         [JsonProperty("-")]
         public HTTPMetadata HttpMeta { get; set; } = default!;
 
         /// <summary>
-        /// OK
+        /// OK.
         /// </summary>
         public V3AccountsCursorResponse? V3AccountsCursorResponse { get; set; }
     }

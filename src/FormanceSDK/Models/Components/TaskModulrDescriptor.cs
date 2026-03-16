@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class TaskModulrDescriptor
     {
-
         [JsonProperty("name")]
         public string? Name { get; set; }
 

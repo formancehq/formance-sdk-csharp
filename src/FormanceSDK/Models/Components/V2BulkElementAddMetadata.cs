@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V2BulkElementAddMetadata
     {
-
         [JsonProperty("action")]
         public string Action { get; set; } = default!;
 

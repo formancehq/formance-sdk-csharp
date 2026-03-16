@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
     using System.Collections.Generic;
-    
+
     public class V2UpdateLedgerMetadataRequest
     {
-
         /// <summary>
         /// Name of the ledger.
         /// </summary>

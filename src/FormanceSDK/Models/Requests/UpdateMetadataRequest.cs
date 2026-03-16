@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
     using System.Collections.Generic;
-    
+
     public class UpdateMetadataRequest
     {
-
         /// <summary>
         /// The payment ID.
         /// </summary>

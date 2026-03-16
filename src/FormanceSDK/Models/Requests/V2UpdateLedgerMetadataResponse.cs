@@ -12,15 +12,14 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V2UpdateLedgerMetadataResponse
     {
-
         [JsonProperty("-")]
         public HTTPMetadata HttpMeta { get; set; } = default!;
 
         /// <summary>
-        /// Error
+        /// Error.
         /// </summary>
         public Models.Components.V2ErrorResponse? V2ErrorResponse { get; set; }
     }

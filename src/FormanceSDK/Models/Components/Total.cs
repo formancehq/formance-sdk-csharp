@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class Total
     {
-
         [JsonProperty("value")]
         public long? Value { get; set; }
 

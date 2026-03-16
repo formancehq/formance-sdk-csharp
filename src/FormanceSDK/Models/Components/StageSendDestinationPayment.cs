@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class StageSendDestinationPayment
     {
-
         [JsonProperty("psp")]
         public string Psp { get; set; } = default!;
     }

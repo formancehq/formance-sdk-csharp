@@ -10,12 +10,11 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class ListTriggersRequest
     {
-
         /// <summary>
-        /// search by name
+        /// search by name.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=name")]
         public string? Name { get; set; }

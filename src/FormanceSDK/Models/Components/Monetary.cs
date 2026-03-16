@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Numerics;
-    
+
     public class Monetary
     {
-
         /// <summary>
         /// The asset of the monetary value.
         /// </summary>

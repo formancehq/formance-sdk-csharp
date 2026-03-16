@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using Newtonsoft.Json;
     using System.Collections.Generic;
     using System.Numerics;
-    
+
     public class V2AssetHolder
     {
-
         [JsonProperty("assets")]
         public Dictionary<string, BigInteger> Assets { get; set; } = default!;
     }

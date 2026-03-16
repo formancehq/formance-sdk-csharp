@@ -11,46 +11,41 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
     using System;
-    
+
     public class V3GetAccountBalancesRequest
     {
-
         /// <summary>
-        /// The account ID
+        /// The account ID.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=accountID")]
         public string AccountID { get; set; } = default!;
 
         /// <summary>
-        /// The asset to filter by
+        /// The asset to filter by.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=asset")]
         public string? Asset { get; set; }
 
         /// <summary>
-        /// The start of the time range to filter by
+        /// The start of the time range to filter by.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=fromTimestamp")]
         public DateTime? FromTimestamp { get; set; }
 
         /// <summary>
-        /// The end of the time range to filter by
+        /// The end of the time range to filter by.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=toTimestamp")]
         public DateTime? ToTimestamp { get; set; }
 
         /// <summary>
-        /// The number of items to return
+        /// The number of items to return.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")]
         public long? PageSize { get; set; }
 
         /// <summary>
-        /// Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")]
         public string? Cursor { get; set; }

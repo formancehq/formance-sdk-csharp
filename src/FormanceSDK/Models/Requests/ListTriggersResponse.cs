@@ -12,15 +12,14 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class ListTriggersResponse
     {
-
         [JsonProperty("-")]
         public HTTPMetadata HttpMeta { get; set; } = default!;
 
         /// <summary>
-        /// List of triggers
+        /// List of triggers.
         /// </summary>
         public Models.Components.ListTriggersResponse? ListTriggersResponseValue { get; set; }
     }

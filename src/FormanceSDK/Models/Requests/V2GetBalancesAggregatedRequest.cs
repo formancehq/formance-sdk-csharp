@@ -11,11 +11,9 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
     using System;
-    using System.Collections.Generic;
-    
+
     public class V2GetBalancesAggregatedRequest
     {
-
         /// <summary>
         /// Name of the ledger.
         /// </summary>
@@ -26,12 +24,9 @@ namespace FormanceSDK.Models.Requests
         public DateTime? Pit { get; set; }
 
         /// <summary>
-        /// Use insertion date instead of effective date
+        /// Use insertion date instead of effective date.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=useInsertionDate")]
         public bool? UseInsertionDate { get; set; }
-
-        [SpeakeasyMetadata("request:mediaType=application/json")]
-        public Dictionary<string, object> RequestBody { get; set; } = default!;
     }
 }

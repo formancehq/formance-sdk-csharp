@@ -13,12 +13,11 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class Response
     {
-
         /// <summary>
-        /// The payload
+        /// The payload.
         /// </summary>
         [JsonProperty("data")]
         public Dictionary<string, object>? Data { get; set; }

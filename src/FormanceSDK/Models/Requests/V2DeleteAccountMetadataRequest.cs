@@ -10,10 +10,9 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class V2DeleteAccountMetadataRequest
     {
-
         /// <summary>
         /// Name of the ledger.
         /// </summary>
@@ -21,7 +20,7 @@ namespace FormanceSDK.Models.Requests
         public string Ledger { get; set; } = default!;
 
         /// <summary>
-        /// Account address
+        /// Account address.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=address")]
         public string Address { get; set; } = default!;
@@ -33,7 +32,7 @@ namespace FormanceSDK.Models.Requests
         public string Key { get; set; } = default!;
 
         /// <summary>
-        /// Use an idempotency key
+        /// Use an idempotency key.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=Idempotency-Key")]
         public string? IdempotencyKey { get; set; }

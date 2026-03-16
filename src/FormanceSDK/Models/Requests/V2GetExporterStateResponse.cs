@@ -12,15 +12,14 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V2GetExporterStateResponse
     {
-
         [JsonProperty("-")]
         public HTTPMetadata HttpMeta { get; set; } = default!;
 
         /// <summary>
-        /// Exporter information
+        /// Exporter information.
         /// </summary>
         public Models.Components.V2GetExporterStateResponse? V2GetExporterStateResponseValue { get; set; }
     }

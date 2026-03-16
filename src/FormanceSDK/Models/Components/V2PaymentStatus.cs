@@ -12,7 +12,7 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     public enum V2PaymentStatus
     {
         [JsonProperty("PENDING")]
@@ -61,5 +61,4 @@ namespace FormanceSDK.Models.Components
             throw new Exception($"Unknown value {value} for enum V2PaymentStatus");
         }
     }
-
 }

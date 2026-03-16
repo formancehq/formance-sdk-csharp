@@ -14,10 +14,9 @@ namespace FormanceSDK.Models.Components
     using System;
     using System.Collections.Generic;
     using System.Numerics;
-    
+
     public class Reconciliation
     {
-
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 

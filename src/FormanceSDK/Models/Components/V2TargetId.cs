@@ -51,7 +51,6 @@ namespace FormanceSDK.Models.Components
         }
     }
 
-
     [JsonConverter(typeof(V2TargetId.V2TargetIdConverter))]
     public class V2TargetId
     {

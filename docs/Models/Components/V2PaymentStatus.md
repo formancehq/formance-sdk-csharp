@@ -1,5 +1,13 @@
 # V2PaymentStatus
 
+## Example Usage
+
+```csharp
+using FormanceSDK.Models.Components;
+
+var value = V2PaymentStatus.Pending;
+```
+
 
 ## Values
 

@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class GetWalletSummaryResponse
     {
-
         [JsonProperty("data")]
         public WalletSummary Data { get; set; } = default!;
     }

@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class ActivityGetAccount
     {
-
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 

@@ -12,20 +12,19 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class ListAccountsResponse
     {
-
         [JsonProperty("-")]
         public HTTPMetadata HttpMeta { get; set; } = default!;
 
         /// <summary>
-        /// OK
+        /// OK.
         /// </summary>
         public AccountsCursorResponse? AccountsCursorResponse { get; set; }
 
         /// <summary>
-        /// Not found
+        /// Not found.
         /// </summary>
         public Models.Components.ErrorResponse? ErrorResponse { get; set; }
     }

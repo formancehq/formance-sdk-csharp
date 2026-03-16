@@ -11,11 +11,9 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
-    using System;
-    
+
     public class V2CreateTransactionRequest
     {
-
         /// <summary>
         /// Name of the ledger.
         /// </summary>
@@ -23,32 +21,33 @@ namespace FormanceSDK.Models.Requests
         public string Ledger { get; set; } = default!;
 
         /// <summary>
-        /// Set the dryRun mode. dry run mode doesn&apos;t add the logs to the database or publish a message to the message broker.
+        /// Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=dryRun")]
         public bool? DryRun { get; set; }
 
         /// <summary>
-        /// Use an idempotency key
+        /// Use an idempotency key.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=Idempotency-Key")]
         public string? IdempotencyKey { get; set; }
 
         /// <summary>
-        /// Disable balance checks when passing postings
+        /// Disable balance checks when passing postings.
         /// </summary>
-        [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible")]
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=force")]
         public bool? Force { get; set; }
 
         /// <summary>
+        /// Schema version to use for validation.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=schemaVersion")]
+        public string? SchemaVersion { get; set; }
+
+        /// <summary>
         /// The request body must contain at least one of the following objects:<br/>
-        /// 
-        /// <remarks>
         ///   - `postings`: suitable for simple transactions<br/>
-        ///   - `script`: enabling more complex transactions with Numscript<br/>
-        /// 
-        /// </remarks>
+        ///   - `script`: enabling more complex transactions with Numscript.
         /// </summary>
         [SpeakeasyMetadata("request:mediaType=application/json")]
         public V2PostTransaction V2PostTransaction { get; set; } = default!;

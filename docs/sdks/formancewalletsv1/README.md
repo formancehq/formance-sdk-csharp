@@ -1,5 +1,4 @@
-# FormanceWalletsV1
-(*Wallets.V1*)
+# Wallets.V1
 
 ## Overview
 
@@ -361,11 +360,11 @@ var res = await sdk.Wallets.V1.CreateBalanceAsync(id: "<id>");
 
 ### Parameters
 
-| Parameter                                     | Type                                          | Required                                      | Description                                   |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| `Id`                                          | *string*                                      | :heavy_check_mark:                            | N/A                                           |
-| `IdempotencyKey`                              | *string*                                      | :heavy_minus_sign:                            | Use an idempotency key                        |
-| `Balance`                                     | [Balance](../../Models/Components/Balance.md) | :heavy_minus_sign:                            | N/A                                           |
+| Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `Id`                                                                                      | *string*                                                                                  | :heavy_check_mark:                                                                        | N/A                                                                                       |
+| `IdempotencyKey`                                                                          | *string*                                                                                  | :heavy_minus_sign:                                                                        | Use an idempotency key                                                                    |
+| `CreateBalanceRequest`                                                                    | [Models.Components.CreateBalanceRequest](../../Models/Components/CreateBalanceRequest.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |
 
 ### Response
 
@@ -431,6 +430,7 @@ Debit a wallet
 using FormanceSDK;
 using FormanceSDK.Models.Components;
 using System.Collections.Generic;
+using System.Numerics;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -442,7 +442,7 @@ var res = await sdk.Wallets.V1.DebitWalletAsync(
     debitWalletRequest: new FormanceSDK.Models.Components.DebitWalletRequest() {
         Amount = new Monetary() {
             Asset = "USD/2",
-            Amount = 100,
+            Amount = BigInteger.Parse("100"),
         },
         Pending = true,
         Metadata = new Dictionary<string, string>() {
@@ -484,6 +484,7 @@ Credit a wallet
 using FormanceSDK;
 using FormanceSDK.Models.Components;
 using System.Collections.Generic;
+using System.Numerics;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -495,7 +496,7 @@ var res = await sdk.Wallets.V1.CreditWalletAsync(
     creditWalletRequest: new FormanceSDK.Models.Components.CreditWalletRequest() {
         Amount = new Monetary() {
             Asset = "USD/2",
-            Amount = 100,
+            Amount = BigInteger.Parse("100"),
         },
         Metadata = new Dictionary<string, string>() {
             { "key", "" },
@@ -623,6 +624,7 @@ Confirm a hold
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using System.Numerics;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -632,7 +634,7 @@ var sdk = new Formance(security: new Security() {
 var res = await sdk.Wallets.V1.ConfirmHoldAsync(
     holdId: "<id>",
     confirmHoldRequest: new FormanceSDK.Models.Components.ConfirmHoldRequest() {
-        Amount = 100,
+        Amount = BigInteger.Parse("100"),
         Final = true,
     }
 );

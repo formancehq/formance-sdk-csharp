@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class V2LedgerInfoStorage
     {
-
         [JsonProperty("migrations")]
         public List<V2MigrationInfo>? Migrations { get; set; }
     }

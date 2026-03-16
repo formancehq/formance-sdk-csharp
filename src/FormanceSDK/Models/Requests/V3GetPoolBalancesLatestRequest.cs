@@ -10,12 +10,11 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class V3GetPoolBalancesLatestRequest
     {
-
         /// <summary>
-        /// The pool ID
+        /// The pool ID.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=poolID")]
         public string PoolID { get; set; } = default!;

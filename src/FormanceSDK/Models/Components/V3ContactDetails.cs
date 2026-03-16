@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V3ContactDetails
     {
-
         [JsonProperty("email")]
         public string? Email { get; set; }
 

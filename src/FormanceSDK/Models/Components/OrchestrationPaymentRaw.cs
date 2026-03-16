@@ -10,7 +10,7 @@
 namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
-    
+
     public class OrchestrationPaymentRaw
     {
     }

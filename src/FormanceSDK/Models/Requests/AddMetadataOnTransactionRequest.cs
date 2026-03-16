@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Utils;
     using System.Collections.Generic;
     using System.Numerics;
-    
+
     public class AddMetadataOnTransactionRequest
     {
-
         /// <summary>
         /// Name of the ledger.
         /// </summary>
@@ -29,7 +28,7 @@ namespace FormanceSDK.Models.Requests
         public BigInteger Txid { get; set; } = default!;
 
         /// <summary>
-        /// metadata
+        /// metadata.
         /// </summary>
         [SpeakeasyMetadata("request:mediaType=application/json")]
         public Dictionary<string, object>? RequestBody { get; set; }

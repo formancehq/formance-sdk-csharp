@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class BalancesCursorResponse
     {
-
         [JsonProperty("cursor")]
         public BalancesCursorResponseCursor Cursor { get; set; } = default!;
     }

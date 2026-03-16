@@ -14,10 +14,9 @@ namespace FormanceSDK.Models.Components
     using Newtonsoft.Json;
     using System.Collections.Generic;
     using System.Numerics;
-    
+
     public class AccountWithVolumesAndBalances
     {
-
         [JsonProperty("address")]
         public string Address { get; set; } = default!;
 

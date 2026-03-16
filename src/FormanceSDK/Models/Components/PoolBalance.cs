@@ -11,15 +11,18 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using System.Numerics;
-    
+
     public class PoolBalance
     {
-
         [JsonProperty("amount")]
         public BigInteger Amount { get; set; } = default!;
 
         [JsonProperty("asset")]
         public string Asset { get; set; } = default!;
+
+        [JsonProperty("relatedAccounts")]
+        public List<string>? RelatedAccounts { get; set; } = null;
     }
 }

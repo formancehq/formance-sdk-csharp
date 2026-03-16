@@ -10,18 +10,17 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class GetManyConfigsRequest
     {
-
         /// <summary>
-        /// Optional filter by Config ID
+        /// Optional filter by Config ID.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=id")]
         public string? Id { get; set; }
 
         /// <summary>
-        /// Optional filter by endpoint URL
+        /// Optional filter by endpoint URL.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=endpoint")]
         public string? Endpoint { get; set; }

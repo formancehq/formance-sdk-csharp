@@ -21,14 +21,13 @@ namespace FormanceSDK
     using System.Net.Http;
     using System.Threading.Tasks;
 
-
     /// <summary>
     /// The environment name. Defaults to the production environment.
     /// </summary>
     public enum ServerEnvironment
     {
-        [JsonProperty("sandbox")]
-        Sandbox,
+        [JsonProperty("eu.sandbox")]
+        EuSandbox,
         [JsonProperty("eu-west-1")]
         EuWest1,
         [JsonProperty("us-east-1")]
@@ -70,8 +69,6 @@ namespace FormanceSDK
 
     /// <summary>
     /// Formance Stack API: Open, modular foundation for unique payments flows<br/>
-    /// 
-    /// <remarks>
     /// <br/>
     /// # Introduction<br/>
     /// This API is documented in **OpenAPI format**.<br/>
@@ -81,32 +78,38 @@ namespace FormanceSDK
     ///   - OAuth2<br/>
     /// OAuth2 - an open protocol to allow secure authorization in a simple<br/>
     /// and standard method from web, mobile and desktop applications.<br/>
-    /// &lt;SecurityDefinitions /&gt;<br/>
-    /// 
-    /// </remarks>
+    /// &lt;SecurityDefinitions /&gt;
     /// </summary>
     public interface IFormance
     {
         public IAuth Auth { get; }
+
         public ILedger Ledger { get; }
+
         public IPayments Payments { get; }
+
         public ISearch Search { get; }
+
         public IWebhooks Webhooks { get; }
+
         public IWallets Wallets { get; }
+
         public IOrchestration Orchestration { get; }
+
         public IReconciliation Reconciliation { get; }
 
         /// <summary>
-        /// Show stack version information
+        /// Show stack version information.
         /// </summary>
-        Task<Models.Requests.GetVersionsResponse> GetVersionsAsync();
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetVersionsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
+        public  Task<Models.Requests.GetVersionsResponse> GetVersionsAsync();
     }
-
 
     /// <summary>
     /// Formance Stack API: Open, modular foundation for unique payments flows<br/>
-    /// 
-    /// <remarks>
     /// <br/>
     /// # Introduction<br/>
     /// This API is documented in **OpenAPI format**.<br/>
@@ -116,27 +119,51 @@ namespace FormanceSDK
     ///   - OAuth2<br/>
     /// OAuth2 - an open protocol to allow secure authorization in a simple<br/>
     /// and standard method from web, mobile and desktop applications.<br/>
-    /// &lt;SecurityDefinitions /&gt;<br/>
-    /// 
-    /// </remarks>
+    /// &lt;SecurityDefinitions /&gt;
     /// </summary>
     public class Formance: IFormance
     {
+        /// <summary>
+        /// The main SDK Configuration.
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-
-        private const string _language = "csharp";
-        private const string _sdkVersion = "3.0.0";
-        private const string _sdkGenVersion = "2.721.3";
-        private const string _openapiDocVersion = "v3.1.0";
+        /// <summary>
+        /// The Auth sub-SDK.
+        /// </summary>
         public IAuth Auth { get; private set; }
+        /// <summary>
+        /// The Ledger sub-SDK.
+        /// </summary>
         public ILedger Ledger { get; private set; }
+        /// <summary>
+        /// The Payments sub-SDK.
+        /// </summary>
         public IPayments Payments { get; private set; }
+        /// <summary>
+        /// The Search sub-SDK.
+        /// </summary>
         public ISearch Search { get; private set; }
+        /// <summary>
+        /// The Webhooks sub-SDK.
+        /// </summary>
         public IWebhooks Webhooks { get; private set; }
+        /// <summary>
+        /// The Wallets sub-SDK.
+        /// </summary>
         public IWallets Wallets { get; private set; }
+        /// <summary>
+        /// The Orchestration sub-SDK.
+        /// </summary>
         public IOrchestration Orchestration { get; private set; }
+        /// <summary>
+        /// The Reconciliation sub-SDK.
+        /// </summary>
         public IReconciliation Reconciliation { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the SDK based on a <see cref="SDKConfig"/> configuration object.
+        /// </summary>
+        /// <param name="config">The SDK configuration object.</param>
         public Formance(SDKConfig config)
         {
             SDKConfiguration = config;
@@ -159,13 +186,36 @@ namespace FormanceSDK
             Reconciliation = new Reconciliation(SDKConfiguration);
         }
 
-        public Formance(FormanceSDK.Models.Components.Security? security = null, Func<FormanceSDK.Models.Components.Security>? securitySource = null, int? serverIndex = null, string? organization = null, ServerEnvironment? environment = null, string? serverUrl = null, Dictionary<string, string>? urlParams = null, ISpeakeasyHttpClient? client = null, RetryConfig? retryConfig = null)
+        /// <summary>
+        /// Initializes a new instance of the SDK with optional configuration parameters.
+        /// </summary>
+        /// <param name="security">The security configuration to use for API requests. If provided, this will be used as a static security configuration.</param>
+        /// <param name="securitySource">A function that returns the security configuration dynamically. This takes precedence over the static security parameter if both are provided.</param>
+        /// <param name="serverIndex">The index of the server to use from the predefined server list. Must be between 0 and the length of the server list. Defaults to 0 if not specified.</param>
+        /// <param name="organization">A per-organization and per-environment API.</param>
+        /// <param name="environment">A per-organization and per-environment API.</param>
+        /// <param name="serverUrl">A custom server URL to use instead of the predefined server list. If provided with urlParams, the URL will be templated with the provided parameters.</param>
+        /// <param name="urlParams">A dictionary of parameters to use for templating the serverUrl. Only used when serverUrl is provided.</param>
+        /// <param name="client">A custom HTTP client implementation to use for making API requests. If not provided, the default SpeakeasyHttpClient will be used.</param>
+        /// <param name="retryConfig">Configuration for retry behavior when API requests fail. Defines retry strategies, backoff policies, and maximum retry attempts.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Invalid value provided for <paramref name="serverIndex"/>: must be between 0 (inclusive) and 2 (exclusive).</exception>
+        public Formance(
+            FormanceSDK.Models.Components.Security? security = null,
+            Func<FormanceSDK.Models.Components.Security>? securitySource = null,
+            int? serverIndex = null,
+            string? organization = null,
+            ServerEnvironment? environment = null,
+            string? serverUrl = null,
+            Dictionary<string, string>? urlParams = null,
+            ISpeakeasyHttpClient? client = null,
+            RetryConfig? retryConfig = null
+        )
         {
             if (serverIndex != null)
             {
                 if (serverIndex.Value < 0 || serverIndex.Value >= SDKConfig.ServerList.Length)
                 {
-                    throw new Exception($"Invalid server index {serverIndex.Value}");
+                    throw new ArgumentOutOfRangeException($"Invalid server index {serverIndex}: must be between 0 (inclusive) and {SDKConfig.ServerList.Length} (exclusive)." );
                 }
             }
 
@@ -237,21 +287,27 @@ namespace FormanceSDK
             SDKConfiguration = config;
         }
 
-        public async Task<Models.Requests.GetVersionsResponse> GetVersionsAsync()
+        /// <summary>
+        /// Show stack version information.
+        /// </summary>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetVersionsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
+        public async  Task<Models.Requests.GetVersionsResponse> GetVersionsAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/versions";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            if (SDKConfiguration.SecuritySource != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest.Headers.Add("Accept", "application/json");
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getVersions", new List<string> { "auth:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getVersions", null, null);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -261,7 +317,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -270,9 +326,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -322,34 +378,50 @@ namespace FormanceSDK
             }
         }
 
+
+        /// <summary>
+        /// Builder class for constructing an instance of the SDK.
+        /// </summary>
         public class SDKBuilder
         {
             private SDKConfig _sdkConfig = new SDKConfig(client: new SpeakeasyHttpClient());
 
             public SDKBuilder() { }
 
+            /// <summary>
+            /// Overrides the default server by index.
+            /// </summary>
             public SDKBuilder WithServerIndex(int serverIndex)
             {
                 if (serverIndex < 0 || serverIndex >= SDKConfig.ServerList.Length)
                 {
-                    throw new Exception($"Invalid server index {serverIndex}");
+                    throw new ArgumentOutOfRangeException($"Invalid server index {serverIndex}: must be between 0 (inclusive) and {SDKConfig.ServerList.Length} (exclusive)." );
                 }
                 _sdkConfig.ServerIndex = serverIndex;
                 return this;
             }
 
+            /// <summary>
+            /// Sets the organization server variable for the templated server URL.
+            /// </summary>
             public SDKBuilder WithOrganization(string organization)
             {
                 _sdkConfig.SetServerVariable("organization", organization);
                 return this;
             }
 
+            /// <summary>
+            /// Sets the environment server variable for the templated server URL.
+            /// </summary>
             public SDKBuilder WithEnvironment(ServerEnvironment environment)
             {
                 _sdkConfig.SetServerVariable("environment", ServerEnvironmentExtension.Value(environment));
                 return this;
             }
 
+            /// <summary>
+            /// Overrides the default server URL for the SDK.
+            /// </summary>
             public SDKBuilder WithServerUrl(string serverUrl, Dictionary<string, string>? serverVariables = null)
             {
                 if (serverVariables != null)
@@ -360,30 +432,45 @@ namespace FormanceSDK
                 return this;
             }
 
+            /// <summary>
+            /// Sets the securitySource security parameter for the SDK.
+            /// </summary>
             public SDKBuilder WithSecuritySource(Func<FormanceSDK.Models.Components.Security> securitySource)
             {
                 _sdkConfig.SecuritySource = securitySource;
                 return this;
             }
 
+            /// <summary>
+            /// Sets the security security parameter for the SDK.
+            /// </summary>
             public SDKBuilder WithSecurity(FormanceSDK.Models.Components.Security security)
             {
                 _sdkConfig.SecuritySource = () => security;
                 return this;
             }
 
+            /// <summary>
+            /// Sets a custom HTTP client to be used by the SDK.
+            /// </summary>
             public SDKBuilder WithClient(ISpeakeasyHttpClient client)
             {
                 _sdkConfig.Client = client;
                 return this;
             }
 
+            /// <summary>
+            /// Sets the retry configuration for the SDK.
+            /// </summary>
             public SDKBuilder WithRetryConfig(RetryConfig retryConfig)
             {
                 _sdkConfig.RetryConfig = retryConfig;
                 return this;
             }
 
+            /// <summary>
+            /// Builds and returns the SDK instance.
+            /// </summary>
             public Formance Build()
             {
               return new Formance(_sdkConfig);

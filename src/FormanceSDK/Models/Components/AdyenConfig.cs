@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class AdyenConfig
     {
-
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
@@ -31,13 +30,9 @@ namespace FormanceSDK.Models.Components
         public string? LiveEndpointPrefix { get; set; }
 
         /// <summary>
-        /// The frequency at which the connector will try to fetch new BalanceTransaction objects from Adyen API.<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// The frequency at which the connector will try to fetch new BalanceTransaction objects from Adyen API.
         /// </summary>
         [JsonProperty("pollingPeriod")]
-        public string? PollingPeriod { get; set; } = "120s";
+        public string? PollingPeriod { get; set; } = "30m";
     }
 }

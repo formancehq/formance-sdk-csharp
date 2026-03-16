@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using Newtonsoft.Json;
     using System;
     using System.Numerics;
-    
+
     public class Balance
     {
-
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 

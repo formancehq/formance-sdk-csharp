@@ -11,13 +11,12 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// Server information
+    /// Server information.
     /// </summary>
     public class PaymentsServerInfo
     {
-
         [JsonProperty("version")]
         public string? Version { get; set; }
 

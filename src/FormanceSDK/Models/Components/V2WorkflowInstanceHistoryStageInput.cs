@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V2WorkflowInstanceHistoryStageInput
     {
-
         [JsonProperty("GetAccount")]
         public V2ActivityGetAccount? GetAccount { get; set; }
 

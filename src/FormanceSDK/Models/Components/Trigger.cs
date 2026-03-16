@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+
     public class Trigger
     {
-
         [JsonProperty("event")]
         public string Event { get; set; } = default!;
 

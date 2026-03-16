@@ -12,7 +12,7 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     public enum WebhooksErrorsEnum
     {
         [JsonProperty("INTERNAL")]
@@ -55,5 +55,4 @@ namespace FormanceSDK.Models.Components
             throw new Exception($"Unknown value {value} for enum WebhooksErrorsEnum");
         }
     }
-
 }

@@ -10,12 +10,11 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class CancelEventRequest
     {
-
         /// <summary>
-        /// The instance id
+        /// The instance id.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=instanceID")]
         public string InstanceID { get; set; } = default!;

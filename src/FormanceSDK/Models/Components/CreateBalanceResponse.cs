@@ -12,11 +12,10 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class CreateBalanceResponse
     {
-
         [JsonProperty("data")]
-        public Balance Data { get; set; } = default!;
+        public Models.Components.CreateBalanceRequest Data { get; set; } = default!;
     }
 }

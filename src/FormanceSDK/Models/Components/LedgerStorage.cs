@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class LedgerStorage
     {
-
         [JsonProperty("driver")]
         public string Driver { get; set; } = default!;
 

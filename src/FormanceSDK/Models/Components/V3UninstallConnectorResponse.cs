@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V3UninstallConnectorResponse
     {
-
         [JsonProperty("data")]
         public V3UninstallConnectorResponseData Data { get; set; } = default!;
     }

@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+
     public class Policy
     {
-
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 

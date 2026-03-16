@@ -70,7 +70,6 @@ namespace FormanceSDK.Models.Components
         }
     }
 
-
     [JsonConverter(typeof(TasksCursorData.TasksCursorDataConverter))]
     public class TasksCursorData
     {

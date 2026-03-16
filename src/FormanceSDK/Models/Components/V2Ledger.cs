@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+
     public class V2Ledger
     {
-
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
@@ -25,6 +24,9 @@ namespace FormanceSDK.Models.Components
 
         [JsonProperty("bucket")]
         public string Bucket { get; set; } = default!;
+
+        [JsonProperty("deletedAt")]
+        public DateTime? DeletedAt { get; set; } = null;
 
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; }

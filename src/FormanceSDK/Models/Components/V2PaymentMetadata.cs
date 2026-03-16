@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V2PaymentMetadata
     {
-
         [JsonProperty("key")]
         public string? Key { get; set; }
     }

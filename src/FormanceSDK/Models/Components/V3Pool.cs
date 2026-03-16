@@ -9,14 +9,14 @@
 #nullable enable
 namespace FormanceSDK.Models.Components
 {
+    using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+
     public class V3Pool
     {
-
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
@@ -25,6 +25,12 @@ namespace FormanceSDK.Models.Components
 
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
+
+        [JsonProperty("type")]
+        public V3PoolTypeEnum? Type { get; set; }
+
+        [JsonProperty("query")]
+        public Dictionary<string, object>? Query { get; set; }
 
         [JsonProperty("poolAccounts")]
         public List<string> PoolAccounts { get; set; } = default!;

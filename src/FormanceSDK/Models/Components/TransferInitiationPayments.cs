@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     public class TransferInitiationPayments
     {
-
         [JsonProperty("paymentID")]
         public string PaymentID { get; set; } = default!;
 
@@ -24,7 +23,7 @@ namespace FormanceSDK.Models.Components
         public DateTime CreatedAt { get; set; } = default!;
 
         [JsonProperty("status")]
-        public PaymentStatus Status { get; set; } = default!;
+        public LegacyPaymentStatus Status { get; set; } = default!;
 
         [JsonProperty("error")]
         public string? Error { get; set; } = null;

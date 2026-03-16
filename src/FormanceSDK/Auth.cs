@@ -21,11 +21,16 @@ namespace FormanceSDK
 
     public class Auth: IAuth
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-        private const string _language = "csharp";
-        private const string _sdkVersion = "3.0.0";
-        private const string _sdkGenVersion = "2.721.3";
-        private const string _openapiDocVersion = "v3.1.0";
+
+        /// <summary>
+        /// V1 SubSDK.
+        /// <see cref="IV1"/>
+        /// </summary>
         public IV1 V1 { get; private set; }
 
         public Auth(SDKConfig config)

@@ -12,13 +12,12 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// Pipelines list
+    /// Pipelines list.
     /// </summary>
     public class V2ListPipelinesResponse
     {
-
         [JsonProperty("cursor")]
         public V2ListPipelinesResponseCursor? Cursor { get; set; }
     }

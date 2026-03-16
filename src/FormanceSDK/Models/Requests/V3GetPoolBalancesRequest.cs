@@ -11,18 +11,17 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
     using System;
-    
+
     public class V3GetPoolBalancesRequest
     {
-
         /// <summary>
-        /// The pool ID
+        /// The pool ID.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=poolID")]
         public string PoolID { get; set; } = default!;
 
         /// <summary>
-        /// The time to filter by
+        /// The time to filter by.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=at")]
         public DateTime? At { get; set; }

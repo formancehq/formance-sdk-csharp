@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class ClientSecret
     {
-
         [JsonProperty("lastDigits")]
         public string LastDigits { get; set; } = default!;
 
@@ -26,6 +25,6 @@ namespace FormanceSDK.Models.Components
         public string Id { get; set; } = default!;
 
         [JsonProperty("metadata")]
-        public Dictionary<string, object>? Metadata { get; set; } = null;
+        public Dictionary<string, string>? Metadata { get; set; } = null;
     }
 }

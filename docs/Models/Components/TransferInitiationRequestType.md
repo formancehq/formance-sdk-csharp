@@ -1,5 +1,13 @@
 # TransferInitiationRequestType
 
+## Example Usage
+
+```csharp
+using FormanceSDK.Models.Components;
+
+var value = TransferInitiationRequestType.Transfer;
+```
+
 
 ## Values
 

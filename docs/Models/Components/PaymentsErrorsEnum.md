@@ -1,5 +1,13 @@
 # PaymentsErrorsEnum
 
+## Example Usage
+
+```csharp
+using FormanceSDK.Models.Components;
+
+var value = PaymentsErrorsEnum.Internal;
+```
+
 
 ## Values
 

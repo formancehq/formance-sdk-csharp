@@ -10,7 +10,7 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     /// <summary>
     /// Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
     /// </summary>

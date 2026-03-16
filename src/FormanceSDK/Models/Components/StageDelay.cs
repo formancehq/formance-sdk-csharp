@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     public class StageDelay
     {
-
         [JsonProperty("until")]
         public DateTime? Until { get; set; }
 

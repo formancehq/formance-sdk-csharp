@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class MangoPayConfig
     {
-
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
@@ -22,14 +21,10 @@ namespace FormanceSDK.Models.Components
         public string? Provider { get; set; } = "Mangopay";
 
         /// <summary>
-        /// The frequency at which the connector will try to fetch new BalanceTransaction objects from MangoPay API.<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// The frequency at which the connector will try to fetch new BalanceTransaction objects from MangoPay API.
         /// </summary>
         [JsonProperty("pollingPeriod")]
-        public string? PollingPeriod { get; set; } = "120s";
+        public string? PollingPeriod { get; set; } = "30m";
 
         [JsonProperty("clientID")]
         public string ClientID { get; set; } = default!;

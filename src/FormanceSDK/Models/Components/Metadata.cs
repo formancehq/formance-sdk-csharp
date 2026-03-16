@@ -10,14 +10,10 @@
 namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
-    
+
     /// <summary>
     /// A set of key/value pairs that you can attach to a transfer object.<br/>
-    /// 
-    /// <remarks>
-    /// It can be useful for storing additional information about the transfer in a structured format.<br/>
-    /// 
-    /// </remarks>
+    /// It can be useful for storing additional information about the transfer in a structured format.
     /// </summary>
     public class Metadata
     {

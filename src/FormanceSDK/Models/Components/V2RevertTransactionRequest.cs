@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class V2RevertTransactionRequest
     {
-
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; }
     }

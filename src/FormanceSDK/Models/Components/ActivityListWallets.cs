@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class ActivityListWallets
     {
-
         [JsonProperty("name")]
         public string? Name { get; set; }
     }

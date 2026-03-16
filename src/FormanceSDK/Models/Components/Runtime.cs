@@ -12,9 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     /// <summary>
-    /// The numscript runtime used to execute the script. Uses &quot;machine&quot; by default, unless the &quot;--experimental-numscript-interpreter&quot; feature flag is passed.
+    /// The numscript runtime used to execute the script. Uses "machine" by default, unless the "--experimental-numscript-interpreter" feature flag is passed.
     /// </summary>
     public enum Runtime
     {
@@ -56,5 +56,4 @@ namespace FormanceSDK.Models.Components
             throw new Exception($"Unknown value {value} for enum Runtime");
         }
     }
-
 }

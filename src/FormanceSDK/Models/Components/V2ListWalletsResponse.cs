@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V2ListWalletsResponse
     {
-
         [JsonProperty("cursor")]
         public V2ListWalletsResponseCursor Cursor { get; set; } = default!;
     }

@@ -9,18 +9,24 @@
 #nullable enable
 namespace FormanceSDK.Models.Components
 {
+    using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class Pool
     {
-
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
+
+        [JsonProperty("type")]
+        public PoolTypeEnum? Type { get; set; }
+
+        [JsonProperty("query")]
+        public Dictionary<string, object>? Query { get; set; }
 
         [JsonProperty("accounts")]
         public List<string> Accounts { get; set; } = default!;

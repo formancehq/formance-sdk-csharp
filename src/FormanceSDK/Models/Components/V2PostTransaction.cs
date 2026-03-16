@@ -14,10 +14,9 @@ namespace FormanceSDK.Models.Components
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+
     public class V2PostTransaction
     {
-
         [JsonProperty("timestamp")]
         public DateTime? Timestamp { get; set; }
 
@@ -28,7 +27,7 @@ namespace FormanceSDK.Models.Components
         public V2PostTransactionScript? Script { get; set; }
 
         /// <summary>
-        /// The numscript runtime used to execute the script. Uses &quot;machine&quot; by default, unless the &quot;--experimental-numscript-interpreter&quot; feature flag is passed.
+        /// The numscript runtime used to execute the script. Uses "machine" by default, unless the "--experimental-numscript-interpreter" feature flag is passed.
         /// </summary>
         [JsonProperty("runtime")]
         public Runtime? Runtime { get; set; }

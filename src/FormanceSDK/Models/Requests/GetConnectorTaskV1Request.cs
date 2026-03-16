@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
-    
+
     public class GetConnectorTaskV1Request
     {
-
         /// <summary>
         /// The name of the connector.
         /// </summary>

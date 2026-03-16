@@ -10,18 +10,17 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class DeleteSecretRequest
     {
-
         /// <summary>
-        /// Client ID
+        /// Client ID.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=clientId")]
         public string ClientId { get; set; } = default!;
 
         /// <summary>
-        /// Secret ID
+        /// Secret ID.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=secretId")]
         public string SecretId { get; set; } = default!;

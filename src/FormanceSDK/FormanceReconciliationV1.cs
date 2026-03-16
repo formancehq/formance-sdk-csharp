@@ -24,88 +24,161 @@ namespace FormanceSDK
 
     public interface IFormanceReconciliationV1
     {
-
         /// <summary>
-        /// Get server info
+        /// Get server info.
         /// </summary>
-        Task<ReconciliationgetServerInfoResponse> ReconciliationgetServerInfoAsync();
+        /// <returns>An awaitable task that returns a <see cref="ReconciliationgetServerInfoResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ReconciliationgetServerInfoResponse> ReconciliationgetServerInfoAsync();
 
         /// <summary>
-        /// Create a policy
-        /// 
+        /// Create a policy.
+        /// </summary>
         /// <remarks>
-        /// Create a policy
+        /// Create a policy.
         /// </remarks>
-        /// </summary>
-        Task<CreatePolicyResponse> CreatePolicyAsync(PolicyRequest request);
+        /// <param name="request">A <see cref="PolicyRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="CreatePolicyResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<CreatePolicyResponse> CreatePolicyAsync(PolicyRequest request);
 
         /// <summary>
-        /// List policies
+        /// List policies.
         /// </summary>
-        Task<ListPoliciesResponse> ListPoliciesAsync(long? pageSize = null, string? cursor = null);
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <returns>An awaitable task that returns a <see cref="ListPoliciesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ListPoliciesResponse> ListPoliciesAsync(long? pageSize = null, string? cursor = null);
 
         /// <summary>
-        /// Delete a policy
-        /// 
+        /// Delete a policy.
+        /// </summary>
         /// <remarks>
         /// Delete a policy by its id.
         /// </remarks>
-        /// </summary>
-        Task<DeletePolicyResponse> DeletePolicyAsync(string policyID);
+        /// <param name="policyID">The policy ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeletePolicyResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="policyID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<DeletePolicyResponse> DeletePolicyAsync(string policyID);
 
         /// <summary>
-        /// Get a policy
+        /// Get a policy.
         /// </summary>
-        Task<GetPolicyResponse> GetPolicyAsync(string policyID);
+        /// <param name="policyID">The policy ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetPolicyResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="policyID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<GetPolicyResponse> GetPolicyAsync(string policyID);
 
         /// <summary>
-        /// Reconcile using a policy
-        /// 
+        /// Reconcile using a policy.
+        /// </summary>
         /// <remarks>
-        /// Reconcile using a policy
+        /// Reconcile using a policy.
         /// </remarks>
-        /// </summary>
-        Task<ReconcileResponse> ReconcileAsync(string policyID, ReconciliationRequest reconciliationRequest);
+        /// <param name="policyID">The policy ID.</param>
+        /// <param name="reconciliationRequest">A <see cref="ReconciliationRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ReconcileResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="policyID"/> or <paramref name="reconciliationRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ReconcileResponse> ReconcileAsync(string policyID, ReconciliationRequest reconciliationRequest);
 
         /// <summary>
-        /// List reconciliations
+        /// List reconciliations.
         /// </summary>
-        Task<ListReconciliationsResponse> ListReconciliationsAsync(long? pageSize = null, string? cursor = null);
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <returns>An awaitable task that returns a <see cref="ListReconciliationsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ListReconciliationsResponse> ListReconciliationsAsync(long? pageSize = null, string? cursor = null);
 
         /// <summary>
-        /// Get a reconciliation
+        /// Get a reconciliation.
         /// </summary>
-        Task<GetReconciliationResponse> GetReconciliationAsync(string reconciliationID);
+        /// <param name="reconciliationID">The reconciliation ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetReconciliationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="reconciliationID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<GetReconciliationResponse> GetReconciliationAsync(string reconciliationID);
     }
 
     public class FormanceReconciliationV1: IFormanceReconciliationV1
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-        private const string _language = "csharp";
-        private const string _sdkVersion = "3.0.0";
-        private const string _sdkGenVersion = "2.721.3";
-        private const string _openapiDocVersion = "v3.1.0";
 
         public FormanceReconciliationV1(SDKConfig config)
         {
             SDKConfiguration = config;
         }
 
-        public async Task<ReconciliationgetServerInfoResponse> ReconciliationgetServerInfoAsync()
+        /// <summary>
+        /// Get server info.
+        /// </summary>
+        /// <returns>An awaitable task that returns a <see cref="ReconciliationgetServerInfoResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ReconciliationgetServerInfoResponse> ReconciliationgetServerInfoAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/api/reconciliation/_info";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "reconciliationgetServerInfo", new List<string> { "auth:read", "reconciliation:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "reconciliationgetServerInfo", new List<string> { "reconciliation:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -115,7 +188,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -124,9 +197,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -192,14 +265,34 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<CreatePolicyResponse> CreatePolicyAsync(PolicyRequest request)
-        {
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
 
+        /// <summary>
+        /// Create a policy.
+        /// </summary>
+        /// <remarks>
+        /// Create a policy.
+        /// </remarks>
+        /// <param name="request">A <see cref="PolicyRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="CreatePolicyResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<CreatePolicyResponse> CreatePolicyAsync(PolicyRequest request)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/reconciliation/policies";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, false);
             if (serializedBody != null)
@@ -212,7 +305,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createPolicy", new List<string> { "auth:read", "reconciliation:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createPolicy", new List<string> { "reconciliation:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -222,7 +315,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 201)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -231,9 +324,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -299,25 +392,47 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<ListPoliciesResponse> ListPoliciesAsync(long? pageSize = null, string? cursor = null)
+
+        /// <summary>
+        /// List policies.
+        /// </summary>
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <returns>An awaitable task that returns a <see cref="ListPoliciesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ListPoliciesResponse> ListPoliciesAsync(long? pageSize = null, string? cursor = null)
         {
             var request = new ListPoliciesRequest()
             {
                 PageSize = pageSize,
                 Cursor = cursor,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/policies", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/policies", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listPolicies", new List<string> { "auth:read", "reconciliation:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listPolicies", new List<string> { "reconciliation:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -327,7 +442,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -336,9 +451,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -404,24 +519,46 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<DeletePolicyResponse> DeletePolicyAsync(string policyID)
+
+        /// <summary>
+        /// Delete a policy.
+        /// </summary>
+        /// <remarks>
+        /// Delete a policy by its id.
+        /// </remarks>
+        /// <param name="policyID">The policy ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeletePolicyResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="policyID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<DeletePolicyResponse> DeletePolicyAsync(string policyID)
         {
+            if (policyID == null) throw new ArgumentNullException(nameof(policyID));
+
             var request = new DeletePolicyRequest()
             {
                 PolicyID = policyID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/policies/{policyID}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/policies/{policyID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deletePolicy", new List<string> { "auth:read", "reconciliation:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deletePolicy", new List<string> { "reconciliation:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -431,7 +568,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -440,9 +577,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -490,24 +627,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<GetPolicyResponse> GetPolicyAsync(string policyID)
+
+        /// <summary>
+        /// Get a policy.
+        /// </summary>
+        /// <param name="policyID">The policy ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetPolicyResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="policyID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<GetPolicyResponse> GetPolicyAsync(string policyID)
         {
+            if (policyID == null) throw new ArgumentNullException(nameof(policyID));
+
             var request = new GetPolicyRequest()
             {
                 PolicyID = policyID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/policies/{policyID}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/policies/{policyID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getPolicy", new List<string> { "auth:read", "reconciliation:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getPolicy", new List<string> { "reconciliation:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -517,7 +673,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -526,9 +682,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -594,18 +750,45 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<ReconcileResponse> ReconcileAsync(string policyID, ReconciliationRequest reconciliationRequest)
+
+        /// <summary>
+        /// Reconcile using a policy.
+        /// </summary>
+        /// <remarks>
+        /// Reconcile using a policy.
+        /// </remarks>
+        /// <param name="policyID">The policy ID.</param>
+        /// <param name="reconciliationRequest">A <see cref="ReconciliationRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ReconcileResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="policyID"/> or <paramref name="reconciliationRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ReconcileResponse> ReconcileAsync(
+            string policyID,
+            ReconciliationRequest reconciliationRequest
+        )
         {
+            if (policyID == null) throw new ArgumentNullException(nameof(policyID));
+            if (reconciliationRequest == null) throw new ArgumentNullException(nameof(reconciliationRequest));
+
             var request = new ReconcileRequest()
             {
                 PolicyID = policyID,
                 ReconciliationRequest = reconciliationRequest,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/policies/{policyID}/reconciliation", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/policies/{policyID}/reconciliation", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "ReconciliationRequest", "json", false, false);
             if (serializedBody != null)
@@ -618,7 +801,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "reconcile", new List<string> { "auth:read", "reconciliation:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "reconcile", new List<string> { "reconciliation:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -628,7 +811,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -637,9 +820,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -705,25 +888,50 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<ListReconciliationsResponse> ListReconciliationsAsync(long? pageSize = null, string? cursor = null)
+
+        /// <summary>
+        /// List reconciliations.
+        /// </summary>
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <returns>An awaitable task that returns a <see cref="ListReconciliationsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ListReconciliationsResponse> ListReconciliationsAsync(
+            long? pageSize = null,
+            string? cursor = null
+        )
         {
             var request = new ListReconciliationsRequest()
             {
                 PageSize = pageSize,
                 Cursor = cursor,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/reconciliations", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/reconciliations", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listReconciliations", new List<string> { "auth:read", "reconciliation:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listReconciliations", new List<string> { "reconciliation:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -733,7 +941,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -742,9 +950,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -810,24 +1018,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<GetReconciliationResponse> GetReconciliationAsync(string reconciliationID)
+
+        /// <summary>
+        /// Get a reconciliation.
+        /// </summary>
+        /// <param name="reconciliationID">The reconciliation ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetReconciliationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="reconciliationID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<GetReconciliationResponse> GetReconciliationAsync(string reconciliationID)
         {
+            if (reconciliationID == null) throw new ArgumentNullException(nameof(reconciliationID));
+
             var request = new GetReconciliationRequest()
             {
                 ReconciliationID = reconciliationID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/reconciliations/{reconciliationID}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/reconciliations/{reconciliationID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getReconciliation", new List<string> { "auth:read", "reconciliation:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getReconciliation", new List<string> { "reconciliation:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -837,7 +1064,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -846,9 +1073,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -913,5 +1140,6 @@ namespace FormanceSDK
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
         }
+
     }
 }

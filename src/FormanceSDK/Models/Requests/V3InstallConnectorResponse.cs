@@ -12,15 +12,14 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V3InstallConnectorResponse
     {
-
         [JsonProperty("-")]
         public HTTPMetadata HttpMeta { get; set; } = default!;
 
         /// <summary>
-        /// Accepted
+        /// Accepted.
         /// </summary>
         public Models.Components.V3InstallConnectorResponse? V3InstallConnectorResponseValue { get; set; }
     }

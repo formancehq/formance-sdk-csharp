@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using Newtonsoft.Json;
     using System;
     using System.Numerics;
-    
+
     public class V3Balance
     {
-
         [JsonProperty("accountID")]
         public string AccountID { get; set; } = default!;
 

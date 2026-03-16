@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V2ErrorResponse
     {
-
         [JsonProperty("errorCode")]
         public V2ErrorsEnum ErrorCode { get; set; } = default!;
 

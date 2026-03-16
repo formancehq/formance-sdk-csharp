@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class UpdateAccount
     {
-
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 

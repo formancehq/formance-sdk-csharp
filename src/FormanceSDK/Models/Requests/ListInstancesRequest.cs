@@ -10,18 +10,17 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class ListInstancesRequest
     {
-
         /// <summary>
-        /// A workflow id
+        /// A workflow id.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=workflowID")]
         public string? WorkflowID { get; set; }
 
         /// <summary>
-        /// Filter running instances
+        /// Filter running instances.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=running")]
         public bool? Running { get; set; }

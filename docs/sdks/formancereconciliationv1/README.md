@@ -1,5 +1,4 @@
-# FormanceReconciliationV1
-(*Reconciliation.V1*)
+# Reconciliation.V1
 
 ## Overview
 
@@ -232,8 +231,8 @@ var sdk = new Formance(security: new Security() {
 var res = await sdk.Reconciliation.V1.ReconcileAsync(
     policyID: "XXX",
     reconciliationRequest: new ReconciliationRequest() {
-        ReconciledAtLedger = System.DateTime.Parse("2021-01-01T00:00:00.000Z"),
-        ReconciledAtPayments = System.DateTime.Parse("2021-01-01T00:00:00.000Z"),
+        ReconciledAtLedger = System.DateTime.Parse("2021-01-01T00:00:00.000Z").ToUniversalTime(),
+        ReconciledAtPayments = System.DateTime.Parse("2021-01-01T00:00:00.000Z").ToUniversalTime(),
     }
 );
 

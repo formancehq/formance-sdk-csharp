@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class ListUsersResponse
     {
-
         [JsonProperty("data")]
         public List<User>? Data { get; set; }
     }

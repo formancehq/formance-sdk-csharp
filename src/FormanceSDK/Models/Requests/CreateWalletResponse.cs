@@ -12,15 +12,14 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class CreateWalletResponse
     {
-
         [JsonProperty("-")]
         public HTTPMetadata HttpMeta { get; set; } = default!;
 
         /// <summary>
-        /// Wallet created
+        /// Wallet created.
         /// </summary>
         public Models.Components.CreateWalletResponse? CreateWalletResponseValue { get; set; }
     }

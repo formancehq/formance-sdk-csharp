@@ -1,0 +1,9 @@
+# V3DeletePaymentServiceUserResponse
+
+
+## Fields
+
+| Field                                                                                               | Type                                                                                                | Required                                                                                            | Description                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `HttpMeta`                                                                                          | [HTTPMetadata](../../Models/Components/HTTPMetadata.md)                                             | :heavy_check_mark:                                                                                  | N/A                                                                                                 |
+| `V3PaymentServiceUserDeleteResponse`                                                                | [V3PaymentServiceUserDeleteResponse](../../Models/Components/V3PaymentServiceUserDeleteResponse.md) | :heavy_minus_sign:                                                                                  | Accepted                                                                                            |

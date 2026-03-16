@@ -11,20 +11,19 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
-    
+
     public class CreateBalanceRequest
     {
-
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")]
         public string Id { get; set; } = default!;
 
         /// <summary>
-        /// Use an idempotency key
+        /// Use an idempotency key.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=Idempotency-Key")]
         public string? IdempotencyKey { get; set; }
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public Balance? Balance { get; set; }
+        public Models.Components.CreateBalanceRequest? CreateBalanceRequestValue { get; set; }
     }
 }

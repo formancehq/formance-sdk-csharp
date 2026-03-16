@@ -12,15 +12,14 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V2CreateExporterResponse
     {
-
         [JsonProperty("-")]
         public HTTPMetadata HttpMeta { get; set; } = default!;
 
         /// <summary>
-        /// Created exporter
+        /// Created exporter.
         /// </summary>
         public Models.Components.V2CreateExporterResponse? V2CreateExporterResponseValue { get; set; }
     }

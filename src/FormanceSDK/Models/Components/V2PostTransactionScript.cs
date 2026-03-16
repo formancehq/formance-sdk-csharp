@@ -12,12 +12,14 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class V2PostTransactionScript
     {
+        [JsonProperty("template")]
+        public string? Template { get; set; }
 
         [JsonProperty("plain")]
-        public string Plain { get; set; } = default!;
+        public string? Plain { get; set; }
 
         [JsonProperty("vars")]
         public Dictionary<string, string>? Vars { get; set; }

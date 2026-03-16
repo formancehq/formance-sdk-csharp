@@ -11,12 +11,11 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V3InstallConnectorResponse
     {
-
         /// <summary>
-        /// The ID of the created connector
+        /// The ID of the created connector.
         /// </summary>
         [JsonProperty("data")]
         public string Data { get; set; } = default!;

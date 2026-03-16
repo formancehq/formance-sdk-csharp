@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class Transactions
     {
-
         [JsonProperty("transactions")]
         public List<TransactionData> TransactionsValue { get; set; } = default!;
     }

@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Numerics;
-    
+
     public class TransferRequest
     {
-
         [JsonProperty("amount")]
         public BigInteger Amount { get; set; } = default!;
 

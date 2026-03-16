@@ -12,14 +12,16 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     /// <summary>
-    /// Deprecated: Use sort param
+    /// The sort order.
     /// </summary>
     public enum Order
     {
-        [JsonProperty("effective")]
-        Effective,
+        [JsonProperty("asc")]
+        Asc,
+        [JsonProperty("desc")]
+        Desc,
     }
 
     public static class OrderExtension
@@ -54,5 +56,4 @@ namespace FormanceSDK.Models.Requests
             throw new Exception($"Unknown value {value} for enum Order");
         }
     }
-
 }

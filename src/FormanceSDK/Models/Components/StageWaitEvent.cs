@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class StageWaitEvent
     {
-
         [JsonProperty("event")]
         public string Event { get; set; } = default!;
     }

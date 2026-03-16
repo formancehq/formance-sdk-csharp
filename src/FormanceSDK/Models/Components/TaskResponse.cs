@@ -12,13 +12,12 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// OK
+    /// OK.
     /// </summary>
     public class TaskResponse
     {
-
         [JsonProperty("data", NullValueHandling = NullValueHandling.Include)]
         public TaskResponseData Data { get; set; } = default!;
     }

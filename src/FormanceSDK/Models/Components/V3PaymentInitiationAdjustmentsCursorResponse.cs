@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V3PaymentInitiationAdjustmentsCursorResponse
     {
-
         [JsonProperty("cursor")]
         public V3PaymentInitiationAdjustmentsCursorResponseCursor Cursor { get; set; } = default!;
     }

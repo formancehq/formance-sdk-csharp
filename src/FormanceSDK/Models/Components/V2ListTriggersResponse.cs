@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V2ListTriggersResponse
     {
-
         [JsonProperty("cursor")]
         public V2ListTriggersResponseCursor Cursor { get; set; } = default!;
     }

@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class WalletSubject
     {
-
         [JsonProperty("type")]
         public string Type { get; set; } = default!;
 

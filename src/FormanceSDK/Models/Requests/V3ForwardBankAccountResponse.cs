@@ -12,15 +12,14 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V3ForwardBankAccountResponse
     {
-
         [JsonProperty("-")]
         public HTTPMetadata HttpMeta { get; set; } = default!;
 
         /// <summary>
-        /// Accepted
+        /// Accepted.
         /// </summary>
         public Models.Components.V3ForwardBankAccountResponse? V3ForwardBankAccountResponseValue { get; set; }
     }

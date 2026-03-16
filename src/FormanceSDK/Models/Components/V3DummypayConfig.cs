@@ -11,23 +11,30 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+    using System;
+
     public class V3DummypayConfig
     {
-
         [JsonProperty("directory")]
         public string Directory { get; set; } = default!;
+
+        [JsonProperty("linkFlowError")]
+        public bool? LinkFlowError { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible")]
         [JsonProperty("pageSize")]
         public long? PageSize { get; set; } = 25;
 
         [JsonProperty("pollingPeriod")]
-        public string? PollingPeriod { get; set; } = "2m";
+        public string? PollingPeriod { get; set; } = "30m";
 
         [JsonProperty("provider")]
         public string? Provider { get; set; } = "Dummypay";
+
+        [JsonProperty("updateLinkFlowError")]
+        public bool? UpdateLinkFlowError { get; set; }
     }
 }

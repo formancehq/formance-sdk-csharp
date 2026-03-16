@@ -70,7 +70,6 @@ namespace FormanceSDK.Models.Components
         }
     }
 
-
     [JsonConverter(typeof(TaskResponseData.TaskResponseDataConverter))]
     public class TaskResponseData
     {

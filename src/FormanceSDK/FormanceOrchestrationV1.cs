@@ -24,185 +24,300 @@ namespace FormanceSDK
 
     public interface IFormanceOrchestrationV1
     {
-
         /// <summary>
-        /// Get server info
+        /// Get server info.
         /// </summary>
-        Task<OrchestrationgetServerInfoResponse> OrchestrationgetServerInfoAsync();
+        /// <returns>An awaitable task that returns a <see cref="OrchestrationgetServerInfoResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<OrchestrationgetServerInfoResponse> OrchestrationgetServerInfoAsync();
 
         /// <summary>
-        /// List triggers
-        /// 
+        /// List triggers.
+        /// </summary>
         /// <remarks>
-        /// List triggers
+        /// List triggers.
         /// </remarks>
-        /// </summary>
-        Task<Models.Requests.ListTriggersResponse> ListTriggersAsync(string? name = null);
+        /// <param name="name">search by name.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.ListTriggersResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.ListTriggersResponse> ListTriggersAsync(string? name = null);
 
         /// <summary>
-        /// Create trigger
-        /// 
-        /// <remarks>
-        /// Create trigger
-        /// </remarks>
+        /// Create trigger.
         /// </summary>
-        Task<Models.Requests.CreateTriggerResponse> CreateTriggerAsync(TriggerData? request = null);
+        /// <remarks>
+        /// Create trigger.
+        /// </remarks>
+        /// <param name="request">A <see cref="TriggerData"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.CreateTriggerResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.CreateTriggerResponse> CreateTriggerAsync(TriggerData? request = null);
 
         /// <summary>
-        /// Read trigger
-        /// 
-        /// <remarks>
-        /// Read trigger
-        /// </remarks>
+        /// Read trigger.
         /// </summary>
-        Task<Models.Requests.ReadTriggerResponse> ReadTriggerAsync(string triggerID);
+        /// <remarks>
+        /// Read trigger.
+        /// </remarks>
+        /// <param name="triggerID">The trigger id.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.ReadTriggerResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="triggerID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.ReadTriggerResponse> ReadTriggerAsync(string triggerID);
 
         /// <summary>
-        /// Delete trigger
-        /// 
-        /// <remarks>
-        /// Read trigger
-        /// </remarks>
+        /// Delete trigger.
         /// </summary>
-        Task<DeleteTriggerResponse> DeleteTriggerAsync(string triggerID);
+        /// <remarks>
+        /// Read trigger.
+        /// </remarks>
+        /// <param name="triggerID">The trigger id.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeleteTriggerResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="triggerID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<DeleteTriggerResponse> DeleteTriggerAsync(string triggerID);
 
         /// <summary>
-        /// List triggers occurrences
-        /// 
-        /// <remarks>
-        /// List triggers occurrences
-        /// </remarks>
+        /// List triggers occurrences.
         /// </summary>
-        Task<Models.Requests.ListTriggersOccurrencesResponse> ListTriggersOccurrencesAsync(string triggerID);
+        /// <remarks>
+        /// List triggers occurrences.
+        /// </remarks>
+        /// <param name="triggerID">The trigger id.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.ListTriggersOccurrencesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="triggerID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.ListTriggersOccurrencesResponse> ListTriggersOccurrencesAsync(string triggerID);
 
         /// <summary>
-        /// List registered workflows
-        /// 
-        /// <remarks>
-        /// List registered workflows
-        /// </remarks>
+        /// List registered workflows.
         /// </summary>
-        Task<Models.Requests.ListWorkflowsResponse> ListWorkflowsAsync();
+        /// <remarks>
+        /// List registered workflows.
+        /// </remarks>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.ListWorkflowsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.ListWorkflowsResponse> ListWorkflowsAsync();
 
         /// <summary>
-        /// Create workflow
-        /// 
-        /// <remarks>
-        /// Create a workflow
-        /// </remarks>
+        /// Create workflow.
         /// </summary>
-        Task<Models.Requests.CreateWorkflowResponse> CreateWorkflowAsync(WorkflowConfig? request = null);
+        /// <remarks>
+        /// Create a workflow.
+        /// </remarks>
+        /// <param name="request">A <see cref="CreateWorkflowRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.CreateWorkflowResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.CreateWorkflowResponse> CreateWorkflowAsync(CreateWorkflowRequest? request = null);
 
         /// <summary>
-        /// Get a flow by id
-        /// 
-        /// <remarks>
-        /// Get a flow by id
-        /// </remarks>
+        /// Get a flow by id.
         /// </summary>
-        Task<Models.Requests.GetWorkflowResponse> GetWorkflowAsync(string flowId);
+        /// <remarks>
+        /// Get a flow by id.
+        /// </remarks>
+        /// <param name="flowId">The flow id.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetWorkflowResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="flowId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.GetWorkflowResponse> GetWorkflowAsync(string flowId);
 
         /// <summary>
-        /// Delete a flow by id
-        /// 
-        /// <remarks>
-        /// Delete a flow by id
-        /// </remarks>
+        /// Delete a flow by id.
         /// </summary>
-        Task<DeleteWorkflowResponse> DeleteWorkflowAsync(string flowId);
+        /// <remarks>
+        /// Delete a flow by id.
+        /// </remarks>
+        /// <param name="flowId">The flow id.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeleteWorkflowResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="flowId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<DeleteWorkflowResponse> DeleteWorkflowAsync(string flowId);
 
         /// <summary>
-        /// Run workflow
-        /// 
-        /// <remarks>
-        /// Run workflow
-        /// </remarks>
+        /// Run workflow.
         /// </summary>
-        Task<Models.Requests.RunWorkflowResponse> RunWorkflowAsync(string workflowID, bool? wait = null, Dictionary<string, string>? requestBody = null);
+        /// <remarks>
+        /// Run workflow.
+        /// </remarks>
+        /// <param name="workflowID">The flow id.</param>
+        /// <param name="wait">Wait end of the workflow before return.</param>
+        /// <param name="requestBody">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.RunWorkflowResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="workflowID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.RunWorkflowResponse> RunWorkflowAsync(
+            string workflowID,
+            bool? wait = null,
+            Dictionary<string, string>? requestBody = null
+        );
 
         /// <summary>
-        /// List instances of a workflow
-        /// 
-        /// <remarks>
-        /// List instances of a workflow
-        /// </remarks>
+        /// List instances of a workflow.
         /// </summary>
-        Task<ListInstancesResponse> ListInstancesAsync(string? workflowID = null, bool? running = null);
+        /// <remarks>
+        /// List instances of a workflow.
+        /// </remarks>
+        /// <param name="workflowID">A workflow id.</param>
+        /// <param name="running">Filter running instances.</param>
+        /// <returns>An awaitable task that returns a <see cref="ListInstancesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ListInstancesResponse> ListInstancesAsync(string? workflowID = null, bool? running = null);
 
         /// <summary>
-        /// Get a workflow instance by id
-        /// 
-        /// <remarks>
-        /// Get a workflow instance by id
-        /// </remarks>
+        /// Get a workflow instance by id.
         /// </summary>
-        Task<GetInstanceResponse> GetInstanceAsync(string instanceID);
+        /// <remarks>
+        /// Get a workflow instance by id.
+        /// </remarks>
+        /// <param name="instanceID">The instance id.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetInstanceResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<GetInstanceResponse> GetInstanceAsync(string instanceID);
 
         /// <summary>
-        /// Send an event to a running workflow
-        /// 
-        /// <remarks>
-        /// Send an event to a running workflow
-        /// </remarks>
+        /// Send an event to a running workflow.
         /// </summary>
-        Task<SendEventResponse> SendEventAsync(string instanceID, SendEventRequestBody? requestBody = null);
+        /// <remarks>
+        /// Send an event to a running workflow.
+        /// </remarks>
+        /// <param name="instanceID">The instance id.</param>
+        /// <param name="requestBody">A <see cref="SendEventRequestBody"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="SendEventResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<SendEventResponse> SendEventAsync(string instanceID, SendEventRequestBody? requestBody = null);
 
         /// <summary>
-        /// Cancel a running workflow
-        /// 
-        /// <remarks>
-        /// Cancel a running workflow
-        /// </remarks>
+        /// Cancel a running workflow.
         /// </summary>
-        Task<CancelEventResponse> CancelEventAsync(string instanceID);
+        /// <remarks>
+        /// Cancel a running workflow.
+        /// </remarks>
+        /// <param name="instanceID">The instance id.</param>
+        /// <returns>An awaitable task that returns a <see cref="CancelEventResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<CancelEventResponse> CancelEventAsync(string instanceID);
 
         /// <summary>
-        /// Get a workflow instance history by id
-        /// 
-        /// <remarks>
-        /// Get a workflow instance history by id
-        /// </remarks>
+        /// Get a workflow instance history by id.
         /// </summary>
-        Task<GetInstanceHistoryResponse> GetInstanceHistoryAsync(string instanceID);
+        /// <remarks>
+        /// Get a workflow instance history by id.
+        /// </remarks>
+        /// <param name="instanceID">The instance id.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetInstanceHistoryResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<GetInstanceHistoryResponse> GetInstanceHistoryAsync(string instanceID);
 
         /// <summary>
-        /// Get a workflow instance stage history
-        /// 
-        /// <remarks>
-        /// Get a workflow instance stage history
-        /// </remarks>
+        /// Get a workflow instance stage history.
         /// </summary>
-        Task<GetInstanceStageHistoryResponse> GetInstanceStageHistoryAsync(string instanceID, long number);
+        /// <remarks>
+        /// Get a workflow instance stage history.
+        /// </remarks>
+        /// <param name="instanceID">The instance id.</param>
+        /// <param name="number">The stage number.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetInstanceStageHistoryResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<GetInstanceStageHistoryResponse> GetInstanceStageHistoryAsync(string instanceID, long number);
     }
 
     public class FormanceOrchestrationV1: IFormanceOrchestrationV1
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-        private const string _language = "csharp";
-        private const string _sdkVersion = "3.0.0";
-        private const string _sdkGenVersion = "2.721.3";
-        private const string _openapiDocVersion = "v3.1.0";
 
         public FormanceOrchestrationV1(SDKConfig config)
         {
             SDKConfiguration = config;
         }
 
-        public async Task<OrchestrationgetServerInfoResponse> OrchestrationgetServerInfoAsync()
+        /// <summary>
+        /// Get server info.
+        /// </summary>
+        /// <returns>An awaitable task that returns a <see cref="OrchestrationgetServerInfoResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<OrchestrationgetServerInfoResponse> OrchestrationgetServerInfoAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/api/orchestration/_info";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "orchestrationgetServerInfo", new List<string> { "auth:read", "orchestration:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "orchestrationgetServerInfo", new List<string> { "orchestration:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -212,7 +327,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -221,9 +336,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -289,24 +404,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.ListTriggersResponse> ListTriggersAsync(string? name = null)
+
+        /// <summary>
+        /// List triggers.
+        /// </summary>
+        /// <remarks>
+        /// List triggers.
+        /// </remarks>
+        /// <param name="name">search by name.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.ListTriggersResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.ListTriggersResponse> ListTriggersAsync(string? name = null)
         {
             var request = new ListTriggersRequest()
             {
                 Name = name,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/triggers", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/triggers", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listTriggers", new List<string> { "auth:read", "orchestration:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listTriggers", new List<string> { "orchestration:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -316,7 +450,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -325,9 +459,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -393,14 +527,31 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.CreateTriggerResponse> CreateTriggerAsync(TriggerData? request = null)
+
+        /// <summary>
+        /// Create trigger.
+        /// </summary>
+        /// <remarks>
+        /// Create trigger.
+        /// </remarks>
+        /// <param name="request">A <see cref="TriggerData"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.CreateTriggerResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.CreateTriggerResponse> CreateTriggerAsync(TriggerData? request = null)
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/api/orchestration/triggers";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, true);
             if (serializedBody != null)
@@ -413,7 +564,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createTrigger", new List<string> { "auth:read", "orchestration:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createTrigger", new List<string> { "orchestration:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -423,7 +574,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 201)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -432,9 +583,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -500,24 +651,46 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.ReadTriggerResponse> ReadTriggerAsync(string triggerID)
+
+        /// <summary>
+        /// Read trigger.
+        /// </summary>
+        /// <remarks>
+        /// Read trigger.
+        /// </remarks>
+        /// <param name="triggerID">The trigger id.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.ReadTriggerResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="triggerID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.ReadTriggerResponse> ReadTriggerAsync(string triggerID)
         {
+            if (triggerID == null) throw new ArgumentNullException(nameof(triggerID));
+
             var request = new ReadTriggerRequest()
             {
                 TriggerID = triggerID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/triggers/{triggerID}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/triggers/{triggerID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "readTrigger", new List<string> { "auth:read", "orchestration:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "readTrigger", new List<string> { "orchestration:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -527,7 +700,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -536,9 +709,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -604,24 +777,46 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<DeleteTriggerResponse> DeleteTriggerAsync(string triggerID)
+
+        /// <summary>
+        /// Delete trigger.
+        /// </summary>
+        /// <remarks>
+        /// Read trigger.
+        /// </remarks>
+        /// <param name="triggerID">The trigger id.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeleteTriggerResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="triggerID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<DeleteTriggerResponse> DeleteTriggerAsync(string triggerID)
         {
+            if (triggerID == null) throw new ArgumentNullException(nameof(triggerID));
+
             var request = new DeleteTriggerRequest()
             {
                 TriggerID = triggerID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/triggers/{triggerID}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/triggers/{triggerID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteTrigger", new List<string> { "auth:read", "orchestration:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteTrigger", new List<string> { "orchestration:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -631,7 +826,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -640,9 +835,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -690,24 +885,48 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.ListTriggersOccurrencesResponse> ListTriggersOccurrencesAsync(string triggerID)
+
+        /// <summary>
+        /// List triggers occurrences.
+        /// </summary>
+        /// <remarks>
+        /// List triggers occurrences.
+        /// </remarks>
+        /// <param name="triggerID">The trigger id.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.ListTriggersOccurrencesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="triggerID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.ListTriggersOccurrencesResponse> ListTriggersOccurrencesAsync(
+            string triggerID
+        )
         {
+            if (triggerID == null) throw new ArgumentNullException(nameof(triggerID));
+
             var request = new ListTriggersOccurrencesRequest()
             {
                 TriggerID = triggerID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/triggers/{triggerID}/occurrences", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/triggers/{triggerID}/occurrences", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listTriggersOccurrences", new List<string> { "auth:read", "orchestration:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listTriggersOccurrences", new List<string> { "orchestration:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -717,7 +936,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -726,9 +945,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -794,21 +1013,37 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.ListWorkflowsResponse> ListWorkflowsAsync()
+
+        /// <summary>
+        /// List registered workflows.
+        /// </summary>
+        /// <remarks>
+        /// List registered workflows.
+        /// </remarks>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.ListWorkflowsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.ListWorkflowsResponse> ListWorkflowsAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/api/orchestration/workflows";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listWorkflows", new List<string> { "auth:read", "orchestration:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listWorkflows", new List<string> { "orchestration:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -818,7 +1053,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -827,9 +1062,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -895,14 +1130,33 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.CreateWorkflowResponse> CreateWorkflowAsync(WorkflowConfig? request = null)
+
+        /// <summary>
+        /// Create workflow.
+        /// </summary>
+        /// <remarks>
+        /// Create a workflow.
+        /// </remarks>
+        /// <param name="request">A <see cref="CreateWorkflowRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.CreateWorkflowResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.CreateWorkflowResponse> CreateWorkflowAsync(
+            CreateWorkflowRequest? request = null
+        )
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/api/orchestration/workflows";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, true);
             if (serializedBody != null)
@@ -915,7 +1169,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createWorkflow", new List<string> { "auth:read", "orchestration:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createWorkflow", new List<string> { "orchestration:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -925,7 +1179,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 201)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -934,9 +1188,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1002,24 +1256,46 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.GetWorkflowResponse> GetWorkflowAsync(string flowId)
+
+        /// <summary>
+        /// Get a flow by id.
+        /// </summary>
+        /// <remarks>
+        /// Get a flow by id.
+        /// </remarks>
+        /// <param name="flowId">The flow id.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetWorkflowResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="flowId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.GetWorkflowResponse> GetWorkflowAsync(string flowId)
         {
+            if (flowId == null) throw new ArgumentNullException(nameof(flowId));
+
             var request = new GetWorkflowRequest()
             {
                 FlowId = flowId,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/workflows/{flowId}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/workflows/{flowId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getWorkflow", new List<string> { "auth:read", "orchestration:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getWorkflow", new List<string> { "orchestration:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1029,7 +1305,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1038,9 +1314,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1106,24 +1382,46 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<DeleteWorkflowResponse> DeleteWorkflowAsync(string flowId)
+
+        /// <summary>
+        /// Delete a flow by id.
+        /// </summary>
+        /// <remarks>
+        /// Delete a flow by id.
+        /// </remarks>
+        /// <param name="flowId">The flow id.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeleteWorkflowResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="flowId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<DeleteWorkflowResponse> DeleteWorkflowAsync(string flowId)
         {
+            if (flowId == null) throw new ArgumentNullException(nameof(flowId));
+
             var request = new DeleteWorkflowRequest()
             {
                 FlowId = flowId,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/workflows/{flowId}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/workflows/{flowId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteWorkflow", new List<string> { "auth:read", "orchestration:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteWorkflow", new List<string> { "orchestration:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1133,7 +1431,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1142,9 +1440,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1192,19 +1490,47 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.RunWorkflowResponse> RunWorkflowAsync(string workflowID, bool? wait = null, Dictionary<string, string>? requestBody = null)
+
+        /// <summary>
+        /// Run workflow.
+        /// </summary>
+        /// <remarks>
+        /// Run workflow.
+        /// </remarks>
+        /// <param name="workflowID">The flow id.</param>
+        /// <param name="wait">Wait end of the workflow before return.</param>
+        /// <param name="requestBody">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.RunWorkflowResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="workflowID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.RunWorkflowResponse> RunWorkflowAsync(
+            string workflowID,
+            bool? wait = null,
+            Dictionary<string, string>? requestBody = null
+        )
         {
+            if (workflowID == null) throw new ArgumentNullException(nameof(workflowID));
+
             var request = new RunWorkflowRequest()
             {
                 WorkflowID = workflowID,
                 Wait = wait,
                 RequestBody = requestBody,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/workflows/{workflowID}/instances", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/workflows/{workflowID}/instances", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
             if (serializedBody != null)
@@ -1217,7 +1543,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "runWorkflow", new List<string> { "auth:read", "orchestration:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "runWorkflow", new List<string> { "orchestration:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1227,7 +1553,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 201)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1236,9 +1562,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1304,25 +1630,45 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<ListInstancesResponse> ListInstancesAsync(string? workflowID = null, bool? running = null)
+
+        /// <summary>
+        /// List instances of a workflow.
+        /// </summary>
+        /// <remarks>
+        /// List instances of a workflow.
+        /// </remarks>
+        /// <param name="workflowID">A workflow id.</param>
+        /// <param name="running">Filter running instances.</param>
+        /// <returns>An awaitable task that returns a <see cref="ListInstancesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ListInstancesResponse> ListInstancesAsync(string? workflowID = null, bool? running = null)
         {
             var request = new ListInstancesRequest()
             {
                 WorkflowID = workflowID,
                 Running = running,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/instances", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/instances", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listInstances", new List<string> { "auth:read", "orchestration:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listInstances", new List<string> { "orchestration:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1332,7 +1678,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1341,9 +1687,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1409,24 +1755,46 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<GetInstanceResponse> GetInstanceAsync(string instanceID)
+
+        /// <summary>
+        /// Get a workflow instance by id.
+        /// </summary>
+        /// <remarks>
+        /// Get a workflow instance by id.
+        /// </remarks>
+        /// <param name="instanceID">The instance id.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetInstanceResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<GetInstanceResponse> GetInstanceAsync(string instanceID)
         {
+            if (instanceID == null) throw new ArgumentNullException(nameof(instanceID));
+
             var request = new GetInstanceRequest()
             {
                 InstanceID = instanceID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/instances/{instanceID}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/instances/{instanceID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getInstance", new List<string> { "auth:read", "orchestration:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getInstance", new List<string> { "orchestration:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1436,7 +1804,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1445,9 +1813,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1513,18 +1881,41 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<SendEventResponse> SendEventAsync(string instanceID, SendEventRequestBody? requestBody = null)
+
+        /// <summary>
+        /// Send an event to a running workflow.
+        /// </summary>
+        /// <remarks>
+        /// Send an event to a running workflow.
+        /// </remarks>
+        /// <param name="instanceID">The instance id.</param>
+        /// <param name="requestBody">A <see cref="SendEventRequestBody"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="SendEventResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<SendEventResponse> SendEventAsync(string instanceID, SendEventRequestBody? requestBody = null)
         {
+            if (instanceID == null) throw new ArgumentNullException(nameof(instanceID));
+
             var request = new SendEventRequest()
             {
                 InstanceID = instanceID,
                 RequestBody = requestBody,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/instances/{instanceID}/events", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/instances/{instanceID}/events", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
             if (serializedBody != null)
@@ -1537,7 +1928,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "sendEvent", new List<string> { "auth:read", "orchestration:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "sendEvent", new List<string> { "orchestration:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1547,7 +1938,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1556,9 +1947,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1606,24 +1997,46 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<CancelEventResponse> CancelEventAsync(string instanceID)
+
+        /// <summary>
+        /// Cancel a running workflow.
+        /// </summary>
+        /// <remarks>
+        /// Cancel a running workflow.
+        /// </remarks>
+        /// <param name="instanceID">The instance id.</param>
+        /// <returns>An awaitable task that returns a <see cref="CancelEventResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<CancelEventResponse> CancelEventAsync(string instanceID)
         {
+            if (instanceID == null) throw new ArgumentNullException(nameof(instanceID));
+
             var request = new CancelEventRequest()
             {
                 InstanceID = instanceID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/instances/{instanceID}/abort", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/instances/{instanceID}/abort", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "cancelEvent", new List<string> { "auth:read", "orchestration:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "cancelEvent", new List<string> { "orchestration:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1633,7 +2046,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1642,9 +2055,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1692,24 +2105,46 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<GetInstanceHistoryResponse> GetInstanceHistoryAsync(string instanceID)
+
+        /// <summary>
+        /// Get a workflow instance history by id.
+        /// </summary>
+        /// <remarks>
+        /// Get a workflow instance history by id.
+        /// </remarks>
+        /// <param name="instanceID">The instance id.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetInstanceHistoryResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<GetInstanceHistoryResponse> GetInstanceHistoryAsync(string instanceID)
         {
+            if (instanceID == null) throw new ArgumentNullException(nameof(instanceID));
+
             var request = new GetInstanceHistoryRequest()
             {
                 InstanceID = instanceID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/instances/{instanceID}/history", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/instances/{instanceID}/history", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getInstanceHistory", new List<string> { "auth:read", "orchestration:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getInstanceHistory", new List<string> { "orchestration:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1719,7 +2154,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1728,9 +2163,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1796,25 +2231,48 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<GetInstanceStageHistoryResponse> GetInstanceStageHistoryAsync(string instanceID, long number)
+
+        /// <summary>
+        /// Get a workflow instance stage history.
+        /// </summary>
+        /// <remarks>
+        /// Get a workflow instance stage history.
+        /// </remarks>
+        /// <param name="instanceID">The instance id.</param>
+        /// <param name="number">The stage number.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetInstanceStageHistoryResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<GetInstanceStageHistoryResponse> GetInstanceStageHistoryAsync(string instanceID, long number)
         {
+            if (instanceID == null) throw new ArgumentNullException(nameof(instanceID));
+
             var request = new GetInstanceStageHistoryRequest()
             {
                 InstanceID = instanceID,
                 Number = number,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/instances/{instanceID}/stages/{number}/history", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/instances/{instanceID}/stages/{number}/history", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getInstanceStageHistory", new List<string> { "auth:read", "orchestration:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getInstanceStageHistory", new List<string> { "orchestration:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1824,7 +2282,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1833,9 +2291,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1900,5 +2358,6 @@ namespace FormanceSDK
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
         }
+
     }
 }

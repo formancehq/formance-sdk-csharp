@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V3Address
     {
-
         [JsonProperty("streetNumber")]
         public string? StreetNumber { get; set; }
 

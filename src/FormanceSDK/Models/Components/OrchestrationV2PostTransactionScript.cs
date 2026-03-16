@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class OrchestrationV2PostTransactionScript
     {
-
         [JsonProperty("plain")]
         public string Plain { get; set; } = default!;
 

@@ -1,5 +1,13 @@
 # V2Connector
 
+## Example Usage
+
+```csharp
+using FormanceSDK.Models.Components;
+
+var value = V2Connector.Stripe;
+```
+
 
 ## Values
 

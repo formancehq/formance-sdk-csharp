@@ -24,99 +24,169 @@ namespace FormanceSDK
 
     public interface IV1
     {
-
         /// <summary>
         /// Retrieve OpenID connect well-knowns.
         /// </summary>
-        Task<GetOIDCWellKnownsResponse> GetOIDCWellKnownsAsync();
+        /// <returns>An awaitable task that returns a <see cref="GetOIDCWellKnownsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
+        public  Task<GetOIDCWellKnownsResponse> GetOIDCWellKnownsAsync();
 
         /// <summary>
-        /// Get server info
+        /// Get server info.
         /// </summary>
-        Task<GetServerInfoResponse> GetServerInfoAsync();
+        /// <returns>An awaitable task that returns a <see cref="GetServerInfoResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
+        public  Task<GetServerInfoResponse> GetServerInfoAsync();
 
         /// <summary>
-        /// List clients
+        /// List clients.
         /// </summary>
-        Task<Models.Requests.ListClientsResponse> ListClientsAsync();
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.ListClientsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
+        public  Task<Models.Requests.ListClientsResponse> ListClientsAsync();
 
         /// <summary>
-        /// Create client
+        /// Create client.
         /// </summary>
-        Task<Models.Requests.CreateClientResponse> CreateClientAsync(ClientOptions? request = null);
+        /// <param name="request">A <see cref="CreateClientRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.CreateClientResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 201.</exception>
+        public  Task<Models.Requests.CreateClientResponse> CreateClientAsync(CreateClientRequest? request = null);
 
         /// <summary>
-        /// Read client
+        /// Read client.
         /// </summary>
-        Task<Models.Requests.ReadClientResponse> ReadClientAsync(string clientId);
+        /// <param name="clientId">Client ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.ReadClientResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="clientId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
+        public  Task<Models.Requests.ReadClientResponse> ReadClientAsync(string clientId);
 
         /// <summary>
-        /// Update client
+        /// Update client.
         /// </summary>
-        Task<UpdateClientResponse> UpdateClientAsync(string clientId, ClientOptions? clientOptions = null);
+        /// <param name="clientId">Client ID.</param>
+        /// <param name="createClientRequest">A <see cref="CreateClientRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.UpdateClientResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="clientId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
+        public  Task<Models.Requests.UpdateClientResponse> UpdateClientAsync(
+            string clientId,
+            CreateClientRequest? createClientRequest = null
+        );
 
         /// <summary>
-        /// Delete client
+        /// Delete client.
         /// </summary>
-        Task<DeleteClientResponse> DeleteClientAsync(string clientId);
+        /// <param name="clientId">Client ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeleteClientResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="clientId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 204.</exception>
+        public  Task<DeleteClientResponse> DeleteClientAsync(string clientId);
 
         /// <summary>
-        /// Add a secret to a client
+        /// Add a secret to a client.
         /// </summary>
-        Task<Models.Requests.CreateSecretResponse> CreateSecretAsync(string clientId, Models.Components.CreateSecretRequest? createSecretRequest = null);
+        /// <param name="clientId">Client ID.</param>
+        /// <param name="createSecretRequest">A <see cref="FormanceSDK.Models.Components.CreateSecretRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.CreateSecretResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="clientId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
+        public  Task<Models.Requests.CreateSecretResponse> CreateSecretAsync(
+            string clientId,
+            Models.Components.CreateSecretRequest? createSecretRequest = null
+        );
 
         /// <summary>
-        /// Delete a secret from a client
+        /// Delete a secret from a client.
         /// </summary>
-        Task<DeleteSecretResponse> DeleteSecretAsync(string clientId, string secretId);
+        /// <param name="clientId">Client ID.</param>
+        /// <param name="secretId">Secret ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeleteSecretResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="clientId"/> or <paramref name="secretId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 204.</exception>
+        public  Task<DeleteSecretResponse> DeleteSecretAsync(string clientId, string secretId);
 
         /// <summary>
-        /// List users
-        /// 
+        /// List users.
+        /// </summary>
         /// <remarks>
-        /// List users
+        /// List users.
         /// </remarks>
-        /// </summary>
-        Task<Models.Requests.ListUsersResponse> ListUsersAsync();
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.ListUsersResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
+        public  Task<Models.Requests.ListUsersResponse> ListUsersAsync();
 
         /// <summary>
-        /// Read user
-        /// 
-        /// <remarks>
-        /// Read user
-        /// </remarks>
+        /// Read user.
         /// </summary>
-        Task<Models.Requests.ReadUserResponse> ReadUserAsync(string userId);
+        /// <remarks>
+        /// Read user.
+        /// </remarks>
+        /// <param name="userId">User ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.ReadUserResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="userId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
+        public  Task<Models.Requests.ReadUserResponse> ReadUserAsync(string userId);
     }
 
     public class V1: IV1
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-        private const string _language = "csharp";
-        private const string _sdkVersion = "3.0.0";
-        private const string _sdkGenVersion = "2.721.3";
-        private const string _openapiDocVersion = "v3.1.0";
 
         public V1(SDKConfig config)
         {
             SDKConfiguration = config;
         }
 
-        public async Task<GetOIDCWellKnownsResponse> GetOIDCWellKnownsAsync()
+        /// <summary>
+        /// Retrieve OpenID connect well-knowns.
+        /// </summary>
+        /// <returns>An awaitable task that returns a <see cref="GetOIDCWellKnownsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
+        public async  Task<GetOIDCWellKnownsResponse> GetOIDCWellKnownsAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/api/auth/.well-known/openid-configuration";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getOIDCWellKnowns", new List<string> { "auth:read", "auth:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getOIDCWellKnowns", new List<string> { "auth:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -126,7 +196,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -135,9 +205,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -169,21 +239,33 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<GetServerInfoResponse> GetServerInfoAsync()
+
+        /// <summary>
+        /// Get server info.
+        /// </summary>
+        /// <returns>An awaitable task that returns a <see cref="GetServerInfoResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
+        public async  Task<GetServerInfoResponse> GetServerInfoAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/api/auth/_info";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getServerInfo", new List<string> { "auth:read", "auth:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getServerInfo", new List<string> { "auth:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -193,7 +275,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -202,9 +284,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -254,21 +336,33 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.ListClientsResponse> ListClientsAsync()
+
+        /// <summary>
+        /// List clients.
+        /// </summary>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.ListClientsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
+        public async  Task<Models.Requests.ListClientsResponse> ListClientsAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/api/auth/clients";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listClients", new List<string> { "auth:read", "auth:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listClients", new List<string> { "auth:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -278,7 +372,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -287,9 +381,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -339,14 +433,27 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.CreateClientResponse> CreateClientAsync(ClientOptions? request = null)
+
+        /// <summary>
+        /// Create client.
+        /// </summary>
+        /// <param name="request">A <see cref="CreateClientRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.CreateClientResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 201.</exception>
+        public async  Task<Models.Requests.CreateClientResponse> CreateClientAsync(CreateClientRequest? request = null)
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/api/auth/clients";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, true);
             if (serializedBody != null)
@@ -359,7 +466,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createClient", new List<string> { "auth:read", "auth:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createClient", new List<string> { "auth:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -369,7 +476,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 201)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -378,9 +485,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -430,24 +537,42 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.ReadClientResponse> ReadClientAsync(string clientId)
+
+        /// <summary>
+        /// Read client.
+        /// </summary>
+        /// <param name="clientId">Client ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.ReadClientResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="clientId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
+        public async  Task<Models.Requests.ReadClientResponse> ReadClientAsync(string clientId)
         {
+            if (clientId == null) throw new ArgumentNullException(nameof(clientId));
+
             var request = new ReadClientRequest()
             {
                 ClientId = clientId,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "readClient", new List<string> { "auth:read", "auth:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "readClient", new List<string> { "auth:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -457,7 +582,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -466,9 +591,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -518,20 +643,42 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<UpdateClientResponse> UpdateClientAsync(string clientId, ClientOptions? clientOptions = null)
+
+        /// <summary>
+        /// Update client.
+        /// </summary>
+        /// <param name="clientId">Client ID.</param>
+        /// <param name="createClientRequest">A <see cref="CreateClientRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.UpdateClientResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="clientId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
+        public async  Task<Models.Requests.UpdateClientResponse> UpdateClientAsync(
+            string clientId,
+            CreateClientRequest? createClientRequest = null
+        )
         {
+            if (clientId == null) throw new ArgumentNullException(nameof(clientId));
+
             var request = new UpdateClientRequest()
             {
                 ClientId = clientId,
-                ClientOptions = clientOptions,
+                CreateClientRequest = createClientRequest,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "ClientOptions", "json", false, true);
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "CreateClientRequest", "json", false, true);
             if (serializedBody != null)
             {
                 httpRequest.Content = serializedBody;
@@ -542,7 +689,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "updateClient", new List<string> { "auth:read", "auth:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "updateClient", new List<string> { "auth:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -552,7 +699,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -561,9 +708,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -583,17 +730,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Components.CreateClientResponse obj;
+                    Models.Components.UpdateClientResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Components.CreateClientResponse>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Components.UpdateClientResponse>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Components.CreateClientResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Components.UpdateClientResponse.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    var response = new UpdateClientResponse()
+                    var response = new Models.Requests.UpdateClientResponse()
                     {
                         HttpMeta = new Models.Components.HTTPMetadata()
                         {
@@ -601,7 +748,7 @@ namespace FormanceSDK
                             Request = httpRequest
                         }
                     };
-                    response.CreateClientResponse = obj;
+                    response.UpdateClientResponseValue = obj;
                     return response;
                 }
 
@@ -613,24 +760,41 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<DeleteClientResponse> DeleteClientAsync(string clientId)
+
+        /// <summary>
+        /// Delete client.
+        /// </summary>
+        /// <param name="clientId">Client ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeleteClientResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="clientId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 204.</exception>
+        public async  Task<DeleteClientResponse> DeleteClientAsync(string clientId)
         {
+            if (clientId == null) throw new ArgumentNullException(nameof(clientId));
+
             var request = new DeleteClientRequest()
             {
                 ClientId = clientId,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteClient", new List<string> { "auth:read", "auth:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteClient", new List<string> { "auth:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -640,7 +804,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -649,9 +813,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -683,18 +847,40 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.CreateSecretResponse> CreateSecretAsync(string clientId, Models.Components.CreateSecretRequest? createSecretRequest = null)
+
+        /// <summary>
+        /// Add a secret to a client.
+        /// </summary>
+        /// <param name="clientId">Client ID.</param>
+        /// <param name="createSecretRequest">A <see cref="FormanceSDK.Models.Components.CreateSecretRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.CreateSecretResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="clientId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
+        public async  Task<Models.Requests.CreateSecretResponse> CreateSecretAsync(
+            string clientId,
+            Models.Components.CreateSecretRequest? createSecretRequest = null
+        )
         {
+            if (clientId == null) throw new ArgumentNullException(nameof(clientId));
+
             var request = new Models.Requests.CreateSecretRequest()
             {
                 ClientId = clientId,
                 CreateSecretRequestValue = createSecretRequest,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}/secrets", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}/secrets", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "CreateSecretRequestValue", "json", false, true);
             if (serializedBody != null)
@@ -707,7 +893,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createSecret", new List<string> { "auth:read", "auth:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createSecret", new List<string> { "auth:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -717,7 +903,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -726,9 +912,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -778,25 +964,44 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<DeleteSecretResponse> DeleteSecretAsync(string clientId, string secretId)
+
+        /// <summary>
+        /// Delete a secret from a client.
+        /// </summary>
+        /// <param name="clientId">Client ID.</param>
+        /// <param name="secretId">Secret ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeleteSecretResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="clientId"/> or <paramref name="secretId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 204.</exception>
+        public async  Task<DeleteSecretResponse> DeleteSecretAsync(string clientId, string secretId)
         {
+            if (clientId == null) throw new ArgumentNullException(nameof(clientId));
+            if (secretId == null) throw new ArgumentNullException(nameof(secretId));
+
             var request = new DeleteSecretRequest()
             {
                 ClientId = clientId,
                 SecretId = secretId,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}/secrets/{secretId}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}/secrets/{secretId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteSecret", new List<string> { "auth:read", "auth:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteSecret", new List<string> { "auth:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -806,7 +1011,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -815,9 +1020,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -849,21 +1054,36 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.ListUsersResponse> ListUsersAsync()
+
+        /// <summary>
+        /// List users.
+        /// </summary>
+        /// <remarks>
+        /// List users.
+        /// </remarks>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.ListUsersResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
+        public async  Task<Models.Requests.ListUsersResponse> ListUsersAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/api/auth/users";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listUsers", new List<string> { "auth:read", "auth:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listUsers", new List<string> { "auth:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -873,7 +1093,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -882,9 +1102,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -934,24 +1154,45 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.ReadUserResponse> ReadUserAsync(string userId)
+
+        /// <summary>
+        /// Read user.
+        /// </summary>
+        /// <remarks>
+        /// Read user.
+        /// </remarks>
+        /// <param name="userId">User ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.ReadUserResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="userId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
+        public async  Task<Models.Requests.ReadUserResponse> ReadUserAsync(string userId)
         {
+            if (userId == null) throw new ArgumentNullException(nameof(userId));
+
             var request = new ReadUserRequest()
             {
                 UserId = userId,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/auth/users/{userId}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/auth/users/{userId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "readUser", new List<string> { "auth:read", "auth:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "readUser", new List<string> { "auth:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -961,7 +1202,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -970,9 +1211,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1021,5 +1262,6 @@ namespace FormanceSDK
                 throw new Models.Errors.SDKException("API error occurred", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
         }
+
     }
 }

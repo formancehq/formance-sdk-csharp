@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     public class ReconciliationRequest
     {
-
         [JsonProperty("reconciledAtLedger")]
         public DateTime ReconciledAtLedger { get; set; } = default!;
 

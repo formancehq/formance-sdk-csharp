@@ -12,25 +12,20 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class RunScriptResponse
     {
-
         [JsonProperty("-")]
         public HTTPMetadata HttpMeta { get; set; } = default!;
 
         /// <summary>
         /// On success, it will return a 200 status code, and the resulting transaction under the `transaction` field.<br/>
-        /// 
-        /// <remarks>
         /// <br/>
         /// On failure, it will also return a 200 status code, and the following fields:<br/>
         /// <br/>
         ///   - `details`: contains a URL. When there is an error parsing Numscript, the result can be difficult to read—the provided URL will render the error in an easy-to-read format.<br/>
         ///   - `errorCode` and `error_code` (deprecated): contains the string code of the error<br/>
-        ///   - `errorMessage` and `error_message` (deprecated): contains a human-readable indication of what went wrong, for example that an account had insufficient funds, or that there was an error in the provided Numscript.<br/>
-        /// 
-        /// </remarks>
+        ///   - `errorMessage` and `error_message` (deprecated): contains a human-readable indication of what went wrong, for example that an account had insufficient funds, or that there was an error in the provided Numscript.
         /// </summary>
         public ScriptResponse? ScriptResponse { get; set; }
     }

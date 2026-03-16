@@ -1,5 +1,13 @@
 # ErrorsEnum
 
+## Example Usage
+
+```csharp
+using FormanceSDK.Models.Components;
+
+var value = ErrorsEnum.Internal;
+```
+
 
 ## Values
 

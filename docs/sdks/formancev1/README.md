@@ -1,5 +1,4 @@
-# FormanceV1
-(*Ledger.V1*)
+# Ledger.V1
 
 ## Overview
 
@@ -672,6 +671,7 @@ Create a new transaction to a ledger
 using FormanceSDK;
 using FormanceSDK.Models.Components;
 using System.Collections.Generic;
+using System.Numerics;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -683,7 +683,7 @@ var res = await sdk.Ledger.V1.CreateTransactionAsync(
     postTransaction: new PostTransaction() {
         Postings = new List<Posting>() {
             new Posting() {
-                Amount = 100,
+                Amount = BigInteger.Parse("100"),
                 Asset = "COIN",
                 Destination = "users:002",
                 Source = "users:001",
@@ -739,6 +739,7 @@ Get transaction from a ledger by its ID
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using System.Numerics;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -747,7 +748,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V1.GetTransactionAsync(
     ledger: "ledger001",
-    txid: 1234
+    txid: BigInteger.Parse("1234")
 );
 
 // handle response
@@ -782,6 +783,7 @@ Set the metadata of a transaction by its ID
 using FormanceSDK;
 using FormanceSDK.Models.Components;
 using System.Collections.Generic;
+using System.Numerics;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -790,7 +792,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V1.AddMetadataOnTransactionAsync(
     ledger: "ledger001",
-    txid: 1234,
+    txid: BigInteger.Parse("1234"),
     requestBody: new Dictionary<string, object>() {
 
     }
@@ -828,6 +830,7 @@ Revert a ledger transaction by its ID
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using System.Numerics;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -836,7 +839,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V1.RevertTransactionAsync(
     ledger: "ledger001",
-    txid: 1234
+    txid: BigInteger.Parse("1234")
 );
 
 // handle response
@@ -852,7 +855,7 @@ var res = await sdk.Ledger.V1.RevertTransactionAsync(
 
 ### Response
 
-**[RevertTransactionResponse](../../Models/Requests/RevertTransactionResponse.md)**
+**[Models.Requests.RevertTransactionResponse](../../Models/Requests/RevertTransactionResponse.md)**
 
 ### Errors
 
@@ -872,6 +875,7 @@ Create a new batch of transactions to a ledger
 using FormanceSDK;
 using FormanceSDK.Models.Components;
 using System.Collections.Generic;
+using System.Numerics;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -881,11 +885,11 @@ var sdk = new Formance(security: new Security() {
 var res = await sdk.Ledger.V1.CreateTransactionsAsync(
     ledger: "ledger001",
     transactions: new Transactions() {
-        Transactions = new List<TransactionData>() {
+        TransactionsValue = new List<TransactionData>() {
             new TransactionData() {
                 Postings = new List<Posting>() {
                     new Posting() {
-                        Amount = 100,
+                        Amount = BigInteger.Parse("100"),
                         Asset = "COIN",
                         Destination = "users:002",
                         Source = "users:001",

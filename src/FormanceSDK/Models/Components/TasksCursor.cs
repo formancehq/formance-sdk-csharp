@@ -12,13 +12,12 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     /// <summary>
-    /// OK
+    /// OK.
     /// </summary>
     public class TasksCursor
     {
-
         [JsonProperty("cursor")]
         public TasksCursorCursor Cursor { get; set; } = default!;
     }

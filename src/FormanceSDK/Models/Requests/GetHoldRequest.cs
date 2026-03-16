@@ -10,12 +10,11 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class GetHoldRequest
     {
-
         /// <summary>
-        /// The hold ID
+        /// The hold ID.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=holdID")]
         public string HoldID { get; set; } = default!;

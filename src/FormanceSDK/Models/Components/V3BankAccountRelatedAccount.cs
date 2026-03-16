@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     public class V3BankAccountRelatedAccount
     {
-
         [JsonProperty("accountID")]
         public string AccountID { get; set; } = default!;
 

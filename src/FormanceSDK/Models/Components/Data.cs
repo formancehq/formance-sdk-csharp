@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class Data
     {
-
         [JsonProperty("targetId", NullValueHandling = NullValueHandling.Include)]
         public V2TargetId TargetId { get; set; } = default!;
 

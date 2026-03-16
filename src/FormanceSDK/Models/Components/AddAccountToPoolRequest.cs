@@ -11,10 +11,9 @@ namespace FormanceSDK.Models.Components
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class AddAccountToPoolRequest
     {
-
         [JsonProperty("accountID")]
         public string AccountID { get; set; } = default!;
     }

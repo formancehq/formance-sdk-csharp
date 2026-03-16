@@ -11,15 +11,14 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Requests;
     using FormanceSDK.Utils;
-    
+
     public class UpdateWalletRequest
     {
-
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")]
         public string Id { get; set; } = default!;
 
         /// <summary>
-        /// Use an idempotency key
+        /// Use an idempotency key.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=Idempotency-Key")]
         public string? IdempotencyKey { get; set; }

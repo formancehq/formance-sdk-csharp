@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using System.Numerics;
-    
+
     public class V2RevertTransactionRequest
     {
-
         /// <summary>
         /// Name of the ledger.
         /// </summary>
@@ -29,22 +28,34 @@ namespace FormanceSDK.Models.Requests
         public BigInteger Id { get; set; } = default!;
 
         /// <summary>
-        /// Force revert
+        /// Force revert.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=force")]
         public bool? Force { get; set; }
 
         /// <summary>
-        /// Revert transaction at effective date of the original tx
+        /// Revert transaction at effective date of the original tx.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=atEffectiveDate")]
         public bool? AtEffectiveDate { get; set; }
 
         /// <summary>
-        /// Set the dryRun mode. dry run mode doesn&apos;t add the logs to the database or publish a message to the message broker.
+        /// Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=dryRun")]
         public bool? DryRun { get; set; }
+
+        /// <summary>
+        /// Schema version to use for validation.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=schemaVersion")]
+        public string? SchemaVersion { get; set; }
+
+        /// <summary>
+        /// Use an idempotency key.
+        /// </summary>
+        [SpeakeasyMetadata("header:style=simple,explode=false,name=Idempotency-Key")]
+        public string? IdempotencyKey { get; set; }
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
         public Models.Components.V2RevertTransactionRequest? V2RevertTransactionRequestValue { get; set; }

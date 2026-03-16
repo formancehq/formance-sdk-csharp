@@ -14,10 +14,9 @@ namespace FormanceSDK.Models.Components
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+
     public class OrchestrationCreditWalletRequest
     {
-
         [JsonProperty("amount")]
         public Monetary Amount { get; set; } = default!;
 
@@ -34,7 +33,7 @@ namespace FormanceSDK.Models.Components
         public List<Subject> Sources { get; set; } = default!;
 
         /// <summary>
-        /// The balance to credit
+        /// The balance to credit.
         /// </summary>
         [JsonProperty("balance")]
         public string? Balance { get; set; }

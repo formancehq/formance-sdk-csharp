@@ -1,5 +1,13 @@
 # V3PaymentInitiationStatusEnum
 
+## Example Usage
+
+```csharp
+using FormanceSDK.Models.Components;
+
+var value = V3PaymentInitiationStatusEnum.Unknown;
+```
+
 
 ## Values
 

@@ -10,12 +10,11 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class ListTriggersOccurrencesRequest
     {
-
         /// <summary>
-        /// The trigger id
+        /// The trigger id.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=triggerID")]
         public string TriggerID { get; set; } = default!;

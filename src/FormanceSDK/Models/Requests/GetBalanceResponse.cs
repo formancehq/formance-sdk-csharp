@@ -12,15 +12,14 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class GetBalanceResponse
     {
-
         [JsonProperty("-")]
         public HTTPMetadata HttpMeta { get; set; } = default!;
 
         /// <summary>
-        /// Balance summary
+        /// Balance summary.
         /// </summary>
         public Models.Components.GetBalanceResponse? GetBalanceResponseValue { get; set; }
     }

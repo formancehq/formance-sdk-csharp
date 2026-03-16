@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Numerics;
-    
+
     public class V2Stats
     {
-
         [JsonProperty("accounts")]
         public long Accounts { get; set; } = default!;
 

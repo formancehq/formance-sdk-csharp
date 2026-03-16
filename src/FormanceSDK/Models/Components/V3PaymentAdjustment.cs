@@ -15,10 +15,9 @@ namespace FormanceSDK.Models.Components
     using System;
     using System.Collections.Generic;
     using System.Numerics;
-    
+
     public class V3PaymentAdjustment
     {
-
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 

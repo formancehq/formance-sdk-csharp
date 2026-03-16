@@ -25,7 +25,7 @@ namespace FormanceSDK.Models.Errors
     }
 
     /// <summary>
-    /// Error
+    /// Error.
     /// </summary>
     public class PaymentsErrorResponse : SDKBaseException
     {
@@ -55,5 +55,4 @@ namespace FormanceSDK.Models.Errors
            #pragma warning restore CS0618
         }
     }
-
 }

@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
     public class ConfigUser
     {
-
         [JsonProperty("name")]
         public string? Name { get; set; }
 

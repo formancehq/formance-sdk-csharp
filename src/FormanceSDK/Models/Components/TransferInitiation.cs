@@ -15,10 +15,9 @@ namespace FormanceSDK.Models.Components
     using System;
     using System.Collections.Generic;
     using System.Numerics;
-    
+
     public class TransferInitiation
     {
-
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
@@ -71,6 +70,6 @@ namespace FormanceSDK.Models.Components
         public List<TransferInitiationPayments>? RelatedPayments { get; set; } = null;
 
         [JsonProperty("relatedAdjustments")]
-        public List<TransferInitiationAdjusments>? RelatedAdjustments { get; set; }
+        public List<TransferInitiationAdjustments>? RelatedAdjustments { get; set; }
     }
 }

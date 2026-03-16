@@ -14,10 +14,9 @@ namespace FormanceSDK.Models.Components
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+
     public class StageSend
     {
-
         [JsonProperty("amount")]
         public Monetary? Amount { get; set; }
 

@@ -10,10 +10,9 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class GetBalancesAggregatedRequest
     {
-
         /// <summary>
         /// Name of the ledger.
         /// </summary>
@@ -27,7 +26,7 @@ namespace FormanceSDK.Models.Requests
         public string? Address { get; set; }
 
         /// <summary>
-        /// Use insertion date instead of effective date
+        /// Use insertion date instead of effective date.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=useInsertionDate")]
         public bool? UseInsertionDate { get; set; }

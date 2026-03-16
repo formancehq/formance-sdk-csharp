@@ -10,12 +10,11 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class ReadUserRequest
     {
-
         /// <summary>
-        /// User ID
+        /// User ID.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=userId")]
         public string UserId { get; set; } = default!;

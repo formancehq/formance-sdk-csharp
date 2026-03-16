@@ -1,0 +1,9 @@
+# V3UpdatePoolQueryRequest
+
+
+## Fields
+
+| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `PoolID`                                                                                          | *string*                                                                                          | :heavy_check_mark:                                                                                | The pool ID                                                                                       |
+| `V3UpdatePoolQueryRequestValue`                                                                   | [Models.Components.V3UpdatePoolQueryRequest](../../Models/Components/V3UpdatePoolQueryRequest.md) | :heavy_minus_sign:                                                                                | N/A                                                                                               |

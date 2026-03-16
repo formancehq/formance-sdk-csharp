@@ -12,10 +12,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     public class StageStatus
     {
-
         [JsonProperty("stage")]
         public double Stage { get; set; } = default!;
 

@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+
     public class OrchestrationWallet
     {
-
         /// <summary>
         /// The unique ID of the wallet.
         /// </summary>

@@ -25,241 +25,700 @@ namespace FormanceSDK
 
     public interface IV2
     {
-
         /// <summary>
-        /// List ledgers
+        /// List ledgers.
         /// </summary>
-        Task<V2ListLedgersResponse> ListLedgersAsync(Dictionary<string, object> requestBody, long? pageSize = null, string? cursor = null, string? sort = null);
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <param name="includeDeleted">If true, include deleted ledgers in the results. By default, deleted ledgers are excluded.</param>
+        /// <param name="sort">
+        /// Sort results using a field name and order (ascending or descending).<br/>
+        /// Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;` is either `asc` or `desc`.
+        /// </param>
+        /// <returns>An awaitable task that returns a <see cref="V2ListLedgersResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2ListLedgersResponse> ListLedgersAsync(
+            long? pageSize = null,
+            string? cursor = null,
+            bool? includeDeleted = false,
+            string? sort = null
+        );
 
         /// <summary>
-        /// Get a ledger
+        /// Get a ledger.
         /// </summary>
-        Task<Models.Requests.V2GetLedgerResponse> GetLedgerAsync(string ledger);
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2GetLedgerResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V2GetLedgerResponse> GetLedgerAsync(string ledger);
 
         /// <summary>
-        /// Create a ledger
+        /// Create a ledger.
         /// </summary>
-        Task<V2CreateLedgerResponse> CreateLedgerAsync(string ledger, Models.Components.V2CreateLedgerRequest v2CreateLedgerRequest);
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="v2CreateLedgerRequest">A <see cref="FormanceSDK.Models.Components.V2CreateLedgerRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2CreateLedgerResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="v2CreateLedgerRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2CreateLedgerResponse> CreateLedgerAsync(
+            string ledger,
+            Models.Components.V2CreateLedgerRequest v2CreateLedgerRequest
+        );
 
         /// <summary>
-        /// Update ledger metadata
+        /// Insert a schema for a ledger.
         /// </summary>
-        Task<V2UpdateLedgerMetadataResponse> UpdateLedgerMetadataAsync(string ledger, Dictionary<string, string> requestBody);
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="version">Schema version.</param>
+        /// <param name="v2SchemaData">A <see cref="V2SchemaData"/> parameter.</param>
+        /// <param name="idempotencyKey">Use an idempotency key.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2InsertSchemaResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/>, <paramref name="version"/> or <paramref name="v2SchemaData"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2InsertSchemaResponse> InsertSchemaAsync(
+            string ledger,
+            string version,
+            V2SchemaData v2SchemaData,
+            string? idempotencyKey = null
+        );
 
         /// <summary>
-        /// Delete ledger metadata by key
+        /// Get a schema for a ledger by version.
         /// </summary>
-        Task<V2DeleteLedgerMetadataResponse> DeleteLedgerMetadataAsync(string ledger, string key);
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="version">Schema version.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2GetSchemaResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="version"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2GetSchemaResponse> GetSchemaAsync(string ledger, string version);
 
         /// <summary>
-        /// Get information about a ledger
+        /// List all schemas for a ledger.
         /// </summary>
-        Task<V2GetLedgerInfoResponse> GetLedgerInfoAsync(string ledger);
+        /// <param name="request">A <see cref="V2ListSchemasRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2ListSchemasResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2ListSchemasResponse> ListSchemasAsync(V2ListSchemasRequest request);
 
         /// <summary>
-        /// Bulk request
+        /// Update ledger metadata.
         /// </summary>
-        Task<V2CreateBulkResponse> CreateBulkAsync(V2CreateBulkRequest request);
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="requestBody">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2UpdateLedgerMetadataResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="requestBody"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204 or 5XX.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2UpdateLedgerMetadataResponse> UpdateLedgerMetadataAsync(
+            string ledger,
+            Dictionary<string, string> requestBody
+        );
 
         /// <summary>
-        /// Count the accounts from a ledger
+        /// Delete ledger metadata by key.
         /// </summary>
-        Task<V2CountAccountsResponse> CountAccountsAsync(string ledger, Dictionary<string, object> requestBody, DateTime? pit = null);
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="key">Key to remove.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2DeleteLedgerMetadataResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="key"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2DeleteLedgerMetadataResponse> DeleteLedgerMetadataAsync(string ledger, string key);
 
         /// <summary>
-        /// List accounts from a ledger
-        /// 
+        /// Get information about a ledger.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2GetLedgerInfoResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2GetLedgerInfoResponse> GetLedgerInfoAsync(string ledger);
+
+        /// <summary>
+        /// Bulk request.
+        /// </summary>
+        /// <param name="request">A <see cref="V2CreateBulkRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2CreateBulkResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200 or 400.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2CreateBulkResponse> CreateBulkAsync(V2CreateBulkRequest request);
+
+        /// <summary>
+        /// Count the accounts from a ledger.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="pit">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2CountAccountsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2CountAccountsResponse> CountAccountsAsync(string ledger, DateTime? pit = null);
+
+        /// <summary>
+        /// List accounts from a ledger.
+        /// </summary>
         /// <remarks>
         /// List accounts from a ledger, sorted by address in descending order.
         /// </remarks>
-        /// </summary>
-        Task<V2ListAccountsResponse> ListAccountsAsync(V2ListAccountsRequest request);
+        /// <param name="request">A <see cref="V2ListAccountsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2ListAccountsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2ListAccountsResponse> ListAccountsAsync(V2ListAccountsRequest request);
 
         /// <summary>
-        /// Get account by its address
+        /// Get account by its address.
         /// </summary>
-        Task<V2GetAccountResponse> GetAccountAsync(string ledger, string address, string? expand = null, DateTime? pit = null);
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="address">
+        /// Exact address of the account. It must match the following regular expressions pattern:<br/>
+        /// ```<br/>
+        /// ^\w+(:\w+)*$<br/>
+        /// ```
+        /// </param>
+        /// <param name="expand">Description not available.</param>
+        /// <param name="pit">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2GetAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="address"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2GetAccountResponse> GetAccountAsync(
+            string ledger,
+            string address,
+            string? expand = null,
+            DateTime? pit = null
+        );
 
         /// <summary>
-        /// Add metadata to an account
+        /// Add metadata to an account.
         /// </summary>
-        Task<V2AddMetadataToAccountResponse> AddMetadataToAccountAsync(V2AddMetadataToAccountRequest request);
+        /// <param name="request">A <see cref="V2AddMetadataToAccountRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2AddMetadataToAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2AddMetadataToAccountResponse> AddMetadataToAccountAsync(V2AddMetadataToAccountRequest request);
 
         /// <summary>
-        /// Delete metadata by key
-        /// 
+        /// Delete metadata by key.
+        /// </summary>
         /// <remarks>
-        /// Delete metadata by key
+        /// Delete metadata by key.
         /// </remarks>
-        /// </summary>
-        Task<V2DeleteAccountMetadataResponse> DeleteAccountMetadataAsync(string ledger, string address, string key, string? idempotencyKey = null);
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="address">Account address.</param>
+        /// <param name="key">The key to remove.</param>
+        /// <param name="idempotencyKey">Use an idempotency key.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2DeleteAccountMetadataResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/>, <paramref name="address"/> or <paramref name="key"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2DeleteAccountMetadataResponse> DeleteAccountMetadataAsync(
+            string ledger,
+            string address,
+            string key,
+            string? idempotencyKey = null
+        );
 
         /// <summary>
-        /// Get statistics from a ledger
-        /// 
+        /// Get statistics from a ledger.
+        /// </summary>
         /// <remarks>
-        /// Get statistics from a ledger. (aggregate metrics on accounts and transactions)<br/>
-        /// 
+        /// Get statistics from a ledger. (aggregate metrics on accounts and transactions).
         /// </remarks>
-        /// </summary>
-        Task<V2ReadStatsResponse> ReadStatsAsync(string ledger);
+        /// <param name="ledger">name of the ledger.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2ReadStatsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2ReadStatsResponse> ReadStatsAsync(string ledger);
 
         /// <summary>
-        /// Count the transactions from a ledger
+        /// Count the transactions from a ledger.
         /// </summary>
-        Task<V2CountTransactionsResponse> CountTransactionsAsync(string ledger, Dictionary<string, object> requestBody, DateTime? pit = null);
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="pit">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2CountTransactionsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2CountTransactionsResponse> CountTransactionsAsync(string ledger, DateTime? pit = null);
 
         /// <summary>
-        /// List transactions from a ledger
-        /// 
+        /// List transactions from a ledger.
+        /// </summary>
         /// <remarks>
         /// List transactions from a ledger, sorted by id in descending order.
         /// </remarks>
-        /// </summary>
-        Task<V2ListTransactionsResponse> ListTransactionsAsync(V2ListTransactionsRequest request);
+        /// <param name="request">A <see cref="V2ListTransactionsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2ListTransactionsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2ListTransactionsResponse> ListTransactionsAsync(V2ListTransactionsRequest request);
 
         /// <summary>
-        /// Create a new transaction to a ledger
+        /// Create a new transaction to a ledger.
         /// </summary>
-        Task<Models.Requests.V2CreateTransactionResponse> CreateTransactionAsync(V2CreateTransactionRequest request);
+        /// <param name="request">A <see cref="V2CreateTransactionRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreateTransactionResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V2CreateTransactionResponse> CreateTransactionAsync(
+            V2CreateTransactionRequest request
+        );
 
         /// <summary>
-        /// Get transaction from a ledger by its ID
+        /// Get transaction from a ledger by its ID.
         /// </summary>
-        Task<Models.Requests.V2GetTransactionResponse> GetTransactionAsync(string ledger, BigInteger id, string? expand = null, DateTime? pit = null);
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="id">Transaction ID.</param>
+        /// <param name="expand">Description not available.</param>
+        /// <param name="pit">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2GetTransactionResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V2GetTransactionResponse> GetTransactionAsync(
+            string ledger,
+            BigInteger id,
+            string? expand = null,
+            DateTime? pit = null
+        );
 
         /// <summary>
-        /// Set the metadata of a transaction by its ID
+        /// Set the metadata of a transaction by its ID.
         /// </summary>
-        Task<V2AddMetadataOnTransactionResponse> AddMetadataOnTransactionAsync(V2AddMetadataOnTransactionRequest request);
+        /// <param name="request">A <see cref="V2AddMetadataOnTransactionRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2AddMetadataOnTransactionResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2AddMetadataOnTransactionResponse> AddMetadataOnTransactionAsync(
+            V2AddMetadataOnTransactionRequest request
+        );
 
         /// <summary>
-        /// Delete metadata by key
-        /// 
+        /// Delete metadata by key.
+        /// </summary>
         /// <remarks>
-        /// Delete metadata by key
+        /// Delete metadata by key.
         /// </remarks>
-        /// </summary>
-        Task<V2DeleteTransactionMetadataResponse> DeleteTransactionMetadataAsync(string ledger, BigInteger id, string key, string? idempotencyKey = null);
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="id">Transaction ID.</param>
+        /// <param name="key">The key to remove.</param>
+        /// <param name="idempotencyKey">Use an idempotency key.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2DeleteTransactionMetadataResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="key"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2DeleteTransactionMetadataResponse> DeleteTransactionMetadataAsync(
+            string ledger,
+            BigInteger id,
+            string key,
+            string? idempotencyKey = null
+        );
 
         /// <summary>
-        /// Revert a ledger transaction by its ID
+        /// Revert a ledger transaction by its ID.
         /// </summary>
-        Task<V2RevertTransactionResponse> RevertTransactionAsync(Models.Requests.V2RevertTransactionRequest request);
+        /// <param name="request">A <see cref="FormanceSDK.Models.Requests.V2RevertTransactionRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2RevertTransactionResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V2RevertTransactionResponse> RevertTransactionAsync(
+            Models.Requests.V2RevertTransactionRequest request
+        );
 
         /// <summary>
-        /// Get the aggregated balances from selected accounts
+        /// Get the aggregated balances from selected accounts.
         /// </summary>
-        Task<V2GetBalancesAggregatedResponse> GetBalancesAggregatedAsync(string ledger, Dictionary<string, object> requestBody, DateTime? pit = null, bool? useInsertionDate = null);
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="pit">Description not available.</param>
+        /// <param name="useInsertionDate">Use insertion date instead of effective date.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2GetBalancesAggregatedResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2GetBalancesAggregatedResponse> GetBalancesAggregatedAsync(
+            string ledger,
+            DateTime? pit = null,
+            bool? useInsertionDate = null
+        );
 
         /// <summary>
-        /// Get list of volumes with balances for (account/asset)
+        /// Get list of volumes with balances for (account/asset).
         /// </summary>
-        Task<V2GetVolumesWithBalancesResponse> GetVolumesWithBalancesAsync(V2GetVolumesWithBalancesRequest request);
+        /// <param name="request">A <see cref="V2GetVolumesWithBalancesRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2GetVolumesWithBalancesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2GetVolumesWithBalancesResponse> GetVolumesWithBalancesAsync(
+            V2GetVolumesWithBalancesRequest request
+        );
 
         /// <summary>
-        /// List the logs from a ledger
-        /// 
+        /// List the logs from a ledger.
+        /// </summary>
         /// <remarks>
         /// List the logs from a ledger, sorted by ID in descending order.
         /// </remarks>
-        /// </summary>
-        Task<V2ListLogsResponse> ListLogsAsync(V2ListLogsRequest request);
-        Task<V2ImportLogsResponse> ImportLogsAsync(string ledger, byte[] v2ImportLogsRequest);
+        /// <param name="request">A <see cref="V2ListLogsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2ListLogsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2ListLogsResponse> ListLogsAsync(V2ListLogsRequest request);
+
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="v2ImportLogsRequest">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2ImportLogsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="v2ImportLogsRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2ImportLogsResponse> ImportLogsAsync(string ledger, byte[] v2ImportLogsRequest);
 
         /// <summary>
-        /// Export logs
+        /// Export logs.
         /// </summary>
-        Task<V2ExportLogsResponse> ExportLogsAsync(string ledger);
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2ExportLogsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
+        public  Task<V2ExportLogsResponse> ExportLogsAsync(string ledger);
 
         /// <summary>
-        /// List exporters
+        /// Run a query template.
         /// </summary>
-        Task<Models.Requests.V2ListExportersResponse> ListExportersAsync();
+        /// <remarks>
+        /// Run a query template on a ledger.
+        /// </remarks>
+        /// <param name="request">A <see cref="V2RunQueryRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2RunQueryResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2RunQueryResponse> RunQueryAsync(V2RunQueryRequest request);
 
         /// <summary>
-        /// Create exporter
+        /// List exporters.
         /// </summary>
-        Task<Models.Requests.V2CreateExporterResponse> CreateExporterAsync(V2ExporterConfiguration request);
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2ListExportersResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V2ListExportersResponse> ListExportersAsync();
 
         /// <summary>
-        /// Get exporter state
+        /// Create exporter.
         /// </summary>
-        Task<Models.Requests.V2GetExporterStateResponse> GetExporterStateAsync(string exporterID);
+        /// <param name="request">A <see cref="V2CreateExporterRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreateExporterResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V2CreateExporterResponse> CreateExporterAsync(V2CreateExporterRequest request);
 
         /// <summary>
-        /// Delete exporter
+        /// Get exporter state.
         /// </summary>
-        Task<V2DeleteExporterResponse> DeleteExporterAsync(string exporterID);
+        /// <param name="exporterID">The exporter id.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2GetExporterStateResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="exporterID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V2GetExporterStateResponse> GetExporterStateAsync(string exporterID);
 
         /// <summary>
-        /// List pipelines
+        /// Update exporter.
         /// </summary>
-        Task<Models.Requests.V2ListPipelinesResponse> ListPipelinesAsync(string ledger);
+        /// <param name="exporterID">The exporter id.</param>
+        /// <param name="v2CreateExporterRequest">A <see cref="V2CreateExporterRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2UpdateExporterResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="exporterID"/> or <paramref name="v2CreateExporterRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2UpdateExporterResponse> UpdateExporterAsync(
+            string exporterID,
+            V2CreateExporterRequest v2CreateExporterRequest
+        );
 
         /// <summary>
-        /// Create pipeline
+        /// Delete exporter.
         /// </summary>
-        Task<Models.Requests.V2CreatePipelineResponse> CreatePipelineAsync(string ledger, Models.Components.V2CreatePipelineRequest? v2CreatePipelineRequest = null);
+        /// <param name="exporterID">The exporter id.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2DeleteExporterResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="exporterID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2DeleteExporterResponse> DeleteExporterAsync(string exporterID);
 
         /// <summary>
-        /// Get pipeline state
+        /// Delete bucket.
         /// </summary>
-        Task<Models.Requests.V2GetPipelineStateResponse> GetPipelineStateAsync(string ledger, string pipelineID);
+        /// <remarks>
+        /// Delete a bucket by marking all ledgers in the bucket as deleted (soft delete). All ledgers in the bucket will have their deleted_at field set to the current timestamp.
+        /// </remarks>
+        /// <param name="bucket">The bucket name.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2DeleteBucketResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="bucket"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Bucket not found. Thrown when the response status code is none of 204 or 404.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2DeleteBucketResponse> DeleteBucketAsync(string bucket);
 
         /// <summary>
-        /// Delete pipeline
+        /// Restore bucket.
         /// </summary>
-        Task<V2DeletePipelineResponse> DeletePipelineAsync(string ledger, string pipelineID);
+        /// <remarks>
+        /// Restore a deleted bucket by unmarking all ledgers in the bucket as deleted. All ledgers in the bucket will have their deleted_at field set to NULL.
+        /// </remarks>
+        /// <param name="bucket">The bucket name.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2RestoreBucketResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="bucket"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Bucket not found. Thrown when the response status code is none of 204 or 404.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2RestoreBucketResponse> RestoreBucketAsync(string bucket);
 
         /// <summary>
-        /// Reset pipeline
+        /// List pipelines.
         /// </summary>
-        Task<V2ResetPipelineResponse> ResetPipelineAsync(string ledger, string pipelineID);
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2ListPipelinesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V2ListPipelinesResponse> ListPipelinesAsync(string ledger);
 
         /// <summary>
-        /// Start pipeline
+        /// Create pipeline.
         /// </summary>
-        Task<V2StartPipelineResponse> StartPipelineAsync(string ledger, string pipelineID);
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="v2CreatePipelineRequest">A <see cref="FormanceSDK.Models.Components.V2CreatePipelineRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreatePipelineResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V2CreatePipelineResponse> CreatePipelineAsync(
+            string ledger,
+            Models.Components.V2CreatePipelineRequest? v2CreatePipelineRequest = null
+        );
 
         /// <summary>
-        /// Stop pipeline
+        /// Get pipeline state.
         /// </summary>
-        Task<V2StopPipelineResponse> StopPipelineAsync(string ledger, string pipelineID);
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="pipelineID">The pipeline id.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2GetPipelineStateResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="pipelineID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.V2GetPipelineStateResponse> GetPipelineStateAsync(string ledger, string pipelineID);
+
+        /// <summary>
+        /// Delete pipeline.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="pipelineID">The pipeline id.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2DeletePipelineResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="pipelineID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2DeletePipelineResponse> DeletePipelineAsync(string ledger, string pipelineID);
+
+        /// <summary>
+        /// Reset pipeline.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="pipelineID">The pipeline id.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2ResetPipelineResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="pipelineID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2ResetPipelineResponse> ResetPipelineAsync(string ledger, string pipelineID);
+
+        /// <summary>
+        /// Start pipeline.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="pipelineID">The pipeline id.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2StartPipelineResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="pipelineID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2StartPipelineResponse> StartPipelineAsync(string ledger, string pipelineID);
+
+        /// <summary>
+        /// Stop pipeline.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="pipelineID">The pipeline id.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2StopPipelineResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="pipelineID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V2StopPipelineResponse> StopPipelineAsync(string ledger, string pipelineID);
     }
 
     public class V2: IV2
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-        private const string _language = "csharp";
-        private const string _sdkVersion = "3.0.0";
-        private const string _sdkGenVersion = "2.721.3";
-        private const string _openapiDocVersion = "v3.1.0";
 
         public V2(SDKConfig config)
         {
             SDKConfiguration = config;
         }
 
-        public async Task<V2ListLedgersResponse> ListLedgersAsync(Dictionary<string, object> requestBody, long? pageSize = null, string? cursor = null, string? sort = null)
+        /// <summary>
+        /// List ledgers.
+        /// </summary>
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <param name="includeDeleted">If true, include deleted ledgers in the results. By default, deleted ledgers are excluded.</param>
+        /// <param name="sort">
+        /// Sort results using a field name and order (ascending or descending).<br/>
+        /// Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;` is either `asc` or `desc`.
+        /// </param>
+        /// <returns>An awaitable task that returns a <see cref="V2ListLedgersResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2ListLedgersResponse> ListLedgersAsync(
+            long? pageSize = null,
+            string? cursor = null,
+            bool? includeDeleted = false,
+            string? sort = null
+        )
         {
             var request = new V2ListLedgersRequest()
             {
-                RequestBody = requestBody,
                 PageSize = pageSize,
                 Cursor = cursor,
+                IncludeDeleted = includeDeleted,
                 Sort = sort,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
-            if (serializedBody != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest.Content = serializedBody;
+                httpRequest.Headers.Add("Accept", "application/json");
             }
 
             if (SDKConfiguration.SecuritySource != null)
@@ -267,7 +726,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2ListLedgers", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2ListLedgers", new List<string> { "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -277,7 +736,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -286,9 +745,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -311,7 +770,7 @@ namespace FormanceSDK
                     V2LedgerListResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<V2LedgerListResponse>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<V2LedgerListResponse>(httpResponseBody, NullValueHandling.Include);
                     }
                     catch (Exception ex)
                     {
@@ -340,7 +799,7 @@ namespace FormanceSDK
                     Models.Errors.V2ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Errors.V2ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Errors.V2ErrorResponsePayload>(httpResponseBody, NullValueHandling.Include);
                     }
                     catch (Exception ex)
                     {
@@ -354,24 +813,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V2GetLedgerResponse> GetLedgerAsync(string ledger)
+
+        /// <summary>
+        /// Get a ledger.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2GetLedgerResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V2GetLedgerResponse> GetLedgerAsync(string ledger)
         {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+
             var request = new V2GetLedgerRequest()
             {
                 Ledger = ledger,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2GetLedger", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2GetLedger", new List<string> { "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -381,7 +859,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -390,9 +868,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -458,18 +936,42 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2CreateLedgerResponse> CreateLedgerAsync(string ledger, Models.Components.V2CreateLedgerRequest v2CreateLedgerRequest)
+
+        /// <summary>
+        /// Create a ledger.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="v2CreateLedgerRequest">A <see cref="FormanceSDK.Models.Components.V2CreateLedgerRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2CreateLedgerResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="v2CreateLedgerRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2CreateLedgerResponse> CreateLedgerAsync(
+            string ledger,
+            Models.Components.V2CreateLedgerRequest v2CreateLedgerRequest
+        )
         {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+            if (v2CreateLedgerRequest == null) throw new ArgumentNullException(nameof(v2CreateLedgerRequest));
+
             var request = new Models.Requests.V2CreateLedgerRequest()
             {
                 Ledger = ledger,
                 V2CreateLedgerRequestValue = v2CreateLedgerRequest,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "V2CreateLedgerRequestValue", "json", false, false);
             if (serializedBody != null)
@@ -482,7 +984,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2CreateLedger", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2CreateLedger", new List<string> { "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -492,7 +994,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -501,9 +1003,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -551,18 +1053,412 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2UpdateLedgerMetadataResponse> UpdateLedgerMetadataAsync(string ledger, Dictionary<string, string> requestBody)
+
+        /// <summary>
+        /// Insert a schema for a ledger.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="version">Schema version.</param>
+        /// <param name="v2SchemaData">A <see cref="V2SchemaData"/> parameter.</param>
+        /// <param name="idempotencyKey">Use an idempotency key.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2InsertSchemaResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/>, <paramref name="version"/> or <paramref name="v2SchemaData"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2InsertSchemaResponse> InsertSchemaAsync(
+            string ledger,
+            string version,
+            V2SchemaData v2SchemaData,
+            string? idempotencyKey = null
+        )
         {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+            if (version == null) throw new ArgumentNullException(nameof(version));
+            if (v2SchemaData == null) throw new ArgumentNullException(nameof(v2SchemaData));
+
+            var request = new V2InsertSchemaRequest()
+            {
+                Ledger = ledger,
+                Version = version,
+                V2SchemaData = v2SchemaData,
+                IdempotencyKey = idempotencyKey,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/schemas/{version}", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "V2SchemaData", "json", false, false);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2InsertSchema", new List<string> { "ledger:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 204)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 204)
+            {
+                return new V2InsertSchemaResponse()
+                {
+                    HttpMeta = new Models.Components.HTTPMetadata()
+                    {
+                        Response = httpResponse,
+                        Request = httpRequest
+                    },
+                    Headers = Utilities.CollectHeaders(httpResponse.Headers)
+                };
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Errors.V2ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Errors.V2ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Errors.V2ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Errors.V2ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Get a schema for a ledger by version.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="version">Schema version.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2GetSchemaResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="version"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2GetSchemaResponse> GetSchemaAsync(string ledger, string version)
+        {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+            if (version == null) throw new ArgumentNullException(nameof(version));
+
+            var request = new V2GetSchemaRequest()
+            {
+                Ledger = ledger,
+                Version = version,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/schemas/{version}", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2GetSchema", new List<string> { "ledger:read" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V2SchemaResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<V2SchemaResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V2SchemaResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new V2GetSchemaResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.V2SchemaResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Errors.V2ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Errors.V2ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Errors.V2ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Errors.V2ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// List all schemas for a ledger.
+        /// </summary>
+        /// <param name="request">A <see cref="V2ListSchemasRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2ListSchemasResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2ListSchemasResponse> ListSchemasAsync(V2ListSchemasRequest request)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/schemas", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2ListSchemas", new List<string> { "ledger:read" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V2SchemasCursorResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<V2SchemasCursorResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V2SchemasCursorResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new V2ListSchemasResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.V2SchemasCursorResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Errors.V2ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Errors.V2ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Errors.V2ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Errors.V2ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Update ledger metadata.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="requestBody">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2UpdateLedgerMetadataResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="requestBody"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204 or 5XX.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2UpdateLedgerMetadataResponse> UpdateLedgerMetadataAsync(
+            string ledger,
+            Dictionary<string, string> requestBody
+        )
+        {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+            if (requestBody == null) throw new ArgumentNullException(nameof(requestBody));
+
             var request = new V2UpdateLedgerMetadataRequest()
             {
                 Ledger = ledger,
                 RequestBody = requestBody,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/metadata", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/metadata", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
@@ -575,7 +1471,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2UpdateLedgerMetadata", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2UpdateLedgerMetadata", new List<string> { "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -585,7 +1481,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204 && (_statusCode < 500 || _statusCode >= 600))
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -594,9 +1490,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -673,25 +1569,46 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2DeleteLedgerMetadataResponse> DeleteLedgerMetadataAsync(string ledger, string key)
+
+        /// <summary>
+        /// Delete ledger metadata by key.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="key">Key to remove.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2DeleteLedgerMetadataResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="key"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2DeleteLedgerMetadataResponse> DeleteLedgerMetadataAsync(string ledger, string key)
         {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+            if (key == null) throw new ArgumentNullException(nameof(key));
+
             var request = new V2DeleteLedgerMetadataRequest()
             {
                 Ledger = ledger,
                 Key = key,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/metadata/{key}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/metadata/{key}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2DeleteLedgerMetadata", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2DeleteLedgerMetadata", new List<string> { "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -701,7 +1618,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -710,9 +1627,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -760,24 +1677,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2GetLedgerInfoResponse> GetLedgerInfoAsync(string ledger)
+
+        /// <summary>
+        /// Get information about a ledger.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2GetLedgerInfoResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2GetLedgerInfoResponse> GetLedgerInfoAsync(string ledger)
         {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+
             var request = new V2GetLedgerInfoRequest()
             {
                 Ledger = ledger,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/_info", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/_info", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2GetLedgerInfo", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2GetLedgerInfo", new List<string> { "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -787,7 +1723,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -796,9 +1732,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -864,13 +1800,31 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2CreateBulkResponse> CreateBulkAsync(V2CreateBulkRequest request)
+
+        /// <summary>
+        /// Bulk request.
+        /// </summary>
+        /// <param name="request">A <see cref="V2CreateBulkRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2CreateBulkResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200 or 400.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2CreateBulkResponse> CreateBulkAsync(V2CreateBulkRequest request)
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/_bulk", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/_bulk", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
@@ -883,7 +1837,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2CreateBulk", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2CreateBulk", new List<string> { "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -893,7 +1847,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (!new List<int>{200, 400}.Contains(_statusCode))
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -902,9 +1856,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -999,24 +1953,37 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2CountAccountsResponse> CountAccountsAsync(string ledger, Dictionary<string, object> requestBody, DateTime? pit = null)
+
+        /// <summary>
+        /// Count the accounts from a ledger.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="pit">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2CountAccountsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2CountAccountsResponse> CountAccountsAsync(string ledger, DateTime? pit = null)
         {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+
             var request = new V2CountAccountsRequest()
             {
                 Ledger = ledger,
-                RequestBody = requestBody,
                 Pit = pit,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/accounts", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/accounts", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Head, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
-            if (serializedBody != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest.Content = serializedBody;
+                httpRequest.Headers.Add("Accept", "application/json");
             }
 
             if (SDKConfiguration.SecuritySource != null)
@@ -1024,7 +1991,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2CountAccounts", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2CountAccounts", new List<string> { "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1034,7 +2001,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1043,9 +2010,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1068,7 +2035,8 @@ namespace FormanceSDK
                     {
                         Response = httpResponse,
                         Request = httpRequest
-                    }
+                    },
+                    Headers = Utilities.CollectHeaders(httpResponse.Headers)
                 };
             }
             else
@@ -1093,18 +2061,33 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2ListAccountsResponse> ListAccountsAsync(V2ListAccountsRequest request)
+
+        /// <summary>
+        /// List accounts from a ledger.
+        /// </summary>
+        /// <remarks>
+        /// List accounts from a ledger, sorted by address in descending order.
+        /// </remarks>
+        /// <param name="request">A <see cref="V2ListAccountsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2ListAccountsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2ListAccountsResponse> ListAccountsAsync(V2ListAccountsRequest request)
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/accounts", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/accounts", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
-            if (serializedBody != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest.Content = serializedBody;
+                httpRequest.Headers.Add("Accept", "application/json");
             }
 
             if (SDKConfiguration.SecuritySource != null)
@@ -1112,7 +2095,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2ListAccounts", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2ListAccounts", new List<string> { "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1122,7 +2105,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1131,9 +2114,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1199,8 +2182,35 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2GetAccountResponse> GetAccountAsync(string ledger, string address, string? expand = null, DateTime? pit = null)
+
+        /// <summary>
+        /// Get account by its address.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="address">
+        /// Exact address of the account. It must match the following regular expressions pattern:<br/>
+        /// ```<br/>
+        /// ^\w+(:\w+)*$<br/>
+        /// ```
+        /// </param>
+        /// <param name="expand">Description not available.</param>
+        /// <param name="pit">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2GetAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="address"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2GetAccountResponse> GetAccountAsync(
+            string ledger,
+            string address,
+            string? expand = null,
+            DateTime? pit = null
+        )
         {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+            if (address == null) throw new ArgumentNullException(nameof(address));
+
             var request = new V2GetAccountRequest()
             {
                 Ledger = ledger,
@@ -1208,18 +2218,24 @@ namespace FormanceSDK
                 Expand = expand,
                 Pit = pit,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/accounts/{address}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/accounts/{address}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2GetAccount", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2GetAccount", new List<string> { "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1229,7 +2245,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1238,9 +2254,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1306,14 +2322,34 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2AddMetadataToAccountResponse> AddMetadataToAccountAsync(V2AddMetadataToAccountRequest request)
+
+        /// <summary>
+        /// Add metadata to an account.
+        /// </summary>
+        /// <param name="request">A <see cref="V2AddMetadataToAccountRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2AddMetadataToAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2AddMetadataToAccountResponse> AddMetadataToAccountAsync(
+            V2AddMetadataToAccountRequest request
+        )
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/accounts/{address}/metadata", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/accounts/{address}/metadata", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
@@ -1326,7 +2362,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2AddMetadataToAccount", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2AddMetadataToAccount", new List<string> { "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1336,7 +2372,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1345,9 +2381,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1370,7 +2406,8 @@ namespace FormanceSDK
                     {
                         Response = httpResponse,
                         Request = httpRequest
-                    }
+                    },
+                    Headers = Utilities.CollectHeaders(httpResponse.Headers)
                 };
             }
             else
@@ -1395,8 +2432,34 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2DeleteAccountMetadataResponse> DeleteAccountMetadataAsync(string ledger, string address, string key, string? idempotencyKey = null)
+
+        /// <summary>
+        /// Delete metadata by key.
+        /// </summary>
+        /// <remarks>
+        /// Delete metadata by key.
+        /// </remarks>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="address">Account address.</param>
+        /// <param name="key">The key to remove.</param>
+        /// <param name="idempotencyKey">Use an idempotency key.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2DeleteAccountMetadataResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/>, <paramref name="address"/> or <paramref name="key"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2DeleteAccountMetadataResponse> DeleteAccountMetadataAsync(
+            string ledger,
+            string address,
+            string key,
+            string? idempotencyKey = null
+        )
         {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+            if (address == null) throw new ArgumentNullException(nameof(address));
+            if (key == null) throw new ArgumentNullException(nameof(key));
+
             var request = new V2DeleteAccountMetadataRequest()
             {
                 Ledger = ledger,
@@ -1404,19 +2467,25 @@ namespace FormanceSDK
                 Key = key,
                 IdempotencyKey = idempotencyKey,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/accounts/{address}/metadata/{key}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/accounts/{address}/metadata/{key}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2DeleteAccountMetadata", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2DeleteAccountMetadata", new List<string> { "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1426,7 +2495,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1435,9 +2504,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1452,7 +2521,7 @@ namespace FormanceSDK
 
             var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
             int responseStatusCode = (int)httpResponse.StatusCode;
-            if(responseStatusCode >= 200 && responseStatusCode < 300)
+            if(responseStatusCode == 204)
             {
                 return new V2DeleteAccountMetadataResponse()
                 {
@@ -1460,7 +2529,8 @@ namespace FormanceSDK
                     {
                         Response = httpResponse,
                         Request = httpRequest
-                    }
+                    },
+                    Headers = Utilities.CollectHeaders(httpResponse.Headers)
                 };
             }
             else
@@ -1485,24 +2555,46 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2ReadStatsResponse> ReadStatsAsync(string ledger)
+
+        /// <summary>
+        /// Get statistics from a ledger.
+        /// </summary>
+        /// <remarks>
+        /// Get statistics from a ledger. (aggregate metrics on accounts and transactions).
+        /// </remarks>
+        /// <param name="ledger">name of the ledger.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2ReadStatsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2ReadStatsResponse> ReadStatsAsync(string ledger)
         {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+
             var request = new V2ReadStatsRequest()
             {
                 Ledger = ledger,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/stats", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/stats", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2ReadStats", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2ReadStats", new List<string> { "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1512,7 +2604,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1521,9 +2613,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1589,24 +2681,37 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2CountTransactionsResponse> CountTransactionsAsync(string ledger, Dictionary<string, object> requestBody, DateTime? pit = null)
+
+        /// <summary>
+        /// Count the transactions from a ledger.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="pit">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2CountTransactionsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2CountTransactionsResponse> CountTransactionsAsync(string ledger, DateTime? pit = null)
         {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+
             var request = new V2CountTransactionsRequest()
             {
                 Ledger = ledger,
-                RequestBody = requestBody,
                 Pit = pit,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Head, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
-            if (serializedBody != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest.Content = serializedBody;
+                httpRequest.Headers.Add("Accept", "application/json");
             }
 
             if (SDKConfiguration.SecuritySource != null)
@@ -1614,7 +2719,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2CountTransactions", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2CountTransactions", new List<string> { "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1624,7 +2729,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1633,9 +2738,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1658,7 +2763,8 @@ namespace FormanceSDK
                     {
                         Response = httpResponse,
                         Request = httpRequest
-                    }
+                    },
+                    Headers = Utilities.CollectHeaders(httpResponse.Headers)
                 };
             }
             else
@@ -1683,18 +2789,33 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2ListTransactionsResponse> ListTransactionsAsync(V2ListTransactionsRequest request)
+
+        /// <summary>
+        /// List transactions from a ledger.
+        /// </summary>
+        /// <remarks>
+        /// List transactions from a ledger, sorted by id in descending order.
+        /// </remarks>
+        /// <param name="request">A <see cref="V2ListTransactionsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2ListTransactionsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2ListTransactionsResponse> ListTransactionsAsync(V2ListTransactionsRequest request)
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
-            if (serializedBody != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest.Content = serializedBody;
+                httpRequest.Headers.Add("Accept", "application/json");
             }
 
             if (SDKConfiguration.SecuritySource != null)
@@ -1702,7 +2823,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2ListTransactions", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2ListTransactions", new List<string> { "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1712,7 +2833,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1721,9 +2842,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1789,14 +2910,34 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V2CreateTransactionResponse> CreateTransactionAsync(V2CreateTransactionRequest request)
+
+        /// <summary>
+        /// Create a new transaction to a ledger.
+        /// </summary>
+        /// <param name="request">A <see cref="V2CreateTransactionRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreateTransactionResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V2CreateTransactionResponse> CreateTransactionAsync(
+            V2CreateTransactionRequest request
+        )
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "V2PostTransaction", "json", false, false);
             if (serializedBody != null)
@@ -1809,7 +2950,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2CreateTransaction", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2CreateTransaction", new List<string> { "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1819,7 +2960,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1828,9 +2969,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1866,7 +3007,8 @@ namespace FormanceSDK
                         {
                             Response = httpResponse,
                             Request = httpRequest
-                        }
+                        },
+                        Headers = Utilities.CollectHeaders(httpResponse.Headers)
                     };
                     response.V2CreateTransactionResponseValue = obj;
                     return response;
@@ -1896,8 +3038,29 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V2GetTransactionResponse> GetTransactionAsync(string ledger, BigInteger id, string? expand = null, DateTime? pit = null)
+
+        /// <summary>
+        /// Get transaction from a ledger by its ID.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="id">Transaction ID.</param>
+        /// <param name="expand">Description not available.</param>
+        /// <param name="pit">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2GetTransactionResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V2GetTransactionResponse> GetTransactionAsync(
+            string ledger,
+            BigInteger id,
+            string? expand = null,
+            DateTime? pit = null
+        )
         {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+
             var request = new V2GetTransactionRequest()
             {
                 Ledger = ledger,
@@ -1905,18 +3068,24 @@ namespace FormanceSDK
                 Expand = expand,
                 Pit = pit,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions/{id}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions/{id}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2GetTransaction", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2GetTransaction", new List<string> { "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1926,7 +3095,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1935,9 +3104,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2003,14 +3172,34 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2AddMetadataOnTransactionResponse> AddMetadataOnTransactionAsync(V2AddMetadataOnTransactionRequest request)
+
+        /// <summary>
+        /// Set the metadata of a transaction by its ID.
+        /// </summary>
+        /// <param name="request">A <see cref="V2AddMetadataOnTransactionRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2AddMetadataOnTransactionResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2AddMetadataOnTransactionResponse> AddMetadataOnTransactionAsync(
+            V2AddMetadataOnTransactionRequest request
+        )
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions/{id}/metadata", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions/{id}/metadata", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
@@ -2023,7 +3212,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2AddMetadataOnTransaction", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2AddMetadataOnTransaction", new List<string> { "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2033,7 +3222,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2042,9 +3231,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2067,7 +3256,8 @@ namespace FormanceSDK
                     {
                         Response = httpResponse,
                         Request = httpRequest
-                    }
+                    },
+                    Headers = Utilities.CollectHeaders(httpResponse.Headers)
                 };
             }
             else
@@ -2092,8 +3282,33 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2DeleteTransactionMetadataResponse> DeleteTransactionMetadataAsync(string ledger, BigInteger id, string key, string? idempotencyKey = null)
+
+        /// <summary>
+        /// Delete metadata by key.
+        /// </summary>
+        /// <remarks>
+        /// Delete metadata by key.
+        /// </remarks>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="id">Transaction ID.</param>
+        /// <param name="key">The key to remove.</param>
+        /// <param name="idempotencyKey">Use an idempotency key.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2DeleteTransactionMetadataResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="key"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2DeleteTransactionMetadataResponse> DeleteTransactionMetadataAsync(
+            string ledger,
+            BigInteger id,
+            string key,
+            string? idempotencyKey = null
+        )
         {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+            if (key == null) throw new ArgumentNullException(nameof(key));
+
             var request = new V2DeleteTransactionMetadataRequest()
             {
                 Ledger = ledger,
@@ -2101,19 +3316,25 @@ namespace FormanceSDK
                 Key = key,
                 IdempotencyKey = idempotencyKey,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions/{id}/metadata/{key}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions/{id}/metadata/{key}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2DeleteTransactionMetadata", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2DeleteTransactionMetadata", new List<string> { "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2123,7 +3344,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2132,9 +3353,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2149,7 +3370,7 @@ namespace FormanceSDK
 
             var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
             int responseStatusCode = (int)httpResponse.StatusCode;
-            if(responseStatusCode >= 200 && responseStatusCode < 300)
+            if(responseStatusCode == 204)
             {
                 return new V2DeleteTransactionMetadataResponse()
                 {
@@ -2157,7 +3378,8 @@ namespace FormanceSDK
                     {
                         Response = httpResponse,
                         Request = httpRequest
-                    }
+                    },
+                    Headers = Utilities.CollectHeaders(httpResponse.Headers)
                 };
             }
             else
@@ -2182,13 +3404,34 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2RevertTransactionResponse> RevertTransactionAsync(Models.Requests.V2RevertTransactionRequest request)
+
+        /// <summary>
+        /// Revert a ledger transaction by its ID.
+        /// </summary>
+        /// <param name="request">A <see cref="FormanceSDK.Models.Requests.V2RevertTransactionRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2RevertTransactionResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V2RevertTransactionResponse> RevertTransactionAsync(
+            Models.Requests.V2RevertTransactionRequest request
+        )
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions/{id}/revert", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions/{id}/revert", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "V2RevertTransactionRequestValue", "json", false, true);
             if (serializedBody != null)
@@ -2201,7 +3444,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2RevertTransaction", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2RevertTransaction", new List<string> { "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2211,7 +3454,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 201)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2220,9 +3463,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2242,25 +3485,26 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Components.V2CreateTransactionResponse obj;
+                    Models.Components.V2RevertTransactionResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Components.V2CreateTransactionResponse>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Components.V2RevertTransactionResponse>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Components.V2CreateTransactionResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Components.V2RevertTransactionResponse.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    var response = new V2RevertTransactionResponse()
+                    var response = new Models.Requests.V2RevertTransactionResponse()
                     {
                         HttpMeta = new Models.Components.HTTPMetadata()
                         {
                             Response = httpResponse,
                             Request = httpRequest
-                        }
+                        },
+                        Headers = Utilities.CollectHeaders(httpResponse.Headers)
                     };
-                    response.V2CreateTransactionResponse = obj;
+                    response.V2RevertTransactionResponseValue = obj;
                     return response;
                 }
 
@@ -2288,25 +3532,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2GetBalancesAggregatedResponse> GetBalancesAggregatedAsync(string ledger, Dictionary<string, object> requestBody, DateTime? pit = null, bool? useInsertionDate = null)
+
+        /// <summary>
+        /// Get the aggregated balances from selected accounts.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="pit">Description not available.</param>
+        /// <param name="useInsertionDate">Use insertion date instead of effective date.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2GetBalancesAggregatedResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2GetBalancesAggregatedResponse> GetBalancesAggregatedAsync(
+            string ledger,
+            DateTime? pit = null,
+            bool? useInsertionDate = null
+        )
         {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+
             var request = new V2GetBalancesAggregatedRequest()
             {
                 Ledger = ledger,
-                RequestBody = requestBody,
                 Pit = pit,
                 UseInsertionDate = useInsertionDate,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/aggregate/balances", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/aggregate/balances", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
-            if (serializedBody != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest.Content = serializedBody;
+                httpRequest.Headers.Add("Accept", "application/json");
             }
 
             if (SDKConfiguration.SecuritySource != null)
@@ -2314,7 +3576,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2GetBalancesAggregated", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2GetBalancesAggregated", new List<string> { "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2324,7 +3586,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2333,9 +3595,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2401,18 +3663,32 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2GetVolumesWithBalancesResponse> GetVolumesWithBalancesAsync(V2GetVolumesWithBalancesRequest request)
+
+        /// <summary>
+        /// Get list of volumes with balances for (account/asset).
+        /// </summary>
+        /// <param name="request">A <see cref="V2GetVolumesWithBalancesRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2GetVolumesWithBalancesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2GetVolumesWithBalancesResponse> GetVolumesWithBalancesAsync(
+            V2GetVolumesWithBalancesRequest request
+        )
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/volumes", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/volumes", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
-            if (serializedBody != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest.Content = serializedBody;
+                httpRequest.Headers.Add("Accept", "application/json");
             }
 
             if (SDKConfiguration.SecuritySource != null)
@@ -2420,7 +3696,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2GetVolumesWithBalances", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2GetVolumesWithBalances", new List<string> { "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2430,7 +3706,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2439,9 +3715,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2507,18 +3783,33 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2ListLogsResponse> ListLogsAsync(V2ListLogsRequest request)
+
+        /// <summary>
+        /// List the logs from a ledger.
+        /// </summary>
+        /// <remarks>
+        /// List the logs from a ledger, sorted by ID in descending order.
+        /// </remarks>
+        /// <param name="request">A <see cref="V2ListLogsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2ListLogsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2ListLogsResponse> ListLogsAsync(V2ListLogsRequest request)
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/logs", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/logs", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
-            if (serializedBody != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest.Content = serializedBody;
+                httpRequest.Headers.Add("Accept", "application/json");
             }
 
             if (SDKConfiguration.SecuritySource != null)
@@ -2526,7 +3817,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2ListLogs", new List<string> { "auth:read", "ledger:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2ListLogs", new List<string> { "ledger:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2536,7 +3827,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2545,9 +3836,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2613,18 +3904,36 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2ImportLogsResponse> ImportLogsAsync(string ledger, byte[] v2ImportLogsRequest)
+
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="v2ImportLogsRequest">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2ImportLogsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="v2ImportLogsRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2ImportLogsResponse> ImportLogsAsync(string ledger, byte[] v2ImportLogsRequest)
         {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+            if (v2ImportLogsRequest == null) throw new ArgumentNullException(nameof(v2ImportLogsRequest));
+
             var request = new V2ImportLogsRequest()
             {
                 Ledger = ledger,
                 V2ImportLogsRequestValue = v2ImportLogsRequest,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/logs/import", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/logs/import", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "V2ImportLogsRequestValue", "raw", false, false);
             if (serializedBody != null)
@@ -2637,7 +3946,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2ImportLogs", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2ImportLogs", new List<string> { "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2647,7 +3956,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2656,9 +3965,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2706,24 +4015,41 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2ExportLogsResponse> ExportLogsAsync(string ledger)
+
+        /// <summary>
+        /// Export logs.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2ExportLogsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
+        public async  Task<V2ExportLogsResponse> ExportLogsAsync(string ledger)
         {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+
             var request = new V2ExportLogsRequest()
             {
                 Ledger = ledger,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/logs/export", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/logs/export", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "*/*");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2ExportLogs", new List<string> { "auth:read", "ledger:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2ExportLogs", new List<string> { "ledger:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2733,7 +4059,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2742,9 +4068,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2776,14 +4102,154 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V2ListExportersResponse> ListExportersAsync()
+
+        /// <summary>
+        /// Run a query template.
+        /// </summary>
+        /// <remarks>
+        /// Run a query template on a ledger.
+        /// </remarks>
+        /// <param name="request">A <see cref="V2RunQueryRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2RunQueryResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2RunQueryResponse> RunQueryAsync(V2RunQueryRequest request)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/queries/{id}/run", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2RunQuery", new List<string> { "ledger:read" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V2RunQueryResponseBody obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<V2RunQueryResponseBody>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V2RunQueryResponseBody.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new V2RunQueryResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.OneOf = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Errors.V2ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Errors.V2ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Errors.V2ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Errors.V2ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// List exporters.
+        /// </summary>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2ListExportersResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V2ListExportersResponse> ListExportersAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/api/ledger/v2/_/exporters";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -2800,7 +4266,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2809,9 +4275,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2877,14 +4343,31 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V2CreateExporterResponse> CreateExporterAsync(V2ExporterConfiguration request)
-        {
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
 
+        /// <summary>
+        /// Create exporter.
+        /// </summary>
+        /// <param name="request">A <see cref="V2CreateExporterRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreateExporterResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V2CreateExporterResponse> CreateExporterAsync(V2CreateExporterRequest request)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/ledger/v2/_/exporters";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, false);
             if (serializedBody != null)
@@ -2907,7 +4390,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 201)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2916,9 +4399,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2984,17 +4467,36 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V2GetExporterStateResponse> GetExporterStateAsync(string exporterID)
+
+        /// <summary>
+        /// Get exporter state.
+        /// </summary>
+        /// <param name="exporterID">The exporter id.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2GetExporterStateResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="exporterID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V2GetExporterStateResponse> GetExporterStateAsync(string exporterID)
         {
+            if (exporterID == null) throw new ArgumentNullException(nameof(exporterID));
+
             var request = new V2GetExporterStateRequest()
             {
                 ExporterID = exporterID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/_/exporters/{exporterID}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/_/exporters/{exporterID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -3011,7 +4513,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3020,9 +4522,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3088,17 +4590,153 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2DeleteExporterResponse> DeleteExporterAsync(string exporterID)
+
+        /// <summary>
+        /// Update exporter.
+        /// </summary>
+        /// <param name="exporterID">The exporter id.</param>
+        /// <param name="v2CreateExporterRequest">A <see cref="V2CreateExporterRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2UpdateExporterResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="exporterID"/> or <paramref name="v2CreateExporterRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2UpdateExporterResponse> UpdateExporterAsync(
+            string exporterID,
+            V2CreateExporterRequest v2CreateExporterRequest
+        )
         {
+            if (exporterID == null) throw new ArgumentNullException(nameof(exporterID));
+            if (v2CreateExporterRequest == null) throw new ArgumentNullException(nameof(v2CreateExporterRequest));
+
+            var request = new V2UpdateExporterRequest()
+            {
+                ExporterID = exporterID,
+                V2CreateExporterRequest = v2CreateExporterRequest,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/_/exporters/{exporterID}", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "V2CreateExporterRequest", "json", false, false);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2UpdateExporter", new List<string> { "ledger:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 204)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 204)
+            {
+                return new V2UpdateExporterResponse()
+                {
+                    HttpMeta = new Models.Components.HTTPMetadata()
+                    {
+                        Response = httpResponse,
+                        Request = httpRequest
+                    }
+                };
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Errors.V2ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Errors.V2ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Errors.V2ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Errors.V2ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Delete exporter.
+        /// </summary>
+        /// <param name="exporterID">The exporter id.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2DeleteExporterResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="exporterID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2DeleteExporterResponse> DeleteExporterAsync(string exporterID)
+        {
+            if (exporterID == null) throw new ArgumentNullException(nameof(exporterID));
+
             var request = new V2DeleteExporterRequest()
             {
                 ExporterID = exporterID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/_/exporters/{exporterID}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/_/exporters/{exporterID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -3115,7 +4753,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3124,9 +4762,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3174,17 +4812,310 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V2ListPipelinesResponse> ListPipelinesAsync(string ledger)
+
+        /// <summary>
+        /// Delete bucket.
+        /// </summary>
+        /// <remarks>
+        /// Delete a bucket by marking all ledgers in the bucket as deleted (soft delete). All ledgers in the bucket will have their deleted_at field set to the current timestamp.
+        /// </remarks>
+        /// <param name="bucket">The bucket name.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2DeleteBucketResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="bucket"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Bucket not found. Thrown when the response status code is none of 204 or 404.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2DeleteBucketResponse> DeleteBucketAsync(string bucket)
         {
+            if (bucket == null) throw new ArgumentNullException(nameof(bucket));
+
+            var request = new V2DeleteBucketRequest()
+            {
+                Bucket = bucket,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/_/buckets/{bucket}", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2DeleteBucket", new List<string> { "ledger:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (!new List<int>{204, 404}.Contains(_statusCode))
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 204)
+            {
+                return new V2DeleteBucketResponse()
+                {
+                    HttpMeta = new Models.Components.HTTPMetadata()
+                    {
+                        Response = httpResponse,
+                        Request = httpRequest
+                    }
+                };
+            }
+            else if(responseStatusCode == 404)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Components.V2ErrorResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Components.V2ErrorResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Components.V2ErrorResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new V2DeleteBucketResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.V2ErrorResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Errors.V2ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Errors.V2ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Errors.V2ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Errors.V2ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Restore bucket.
+        /// </summary>
+        /// <remarks>
+        /// Restore a deleted bucket by unmarking all ledgers in the bucket as deleted. All ledgers in the bucket will have their deleted_at field set to NULL.
+        /// </remarks>
+        /// <param name="bucket">The bucket name.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2RestoreBucketResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="bucket"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Bucket not found. Thrown when the response status code is none of 204 or 404.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2RestoreBucketResponse> RestoreBucketAsync(string bucket)
+        {
+            if (bucket == null) throw new ArgumentNullException(nameof(bucket));
+
+            var request = new V2RestoreBucketRequest()
+            {
+                Bucket = bucket,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/_/buckets/{bucket}/restore", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2RestoreBucket", new List<string> { "ledger:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (!new List<int>{204, 404}.Contains(_statusCode))
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 204)
+            {
+                return new V2RestoreBucketResponse()
+                {
+                    HttpMeta = new Models.Components.HTTPMetadata()
+                    {
+                        Response = httpResponse,
+                        Request = httpRequest
+                    }
+                };
+            }
+            else if(responseStatusCode == 404)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Components.V2ErrorResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Components.V2ErrorResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Components.V2ErrorResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new V2RestoreBucketResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.V2ErrorResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Errors.V2ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Errors.V2ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Errors.V2ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Errors.V2ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// List pipelines.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2ListPipelinesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V2ListPipelinesResponse> ListPipelinesAsync(string ledger)
+        {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+
             var request = new V2ListPipelinesRequest()
             {
                 Ledger = ledger,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/pipelines", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/pipelines", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -3201,7 +5132,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3210,9 +5141,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3278,18 +5209,41 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V2CreatePipelineResponse> CreatePipelineAsync(string ledger, Models.Components.V2CreatePipelineRequest? v2CreatePipelineRequest = null)
+
+        /// <summary>
+        /// Create pipeline.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="v2CreatePipelineRequest">A <see cref="FormanceSDK.Models.Components.V2CreatePipelineRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreatePipelineResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V2CreatePipelineResponse> CreatePipelineAsync(
+            string ledger,
+            Models.Components.V2CreatePipelineRequest? v2CreatePipelineRequest = null
+        )
         {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+
             var request = new Models.Requests.V2CreatePipelineRequest()
             {
                 Ledger = ledger,
                 V2CreatePipelineRequestValue = v2CreatePipelineRequest,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/pipelines", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/pipelines", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "V2CreatePipelineRequestValue", "json", false, true);
             if (serializedBody != null)
@@ -3312,7 +5266,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 201)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3321,9 +5275,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3389,18 +5343,42 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<Models.Requests.V2GetPipelineStateResponse> GetPipelineStateAsync(string ledger, string pipelineID)
+
+        /// <summary>
+        /// Get pipeline state.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="pipelineID">The pipeline id.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2GetPipelineStateResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="pipelineID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.V2GetPipelineStateResponse> GetPipelineStateAsync(
+            string ledger,
+            string pipelineID
+        )
         {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+            if (pipelineID == null) throw new ArgumentNullException(nameof(pipelineID));
+
             var request = new V2GetPipelineStateRequest()
             {
                 Ledger = ledger,
                 PipelineID = pipelineID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/pipelines/{pipelineID}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/pipelines/{pipelineID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -3417,7 +5395,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3426,9 +5404,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3494,18 +5472,39 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2DeletePipelineResponse> DeletePipelineAsync(string ledger, string pipelineID)
+
+        /// <summary>
+        /// Delete pipeline.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="pipelineID">The pipeline id.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2DeletePipelineResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="pipelineID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2DeletePipelineResponse> DeletePipelineAsync(string ledger, string pipelineID)
         {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+            if (pipelineID == null) throw new ArgumentNullException(nameof(pipelineID));
+
             var request = new V2DeletePipelineRequest()
             {
                 Ledger = ledger,
                 PipelineID = pipelineID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/pipelines/{pipelineID}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/pipelines/{pipelineID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -3522,7 +5521,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3531,9 +5530,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3581,18 +5580,39 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2ResetPipelineResponse> ResetPipelineAsync(string ledger, string pipelineID)
+
+        /// <summary>
+        /// Reset pipeline.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="pipelineID">The pipeline id.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2ResetPipelineResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="pipelineID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2ResetPipelineResponse> ResetPipelineAsync(string ledger, string pipelineID)
         {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+            if (pipelineID == null) throw new ArgumentNullException(nameof(pipelineID));
+
             var request = new V2ResetPipelineRequest()
             {
                 Ledger = ledger,
                 PipelineID = pipelineID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/pipelines/{pipelineID}/reset", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/pipelines/{pipelineID}/reset", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -3609,7 +5629,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 202)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3618,9 +5638,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3668,18 +5688,39 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2StartPipelineResponse> StartPipelineAsync(string ledger, string pipelineID)
+
+        /// <summary>
+        /// Start pipeline.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="pipelineID">The pipeline id.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2StartPipelineResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="pipelineID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2StartPipelineResponse> StartPipelineAsync(string ledger, string pipelineID)
         {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+            if (pipelineID == null) throw new ArgumentNullException(nameof(pipelineID));
+
             var request = new V2StartPipelineRequest()
             {
                 Ledger = ledger,
                 PipelineID = pipelineID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/pipelines/{pipelineID}/start", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/pipelines/{pipelineID}/start", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -3696,7 +5737,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 202)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3705,9 +5746,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3755,18 +5796,39 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<V2StopPipelineResponse> StopPipelineAsync(string ledger, string pipelineID)
+
+        /// <summary>
+        /// Stop pipeline.
+        /// </summary>
+        /// <param name="ledger">Name of the ledger.</param>
+        /// <param name="pipelineID">The pipeline id.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2StopPipelineResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="pipelineID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 202.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V2StopPipelineResponse> StopPipelineAsync(string ledger, string pipelineID)
         {
+            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
+            if (pipelineID == null) throw new ArgumentNullException(nameof(pipelineID));
+
             var request = new V2StopPipelineRequest()
             {
                 Ledger = ledger,
                 PipelineID = pipelineID,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/pipelines/{pipelineID}/stop", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/pipelines/{pipelineID}/stop", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
@@ -3783,7 +5845,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 202)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3792,9 +5854,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3841,5 +5903,6 @@ namespace FormanceSDK
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
         }
+
     }
 }

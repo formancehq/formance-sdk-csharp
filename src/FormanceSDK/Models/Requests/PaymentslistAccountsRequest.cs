@@ -11,29 +11,20 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
     using System.Collections.Generic;
-    
+
     public class PaymentslistAccountsRequest
     {
-
         /// <summary>
-        /// The maximum number of results to return per page.<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// The maximum number of results to return per page.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")]
         public long? PageSize { get; set; } = 15;
 
         /// <summary>
         /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
-        /// 
-        /// <remarks>
         /// Set to the value of next for the next page of results.<br/>
         /// Set to the value of previous for the previous page of results.<br/>
-        /// No other parameters can be set when this parameter is set.<br/>
-        /// 
-        /// </remarks>
+        /// No other parameters can be set when this parameter is set.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")]
         public string? Cursor { get; set; }
@@ -45,16 +36,9 @@ namespace FormanceSDK.Models.Requests
         public List<string>? Sort { get; set; }
 
         /// <summary>
-        /// Filters used to filter resources.<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// Filters used to filter resources.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=query")]
         public string? Query { get; set; }
-
-        [SpeakeasyMetadata("request:mediaType=application/json")]
-        public Dictionary<string, object>? RequestBody { get; set; }
     }
 }

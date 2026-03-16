@@ -10,35 +10,26 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class V2ListTriggersRequest
     {
-
         /// <summary>
         /// Parameter used in pagination requests.<br/>
-        /// 
-        /// <remarks>
         /// Set to the value of next for the next page of results.<br/>
         /// Set to the value of previous for the previous page of results.<br/>
-        /// No other parameters can be set when this parameter is set.<br/>
-        /// 
-        /// </remarks>
+        /// No other parameters can be set when this parameter is set.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")]
         public string? Cursor { get; set; }
 
         /// <summary>
-        /// The maximum number of results to return per page.<br/>
-        /// 
-        /// <remarks>
-        /// 
-        /// </remarks>
+        /// The maximum number of results to return per page.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")]
         public long? PageSize { get; set; }
 
         /// <summary>
-        /// search by name
+        /// search by name.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=name")]
         public string? Name { get; set; }

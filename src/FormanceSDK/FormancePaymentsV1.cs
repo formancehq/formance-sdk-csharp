@@ -24,372 +24,804 @@ namespace FormanceSDK
 
     public interface IFormancePaymentsV1
     {
-
         /// <summary>
-        /// Get server info
+        /// Get server info.
         /// </summary>
-        Task<PaymentsgetServerInfoResponse> PaymentsgetServerInfoAsync();
+        /// <returns>An awaitable task that returns a <see cref="PaymentsgetServerInfoResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<PaymentsgetServerInfoResponse> PaymentsgetServerInfoAsync();
 
         /// <summary>
-        /// Create a payment
-        /// 
+        /// Create a payment.
+        /// </summary>
         /// <remarks>
-        /// Create a payment
+        /// Create a payment.
         /// </remarks>
-        /// </summary>
-        Task<CreatePaymentResponse> CreatePaymentAsync(PaymentRequest request);
+        /// <param name="request">A <see cref="PaymentRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="CreatePaymentResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<CreatePaymentResponse> CreatePaymentAsync(PaymentRequest request);
 
         /// <summary>
-        /// List payments
+        /// List payments.
         /// </summary>
-        Task<ListPaymentsResponse> ListPaymentsAsync(long? pageSize = 15, string? cursor = null, List<string>? sort = null, string? query = null);
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <param name="sort">Fields used to sort payments (default is date:desc).</param>
+        /// <param name="query">Filters used to filter resources.</param>
+        /// <returns>An awaitable task that returns a <see cref="ListPaymentsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ListPaymentsResponse> ListPaymentsAsync(
+            long? pageSize = 15,
+            string? cursor = null,
+            List<string>? sort = null,
+            string? query = null
+        );
 
         /// <summary>
-        /// Get a payment
+        /// Get a payment.
         /// </summary>
-        Task<GetPaymentResponse> GetPaymentAsync(string paymentId);
+        /// <param name="paymentId">The payment ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetPaymentResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<GetPaymentResponse> GetPaymentAsync(string paymentId);
 
         /// <summary>
-        /// Update metadata
+        /// Update metadata.
         /// </summary>
-        Task<UpdateMetadataResponse> UpdateMetadataAsync(string paymentId, Dictionary<string, string>? requestBody = null);
+        /// <param name="paymentId">The payment ID.</param>
+        /// <param name="requestBody">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="UpdateMetadataResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<UpdateMetadataResponse> UpdateMetadataAsync(
+            string paymentId,
+            Dictionary<string, string>? requestBody = null
+        );
 
         /// <summary>
-        /// List Transfer Initiations
+        /// List Transfer Initiations.
         /// </summary>
-        Task<ListTransferInitiationsResponse> ListTransferInitiationsAsync(long? pageSize = 15, string? cursor = null, List<string>? sort = null, string? query = null);
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <param name="sort">Fields used to sort payments (default is date:desc).</param>
+        /// <param name="query">Filters used to filter resources.</param>
+        /// <returns>An awaitable task that returns a <see cref="ListTransferInitiationsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ListTransferInitiationsResponse> ListTransferInitiationsAsync(
+            long? pageSize = 15,
+            string? cursor = null,
+            List<string>? sort = null,
+            string? query = null
+        );
 
         /// <summary>
-        /// Create a TransferInitiation
-        /// 
+        /// Create a TransferInitiation.
+        /// </summary>
         /// <remarks>
-        /// Create a transfer initiation
+        /// Create a transfer initiation.
         /// </remarks>
-        /// </summary>
-        Task<CreateTransferInitiationResponse> CreateTransferInitiationAsync(TransferInitiationRequest request);
+        /// <param name="request">A <see cref="TransferInitiationRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="CreateTransferInitiationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<CreateTransferInitiationResponse> CreateTransferInitiationAsync(TransferInitiationRequest request);
 
         /// <summary>
-        /// Get a transfer initiation
+        /// Get a transfer initiation.
         /// </summary>
-        Task<GetTransferInitiationResponse> GetTransferInitiationAsync(string transferId);
+        /// <param name="transferId">The transfer ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetTransferInitiationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="transferId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<GetTransferInitiationResponse> GetTransferInitiationAsync(string transferId);
 
         /// <summary>
-        /// Delete a transfer initiation
-        /// 
+        /// Delete a transfer initiation.
+        /// </summary>
         /// <remarks>
         /// Delete a transfer initiation by its id.
         /// </remarks>
-        /// </summary>
-        Task<DeleteTransferInitiationResponse> DeleteTransferInitiationAsync(string transferId);
+        /// <param name="transferId">The transfer ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeleteTransferInitiationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="transferId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<DeleteTransferInitiationResponse> DeleteTransferInitiationAsync(string transferId);
 
         /// <summary>
-        /// Update the status of a transfer initiation
-        /// 
+        /// Update the status of a transfer initiation.
+        /// </summary>
         /// <remarks>
-        /// Update a transfer initiation status
+        /// Update a transfer initiation status.
         /// </remarks>
-        /// </summary>
-        Task<UpdateTransferInitiationStatusResponse> UpdateTransferInitiationStatusAsync(string transferId, Models.Components.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest);
+        /// <param name="transferId">The transfer ID.</param>
+        /// <param name="updateTransferInitiationStatusRequest">A <see cref="FormanceSDK.Models.Components.UpdateTransferInitiationStatusRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="UpdateTransferInitiationStatusResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="transferId"/> or <paramref name="updateTransferInitiationStatusRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<UpdateTransferInitiationStatusResponse> UpdateTransferInitiationStatusAsync(
+            string transferId,
+            Models.Components.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest
+        );
 
         /// <summary>
-        /// Reverse a transfer initiation
-        /// 
+        /// Reverse a transfer initiation.
+        /// </summary>
         /// <remarks>
-        /// Reverse transfer initiation
+        /// Reverse transfer initiation.
         /// </remarks>
-        /// </summary>
-        Task<ReverseTransferInitiationResponse> ReverseTransferInitiationAsync(string transferId, Models.Components.ReverseTransferInitiationRequest reverseTransferInitiationRequest);
+        /// <param name="transferId">The transfer ID.</param>
+        /// <param name="reverseTransferInitiationRequest">A <see cref="FormanceSDK.Models.Components.ReverseTransferInitiationRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ReverseTransferInitiationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="transferId"/> or <paramref name="reverseTransferInitiationRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ReverseTransferInitiationResponse> ReverseTransferInitiationAsync(
+            string transferId,
+            Models.Components.ReverseTransferInitiationRequest reverseTransferInitiationRequest
+        );
 
         /// <summary>
-        /// Retry a failed transfer initiation
-        /// 
+        /// Retry a failed transfer initiation.
+        /// </summary>
         /// <remarks>
-        /// Retry a failed transfer initiation
+        /// Retry a failed transfer initiation.
         /// </remarks>
-        /// </summary>
-        Task<RetryTransferInitiationResponse> RetryTransferInitiationAsync(string transferId);
+        /// <param name="transferId">The transfer ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="RetryTransferInitiationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="transferId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<RetryTransferInitiationResponse> RetryTransferInitiationAsync(string transferId);
 
         /// <summary>
-        /// List Pools
+        /// List Pools.
         /// </summary>
-        Task<ListPoolsResponse> ListPoolsAsync(long? pageSize = 15, string? cursor = null, List<string>? sort = null, string? query = null);
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <param name="sort">Fields used to sort payments (default is date:desc).</param>
+        /// <param name="query">Filters used to filter resources.</param>
+        /// <returns>An awaitable task that returns a <see cref="ListPoolsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ListPoolsResponse> ListPoolsAsync(
+            long? pageSize = 15,
+            string? cursor = null,
+            List<string>? sort = null,
+            string? query = null
+        );
 
         /// <summary>
-        /// Create a Pool
-        /// 
+        /// Create a Pool.
+        /// </summary>
         /// <remarks>
-        /// Create a Pool
+        /// Create a Pool.
         /// </remarks>
-        /// </summary>
-        Task<CreatePoolResponse> CreatePoolAsync(PoolRequest request);
+        /// <param name="request">A <see cref="PoolRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="CreatePoolResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<CreatePoolResponse> CreatePoolAsync(PoolRequest request);
 
         /// <summary>
-        /// Get a Pool
+        /// Get a Pool.
         /// </summary>
-        Task<GetPoolResponse> GetPoolAsync(string poolId);
+        /// <param name="poolId">The pool ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetPoolResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<GetPoolResponse> GetPoolAsync(string poolId);
 
         /// <summary>
-        /// Delete a Pool
-        /// 
+        /// Delete a Pool.
+        /// </summary>
         /// <remarks>
         /// Delete a pool by its id.
         /// </remarks>
-        /// </summary>
-        Task<DeletePoolResponse> DeletePoolAsync(string poolId);
+        /// <param name="poolId">The pool ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeletePoolResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<DeletePoolResponse> DeletePoolAsync(string poolId);
 
         /// <summary>
-        /// Add an account to a pool
-        /// 
+        /// Update the query of a pool.
+        /// </summary>
+        /// <param name="poolId">The pool ID.</param>
+        /// <param name="updatePoolQueryRequest">A <see cref="FormanceSDK.Models.Components.UpdatePoolQueryRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="UpdatePoolQueryResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="poolId"/> or <paramref name="updatePoolQueryRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<UpdatePoolQueryResponse> UpdatePoolQueryAsync(
+            string poolId,
+            Models.Components.UpdatePoolQueryRequest updatePoolQueryRequest
+        );
+
+        /// <summary>
+        /// Add an account to a pool.
+        /// </summary>
         /// <remarks>
-        /// Add an account to a pool
+        /// Add an account to a pool.
         /// </remarks>
-        /// </summary>
-        Task<AddAccountToPoolResponse> AddAccountToPoolAsync(string poolId, Models.Components.AddAccountToPoolRequest addAccountToPoolRequest);
+        /// <param name="poolId">The pool ID.</param>
+        /// <param name="addAccountToPoolRequest">A <see cref="FormanceSDK.Models.Components.AddAccountToPoolRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="AddAccountToPoolResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="poolId"/> or <paramref name="addAccountToPoolRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<AddAccountToPoolResponse> AddAccountToPoolAsync(
+            string poolId,
+            Models.Components.AddAccountToPoolRequest addAccountToPoolRequest
+        );
 
         /// <summary>
-        /// Remove an account from a pool
-        /// 
+        /// Remove an account from a pool.
+        /// </summary>
         /// <remarks>
         /// Remove an account from a pool by its id.
         /// </remarks>
-        /// </summary>
-        Task<RemoveAccountFromPoolResponse> RemoveAccountFromPoolAsync(string poolId, string accountId);
+        /// <param name="poolId">The pool ID.</param>
+        /// <param name="accountId">The account ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="RemoveAccountFromPoolResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="poolId"/> or <paramref name="accountId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<RemoveAccountFromPoolResponse> RemoveAccountFromPoolAsync(string poolId, string accountId);
 
         /// <summary>
-        /// Get historical pool balances at a particular point in time
+        /// Get historical pool balances at a particular point in time.
         /// </summary>
-        Task<GetPoolBalancesResponse> GetPoolBalancesAsync(string poolId, DateTime at);
+        /// <param name="poolId">The pool ID.</param>
+        /// <param name="at">Filter balances by date.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetPoolBalancesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<GetPoolBalancesResponse> GetPoolBalancesAsync(string poolId, DateTime at);
 
         /// <summary>
-        /// Get latest pool balances
+        /// Get latest pool balances.
         /// </summary>
-        Task<GetPoolBalancesLatestResponse> GetPoolBalancesLatestAsync(string poolId);
+        /// <param name="poolId">The pool ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetPoolBalancesLatestResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<GetPoolBalancesLatestResponse> GetPoolBalancesLatestAsync(string poolId);
 
         /// <summary>
-        /// Create an account
-        /// 
+        /// Create an account.
+        /// </summary>
         /// <remarks>
-        /// Create an account
+        /// Create an account.
         /// </remarks>
-        /// </summary>
-        Task<CreateAccountResponse> CreateAccountAsync(AccountRequest request);
+        /// <param name="request">A <see cref="AccountRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="CreateAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<CreateAccountResponse> CreateAccountAsync(AccountRequest request);
 
         /// <summary>
-        /// List accounts
+        /// List accounts.
         /// </summary>
-        Task<PaymentslistAccountsResponse> PaymentslistAccountsAsync(PaymentslistAccountsRequest? request = null);
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <param name="sort">Fields used to sort payments (default is date:desc).</param>
+        /// <param name="query">Filters used to filter resources.</param>
+        /// <returns>An awaitable task that returns a <see cref="PaymentslistAccountsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<PaymentslistAccountsResponse> PaymentslistAccountsAsync(
+            long? pageSize = 15,
+            string? cursor = null,
+            List<string>? sort = null,
+            string? query = null
+        );
 
         /// <summary>
-        /// Get an account
+        /// Get an account.
         /// </summary>
-        Task<PaymentsgetAccountResponse> PaymentsgetAccountAsync(string accountId);
+        /// <param name="accountId">The account ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="PaymentsgetAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="accountId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<PaymentsgetAccountResponse> PaymentsgetAccountAsync(string accountId);
 
         /// <summary>
-        /// Get account balances
+        /// Get account balances.
         /// </summary>
-        Task<GetAccountBalancesResponse> GetAccountBalancesAsync(GetAccountBalancesRequest request);
+        /// <param name="request">A <see cref="GetAccountBalancesRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetAccountBalancesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<GetAccountBalancesResponse> GetAccountBalancesAsync(GetAccountBalancesRequest request);
 
         /// <summary>
-        /// Create a BankAccount in Payments and on the PSP
-        /// 
+        /// Create a BankAccount in Payments and on the PSP.
+        /// </summary>
         /// <remarks>
         /// Create a bank account in Payments and on the PSP.
         /// </remarks>
-        /// </summary>
-        Task<CreateBankAccountResponse> CreateBankAccountAsync(BankAccountRequest request);
+        /// <param name="request">A <see cref="BankAccountRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="CreateBankAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<CreateBankAccountResponse> CreateBankAccountAsync(BankAccountRequest request);
 
         /// <summary>
-        /// List bank accounts created by user on Formance
-        /// 
+        /// List bank accounts created by user on Formance.
+        /// </summary>
         /// <remarks>
         /// List all bank accounts created by user on Formance.
         /// </remarks>
-        /// </summary>
-        Task<ListBankAccountsResponse> ListBankAccountsAsync(long? pageSize = 15, string? cursor = null, List<string>? sort = null);
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <param name="sort">Fields used to sort payments (default is date:desc).</param>
+        /// <returns>An awaitable task that returns a <see cref="ListBankAccountsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ListBankAccountsResponse> ListBankAccountsAsync(
+            long? pageSize = 15,
+            string? cursor = null,
+            List<string>? sort = null
+        );
 
         /// <summary>
-        /// Get a bank account created by user on Formance
+        /// Get a bank account created by user on Formance.
         /// </summary>
-        Task<GetBankAccountResponse> GetBankAccountAsync(string bankAccountId);
+        /// <param name="bankAccountId">The bank account ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetBankAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="bankAccountId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<GetBankAccountResponse> GetBankAccountAsync(string bankAccountId);
 
         /// <summary>
-        /// Forward a bank account to a connector
+        /// Forward a bank account to a connector.
         /// </summary>
-        Task<ForwardBankAccountResponse> ForwardBankAccountAsync(string bankAccountId, Models.Components.ForwardBankAccountRequest forwardBankAccountRequest);
+        /// <param name="bankAccountId">The bank account ID.</param>
+        /// <param name="forwardBankAccountRequest">A <see cref="FormanceSDK.Models.Components.ForwardBankAccountRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ForwardBankAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="bankAccountId"/> or <paramref name="forwardBankAccountRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ForwardBankAccountResponse> ForwardBankAccountAsync(
+            string bankAccountId,
+            Models.Components.ForwardBankAccountRequest forwardBankAccountRequest
+        );
 
         /// <summary>
-        /// Update metadata of a bank account
+        /// Update metadata of a bank account.
         /// </summary>
-        Task<UpdateBankAccountMetadataResponse> UpdateBankAccountMetadataAsync(string bankAccountId, Models.Components.UpdateBankAccountMetadataRequest updateBankAccountMetadataRequest);
+        /// <param name="bankAccountId">The bank account ID.</param>
+        /// <param name="updateBankAccountMetadataRequest">A <see cref="FormanceSDK.Models.Components.UpdateBankAccountMetadataRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="UpdateBankAccountMetadataResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="bankAccountId"/> or <paramref name="updateBankAccountMetadataRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<UpdateBankAccountMetadataResponse> UpdateBankAccountMetadataAsync(
+            string bankAccountId,
+            Models.Components.UpdateBankAccountMetadataRequest updateBankAccountMetadataRequest
+        );
 
         /// <summary>
-        /// List all installed connectors
-        /// 
+        /// List all installed connectors.
+        /// </summary>
         /// <remarks>
         /// List all installed connectors.
         /// </remarks>
-        /// </summary>
-        Task<ListAllConnectorsResponse> ListAllConnectorsAsync();
+        /// <returns>An awaitable task that returns a <see cref="ListAllConnectorsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ListAllConnectorsResponse> ListAllConnectorsAsync();
 
         /// <summary>
-        /// List the configs of each available connector
-        /// 
+        /// List the configs of each available connector.
+        /// </summary>
         /// <remarks>
         /// List the configs of each available connector.
         /// </remarks>
-        /// </summary>
-        Task<ListConfigsAvailableConnectorsResponse> ListConfigsAvailableConnectorsAsync();
+        /// <returns>An awaitable task that returns a <see cref="ListConfigsAvailableConnectorsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ListConfigsAvailableConnectorsResponse> ListConfigsAvailableConnectorsAsync();
 
         /// <summary>
-        /// Install a connector
-        /// 
+        /// Install a connector.
+        /// </summary>
         /// <remarks>
         /// Install a connector by its name and config.
         /// </remarks>
-        /// </summary>
-        Task<InstallConnectorResponse> InstallConnectorAsync(Connector connector, ConnectorConfig connectorConfig);
+        /// <param name="connector">The name of the connector.</param>
+        /// <param name="connectorConfig">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="InstallConnectorResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorConfig"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<InstallConnectorResponse> InstallConnectorAsync(
+            Connector connector,
+            ConnectorConfig connectorConfig
+        );
 
         /// <summary>
-        /// Uninstall a connector
-        /// 
+        /// Uninstall a connector.
+        /// </summary>
         /// <remarks>
         /// Uninstall a connector by its name.
         /// </remarks>
-        /// </summary>
-        Task<UninstallConnectorResponse> UninstallConnectorAsync(Connector connector);
+        /// <param name="connector">The name of the connector.</param>
+        /// <returns>An awaitable task that returns a <see cref="UninstallConnectorResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
+        public  Task<UninstallConnectorResponse> UninstallConnectorAsync(Connector connector);
 
         /// <summary>
-        /// Uninstall a connector
-        /// 
+        /// Uninstall a connector.
+        /// </summary>
         /// <remarks>
         /// Uninstall a connector by its name.
         /// </remarks>
-        /// </summary>
-        Task<UninstallConnectorV1Response> UninstallConnectorV1Async(Connector connector, string connectorId);
+        /// <param name="connector">The name of the connector.</param>
+        /// <param name="connectorId">The connector ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="UninstallConnectorV1Response"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<UninstallConnectorV1Response> UninstallConnectorV1Async(Connector connector, string connectorId);
 
         /// <summary>
-        /// Read the config of a connector
-        /// 
+        /// Read the config of a connector.
+        /// </summary>
         /// <remarks>
-        /// Read connector config
+        /// Read connector config.
         /// </remarks>
-        /// </summary>
-        Task<ReadConnectorConfigResponse> ReadConnectorConfigAsync(Connector connector);
+        /// <param name="connector">The name of the connector.</param>
+        /// <returns>An awaitable task that returns a <see cref="ReadConnectorConfigResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
+        public  Task<ReadConnectorConfigResponse> ReadConnectorConfigAsync(Connector connector);
 
         /// <summary>
-        /// Update the config of a connector
-        /// 
+        /// Update the config of a connector.
+        /// </summary>
         /// <remarks>
-        /// Update connector config
+        /// Update connector config.
         /// </remarks>
-        /// </summary>
-        Task<UpdateConnectorConfigV1Response> UpdateConnectorConfigV1Async(Connector connector, string connectorId, ConnectorConfig connectorConfig);
+        /// <param name="connector">The name of the connector.</param>
+        /// <param name="connectorId">The connector ID.</param>
+        /// <param name="connectorConfig">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="UpdateConnectorConfigV1Response"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="connectorId"/> or <paramref name="connectorConfig"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<UpdateConnectorConfigV1Response> UpdateConnectorConfigV1Async(
+            Connector connector,
+            string connectorId,
+            ConnectorConfig connectorConfig
+        );
 
         /// <summary>
-        /// Read the config of a connector
-        /// 
+        /// Read the config of a connector.
+        /// </summary>
         /// <remarks>
-        /// Read connector config
+        /// Read connector config.
         /// </remarks>
-        /// </summary>
-        Task<ReadConnectorConfigV1Response> ReadConnectorConfigV1Async(Connector connector, string connectorId);
+        /// <param name="connector">The name of the connector.</param>
+        /// <param name="connectorId">The connector ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="ReadConnectorConfigV1Response"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ReadConnectorConfigV1Response> ReadConnectorConfigV1Async(Connector connector, string connectorId);
 
         /// <summary>
-        /// Reset a connector
-        /// 
+        /// Reset a connector.
+        /// </summary>
         /// <remarks>
         /// Reset a connector by its name.<br/>
-        /// It will remove the connector and ALL PAYMENTS generated with it.<br/>
-        /// 
+        /// It will remove the connector and ALL PAYMENTS generated with it.
         /// </remarks>
-        /// </summary>
-        Task<ResetConnectorResponse> ResetConnectorAsync(Connector connector);
+        /// <param name="connector">The name of the connector.</param>
+        /// <returns>An awaitable task that returns a <see cref="ResetConnectorResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
+        public  Task<ResetConnectorResponse> ResetConnectorAsync(Connector connector);
 
         /// <summary>
-        /// Reset a connector
-        /// 
+        /// Reset a connector.
+        /// </summary>
         /// <remarks>
         /// Reset a connector by its name.<br/>
-        /// It will remove the connector and ALL PAYMENTS generated with it.<br/>
-        /// 
+        /// It will remove the connector and ALL PAYMENTS generated with it.
         /// </remarks>
-        /// </summary>
-        Task<ResetConnectorV1Response> ResetConnectorV1Async(Connector connector, string connectorId);
+        /// <param name="connector">The name of the connector.</param>
+        /// <param name="connectorId">The connector ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="ResetConnectorV1Response"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ResetConnectorV1Response> ResetConnectorV1Async(Connector connector, string connectorId);
 
         /// <summary>
-        /// List tasks from a connector
-        /// 
+        /// List tasks from a connector.
+        /// </summary>
         /// <remarks>
         /// List all tasks associated with this connector.
         /// </remarks>
-        /// </summary>
-        Task<ListConnectorTasksResponse> ListConnectorTasksAsync(Connector connector, long? pageSize = 15, string? cursor = null);
+        /// <param name="connector">The name of the connector.</param>
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <returns>An awaitable task that returns a <see cref="ListConnectorTasksResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
+        public  Task<ListConnectorTasksResponse> ListConnectorTasksAsync(
+            Connector connector,
+            long? pageSize = 15,
+            string? cursor = null
+        );
 
         /// <summary>
-        /// List tasks from a connector
-        /// 
+        /// List tasks from a connector.
+        /// </summary>
         /// <remarks>
         /// List all tasks associated with this connector.
         /// </remarks>
-        /// </summary>
-        Task<ListConnectorTasksV1Response> ListConnectorTasksV1Async(Connector connector, string connectorId, long? pageSize = 15, string? cursor = null);
+        /// <param name="connector">The name of the connector.</param>
+        /// <param name="connectorId">The connector ID.</param>
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <returns>An awaitable task that returns a <see cref="ListConnectorTasksV1Response"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ListConnectorTasksV1Response> ListConnectorTasksV1Async(
+            Connector connector,
+            string connectorId,
+            long? pageSize = 15,
+            string? cursor = null
+        );
 
         /// <summary>
-        /// Read a specific task of the connector
-        /// 
+        /// Read a specific task of the connector.
+        /// </summary>
         /// <remarks>
         /// Get a specific task associated to the connector.
         /// </remarks>
-        /// </summary>
-        Task<GetConnectorTaskResponse> GetConnectorTaskAsync(Connector connector, string taskId);
+        /// <param name="connector">The name of the connector.</param>
+        /// <param name="taskId">The task ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetConnectorTaskResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="taskId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
+        public  Task<GetConnectorTaskResponse> GetConnectorTaskAsync(Connector connector, string taskId);
 
         /// <summary>
-        /// Read a specific task of the connector
-        /// 
+        /// Read a specific task of the connector.
+        /// </summary>
         /// <remarks>
         /// Get a specific task associated to the connector.
         /// </remarks>
-        /// </summary>
-        Task<GetConnectorTaskV1Response> GetConnectorTaskV1Async(Connector connector, string connectorId, string taskId);
+        /// <param name="connector">The name of the connector.</param>
+        /// <param name="connectorId">The connector ID.</param>
+        /// <param name="taskId">The task ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetConnectorTaskV1Response"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="connectorId"/> or <paramref name="taskId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<GetConnectorTaskV1Response> GetConnectorTaskV1Async(
+            Connector connector,
+            string connectorId,
+            string taskId
+        );
 
         /// <summary>
-        /// Transfer funds between Connector accounts
-        /// 
+        /// Transfer funds between Connector accounts.
+        /// </summary>
         /// <remarks>
         /// Execute a transfer between two accounts.
         /// </remarks>
-        /// </summary>
-        Task<ConnectorsTransferResponse> ConnectorsTransferAsync(Connector connector, TransferRequest transferRequest);
+        /// <param name="connector">The name of the connector.</param>
+        /// <param name="transferRequest">A <see cref="TransferRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ConnectorsTransferResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="transferRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ConnectorsTransferResponse> ConnectorsTransferAsync(
+            Connector connector,
+            TransferRequest transferRequest
+        );
     }
 
     public class FormancePaymentsV1: IFormancePaymentsV1
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-        private const string _language = "csharp";
-        private const string _sdkVersion = "3.0.0";
-        private const string _sdkGenVersion = "2.721.3";
-        private const string _openapiDocVersion = "v3.1.0";
 
         public FormancePaymentsV1(SDKConfig config)
         {
             SDKConfiguration = config;
         }
 
-        public async Task<PaymentsgetServerInfoResponse> PaymentsgetServerInfoAsync()
+        /// <summary>
+        /// Get server info.
+        /// </summary>
+        /// <returns>An awaitable task that returns a <see cref="PaymentsgetServerInfoResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<PaymentsgetServerInfoResponse> PaymentsgetServerInfoAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/api/payments/_info";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "paymentsgetServerInfo", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "paymentsgetServerInfo", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -399,7 +831,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -408,9 +840,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -476,14 +908,34 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<CreatePaymentResponse> CreatePaymentAsync(PaymentRequest request)
-        {
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
 
+        /// <summary>
+        /// Create a payment.
+        /// </summary>
+        /// <remarks>
+        /// Create a payment.
+        /// </remarks>
+        /// <param name="request">A <see cref="PaymentRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="CreatePaymentResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<CreatePaymentResponse> CreatePaymentAsync(PaymentRequest request)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/payments/payments";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, false);
             if (serializedBody != null)
@@ -496,7 +948,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createPayment", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createPayment", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -506,7 +958,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -515,9 +967,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -583,7 +1035,30 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<ListPaymentsResponse> ListPaymentsAsync(long? pageSize = 15, string? cursor = null, List<string>? sort = null, string? query = null)
+
+        /// <summary>
+        /// List payments.
+        /// </summary>
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <param name="sort">Fields used to sort payments (default is date:desc).</param>
+        /// <param name="query">Filters used to filter resources.</param>
+        /// <returns>An awaitable task that returns a <see cref="ListPaymentsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ListPaymentsResponse> ListPaymentsAsync(
+            long? pageSize = 15,
+            string? cursor = null,
+            List<string>? sort = null,
+            string? query = null
+        )
         {
             var request = new ListPaymentsRequest()
             {
@@ -592,18 +1067,24 @@ namespace FormanceSDK
                 Sort = sort,
                 Query = query,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/payments", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/payments", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listPayments", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listPayments", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -613,7 +1094,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -622,9 +1103,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -690,24 +1171,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<GetPaymentResponse> GetPaymentAsync(string paymentId)
+
+        /// <summary>
+        /// Get a payment.
+        /// </summary>
+        /// <param name="paymentId">The payment ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetPaymentResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<GetPaymentResponse> GetPaymentAsync(string paymentId)
         {
+            if (paymentId == null) throw new ArgumentNullException(nameof(paymentId));
+
             var request = new GetPaymentRequest()
             {
                 PaymentId = paymentId,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/payments/{paymentId}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/payments/{paymentId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getPayment", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getPayment", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -717,7 +1217,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -726,9 +1226,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -794,18 +1294,41 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<UpdateMetadataResponse> UpdateMetadataAsync(string paymentId, Dictionary<string, string>? requestBody = null)
+
+        /// <summary>
+        /// Update metadata.
+        /// </summary>
+        /// <param name="paymentId">The payment ID.</param>
+        /// <param name="requestBody">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="UpdateMetadataResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<UpdateMetadataResponse> UpdateMetadataAsync(
+            string paymentId,
+            Dictionary<string, string>? requestBody = null
+        )
         {
+            if (paymentId == null) throw new ArgumentNullException(nameof(paymentId));
+
             var request = new UpdateMetadataRequest()
             {
                 PaymentId = paymentId,
                 RequestBody = requestBody,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/payments/{paymentId}/metadata", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/payments/{paymentId}/metadata", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Patch, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", true, false);
             if (serializedBody != null)
@@ -818,7 +1341,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "updateMetadata", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "updateMetadata", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -828,7 +1351,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -837,9 +1360,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -887,7 +1410,30 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<ListTransferInitiationsResponse> ListTransferInitiationsAsync(long? pageSize = 15, string? cursor = null, List<string>? sort = null, string? query = null)
+
+        /// <summary>
+        /// List Transfer Initiations.
+        /// </summary>
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <param name="sort">Fields used to sort payments (default is date:desc).</param>
+        /// <param name="query">Filters used to filter resources.</param>
+        /// <returns>An awaitable task that returns a <see cref="ListTransferInitiationsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ListTransferInitiationsResponse> ListTransferInitiationsAsync(
+            long? pageSize = 15,
+            string? cursor = null,
+            List<string>? sort = null,
+            string? query = null
+        )
         {
             var request = new ListTransferInitiationsRequest()
             {
@@ -896,18 +1442,24 @@ namespace FormanceSDK
                 Sort = sort,
                 Query = query,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/transfer-initiations", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/transfer-initiations", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listTransferInitiations", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listTransferInitiations", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -917,7 +1469,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -926,9 +1478,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -994,14 +1546,36 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<CreateTransferInitiationResponse> CreateTransferInitiationAsync(TransferInitiationRequest request)
-        {
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
 
+        /// <summary>
+        /// Create a TransferInitiation.
+        /// </summary>
+        /// <remarks>
+        /// Create a transfer initiation.
+        /// </remarks>
+        /// <param name="request">A <see cref="TransferInitiationRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="CreateTransferInitiationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<CreateTransferInitiationResponse> CreateTransferInitiationAsync(
+            TransferInitiationRequest request
+        )
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/payments/transfer-initiations";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, false);
             if (serializedBody != null)
@@ -1014,7 +1588,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createTransferInitiation", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createTransferInitiation", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1024,7 +1598,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1033,9 +1607,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1101,24 +1675,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<GetTransferInitiationResponse> GetTransferInitiationAsync(string transferId)
+
+        /// <summary>
+        /// Get a transfer initiation.
+        /// </summary>
+        /// <param name="transferId">The transfer ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetTransferInitiationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="transferId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<GetTransferInitiationResponse> GetTransferInitiationAsync(string transferId)
         {
+            if (transferId == null) throw new ArgumentNullException(nameof(transferId));
+
             var request = new GetTransferInitiationRequest()
             {
                 TransferId = transferId,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/transfer-initiations/{transferId}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/transfer-initiations/{transferId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getTransferInitiation", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getTransferInitiation", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1128,7 +1721,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1137,9 +1730,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1205,24 +1798,46 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<DeleteTransferInitiationResponse> DeleteTransferInitiationAsync(string transferId)
+
+        /// <summary>
+        /// Delete a transfer initiation.
+        /// </summary>
+        /// <remarks>
+        /// Delete a transfer initiation by its id.
+        /// </remarks>
+        /// <param name="transferId">The transfer ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeleteTransferInitiationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="transferId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<DeleteTransferInitiationResponse> DeleteTransferInitiationAsync(string transferId)
         {
+            if (transferId == null) throw new ArgumentNullException(nameof(transferId));
+
             var request = new DeleteTransferInitiationRequest()
             {
                 TransferId = transferId,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/transfer-initiations/{transferId}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/transfer-initiations/{transferId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteTransferInitiation", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteTransferInitiation", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1232,7 +1847,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1241,9 +1856,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1291,18 +1906,45 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<UpdateTransferInitiationStatusResponse> UpdateTransferInitiationStatusAsync(string transferId, Models.Components.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest)
+
+        /// <summary>
+        /// Update the status of a transfer initiation.
+        /// </summary>
+        /// <remarks>
+        /// Update a transfer initiation status.
+        /// </remarks>
+        /// <param name="transferId">The transfer ID.</param>
+        /// <param name="updateTransferInitiationStatusRequest">A <see cref="FormanceSDK.Models.Components.UpdateTransferInitiationStatusRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="UpdateTransferInitiationStatusResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="transferId"/> or <paramref name="updateTransferInitiationStatusRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<UpdateTransferInitiationStatusResponse> UpdateTransferInitiationStatusAsync(
+            string transferId,
+            Models.Components.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest
+        )
         {
+            if (transferId == null) throw new ArgumentNullException(nameof(transferId));
+            if (updateTransferInitiationStatusRequest == null) throw new ArgumentNullException(nameof(updateTransferInitiationStatusRequest));
+
             var request = new Models.Requests.UpdateTransferInitiationStatusRequest()
             {
                 TransferId = transferId,
                 UpdateTransferInitiationStatusRequestValue = updateTransferInitiationStatusRequest,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/transfer-initiations/{transferId}/status", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/transfer-initiations/{transferId}/status", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "UpdateTransferInitiationStatusRequestValue", "json", false, false);
             if (serializedBody != null)
@@ -1315,7 +1957,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "updateTransferInitiationStatus", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "updateTransferInitiationStatus", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1325,7 +1967,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1334,9 +1976,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1384,18 +2026,45 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<ReverseTransferInitiationResponse> ReverseTransferInitiationAsync(string transferId, Models.Components.ReverseTransferInitiationRequest reverseTransferInitiationRequest)
+
+        /// <summary>
+        /// Reverse a transfer initiation.
+        /// </summary>
+        /// <remarks>
+        /// Reverse transfer initiation.
+        /// </remarks>
+        /// <param name="transferId">The transfer ID.</param>
+        /// <param name="reverseTransferInitiationRequest">A <see cref="FormanceSDK.Models.Components.ReverseTransferInitiationRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ReverseTransferInitiationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="transferId"/> or <paramref name="reverseTransferInitiationRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ReverseTransferInitiationResponse> ReverseTransferInitiationAsync(
+            string transferId,
+            Models.Components.ReverseTransferInitiationRequest reverseTransferInitiationRequest
+        )
         {
+            if (transferId == null) throw new ArgumentNullException(nameof(transferId));
+            if (reverseTransferInitiationRequest == null) throw new ArgumentNullException(nameof(reverseTransferInitiationRequest));
+
             var request = new Models.Requests.ReverseTransferInitiationRequest()
             {
                 TransferId = transferId,
                 ReverseTransferInitiationRequestValue = reverseTransferInitiationRequest,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/transfer-initiations/{transferId}/reverse", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/transfer-initiations/{transferId}/reverse", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "ReverseTransferInitiationRequestValue", "json", false, false);
             if (serializedBody != null)
@@ -1408,7 +2077,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "reverseTransferInitiation", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "reverseTransferInitiation", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1418,7 +2087,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1427,9 +2096,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1477,24 +2146,46 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<RetryTransferInitiationResponse> RetryTransferInitiationAsync(string transferId)
+
+        /// <summary>
+        /// Retry a failed transfer initiation.
+        /// </summary>
+        /// <remarks>
+        /// Retry a failed transfer initiation.
+        /// </remarks>
+        /// <param name="transferId">The transfer ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="RetryTransferInitiationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="transferId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<RetryTransferInitiationResponse> RetryTransferInitiationAsync(string transferId)
         {
+            if (transferId == null) throw new ArgumentNullException(nameof(transferId));
+
             var request = new RetryTransferInitiationRequest()
             {
                 TransferId = transferId,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/transfer-initiations/{transferId}/retry", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/transfer-initiations/{transferId}/retry", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "retryTransferInitiation", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "retryTransferInitiation", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1504,7 +2195,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1513,9 +2204,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1563,7 +2254,30 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<ListPoolsResponse> ListPoolsAsync(long? pageSize = 15, string? cursor = null, List<string>? sort = null, string? query = null)
+
+        /// <summary>
+        /// List Pools.
+        /// </summary>
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <param name="sort">Fields used to sort payments (default is date:desc).</param>
+        /// <param name="query">Filters used to filter resources.</param>
+        /// <returns>An awaitable task that returns a <see cref="ListPoolsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ListPoolsResponse> ListPoolsAsync(
+            long? pageSize = 15,
+            string? cursor = null,
+            List<string>? sort = null,
+            string? query = null
+        )
         {
             var request = new ListPoolsRequest()
             {
@@ -1572,18 +2286,24 @@ namespace FormanceSDK
                 Sort = sort,
                 Query = query,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/pools", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/pools", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listPools", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listPools", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1593,7 +2313,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1602,9 +2322,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1670,14 +2390,34 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<CreatePoolResponse> CreatePoolAsync(PoolRequest request)
-        {
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
 
+        /// <summary>
+        /// Create a Pool.
+        /// </summary>
+        /// <remarks>
+        /// Create a Pool.
+        /// </remarks>
+        /// <param name="request">A <see cref="PoolRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="CreatePoolResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<CreatePoolResponse> CreatePoolAsync(PoolRequest request)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/payments/pools";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, false);
             if (serializedBody != null)
@@ -1690,7 +2430,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createPool", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createPool", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1700,7 +2440,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1709,9 +2449,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1777,24 +2517,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<GetPoolResponse> GetPoolAsync(string poolId)
+
+        /// <summary>
+        /// Get a Pool.
+        /// </summary>
+        /// <param name="poolId">The pool ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetPoolResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<GetPoolResponse> GetPoolAsync(string poolId)
         {
+            if (poolId == null) throw new ArgumentNullException(nameof(poolId));
+
             var request = new GetPoolRequest()
             {
                 PoolId = poolId,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/pools/{poolId}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/pools/{poolId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getPool", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getPool", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1804,7 +2563,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1813,9 +2572,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1881,24 +2640,46 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<DeletePoolResponse> DeletePoolAsync(string poolId)
+
+        /// <summary>
+        /// Delete a Pool.
+        /// </summary>
+        /// <remarks>
+        /// Delete a pool by its id.
+        /// </remarks>
+        /// <param name="poolId">The pool ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeletePoolResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<DeletePoolResponse> DeletePoolAsync(string poolId)
         {
+            if (poolId == null) throw new ArgumentNullException(nameof(poolId));
+
             var request = new DeletePoolRequest()
             {
                 PoolId = poolId,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/pools/{poolId}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/pools/{poolId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deletePool", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deletePool", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -1908,7 +2689,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -1917,9 +2698,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -1967,18 +2748,162 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<AddAccountToPoolResponse> AddAccountToPoolAsync(string poolId, Models.Components.AddAccountToPoolRequest addAccountToPoolRequest)
+
+        /// <summary>
+        /// Update the query of a pool.
+        /// </summary>
+        /// <param name="poolId">The pool ID.</param>
+        /// <param name="updatePoolQueryRequest">A <see cref="FormanceSDK.Models.Components.UpdatePoolQueryRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="UpdatePoolQueryResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="poolId"/> or <paramref name="updatePoolQueryRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<UpdatePoolQueryResponse> UpdatePoolQueryAsync(
+            string poolId,
+            Models.Components.UpdatePoolQueryRequest updatePoolQueryRequest
+        )
         {
+            if (poolId == null) throw new ArgumentNullException(nameof(poolId));
+            if (updatePoolQueryRequest == null) throw new ArgumentNullException(nameof(updatePoolQueryRequest));
+
+            var request = new Models.Requests.UpdatePoolQueryRequest()
+            {
+                PoolId = poolId,
+                UpdatePoolQueryRequestValue = updatePoolQueryRequest,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/pools/{poolId}/query", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Patch, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "UpdatePoolQueryRequestValue", "json", false, false);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "updatePoolQuery", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 204)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 204)
+            {
+                return new UpdatePoolQueryResponse()
+                {
+                    HttpMeta = new Models.Components.HTTPMetadata()
+                    {
+                        Response = httpResponse,
+                        Request = httpRequest
+                    }
+                };
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    PaymentsErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<PaymentsErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into PaymentsErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new PaymentsErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Add an account to a pool.
+        /// </summary>
+        /// <remarks>
+        /// Add an account to a pool.
+        /// </remarks>
+        /// <param name="poolId">The pool ID.</param>
+        /// <param name="addAccountToPoolRequest">A <see cref="FormanceSDK.Models.Components.AddAccountToPoolRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="AddAccountToPoolResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="poolId"/> or <paramref name="addAccountToPoolRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<AddAccountToPoolResponse> AddAccountToPoolAsync(
+            string poolId,
+            Models.Components.AddAccountToPoolRequest addAccountToPoolRequest
+        )
+        {
+            if (poolId == null) throw new ArgumentNullException(nameof(poolId));
+            if (addAccountToPoolRequest == null) throw new ArgumentNullException(nameof(addAccountToPoolRequest));
+
             var request = new Models.Requests.AddAccountToPoolRequest()
             {
                 PoolId = poolId,
                 AddAccountToPoolRequestValue = addAccountToPoolRequest,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/pools/{poolId}/accounts", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/pools/{poolId}/accounts", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "AddAccountToPoolRequestValue", "json", false, false);
             if (serializedBody != null)
@@ -1991,7 +2916,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "addAccountToPool", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "addAccountToPool", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2001,7 +2926,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2010,9 +2935,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2060,25 +2985,49 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<RemoveAccountFromPoolResponse> RemoveAccountFromPoolAsync(string poolId, string accountId)
+
+        /// <summary>
+        /// Remove an account from a pool.
+        /// </summary>
+        /// <remarks>
+        /// Remove an account from a pool by its id.
+        /// </remarks>
+        /// <param name="poolId">The pool ID.</param>
+        /// <param name="accountId">The account ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="RemoveAccountFromPoolResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="poolId"/> or <paramref name="accountId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<RemoveAccountFromPoolResponse> RemoveAccountFromPoolAsync(string poolId, string accountId)
         {
+            if (poolId == null) throw new ArgumentNullException(nameof(poolId));
+            if (accountId == null) throw new ArgumentNullException(nameof(accountId));
+
             var request = new RemoveAccountFromPoolRequest()
             {
                 PoolId = poolId,
                 AccountId = accountId,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/pools/{poolId}/accounts/{accountId}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/pools/{poolId}/accounts/{accountId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "removeAccountFromPool", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "removeAccountFromPool", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2088,7 +3037,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2097,9 +3046,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2147,25 +3096,45 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<GetPoolBalancesResponse> GetPoolBalancesAsync(string poolId, DateTime at)
+
+        /// <summary>
+        /// Get historical pool balances at a particular point in time.
+        /// </summary>
+        /// <param name="poolId">The pool ID.</param>
+        /// <param name="at">Filter balances by date.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetPoolBalancesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<GetPoolBalancesResponse> GetPoolBalancesAsync(string poolId, DateTime at)
         {
+            if (poolId == null) throw new ArgumentNullException(nameof(poolId));
+
             var request = new GetPoolBalancesRequest()
             {
                 PoolId = poolId,
                 At = at,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/pools/{poolId}/balances", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/pools/{poolId}/balances", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getPoolBalances", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getPoolBalances", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2175,7 +3144,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2184,9 +3153,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2252,24 +3221,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<GetPoolBalancesLatestResponse> GetPoolBalancesLatestAsync(string poolId)
+
+        /// <summary>
+        /// Get latest pool balances.
+        /// </summary>
+        /// <param name="poolId">The pool ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetPoolBalancesLatestResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<GetPoolBalancesLatestResponse> GetPoolBalancesLatestAsync(string poolId)
         {
+            if (poolId == null) throw new ArgumentNullException(nameof(poolId));
+
             var request = new GetPoolBalancesLatestRequest()
             {
                 PoolId = poolId,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/pools/{poolId}/balances/latest", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/pools/{poolId}/balances/latest", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getPoolBalancesLatest", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getPoolBalancesLatest", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2279,7 +3267,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2288,9 +3276,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2310,14 +3298,14 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    PoolBalancesResponse obj;
+                    PoolBalancesLatestResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<PoolBalancesResponse>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<PoolBalancesLatestResponse>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into PoolBalancesResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into PoolBalancesLatestResponse.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
                     var response = new GetPoolBalancesLatestResponse()
@@ -2328,7 +3316,7 @@ namespace FormanceSDK
                             Request = httpRequest
                         }
                     };
-                    response.PoolBalancesResponse = obj;
+                    response.PoolBalancesLatestResponse = obj;
                     return response;
                 }
 
@@ -2356,14 +3344,34 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<CreateAccountResponse> CreateAccountAsync(AccountRequest request)
-        {
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
 
+        /// <summary>
+        /// Create an account.
+        /// </summary>
+        /// <remarks>
+        /// Create an account.
+        /// </remarks>
+        /// <param name="request">A <see cref="AccountRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="CreateAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<CreateAccountResponse> CreateAccountAsync(AccountRequest request)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/payments/accounts";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, false);
             if (serializedBody != null)
@@ -2376,7 +3384,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createAccount", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createAccount", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2386,7 +3394,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2395,9 +3403,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2463,18 +3471,48 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<PaymentslistAccountsResponse> PaymentslistAccountsAsync(PaymentslistAccountsRequest? request = null)
+
+        /// <summary>
+        /// List accounts.
+        /// </summary>
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <param name="sort">Fields used to sort payments (default is date:desc).</param>
+        /// <param name="query">Filters used to filter resources.</param>
+        /// <returns>An awaitable task that returns a <see cref="PaymentslistAccountsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<PaymentslistAccountsResponse> PaymentslistAccountsAsync(
+            long? pageSize = 15,
+            string? cursor = null,
+            List<string>? sort = null,
+            string? query = null
+        )
         {
+            var request = new PaymentslistAccountsRequest()
+            {
+                PageSize = pageSize,
+                Cursor = cursor,
+                Sort = sort,
+                Query = query,
+            };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/accounts", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/accounts", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
-            if (serializedBody != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest.Content = serializedBody;
+                httpRequest.Headers.Add("Accept", "application/json");
             }
 
             if (SDKConfiguration.SecuritySource != null)
@@ -2482,7 +3520,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "paymentslistAccounts", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "paymentslistAccounts", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2492,7 +3530,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2501,9 +3539,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2569,24 +3607,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<PaymentsgetAccountResponse> PaymentsgetAccountAsync(string accountId)
+
+        /// <summary>
+        /// Get an account.
+        /// </summary>
+        /// <param name="accountId">The account ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="PaymentsgetAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="accountId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<PaymentsgetAccountResponse> PaymentsgetAccountAsync(string accountId)
         {
+            if (accountId == null) throw new ArgumentNullException(nameof(accountId));
+
             var request = new PaymentsgetAccountRequest()
             {
                 AccountId = accountId,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/accounts/{accountId}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/accounts/{accountId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "paymentsgetAccount", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "paymentsgetAccount", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2596,7 +3653,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2605,9 +3662,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2673,20 +3730,38 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<GetAccountBalancesResponse> GetAccountBalancesAsync(GetAccountBalancesRequest request)
+
+        /// <summary>
+        /// Get account balances.
+        /// </summary>
+        /// <param name="request">A <see cref="GetAccountBalancesRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetAccountBalancesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<GetAccountBalancesResponse> GetAccountBalancesAsync(GetAccountBalancesRequest request)
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/accounts/{accountId}/balances", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/accounts/{accountId}/balances", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getAccountBalances", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getAccountBalances", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2696,7 +3771,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2705,9 +3780,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2773,14 +3848,34 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<CreateBankAccountResponse> CreateBankAccountAsync(BankAccountRequest request)
-        {
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
 
+        /// <summary>
+        /// Create a BankAccount in Payments and on the PSP.
+        /// </summary>
+        /// <remarks>
+        /// Create a bank account in Payments and on the PSP.
+        /// </remarks>
+        /// <param name="request">A <see cref="BankAccountRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="CreateBankAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<CreateBankAccountResponse> CreateBankAccountAsync(BankAccountRequest request)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/payments/bank-accounts";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, false);
             if (serializedBody != null)
@@ -2793,7 +3888,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createBankAccount", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createBankAccount", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2803,7 +3898,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2812,9 +3907,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2880,7 +3975,31 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<ListBankAccountsResponse> ListBankAccountsAsync(long? pageSize = 15, string? cursor = null, List<string>? sort = null)
+
+        /// <summary>
+        /// List bank accounts created by user on Formance.
+        /// </summary>
+        /// <remarks>
+        /// List all bank accounts created by user on Formance.
+        /// </remarks>
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <param name="sort">Fields used to sort payments (default is date:desc).</param>
+        /// <returns>An awaitable task that returns a <see cref="ListBankAccountsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ListBankAccountsResponse> ListBankAccountsAsync(
+            long? pageSize = 15,
+            string? cursor = null,
+            List<string>? sort = null
+        )
         {
             var request = new ListBankAccountsRequest()
             {
@@ -2888,18 +4007,24 @@ namespace FormanceSDK
                 Cursor = cursor,
                 Sort = sort,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/bank-accounts", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/bank-accounts", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listBankAccounts", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listBankAccounts", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -2909,7 +4034,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -2918,9 +4043,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -2986,24 +4111,43 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<GetBankAccountResponse> GetBankAccountAsync(string bankAccountId)
+
+        /// <summary>
+        /// Get a bank account created by user on Formance.
+        /// </summary>
+        /// <param name="bankAccountId">The bank account ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetBankAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="bankAccountId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<GetBankAccountResponse> GetBankAccountAsync(string bankAccountId)
         {
+            if (bankAccountId == null) throw new ArgumentNullException(nameof(bankAccountId));
+
             var request = new GetBankAccountRequest()
             {
                 BankAccountId = bankAccountId,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/bank-accounts/{bankAccountId}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/bank-accounts/{bankAccountId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getBankAccount", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getBankAccount", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -3013,7 +4157,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3022,9 +4166,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3090,18 +4234,42 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<ForwardBankAccountResponse> ForwardBankAccountAsync(string bankAccountId, Models.Components.ForwardBankAccountRequest forwardBankAccountRequest)
+
+        /// <summary>
+        /// Forward a bank account to a connector.
+        /// </summary>
+        /// <param name="bankAccountId">The bank account ID.</param>
+        /// <param name="forwardBankAccountRequest">A <see cref="FormanceSDK.Models.Components.ForwardBankAccountRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ForwardBankAccountResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="bankAccountId"/> or <paramref name="forwardBankAccountRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ForwardBankAccountResponse> ForwardBankAccountAsync(
+            string bankAccountId,
+            Models.Components.ForwardBankAccountRequest forwardBankAccountRequest
+        )
         {
+            if (bankAccountId == null) throw new ArgumentNullException(nameof(bankAccountId));
+            if (forwardBankAccountRequest == null) throw new ArgumentNullException(nameof(forwardBankAccountRequest));
+
             var request = new Models.Requests.ForwardBankAccountRequest()
             {
                 BankAccountId = bankAccountId,
                 ForwardBankAccountRequestValue = forwardBankAccountRequest,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/bank-accounts/{bankAccountId}/forward", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/bank-accounts/{bankAccountId}/forward", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "ForwardBankAccountRequestValue", "json", false, false);
             if (serializedBody != null)
@@ -3114,7 +4282,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "forwardBankAccount", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "forwardBankAccount", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -3124,7 +4292,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3133,9 +4301,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3201,18 +4369,42 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<UpdateBankAccountMetadataResponse> UpdateBankAccountMetadataAsync(string bankAccountId, Models.Components.UpdateBankAccountMetadataRequest updateBankAccountMetadataRequest)
+
+        /// <summary>
+        /// Update metadata of a bank account.
+        /// </summary>
+        /// <param name="bankAccountId">The bank account ID.</param>
+        /// <param name="updateBankAccountMetadataRequest">A <see cref="FormanceSDK.Models.Components.UpdateBankAccountMetadataRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="UpdateBankAccountMetadataResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="bankAccountId"/> or <paramref name="updateBankAccountMetadataRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<UpdateBankAccountMetadataResponse> UpdateBankAccountMetadataAsync(
+            string bankAccountId,
+            Models.Components.UpdateBankAccountMetadataRequest updateBankAccountMetadataRequest
+        )
         {
+            if (bankAccountId == null) throw new ArgumentNullException(nameof(bankAccountId));
+            if (updateBankAccountMetadataRequest == null) throw new ArgumentNullException(nameof(updateBankAccountMetadataRequest));
+
             var request = new Models.Requests.UpdateBankAccountMetadataRequest()
             {
                 BankAccountId = bankAccountId,
                 UpdateBankAccountMetadataRequestValue = updateBankAccountMetadataRequest,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/bank-accounts/{bankAccountId}/metadata", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/bank-accounts/{bankAccountId}/metadata", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Patch, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "UpdateBankAccountMetadataRequestValue", "json", false, false);
             if (serializedBody != null)
@@ -3225,7 +4417,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "updateBankAccountMetadata", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "updateBankAccountMetadata", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -3235,7 +4427,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3244,9 +4436,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3294,21 +4486,37 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<ListAllConnectorsResponse> ListAllConnectorsAsync()
+
+        /// <summary>
+        /// List all installed connectors.
+        /// </summary>
+        /// <remarks>
+        /// List all installed connectors.
+        /// </remarks>
+        /// <returns>An awaitable task that returns a <see cref="ListAllConnectorsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ListAllConnectorsResponse> ListAllConnectorsAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/api/payments/connectors";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listAllConnectors", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listAllConnectors", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -3318,7 +4526,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3327,9 +4535,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3395,21 +4603,37 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<ListConfigsAvailableConnectorsResponse> ListConfigsAvailableConnectorsAsync()
+
+        /// <summary>
+        /// List the configs of each available connector.
+        /// </summary>
+        /// <remarks>
+        /// List the configs of each available connector.
+        /// </remarks>
+        /// <returns>An awaitable task that returns a <see cref="ListConfigsAvailableConnectorsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ListConfigsAvailableConnectorsResponse> ListConfigsAvailableConnectorsAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-
             var urlString = baseUrl + "/api/payments/connectors/configs";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listConfigsAvailableConnectors", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listConfigsAvailableConnectors", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -3419,7 +4643,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3428,9 +4652,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3496,18 +4720,44 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<InstallConnectorResponse> InstallConnectorAsync(Connector connector, ConnectorConfig connectorConfig)
+
+        /// <summary>
+        /// Install a connector.
+        /// </summary>
+        /// <remarks>
+        /// Install a connector by its name and config.
+        /// </remarks>
+        /// <param name="connector">The name of the connector.</param>
+        /// <param name="connectorConfig">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="InstallConnectorResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorConfig"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<InstallConnectorResponse> InstallConnectorAsync(
+            Connector connector,
+            ConnectorConfig connectorConfig
+        )
         {
+            if (connectorConfig == null) throw new ArgumentNullException(nameof(connectorConfig));
+
             var request = new InstallConnectorRequest()
             {
                 Connector = connector,
                 ConnectorConfig = connectorConfig,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "ConnectorConfig", "json", false, false);
             if (serializedBody != null)
@@ -3520,7 +4770,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "installConnector", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "installConnector", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -3530,7 +4780,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 201)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3539,9 +4789,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3607,25 +4857,44 @@ namespace FormanceSDK
             }
         }
 
+
+        /// <summary>
+        /// Uninstall a connector.
+        /// </summary>
+        /// <remarks>
+        /// Uninstall a connector by its name.
+        /// </remarks>
+        /// <param name="connector">The name of the connector.</param>
+        /// <returns>An awaitable task that returns a <see cref="UninstallConnectorResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
         [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
-        public async Task<UninstallConnectorResponse> UninstallConnectorAsync(Connector connector)
+        public async  Task<UninstallConnectorResponse> UninstallConnectorAsync(Connector connector)
         {
             var request = new UninstallConnectorRequest()
             {
                 Connector = connector,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "uninstallConnector", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "uninstallConnector", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -3635,7 +4904,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3644,9 +4913,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3694,25 +4963,51 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<UninstallConnectorV1Response> UninstallConnectorV1Async(Connector connector, string connectorId)
+
+        /// <summary>
+        /// Uninstall a connector.
+        /// </summary>
+        /// <remarks>
+        /// Uninstall a connector by its name.
+        /// </remarks>
+        /// <param name="connector">The name of the connector.</param>
+        /// <param name="connectorId">The connector ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="UninstallConnectorV1Response"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<UninstallConnectorV1Response> UninstallConnectorV1Async(
+            Connector connector,
+            string connectorId
+        )
         {
+            if (connectorId == null) throw new ArgumentNullException(nameof(connectorId));
+
             var request = new UninstallConnectorV1Request()
             {
                 Connector = connector,
                 ConnectorId = connectorId,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/{connectorId}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/{connectorId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "uninstallConnectorV1", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "uninstallConnectorV1", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -3722,7 +5017,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3731,9 +5026,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3781,25 +5076,44 @@ namespace FormanceSDK
             }
         }
 
+
+        /// <summary>
+        /// Read the config of a connector.
+        /// </summary>
+        /// <remarks>
+        /// Read connector config.
+        /// </remarks>
+        /// <param name="connector">The name of the connector.</param>
+        /// <returns>An awaitable task that returns a <see cref="ReadConnectorConfigResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
         [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
-        public async Task<ReadConnectorConfigResponse> ReadConnectorConfigAsync(Connector connector)
+        public async  Task<ReadConnectorConfigResponse> ReadConnectorConfigAsync(Connector connector)
         {
             var request = new ReadConnectorConfigRequest()
             {
                 Connector = connector,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/config", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/config", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "readConnectorConfig", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "readConnectorConfig", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -3809,7 +5123,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3818,9 +5132,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3886,19 +5200,48 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<UpdateConnectorConfigV1Response> UpdateConnectorConfigV1Async(Connector connector, string connectorId, ConnectorConfig connectorConfig)
+
+        /// <summary>
+        /// Update the config of a connector.
+        /// </summary>
+        /// <remarks>
+        /// Update connector config.
+        /// </remarks>
+        /// <param name="connector">The name of the connector.</param>
+        /// <param name="connectorId">The connector ID.</param>
+        /// <param name="connectorConfig">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="UpdateConnectorConfigV1Response"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="connectorId"/> or <paramref name="connectorConfig"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<UpdateConnectorConfigV1Response> UpdateConnectorConfigV1Async(
+            Connector connector,
+            string connectorId,
+            ConnectorConfig connectorConfig
+        )
         {
+            if (connectorId == null) throw new ArgumentNullException(nameof(connectorId));
+            if (connectorConfig == null) throw new ArgumentNullException(nameof(connectorConfig));
+
             var request = new UpdateConnectorConfigV1Request()
             {
                 Connector = connector,
                 ConnectorId = connectorId,
                 ConnectorConfig = connectorConfig,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/{connectorId}/config", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/{connectorId}/config", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "ConnectorConfig", "json", false, false);
             if (serializedBody != null)
@@ -3911,7 +5254,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "updateConnectorConfigV1", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "updateConnectorConfigV1", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -3921,7 +5264,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -3930,9 +5273,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -3980,25 +5323,51 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<ReadConnectorConfigV1Response> ReadConnectorConfigV1Async(Connector connector, string connectorId)
+
+        /// <summary>
+        /// Read the config of a connector.
+        /// </summary>
+        /// <remarks>
+        /// Read connector config.
+        /// </remarks>
+        /// <param name="connector">The name of the connector.</param>
+        /// <param name="connectorId">The connector ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="ReadConnectorConfigV1Response"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ReadConnectorConfigV1Response> ReadConnectorConfigV1Async(
+            Connector connector,
+            string connectorId
+        )
         {
+            if (connectorId == null) throw new ArgumentNullException(nameof(connectorId));
+
             var request = new ReadConnectorConfigV1Request()
             {
                 Connector = connector,
                 ConnectorId = connectorId,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/{connectorId}/config", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/{connectorId}/config", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "readConnectorConfigV1", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "readConnectorConfigV1", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -4008,7 +5377,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -4017,9 +5386,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -4085,25 +5454,45 @@ namespace FormanceSDK
             }
         }
 
+
+        /// <summary>
+        /// Reset a connector.
+        /// </summary>
+        /// <remarks>
+        /// Reset a connector by its name.<br/>
+        /// It will remove the connector and ALL PAYMENTS generated with it.
+        /// </remarks>
+        /// <param name="connector">The name of the connector.</param>
+        /// <returns>An awaitable task that returns a <see cref="ResetConnectorResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
         [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
-        public async Task<ResetConnectorResponse> ResetConnectorAsync(Connector connector)
+        public async  Task<ResetConnectorResponse> ResetConnectorAsync(Connector connector)
         {
             var request = new ResetConnectorRequest()
             {
                 Connector = connector,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/reset", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/reset", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "resetConnector", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "resetConnector", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -4113,7 +5502,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -4122,9 +5511,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -4172,25 +5561,49 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<ResetConnectorV1Response> ResetConnectorV1Async(Connector connector, string connectorId)
+
+        /// <summary>
+        /// Reset a connector.
+        /// </summary>
+        /// <remarks>
+        /// Reset a connector by its name.<br/>
+        /// It will remove the connector and ALL PAYMENTS generated with it.
+        /// </remarks>
+        /// <param name="connector">The name of the connector.</param>
+        /// <param name="connectorId">The connector ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="ResetConnectorV1Response"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ResetConnectorV1Response> ResetConnectorV1Async(Connector connector, string connectorId)
         {
+            if (connectorId == null) throw new ArgumentNullException(nameof(connectorId));
+
             var request = new ResetConnectorV1Request()
             {
                 Connector = connector,
                 ConnectorId = connectorId,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/{connectorId}/reset", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/{connectorId}/reset", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "resetConnectorV1", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "resetConnectorV1", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -4200,7 +5613,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 204)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -4209,9 +5622,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -4259,8 +5672,32 @@ namespace FormanceSDK
             }
         }
 
+
+        /// <summary>
+        /// List tasks from a connector.
+        /// </summary>
+        /// <remarks>
+        /// List all tasks associated with this connector.
+        /// </remarks>
+        /// <param name="connector">The name of the connector.</param>
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <returns>An awaitable task that returns a <see cref="ListConnectorTasksResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
         [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
-        public async Task<ListConnectorTasksResponse> ListConnectorTasksAsync(Connector connector, long? pageSize = 15, string? cursor = null)
+        public async  Task<ListConnectorTasksResponse> ListConnectorTasksAsync(
+            Connector connector,
+            long? pageSize = 15,
+            string? cursor = null
+        )
         {
             var request = new ListConnectorTasksRequest()
             {
@@ -4268,18 +5705,24 @@ namespace FormanceSDK
                 PageSize = pageSize,
                 Cursor = cursor,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/tasks", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/tasks", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listConnectorTasks", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listConnectorTasks", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -4289,7 +5732,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -4298,9 +5741,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -4366,8 +5809,37 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<ListConnectorTasksV1Response> ListConnectorTasksV1Async(Connector connector, string connectorId, long? pageSize = 15, string? cursor = null)
+
+        /// <summary>
+        /// List tasks from a connector.
+        /// </summary>
+        /// <remarks>
+        /// List all tasks associated with this connector.
+        /// </remarks>
+        /// <param name="connector">The name of the connector.</param>
+        /// <param name="connectorId">The connector ID.</param>
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <returns>An awaitable task that returns a <see cref="ListConnectorTasksV1Response"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ListConnectorTasksV1Response> ListConnectorTasksV1Async(
+            Connector connector,
+            string connectorId,
+            long? pageSize = 15,
+            string? cursor = null
+        )
         {
+            if (connectorId == null) throw new ArgumentNullException(nameof(connectorId));
+
             var request = new ListConnectorTasksV1Request()
             {
                 Connector = connector,
@@ -4375,18 +5847,24 @@ namespace FormanceSDK
                 PageSize = pageSize,
                 Cursor = cursor,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/{connectorId}/tasks", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/{connectorId}/tasks", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listConnectorTasksV1", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listConnectorTasksV1", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -4396,7 +5874,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -4405,9 +5883,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -4473,26 +5951,49 @@ namespace FormanceSDK
             }
         }
 
+
+        /// <summary>
+        /// Read a specific task of the connector.
+        /// </summary>
+        /// <remarks>
+        /// Get a specific task associated to the connector.
+        /// </remarks>
+        /// <param name="connector">The name of the connector.</param>
+        /// <param name="taskId">The task ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetConnectorTaskResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="taskId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
         [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
-        public async Task<GetConnectorTaskResponse> GetConnectorTaskAsync(Connector connector, string taskId)
+        public async  Task<GetConnectorTaskResponse> GetConnectorTaskAsync(Connector connector, string taskId)
         {
+            if (taskId == null) throw new ArgumentNullException(nameof(taskId));
+
             var request = new GetConnectorTaskRequest()
             {
                 Connector = connector,
                 TaskId = taskId,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/tasks/{taskId}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/tasks/{taskId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getConnectorTask", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getConnectorTask", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -4502,7 +6003,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -4511,9 +6012,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -4579,26 +6080,55 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<GetConnectorTaskV1Response> GetConnectorTaskV1Async(Connector connector, string connectorId, string taskId)
+
+        /// <summary>
+        /// Read a specific task of the connector.
+        /// </summary>
+        /// <remarks>
+        /// Get a specific task associated to the connector.
+        /// </remarks>
+        /// <param name="connector">The name of the connector.</param>
+        /// <param name="connectorId">The connector ID.</param>
+        /// <param name="taskId">The task ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetConnectorTaskV1Response"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="connectorId"/> or <paramref name="taskId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<GetConnectorTaskV1Response> GetConnectorTaskV1Async(
+            Connector connector,
+            string connectorId,
+            string taskId
+        )
         {
+            if (connectorId == null) throw new ArgumentNullException(nameof(connectorId));
+            if (taskId == null) throw new ArgumentNullException(nameof(taskId));
+
             var request = new GetConnectorTaskV1Request()
             {
                 Connector = connector,
                 ConnectorId = connectorId,
                 TaskId = taskId,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/{connectorId}/tasks/{taskId}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/{connectorId}/tasks/{taskId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getConnectorTaskV1", new List<string> { "auth:read", "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getConnectorTaskV1", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -4608,7 +6138,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -4617,9 +6147,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -4685,18 +6215,44 @@ namespace FormanceSDK
             }
         }
 
-        public async Task<ConnectorsTransferResponse> ConnectorsTransferAsync(Connector connector, TransferRequest transferRequest)
+
+        /// <summary>
+        /// Transfer funds between Connector accounts.
+        /// </summary>
+        /// <remarks>
+        /// Execute a transfer between two accounts.
+        /// </remarks>
+        /// <param name="connector">The name of the connector.</param>
+        /// <param name="transferRequest">A <see cref="TransferRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ConnectorsTransferResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="transferRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ConnectorsTransferResponse> ConnectorsTransferAsync(
+            Connector connector,
+            TransferRequest transferRequest
+        )
         {
+            if (transferRequest == null) throw new ArgumentNullException(nameof(transferRequest));
+
             var request = new ConnectorsTransferRequest()
             {
                 Connector = connector,
                 TransferRequest = transferRequest,
             };
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/transfers", request);
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/transfers", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "TransferRequest", "json", false, false);
             if (serializedBody != null)
@@ -4709,7 +6265,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "connectorsTransfer", new List<string> { "auth:read", "payments:write" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "connectorsTransfer", new List<string> { "payments:write" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -4719,7 +6275,7 @@ namespace FormanceSDK
                 httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == default)
+                if (_statusCode != 200)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -4728,9 +6284,9 @@ namespace FormanceSDK
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -4795,5 +6351,6 @@ namespace FormanceSDK
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
         }
+
     }
 }

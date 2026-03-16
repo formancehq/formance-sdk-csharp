@@ -12,15 +12,14 @@ namespace FormanceSDK.Models.Requests
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    
+
     public class V2GetPipelineStateResponse
     {
-
         [JsonProperty("-")]
         public HTTPMetadata HttpMeta { get; set; } = default!;
 
         /// <summary>
-        /// Pipeline information
+        /// Pipeline information.
         /// </summary>
         public Models.Components.V2GetPipelineStateResponse? V2GetPipelineStateResponseValue { get; set; }
     }

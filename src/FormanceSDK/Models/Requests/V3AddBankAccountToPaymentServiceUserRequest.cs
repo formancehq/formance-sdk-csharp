@@ -10,18 +10,17 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
-    
+
     public class V3AddBankAccountToPaymentServiceUserRequest
     {
-
         /// <summary>
-        /// The payment service user ID
+        /// The payment service user ID.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=paymentServiceUserID")]
         public string PaymentServiceUserID { get; set; } = default!;
 
         /// <summary>
-        /// The bank account ID
+        /// The bank account ID.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=bankAccountID")]
         public string BankAccountID { get; set; } = default!;

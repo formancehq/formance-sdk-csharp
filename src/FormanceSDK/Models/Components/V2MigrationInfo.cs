@@ -13,10 +13,9 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
-    
+
     public class V2MigrationInfo
     {
-
         [JsonProperty("version")]
         public string? Version { get; set; }
 

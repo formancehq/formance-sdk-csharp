@@ -12,14 +12,22 @@ namespace FormanceSDK.Models.Components
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    
+
+    /// <summary>
+    /// Query and dynamic pools are available from Connectivity v3.1.
+    /// </summary>
     public class V3CreatePoolRequest
     {
-
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// The same query than in ListAccount. Allowed properties are id, reference, connector_id, type, default_asset, name, psu_id, open_banking_connection_id and metadata.
+        /// </summary>
+        [JsonProperty("query")]
+        public Dictionary<string, object>? Query { get; set; }
+
         [JsonProperty("accountIDs")]
-        public List<string> AccountIDs { get; set; } = default!;
+        public List<string>? AccountIDs { get; set; }
     }
 }

@@ -11,12 +11,11 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
-    
+
     public class V3UpdatePaymentMetadataRequest
     {
-
         /// <summary>
-        /// The payment ID
+        /// The payment ID.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=paymentID")]
         public string PaymentID { get; set; } = default!;

@@ -14,10 +14,9 @@ namespace FormanceSDK.Models.Components
     using Newtonsoft.Json;
     using System.Collections.Generic;
     using System.Numerics;
-    
+
     public class WalletSummary
     {
-
         [JsonProperty("balances")]
         public List<BalanceWithAssets> Balances { get; set; } = default!;
 

@@ -11,12 +11,11 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
-    
+
     public class V3UpdateConnectorConfigRequest
     {
-
         /// <summary>
-        /// The connector ID
+        /// The connector ID.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=connectorID")]
         public string ConnectorID { get; set; } = default!;
@@ -39,6 +38,11 @@ namespace FormanceSDK.Models.Requests
             return V3InstallConnectorRequest != null ? V3InstallConnectorRequest.V3BankingcircleConfig : null;
         }
 
+        public V3CoinbaseprimeConfig? GetV3InstallConnectorRequestCoinbaseprime()
+        {
+            return V3InstallConnectorRequest != null ? V3InstallConnectorRequest.V3CoinbaseprimeConfig : null;
+        }
+
         public V3ColumnConfig? GetV3InstallConnectorRequestColumn()
         {
             return V3InstallConnectorRequest != null ? V3InstallConnectorRequest.V3ColumnConfig : null;
@@ -54,9 +58,19 @@ namespace FormanceSDK.Models.Requests
             return V3InstallConnectorRequest != null ? V3InstallConnectorRequest.V3DummypayConfig : null;
         }
 
+        public V3FireblocksConfig? GetV3InstallConnectorRequestFireblocks()
+        {
+            return V3InstallConnectorRequest != null ? V3InstallConnectorRequest.V3FireblocksConfig : null;
+        }
+
         public V3GenericConfig? GetV3InstallConnectorRequestGeneric()
         {
             return V3InstallConnectorRequest != null ? V3InstallConnectorRequest.V3GenericConfig : null;
+        }
+
+        public V3IncreaseConfig? GetV3InstallConnectorRequestIncrease()
+        {
+            return V3InstallConnectorRequest != null ? V3InstallConnectorRequest.V3IncreaseConfig : null;
         }
 
         public V3MangopayConfig? GetV3InstallConnectorRequestMangopay()
@@ -74,6 +88,16 @@ namespace FormanceSDK.Models.Requests
             return V3InstallConnectorRequest != null ? V3InstallConnectorRequest.V3MoneycorpConfig : null;
         }
 
+        public V3PlaidConfig? GetV3InstallConnectorRequestPlaid()
+        {
+            return V3InstallConnectorRequest != null ? V3InstallConnectorRequest.V3PlaidConfig : null;
+        }
+
+        public V3PowensConfig? GetV3InstallConnectorRequestPowens()
+        {
+            return V3InstallConnectorRequest != null ? V3InstallConnectorRequest.V3PowensConfig : null;
+        }
+
         public V3QontoConfig? GetV3InstallConnectorRequestQonto()
         {
             return V3InstallConnectorRequest != null ? V3InstallConnectorRequest.V3QontoConfig : null;
@@ -82,6 +106,11 @@ namespace FormanceSDK.Models.Requests
         public V3StripeConfig? GetV3InstallConnectorRequestStripe()
         {
             return V3InstallConnectorRequest != null ? V3InstallConnectorRequest.V3StripeConfig : null;
+        }
+
+        public V3TinkConfig? GetV3InstallConnectorRequestTink()
+        {
+            return V3InstallConnectorRequest != null ? V3InstallConnectorRequest.V3TinkConfig : null;
         }
 
         public V3WiseConfig? GetV3InstallConnectorRequestWise()

@@ -4,7 +4,7 @@
 
 ### Available Operations
 
-* [PaymentsgetServerInfo](#paymentsgetserverinfo) - Get server info
+* [GetServerInfoPayments](#getserverinfopayments) - Get server info
 * [CreatePayment](#createpayment) - Create a payment
 * [ListPayments](#listpayments) - List payments
 * [GetPayment](#getpayment) - Get a payment
@@ -26,8 +26,8 @@
 * [GetPoolBalances](#getpoolbalances) - Get historical pool balances at a particular point in time
 * [GetPoolBalancesLatest](#getpoolbalanceslatest) - Get latest pool balances
 * [CreateAccount](#createaccount) - Create an account
-* [PaymentslistAccounts](#paymentslistaccounts) - List accounts
-* [PaymentsgetAccount](#paymentsgetaccount) - Get an account
+* [ListAccountsPayments](#listaccountspayments) - List accounts
+* [GetAccountPayments](#getaccountpayments) - Get an account
 * [GetAccountBalances](#getaccountbalances) - Get account balances
 * [CreateBankAccount](#createbankaccount) - Create a BankAccount in Payments and on the PSP
 * [ListBankAccounts](#listbankaccounts) - List bank accounts created by user on Formance
@@ -50,13 +50,13 @@
 * [GetConnectorTaskV1](#getconnectortaskv1) - Read a specific task of the connector
 * [ConnectorsTransfer](#connectorstransfer) - Transfer funds between Connector accounts
 
-## PaymentsgetServerInfo
+## GetServerInfoPayments
 
 Get server info
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="paymentsgetServerInfo" method="get" path="/api/payments/_info" -->
+<!-- UsageSnippet language="csharp" operationID="getServerInfo_payments" method="get" path="/api/payments/_info" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -66,21 +66,27 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Payments.V1.PaymentsgetServerInfoAsync();
+var res = await sdk.Payments.V1.GetServerInfoPaymentsAsync();
 
 // handle response
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
-**[PaymentsgetServerInfoResponse](../../Models/Requests/PaymentsgetServerInfoResponse.md)**
+**[GetServerInfoPaymentsResponse](../../Models/Requests/GetServerInfoPaymentsResponse.md)**
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## CreatePayment
 
@@ -92,6 +98,7 @@ Create a payment
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Payments;
 using System;
 using System.Numerics;
 
@@ -105,9 +112,9 @@ PaymentRequest req = new PaymentRequest() {
     ConnectorID = "<id>",
     CreatedAt = System.DateTime.Parse("2025-08-26T06:29:11.777Z").ToUniversalTime(),
     Amount = BigInteger.Parse("100"),
-    Type = PaymentType.Other,
-    Status = PaymentStatus.RefundedFailure,
-    Scheme = PaymentScheme.Unionpay,
+    PaymentType = PaymentType.Other,
+    PaymentStatus = FormanceSDK.Models.Payments.PaymentStatus.RefundedFailure,
+    PaymentScheme = PaymentScheme.Unionpay,
     Asset = "USD",
 };
 
@@ -118,9 +125,10 @@ var res = await sdk.Payments.V1.CreatePaymentAsync(req);
 
 ### Parameters
 
-| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
-| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `request`                                                   | [PaymentRequest](../../Models/Components/PaymentRequest.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
+| Parameter                                                 | Type                                                      | Required                                                  | Description                                               |
+| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| `request`                                                 | [PaymentRequest](../../Models/Payments/PaymentRequest.md) | :heavy_check_mark:                                        | The request object to use for the request.                |
+| `serverURL`                                               | *string*                                                  | :heavy_minus_sign:                                        | An optional server URL to use.                            |
 
 ### Response
 
@@ -128,10 +136,10 @@ var res = await sdk.Payments.V1.CreatePaymentAsync(req);
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## ListPayments
 
@@ -170,6 +178,7 @@ var res = await sdk.Payments.V1.ListPaymentsAsync(
 | `Cursor`                                                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Parameter used in pagination requests. Maximum page size is set to 15.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                                             |
 | `Sort`                                                                                                                                                                                                                                                   | List<*string*>                                                                                                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                                                                                                       | Fields used to sort payments (default is date:desc).                                                                                                                                                                                                     | [<br/>"date:asc",<br/>"status:desc"<br/>]                                                                                                                                                                                                                |
 | `Query`                                                                                                                                                                                                                                                  | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Filters used to filter resources.<br/>                                                                                                                                                                                                                   |                                                                                                                                                                                                                                                          |
+| `serverURL`                                                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                                                    |
 
 ### Response
 
@@ -177,10 +186,10 @@ var res = await sdk.Payments.V1.ListPaymentsAsync(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## GetPayment
 
@@ -205,9 +214,10 @@ var res = await sdk.Payments.V1.GetPaymentAsync(paymentId: "XXX");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `PaymentId`        | *string*           | :heavy_check_mark: | The payment ID.    | XXX                |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `PaymentId`                    | *string*                       | :heavy_check_mark:             | The payment ID.                | XXX                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -215,10 +225,10 @@ var res = await sdk.Payments.V1.GetPaymentAsync(paymentId: "XXX");
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## UpdateMetadata
 
@@ -249,10 +259,11 @@ var res = await sdk.Payments.V1.UpdateMetadataAsync(
 
 ### Parameters
 
-| Parameter                    | Type                         | Required                     | Description                  | Example                      |
-| ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
-| `PaymentId`                  | *string*                     | :heavy_check_mark:           | The payment ID.              | XXX                          |
-| `RequestBody`                | Dictionary<String, *string*> | :heavy_check_mark:           | N/A                          |                              |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `PaymentId`                    | *string*                       | :heavy_check_mark:             | The payment ID.                | XXX                            |
+| `RequestBody`                  | Dictionary<String, *string*>   | :heavy_check_mark:             | N/A                            |                                |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -260,10 +271,10 @@ var res = await sdk.Payments.V1.UpdateMetadataAsync(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## ListTransferInitiations
 
@@ -302,6 +313,7 @@ var res = await sdk.Payments.V1.ListTransferInitiationsAsync(
 | `Cursor`                                                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Parameter used in pagination requests. Maximum page size is set to 15.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                                             |
 | `Sort`                                                                                                                                                                                                                                                   | List<*string*>                                                                                                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                                                                                                       | Fields used to sort payments (default is date:desc).                                                                                                                                                                                                     | [<br/>"date:asc",<br/>"status:desc"<br/>]                                                                                                                                                                                                                |
 | `Query`                                                                                                                                                                                                                                                  | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Filters used to filter resources.<br/>                                                                                                                                                                                                                   |                                                                                                                                                                                                                                                          |
+| `serverURL`                                                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                                                    |
 
 ### Response
 
@@ -309,10 +321,10 @@ var res = await sdk.Payments.V1.ListTransferInitiationsAsync(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## CreateTransferInitiation
 
@@ -324,6 +336,7 @@ Create a transfer initiation
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Payments;
 using System;
 using System.Numerics;
 
@@ -351,9 +364,10 @@ var res = await sdk.Payments.V1.CreateTransferInitiationAsync(req);
 
 ### Parameters
 
-| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
-| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `request`                                                                         | [TransferInitiationRequest](../../Models/Components/TransferInitiationRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `request`                                                                       | [TransferInitiationRequest](../../Models/Payments/TransferInitiationRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+| `serverURL`                                                                     | *string*                                                                        | :heavy_minus_sign:                                                              | An optional server URL to use.                                                  |
 
 ### Response
 
@@ -361,10 +375,10 @@ var res = await sdk.Payments.V1.CreateTransferInitiationAsync(req);
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## GetTransferInitiation
 
@@ -389,9 +403,10 @@ var res = await sdk.Payments.V1.GetTransferInitiationAsync(transferId: "XXX");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `TransferId`       | *string*           | :heavy_check_mark: | The transfer ID.   | XXX                |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `TransferId`                   | *string*                       | :heavy_check_mark:             | The transfer ID.               | XXX                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -399,10 +414,10 @@ var res = await sdk.Payments.V1.GetTransferInitiationAsync(transferId: "XXX");
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## DeleteTransferInitiation
 
@@ -427,9 +442,10 @@ var res = await sdk.Payments.V1.DeleteTransferInitiationAsync(transferId: "XXX")
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `TransferId`       | *string*           | :heavy_check_mark: | The transfer ID.   | XXX                |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `TransferId`                   | *string*                       | :heavy_check_mark:             | The transfer ID.               | XXX                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -437,10 +453,10 @@ var res = await sdk.Payments.V1.DeleteTransferInitiationAsync(transferId: "XXX")
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## UpdateTransferInitiationStatus
 
@@ -452,6 +468,7 @@ Update a transfer initiation status
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Payments;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -460,7 +477,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Payments.V1.UpdateTransferInitiationStatusAsync(
     transferId: "XXX",
-    updateTransferInitiationStatusRequest: new FormanceSDK.Models.Components.UpdateTransferInitiationStatusRequest() {
+    updateTransferInitiationStatusRequest: new FormanceSDK.Models.Payments.UpdateTransferInitiationStatusRequest() {
         Status = Status.Validated,
     }
 );
@@ -470,10 +487,11 @@ var res = await sdk.Payments.V1.UpdateTransferInitiationStatusAsync(
 
 ### Parameters
 
-| Parameter                                                                                                                   | Type                                                                                                                        | Required                                                                                                                    | Description                                                                                                                 | Example                                                                                                                     |
-| --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `TransferId`                                                                                                                | *string*                                                                                                                    | :heavy_check_mark:                                                                                                          | The transfer ID.                                                                                                            | XXX                                                                                                                         |
-| `UpdateTransferInitiationStatusRequest`                                                                                     | [Models.Components.UpdateTransferInitiationStatusRequest](../../Models/Components/UpdateTransferInitiationStatusRequest.md) | :heavy_check_mark:                                                                                                          | N/A                                                                                                                         |                                                                                                                             |
+| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             | Example                                                                                                                 |
+| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `TransferId`                                                                                                            | *string*                                                                                                                | :heavy_check_mark:                                                                                                      | The transfer ID.                                                                                                        | XXX                                                                                                                     |
+| `UpdateTransferInitiationStatusRequest`                                                                                 | [Models.Payments.UpdateTransferInitiationStatusRequest](../../Models/Payments/UpdateTransferInitiationStatusRequest.md) | :heavy_check_mark:                                                                                                      | N/A                                                                                                                     |                                                                                                                         |
+| `serverURL`                                                                                                             | *string*                                                                                                                | :heavy_minus_sign:                                                                                                      | An optional server URL to use.                                                                                          | http://localhost:8080                                                                                                   |
 
 ### Response
 
@@ -481,10 +499,10 @@ var res = await sdk.Payments.V1.UpdateTransferInitiationStatusAsync(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## ReverseTransferInitiation
 
@@ -505,7 +523,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Payments.V1.ReverseTransferInitiationAsync(
     transferId: "XXX",
-    reverseTransferInitiationRequest: new FormanceSDK.Models.Components.ReverseTransferInitiationRequest() {
+    reverseTransferInitiationRequest: new FormanceSDK.Models.Payments.ReverseTransferInitiationRequest() {
         Reference = "XXX",
         Description = "keel caption frenetically ew given fencing scratch yearningly quickly know",
         Amount = BigInteger.Parse("563034"),
@@ -519,10 +537,11 @@ var res = await sdk.Payments.V1.ReverseTransferInitiationAsync(
 
 ### Parameters
 
-| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       | Example                                                                                                           |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `TransferId`                                                                                                      | *string*                                                                                                          | :heavy_check_mark:                                                                                                | The transfer ID.                                                                                                  | XXX                                                                                                               |
-| `ReverseTransferInitiationRequest`                                                                                | [Models.Components.ReverseTransferInitiationRequest](../../Models/Components/ReverseTransferInitiationRequest.md) | :heavy_check_mark:                                                                                                | N/A                                                                                                               |                                                                                                                   |
+| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   | Example                                                                                                       |
+| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `TransferId`                                                                                                  | *string*                                                                                                      | :heavy_check_mark:                                                                                            | The transfer ID.                                                                                              | XXX                                                                                                           |
+| `ReverseTransferInitiationRequest`                                                                            | [Models.Payments.ReverseTransferInitiationRequest](../../Models/Payments/ReverseTransferInitiationRequest.md) | :heavy_check_mark:                                                                                            | N/A                                                                                                           |                                                                                                               |
+| `serverURL`                                                                                                   | *string*                                                                                                      | :heavy_minus_sign:                                                                                            | An optional server URL to use.                                                                                | http://localhost:8080                                                                                         |
 
 ### Response
 
@@ -530,10 +549,10 @@ var res = await sdk.Payments.V1.ReverseTransferInitiationAsync(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## RetryTransferInitiation
 
@@ -558,9 +577,10 @@ var res = await sdk.Payments.V1.RetryTransferInitiationAsync(transferId: "XXX");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `TransferId`       | *string*           | :heavy_check_mark: | The transfer ID.   | XXX                |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `TransferId`                   | *string*                       | :heavy_check_mark:             | The transfer ID.               | XXX                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -568,10 +588,10 @@ var res = await sdk.Payments.V1.RetryTransferInitiationAsync(transferId: "XXX");
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## ListPools
 
@@ -610,6 +630,7 @@ var res = await sdk.Payments.V1.ListPoolsAsync(
 | `Cursor`                                                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Parameter used in pagination requests. Maximum page size is set to 15.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                                             |
 | `Sort`                                                                                                                                                                                                                                                   | List<*string*>                                                                                                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                                                                                                       | Fields used to sort payments (default is date:desc).                                                                                                                                                                                                     | [<br/>"date:asc",<br/>"status:desc"<br/>]                                                                                                                                                                                                                |
 | `Query`                                                                                                                                                                                                                                                  | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Filters used to filter resources.<br/>                                                                                                                                                                                                                   |                                                                                                                                                                                                                                                          |
+| `serverURL`                                                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                                                    |
 
 ### Response
 
@@ -617,10 +638,10 @@ var res = await sdk.Payments.V1.ListPoolsAsync(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## CreatePool
 
@@ -632,6 +653,7 @@ Create a Pool
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Payments;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -649,9 +671,10 @@ var res = await sdk.Payments.V1.CreatePoolAsync(req);
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `request`                                             | [PoolRequest](../../Models/Components/PoolRequest.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
+| Parameter                                           | Type                                                | Required                                            | Description                                         |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| `request`                                           | [PoolRequest](../../Models/Payments/PoolRequest.md) | :heavy_check_mark:                                  | The request object to use for the request.          |
+| `serverURL`                                         | *string*                                            | :heavy_minus_sign:                                  | An optional server URL to use.                      |
 
 ### Response
 
@@ -659,10 +682,10 @@ var res = await sdk.Payments.V1.CreatePoolAsync(req);
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## GetPool
 
@@ -687,9 +710,10 @@ var res = await sdk.Payments.V1.GetPoolAsync(poolId: "XXX");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `PoolId`           | *string*           | :heavy_check_mark: | The pool ID.       | XXX                |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `PoolId`                       | *string*                       | :heavy_check_mark:             | The pool ID.                   | XXX                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -697,10 +721,10 @@ var res = await sdk.Payments.V1.GetPoolAsync(poolId: "XXX");
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## DeletePool
 
@@ -725,9 +749,10 @@ var res = await sdk.Payments.V1.DeletePoolAsync(poolId: "XXX");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `PoolId`           | *string*           | :heavy_check_mark: | The pool ID.       | XXX                |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `PoolId`                       | *string*                       | :heavy_check_mark:             | The pool ID.                   | XXX                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -735,10 +760,10 @@ var res = await sdk.Payments.V1.DeletePoolAsync(poolId: "XXX");
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## UpdatePoolQuery
 
@@ -759,7 +784,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Payments.V1.UpdatePoolQueryAsync(
     poolId: "XXX",
-    updatePoolQueryRequest: new FormanceSDK.Models.Components.UpdatePoolQueryRequest() {
+    updatePoolQueryRequest: new FormanceSDK.Models.Payments.UpdatePoolQueryRequest() {
         Query = new Dictionary<string, object>() {
             { "key", "<value>" },
         },
@@ -771,10 +796,11 @@ var res = await sdk.Payments.V1.UpdatePoolQueryAsync(
 
 ### Parameters
 
-| Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   | Example                                                                                       |
-| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `PoolId`                                                                                      | *string*                                                                                      | :heavy_check_mark:                                                                            | The pool ID.                                                                                  | XXX                                                                                           |
-| `UpdatePoolQueryRequest`                                                                      | [Models.Components.UpdatePoolQueryRequest](../../Models/Components/UpdatePoolQueryRequest.md) | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
+| Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               | Example                                                                                   |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `PoolId`                                                                                  | *string*                                                                                  | :heavy_check_mark:                                                                        | The pool ID.                                                                              | XXX                                                                                       |
+| `UpdatePoolQueryRequest`                                                                  | [Models.Payments.UpdatePoolQueryRequest](../../Models/Payments/UpdatePoolQueryRequest.md) | :heavy_check_mark:                                                                        | N/A                                                                                       |                                                                                           |
+| `serverURL`                                                                               | *string*                                                                                  | :heavy_minus_sign:                                                                        | An optional server URL to use.                                                            | http://localhost:8080                                                                     |
 
 ### Response
 
@@ -782,10 +808,10 @@ var res = await sdk.Payments.V1.UpdatePoolQueryAsync(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## AddAccountToPool
 
@@ -805,7 +831,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Payments.V1.AddAccountToPoolAsync(
     poolId: "XXX",
-    addAccountToPoolRequest: new FormanceSDK.Models.Components.AddAccountToPoolRequest() {
+    addAccountToPoolRequest: new FormanceSDK.Models.Payments.AddAccountToPoolRequest() {
         AccountID = "<id>",
     }
 );
@@ -815,10 +841,11 @@ var res = await sdk.Payments.V1.AddAccountToPoolAsync(
 
 ### Parameters
 
-| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     | Example                                                                                         |
-| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `PoolId`                                                                                        | *string*                                                                                        | :heavy_check_mark:                                                                              | The pool ID.                                                                                    | XXX                                                                                             |
-| `AddAccountToPoolRequest`                                                                       | [Models.Components.AddAccountToPoolRequest](../../Models/Components/AddAccountToPoolRequest.md) | :heavy_check_mark:                                                                              | N/A                                                                                             |                                                                                                 |
+| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 | Example                                                                                     |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `PoolId`                                                                                    | *string*                                                                                    | :heavy_check_mark:                                                                          | The pool ID.                                                                                | XXX                                                                                         |
+| `AddAccountToPoolRequest`                                                                   | [Models.Payments.AddAccountToPoolRequest](../../Models/Payments/AddAccountToPoolRequest.md) | :heavy_check_mark:                                                                          | N/A                                                                                         |                                                                                             |
+| `serverURL`                                                                                 | *string*                                                                                    | :heavy_minus_sign:                                                                          | An optional server URL to use.                                                              | http://localhost:8080                                                                       |
 
 ### Response
 
@@ -826,10 +853,10 @@ var res = await sdk.Payments.V1.AddAccountToPoolAsync(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## RemoveAccountFromPool
 
@@ -857,10 +884,11 @@ var res = await sdk.Payments.V1.RemoveAccountFromPoolAsync(
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `PoolId`           | *string*           | :heavy_check_mark: | The pool ID.       | XXX                |
-| `AccountId`        | *string*           | :heavy_check_mark: | The account ID.    | XXX                |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `PoolId`                       | *string*                       | :heavy_check_mark:             | The pool ID.                   | XXX                            |
+| `AccountId`                    | *string*                       | :heavy_check_mark:             | The account ID.                | XXX                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -868,10 +896,10 @@ var res = await sdk.Payments.V1.RemoveAccountFromPoolAsync(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## GetPoolBalances
 
@@ -904,6 +932,7 @@ var res = await sdk.Payments.V1.GetPoolBalancesAsync(
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `PoolId`                                                                              | *string*                                                                              | :heavy_check_mark:                                                                    | The pool ID.                                                                          | XXX                                                                                   |
 | `At`                                                                                  | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_check_mark:                                                                    | Filter balances by date.<br/>                                                         |                                                                                       |
+| `serverURL`                                                                           | *string*                                                                              | :heavy_minus_sign:                                                                    | An optional server URL to use.                                                        | http://localhost:8080                                                                 |
 
 ### Response
 
@@ -911,10 +940,10 @@ var res = await sdk.Payments.V1.GetPoolBalancesAsync(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## GetPoolBalancesLatest
 
@@ -939,9 +968,10 @@ var res = await sdk.Payments.V1.GetPoolBalancesLatestAsync(poolId: "XXX");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `PoolId`           | *string*           | :heavy_check_mark: | The pool ID.       | XXX                |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `PoolId`                       | *string*                       | :heavy_check_mark:             | The pool ID.                   | XXX                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -949,10 +979,10 @@ var res = await sdk.Payments.V1.GetPoolBalancesLatestAsync(poolId: "XXX");
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## CreateAccount
 
@@ -964,6 +994,7 @@ Create an account
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Payments;
 using System;
 
 var sdk = new Formance(security: new Security() {
@@ -975,7 +1006,7 @@ AccountRequest req = new AccountRequest() {
     Reference = "<value>",
     ConnectorID = "<id>",
     CreatedAt = System.DateTime.Parse("2025-07-27T08:57:17.388Z").ToUniversalTime(),
-    Type = AccountType.Unknown,
+    AccountType = AccountType.Unknown,
 };
 
 var res = await sdk.Payments.V1.CreateAccountAsync(req);
@@ -985,9 +1016,10 @@ var res = await sdk.Payments.V1.CreateAccountAsync(req);
 
 ### Parameters
 
-| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
-| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `request`                                                   | [AccountRequest](../../Models/Components/AccountRequest.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
+| Parameter                                                 | Type                                                      | Required                                                  | Description                                               |
+| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| `request`                                                 | [AccountRequest](../../Models/Payments/AccountRequest.md) | :heavy_check_mark:                                        | The request object to use for the request.                |
+| `serverURL`                                               | *string*                                                  | :heavy_minus_sign:                                        | An optional server URL to use.                            |
 
 ### Response
 
@@ -995,21 +1027,22 @@ var res = await sdk.Payments.V1.CreateAccountAsync(req);
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
-## PaymentslistAccounts
+## ListAccountsPayments
 
 List accounts
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="paymentslistAccounts" method="get" path="/api/payments/accounts" -->
+<!-- UsageSnippet language="csharp" operationID="listAccounts_payments" method="get" path="/api/payments/accounts" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Requests;
 using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
@@ -1017,45 +1050,45 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Payments.V1.PaymentslistAccountsAsync(
-    pageSize: 100,
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    sort: new List<string>() {
+ListAccountsPaymentsRequest req = new ListAccountsPaymentsRequest() {
+    PageSize = 100,
+    Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    Sort = new List<string>() {
         "date:asc",
         "status:desc",
-    }
-);
+    },
+};
+
+var res = await sdk.Payments.V1.ListAccountsPaymentsAsync(req);
 
 // handle response
 ```
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                                                                | Type                                                                                                                                                                                                                                                     | Required                                                                                                                                                                                                                                                 | Description                                                                                                                                                                                                                                              | Example                                                                                                                                                                                                                                                  |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `PageSize`                                                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                       | The maximum number of results to return per page.<br/>                                                                                                                                                                                                   | 100                                                                                                                                                                                                                                                      |
-| `Cursor`                                                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Parameter used in pagination requests. Maximum page size is set to 15.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                                             |
-| `Sort`                                                                                                                                                                                                                                                   | List<*string*>                                                                                                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                                                                                                       | Fields used to sort payments (default is date:desc).                                                                                                                                                                                                     | [<br/>"date:asc",<br/>"status:desc"<br/>]                                                                                                                                                                                                                |
-| `Query`                                                                                                                                                                                                                                                  | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Filters used to filter resources.<br/>                                                                                                                                                                                                                   |                                                                                                                                                                                                                                                          |
+| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `request`                                                                           | [ListAccountsPaymentsRequest](../../Models/Requests/ListAccountsPaymentsRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
+| `serverURL`                                                                         | *string*                                                                            | :heavy_minus_sign:                                                                  | An optional server URL to use.                                                      |
 
 ### Response
 
-**[PaymentslistAccountsResponse](../../Models/Requests/PaymentslistAccountsResponse.md)**
+**[ListAccountsPaymentsResponse](../../Models/Requests/ListAccountsPaymentsResponse.md)**
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
-## PaymentsgetAccount
+## GetAccountPayments
 
 Get an account
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="paymentsgetAccount" method="get" path="/api/payments/accounts/{accountId}" -->
+<!-- UsageSnippet language="csharp" operationID="getAccount_payments" method="get" path="/api/payments/accounts/{accountId}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -1065,27 +1098,28 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Payments.V1.PaymentsgetAccountAsync(accountId: "XXX");
+var res = await sdk.Payments.V1.GetAccountPaymentsAsync(accountId: "XXX");
 
 // handle response
 ```
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `AccountId`        | *string*           | :heavy_check_mark: | The account ID.    | XXX                |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `AccountId`                    | *string*                       | :heavy_check_mark:             | The account ID.                | XXX                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
-**[PaymentsgetAccountResponse](../../Models/Requests/PaymentsgetAccountResponse.md)**
+**[GetAccountPaymentsResponse](../../Models/Requests/GetAccountPaymentsResponse.md)**
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## GetAccountBalances
 
@@ -1125,6 +1159,7 @@ var res = await sdk.Payments.V1.GetAccountBalancesAsync(req);
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `request`                                                                       | [GetAccountBalancesRequest](../../Models/Requests/GetAccountBalancesRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+| `serverURL`                                                                     | *string*                                                                        | :heavy_minus_sign:                                                              | An optional server URL to use.                                                  |
 
 ### Response
 
@@ -1132,10 +1167,10 @@ var res = await sdk.Payments.V1.GetAccountBalancesAsync(req);
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## CreateBankAccount
 
@@ -1147,6 +1182,7 @@ Create a bank account in Payments and on the PSP.
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Payments;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1165,9 +1201,10 @@ var res = await sdk.Payments.V1.CreateBankAccountAsync(req);
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `request`                                                           | [BankAccountRequest](../../Models/Components/BankAccountRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [BankAccountRequest](../../Models/Payments/BankAccountRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+| `serverURL`                                                       | *string*                                                          | :heavy_minus_sign:                                                | An optional server URL to use.                                    |
 
 ### Response
 
@@ -1175,10 +1212,10 @@ var res = await sdk.Payments.V1.CreateBankAccountAsync(req);
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## ListBankAccounts
 
@@ -1216,6 +1253,7 @@ var res = await sdk.Payments.V1.ListBankAccountsAsync(
 | `PageSize`                                                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                       | The maximum number of results to return per page.<br/>                                                                                                                                                                                                   | 100                                                                                                                                                                                                                                                      |
 | `Cursor`                                                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Parameter used in pagination requests. Maximum page size is set to 15.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                                             |
 | `Sort`                                                                                                                                                                                                                                                   | List<*string*>                                                                                                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                                                                                                       | Fields used to sort payments (default is date:desc).                                                                                                                                                                                                     | [<br/>"date:asc",<br/>"status:desc"<br/>]                                                                                                                                                                                                                |
+| `serverURL`                                                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                                                    |
 
 ### Response
 
@@ -1223,10 +1261,10 @@ var res = await sdk.Payments.V1.ListBankAccountsAsync(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## GetBankAccount
 
@@ -1251,9 +1289,10 @@ var res = await sdk.Payments.V1.GetBankAccountAsync(bankAccountId: "XXX");
 
 ### Parameters
 
-| Parameter            | Type                 | Required             | Description          | Example              |
-| -------------------- | -------------------- | -------------------- | -------------------- | -------------------- |
-| `BankAccountId`      | *string*             | :heavy_check_mark:   | The bank account ID. | XXX                  |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `BankAccountId`                | *string*                       | :heavy_check_mark:             | The bank account ID.           | XXX                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -1261,10 +1300,10 @@ var res = await sdk.Payments.V1.GetBankAccountAsync(bankAccountId: "XXX");
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## ForwardBankAccount
 
@@ -1284,7 +1323,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Payments.V1.ForwardBankAccountAsync(
     bankAccountId: "XXX",
-    forwardBankAccountRequest: new FormanceSDK.Models.Components.ForwardBankAccountRequest() {
+    forwardBankAccountRequest: new FormanceSDK.Models.Payments.ForwardBankAccountRequest() {
         ConnectorID = "<id>",
     }
 );
@@ -1294,10 +1333,11 @@ var res = await sdk.Payments.V1.ForwardBankAccountAsync(
 
 ### Parameters
 
-| Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         | Example                                                                                             |
-| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `BankAccountId`                                                                                     | *string*                                                                                            | :heavy_check_mark:                                                                                  | The bank account ID.                                                                                | XXX                                                                                                 |
-| `ForwardBankAccountRequest`                                                                         | [Models.Components.ForwardBankAccountRequest](../../Models/Components/ForwardBankAccountRequest.md) | :heavy_check_mark:                                                                                  | N/A                                                                                                 |                                                                                                     |
+| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     | Example                                                                                         |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `BankAccountId`                                                                                 | *string*                                                                                        | :heavy_check_mark:                                                                              | The bank account ID.                                                                            | XXX                                                                                             |
+| `ForwardBankAccountRequest`                                                                     | [Models.Payments.ForwardBankAccountRequest](../../Models/Payments/ForwardBankAccountRequest.md) | :heavy_check_mark:                                                                              | N/A                                                                                             |                                                                                                 |
+| `serverURL`                                                                                     | *string*                                                                                        | :heavy_minus_sign:                                                                              | An optional server URL to use.                                                                  | http://localhost:8080                                                                           |
 
 ### Response
 
@@ -1305,10 +1345,10 @@ var res = await sdk.Payments.V1.ForwardBankAccountAsync(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## UpdateBankAccountMetadata
 
@@ -1329,8 +1369,8 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Payments.V1.UpdateBankAccountMetadataAsync(
     bankAccountId: "XXX",
-    updateBankAccountMetadataRequest: new FormanceSDK.Models.Components.UpdateBankAccountMetadataRequest() {
-        Metadata = new Dictionary<string, string>() {
+    updateBankAccountMetadataRequest: new FormanceSDK.Models.Payments.UpdateBankAccountMetadataRequest() {
+        BankAccountMetadata = new Dictionary<string, string>() {
             { "key", "<value>" },
             { "key1", "<value>" },
             { "key2", "<value>" },
@@ -1343,10 +1383,11 @@ var res = await sdk.Payments.V1.UpdateBankAccountMetadataAsync(
 
 ### Parameters
 
-| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       | Example                                                                                                           |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `BankAccountId`                                                                                                   | *string*                                                                                                          | :heavy_check_mark:                                                                                                | The bank account ID.                                                                                              | XXX                                                                                                               |
-| `UpdateBankAccountMetadataRequest`                                                                                | [Models.Components.UpdateBankAccountMetadataRequest](../../Models/Components/UpdateBankAccountMetadataRequest.md) | :heavy_check_mark:                                                                                                | N/A                                                                                                               |                                                                                                                   |
+| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   | Example                                                                                                       |
+| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `BankAccountId`                                                                                               | *string*                                                                                                      | :heavy_check_mark:                                                                                            | The bank account ID.                                                                                          | XXX                                                                                                           |
+| `UpdateBankAccountMetadataRequest`                                                                            | [Models.Payments.UpdateBankAccountMetadataRequest](../../Models/Payments/UpdateBankAccountMetadataRequest.md) | :heavy_check_mark:                                                                                            | N/A                                                                                                           |                                                                                                               |
+| `serverURL`                                                                                                   | *string*                                                                                                      | :heavy_minus_sign:                                                                                            | An optional server URL to use.                                                                                | http://localhost:8080                                                                                         |
 
 ### Response
 
@@ -1354,10 +1395,10 @@ var res = await sdk.Payments.V1.UpdateBankAccountMetadataAsync(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## ListAllConnectors
 
@@ -1380,16 +1421,22 @@ var res = await sdk.Payments.V1.ListAllConnectorsAsync();
 // handle response
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[ListAllConnectorsResponse](../../Models/Requests/ListAllConnectorsResponse.md)**
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## ListConfigsAvailableConnectors
 
@@ -1412,16 +1459,22 @@ var res = await sdk.Payments.V1.ListConfigsAvailableConnectorsAsync();
 // handle response
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[ListConfigsAvailableConnectorsResponse](../../Models/Requests/ListConfigsAvailableConnectorsResponse.md)**
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## InstallConnector
 
@@ -1433,6 +1486,7 @@ Install a connector by its name and config.
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Payments;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1440,8 +1494,8 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.InstallConnectorAsync(
-    connector: Connector.Mangopay,
-    connectorConfig: ConnectorConfig.CreateModulr(
+    connector: FormanceSDK.Models.Payments.Connector.Mangopay,
+    connectorConfig: ConnectorConfig.CreateModulrConfig(
         new ModulrConfig() {
             Name = "My Modulr Account",
             ApiKey = "XXX",
@@ -1456,10 +1510,11 @@ var res = await sdk.Payments.V1.InstallConnectorAsync(
 
 ### Parameters
 
-| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
-| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| `Connector`                                                   | [Connector](../../Models/Components/Connector.md)             | :heavy_check_mark:                                            | The name of the connector.                                    |
-| `ConnectorConfig`                                             | [ConnectorConfig](../../Models/Components/ConnectorConfig.md) | :heavy_check_mark:                                            | N/A                                                           |
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `Connector`                                                     | [Models.Payments.Connector](../../Models/Payments/Connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |
+| `ConnectorConfig`                                               | [ConnectorConfig](../../Models/Payments/ConnectorConfig.md)     | :heavy_check_mark:                                              | N/A                                                             |
+| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -1467,10 +1522,10 @@ var res = await sdk.Payments.V1.InstallConnectorAsync(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## ~~UninstallConnector~~
 
@@ -1490,16 +1545,17 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Payments.V1.UninstallConnectorAsync(connector: Connector.Generic);
+var res = await sdk.Payments.V1.UninstallConnectorAsync(connector: FormanceSDK.Models.Payments.Connector.Generic);
 
 // handle response
 ```
 
 ### Parameters
 
-| Parameter                                         | Type                                              | Required                                          | Description                                       |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| `Connector`                                       | [Connector](../../Models/Components/Connector.md) | :heavy_check_mark:                                | The name of the connector.                        |
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `Connector`                                                     | [Models.Payments.Connector](../../Models/Payments/Connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |
+| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -1507,10 +1563,10 @@ var res = await sdk.Payments.V1.UninstallConnectorAsync(connector: Connector.Gen
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## UninstallConnectorV1
 
@@ -1529,7 +1585,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.UninstallConnectorV1Async(
-    connector: Connector.BankingCircle,
+    connector: FormanceSDK.Models.Payments.Connector.BankingCircle,
     connectorId: "XXX"
 );
 
@@ -1538,10 +1594,11 @@ var res = await sdk.Payments.V1.UninstallConnectorV1Async(
 
 ### Parameters
 
-| Parameter                                         | Type                                              | Required                                          | Description                                       | Example                                           |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| `Connector`                                       | [Connector](../../Models/Components/Connector.md) | :heavy_check_mark:                                | The name of the connector.                        |                                                   |
-| `ConnectorId`                                     | *string*                                          | :heavy_check_mark:                                | The connector ID.                                 | XXX                                               |
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     | Example                                                         |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `Connector`                                                     | [Models.Payments.Connector](../../Models/Payments/Connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |                                                                 |
+| `ConnectorId`                                                   | *string*                                                        | :heavy_check_mark:                                              | The connector ID.                                               | XXX                                                             |
+| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  | http://localhost:8080                                           |
 
 ### Response
 
@@ -1549,10 +1606,10 @@ var res = await sdk.Payments.V1.UninstallConnectorV1Async(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## ~~ReadConnectorConfig~~
 
@@ -1572,16 +1629,17 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Payments.V1.ReadConnectorConfigAsync(connector: Connector.Modulr);
+var res = await sdk.Payments.V1.ReadConnectorConfigAsync(connector: FormanceSDK.Models.Payments.Connector.Modulr);
 
 // handle response
 ```
 
 ### Parameters
 
-| Parameter                                         | Type                                              | Required                                          | Description                                       |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| `Connector`                                       | [Connector](../../Models/Components/Connector.md) | :heavy_check_mark:                                | The name of the connector.                        |
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `Connector`                                                     | [Models.Payments.Connector](../../Models/Payments/Connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |
+| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -1589,10 +1647,10 @@ var res = await sdk.Payments.V1.ReadConnectorConfigAsync(connector: Connector.Mo
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## UpdateConnectorConfigV1
 
@@ -1604,6 +1662,7 @@ Update connector config
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Payments;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1611,15 +1670,16 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.UpdateConnectorConfigV1Async(
-    connector: Connector.Mangopay,
+    connector: FormanceSDK.Models.Payments.Connector.Mangopay,
     connectorId: "XXX",
-    connectorConfig: ConnectorConfig.CreateMoneycorp(
-        new MoneycorpConfig() {
+    connectorConfig: ConnectorConfig.CreateMangoPayConfig(
+        new MangoPayConfig() {
             Name = "My Moneycorp Account",
+            Provider = "Moneycorp",
+            PollingPeriod = "60s",
             ClientID = "XXX",
             ApiKey = "XXX",
             Endpoint = "XXX",
-            PollingPeriod = "60s",
         }
     )
 );
@@ -1629,11 +1689,12 @@ var res = await sdk.Payments.V1.UpdateConnectorConfigV1Async(
 
 ### Parameters
 
-| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   | Example                                                       |
-| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| `Connector`                                                   | [Connector](../../Models/Components/Connector.md)             | :heavy_check_mark:                                            | The name of the connector.                                    |                                                               |
-| `ConnectorId`                                                 | *string*                                                      | :heavy_check_mark:                                            | The connector ID.                                             | XXX                                                           |
-| `ConnectorConfig`                                             | [ConnectorConfig](../../Models/Components/ConnectorConfig.md) | :heavy_check_mark:                                            | N/A                                                           |                                                               |
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     | Example                                                         |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `Connector`                                                     | [Models.Payments.Connector](../../Models/Payments/Connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |                                                                 |
+| `ConnectorId`                                                   | *string*                                                        | :heavy_check_mark:                                              | The connector ID.                                               | XXX                                                             |
+| `ConnectorConfig`                                               | [ConnectorConfig](../../Models/Payments/ConnectorConfig.md)     | :heavy_check_mark:                                              | N/A                                                             |                                                                 |
+| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  | http://localhost:8080                                           |
 
 ### Response
 
@@ -1641,10 +1702,10 @@ var res = await sdk.Payments.V1.UpdateConnectorConfigV1Async(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## ReadConnectorConfigV1
 
@@ -1663,7 +1724,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.ReadConnectorConfigV1Async(
-    connector: Connector.Mangopay,
+    connector: FormanceSDK.Models.Payments.Connector.Mangopay,
     connectorId: "XXX"
 );
 
@@ -1672,10 +1733,11 @@ var res = await sdk.Payments.V1.ReadConnectorConfigV1Async(
 
 ### Parameters
 
-| Parameter                                         | Type                                              | Required                                          | Description                                       | Example                                           |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| `Connector`                                       | [Connector](../../Models/Components/Connector.md) | :heavy_check_mark:                                | The name of the connector.                        |                                                   |
-| `ConnectorId`                                     | *string*                                          | :heavy_check_mark:                                | The connector ID.                                 | XXX                                               |
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     | Example                                                         |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `Connector`                                                     | [Models.Payments.Connector](../../Models/Payments/Connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |                                                                 |
+| `ConnectorId`                                                   | *string*                                                        | :heavy_check_mark:                                              | The connector ID.                                               | XXX                                                             |
+| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  | http://localhost:8080                                           |
 
 ### Response
 
@@ -1683,10 +1745,10 @@ var res = await sdk.Payments.V1.ReadConnectorConfigV1Async(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## ~~ResetConnector~~
 
@@ -1708,16 +1770,17 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Payments.V1.ResetConnectorAsync(connector: Connector.Wise);
+var res = await sdk.Payments.V1.ResetConnectorAsync(connector: FormanceSDK.Models.Payments.Connector.Wise);
 
 // handle response
 ```
 
 ### Parameters
 
-| Parameter                                         | Type                                              | Required                                          | Description                                       |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| `Connector`                                       | [Connector](../../Models/Components/Connector.md) | :heavy_check_mark:                                | The name of the connector.                        |
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `Connector`                                                     | [Models.Payments.Connector](../../Models/Payments/Connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |
+| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -1725,10 +1788,10 @@ var res = await sdk.Payments.V1.ResetConnectorAsync(connector: Connector.Wise);
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## ResetConnectorV1
 
@@ -1749,7 +1812,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.ResetConnectorV1Async(
-    connector: Connector.Wise,
+    connector: FormanceSDK.Models.Payments.Connector.Wise,
     connectorId: "XXX"
 );
 
@@ -1758,10 +1821,11 @@ var res = await sdk.Payments.V1.ResetConnectorV1Async(
 
 ### Parameters
 
-| Parameter                                         | Type                                              | Required                                          | Description                                       | Example                                           |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| `Connector`                                       | [Connector](../../Models/Components/Connector.md) | :heavy_check_mark:                                | The name of the connector.                        |                                                   |
-| `ConnectorId`                                     | *string*                                          | :heavy_check_mark:                                | The connector ID.                                 | XXX                                               |
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     | Example                                                         |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `Connector`                                                     | [Models.Payments.Connector](../../Models/Payments/Connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |                                                                 |
+| `ConnectorId`                                                   | *string*                                                        | :heavy_check_mark:                                              | The connector ID.                                               | XXX                                                             |
+| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  | http://localhost:8080                                           |
 
 ### Response
 
@@ -1769,10 +1833,10 @@ var res = await sdk.Payments.V1.ResetConnectorV1Async(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## ~~ListConnectorTasks~~
 
@@ -1793,7 +1857,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.ListConnectorTasksAsync(
-    connector: Connector.Modulr,
+    connector: FormanceSDK.Models.Payments.Connector.Modulr,
     pageSize: 100,
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
 );
@@ -1805,9 +1869,10 @@ var res = await sdk.Payments.V1.ListConnectorTasksAsync(
 
 | Parameter                                                                                                                                                                                                                                                | Type                                                                                                                                                                                                                                                     | Required                                                                                                                                                                                                                                                 | Description                                                                                                                                                                                                                                              | Example                                                                                                                                                                                                                                                  |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Connector`                                                                                                                                                                                                                                              | [Connector](../../Models/Components/Connector.md)                                                                                                                                                                                                        | :heavy_check_mark:                                                                                                                                                                                                                                       | The name of the connector.                                                                                                                                                                                                                               |                                                                                                                                                                                                                                                          |
+| `Connector`                                                                                                                                                                                                                                              | [Models.Payments.Connector](../../Models/Payments/Connector.md)                                                                                                                                                                                          | :heavy_check_mark:                                                                                                                                                                                                                                       | The name of the connector.                                                                                                                                                                                                                               |                                                                                                                                                                                                                                                          |
 | `PageSize`                                                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                       | The maximum number of results to return per page.<br/>                                                                                                                                                                                                   | 100                                                                                                                                                                                                                                                      |
 | `Cursor`                                                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Parameter used in pagination requests. Maximum page size is set to 15.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                                             |
+| `serverURL`                                                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                                                    |
 
 ### Response
 
@@ -1815,10 +1880,10 @@ var res = await sdk.Payments.V1.ListConnectorTasksAsync(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## ListConnectorTasksV1
 
@@ -1837,7 +1902,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.ListConnectorTasksV1Async(
-    connector: Connector.Wise,
+    connector: FormanceSDK.Models.Payments.Connector.Wise,
     connectorId: "XXX",
     pageSize: 100,
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
@@ -1850,10 +1915,11 @@ var res = await sdk.Payments.V1.ListConnectorTasksV1Async(
 
 | Parameter                                                                                                                                                                                                                                                | Type                                                                                                                                                                                                                                                     | Required                                                                                                                                                                                                                                                 | Description                                                                                                                                                                                                                                              | Example                                                                                                                                                                                                                                                  |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Connector`                                                                                                                                                                                                                                              | [Connector](../../Models/Components/Connector.md)                                                                                                                                                                                                        | :heavy_check_mark:                                                                                                                                                                                                                                       | The name of the connector.                                                                                                                                                                                                                               |                                                                                                                                                                                                                                                          |
+| `Connector`                                                                                                                                                                                                                                              | [Models.Payments.Connector](../../Models/Payments/Connector.md)                                                                                                                                                                                          | :heavy_check_mark:                                                                                                                                                                                                                                       | The name of the connector.                                                                                                                                                                                                                               |                                                                                                                                                                                                                                                          |
 | `ConnectorId`                                                                                                                                                                                                                                            | *string*                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                       | The connector ID.                                                                                                                                                                                                                                        | XXX                                                                                                                                                                                                                                                      |
 | `PageSize`                                                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                       | The maximum number of results to return per page.<br/>                                                                                                                                                                                                   | 100                                                                                                                                                                                                                                                      |
 | `Cursor`                                                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Parameter used in pagination requests. Maximum page size is set to 15.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                                             |
+| `serverURL`                                                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                                                    |
 
 ### Response
 
@@ -1861,10 +1927,10 @@ var res = await sdk.Payments.V1.ListConnectorTasksV1Async(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## ~~GetConnectorTask~~
 
@@ -1885,7 +1951,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.GetConnectorTaskAsync(
-    connector: Connector.Moneycorp,
+    connector: FormanceSDK.Models.Payments.Connector.Moneycorp,
     taskId: "task1"
 );
 
@@ -1894,10 +1960,11 @@ var res = await sdk.Payments.V1.GetConnectorTaskAsync(
 
 ### Parameters
 
-| Parameter                                         | Type                                              | Required                                          | Description                                       | Example                                           |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| `Connector`                                       | [Connector](../../Models/Components/Connector.md) | :heavy_check_mark:                                | The name of the connector.                        |                                                   |
-| `TaskId`                                          | *string*                                          | :heavy_check_mark:                                | The task ID.                                      | task1                                             |
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     | Example                                                         |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `Connector`                                                     | [Models.Payments.Connector](../../Models/Payments/Connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |                                                                 |
+| `TaskId`                                                        | *string*                                                        | :heavy_check_mark:                                              | The task ID.                                                    | task1                                                           |
+| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  | http://localhost:8080                                           |
 
 ### Response
 
@@ -1905,10 +1972,10 @@ var res = await sdk.Payments.V1.GetConnectorTaskAsync(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## GetConnectorTaskV1
 
@@ -1927,7 +1994,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.GetConnectorTaskV1Async(
-    connector: Connector.Modulr,
+    connector: FormanceSDK.Models.Payments.Connector.Modulr,
     connectorId: "XXX",
     taskId: "task1"
 );
@@ -1937,11 +2004,12 @@ var res = await sdk.Payments.V1.GetConnectorTaskV1Async(
 
 ### Parameters
 
-| Parameter                                         | Type                                              | Required                                          | Description                                       | Example                                           |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| `Connector`                                       | [Connector](../../Models/Components/Connector.md) | :heavy_check_mark:                                | The name of the connector.                        |                                                   |
-| `ConnectorId`                                     | *string*                                          | :heavy_check_mark:                                | The connector ID.                                 | XXX                                               |
-| `TaskId`                                          | *string*                                          | :heavy_check_mark:                                | The task ID.                                      | task1                                             |
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     | Example                                                         |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `Connector`                                                     | [Models.Payments.Connector](../../Models/Payments/Connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |                                                                 |
+| `ConnectorId`                                                   | *string*                                                        | :heavy_check_mark:                                              | The connector ID.                                               | XXX                                                             |
+| `TaskId`                                                        | *string*                                                        | :heavy_check_mark:                                              | The task ID.                                                    | task1                                                           |
+| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  | http://localhost:8080                                           |
 
 ### Response
 
@@ -1949,10 +2017,10 @@ var res = await sdk.Payments.V1.GetConnectorTaskV1Async(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
 
 ## ConnectorsTransfer
 
@@ -1964,6 +2032,7 @@ Execute a transfer between two accounts.
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Payments;
 using System.Numerics;
 
 var sdk = new Formance(security: new Security() {
@@ -1972,7 +2041,7 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.Payments.V1.ConnectorsTransferAsync(
-    connector: Connector.Generic,
+    connector: FormanceSDK.Models.Payments.Connector.Generic,
     transferRequest: new TransferRequest() {
         Amount = BigInteger.Parse("100"),
         Asset = "USD",
@@ -1986,10 +2055,11 @@ var res = await sdk.Payments.V1.ConnectorsTransferAsync(
 
 ### Parameters
 
-| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
-| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| `Connector`                                                   | [Connector](../../Models/Components/Connector.md)             | :heavy_check_mark:                                            | The name of the connector.                                    |
-| `TransferRequest`                                             | [TransferRequest](../../Models/Components/TransferRequest.md) | :heavy_check_mark:                                            | N/A                                                           |
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `Connector`                                                     | [Models.Payments.Connector](../../Models/Payments/Connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |
+| `TransferRequest`                                               | [TransferRequest](../../Models/Payments/TransferRequest.md)     | :heavy_check_mark:                                              | N/A                                                             |
+| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -1997,7 +2067,7 @@ var res = await sdk.Payments.V1.ConnectorsTransferAsync(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.PaymentsErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                        | Status Code                                       | Content Type                                      |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
+| FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |

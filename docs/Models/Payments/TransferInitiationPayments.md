@@ -1,0 +1,11 @@
+# TransferInitiationPayments
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `PaymentID`                                                                           | *string*                                                                              | :heavy_check_mark:                                                                    | N/A                                                                                   |
+| `CreatedAt`                                                                           | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_check_mark:                                                                    | N/A                                                                                   |
+| `LegacyPaymentStatus`                                                                 | [LegacyPaymentStatus](../../Models/Payments/LegacyPaymentStatus.md)                   | :heavy_check_mark:                                                                    | N/A                                                                                   |
+| `Error`                                                                               | *string*                                                                              | :heavy_minus_sign:                                                                    | N/A                                                                                   |

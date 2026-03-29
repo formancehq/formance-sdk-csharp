@@ -5,7 +5,7 @@
 ### Available Operations
 
 * [GetOIDCWellKnowns](#getoidcwellknowns) - Retrieve OpenID connect well-knowns.
-* [GetServerInfo](#getserverinfo) - Get server info
+* [GetServerInfoAuth](#getserverinfoauth) - Get server info
 * [ListClients](#listclients) - List clients
 * [CreateClient](#createclient) - Create client
 * [ReadClient](#readclient) - Read client
@@ -37,6 +37,12 @@ var res = await sdk.Auth.V1.GetOIDCWellKnownsAsync();
 // handle response
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[GetOIDCWellKnownsResponse](../../Models/Requests/GetOIDCWellKnownsResponse.md)**
@@ -47,13 +53,13 @@ var res = await sdk.Auth.V1.GetOIDCWellKnownsAsync();
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
-## GetServerInfo
+## GetServerInfoAuth
 
 Get server info
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="getServerInfo" method="get" path="/api/auth/_info" -->
+<!-- UsageSnippet language="csharp" operationID="getServerInfo_auth" method="get" path="/api/auth/_info" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -63,14 +69,20 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Auth.V1.GetServerInfoAsync();
+var res = await sdk.Auth.V1.GetServerInfoAuthAsync();
 
 // handle response
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
-**[GetServerInfoResponse](../../Models/Requests/GetServerInfoResponse.md)**
+**[GetServerInfoAuthResponse](../../Models/Requests/GetServerInfoAuthResponse.md)**
 
 ### Errors
 
@@ -99,6 +111,12 @@ var res = await sdk.Auth.V1.ListClientsAsync();
 // handle response
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[Models.Requests.ListClientsResponse](../../Models/Requests/ListClientsResponse.md)**
@@ -118,6 +136,7 @@ Create client
 <!-- UsageSnippet language="csharp" operationID="createClient" method="post" path="/api/auth/clients" -->
 ```csharp
 using FormanceSDK;
+using FormanceSDK.Models.Auth;
 using FormanceSDK.Models.Components;
 
 var sdk = new Formance(security: new Security() {
@@ -125,7 +144,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-CreateClientRequest? req = null;
+ClientOptions1? req = null;
 
 var res = await sdk.Auth.V1.CreateClientAsync(req);
 
@@ -134,9 +153,10 @@ var res = await sdk.Auth.V1.CreateClientAsync(req);
 
 ### Parameters
 
-| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
-| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `request`                                                             | [CreateClientRequest](../../Models/Components/CreateClientRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `request`                                             | [ClientOptions1](../../Models/Auth/ClientOptions1.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
+| `serverURL`                                           | *string*                                              | :heavy_minus_sign:                                    | An optional server URL to use.                        |
 
 ### Response
 
@@ -171,9 +191,10 @@ var res = await sdk.Auth.V1.ReadClientAsync(clientId: "<id>");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `ClientId`         | *string*           | :heavy_check_mark: | Client ID          |
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `ClientId`                     | *string*                       | :heavy_check_mark:             | Client ID                      |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -208,14 +229,15 @@ var res = await sdk.Auth.V1.UpdateClientAsync(clientId: "<id>");
 
 ### Parameters
 
-| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
-| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `ClientId`                                                            | *string*                                                              | :heavy_check_mark:                                                    | Client ID                                                             |
-| `CreateClientRequest`                                                 | [CreateClientRequest](../../Models/Components/CreateClientRequest.md) | :heavy_minus_sign:                                                    | N/A                                                                   |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ClientId`                                            | *string*                                              | :heavy_check_mark:                                    | Client ID                                             |
+| `ClientOptions`                                       | [ClientOptions1](../../Models/Auth/ClientOptions1.md) | :heavy_minus_sign:                                    | N/A                                                   |
+| `serverURL`                                           | *string*                                              | :heavy_minus_sign:                                    | An optional server URL to use.                        |
 
 ### Response
 
-**[Models.Requests.UpdateClientResponse](../../Models/Requests/UpdateClientResponse.md)**
+**[UpdateClientResponse](../../Models/Requests/UpdateClientResponse.md)**
 
 ### Errors
 
@@ -246,9 +268,10 @@ var res = await sdk.Auth.V1.DeleteClientAsync(clientId: "<id>");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `ClientId`         | *string*           | :heavy_check_mark: | Client ID          |
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `ClientId`                     | *string*                       | :heavy_check_mark:             | Client ID                      |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -283,10 +306,11 @@ var res = await sdk.Auth.V1.CreateSecretAsync(clientId: "<id>");
 
 ### Parameters
 
-| Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
-| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `ClientId`                                                                              | *string*                                                                                | :heavy_check_mark:                                                                      | Client ID                                                                               |
-| `CreateSecretRequest`                                                                   | [Models.Components.CreateSecretRequest](../../Models/Components/CreateSecretRequest.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| Parameter                                           | Type                                                | Required                                            | Description                                         |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| `ClientId`                                          | *string*                                            | :heavy_check_mark:                                  | Client ID                                           |
+| `SecretOptions`                                     | [SecretOptions](../../Models/Auth/SecretOptions.md) | :heavy_minus_sign:                                  | N/A                                                 |
+| `serverURL`                                         | *string*                                            | :heavy_minus_sign:                                  | An optional server URL to use.                      |
 
 ### Response
 
@@ -324,10 +348,11 @@ var res = await sdk.Auth.V1.DeleteSecretAsync(
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `ClientId`         | *string*           | :heavy_check_mark: | Client ID          |
-| `SecretId`         | *string*           | :heavy_check_mark: | Secret ID          |
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `ClientId`                     | *string*                       | :heavy_check_mark:             | Client ID                      |
+| `SecretId`                     | *string*                       | :heavy_check_mark:             | Secret ID                      |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -359,6 +384,12 @@ var res = await sdk.Auth.V1.ListUsersAsync();
 
 // handle response
 ```
+
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -393,9 +424,10 @@ var res = await sdk.Auth.V1.ReadUserAsync(userId: "<id>");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `UserId`           | *string*           | :heavy_check_mark: | User ID            |
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `UserId`                       | *string*                       | :heavy_check_mark:             | User ID                        |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 

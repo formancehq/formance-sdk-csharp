@@ -10,6 +10,7 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Wallets;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
@@ -21,6 +22,6 @@ namespace FormanceSDK.Models.Requests
         /// <summary>
         /// Balances list.
         /// </summary>
-        public Models.Components.ListBalancesResponse? ListBalancesResponseValue { get; set; }
+        public Models.Wallets.ListBalancesResponse? ListBalancesResponseValue { get; set; }
     }
 }

@@ -9,7 +9,7 @@
 #nullable enable
 namespace FormanceSDK.Models.Requests
 {
-    using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Payments;
     using FormanceSDK.Utils;
 
     public class AddAccountToPoolRequest
@@ -21,6 +21,6 @@ namespace FormanceSDK.Models.Requests
         public string PoolId { get; set; } = default!;
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public Models.Components.AddAccountToPoolRequest AddAccountToPoolRequestValue { get; set; } = default!;
+        public Models.Payments.AddAccountToPoolRequest AddAccountToPoolRequestValue { get; set; } = default!;
     }
 }

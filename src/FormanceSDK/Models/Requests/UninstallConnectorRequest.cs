@@ -9,7 +9,7 @@
 #nullable enable
 namespace FormanceSDK.Models.Requests
 {
-    using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Payments;
     using FormanceSDK.Utils;
 
     public class UninstallConnectorRequest
@@ -18,6 +18,6 @@ namespace FormanceSDK.Models.Requests
         /// The name of the connector.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=connector")]
-        public Connector Connector { get; set; } = default!;
+        public Models.Payments.Connector Connector { get; set; } = default!;
     }
 }

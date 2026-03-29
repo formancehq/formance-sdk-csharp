@@ -4,7 +4,7 @@
 
 ### Available Operations
 
-* [OrchestrationgetServerInfo](#orchestrationgetserverinfo) - Get server info
+* [GetServerInfoOrchestration](#getserverinfoorchestration) - Get server info
 * [ListTriggers](#listtriggers) - List triggers
 * [CreateTrigger](#createtrigger) - Create trigger
 * [ReadTrigger](#readtrigger) - Read trigger
@@ -22,13 +22,13 @@
 * [GetInstanceHistory](#getinstancehistory) - Get a workflow instance history by id
 * [GetInstanceStageHistory](#getinstancestagehistory) - Get a workflow instance stage history
 
-## OrchestrationgetServerInfo
+## GetServerInfoOrchestration
 
 Get server info
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="orchestrationgetServerInfo" method="get" path="/api/orchestration/_info" -->
+<!-- UsageSnippet language="csharp" operationID="getServerInfo_orchestration" method="get" path="/api/orchestration/_info" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -38,20 +38,26 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Orchestration.V1.OrchestrationgetServerInfoAsync();
+var res = await sdk.Orchestration.V1.GetServerInfoOrchestrationAsync();
 
 // handle response
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
-**[OrchestrationgetServerInfoResponse](../../Models/Requests/OrchestrationgetServerInfoResponse.md)**
+**[GetServerInfoOrchestrationResponse](../../Models/Requests/GetServerInfoOrchestrationResponse.md)**
 
 ### Errors
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.Error        | default                                | application/json                       |
+| FormanceSDK.Models.Orchestration.Error | default                                | application/json                       |
 | FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## ListTriggers
@@ -77,9 +83,10 @@ var res = await sdk.Orchestration.V1.ListTriggersAsync();
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `Name`             | *string*           | :heavy_minus_sign: | search by name     |
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Name`                         | *string*                       | :heavy_minus_sign:             | search by name                 |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -89,7 +96,7 @@ var res = await sdk.Orchestration.V1.ListTriggersAsync();
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.Error        | default                                | application/json                       |
+| FormanceSDK.Models.Orchestration.Error | default                                | application/json                       |
 | FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## CreateTrigger
@@ -102,13 +109,14 @@ Create trigger
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Orchestration;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-TriggerData? req = null;
+TriggerData1? req = null;
 
 var res = await sdk.Orchestration.V1.CreateTriggerAsync(req);
 
@@ -117,9 +125,10 @@ var res = await sdk.Orchestration.V1.CreateTriggerAsync(req);
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `request`                                             | [TriggerData](../../Models/Components/TriggerData.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
+| Parameter                                                  | Type                                                       | Required                                                   | Description                                                |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| `request`                                                  | [TriggerData1](../../Models/Orchestration/TriggerData1.md) | :heavy_check_mark:                                         | The request object to use for the request.                 |
+| `serverURL`                                                | *string*                                                   | :heavy_minus_sign:                                         | An optional server URL to use.                             |
 
 ### Response
 
@@ -129,7 +138,7 @@ var res = await sdk.Orchestration.V1.CreateTriggerAsync(req);
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.Error        | default                                | application/json                       |
+| FormanceSDK.Models.Orchestration.Error | default                                | application/json                       |
 | FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## ReadTrigger
@@ -155,9 +164,10 @@ var res = await sdk.Orchestration.V1.ReadTriggerAsync(triggerID: "<id>");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `TriggerID`        | *string*           | :heavy_check_mark: | The trigger id     |
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `TriggerID`                    | *string*                       | :heavy_check_mark:             | The trigger id                 |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -167,7 +177,7 @@ var res = await sdk.Orchestration.V1.ReadTriggerAsync(triggerID: "<id>");
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.Error        | default                                | application/json                       |
+| FormanceSDK.Models.Orchestration.Error | default                                | application/json                       |
 | FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## DeleteTrigger
@@ -193,9 +203,10 @@ var res = await sdk.Orchestration.V1.DeleteTriggerAsync(triggerID: "<id>");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `TriggerID`        | *string*           | :heavy_check_mark: | The trigger id     |
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `TriggerID`                    | *string*                       | :heavy_check_mark:             | The trigger id                 |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -205,7 +216,7 @@ var res = await sdk.Orchestration.V1.DeleteTriggerAsync(triggerID: "<id>");
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.Error        | default                                | application/json                       |
+| FormanceSDK.Models.Orchestration.Error | default                                | application/json                       |
 | FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## ListTriggersOccurrences
@@ -231,9 +242,10 @@ var res = await sdk.Orchestration.V1.ListTriggersOccurrencesAsync(triggerID: "<i
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `TriggerID`        | *string*           | :heavy_check_mark: | The trigger id     |
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `TriggerID`                    | *string*                       | :heavy_check_mark:             | The trigger id                 |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -243,7 +255,7 @@ var res = await sdk.Orchestration.V1.ListTriggersOccurrencesAsync(triggerID: "<i
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.Error        | default                                | application/json                       |
+| FormanceSDK.Models.Orchestration.Error | default                                | application/json                       |
 | FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## ListWorkflows
@@ -267,6 +279,12 @@ var res = await sdk.Orchestration.V1.ListWorkflowsAsync();
 // handle response
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[Models.Requests.ListWorkflowsResponse](../../Models/Requests/ListWorkflowsResponse.md)**
@@ -275,7 +293,7 @@ var res = await sdk.Orchestration.V1.ListWorkflowsAsync();
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.Error        | default                                | application/json                       |
+| FormanceSDK.Models.Orchestration.Error | default                                | application/json                       |
 | FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## CreateWorkflow
@@ -288,13 +306,14 @@ Create a workflow
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Orchestration;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-CreateWorkflowRequest? req = null;
+WorkflowConfig? req = null;
 
 var res = await sdk.Orchestration.V1.CreateWorkflowAsync(req);
 
@@ -303,9 +322,10 @@ var res = await sdk.Orchestration.V1.CreateWorkflowAsync(req);
 
 ### Parameters
 
-| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
-| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `request`                                                                 | [CreateWorkflowRequest](../../Models/Components/CreateWorkflowRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `request`                                                      | [WorkflowConfig](../../Models/Orchestration/WorkflowConfig.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
+| `serverURL`                                                    | *string*                                                       | :heavy_minus_sign:                                             | An optional server URL to use.                                 |
 
 ### Response
 
@@ -315,7 +335,7 @@ var res = await sdk.Orchestration.V1.CreateWorkflowAsync(req);
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.Error        | default                                | application/json                       |
+| FormanceSDK.Models.Orchestration.Error | default                                | application/json                       |
 | FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## GetWorkflow
@@ -341,9 +361,10 @@ var res = await sdk.Orchestration.V1.GetWorkflowAsync(flowId: "xxx");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `FlowId`           | *string*           | :heavy_check_mark: | The flow id        | xxx                |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `FlowId`                       | *string*                       | :heavy_check_mark:             | The flow id                    | xxx                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -353,7 +374,7 @@ var res = await sdk.Orchestration.V1.GetWorkflowAsync(flowId: "xxx");
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.Error        | default                                | application/json                       |
+| FormanceSDK.Models.Orchestration.Error | default                                | application/json                       |
 | FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## DeleteWorkflow
@@ -379,9 +400,10 @@ var res = await sdk.Orchestration.V1.DeleteWorkflowAsync(flowId: "xxx");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `FlowId`           | *string*           | :heavy_check_mark: | The flow id        | xxx                |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `FlowId`                       | *string*                       | :heavy_check_mark:             | The flow id                    | xxx                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -391,7 +413,7 @@ var res = await sdk.Orchestration.V1.DeleteWorkflowAsync(flowId: "xxx");
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.Error        | default                                | application/json                       |
+| FormanceSDK.Models.Orchestration.Error | default                                | application/json                       |
 | FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## RunWorkflow
@@ -422,6 +444,7 @@ var res = await sdk.Orchestration.V1.RunWorkflowAsync(workflowID: "xxx");
 | `WorkflowID`                           | *string*                               | :heavy_check_mark:                     | The flow id                            | xxx                                    |
 | `Wait`                                 | *bool*                                 | :heavy_minus_sign:                     | Wait end of the workflow before return |                                        |
 | `RequestBody`                          | Dictionary<String, *string*>           | :heavy_minus_sign:                     | N/A                                    |                                        |
+| `serverURL`                            | *string*                               | :heavy_minus_sign:                     | An optional server URL to use.         | http://localhost:8080                  |
 
 ### Response
 
@@ -431,7 +454,7 @@ var res = await sdk.Orchestration.V1.RunWorkflowAsync(workflowID: "xxx");
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.Error        | default                                | application/json                       |
+| FormanceSDK.Models.Orchestration.Error | default                                | application/json                       |
 | FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## ListInstances
@@ -460,10 +483,11 @@ var res = await sdk.Orchestration.V1.ListInstancesAsync(
 
 ### Parameters
 
-| Parameter                | Type                     | Required                 | Description              | Example                  |
-| ------------------------ | ------------------------ | ------------------------ | ------------------------ | ------------------------ |
-| `WorkflowID`             | *string*                 | :heavy_minus_sign:       | A workflow id            | xxx                      |
-| `Running`                | *bool*                   | :heavy_minus_sign:       | Filter running instances | true                     |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `WorkflowID`                   | *string*                       | :heavy_minus_sign:             | A workflow id                  | xxx                            |
+| `Running`                      | *bool*                         | :heavy_minus_sign:             | Filter running instances       | true                           |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -473,7 +497,7 @@ var res = await sdk.Orchestration.V1.ListInstancesAsync(
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.Error        | default                                | application/json                       |
+| FormanceSDK.Models.Orchestration.Error | default                                | application/json                       |
 | FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## GetInstance
@@ -499,9 +523,10 @@ var res = await sdk.Orchestration.V1.GetInstanceAsync(instanceID: "xxx");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `InstanceID`       | *string*           | :heavy_check_mark: | The instance id    | xxx                |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `InstanceID`                   | *string*                       | :heavy_check_mark:             | The instance id                | xxx                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -511,7 +536,7 @@ var res = await sdk.Orchestration.V1.GetInstanceAsync(instanceID: "xxx");
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.Error        | default                                | application/json                       |
+| FormanceSDK.Models.Orchestration.Error | default                                | application/json                       |
 | FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## SendEvent
@@ -541,6 +566,7 @@ var res = await sdk.Orchestration.V1.SendEventAsync(instanceID: "xxx");
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `InstanceID`                                                          | *string*                                                              | :heavy_check_mark:                                                    | The instance id                                                       | xxx                                                                   |
 | `RequestBody`                                                         | [SendEventRequestBody](../../Models/Requests/SendEventRequestBody.md) | :heavy_minus_sign:                                                    | N/A                                                                   |                                                                       |
+| `serverURL`                                                           | *string*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        | http://localhost:8080                                                 |
 
 ### Response
 
@@ -550,7 +576,7 @@ var res = await sdk.Orchestration.V1.SendEventAsync(instanceID: "xxx");
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.Error        | default                                | application/json                       |
+| FormanceSDK.Models.Orchestration.Error | default                                | application/json                       |
 | FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## CancelEvent
@@ -576,9 +602,10 @@ var res = await sdk.Orchestration.V1.CancelEventAsync(instanceID: "xxx");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `InstanceID`       | *string*           | :heavy_check_mark: | The instance id    | xxx                |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `InstanceID`                   | *string*                       | :heavy_check_mark:             | The instance id                | xxx                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -588,7 +615,7 @@ var res = await sdk.Orchestration.V1.CancelEventAsync(instanceID: "xxx");
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.Error        | default                                | application/json                       |
+| FormanceSDK.Models.Orchestration.Error | default                                | application/json                       |
 | FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## GetInstanceHistory
@@ -614,9 +641,10 @@ var res = await sdk.Orchestration.V1.GetInstanceHistoryAsync(instanceID: "xxx");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `InstanceID`       | *string*           | :heavy_check_mark: | The instance id    | xxx                |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `InstanceID`                   | *string*                       | :heavy_check_mark:             | The instance id                | xxx                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -626,7 +654,7 @@ var res = await sdk.Orchestration.V1.GetInstanceHistoryAsync(instanceID: "xxx");
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.Error        | default                                | application/json                       |
+| FormanceSDK.Models.Orchestration.Error | default                                | application/json                       |
 | FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
 
 ## GetInstanceStageHistory
@@ -655,10 +683,11 @@ var res = await sdk.Orchestration.V1.GetInstanceStageHistoryAsync(
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `InstanceID`       | *string*           | :heavy_check_mark: | The instance id    | xxx                |
-| `Number`           | *long*             | :heavy_check_mark: | The stage number   | 0                  |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `InstanceID`                   | *string*                       | :heavy_check_mark:             | The instance id                | xxx                            |
+| `Number`                       | *long*                         | :heavy_check_mark:             | The stage number               | 0                              |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -668,5 +697,5 @@ var res = await sdk.Orchestration.V1.GetInstanceStageHistoryAsync(
 
 | Error Type                             | Status Code                            | Content Type                           |
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.Error        | default                                | application/json                       |
+| FormanceSDK.Models.Orchestration.Error | default                                | application/json                       |
 | FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |

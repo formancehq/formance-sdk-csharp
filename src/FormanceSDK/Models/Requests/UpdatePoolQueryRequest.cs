@@ -9,7 +9,7 @@
 #nullable enable
 namespace FormanceSDK.Models.Requests
 {
-    using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Payments;
     using FormanceSDK.Utils;
 
     public class UpdatePoolQueryRequest
@@ -21,6 +21,6 @@ namespace FormanceSDK.Models.Requests
         public string PoolId { get; set; } = default!;
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public Models.Components.UpdatePoolQueryRequest UpdatePoolQueryRequestValue { get; set; } = default!;
+        public Models.Payments.UpdatePoolQueryRequest UpdatePoolQueryRequestValue { get; set; } = default!;
     }
 }

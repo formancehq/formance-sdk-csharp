@@ -13,6 +13,7 @@ namespace FormanceSDK
     using FormanceSDK.Models.Components;
     using FormanceSDK.Models.Errors;
     using FormanceSDK.Models.Requests;
+    using FormanceSDK.Models.Search;
     using FormanceSDK.Utils;
     using FormanceSDK.Utils.Retries;
     using Newtonsoft.Json;
@@ -27,12 +28,13 @@ namespace FormanceSDK
         /// <summary>
         /// Get server info.
         /// </summary>
-        /// <returns>An awaitable task that returns a <see cref="SearchgetServerInfoResponse"/> response envelope when completed.</returns>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetServerInfoSearchResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
         [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
-        public  Task<SearchgetServerInfoResponse> SearchgetServerInfoAsync();
+        public  Task<GetServerInfoSearchResponse> GetServerInfoSearchAsync(string? serverUrl = null);
 
         /// <summary>
         /// search.v1.
@@ -41,17 +43,32 @@ namespace FormanceSDK
         /// Elasticsearch.v1 query engine.
         /// </remarks>
         /// <param name="request">A <see cref="Query"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="SearchResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
         [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
-        public  Task<SearchResponse> SearchAsync(Query request);
+        public  Task<SearchResponse> SearchAsync(Query request, string? serverUrl = null);
     }
 
     public class FormanceSearchV1: IFormanceSearchV1
     {
+        /// <summary>
+        /// List of server URLs available for the getServerInfo_search operation.
+        /// </summary>
+        public static readonly string[] GetServerInfoSearchServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the search operation.
+        /// </summary>
+        public static readonly string[] SearchServerList = {
+            "http://localhost:8080/",
+        };
+
         /// <summary>
         /// SDK Configuration.
         /// <see cref="SDKConfig"/>
@@ -66,14 +83,20 @@ namespace FormanceSDK
         /// <summary>
         /// Get server info.
         /// </summary>
-        /// <returns>An awaitable task that returns a <see cref="SearchgetServerInfoResponse"/> response envelope when completed.</returns>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetServerInfoSearchResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
         [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
-        public async  Task<SearchgetServerInfoResponse> SearchgetServerInfoAsync()
+        public async  Task<GetServerInfoSearchResponse> GetServerInfoSearchAsync(string? serverUrl = null)
         {
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetServerInfoSearchServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = baseUrl + "/api/search/_info";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -89,7 +112,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "searchgetServerInfo", new List<string> { "search:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getServerInfo_search", new List<string> { "search:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -130,17 +153,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ServerInfo obj;
+                    Models.Search.ServerInfo obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<ServerInfo>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Search.ServerInfo>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ServerInfo.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Search.ServerInfo.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    var response = new SearchgetServerInfoResponse()
+                    var response = new GetServerInfoSearchResponse()
                     {
                         HttpMeta = new Models.Components.HTTPMetadata()
                         {
@@ -168,17 +191,23 @@ namespace FormanceSDK
         /// Elasticsearch.v1 query engine.
         /// </remarks>
         /// <param name="request">A <see cref="Query"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="SearchResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
         [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
-        public async  Task<SearchResponse> SearchAsync(Query request)
+        public async  Task<SearchResponse> SearchAsync(Query request, string? serverUrl = null)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(SearchServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = baseUrl + "/api/search/";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);

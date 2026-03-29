@@ -12,6 +12,7 @@ namespace FormanceSDK
     using FormanceSDK.Hooks;
     using FormanceSDK.Models.Components;
     using FormanceSDK.Models.Errors;
+    using FormanceSDK.Models.Payments;
     using FormanceSDK.Models.Requests;
     using FormanceSDK.Utils;
     using FormanceSDK.Utils.Retries;
@@ -27,12 +28,13 @@ namespace FormanceSDK
         /// <summary>
         /// Get server info.
         /// </summary>
-        /// <returns>An awaitable task that returns a <see cref="PaymentsgetServerInfoResponse"/> response envelope when completed.</returns>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetServerInfoPaymentsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<PaymentsgetServerInfoResponse> PaymentsgetServerInfoAsync();
+        public  Task<GetServerInfoPaymentsResponse> GetServerInfoPaymentsAsync(string? serverUrl = null);
 
         /// <summary>
         /// Create a payment.
@@ -41,13 +43,14 @@ namespace FormanceSDK
         /// Create a payment.
         /// </remarks>
         /// <param name="request">A <see cref="PaymentRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="CreatePaymentResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<CreatePaymentResponse> CreatePaymentAsync(PaymentRequest request);
+        public  Task<CreatePaymentResponse> CreatePaymentAsync(PaymentRequest request, string? serverUrl = null);
 
         /// <summary>
         /// List payments.
@@ -61,6 +64,7 @@ namespace FormanceSDK
         /// </param>
         /// <param name="sort">Fields used to sort payments (default is date:desc).</param>
         /// <param name="query">Filters used to filter resources.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListPaymentsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -70,26 +74,29 @@ namespace FormanceSDK
             long? pageSize = 15,
             string? cursor = null,
             List<string>? sort = null,
-            string? query = null
+            string? query = null,
+            string? serverUrl = null
         );
 
         /// <summary>
         /// Get a payment.
         /// </summary>
         /// <param name="paymentId">The payment ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetPaymentResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<GetPaymentResponse> GetPaymentAsync(string paymentId);
+        public  Task<GetPaymentResponse> GetPaymentAsync(string paymentId, string? serverUrl = null);
 
         /// <summary>
         /// Update metadata.
         /// </summary>
         /// <param name="paymentId">The payment ID.</param>
         /// <param name="requestBody">Description not available.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="UpdateMetadataResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -98,7 +105,8 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<UpdateMetadataResponse> UpdateMetadataAsync(
             string paymentId,
-            Dictionary<string, string>? requestBody = null
+            Dictionary<string, string>? requestBody = null,
+            string? serverUrl = null
         );
 
         /// <summary>
@@ -113,6 +121,7 @@ namespace FormanceSDK
         /// </param>
         /// <param name="sort">Fields used to sort payments (default is date:desc).</param>
         /// <param name="query">Filters used to filter resources.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListTransferInitiationsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -122,7 +131,8 @@ namespace FormanceSDK
             long? pageSize = 15,
             string? cursor = null,
             List<string>? sort = null,
-            string? query = null
+            string? query = null,
+            string? serverUrl = null
         );
 
         /// <summary>
@@ -132,25 +142,33 @@ namespace FormanceSDK
         /// Create a transfer initiation.
         /// </remarks>
         /// <param name="request">A <see cref="TransferInitiationRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="CreateTransferInitiationResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<CreateTransferInitiationResponse> CreateTransferInitiationAsync(TransferInitiationRequest request);
+        public  Task<CreateTransferInitiationResponse> CreateTransferInitiationAsync(
+            TransferInitiationRequest request,
+            string? serverUrl = null
+        );
 
         /// <summary>
         /// Get a transfer initiation.
         /// </summary>
         /// <param name="transferId">The transfer ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetTransferInitiationResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="transferId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<GetTransferInitiationResponse> GetTransferInitiationAsync(string transferId);
+        public  Task<GetTransferInitiationResponse> GetTransferInitiationAsync(
+            string transferId,
+            string? serverUrl = null
+        );
 
         /// <summary>
         /// Delete a transfer initiation.
@@ -159,13 +177,17 @@ namespace FormanceSDK
         /// Delete a transfer initiation by its id.
         /// </remarks>
         /// <param name="transferId">The transfer ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteTransferInitiationResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="transferId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<DeleteTransferInitiationResponse> DeleteTransferInitiationAsync(string transferId);
+        public  Task<DeleteTransferInitiationResponse> DeleteTransferInitiationAsync(
+            string transferId,
+            string? serverUrl = null
+        );
 
         /// <summary>
         /// Update the status of a transfer initiation.
@@ -174,7 +196,8 @@ namespace FormanceSDK
         /// Update a transfer initiation status.
         /// </remarks>
         /// <param name="transferId">The transfer ID.</param>
-        /// <param name="updateTransferInitiationStatusRequest">A <see cref="FormanceSDK.Models.Components.UpdateTransferInitiationStatusRequest"/> parameter.</param>
+        /// <param name="updateTransferInitiationStatusRequest">A <see cref="FormanceSDK.Models.Payments.UpdateTransferInitiationStatusRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="UpdateTransferInitiationStatusResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="transferId"/> or <paramref name="updateTransferInitiationStatusRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -183,7 +206,8 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<UpdateTransferInitiationStatusResponse> UpdateTransferInitiationStatusAsync(
             string transferId,
-            Models.Components.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest
+            Models.Payments.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest,
+            string? serverUrl = null
         );
 
         /// <summary>
@@ -193,7 +217,8 @@ namespace FormanceSDK
         /// Reverse transfer initiation.
         /// </remarks>
         /// <param name="transferId">The transfer ID.</param>
-        /// <param name="reverseTransferInitiationRequest">A <see cref="FormanceSDK.Models.Components.ReverseTransferInitiationRequest"/> parameter.</param>
+        /// <param name="reverseTransferInitiationRequest">A <see cref="FormanceSDK.Models.Payments.ReverseTransferInitiationRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ReverseTransferInitiationResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="transferId"/> or <paramref name="reverseTransferInitiationRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -202,7 +227,8 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<ReverseTransferInitiationResponse> ReverseTransferInitiationAsync(
             string transferId,
-            Models.Components.ReverseTransferInitiationRequest reverseTransferInitiationRequest
+            Models.Payments.ReverseTransferInitiationRequest reverseTransferInitiationRequest,
+            string? serverUrl = null
         );
 
         /// <summary>
@@ -212,13 +238,17 @@ namespace FormanceSDK
         /// Retry a failed transfer initiation.
         /// </remarks>
         /// <param name="transferId">The transfer ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="RetryTransferInitiationResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="transferId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<RetryTransferInitiationResponse> RetryTransferInitiationAsync(string transferId);
+        public  Task<RetryTransferInitiationResponse> RetryTransferInitiationAsync(
+            string transferId,
+            string? serverUrl = null
+        );
 
         /// <summary>
         /// List Pools.
@@ -232,6 +262,7 @@ namespace FormanceSDK
         /// </param>
         /// <param name="sort">Fields used to sort payments (default is date:desc).</param>
         /// <param name="query">Filters used to filter resources.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListPoolsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -241,7 +272,8 @@ namespace FormanceSDK
             long? pageSize = 15,
             string? cursor = null,
             List<string>? sort = null,
-            string? query = null
+            string? query = null,
+            string? serverUrl = null
         );
 
         /// <summary>
@@ -251,25 +283,27 @@ namespace FormanceSDK
         /// Create a Pool.
         /// </remarks>
         /// <param name="request">A <see cref="PoolRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="CreatePoolResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<CreatePoolResponse> CreatePoolAsync(PoolRequest request);
+        public  Task<CreatePoolResponse> CreatePoolAsync(PoolRequest request, string? serverUrl = null);
 
         /// <summary>
         /// Get a Pool.
         /// </summary>
         /// <param name="poolId">The pool ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetPoolResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<GetPoolResponse> GetPoolAsync(string poolId);
+        public  Task<GetPoolResponse> GetPoolAsync(string poolId, string? serverUrl = null);
 
         /// <summary>
         /// Delete a Pool.
@@ -278,19 +312,21 @@ namespace FormanceSDK
         /// Delete a pool by its id.
         /// </remarks>
         /// <param name="poolId">The pool ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="DeletePoolResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<DeletePoolResponse> DeletePoolAsync(string poolId);
+        public  Task<DeletePoolResponse> DeletePoolAsync(string poolId, string? serverUrl = null);
 
         /// <summary>
         /// Update the query of a pool.
         /// </summary>
         /// <param name="poolId">The pool ID.</param>
-        /// <param name="updatePoolQueryRequest">A <see cref="FormanceSDK.Models.Components.UpdatePoolQueryRequest"/> parameter.</param>
+        /// <param name="updatePoolQueryRequest">A <see cref="FormanceSDK.Models.Payments.UpdatePoolQueryRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="UpdatePoolQueryResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="poolId"/> or <paramref name="updatePoolQueryRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -299,7 +335,8 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<UpdatePoolQueryResponse> UpdatePoolQueryAsync(
             string poolId,
-            Models.Components.UpdatePoolQueryRequest updatePoolQueryRequest
+            Models.Payments.UpdatePoolQueryRequest updatePoolQueryRequest,
+            string? serverUrl = null
         );
 
         /// <summary>
@@ -309,7 +346,8 @@ namespace FormanceSDK
         /// Add an account to a pool.
         /// </remarks>
         /// <param name="poolId">The pool ID.</param>
-        /// <param name="addAccountToPoolRequest">A <see cref="FormanceSDK.Models.Components.AddAccountToPoolRequest"/> parameter.</param>
+        /// <param name="addAccountToPoolRequest">A <see cref="FormanceSDK.Models.Payments.AddAccountToPoolRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="AddAccountToPoolResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="poolId"/> or <paramref name="addAccountToPoolRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -318,7 +356,8 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<AddAccountToPoolResponse> AddAccountToPoolAsync(
             string poolId,
-            Models.Components.AddAccountToPoolRequest addAccountToPoolRequest
+            Models.Payments.AddAccountToPoolRequest addAccountToPoolRequest,
+            string? serverUrl = null
         );
 
         /// <summary>
@@ -329,38 +368,45 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="poolId">The pool ID.</param>
         /// <param name="accountId">The account ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="RemoveAccountFromPoolResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="poolId"/> or <paramref name="accountId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<RemoveAccountFromPoolResponse> RemoveAccountFromPoolAsync(string poolId, string accountId);
+        public  Task<RemoveAccountFromPoolResponse> RemoveAccountFromPoolAsync(
+            string poolId,
+            string accountId,
+            string? serverUrl = null
+        );
 
         /// <summary>
         /// Get historical pool balances at a particular point in time.
         /// </summary>
         /// <param name="poolId">The pool ID.</param>
         /// <param name="at">Filter balances by date.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetPoolBalancesResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<GetPoolBalancesResponse> GetPoolBalancesAsync(string poolId, DateTime at);
+        public  Task<GetPoolBalancesResponse> GetPoolBalancesAsync(string poolId, DateTime at, string? serverUrl = null);
 
         /// <summary>
         /// Get latest pool balances.
         /// </summary>
         /// <param name="poolId">The pool ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetPoolBalancesLatestResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<GetPoolBalancesLatestResponse> GetPoolBalancesLatestAsync(string poolId);
+        public  Task<GetPoolBalancesLatestResponse> GetPoolBalancesLatestAsync(string poolId, string? serverUrl = null);
 
         /// <summary>
         /// Create an account.
@@ -369,61 +415,58 @@ namespace FormanceSDK
         /// Create an account.
         /// </remarks>
         /// <param name="request">A <see cref="AccountRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="CreateAccountResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<CreateAccountResponse> CreateAccountAsync(AccountRequest request);
+        public  Task<CreateAccountResponse> CreateAccountAsync(AccountRequest request, string? serverUrl = null);
 
         /// <summary>
         /// List accounts.
         /// </summary>
-        /// <param name="pageSize">The maximum number of results to return per page.</param>
-        /// <param name="cursor">
-        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
-        /// Set to the value of next for the next page of results.<br/>
-        /// Set to the value of previous for the previous page of results.<br/>
-        /// No other parameters can be set when this parameter is set.
-        /// </param>
-        /// <param name="sort">Fields used to sort payments (default is date:desc).</param>
-        /// <param name="query">Filters used to filter resources.</param>
-        /// <returns>An awaitable task that returns a <see cref="PaymentslistAccountsResponse"/> response envelope when completed.</returns>
+        /// <param name="request">A <see cref="ListAccountsPaymentsRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
+        /// <returns>An awaitable task that returns a <see cref="ListAccountsPaymentsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<PaymentslistAccountsResponse> PaymentslistAccountsAsync(
-            long? pageSize = 15,
-            string? cursor = null,
-            List<string>? sort = null,
-            string? query = null
+        public  Task<ListAccountsPaymentsResponse> ListAccountsPaymentsAsync(
+            ListAccountsPaymentsRequest? request = null,
+            string? serverUrl = null
         );
 
         /// <summary>
         /// Get an account.
         /// </summary>
         /// <param name="accountId">The account ID.</param>
-        /// <returns>An awaitable task that returns a <see cref="PaymentsgetAccountResponse"/> response envelope when completed.</returns>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetAccountPaymentsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="accountId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<PaymentsgetAccountResponse> PaymentsgetAccountAsync(string accountId);
+        public  Task<GetAccountPaymentsResponse> GetAccountPaymentsAsync(string accountId, string? serverUrl = null);
 
         /// <summary>
         /// Get account balances.
         /// </summary>
         /// <param name="request">A <see cref="GetAccountBalancesRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetAccountBalancesResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<GetAccountBalancesResponse> GetAccountBalancesAsync(GetAccountBalancesRequest request);
+        public  Task<GetAccountBalancesResponse> GetAccountBalancesAsync(
+            GetAccountBalancesRequest request,
+            string? serverUrl = null
+        );
 
         /// <summary>
         /// Create a BankAccount in Payments and on the PSP.
@@ -432,13 +475,17 @@ namespace FormanceSDK
         /// Create a bank account in Payments and on the PSP.
         /// </remarks>
         /// <param name="request">A <see cref="BankAccountRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="CreateBankAccountResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<CreateBankAccountResponse> CreateBankAccountAsync(BankAccountRequest request);
+        public  Task<CreateBankAccountResponse> CreateBankAccountAsync(
+            BankAccountRequest request,
+            string? serverUrl = null
+        );
 
         /// <summary>
         /// List bank accounts created by user on Formance.
@@ -454,6 +501,7 @@ namespace FormanceSDK
         /// No other parameters can be set when this parameter is set.
         /// </param>
         /// <param name="sort">Fields used to sort payments (default is date:desc).</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListBankAccountsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -462,26 +510,29 @@ namespace FormanceSDK
         public  Task<ListBankAccountsResponse> ListBankAccountsAsync(
             long? pageSize = 15,
             string? cursor = null,
-            List<string>? sort = null
+            List<string>? sort = null,
+            string? serverUrl = null
         );
 
         /// <summary>
         /// Get a bank account created by user on Formance.
         /// </summary>
         /// <param name="bankAccountId">The bank account ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetBankAccountResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="bankAccountId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<GetBankAccountResponse> GetBankAccountAsync(string bankAccountId);
+        public  Task<GetBankAccountResponse> GetBankAccountAsync(string bankAccountId, string? serverUrl = null);
 
         /// <summary>
         /// Forward a bank account to a connector.
         /// </summary>
         /// <param name="bankAccountId">The bank account ID.</param>
-        /// <param name="forwardBankAccountRequest">A <see cref="FormanceSDK.Models.Components.ForwardBankAccountRequest"/> parameter.</param>
+        /// <param name="forwardBankAccountRequest">A <see cref="FormanceSDK.Models.Payments.ForwardBankAccountRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ForwardBankAccountResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="bankAccountId"/> or <paramref name="forwardBankAccountRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -490,14 +541,16 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<ForwardBankAccountResponse> ForwardBankAccountAsync(
             string bankAccountId,
-            Models.Components.ForwardBankAccountRequest forwardBankAccountRequest
+            Models.Payments.ForwardBankAccountRequest forwardBankAccountRequest,
+            string? serverUrl = null
         );
 
         /// <summary>
         /// Update metadata of a bank account.
         /// </summary>
         /// <param name="bankAccountId">The bank account ID.</param>
-        /// <param name="updateBankAccountMetadataRequest">A <see cref="FormanceSDK.Models.Components.UpdateBankAccountMetadataRequest"/> parameter.</param>
+        /// <param name="updateBankAccountMetadataRequest">A <see cref="FormanceSDK.Models.Payments.UpdateBankAccountMetadataRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="UpdateBankAccountMetadataResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="bankAccountId"/> or <paramref name="updateBankAccountMetadataRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -506,7 +559,8 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<UpdateBankAccountMetadataResponse> UpdateBankAccountMetadataAsync(
             string bankAccountId,
-            Models.Components.UpdateBankAccountMetadataRequest updateBankAccountMetadataRequest
+            Models.Payments.UpdateBankAccountMetadataRequest updateBankAccountMetadataRequest,
+            string? serverUrl = null
         );
 
         /// <summary>
@@ -515,12 +569,13 @@ namespace FormanceSDK
         /// <remarks>
         /// List all installed connectors.
         /// </remarks>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListAllConnectorsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<ListAllConnectorsResponse> ListAllConnectorsAsync();
+        public  Task<ListAllConnectorsResponse> ListAllConnectorsAsync(string? serverUrl = null);
 
         /// <summary>
         /// List the configs of each available connector.
@@ -528,12 +583,15 @@ namespace FormanceSDK
         /// <remarks>
         /// List the configs of each available connector.
         /// </remarks>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListConfigsAvailableConnectorsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<ListConfigsAvailableConnectorsResponse> ListConfigsAvailableConnectorsAsync();
+        public  Task<ListConfigsAvailableConnectorsResponse> ListConfigsAvailableConnectorsAsync(
+            string? serverUrl = null
+        );
 
         /// <summary>
         /// Install a connector.
@@ -543,6 +601,7 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="connector">The name of the connector.</param>
         /// <param name="connectorConfig">Description not available.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="InstallConnectorResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorConfig"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -550,8 +609,9 @@ namespace FormanceSDK
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<InstallConnectorResponse> InstallConnectorAsync(
-            Connector connector,
-            ConnectorConfig connectorConfig
+            Models.Payments.Connector connector,
+            ConnectorConfig connectorConfig,
+            string? serverUrl = null
         );
 
         /// <summary>
@@ -561,13 +621,17 @@ namespace FormanceSDK
         /// Uninstall a connector by its name.
         /// </remarks>
         /// <param name="connector">The name of the connector.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="UninstallConnectorResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
-        public  Task<UninstallConnectorResponse> UninstallConnectorAsync(Connector connector);
+        public  Task<UninstallConnectorResponse> UninstallConnectorAsync(
+            Models.Payments.Connector connector,
+            string? serverUrl = null
+        );
 
         /// <summary>
         /// Uninstall a connector.
@@ -577,13 +641,18 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="connector">The name of the connector.</param>
         /// <param name="connectorId">The connector ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="UninstallConnectorV1Response"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<UninstallConnectorV1Response> UninstallConnectorV1Async(Connector connector, string connectorId);
+        public  Task<UninstallConnectorV1Response> UninstallConnectorV1Async(
+            Models.Payments.Connector connector,
+            string connectorId,
+            string? serverUrl = null
+        );
 
         /// <summary>
         /// Read the config of a connector.
@@ -592,13 +661,17 @@ namespace FormanceSDK
         /// Read connector config.
         /// </remarks>
         /// <param name="connector">The name of the connector.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ReadConnectorConfigResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
-        public  Task<ReadConnectorConfigResponse> ReadConnectorConfigAsync(Connector connector);
+        public  Task<ReadConnectorConfigResponse> ReadConnectorConfigAsync(
+            Models.Payments.Connector connector,
+            string? serverUrl = null
+        );
 
         /// <summary>
         /// Update the config of a connector.
@@ -609,6 +682,7 @@ namespace FormanceSDK
         /// <param name="connector">The name of the connector.</param>
         /// <param name="connectorId">The connector ID.</param>
         /// <param name="connectorConfig">Description not available.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="UpdateConnectorConfigV1Response"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="connectorId"/> or <paramref name="connectorConfig"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -616,9 +690,10 @@ namespace FormanceSDK
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<UpdateConnectorConfigV1Response> UpdateConnectorConfigV1Async(
-            Connector connector,
+            Models.Payments.Connector connector,
             string connectorId,
-            ConnectorConfig connectorConfig
+            ConnectorConfig connectorConfig,
+            string? serverUrl = null
         );
 
         /// <summary>
@@ -629,13 +704,18 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="connector">The name of the connector.</param>
         /// <param name="connectorId">The connector ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ReadConnectorConfigV1Response"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<ReadConnectorConfigV1Response> ReadConnectorConfigV1Async(Connector connector, string connectorId);
+        public  Task<ReadConnectorConfigV1Response> ReadConnectorConfigV1Async(
+            Models.Payments.Connector connector,
+            string connectorId,
+            string? serverUrl = null
+        );
 
         /// <summary>
         /// Reset a connector.
@@ -645,13 +725,17 @@ namespace FormanceSDK
         /// It will remove the connector and ALL PAYMENTS generated with it.
         /// </remarks>
         /// <param name="connector">The name of the connector.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ResetConnectorResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
-        public  Task<ResetConnectorResponse> ResetConnectorAsync(Connector connector);
+        public  Task<ResetConnectorResponse> ResetConnectorAsync(
+            Models.Payments.Connector connector,
+            string? serverUrl = null
+        );
 
         /// <summary>
         /// Reset a connector.
@@ -662,13 +746,18 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="connector">The name of the connector.</param>
         /// <param name="connectorId">The connector ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ResetConnectorV1Response"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<ResetConnectorV1Response> ResetConnectorV1Async(Connector connector, string connectorId);
+        public  Task<ResetConnectorV1Response> ResetConnectorV1Async(
+            Models.Payments.Connector connector,
+            string connectorId,
+            string? serverUrl = null
+        );
 
         /// <summary>
         /// List tasks from a connector.
@@ -684,6 +773,7 @@ namespace FormanceSDK
         /// Set to the value of previous for the previous page of results.<br/>
         /// No other parameters can be set when this parameter is set.
         /// </param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListConnectorTasksResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -691,9 +781,10 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
         public  Task<ListConnectorTasksResponse> ListConnectorTasksAsync(
-            Connector connector,
+            Models.Payments.Connector connector,
             long? pageSize = 15,
-            string? cursor = null
+            string? cursor = null,
+            string? serverUrl = null
         );
 
         /// <summary>
@@ -711,6 +802,7 @@ namespace FormanceSDK
         /// Set to the value of previous for the previous page of results.<br/>
         /// No other parameters can be set when this parameter is set.
         /// </param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListConnectorTasksV1Response"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -718,10 +810,11 @@ namespace FormanceSDK
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<ListConnectorTasksV1Response> ListConnectorTasksV1Async(
-            Connector connector,
+            Models.Payments.Connector connector,
             string connectorId,
             long? pageSize = 15,
-            string? cursor = null
+            string? cursor = null,
+            string? serverUrl = null
         );
 
         /// <summary>
@@ -732,6 +825,7 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="connector">The name of the connector.</param>
         /// <param name="taskId">The task ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetConnectorTaskResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="taskId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -739,7 +833,11 @@ namespace FormanceSDK
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
-        public  Task<GetConnectorTaskResponse> GetConnectorTaskAsync(Connector connector, string taskId);
+        public  Task<GetConnectorTaskResponse> GetConnectorTaskAsync(
+            Models.Payments.Connector connector,
+            string taskId,
+            string? serverUrl = null
+        );
 
         /// <summary>
         /// Read a specific task of the connector.
@@ -750,6 +848,7 @@ namespace FormanceSDK
         /// <param name="connector">The name of the connector.</param>
         /// <param name="connectorId">The connector ID.</param>
         /// <param name="taskId">The task ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetConnectorTaskV1Response"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="connectorId"/> or <paramref name="taskId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -757,9 +856,10 @@ namespace FormanceSDK
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<GetConnectorTaskV1Response> GetConnectorTaskV1Async(
-            Connector connector,
+            Models.Payments.Connector connector,
             string connectorId,
-            string taskId
+            string taskId,
+            string? serverUrl = null
         );
 
         /// <summary>
@@ -770,6 +870,7 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="connector">The name of the connector.</param>
         /// <param name="transferRequest">A <see cref="TransferRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ConnectorsTransferResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="transferRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -777,13 +878,329 @@ namespace FormanceSDK
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<ConnectorsTransferResponse> ConnectorsTransferAsync(
-            Connector connector,
-            TransferRequest transferRequest
+            Models.Payments.Connector connector,
+            TransferRequest transferRequest,
+            string? serverUrl = null
         );
     }
 
     public class FormancePaymentsV1: IFormancePaymentsV1
     {
+        /// <summary>
+        /// List of server URLs available for the getServerInfo_payments operation.
+        /// </summary>
+        public static readonly string[] GetServerInfoPaymentsServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the createPayment operation.
+        /// </summary>
+        public static readonly string[] CreatePaymentServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the listPayments operation.
+        /// </summary>
+        public static readonly string[] ListPaymentsServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the getPayment operation.
+        /// </summary>
+        public static readonly string[] GetPaymentServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the updateMetadata operation.
+        /// </summary>
+        public static readonly string[] UpdateMetadataServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the listTransferInitiations operation.
+        /// </summary>
+        public static readonly string[] ListTransferInitiationsServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the createTransferInitiation operation.
+        /// </summary>
+        public static readonly string[] CreateTransferInitiationServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the getTransferInitiation operation.
+        /// </summary>
+        public static readonly string[] GetTransferInitiationServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the deleteTransferInitiation operation.
+        /// </summary>
+        public static readonly string[] DeleteTransferInitiationServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the updateTransferInitiationStatus operation.
+        /// </summary>
+        public static readonly string[] UpdateTransferInitiationStatusServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the reverseTransferInitiation operation.
+        /// </summary>
+        public static readonly string[] ReverseTransferInitiationServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the retryTransferInitiation operation.
+        /// </summary>
+        public static readonly string[] RetryTransferInitiationServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the listPools operation.
+        /// </summary>
+        public static readonly string[] ListPoolsServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the createPool operation.
+        /// </summary>
+        public static readonly string[] CreatePoolServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the getPool operation.
+        /// </summary>
+        public static readonly string[] GetPoolServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the deletePool operation.
+        /// </summary>
+        public static readonly string[] DeletePoolServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the updatePoolQuery operation.
+        /// </summary>
+        public static readonly string[] UpdatePoolQueryServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the addAccountToPool operation.
+        /// </summary>
+        public static readonly string[] AddAccountToPoolServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the removeAccountFromPool operation.
+        /// </summary>
+        public static readonly string[] RemoveAccountFromPoolServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the getPoolBalances operation.
+        /// </summary>
+        public static readonly string[] GetPoolBalancesServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the getPoolBalancesLatest operation.
+        /// </summary>
+        public static readonly string[] GetPoolBalancesLatestServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the createAccount operation.
+        /// </summary>
+        public static readonly string[] CreateAccountServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the listAccounts_payments operation.
+        /// </summary>
+        public static readonly string[] ListAccountsPaymentsServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the getAccount_payments operation.
+        /// </summary>
+        public static readonly string[] GetAccountPaymentsServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the getAccountBalances operation.
+        /// </summary>
+        public static readonly string[] GetAccountBalancesServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the createBankAccount operation.
+        /// </summary>
+        public static readonly string[] CreateBankAccountServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the listBankAccounts operation.
+        /// </summary>
+        public static readonly string[] ListBankAccountsServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the getBankAccount operation.
+        /// </summary>
+        public static readonly string[] GetBankAccountServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the forwardBankAccount operation.
+        /// </summary>
+        public static readonly string[] ForwardBankAccountServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the updateBankAccountMetadata operation.
+        /// </summary>
+        public static readonly string[] UpdateBankAccountMetadataServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the listAllConnectors operation.
+        /// </summary>
+        public static readonly string[] ListAllConnectorsServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the listConfigsAvailableConnectors operation.
+        /// </summary>
+        public static readonly string[] ListConfigsAvailableConnectorsServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the installConnector operation.
+        /// </summary>
+        public static readonly string[] InstallConnectorServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the uninstallConnector operation.
+        /// </summary>
+        public static readonly string[] UninstallConnectorServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the uninstallConnectorV1 operation.
+        /// </summary>
+        public static readonly string[] UninstallConnectorV1ServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the readConnectorConfig operation.
+        /// </summary>
+        public static readonly string[] ReadConnectorConfigServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the updateConnectorConfigV1 operation.
+        /// </summary>
+        public static readonly string[] UpdateConnectorConfigV1ServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the readConnectorConfigV1 operation.
+        /// </summary>
+        public static readonly string[] ReadConnectorConfigV1ServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the resetConnector operation.
+        /// </summary>
+        public static readonly string[] ResetConnectorServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the resetConnectorV1 operation.
+        /// </summary>
+        public static readonly string[] ResetConnectorV1ServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the listConnectorTasks operation.
+        /// </summary>
+        public static readonly string[] ListConnectorTasksServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the listConnectorTasksV1 operation.
+        /// </summary>
+        public static readonly string[] ListConnectorTasksV1ServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the getConnectorTask operation.
+        /// </summary>
+        public static readonly string[] GetConnectorTaskServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the getConnectorTaskV1 operation.
+        /// </summary>
+        public static readonly string[] GetConnectorTaskV1ServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the connectorsTransfer operation.
+        /// </summary>
+        public static readonly string[] ConnectorsTransferServerList = {
+            "http://localhost:8080/",
+        };
+
         /// <summary>
         /// SDK Configuration.
         /// <see cref="SDKConfig"/>
@@ -798,14 +1215,20 @@ namespace FormanceSDK
         /// <summary>
         /// Get server info.
         /// </summary>
-        /// <returns>An awaitable task that returns a <see cref="PaymentsgetServerInfoResponse"/> response envelope when completed.</returns>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetServerInfoPaymentsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<PaymentsgetServerInfoResponse> PaymentsgetServerInfoAsync()
+        public async  Task<GetServerInfoPaymentsResponse> GetServerInfoPaymentsAsync(string? serverUrl = null)
         {
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetServerInfoPaymentsServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = baseUrl + "/api/payments/_info";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -821,7 +1244,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "paymentsgetServerInfo", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getServerInfo_payments", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -862,17 +1285,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    PaymentsServerInfo obj;
+                    Models.Payments.ServerInfo obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<PaymentsServerInfo>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Payments.ServerInfo>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into PaymentsServerInfo.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Payments.ServerInfo.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    var response = new PaymentsgetServerInfoResponse()
+                    var response = new GetServerInfoPaymentsResponse()
                     {
                         HttpMeta = new Models.Components.HTTPMetadata()
                         {
@@ -880,7 +1303,7 @@ namespace FormanceSDK
                             Request = httpRequest
                         }
                     };
-                    response.PaymentsServerInfo = obj;
+                    response.ServerInfo = obj;
                     return response;
                 }
 
@@ -916,17 +1339,23 @@ namespace FormanceSDK
         /// Create a payment.
         /// </remarks>
         /// <param name="request">A <see cref="PaymentRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="CreatePaymentResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<CreatePaymentResponse> CreatePaymentAsync(PaymentRequest request)
+        public async  Task<CreatePaymentResponse> CreatePaymentAsync(PaymentRequest request, string? serverUrl = null)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(CreatePaymentServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = baseUrl + "/api/payments/payments";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -989,14 +1418,14 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    PaymentResponse obj;
+                    Models.Payments.PaymentResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<PaymentResponse>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Payments.PaymentResponse>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into PaymentResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Payments.PaymentResponse.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
                     var response = new CreatePaymentResponse()
@@ -1048,6 +1477,7 @@ namespace FormanceSDK
         /// </param>
         /// <param name="sort">Fields used to sort payments (default is date:desc).</param>
         /// <param name="query">Filters used to filter resources.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListPaymentsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -1057,7 +1487,8 @@ namespace FormanceSDK
             long? pageSize = 15,
             string? cursor = null,
             List<string>? sort = null,
-            string? query = null
+            string? query = null,
+            string? serverUrl = null
         )
         {
             var request = new ListPaymentsRequest()
@@ -1068,7 +1499,12 @@ namespace FormanceSDK
                 Query = query,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(ListPaymentsServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/payments", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1176,13 +1612,14 @@ namespace FormanceSDK
         /// Get a payment.
         /// </summary>
         /// <param name="paymentId">The payment ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetPaymentResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<GetPaymentResponse> GetPaymentAsync(string paymentId)
+        public async  Task<GetPaymentResponse> GetPaymentAsync(string paymentId, string? serverUrl = null)
         {
             if (paymentId == null) throw new ArgumentNullException(nameof(paymentId));
 
@@ -1191,7 +1628,12 @@ namespace FormanceSDK
                 PaymentId = paymentId,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetPaymentServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/payments/{paymentId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1248,14 +1690,14 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    PaymentResponse obj;
+                    Models.Payments.PaymentResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<PaymentResponse>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Payments.PaymentResponse>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into PaymentResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Payments.PaymentResponse.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
                     var response = new GetPaymentResponse()
@@ -1300,6 +1742,7 @@ namespace FormanceSDK
         /// </summary>
         /// <param name="paymentId">The payment ID.</param>
         /// <param name="requestBody">Description not available.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="UpdateMetadataResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="paymentId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -1308,7 +1751,8 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<UpdateMetadataResponse> UpdateMetadataAsync(
             string paymentId,
-            Dictionary<string, string>? requestBody = null
+            Dictionary<string, string>? requestBody = null,
+            string? serverUrl = null
         )
         {
             if (paymentId == null) throw new ArgumentNullException(nameof(paymentId));
@@ -1319,7 +1763,12 @@ namespace FormanceSDK
                 RequestBody = requestBody,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(UpdateMetadataServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/payments/{paymentId}/metadata", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Patch, urlString);
@@ -1423,6 +1872,7 @@ namespace FormanceSDK
         /// </param>
         /// <param name="sort">Fields used to sort payments (default is date:desc).</param>
         /// <param name="query">Filters used to filter resources.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListTransferInitiationsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -1432,7 +1882,8 @@ namespace FormanceSDK
             long? pageSize = 15,
             string? cursor = null,
             List<string>? sort = null,
-            string? query = null
+            string? query = null,
+            string? serverUrl = null
         )
         {
             var request = new ListTransferInitiationsRequest()
@@ -1443,7 +1894,12 @@ namespace FormanceSDK
                 Query = query,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(ListTransferInitiationsServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/transfer-initiations", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1554,6 +2010,7 @@ namespace FormanceSDK
         /// Create a transfer initiation.
         /// </remarks>
         /// <param name="request">A <see cref="TransferInitiationRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="CreateTransferInitiationResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -1561,12 +2018,18 @@ namespace FormanceSDK
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<CreateTransferInitiationResponse> CreateTransferInitiationAsync(
-            TransferInitiationRequest request
+            TransferInitiationRequest request,
+            string? serverUrl = null
         )
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(CreateTransferInitiationServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = baseUrl + "/api/payments/transfer-initiations";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -1680,13 +2143,17 @@ namespace FormanceSDK
         /// Get a transfer initiation.
         /// </summary>
         /// <param name="transferId">The transfer ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetTransferInitiationResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="transferId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<GetTransferInitiationResponse> GetTransferInitiationAsync(string transferId)
+        public async  Task<GetTransferInitiationResponse> GetTransferInitiationAsync(
+            string transferId,
+            string? serverUrl = null
+        )
         {
             if (transferId == null) throw new ArgumentNullException(nameof(transferId));
 
@@ -1695,7 +2162,12 @@ namespace FormanceSDK
                 TransferId = transferId,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetTransferInitiationServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/transfer-initiations/{transferId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1806,13 +2278,17 @@ namespace FormanceSDK
         /// Delete a transfer initiation by its id.
         /// </remarks>
         /// <param name="transferId">The transfer ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteTransferInitiationResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="transferId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<DeleteTransferInitiationResponse> DeleteTransferInitiationAsync(string transferId)
+        public async  Task<DeleteTransferInitiationResponse> DeleteTransferInitiationAsync(
+            string transferId,
+            string? serverUrl = null
+        )
         {
             if (transferId == null) throw new ArgumentNullException(nameof(transferId));
 
@@ -1821,7 +2297,12 @@ namespace FormanceSDK
                 TransferId = transferId,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(DeleteTransferInitiationServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/transfer-initiations/{transferId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
@@ -1914,7 +2395,8 @@ namespace FormanceSDK
         /// Update a transfer initiation status.
         /// </remarks>
         /// <param name="transferId">The transfer ID.</param>
-        /// <param name="updateTransferInitiationStatusRequest">A <see cref="FormanceSDK.Models.Components.UpdateTransferInitiationStatusRequest"/> parameter.</param>
+        /// <param name="updateTransferInitiationStatusRequest">A <see cref="FormanceSDK.Models.Payments.UpdateTransferInitiationStatusRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="UpdateTransferInitiationStatusResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="transferId"/> or <paramref name="updateTransferInitiationStatusRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -1923,7 +2405,8 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<UpdateTransferInitiationStatusResponse> UpdateTransferInitiationStatusAsync(
             string transferId,
-            Models.Components.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest
+            Models.Payments.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest,
+            string? serverUrl = null
         )
         {
             if (transferId == null) throw new ArgumentNullException(nameof(transferId));
@@ -1935,7 +2418,12 @@ namespace FormanceSDK
                 UpdateTransferInitiationStatusRequestValue = updateTransferInitiationStatusRequest,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(UpdateTransferInitiationStatusServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/transfer-initiations/{transferId}/status", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -2034,7 +2522,8 @@ namespace FormanceSDK
         /// Reverse transfer initiation.
         /// </remarks>
         /// <param name="transferId">The transfer ID.</param>
-        /// <param name="reverseTransferInitiationRequest">A <see cref="FormanceSDK.Models.Components.ReverseTransferInitiationRequest"/> parameter.</param>
+        /// <param name="reverseTransferInitiationRequest">A <see cref="FormanceSDK.Models.Payments.ReverseTransferInitiationRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ReverseTransferInitiationResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="transferId"/> or <paramref name="reverseTransferInitiationRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -2043,7 +2532,8 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<ReverseTransferInitiationResponse> ReverseTransferInitiationAsync(
             string transferId,
-            Models.Components.ReverseTransferInitiationRequest reverseTransferInitiationRequest
+            Models.Payments.ReverseTransferInitiationRequest reverseTransferInitiationRequest,
+            string? serverUrl = null
         )
         {
             if (transferId == null) throw new ArgumentNullException(nameof(transferId));
@@ -2055,7 +2545,12 @@ namespace FormanceSDK
                 ReverseTransferInitiationRequestValue = reverseTransferInitiationRequest,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(ReverseTransferInitiationServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/transfer-initiations/{transferId}/reverse", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -2154,13 +2649,17 @@ namespace FormanceSDK
         /// Retry a failed transfer initiation.
         /// </remarks>
         /// <param name="transferId">The transfer ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="RetryTransferInitiationResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="transferId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<RetryTransferInitiationResponse> RetryTransferInitiationAsync(string transferId)
+        public async  Task<RetryTransferInitiationResponse> RetryTransferInitiationAsync(
+            string transferId,
+            string? serverUrl = null
+        )
         {
             if (transferId == null) throw new ArgumentNullException(nameof(transferId));
 
@@ -2169,7 +2668,12 @@ namespace FormanceSDK
                 TransferId = transferId,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(RetryTransferInitiationServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/transfer-initiations/{transferId}/retry", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -2267,6 +2771,7 @@ namespace FormanceSDK
         /// </param>
         /// <param name="sort">Fields used to sort payments (default is date:desc).</param>
         /// <param name="query">Filters used to filter resources.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListPoolsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -2276,7 +2781,8 @@ namespace FormanceSDK
             long? pageSize = 15,
             string? cursor = null,
             List<string>? sort = null,
-            string? query = null
+            string? query = null,
+            string? serverUrl = null
         )
         {
             var request = new ListPoolsRequest()
@@ -2287,7 +2793,12 @@ namespace FormanceSDK
                 Query = query,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(ListPoolsServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/pools", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -2398,17 +2909,23 @@ namespace FormanceSDK
         /// Create a Pool.
         /// </remarks>
         /// <param name="request">A <see cref="PoolRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="CreatePoolResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<CreatePoolResponse> CreatePoolAsync(PoolRequest request)
+        public async  Task<CreatePoolResponse> CreatePoolAsync(PoolRequest request, string? serverUrl = null)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(CreatePoolServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = baseUrl + "/api/payments/pools";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -2522,13 +3039,14 @@ namespace FormanceSDK
         /// Get a Pool.
         /// </summary>
         /// <param name="poolId">The pool ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetPoolResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<GetPoolResponse> GetPoolAsync(string poolId)
+        public async  Task<GetPoolResponse> GetPoolAsync(string poolId, string? serverUrl = null)
         {
             if (poolId == null) throw new ArgumentNullException(nameof(poolId));
 
@@ -2537,7 +3055,12 @@ namespace FormanceSDK
                 PoolId = poolId,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetPoolServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/pools/{poolId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -2648,13 +3171,14 @@ namespace FormanceSDK
         /// Delete a pool by its id.
         /// </remarks>
         /// <param name="poolId">The pool ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="DeletePoolResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<DeletePoolResponse> DeletePoolAsync(string poolId)
+        public async  Task<DeletePoolResponse> DeletePoolAsync(string poolId, string? serverUrl = null)
         {
             if (poolId == null) throw new ArgumentNullException(nameof(poolId));
 
@@ -2663,7 +3187,12 @@ namespace FormanceSDK
                 PoolId = poolId,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(DeletePoolServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/pools/{poolId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
@@ -2753,7 +3282,8 @@ namespace FormanceSDK
         /// Update the query of a pool.
         /// </summary>
         /// <param name="poolId">The pool ID.</param>
-        /// <param name="updatePoolQueryRequest">A <see cref="FormanceSDK.Models.Components.UpdatePoolQueryRequest"/> parameter.</param>
+        /// <param name="updatePoolQueryRequest">A <see cref="FormanceSDK.Models.Payments.UpdatePoolQueryRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="UpdatePoolQueryResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="poolId"/> or <paramref name="updatePoolQueryRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -2762,7 +3292,8 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<UpdatePoolQueryResponse> UpdatePoolQueryAsync(
             string poolId,
-            Models.Components.UpdatePoolQueryRequest updatePoolQueryRequest
+            Models.Payments.UpdatePoolQueryRequest updatePoolQueryRequest,
+            string? serverUrl = null
         )
         {
             if (poolId == null) throw new ArgumentNullException(nameof(poolId));
@@ -2774,7 +3305,12 @@ namespace FormanceSDK
                 UpdatePoolQueryRequestValue = updatePoolQueryRequest,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(UpdatePoolQueryServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/pools/{poolId}/query", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Patch, urlString);
@@ -2873,7 +3409,8 @@ namespace FormanceSDK
         /// Add an account to a pool.
         /// </remarks>
         /// <param name="poolId">The pool ID.</param>
-        /// <param name="addAccountToPoolRequest">A <see cref="FormanceSDK.Models.Components.AddAccountToPoolRequest"/> parameter.</param>
+        /// <param name="addAccountToPoolRequest">A <see cref="FormanceSDK.Models.Payments.AddAccountToPoolRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="AddAccountToPoolResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="poolId"/> or <paramref name="addAccountToPoolRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -2882,7 +3419,8 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<AddAccountToPoolResponse> AddAccountToPoolAsync(
             string poolId,
-            Models.Components.AddAccountToPoolRequest addAccountToPoolRequest
+            Models.Payments.AddAccountToPoolRequest addAccountToPoolRequest,
+            string? serverUrl = null
         )
         {
             if (poolId == null) throw new ArgumentNullException(nameof(poolId));
@@ -2894,7 +3432,12 @@ namespace FormanceSDK
                 AddAccountToPoolRequestValue = addAccountToPoolRequest,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(AddAccountToPoolServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/pools/{poolId}/accounts", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -2994,13 +3537,18 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="poolId">The pool ID.</param>
         /// <param name="accountId">The account ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="RemoveAccountFromPoolResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="poolId"/> or <paramref name="accountId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<RemoveAccountFromPoolResponse> RemoveAccountFromPoolAsync(string poolId, string accountId)
+        public async  Task<RemoveAccountFromPoolResponse> RemoveAccountFromPoolAsync(
+            string poolId,
+            string accountId,
+            string? serverUrl = null
+        )
         {
             if (poolId == null) throw new ArgumentNullException(nameof(poolId));
             if (accountId == null) throw new ArgumentNullException(nameof(accountId));
@@ -3011,7 +3559,12 @@ namespace FormanceSDK
                 AccountId = accountId,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(RemoveAccountFromPoolServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/pools/{poolId}/accounts/{accountId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
@@ -3102,13 +3655,18 @@ namespace FormanceSDK
         /// </summary>
         /// <param name="poolId">The pool ID.</param>
         /// <param name="at">Filter balances by date.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetPoolBalancesResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<GetPoolBalancesResponse> GetPoolBalancesAsync(string poolId, DateTime at)
+        public async  Task<GetPoolBalancesResponse> GetPoolBalancesAsync(
+            string poolId,
+            DateTime at,
+            string? serverUrl = null
+        )
         {
             if (poolId == null) throw new ArgumentNullException(nameof(poolId));
 
@@ -3118,7 +3676,12 @@ namespace FormanceSDK
                 At = at,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetPoolBalancesServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/pools/{poolId}/balances", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -3226,13 +3789,17 @@ namespace FormanceSDK
         /// Get latest pool balances.
         /// </summary>
         /// <param name="poolId">The pool ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetPoolBalancesLatestResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="poolId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<GetPoolBalancesLatestResponse> GetPoolBalancesLatestAsync(string poolId)
+        public async  Task<GetPoolBalancesLatestResponse> GetPoolBalancesLatestAsync(
+            string poolId,
+            string? serverUrl = null
+        )
         {
             if (poolId == null) throw new ArgumentNullException(nameof(poolId));
 
@@ -3241,7 +3808,12 @@ namespace FormanceSDK
                 PoolId = poolId,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetPoolBalancesLatestServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/pools/{poolId}/balances/latest", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -3352,17 +3924,23 @@ namespace FormanceSDK
         /// Create an account.
         /// </remarks>
         /// <param name="request">A <see cref="AccountRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="CreateAccountResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<CreateAccountResponse> CreateAccountAsync(AccountRequest request)
+        public async  Task<CreateAccountResponse> CreateAccountAsync(AccountRequest request, string? serverUrl = null)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(CreateAccountServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = baseUrl + "/api/payments/accounts";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -3425,14 +4003,14 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    PaymentsAccountResponse obj;
+                    Models.Payments.AccountResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<PaymentsAccountResponse>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Payments.AccountResponse>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into PaymentsAccountResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Payments.AccountResponse.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
                     var response = new CreateAccountResponse()
@@ -3443,7 +4021,7 @@ namespace FormanceSDK
                             Request = httpRequest
                         }
                     };
-                    response.PaymentsAccountResponse = obj;
+                    response.AccountResponse = obj;
                     return response;
                 }
 
@@ -3475,36 +4053,24 @@ namespace FormanceSDK
         /// <summary>
         /// List accounts.
         /// </summary>
-        /// <param name="pageSize">The maximum number of results to return per page.</param>
-        /// <param name="cursor">
-        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
-        /// Set to the value of next for the next page of results.<br/>
-        /// Set to the value of previous for the previous page of results.<br/>
-        /// No other parameters can be set when this parameter is set.
-        /// </param>
-        /// <param name="sort">Fields used to sort payments (default is date:desc).</param>
-        /// <param name="query">Filters used to filter resources.</param>
-        /// <returns>An awaitable task that returns a <see cref="PaymentslistAccountsResponse"/> response envelope when completed.</returns>
+        /// <param name="request">A <see cref="ListAccountsPaymentsRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
+        /// <returns>An awaitable task that returns a <see cref="ListAccountsPaymentsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<PaymentslistAccountsResponse> PaymentslistAccountsAsync(
-            long? pageSize = 15,
-            string? cursor = null,
-            List<string>? sort = null,
-            string? query = null
+        public async  Task<ListAccountsPaymentsResponse> ListAccountsPaymentsAsync(
+            ListAccountsPaymentsRequest? request = null,
+            string? serverUrl = null
         )
         {
-            var request = new PaymentslistAccountsRequest()
+            string baseUrl = Utilities.TemplateUrl(ListAccountsPaymentsServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
             {
-                PageSize = pageSize,
-                Cursor = cursor,
-                Sort = sort,
-                Query = query,
-            };
-
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/accounts", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -3515,12 +4081,18 @@ namespace FormanceSDK
                 httpRequest.Headers.Add("Accept", "application/json");
             }
 
+            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
             if (SDKConfiguration.SecuritySource != null)
             {
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "paymentslistAccounts", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listAccounts_payments", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -3571,7 +4143,7 @@ namespace FormanceSDK
                         throw new ResponseValidationException("Failed to deserialize response body into AccountsCursor.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    var response = new PaymentslistAccountsResponse()
+                    var response = new ListAccountsPaymentsResponse()
                     {
                         HttpMeta = new Models.Components.HTTPMetadata()
                         {
@@ -3612,22 +4184,31 @@ namespace FormanceSDK
         /// Get an account.
         /// </summary>
         /// <param name="accountId">The account ID.</param>
-        /// <returns>An awaitable task that returns a <see cref="PaymentsgetAccountResponse"/> response envelope when completed.</returns>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetAccountPaymentsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="accountId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<PaymentsgetAccountResponse> PaymentsgetAccountAsync(string accountId)
+        public async  Task<GetAccountPaymentsResponse> GetAccountPaymentsAsync(
+            string accountId,
+            string? serverUrl = null
+        )
         {
             if (accountId == null) throw new ArgumentNullException(nameof(accountId));
 
-            var request = new PaymentsgetAccountRequest()
+            var request = new GetAccountPaymentsRequest()
             {
                 AccountId = accountId,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetAccountPaymentsServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/accounts/{accountId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -3643,7 +4224,7 @@ namespace FormanceSDK
                 httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "paymentsgetAccount", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getAccount_payments", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -3684,17 +4265,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    PaymentsAccountResponse obj;
+                    Models.Payments.AccountResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<PaymentsAccountResponse>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Payments.AccountResponse>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into PaymentsAccountResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Payments.AccountResponse.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    var response = new PaymentsgetAccountResponse()
+                    var response = new GetAccountPaymentsResponse()
                     {
                         HttpMeta = new Models.Components.HTTPMetadata()
                         {
@@ -3702,7 +4283,7 @@ namespace FormanceSDK
                             Request = httpRequest
                         }
                     };
-                    response.PaymentsAccountResponse = obj;
+                    response.AccountResponse = obj;
                     return response;
                 }
 
@@ -3735,17 +4316,26 @@ namespace FormanceSDK
         /// Get account balances.
         /// </summary>
         /// <param name="request">A <see cref="GetAccountBalancesRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetAccountBalancesResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<GetAccountBalancesResponse> GetAccountBalancesAsync(GetAccountBalancesRequest request)
+        public async  Task<GetAccountBalancesResponse> GetAccountBalancesAsync(
+            GetAccountBalancesRequest request,
+            string? serverUrl = null
+        )
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetAccountBalancesServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/accounts/{accountId}/balances", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -3856,17 +4446,26 @@ namespace FormanceSDK
         /// Create a bank account in Payments and on the PSP.
         /// </remarks>
         /// <param name="request">A <see cref="BankAccountRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="CreateBankAccountResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<CreateBankAccountResponse> CreateBankAccountAsync(BankAccountRequest request)
+        public async  Task<CreateBankAccountResponse> CreateBankAccountAsync(
+            BankAccountRequest request,
+            string? serverUrl = null
+        )
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(CreateBankAccountServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = baseUrl + "/api/payments/bank-accounts";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -3990,6 +4589,7 @@ namespace FormanceSDK
         /// No other parameters can be set when this parameter is set.
         /// </param>
         /// <param name="sort">Fields used to sort payments (default is date:desc).</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListBankAccountsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -3998,7 +4598,8 @@ namespace FormanceSDK
         public async  Task<ListBankAccountsResponse> ListBankAccountsAsync(
             long? pageSize = 15,
             string? cursor = null,
-            List<string>? sort = null
+            List<string>? sort = null,
+            string? serverUrl = null
         )
         {
             var request = new ListBankAccountsRequest()
@@ -4008,7 +4609,12 @@ namespace FormanceSDK
                 Sort = sort,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(ListBankAccountsServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/bank-accounts", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -4116,13 +4722,14 @@ namespace FormanceSDK
         /// Get a bank account created by user on Formance.
         /// </summary>
         /// <param name="bankAccountId">The bank account ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetBankAccountResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="bankAccountId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<GetBankAccountResponse> GetBankAccountAsync(string bankAccountId)
+        public async  Task<GetBankAccountResponse> GetBankAccountAsync(string bankAccountId, string? serverUrl = null)
         {
             if (bankAccountId == null) throw new ArgumentNullException(nameof(bankAccountId));
 
@@ -4131,7 +4738,12 @@ namespace FormanceSDK
                 BankAccountId = bankAccountId,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetBankAccountServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/bank-accounts/{bankAccountId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -4239,7 +4851,8 @@ namespace FormanceSDK
         /// Forward a bank account to a connector.
         /// </summary>
         /// <param name="bankAccountId">The bank account ID.</param>
-        /// <param name="forwardBankAccountRequest">A <see cref="FormanceSDK.Models.Components.ForwardBankAccountRequest"/> parameter.</param>
+        /// <param name="forwardBankAccountRequest">A <see cref="FormanceSDK.Models.Payments.ForwardBankAccountRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ForwardBankAccountResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="bankAccountId"/> or <paramref name="forwardBankAccountRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -4248,7 +4861,8 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<ForwardBankAccountResponse> ForwardBankAccountAsync(
             string bankAccountId,
-            Models.Components.ForwardBankAccountRequest forwardBankAccountRequest
+            Models.Payments.ForwardBankAccountRequest forwardBankAccountRequest,
+            string? serverUrl = null
         )
         {
             if (bankAccountId == null) throw new ArgumentNullException(nameof(bankAccountId));
@@ -4260,7 +4874,12 @@ namespace FormanceSDK
                 ForwardBankAccountRequestValue = forwardBankAccountRequest,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(ForwardBankAccountServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/bank-accounts/{bankAccountId}/forward", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -4374,7 +4993,8 @@ namespace FormanceSDK
         /// Update metadata of a bank account.
         /// </summary>
         /// <param name="bankAccountId">The bank account ID.</param>
-        /// <param name="updateBankAccountMetadataRequest">A <see cref="FormanceSDK.Models.Components.UpdateBankAccountMetadataRequest"/> parameter.</param>
+        /// <param name="updateBankAccountMetadataRequest">A <see cref="FormanceSDK.Models.Payments.UpdateBankAccountMetadataRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="UpdateBankAccountMetadataResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="bankAccountId"/> or <paramref name="updateBankAccountMetadataRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -4383,7 +5003,8 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<UpdateBankAccountMetadataResponse> UpdateBankAccountMetadataAsync(
             string bankAccountId,
-            Models.Components.UpdateBankAccountMetadataRequest updateBankAccountMetadataRequest
+            Models.Payments.UpdateBankAccountMetadataRequest updateBankAccountMetadataRequest,
+            string? serverUrl = null
         )
         {
             if (bankAccountId == null) throw new ArgumentNullException(nameof(bankAccountId));
@@ -4395,7 +5016,12 @@ namespace FormanceSDK
                 UpdateBankAccountMetadataRequestValue = updateBankAccountMetadataRequest,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(UpdateBankAccountMetadataServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/bank-accounts/{bankAccountId}/metadata", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Patch, urlString);
@@ -4493,14 +5119,20 @@ namespace FormanceSDK
         /// <remarks>
         /// List all installed connectors.
         /// </remarks>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListAllConnectorsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<ListAllConnectorsResponse> ListAllConnectorsAsync()
+        public async  Task<ListAllConnectorsResponse> ListAllConnectorsAsync(string? serverUrl = null)
         {
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(ListAllConnectorsServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = baseUrl + "/api/payments/connectors";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -4610,14 +5242,22 @@ namespace FormanceSDK
         /// <remarks>
         /// List the configs of each available connector.
         /// </remarks>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListConfigsAvailableConnectorsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<ListConfigsAvailableConnectorsResponse> ListConfigsAvailableConnectorsAsync()
+        public async  Task<ListConfigsAvailableConnectorsResponse> ListConfigsAvailableConnectorsAsync(
+            string? serverUrl = null
+        )
         {
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(ListConfigsAvailableConnectorsServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = baseUrl + "/api/payments/connectors/configs";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -4729,6 +5369,7 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="connector">The name of the connector.</param>
         /// <param name="connectorConfig">Description not available.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="InstallConnectorResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorConfig"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -4736,8 +5377,9 @@ namespace FormanceSDK
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<InstallConnectorResponse> InstallConnectorAsync(
-            Connector connector,
-            ConnectorConfig connectorConfig
+            Models.Payments.Connector connector,
+            ConnectorConfig connectorConfig,
+            string? serverUrl = null
         )
         {
             if (connectorConfig == null) throw new ArgumentNullException(nameof(connectorConfig));
@@ -4748,7 +5390,12 @@ namespace FormanceSDK
                 ConnectorConfig = connectorConfig,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(InstallConnectorServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -4865,20 +5512,29 @@ namespace FormanceSDK
         /// Uninstall a connector by its name.
         /// </remarks>
         /// <param name="connector">The name of the connector.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="UninstallConnectorResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
-        public async  Task<UninstallConnectorResponse> UninstallConnectorAsync(Connector connector)
+        public async  Task<UninstallConnectorResponse> UninstallConnectorAsync(
+            Models.Payments.Connector connector,
+            string? serverUrl = null
+        )
         {
             var request = new UninstallConnectorRequest()
             {
                 Connector = connector,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(UninstallConnectorServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
@@ -4972,6 +5628,7 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="connector">The name of the connector.</param>
         /// <param name="connectorId">The connector ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="UninstallConnectorV1Response"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -4979,8 +5636,9 @@ namespace FormanceSDK
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<UninstallConnectorV1Response> UninstallConnectorV1Async(
-            Connector connector,
-            string connectorId
+            Models.Payments.Connector connector,
+            string connectorId,
+            string? serverUrl = null
         )
         {
             if (connectorId == null) throw new ArgumentNullException(nameof(connectorId));
@@ -4991,7 +5649,12 @@ namespace FormanceSDK
                 ConnectorId = connectorId,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(UninstallConnectorV1ServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/{connectorId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
@@ -5084,20 +5747,29 @@ namespace FormanceSDK
         /// Read connector config.
         /// </remarks>
         /// <param name="connector">The name of the connector.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ReadConnectorConfigResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
-        public async  Task<ReadConnectorConfigResponse> ReadConnectorConfigAsync(Connector connector)
+        public async  Task<ReadConnectorConfigResponse> ReadConnectorConfigAsync(
+            Models.Payments.Connector connector,
+            string? serverUrl = null
+        )
         {
             var request = new ReadConnectorConfigRequest()
             {
                 Connector = connector,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(ReadConnectorConfigServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/config", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -5210,6 +5882,7 @@ namespace FormanceSDK
         /// <param name="connector">The name of the connector.</param>
         /// <param name="connectorId">The connector ID.</param>
         /// <param name="connectorConfig">Description not available.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="UpdateConnectorConfigV1Response"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="connectorId"/> or <paramref name="connectorConfig"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -5217,9 +5890,10 @@ namespace FormanceSDK
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<UpdateConnectorConfigV1Response> UpdateConnectorConfigV1Async(
-            Connector connector,
+            Models.Payments.Connector connector,
             string connectorId,
-            ConnectorConfig connectorConfig
+            ConnectorConfig connectorConfig,
+            string? serverUrl = null
         )
         {
             if (connectorId == null) throw new ArgumentNullException(nameof(connectorId));
@@ -5232,7 +5906,12 @@ namespace FormanceSDK
                 ConnectorConfig = connectorConfig,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(UpdateConnectorConfigV1ServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/{connectorId}/config", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -5332,6 +6011,7 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="connector">The name of the connector.</param>
         /// <param name="connectorId">The connector ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ReadConnectorConfigV1Response"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -5339,8 +6019,9 @@ namespace FormanceSDK
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<ReadConnectorConfigV1Response> ReadConnectorConfigV1Async(
-            Connector connector,
-            string connectorId
+            Models.Payments.Connector connector,
+            string connectorId,
+            string? serverUrl = null
         )
         {
             if (connectorId == null) throw new ArgumentNullException(nameof(connectorId));
@@ -5351,7 +6032,12 @@ namespace FormanceSDK
                 ConnectorId = connectorId,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(ReadConnectorConfigV1ServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/{connectorId}/config", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -5463,20 +6149,29 @@ namespace FormanceSDK
         /// It will remove the connector and ALL PAYMENTS generated with it.
         /// </remarks>
         /// <param name="connector">The name of the connector.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ResetConnectorResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
-        public async  Task<ResetConnectorResponse> ResetConnectorAsync(Connector connector)
+        public async  Task<ResetConnectorResponse> ResetConnectorAsync(
+            Models.Payments.Connector connector,
+            string? serverUrl = null
+        )
         {
             var request = new ResetConnectorRequest()
             {
                 Connector = connector,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(ResetConnectorServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/reset", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -5571,13 +6266,18 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="connector">The name of the connector.</param>
         /// <param name="connectorId">The connector ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ResetConnectorV1Response"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<ResetConnectorV1Response> ResetConnectorV1Async(Connector connector, string connectorId)
+        public async  Task<ResetConnectorV1Response> ResetConnectorV1Async(
+            Models.Payments.Connector connector,
+            string connectorId,
+            string? serverUrl = null
+        )
         {
             if (connectorId == null) throw new ArgumentNullException(nameof(connectorId));
 
@@ -5587,7 +6287,12 @@ namespace FormanceSDK
                 ConnectorId = connectorId,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(ResetConnectorV1ServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/{connectorId}/reset", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -5687,6 +6392,7 @@ namespace FormanceSDK
         /// Set to the value of previous for the previous page of results.<br/>
         /// No other parameters can be set when this parameter is set.
         /// </param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListConnectorTasksResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -5694,9 +6400,10 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
         public async  Task<ListConnectorTasksResponse> ListConnectorTasksAsync(
-            Connector connector,
+            Models.Payments.Connector connector,
             long? pageSize = 15,
-            string? cursor = null
+            string? cursor = null,
+            string? serverUrl = null
         )
         {
             var request = new ListConnectorTasksRequest()
@@ -5706,7 +6413,12 @@ namespace FormanceSDK
                 Cursor = cursor,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(ListConnectorTasksServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/tasks", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -5825,6 +6537,7 @@ namespace FormanceSDK
         /// Set to the value of previous for the previous page of results.<br/>
         /// No other parameters can be set when this parameter is set.
         /// </param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListConnectorTasksV1Response"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -5832,10 +6545,11 @@ namespace FormanceSDK
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<ListConnectorTasksV1Response> ListConnectorTasksV1Async(
-            Connector connector,
+            Models.Payments.Connector connector,
             string connectorId,
             long? pageSize = 15,
-            string? cursor = null
+            string? cursor = null,
+            string? serverUrl = null
         )
         {
             if (connectorId == null) throw new ArgumentNullException(nameof(connectorId));
@@ -5848,7 +6562,12 @@ namespace FormanceSDK
                 Cursor = cursor,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(ListConnectorTasksV1ServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/{connectorId}/tasks", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -5960,6 +6679,7 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="connector">The name of the connector.</param>
         /// <param name="taskId">The task ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetConnectorTaskResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="taskId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -5967,7 +6687,11 @@ namespace FormanceSDK
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible")]
-        public async  Task<GetConnectorTaskResponse> GetConnectorTaskAsync(Connector connector, string taskId)
+        public async  Task<GetConnectorTaskResponse> GetConnectorTaskAsync(
+            Models.Payments.Connector connector,
+            string taskId,
+            string? serverUrl = null
+        )
         {
             if (taskId == null) throw new ArgumentNullException(nameof(taskId));
 
@@ -5977,7 +6701,12 @@ namespace FormanceSDK
                 TaskId = taskId,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetConnectorTaskServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/tasks/{taskId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -6090,6 +6819,7 @@ namespace FormanceSDK
         /// <param name="connector">The name of the connector.</param>
         /// <param name="connectorId">The connector ID.</param>
         /// <param name="taskId">The task ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetConnectorTaskV1Response"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="connectorId"/> or <paramref name="taskId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -6097,9 +6827,10 @@ namespace FormanceSDK
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<GetConnectorTaskV1Response> GetConnectorTaskV1Async(
-            Connector connector,
+            Models.Payments.Connector connector,
             string connectorId,
-            string taskId
+            string taskId,
+            string? serverUrl = null
         )
         {
             if (connectorId == null) throw new ArgumentNullException(nameof(connectorId));
@@ -6112,7 +6843,12 @@ namespace FormanceSDK
                 TaskId = taskId,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetConnectorTaskV1ServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/{connectorId}/tasks/{taskId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -6224,6 +6960,7 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="connector">The name of the connector.</param>
         /// <param name="transferRequest">A <see cref="TransferRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ConnectorsTransferResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="transferRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -6231,8 +6968,9 @@ namespace FormanceSDK
         /// <exception cref="PaymentsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<ConnectorsTransferResponse> ConnectorsTransferAsync(
-            Connector connector,
-            TransferRequest transferRequest
+            Models.Payments.Connector connector,
+            TransferRequest transferRequest,
+            string? serverUrl = null
         )
         {
             if (transferRequest == null) throw new ArgumentNullException(nameof(transferRequest));
@@ -6243,7 +6981,12 @@ namespace FormanceSDK
                 TransferRequest = transferRequest,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(ConnectorsTransferServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/payments/connectors/{connector}/transfers", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);

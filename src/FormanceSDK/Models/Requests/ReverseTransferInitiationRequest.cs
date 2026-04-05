@@ -9,7 +9,7 @@
 #nullable enable
 namespace FormanceSDK.Models.Requests
 {
-    using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Payments;
     using FormanceSDK.Utils;
 
     public class ReverseTransferInitiationRequest
@@ -21,6 +21,6 @@ namespace FormanceSDK.Models.Requests
         public string TransferId { get; set; } = default!;
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public Models.Components.ReverseTransferInitiationRequest ReverseTransferInitiationRequestValue { get; set; } = default!;
+        public Models.Payments.ReverseTransferInitiationRequest ReverseTransferInitiationRequestValue { get; set; } = default!;
     }
 }

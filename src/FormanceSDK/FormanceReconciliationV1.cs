@@ -12,6 +12,7 @@ namespace FormanceSDK
     using FormanceSDK.Hooks;
     using FormanceSDK.Models.Components;
     using FormanceSDK.Models.Errors;
+    using FormanceSDK.Models.Reconciliation;
     using FormanceSDK.Models.Requests;
     using FormanceSDK.Utils;
     using FormanceSDK.Utils.Retries;
@@ -27,31 +28,40 @@ namespace FormanceSDK
         /// <summary>
         /// Get server info.
         /// </summary>
-        /// <returns>An awaitable task that returns a <see cref="ReconciliationgetServerInfoResponse"/> response envelope when completed.</returns>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetServerInfoReconciliationResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<ReconciliationgetServerInfoResponse> ReconciliationgetServerInfoAsync();
+        public  Task<GetServerInfoReconciliationResponse> GetServerInfoReconciliationAsync(string? serverUrl = null);
 
         /// <summary>
         /// Create a policy.
         /// </summary>
         /// <remarks>
-        /// Create a policy.
+        /// Create a policy<br/>
+        /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="PolicyRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="CreatePolicyResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<CreatePolicyResponse> CreatePolicyAsync(PolicyRequest request);
+        public  Task<CreatePolicyResponse> CreatePolicyAsync(PolicyRequest request, string? serverUrl = null);
 
         /// <summary>
         /// List policies.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="pageSize">The maximum number of results to return per page.</param>
         /// <param name="cursor">
         /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
@@ -59,59 +69,81 @@ namespace FormanceSDK
         /// Set to the value of previous for the previous page of results.<br/>
         /// No other parameters can be set when this parameter is set.
         /// </param>
+        /// <param name="requestBody">Description not available.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListPoliciesResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<ListPoliciesResponse> ListPoliciesAsync(long? pageSize = null, string? cursor = null);
+        public  Task<ListPoliciesResponse> ListPoliciesAsync(
+            long? pageSize = null,
+            string? cursor = null,
+            Dictionary<string, object>? requestBody = null,
+            string? serverUrl = null
+        );
 
         /// <summary>
         /// Delete a policy.
         /// </summary>
         /// <remarks>
-        /// Delete a policy by its id.
+        /// Delete a policy by its id.<br/>
+        /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="policyID">The policy ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="DeletePolicyResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="policyID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<DeletePolicyResponse> DeletePolicyAsync(string policyID);
+        public  Task<DeletePolicyResponse> DeletePolicyAsync(string policyID, string? serverUrl = null);
 
         /// <summary>
         /// Get a policy.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="policyID">The policy ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetPolicyResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="policyID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<GetPolicyResponse> GetPolicyAsync(string policyID);
+        public  Task<GetPolicyResponse> GetPolicyAsync(string policyID, string? serverUrl = null);
 
         /// <summary>
         /// Reconcile using a policy.
         /// </summary>
         /// <remarks>
-        /// Reconcile using a policy.
+        /// Reconcile using a policy<br/>
+        /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="policyID">The policy ID.</param>
         /// <param name="reconciliationRequest">A <see cref="ReconciliationRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ReconcileResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="policyID"/> or <paramref name="reconciliationRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<ReconcileResponse> ReconcileAsync(string policyID, ReconciliationRequest reconciliationRequest);
+        public  Task<ReconcileResponse> ReconcileAsync(
+            string policyID,
+            ReconciliationRequest reconciliationRequest,
+            string? serverUrl = null
+        );
 
         /// <summary>
         /// List reconciliations.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="pageSize">The maximum number of results to return per page.</param>
         /// <param name="cursor">
         /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
@@ -119,28 +151,95 @@ namespace FormanceSDK
         /// Set to the value of previous for the previous page of results.<br/>
         /// No other parameters can be set when this parameter is set.
         /// </param>
+        /// <param name="requestBody">Description not available.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListReconciliationsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<ListReconciliationsResponse> ListReconciliationsAsync(long? pageSize = null, string? cursor = null);
+        public  Task<ListReconciliationsResponse> ListReconciliationsAsync(
+            long? pageSize = null,
+            string? cursor = null,
+            Dictionary<string, object>? requestBody = null,
+            string? serverUrl = null
+        );
 
         /// <summary>
         /// Get a reconciliation.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="reconciliationID">The reconciliation ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetReconciliationResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="reconciliationID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<GetReconciliationResponse> GetReconciliationAsync(string reconciliationID);
+        public  Task<GetReconciliationResponse> GetReconciliationAsync(string reconciliationID, string? serverUrl = null);
     }
 
     public class FormanceReconciliationV1: IFormanceReconciliationV1
     {
+        /// <summary>
+        /// List of server URLs available for the getServerInfo_reconciliation operation.
+        /// </summary>
+        public static readonly string[] GetServerInfoReconciliationServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the createPolicy operation.
+        /// </summary>
+        public static readonly string[] CreatePolicyServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the listPolicies operation.
+        /// </summary>
+        public static readonly string[] ListPoliciesServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the deletePolicy operation.
+        /// </summary>
+        public static readonly string[] DeletePolicyServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the getPolicy operation.
+        /// </summary>
+        public static readonly string[] GetPolicyServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the reconcile operation.
+        /// </summary>
+        public static readonly string[] ReconcileServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the listReconciliations operation.
+        /// </summary>
+        public static readonly string[] ListReconciliationsServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the getReconciliation operation.
+        /// </summary>
+        public static readonly string[] GetReconciliationServerList = {
+            "http://localhost:8080/",
+        };
+
         /// <summary>
         /// SDK Configuration.
         /// <see cref="SDKConfig"/>
@@ -155,14 +254,25 @@ namespace FormanceSDK
         /// <summary>
         /// Get server info.
         /// </summary>
-        /// <returns>An awaitable task that returns a <see cref="ReconciliationgetServerInfoResponse"/> response envelope when completed.</returns>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetServerInfoReconciliationResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<ReconciliationgetServerInfoResponse> ReconciliationgetServerInfoAsync()
+        public async  Task<GetServerInfoReconciliationResponse> GetServerInfoReconciliationAsync(
+            string? serverUrl = null
+        )
         {
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetServerInfoReconciliationServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = baseUrl + "/api/reconciliation/_info";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -175,10 +285,10 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "reconciliationgetServerInfo", new List<string> { "reconciliation:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getServerInfo_reconciliation", new List<string> { "reconciliation:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -219,17 +329,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ServerInfo obj;
+                    Models.Reconciliation.ServerInfo obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<ServerInfo>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ServerInfo>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ServerInfo.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ServerInfo.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    var response = new ReconciliationgetServerInfoResponse()
+                    var response = new GetServerInfoReconciliationResponse()
                     {
                         HttpMeta = new Models.Components.HTTPMetadata()
                         {
@@ -248,17 +358,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ReconciliationErrorResponsePayload payload;
+                    Models.Reconciliation.ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ReconciliationErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ReconciliationErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ReconciliationErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Reconciliation.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -270,20 +380,27 @@ namespace FormanceSDK
         /// Create a policy.
         /// </summary>
         /// <remarks>
-        /// Create a policy.
+        /// Create a policy<br/>
+        /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="PolicyRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="CreatePolicyResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<CreatePolicyResponse> CreatePolicyAsync(PolicyRequest request)
+        public async  Task<CreatePolicyResponse> CreatePolicyAsync(PolicyRequest request, string? serverUrl = null)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(CreatePolicyServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = baseUrl + "/api/reconciliation/policies";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -302,7 +419,7 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createPolicy", new List<string> { "reconciliation:write" }, SDKConfiguration.SecuritySource);
@@ -375,17 +492,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ReconciliationErrorResponsePayload payload;
+                    Models.Reconciliation.ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ReconciliationErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ReconciliationErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ReconciliationErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Reconciliation.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -396,6 +513,9 @@ namespace FormanceSDK
         /// <summary>
         /// List policies.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="pageSize">The maximum number of results to return per page.</param>
         /// <param name="cursor">
         /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
@@ -403,20 +523,33 @@ namespace FormanceSDK
         /// Set to the value of previous for the previous page of results.<br/>
         /// No other parameters can be set when this parameter is set.
         /// </param>
+        /// <param name="requestBody">Description not available.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListPoliciesResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<ListPoliciesResponse> ListPoliciesAsync(long? pageSize = null, string? cursor = null)
+        public async  Task<ListPoliciesResponse> ListPoliciesAsync(
+            long? pageSize = null,
+            string? cursor = null,
+            Dictionary<string, object>? requestBody = null,
+            string? serverUrl = null
+        )
         {
             var request = new ListPoliciesRequest()
             {
                 PageSize = pageSize,
                 Cursor = cursor,
+                RequestBody = requestBody,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(ListPoliciesServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/policies", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -427,9 +560,15 @@ namespace FormanceSDK
                 httpRequest.Headers.Add("Accept", "application/json");
             }
 
+            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listPolicies", new List<string> { "reconciliation:read" }, SDKConfiguration.SecuritySource);
@@ -502,17 +641,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ReconciliationErrorResponsePayload payload;
+                    Models.Reconciliation.ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ReconciliationErrorResponsePayload>(httpResponseBody, NullValueHandling.Include);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Include);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ReconciliationErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ReconciliationErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Reconciliation.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -524,16 +663,18 @@ namespace FormanceSDK
         /// Delete a policy.
         /// </summary>
         /// <remarks>
-        /// Delete a policy by its id.
+        /// Delete a policy by its id.<br/>
+        /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="policyID">The policy ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="DeletePolicyResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="policyID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<DeletePolicyResponse> DeletePolicyAsync(string policyID)
+        public async  Task<DeletePolicyResponse> DeletePolicyAsync(string policyID, string? serverUrl = null)
         {
             if (policyID == null) throw new ArgumentNullException(nameof(policyID));
 
@@ -542,7 +683,12 @@ namespace FormanceSDK
                 PolicyID = policyID,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(DeletePolicyServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/policies/{policyID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
@@ -555,7 +701,7 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deletePolicy", new List<string> { "reconciliation:write" }, SDKConfiguration.SecuritySource);
@@ -610,17 +756,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ReconciliationErrorResponsePayload payload;
+                    Models.Reconciliation.ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ReconciliationErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ReconciliationErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ReconciliationErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Reconciliation.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -631,14 +777,18 @@ namespace FormanceSDK
         /// <summary>
         /// Get a policy.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="policyID">The policy ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetPolicyResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="policyID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<GetPolicyResponse> GetPolicyAsync(string policyID)
+        public async  Task<GetPolicyResponse> GetPolicyAsync(string policyID, string? serverUrl = null)
         {
             if (policyID == null) throw new ArgumentNullException(nameof(policyID));
 
@@ -647,7 +797,12 @@ namespace FormanceSDK
                 PolicyID = policyID,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetPolicyServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/policies/{policyID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -660,7 +815,7 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getPolicy", new List<string> { "reconciliation:read" }, SDKConfiguration.SecuritySource);
@@ -733,17 +888,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ReconciliationErrorResponsePayload payload;
+                    Models.Reconciliation.ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ReconciliationErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ReconciliationErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ReconciliationErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Reconciliation.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -755,19 +910,22 @@ namespace FormanceSDK
         /// Reconcile using a policy.
         /// </summary>
         /// <remarks>
-        /// Reconcile using a policy.
+        /// Reconcile using a policy<br/>
+        /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="policyID">The policy ID.</param>
         /// <param name="reconciliationRequest">A <see cref="ReconciliationRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ReconcileResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="policyID"/> or <paramref name="reconciliationRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<ReconcileResponse> ReconcileAsync(
             string policyID,
-            ReconciliationRequest reconciliationRequest
+            ReconciliationRequest reconciliationRequest,
+            string? serverUrl = null
         )
         {
             if (policyID == null) throw new ArgumentNullException(nameof(policyID));
@@ -779,7 +937,12 @@ namespace FormanceSDK
                 ReconciliationRequest = reconciliationRequest,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(ReconcileServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/policies/{policyID}/reconciliation", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -798,7 +961,7 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "reconcile", new List<string> { "reconciliation:write" }, SDKConfiguration.SecuritySource);
@@ -871,17 +1034,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ReconciliationErrorResponsePayload payload;
+                    Models.Reconciliation.ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ReconciliationErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ReconciliationErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ReconciliationErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Reconciliation.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -892,6 +1055,9 @@ namespace FormanceSDK
         /// <summary>
         /// List reconciliations.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="pageSize">The maximum number of results to return per page.</param>
         /// <param name="cursor">
         /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
@@ -899,23 +1065,33 @@ namespace FormanceSDK
         /// Set to the value of previous for the previous page of results.<br/>
         /// No other parameters can be set when this parameter is set.
         /// </param>
+        /// <param name="requestBody">Description not available.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListReconciliationsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<ListReconciliationsResponse> ListReconciliationsAsync(
             long? pageSize = null,
-            string? cursor = null
+            string? cursor = null,
+            Dictionary<string, object>? requestBody = null,
+            string? serverUrl = null
         )
         {
             var request = new ListReconciliationsRequest()
             {
                 PageSize = pageSize,
                 Cursor = cursor,
+                RequestBody = requestBody,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(ListReconciliationsServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/reconciliations", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -926,9 +1102,15 @@ namespace FormanceSDK
                 httpRequest.Headers.Add("Accept", "application/json");
             }
 
+            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listReconciliations", new List<string> { "reconciliation:read" }, SDKConfiguration.SecuritySource);
@@ -1001,17 +1183,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ReconciliationErrorResponsePayload payload;
+                    Models.Reconciliation.ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ReconciliationErrorResponsePayload>(httpResponseBody, NullValueHandling.Include);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Include);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ReconciliationErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ReconciliationErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Reconciliation.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1022,14 +1204,21 @@ namespace FormanceSDK
         /// <summary>
         /// Get a reconciliation.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="reconciliationID">The reconciliation ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetReconciliationResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="reconciliationID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ReconciliationErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<GetReconciliationResponse> GetReconciliationAsync(string reconciliationID)
+        public async  Task<GetReconciliationResponse> GetReconciliationAsync(
+            string reconciliationID,
+            string? serverUrl = null
+        )
         {
             if (reconciliationID == null) throw new ArgumentNullException(nameof(reconciliationID));
 
@@ -1038,7 +1227,12 @@ namespace FormanceSDK
                 ReconciliationID = reconciliationID,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetReconciliationServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/reconciliations/{reconciliationID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1051,7 +1245,7 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getReconciliation", new List<string> { "reconciliation:read" }, SDKConfiguration.SecuritySource);
@@ -1124,17 +1318,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ReconciliationErrorResponsePayload payload;
+                    Models.Reconciliation.ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ReconciliationErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ReconciliationErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ReconciliationErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Reconciliation.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());

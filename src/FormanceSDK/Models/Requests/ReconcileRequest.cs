@@ -9,7 +9,7 @@
 #nullable enable
 namespace FormanceSDK.Models.Requests
 {
-    using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Reconciliation;
     using FormanceSDK.Utils;
 
     public class ReconcileRequest

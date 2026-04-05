@@ -1,0 +1,12 @@
+# V2SchemaData
+
+Schema data structure for ledger schemas
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               | Example                                                                                   |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `V2ChartOfAccounts`                                                                       | Dictionary<String, [V2ChartSegment](../../Models/Ledger/V2ChartSegment.md)>               | :heavy_check_mark:                                                                        | Chart of account                                                                          | {<br/>"users": {<br/>"$userID": {<br/>".pattern": "^[0-9]{16}$"<br/>}<br/>}<br/>}         |
+| `V2TransactionTemplates`                                                                  | Dictionary<String, [V2TransactionTemplate](../../Models/Ledger/V2TransactionTemplate.md)> | :heavy_minus_sign:                                                                        | Transaction templates                                                                     |                                                                                           |
+| `V2QueryTemplates`                                                                        | Dictionary<String, [V2QueryTemplate](../../Models/Ledger/V2QueryTemplate.md)>             | :heavy_minus_sign:                                                                        | Query templates                                                                           |                                                                                           |

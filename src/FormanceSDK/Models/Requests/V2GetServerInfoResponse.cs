@@ -10,6 +10,7 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Orchestration;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 

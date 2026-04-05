@@ -10,6 +10,7 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Ledger;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace FormanceSDK.Models.Requests
         /// <summary>
         /// OK.
         /// </summary>
-        public Models.Components.V2RevertTransactionResponse? V2RevertTransactionResponseValue { get; set; }
+        public Models.Ledger.V2CreateTransactionResponse? V2CreateTransactionResponse { get; set; }
 
         public Dictionary<string, List<string>> Headers { get; set; } = new Dictionary<string, List<string>>();
     }

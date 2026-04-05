@@ -22,17 +22,17 @@ namespace FormanceSDK.Utils
         /// <summary>
         /// The version of the SDK.
         /// </summary>
-        public const string SdkVersion = "4.0.0";
+        public const string SdkVersion = "4.1.0";
 
         /// <summary>
         /// The version of the SDK generator used to create this SDK.
         /// </summary>
-        public const string SdkGenVersion = "2.865.2";
+        public const string SdkGenVersion = "2.879.6";
 
         /// <summary>
         /// The version of the OpenAPI document used to generate this SDK.
         /// </summary>
-        public const string OpenApiDocVersion = "v0.0.0";
+        public const string OpenApiDocVersion = "SDK_VERSION";
     }
 }
 

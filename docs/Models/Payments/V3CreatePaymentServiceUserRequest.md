@@ -1,0 +1,12 @@
+# V3CreatePaymentServiceUserRequest
+
+
+## Fields
+
+| Field                                                                       | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `Name`                                                                      | *string*                                                                    | :heavy_check_mark:                                                          | N/A                                                                         |
+| `V3ContactDetailsRequest`                                                   | [V3ContactDetailsRequest](../../Models/Payments/V3ContactDetailsRequest.md) | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `V3AddressRequest`                                                          | [V3AddressRequest](../../Models/Payments/V3AddressRequest.md)               | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `BankAccountIDs`                                                            | List<*string*>                                                              | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `V3Metadata`                                                                | Dictionary<String, *string*>                                                | :heavy_minus_sign:                                                          | N/A                                                                         |

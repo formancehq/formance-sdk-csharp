@@ -7,8 +7,8 @@
 * [GetInfo](#getinfo) - Show server information
 * [GetLedgerInfo](#getledgerinfo) - Get information about a ledger
 * [CountAccounts](#countaccounts) - Count the accounts from a ledger
-* [ListAccounts](#listaccounts) - List accounts from a ledger
-* [GetAccount](#getaccount) - Get account by its address
+* [ListAccountsLedger](#listaccountsledger) - List accounts from a ledger
+* [GetAccountLedger](#getaccountledger) - Get account by its address
 * [AddMetadataToAccount](#addmetadatatoaccount) - Add metadata to an account
 * [GetMapping](#getmapping) - Get the mapping of a ledger
 * [UpdateMapping](#updatemapping) - Update the mapping of a ledger
@@ -46,16 +46,22 @@ var res = await sdk.Ledger.V1.GetInfoAsync();
 // handle response
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[GetInfoResponse](../../Models/Requests/GetInfoResponse.md)**
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
-| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| FormanceSDK.Models.Ledger.ErrorResponseError | default                                      | application/json                             |
+| FormanceSDK.Models.Errors.SDKException       | 4XX, 5XX                                     | \*/\*                                        |
 
 ## GetLedgerInfo
 
@@ -80,9 +86,10 @@ var res = await sdk.Ledger.V1.GetLedgerInfoAsync(ledger: "ledger001");
 
 ### Parameters
 
-| Parameter           | Type                | Required            | Description         | Example             |
-| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
-| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -90,10 +97,10 @@ var res = await sdk.Ledger.V1.GetLedgerInfoAsync(ledger: "ledger001");
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
-| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| FormanceSDK.Models.Ledger.ErrorResponseError | default                                      | application/json                             |
+| FormanceSDK.Models.Errors.SDKException       | 4XX, 5XX                                     | \*/\*                                        |
 
 ## CountAccounts
 
@@ -179,6 +186,7 @@ var res = await sdk.Ledger.V1.CountAccountsAsync(
 | `Ledger`                                                                                                                         | *string*                                                                                                                         | :heavy_check_mark:                                                                                                               | Name of the ledger.                                                                                                              | ledger001                                                                                                                        |
 | `Address`                                                                                                                        | *string*                                                                                                                         | :heavy_minus_sign:                                                                                                               | Filter accounts by address pattern (regular expression placed between ^ and $).                                                  | users:.+                                                                                                                         |
 | `Metadata`                                                                                                                       | Dictionary<String, *object*>                                                                                                     | :heavy_minus_sign:                                                                                                               | Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&metadata[a.nested.key]=value2 | metadata[key]=value1&metadata[a.nested.key]=value2                                                                               |
+| `serverURL`                                                                                                                      | *string*                                                                                                                         | :heavy_minus_sign:                                                                                                               | An optional server URL to use.                                                                                                   | http://localhost:8080                                                                                                            |
 
 ### Response
 
@@ -186,18 +194,18 @@ var res = await sdk.Ledger.V1.CountAccountsAsync(
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
-| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| FormanceSDK.Models.Ledger.ErrorResponseError | default                                      | application/json                             |
+| FormanceSDK.Models.Errors.SDKException       | 4XX, 5XX                                     | \*/\*                                        |
 
-## ListAccounts
+## ListAccountsLedger
 
 List accounts from a ledger, sorted by address in descending order.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="listAccounts" method="get" path="/api/ledger/{ledger}/accounts" -->
+<!-- UsageSnippet language="csharp" operationID="listAccounts_ledger" method="get" path="/api/ledger/{ledger}/accounts" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -209,7 +217,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-ListAccountsRequest req = new ListAccountsRequest() {
+ListAccountsLedgerRequest req = new ListAccountsLedgerRequest() {
     Ledger = "ledger001",
     PageSize = 100,
     After = "users:003",
@@ -270,35 +278,36 @@ ListAccountsRequest req = new ListAccountsRequest() {
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
 };
 
-var res = await sdk.Ledger.V1.ListAccountsAsync(req);
+var res = await sdk.Ledger.V1.ListAccountsLedgerAsync(req);
 
 // handle response
 ```
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `request`                                                           | [ListAccountsRequest](../../Models/Requests/ListAccountsRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `request`                                                                       | [ListAccountsLedgerRequest](../../Models/Requests/ListAccountsLedgerRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+| `serverURL`                                                                     | *string*                                                                        | :heavy_minus_sign:                                                              | An optional server URL to use.                                                  |
 
 ### Response
 
-**[ListAccountsResponse](../../Models/Requests/ListAccountsResponse.md)**
+**[ListAccountsLedgerResponse](../../Models/Requests/ListAccountsLedgerResponse.md)**
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
-| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| FormanceSDK.Models.Ledger.ErrorResponseError | default                                      | application/json                             |
+| FormanceSDK.Models.Errors.SDKException       | 4XX, 5XX                                     | \*/\*                                        |
 
-## GetAccount
+## GetAccountLedger
 
 Get account by its address
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="getAccount" method="get" path="/api/ledger/{ledger}/accounts/{address}" -->
+<!-- UsageSnippet language="csharp" operationID="getAccount_ledger" method="get" path="/api/ledger/{ledger}/accounts/{address}" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -308,7 +317,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Ledger.V1.GetAccountAsync(
+var res = await sdk.Ledger.V1.GetAccountLedgerAsync(
     ledger: "ledger001",
     address: "users:001"
 );
@@ -322,17 +331,18 @@ var res = await sdk.Ledger.V1.GetAccountAsync(
 | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
 | `Ledger`                                                                                                     | *string*                                                                                                     | :heavy_check_mark:                                                                                           | Name of the ledger.                                                                                          | ledger001                                                                                                    |
 | `Address`                                                                                                    | *string*                                                                                                     | :heavy_check_mark:                                                                                           | Exact address of the account. It must match the following regular expressions pattern:<br/>```<br/>^\w+(:\w+)*$<br/>```<br/> | users:001                                                                                                    |
+| `serverURL`                                                                                                  | *string*                                                                                                     | :heavy_minus_sign:                                                                                           | An optional server URL to use.                                                                               | http://localhost:8080                                                                                        |
 
 ### Response
 
-**[GetAccountResponse](../../Models/Requests/GetAccountResponse.md)**
+**[GetAccountLedgerResponse](../../Models/Requests/GetAccountLedgerResponse.md)**
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
-| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| FormanceSDK.Models.Ledger.ErrorResponseError | default                                      | application/json                             |
+| FormanceSDK.Models.Errors.SDKException       | 4XX, 5XX                                     | \*/\*                                        |
 
 ## AddMetadataToAccount
 
@@ -371,6 +381,7 @@ var res = await sdk.Ledger.V1.AddMetadataToAccountAsync(
 | `Ledger`                                                                                                     | *string*                                                                                                     | :heavy_check_mark:                                                                                           | Name of the ledger.                                                                                          | ledger001                                                                                                    |
 | `Address`                                                                                                    | *string*                                                                                                     | :heavy_check_mark:                                                                                           | Exact address of the account. It must match the following regular expressions pattern:<br/>```<br/>^\w+(:\w+)*$<br/>```<br/> | users:001                                                                                                    |
 | `RequestBody`                                                                                                | Dictionary<String, *object*>                                                                                 | :heavy_check_mark:                                                                                           | metadata                                                                                                     |                                                                                                              |
+| `serverURL`                                                                                                  | *string*                                                                                                     | :heavy_minus_sign:                                                                                           | An optional server URL to use.                                                                               | http://localhost:8080                                                                                        |
 
 ### Response
 
@@ -378,10 +389,10 @@ var res = await sdk.Ledger.V1.AddMetadataToAccountAsync(
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
-| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| FormanceSDK.Models.Ledger.ErrorResponseError | default                                      | application/json                             |
+| FormanceSDK.Models.Errors.SDKException       | 4XX, 5XX                                     | \*/\*                                        |
 
 ## GetMapping
 
@@ -406,9 +417,10 @@ var res = await sdk.Ledger.V1.GetMappingAsync(ledger: "ledger001");
 
 ### Parameters
 
-| Parameter           | Type                | Required            | Description         | Example             |
-| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
-| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -416,10 +428,10 @@ var res = await sdk.Ledger.V1.GetMappingAsync(ledger: "ledger001");
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
-| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| FormanceSDK.Models.Ledger.ErrorResponseError | default                                      | application/json                             |
+| FormanceSDK.Models.Errors.SDKException       | 4XX, 5XX                                     | \*/\*                                        |
 
 ## UpdateMapping
 
@@ -447,10 +459,11 @@ var res = await sdk.Ledger.V1.UpdateMappingAsync(
 
 ### Parameters
 
-| Parameter                                     | Type                                          | Required                                      | Description                                   | Example                                       |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| `Ledger`                                      | *string*                                      | :heavy_check_mark:                            | Name of the ledger.                           | ledger001                                     |
-| `Mapping`                                     | [Mapping](../../Models/Components/Mapping.md) | :heavy_check_mark:                            | N/A                                           |                                               |
+| Parameter                                 | Type                                      | Required                                  | Description                               | Example                                   |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| `Ledger`                                  | *string*                                  | :heavy_check_mark:                        | Name of the ledger.                       | ledger001                                 |
+| `Mapping`                                 | [Mapping](../../Models/Ledger/Mapping.md) | :heavy_check_mark:                        | N/A                                       |                                           |
+| `serverURL`                               | *string*                                  | :heavy_minus_sign:                        | An optional server URL to use.            | http://localhost:8080                     |
 
 ### Response
 
@@ -458,10 +471,10 @@ var res = await sdk.Ledger.V1.UpdateMappingAsync(
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
-| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| FormanceSDK.Models.Ledger.ErrorResponseError | default                                      | application/json                             |
+| FormanceSDK.Models.Errors.SDKException       | 4XX, 5XX                                     | \*/\*                                        |
 
 ## ~~RunScript~~
 
@@ -485,7 +498,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V1.RunScriptAsync(
     ledger: "ledger001",
-    script: new Script() {
+    script: new FormanceSDK.Models.Ledger.Script() {
         Plain = @"vars {
         account $user
         }
@@ -510,8 +523,9 @@ var res = await sdk.Ledger.V1.RunScriptAsync(
 | Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         | Example                                                                                                             |
 | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | `Ledger`                                                                                                            | *string*                                                                                                            | :heavy_check_mark:                                                                                                  | Name of the ledger.                                                                                                 | ledger001                                                                                                           |
-| `Script`                                                                                                            | [Script](../../Models/Components/Script.md)                                                                         | :heavy_check_mark:                                                                                                  | N/A                                                                                                                 |                                                                                                                     |
+| `Script`                                                                                                            | [Models.Ledger.Script](../../Models/Ledger/Script.md)                                                               | :heavy_check_mark:                                                                                                  | N/A                                                                                                                 |                                                                                                                     |
 | `Preview`                                                                                                           | *bool*                                                                                                              | :heavy_minus_sign:                                                                                                  | Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker. | true                                                                                                                |
+| `serverURL`                                                                                                         | *string*                                                                                                            | :heavy_minus_sign:                                                                                                  | An optional server URL to use.                                                                                      | http://localhost:8080                                                                                               |
 
 ### Response
 
@@ -547,9 +561,10 @@ var res = await sdk.Ledger.V1.ReadStatsAsync(ledger: "ledger001");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `Ledger`           | *string*           | :heavy_check_mark: | name of the ledger | ledger001          |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Ledger`                       | *string*                       | :heavy_check_mark:             | name of the ledger             | ledger001                      |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -557,10 +572,10 @@ var res = await sdk.Ledger.V1.ReadStatsAsync(ledger: "ledger001");
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
-| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| FormanceSDK.Models.Ledger.ErrorResponseError | default                                      | application/json                             |
+| FormanceSDK.Models.Errors.SDKException       | 4XX, 5XX                                     | \*/\*                                        |
 
 ## CountTransactions
 
@@ -598,6 +613,7 @@ var res = await sdk.Ledger.V1.CountTransactionsAsync(req);
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [CountTransactionsRequest](../../Models/Requests/CountTransactionsRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| `serverURL`                                                                   | *string*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
@@ -605,10 +621,10 @@ var res = await sdk.Ledger.V1.CountTransactionsAsync(req);
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
-| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| FormanceSDK.Models.Ledger.ErrorResponseError | default                                      | application/json                             |
+| FormanceSDK.Models.Errors.SDKException       | 4XX, 5XX                                     | \*/\*                                        |
 
 ## ListTransactions
 
@@ -648,6 +664,7 @@ var res = await sdk.Ledger.V1.ListTransactionsAsync(req);
 | Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
 | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | `request`                                                                   | [ListTransactionsRequest](../../Models/Requests/ListTransactionsRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+| `serverURL`                                                                 | *string*                                                                    | :heavy_minus_sign:                                                          | An optional server URL to use.                                              |
 
 ### Response
 
@@ -655,10 +672,10 @@ var res = await sdk.Ledger.V1.ListTransactionsAsync(req);
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
-| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| FormanceSDK.Models.Ledger.ErrorResponseError | default                                      | application/json                             |
+| FormanceSDK.Models.Errors.SDKException       | 4XX, 5XX                                     | \*/\*                                        |
 
 ## CreateTransaction
 
@@ -670,6 +687,7 @@ Create a new transaction to a ledger
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Ledger;
 using System.Collections.Generic;
 using System.Numerics;
 
@@ -680,9 +698,9 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V1.CreateTransactionAsync(
     ledger: "ledger001",
-    postTransaction: new PostTransaction() {
-        Postings = new List<Posting>() {
-            new Posting() {
+    postTransaction: new FormanceSDK.Models.Ledger.PostTransaction() {
+        Postings = new List<FormanceSDK.Models.Ledger.Posting>() {
+            new FormanceSDK.Models.Ledger.Posting() {
                 Amount = BigInteger.Parse("100"),
                 Asset = "COIN",
                 Destination = "users:002",
@@ -715,19 +733,20 @@ var res = await sdk.Ledger.V1.CreateTransactionAsync(
 | Parameter                                                                                                                                                                              | Type                                                                                                                                                                                   | Required                                                                                                                                                                               | Description                                                                                                                                                                            | Example                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `Ledger`                                                                                                                                                                               | *string*                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                     | Name of the ledger.                                                                                                                                                                    | ledger001                                                                                                                                                                              |
-| `PostTransaction`                                                                                                                                                                      | [PostTransaction](../../Models/Components/PostTransaction.md)                                                                                                                          | :heavy_check_mark:                                                                                                                                                                     | The request body must contain at least one of the following objects:<br/>  - `postings`: suitable for simple transactions<br/>  - `script`: enabling more complex transactions with Numscript<br/> |                                                                                                                                                                                        |
+| `PostTransaction`                                                                                                                                                                      | [Models.Ledger.PostTransaction](../../Models/Ledger/PostTransaction.md)                                                                                                                | :heavy_check_mark:                                                                                                                                                                     | The request body must contain at least one of the following objects:<br/>  - `postings`: suitable for simple transactions<br/>  - `script`: enabling more complex transactions with Numscript<br/> |                                                                                                                                                                                        |
 | `Preview`                                                                                                                                                                              | *bool*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                     | Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.                                                                    | true                                                                                                                                                                                   |
+| `serverURL`                                                                                                                                                                            | *string*                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                     | An optional server URL to use.                                                                                                                                                         | http://localhost:8080                                                                                                                                                                  |
 
 ### Response
 
-**[CreateTransactionResponse](../../Models/Requests/CreateTransactionResponse.md)**
+**[Models.Requests.CreateTransactionResponse](../../Models/Requests/CreateTransactionResponse.md)**
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
-| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| FormanceSDK.Models.Ledger.ErrorResponseError | default                                      | application/json                             |
+| FormanceSDK.Models.Errors.SDKException       | 4XX, 5XX                                     | \*/\*                                        |
 
 ## GetTransaction
 
@@ -756,10 +775,11 @@ var res = await sdk.Ledger.V1.GetTransactionAsync(
 
 ### Parameters
 
-| Parameter           | Type                | Required            | Description         | Example             |
-| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
-| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
-| `Txid`              | *BigInteger*        | :heavy_check_mark:  | Transaction ID.     | 1234                |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
+| `Txid`                         | *BigInteger*                   | :heavy_check_mark:             | Transaction ID.                | 1234                           |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -767,10 +787,10 @@ var res = await sdk.Ledger.V1.GetTransactionAsync(
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
-| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| FormanceSDK.Models.Ledger.ErrorResponseError | default                                      | application/json                             |
+| FormanceSDK.Models.Errors.SDKException       | 4XX, 5XX                                     | \*/\*                                        |
 
 ## AddMetadataOnTransaction
 
@@ -803,11 +823,12 @@ var res = await sdk.Ledger.V1.AddMetadataOnTransactionAsync(
 
 ### Parameters
 
-| Parameter                    | Type                         | Required                     | Description                  | Example                      |
-| ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
-| `Ledger`                     | *string*                     | :heavy_check_mark:           | Name of the ledger.          | ledger001                    |
-| `Txid`                       | *BigInteger*                 | :heavy_check_mark:           | Transaction ID.              | 1234                         |
-| `RequestBody`                | Dictionary<String, *object*> | :heavy_check_mark:           | metadata                     |                              |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
+| `Txid`                         | *BigInteger*                   | :heavy_check_mark:             | Transaction ID.                | 1234                           |
+| `RequestBody`                  | Dictionary<String, *object*>   | :heavy_check_mark:             | metadata                       |                                |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -815,10 +836,10 @@ var res = await sdk.Ledger.V1.AddMetadataOnTransactionAsync(
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
-| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| FormanceSDK.Models.Ledger.ErrorResponseError | default                                      | application/json                             |
+| FormanceSDK.Models.Errors.SDKException       | 4XX, 5XX                                     | \*/\*                                        |
 
 ## RevertTransaction
 
@@ -852,17 +873,18 @@ var res = await sdk.Ledger.V1.RevertTransactionAsync(
 | `Ledger`                         | *string*                         | :heavy_check_mark:               | Name of the ledger.              | ledger001                        |
 | `Txid`                           | *BigInteger*                     | :heavy_check_mark:               | Transaction ID.                  | 1234                             |
 | `DisableChecks`                  | *bool*                           | :heavy_minus_sign:               | Allow to disable balances checks |                                  |
+| `serverURL`                      | *string*                         | :heavy_minus_sign:               | An optional server URL to use.   | http://localhost:8080            |
 
 ### Response
 
-**[Models.Requests.RevertTransactionResponse](../../Models/Requests/RevertTransactionResponse.md)**
+**[RevertTransactionResponse](../../Models/Requests/RevertTransactionResponse.md)**
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
-| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| FormanceSDK.Models.Ledger.ErrorResponseError | default                                      | application/json                             |
+| FormanceSDK.Models.Errors.SDKException       | 4XX, 5XX                                     | \*/\*                                        |
 
 ## CreateTransactions
 
@@ -874,6 +896,7 @@ Create a new batch of transactions to a ledger
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Ledger;
 using System.Collections.Generic;
 using System.Numerics;
 
@@ -887,8 +910,8 @@ var res = await sdk.Ledger.V1.CreateTransactionsAsync(
     transactions: new Transactions() {
         TransactionsValue = new List<TransactionData>() {
             new TransactionData() {
-                Postings = new List<Posting>() {
-                    new Posting() {
+                Postings = new List<FormanceSDK.Models.Ledger.Posting>() {
+                    new FormanceSDK.Models.Ledger.Posting() {
                         Amount = BigInteger.Parse("100"),
                         Asset = "COIN",
                         Destination = "users:002",
@@ -906,10 +929,11 @@ var res = await sdk.Ledger.V1.CreateTransactionsAsync(
 
 ### Parameters
 
-| Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `Ledger`                                                | *string*                                                | :heavy_check_mark:                                      | Name of the ledger.                                     | ledger001                                               |
-| `Transactions`                                          | [Transactions](../../Models/Components/Transactions.md) | :heavy_check_mark:                                      | N/A                                                     |                                                         |
+| Parameter                                           | Type                                                | Required                                            | Description                                         | Example                                             |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| `Ledger`                                            | *string*                                            | :heavy_check_mark:                                  | Name of the ledger.                                 | ledger001                                           |
+| `Transactions`                                      | [Transactions](../../Models/Ledger/Transactions.md) | :heavy_check_mark:                                  | N/A                                                 |                                                     |
+| `serverURL`                                         | *string*                                            | :heavy_minus_sign:                                  | An optional server URL to use.                      | http://localhost:8080                               |
 
 ### Response
 
@@ -917,10 +941,10 @@ var res = await sdk.Ledger.V1.CreateTransactionsAsync(
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
-| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| FormanceSDK.Models.Ledger.ErrorResponseError | default                                      | application/json                             |
+| FormanceSDK.Models.Errors.SDKException       | 4XX, 5XX                                     | \*/\*                                        |
 
 ## GetBalances
 
@@ -956,6 +980,7 @@ var res = await sdk.Ledger.V1.GetBalancesAsync(req);
 | Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `request`                                                         | [GetBalancesRequest](../../Models/Requests/GetBalancesRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+| `serverURL`                                                       | *string*                                                          | :heavy_minus_sign:                                                | An optional server URL to use.                                    |
 
 ### Response
 
@@ -963,10 +988,10 @@ var res = await sdk.Ledger.V1.GetBalancesAsync(req);
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
-| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| FormanceSDK.Models.Ledger.ErrorResponseError | default                                      | application/json                             |
+| FormanceSDK.Models.Errors.SDKException       | 4XX, 5XX                                     | \*/\*                                        |
 
 ## GetBalancesAggregated
 
@@ -999,6 +1024,7 @@ var res = await sdk.Ledger.V1.GetBalancesAggregatedAsync(
 | `Ledger`                                                                  | *string*                                                                  | :heavy_check_mark:                                                        | Name of the ledger.                                                       | ledger001                                                                 |
 | `Address`                                                                 | *string*                                                                  | :heavy_minus_sign:                                                        | Filter balances involving given account, either as source or destination. | users:001                                                                 |
 | `UseInsertionDate`                                                        | *bool*                                                                    | :heavy_minus_sign:                                                        | Use insertion date instead of effective date                              |                                                                           |
+| `serverURL`                                                               | *string*                                                                  | :heavy_minus_sign:                                                        | An optional server URL to use.                                            | http://localhost:8080                                                     |
 
 ### Response
 
@@ -1006,10 +1032,10 @@ var res = await sdk.Ledger.V1.GetBalancesAggregatedAsync(
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
-| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| FormanceSDK.Models.Ledger.ErrorResponseError | default                                      | application/json                             |
+| FormanceSDK.Models.Errors.SDKException       | 4XX, 5XX                                     | \*/\*                                        |
 
 ## ListLogs
 
@@ -1045,6 +1071,7 @@ var res = await sdk.Ledger.V1.ListLogsAsync(req);
 | Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
 | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
 | `request`                                                   | [ListLogsRequest](../../Models/Requests/ListLogsRequest.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
+| `serverURL`                                                 | *string*                                                    | :heavy_minus_sign:                                          | An optional server URL to use.                              |
 
 ### Response
 
@@ -1052,7 +1079,7 @@ var res = await sdk.Ledger.V1.ListLogsAsync(req);
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| FormanceSDK.Models.Errors.ErrorResponse | default                                 | application/json                        |
-| FormanceSDK.Models.Errors.SDKException  | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| FormanceSDK.Models.Ledger.ErrorResponseError | default                                      | application/json                             |
+| FormanceSDK.Models.Errors.SDKException       | 4XX, 5XX                                     | \*/\*                                        |

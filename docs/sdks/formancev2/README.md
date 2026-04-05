@@ -44,16 +44,22 @@ var res = await sdk.Orchestration.V2.GetServerInfoAsync();
 // handle response
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[V2GetServerInfoResponse](../../Models/Requests/V2GetServerInfoResponse.md)**
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.V2Error      | default                                | application/json                       |
-| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## ListTriggers
 
@@ -86,6 +92,7 @@ var res = await sdk.Orchestration.V2.ListTriggersAsync(
 | `Cursor`                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                       | Parameter used in pagination requests.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                             |
 | `PageSize`                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                       | The maximum number of results to return per page.<br/>                                                                                                                                                                   | 100                                                                                                                                                                                                                      |
 | `Name`                                                                                                                                                                                                                   | *string*                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                       | search by name                                                                                                                                                                                                           |                                                                                                                                                                                                                          |
+| `serverURL`                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                    |
 
 ### Response
 
@@ -93,10 +100,10 @@ var res = await sdk.Orchestration.V2.ListTriggersAsync(
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.V2Error      | default                                | application/json                       |
-| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## CreateTrigger
 
@@ -108,13 +115,14 @@ Create trigger
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Orchestration;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-V2TriggerData? req = null;
+V2TriggerData1? req = null;
 
 var res = await sdk.Orchestration.V2.CreateTriggerAsync(req);
 
@@ -123,9 +131,10 @@ var res = await sdk.Orchestration.V2.CreateTriggerAsync(req);
 
 ### Parameters
 
-| Parameter                                                 | Type                                                      | Required                                                  | Description                                               |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| `request`                                                 | [V2TriggerData](../../Models/Components/V2TriggerData.md) | :heavy_check_mark:                                        | The request object to use for the request.                |
+| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `request`                                                      | [V2TriggerData1](../../Models/Orchestration/V2TriggerData1.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
+| `serverURL`                                                    | *string*                                                       | :heavy_minus_sign:                                             | An optional server URL to use.                                 |
 
 ### Response
 
@@ -133,10 +142,10 @@ var res = await sdk.Orchestration.V2.CreateTriggerAsync(req);
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.V2Error      | default                                | application/json                       |
-| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## ReadTrigger
 
@@ -161,9 +170,10 @@ var res = await sdk.Orchestration.V2.ReadTriggerAsync(triggerID: "<id>");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `TriggerID`        | *string*           | :heavy_check_mark: | The trigger id     |
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `TriggerID`                    | *string*                       | :heavy_check_mark:             | The trigger id                 |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -171,10 +181,10 @@ var res = await sdk.Orchestration.V2.ReadTriggerAsync(triggerID: "<id>");
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.V2Error      | default                                | application/json                       |
-| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## DeleteTrigger
 
@@ -199,9 +209,10 @@ var res = await sdk.Orchestration.V2.DeleteTriggerAsync(triggerID: "<id>");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `TriggerID`        | *string*           | :heavy_check_mark: | The trigger id     |
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `TriggerID`                    | *string*                       | :heavy_check_mark:             | The trigger id                 |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -209,10 +220,10 @@ var res = await sdk.Orchestration.V2.DeleteTriggerAsync(triggerID: "<id>");
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.V2Error      | default                                | application/json                       |
-| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## TestTrigger
 
@@ -237,10 +248,11 @@ var res = await sdk.Orchestration.V2.TestTriggerAsync(triggerID: "<id>");
 
 ### Parameters
 
-| Parameter                    | Type                         | Required                     | Description                  |
-| ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
-| `TriggerID`                  | *string*                     | :heavy_check_mark:           | The trigger id               |
-| `RequestBody`                | Dictionary<String, *object*> | :heavy_minus_sign:           | N/A                          |
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `TriggerID`                    | *string*                       | :heavy_check_mark:             | The trigger id                 |
+| `RequestBody`                  | Dictionary<String, *object*>   | :heavy_minus_sign:             | N/A                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -248,10 +260,10 @@ var res = await sdk.Orchestration.V2.TestTriggerAsync(triggerID: "<id>");
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.V2Error      | default                                | application/json                       |
-| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## ListTriggersOccurrences
 
@@ -285,6 +297,7 @@ var res = await sdk.Orchestration.V2.ListTriggersOccurrencesAsync(
 | `TriggerID`                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                       | The trigger id                                                                                                                                                                                                           |                                                                                                                                                                                                                          |
 | `Cursor`                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                       | Parameter used in pagination requests.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                             |
 | `PageSize`                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                       | The maximum number of results to return per page.<br/>                                                                                                                                                                   | 100                                                                                                                                                                                                                      |
+| `serverURL`                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                    |
 
 ### Response
 
@@ -292,10 +305,10 @@ var res = await sdk.Orchestration.V2.ListTriggersOccurrencesAsync(
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.V2Error      | default                                | application/json                       |
-| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## ListWorkflows
 
@@ -327,6 +340,7 @@ var res = await sdk.Orchestration.V2.ListWorkflowsAsync(
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `Cursor`                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                       | Parameter used in pagination requests.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                             |
 | `PageSize`                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                       | The maximum number of results to return per page.<br/>                                                                                                                                                                   | 100                                                                                                                                                                                                                      |
+| `serverURL`                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                    |
 
 ### Response
 
@@ -334,10 +348,10 @@ var res = await sdk.Orchestration.V2.ListWorkflowsAsync(
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.V2Error      | default                                | application/json                       |
-| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## CreateWorkflow
 
@@ -349,13 +363,14 @@ Create a workflow
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Orchestration;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-V2CreateWorkflowRequest? req = null;
+V2WorkflowConfig? req = null;
 
 var res = await sdk.Orchestration.V2.CreateWorkflowAsync(req);
 
@@ -364,9 +379,10 @@ var res = await sdk.Orchestration.V2.CreateWorkflowAsync(req);
 
 ### Parameters
 
-| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
-| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `request`                                                                     | [V2CreateWorkflowRequest](../../Models/Components/V2CreateWorkflowRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `request`                                                          | [V2WorkflowConfig](../../Models/Orchestration/V2WorkflowConfig.md) | :heavy_check_mark:                                                 | The request object to use for the request.                         |
+| `serverURL`                                                        | *string*                                                           | :heavy_minus_sign:                                                 | An optional server URL to use.                                     |
 
 ### Response
 
@@ -374,10 +390,10 @@ var res = await sdk.Orchestration.V2.CreateWorkflowAsync(req);
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.V2Error      | default                                | application/json                       |
-| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## GetWorkflow
 
@@ -402,9 +418,10 @@ var res = await sdk.Orchestration.V2.GetWorkflowAsync(flowId: "xxx");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `FlowId`           | *string*           | :heavy_check_mark: | The flow id        | xxx                |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `FlowId`                       | *string*                       | :heavy_check_mark:             | The flow id                    | xxx                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -412,10 +429,10 @@ var res = await sdk.Orchestration.V2.GetWorkflowAsync(flowId: "xxx");
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.V2Error      | default                                | application/json                       |
-| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## DeleteWorkflow
 
@@ -440,9 +457,10 @@ var res = await sdk.Orchestration.V2.DeleteWorkflowAsync(flowId: "xxx");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `FlowId`           | *string*           | :heavy_check_mark: | The flow id        | xxx                |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `FlowId`                       | *string*                       | :heavy_check_mark:             | The flow id                    | xxx                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -450,10 +468,10 @@ var res = await sdk.Orchestration.V2.DeleteWorkflowAsync(flowId: "xxx");
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.V2Error      | default                                | application/json                       |
-| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## RunWorkflow
 
@@ -483,6 +501,7 @@ var res = await sdk.Orchestration.V2.RunWorkflowAsync(workflowID: "xxx");
 | `WorkflowID`                           | *string*                               | :heavy_check_mark:                     | The flow id                            | xxx                                    |
 | `Wait`                                 | *bool*                                 | :heavy_minus_sign:                     | Wait end of the workflow before return |                                        |
 | `RequestBody`                          | Dictionary<String, *string*>           | :heavy_minus_sign:                     | N/A                                    |                                        |
+| `serverURL`                            | *string*                               | :heavy_minus_sign:                     | An optional server URL to use.         | http://localhost:8080                  |
 
 ### Response
 
@@ -490,10 +509,10 @@ var res = await sdk.Orchestration.V2.RunWorkflowAsync(workflowID: "xxx");
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.V2Error      | default                                | application/json                       |
-| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## ListInstances
 
@@ -529,6 +548,7 @@ var res = await sdk.Orchestration.V2.ListInstancesAsync(
 | `PageSize`                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                       | The maximum number of results to return per page.<br/>                                                                                                                                                                   | 100                                                                                                                                                                                                                      |
 | `WorkflowID`                                                                                                                                                                                                             | *string*                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                       | A workflow id                                                                                                                                                                                                            | xxx                                                                                                                                                                                                                      |
 | `Running`                                                                                                                                                                                                                | *bool*                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                       | Filter running instances                                                                                                                                                                                                 | true                                                                                                                                                                                                                     |
+| `serverURL`                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                    |
 
 ### Response
 
@@ -536,10 +556,10 @@ var res = await sdk.Orchestration.V2.ListInstancesAsync(
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.V2Error      | default                                | application/json                       |
-| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## GetInstance
 
@@ -564,9 +584,10 @@ var res = await sdk.Orchestration.V2.GetInstanceAsync(instanceID: "xxx");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `InstanceID`       | *string*           | :heavy_check_mark: | The instance id    | xxx                |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `InstanceID`                   | *string*                       | :heavy_check_mark:             | The instance id                | xxx                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -574,10 +595,10 @@ var res = await sdk.Orchestration.V2.GetInstanceAsync(instanceID: "xxx");
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.V2Error      | default                                | application/json                       |
-| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## SendEvent
 
@@ -606,6 +627,7 @@ var res = await sdk.Orchestration.V2.SendEventAsync(instanceID: "xxx");
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `InstanceID`                                                              | *string*                                                                  | :heavy_check_mark:                                                        | The instance id                                                           | xxx                                                                       |
 | `RequestBody`                                                             | [V2SendEventRequestBody](../../Models/Requests/V2SendEventRequestBody.md) | :heavy_minus_sign:                                                        | N/A                                                                       |                                                                           |
+| `serverURL`                                                               | *string*                                                                  | :heavy_minus_sign:                                                        | An optional server URL to use.                                            | http://localhost:8080                                                     |
 
 ### Response
 
@@ -613,10 +635,10 @@ var res = await sdk.Orchestration.V2.SendEventAsync(instanceID: "xxx");
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.V2Error      | default                                | application/json                       |
-| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## CancelEvent
 
@@ -641,9 +663,10 @@ var res = await sdk.Orchestration.V2.CancelEventAsync(instanceID: "xxx");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `InstanceID`       | *string*           | :heavy_check_mark: | The instance id    | xxx                |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `InstanceID`                   | *string*                       | :heavy_check_mark:             | The instance id                | xxx                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -651,10 +674,10 @@ var res = await sdk.Orchestration.V2.CancelEventAsync(instanceID: "xxx");
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.V2Error      | default                                | application/json                       |
-| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## GetInstanceHistory
 
@@ -679,9 +702,10 @@ var res = await sdk.Orchestration.V2.GetInstanceHistoryAsync(instanceID: "xxx");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `InstanceID`       | *string*           | :heavy_check_mark: | The instance id    | xxx                |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `InstanceID`                   | *string*                       | :heavy_check_mark:             | The instance id                | xxx                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -689,10 +713,10 @@ var res = await sdk.Orchestration.V2.GetInstanceHistoryAsync(instanceID: "xxx");
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.V2Error      | default                                | application/json                       |
-| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## GetInstanceStageHistory
 
@@ -720,10 +744,11 @@ var res = await sdk.Orchestration.V2.GetInstanceStageHistoryAsync(
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `InstanceID`       | *string*           | :heavy_check_mark: | The instance id    | xxx                |
-| `Number`           | *long*             | :heavy_check_mark: | The stage number   | 0                  |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `InstanceID`                   | *string*                       | :heavy_check_mark:             | The instance id                | xxx                            |
+| `Number`                       | *long*                         | :heavy_check_mark:             | The stage number               | 0                              |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -731,7 +756,7 @@ var res = await sdk.Orchestration.V2.GetInstanceStageHistoryAsync(
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.V2Error      | default                                | application/json                       |
-| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |

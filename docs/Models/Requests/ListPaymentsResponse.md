@@ -3,7 +3,7 @@
 
 ## Fields
 
-| Field                                                       | Type                                                        | Required                                                    | Description                                                 |
-| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `HttpMeta`                                                  | [HTTPMetadata](../../Models/Components/HTTPMetadata.md)     | :heavy_check_mark:                                          | N/A                                                         |
-| `PaymentsCursor`                                            | [PaymentsCursor](../../Models/Components/PaymentsCursor.md) | :heavy_minus_sign:                                          | OK                                                          |
+| Field                                                     | Type                                                      | Required                                                  | Description                                               |
+| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| `HttpMeta`                                                | [HTTPMetadata](../../Models/Components/HTTPMetadata.md)   | :heavy_check_mark:                                        | N/A                                                       |
+| `PaymentsCursor`                                          | [PaymentsCursor](../../Models/Payments/PaymentsCursor.md) | :heavy_minus_sign:                                        | OK                                                        |

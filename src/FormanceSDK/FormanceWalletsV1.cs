@@ -13,6 +13,7 @@ namespace FormanceSDK
     using FormanceSDK.Models.Components;
     using FormanceSDK.Models.Errors;
     using FormanceSDK.Models.Requests;
+    using FormanceSDK.Models.Wallets;
     using FormanceSDK.Utils;
     using FormanceSDK.Utils.Retries;
     using Newtonsoft.Json;
@@ -27,13 +28,20 @@ namespace FormanceSDK
         /// <summary>
         /// Get server info.
         /// </summary>
-        /// <returns>An awaitable task that returns a <see cref="WalletsgetServerInfoResponse"/> response envelope when completed.</returns>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetServerInfoWalletsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<WalletsgetServerInfoResponse> WalletsgetServerInfoAsync();
+        public  Task<GetServerInfoWalletsResponse> GetServerInfoWalletsAsync(string? serverUrl = null);
 
+        /// <summary>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </summary>
         /// <param name="pageSize">The maximum number of results to return per page.</param>
         /// <param name="walletID">A wallet ID to filter on.</param>
         /// <param name="cursor">
@@ -42,166 +50,223 @@ namespace FormanceSDK
         /// Set to the value of previous for the previous page of results.<br/>
         /// No other parameters can be set when the cursor is set.
         /// </param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetTransactionsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<Models.Requests.GetTransactionsResponse> GetTransactionsAsync(
             long? pageSize = 15,
             string? walletID = null,
-            string? cursor = null
+            string? cursor = null,
+            string? serverUrl = null
         );
 
         /// <summary>
         /// List all wallets.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="request">A <see cref="ListWalletsRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.ListWalletsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">OK. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">OK. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<Models.Requests.ListWalletsResponse> ListWalletsAsync(ListWalletsRequest? request = null);
+        public  Task<Models.Requests.ListWalletsResponse> ListWalletsAsync(
+            ListWalletsRequest? request = null,
+            string? serverUrl = null
+        );
 
         /// <summary>
         /// Create a new wallet.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
-        /// <param name="createWalletRequest">A <see cref="FormanceSDK.Models.Components.CreateWalletRequest"/> parameter.</param>
+        /// <param name="createWalletRequest">A <see cref="FormanceSDK.Models.Wallets.CreateWalletRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.CreateWalletResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<Models.Requests.CreateWalletResponse> CreateWalletAsync(
             string? idempotencyKey = null,
-            Models.Components.CreateWalletRequest? createWalletRequest = null
+            Models.Wallets.CreateWalletRequest? createWalletRequest = null,
+            string? serverUrl = null
         );
 
         /// <summary>
         /// Get a wallet.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="id">Description not available.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetWalletResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 200 or 404.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200 or 404.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<Models.Requests.GetWalletResponse> GetWalletAsync(string id);
+        public  Task<Models.Requests.GetWalletResponse> GetWalletAsync(string id, string? serverUrl = null);
 
         /// <summary>
         /// Update a wallet.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="id">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
         /// <param name="requestBody">A <see cref="UpdateWalletRequestBody"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="UpdateWalletResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<UpdateWalletResponse> UpdateWalletAsync(
             string id,
             string? idempotencyKey = null,
-            UpdateWalletRequestBody? requestBody = null
+            UpdateWalletRequestBody? requestBody = null,
+            string? serverUrl = null
         );
 
         /// <summary>
         /// Get wallet summary.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="id">Description not available.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetWalletSummaryResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 200 or 404.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200 or 404.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<Models.Requests.GetWalletSummaryResponse> GetWalletSummaryAsync(string id);
+        public  Task<Models.Requests.GetWalletSummaryResponse> GetWalletSummaryAsync(string id, string? serverUrl = null);
 
         /// <summary>
         /// List balances of a wallet.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="id">Description not available.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.ListBalancesResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public  Task<Models.Requests.ListBalancesResponse> ListBalancesAsync(string id);
+        public  Task<Models.Requests.ListBalancesResponse> ListBalancesAsync(string id, string? serverUrl = null);
 
         /// <summary>
         /// Create a balance.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="id">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
-        /// <param name="createBalanceRequest">A <see cref="FormanceSDK.Models.Components.CreateBalanceRequest"/> parameter.</param>
+        /// <param name="balance">A <see cref="Balance"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.CreateBalanceResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<Models.Requests.CreateBalanceResponse> CreateBalanceAsync(
             string id,
             string? idempotencyKey = null,
-            Models.Components.CreateBalanceRequest? createBalanceRequest = null
+            Balance? balance = null,
+            string? serverUrl = null
         );
 
         /// <summary>
         /// Get detailed balance.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="id">Description not available.</param>
         /// <param name="balanceName">Description not available.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetBalanceResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="id"/> or <paramref name="balanceName"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<Models.Requests.GetBalanceResponse> GetBalanceAsync(string id, string balanceName);
+        public  Task<Models.Requests.GetBalanceResponse> GetBalanceAsync(
+            string id,
+            string balanceName,
+            string? serverUrl = null
+        );
 
         /// <summary>
         /// Debit a wallet.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="id">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
-        /// <param name="debitWalletRequest">A <see cref="FormanceSDK.Models.Components.DebitWalletRequest"/> parameter.</param>
+        /// <param name="debitWalletRequest">A <see cref="FormanceSDK.Models.Wallets.DebitWalletRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.DebitWalletResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 201 or 204.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 201 or 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<Models.Requests.DebitWalletResponse> DebitWalletAsync(
             string id,
             string? idempotencyKey = null,
-            Models.Components.DebitWalletRequest? debitWalletRequest = null
+            Models.Wallets.DebitWalletRequest? debitWalletRequest = null,
+            string? serverUrl = null
         );
 
         /// <summary>
         /// Credit a wallet.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="id">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
-        /// <param name="creditWalletRequest">A <see cref="FormanceSDK.Models.Components.CreditWalletRequest"/> parameter.</param>
+        /// <param name="creditWalletRequest">A <see cref="FormanceSDK.Models.Wallets.CreditWalletRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="CreditWalletResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<CreditWalletResponse> CreditWalletAsync(
             string id,
             string? idempotencyKey = null,
-            Models.Components.CreditWalletRequest? creditWalletRequest = null
+            Models.Wallets.CreditWalletRequest? creditWalletRequest = null,
+            string? serverUrl = null
         );
 
         /// <summary>
         /// Get all holds for a wallet.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="pageSize">The maximum number of results to return per page.</param>
         /// <param name="walletID">The wallet to filter on.</param>
         /// <param name="metadata">Filter holds by metadata key value pairs. Nested objects can be used as seen in the example below.</param>
@@ -211,64 +276,195 @@ namespace FormanceSDK
         /// Set to the value of previous for the previous page of results.<br/>
         /// No other parameters can be set when the pagination token is set.
         /// </param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetHoldsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<Models.Requests.GetHoldsResponse> GetHoldsAsync(
             long? pageSize = 15,
             string? walletID = null,
             Dictionary<string, string>? metadata = null,
-            string? cursor = null
+            string? cursor = null,
+            string? serverUrl = null
         );
 
         /// <summary>
         /// Get a hold.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="holdID">The hold ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetHoldResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="holdID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<Models.Requests.GetHoldResponse> GetHoldAsync(string holdID);
+        public  Task<Models.Requests.GetHoldResponse> GetHoldAsync(string holdID, string? serverUrl = null);
 
         /// <summary>
         /// Confirm a hold.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="holdId">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
-        /// <param name="confirmHoldRequest">A <see cref="FormanceSDK.Models.Components.ConfirmHoldRequest"/> parameter.</param>
+        /// <param name="confirmHoldRequest">A <see cref="FormanceSDK.Models.Wallets.ConfirmHoldRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ConfirmHoldResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="holdId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<ConfirmHoldResponse> ConfirmHoldAsync(
             string holdId,
             string? idempotencyKey = null,
-            Models.Components.ConfirmHoldRequest? confirmHoldRequest = null
+            Models.Wallets.ConfirmHoldRequest? confirmHoldRequest = null,
+            string? serverUrl = null
         );
 
         /// <summary>
         /// Cancel a hold.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="holdId">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="VoidHoldResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="holdId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<VoidHoldResponse> VoidHoldAsync(string holdId, string? idempotencyKey = null);
+        public  Task<VoidHoldResponse> VoidHoldAsync(
+            string holdId,
+            string? idempotencyKey = null,
+            string? serverUrl = null
+        );
     }
 
     public class FormanceWalletsV1: IFormanceWalletsV1
     {
+        /// <summary>
+        /// List of server URLs available for the getServerInfo_wallets operation.
+        /// </summary>
+        public static readonly string[] GetServerInfoWalletsServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the getTransactions operation.
+        /// </summary>
+        public static readonly string[] GetTransactionsServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the listWallets operation.
+        /// </summary>
+        public static readonly string[] ListWalletsServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the createWallet operation.
+        /// </summary>
+        public static readonly string[] CreateWalletServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the getWallet operation.
+        /// </summary>
+        public static readonly string[] GetWalletServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the updateWallet operation.
+        /// </summary>
+        public static readonly string[] UpdateWalletServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the getWalletSummary operation.
+        /// </summary>
+        public static readonly string[] GetWalletSummaryServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the listBalances operation.
+        /// </summary>
+        public static readonly string[] ListBalancesServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the createBalance operation.
+        /// </summary>
+        public static readonly string[] CreateBalanceServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the getBalance operation.
+        /// </summary>
+        public static readonly string[] GetBalanceServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the debitWallet operation.
+        /// </summary>
+        public static readonly string[] DebitWalletServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the creditWallet operation.
+        /// </summary>
+        public static readonly string[] CreditWalletServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the getHolds operation.
+        /// </summary>
+        public static readonly string[] GetHoldsServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the getHold operation.
+        /// </summary>
+        public static readonly string[] GetHoldServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the confirmHold operation.
+        /// </summary>
+        public static readonly string[] ConfirmHoldServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the voidHold operation.
+        /// </summary>
+        public static readonly string[] VoidHoldServerList = {
+            "http://localhost:8080/",
+        };
+
         /// <summary>
         /// SDK Configuration.
         /// <see cref="SDKConfig"/>
@@ -283,14 +479,23 @@ namespace FormanceSDK
         /// <summary>
         /// Get server info.
         /// </summary>
-        /// <returns>An awaitable task that returns a <see cref="WalletsgetServerInfoResponse"/> response envelope when completed.</returns>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetServerInfoWalletsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<WalletsgetServerInfoResponse> WalletsgetServerInfoAsync()
+        public async  Task<GetServerInfoWalletsResponse> GetServerInfoWalletsAsync(string? serverUrl = null)
         {
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetServerInfoWalletsServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = baseUrl + "/api/wallets/_info";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -303,10 +508,10 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "walletsgetServerInfo", new List<string> { "wallets:read" }, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getServerInfo_wallets", new List<string> { "wallets:read" }, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
@@ -347,17 +552,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ServerInfo obj;
+                    Models.Wallets.ServerInfo obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<ServerInfo>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.ServerInfo>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ServerInfo.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.ServerInfo.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    var response = new WalletsgetServerInfoResponse()
+                    var response = new GetServerInfoWalletsResponse()
                     {
                         HttpMeta = new Models.Components.HTTPMetadata()
                         {
@@ -376,17 +581,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    WalletsErrorResponsePayload payload;
+                    Models.Wallets.ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<WalletsErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into WalletsErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new WalletsErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Wallets.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -394,6 +599,9 @@ namespace FormanceSDK
         }
 
 
+        /// <summary>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </summary>
         /// <param name="pageSize">The maximum number of results to return per page.</param>
         /// <param name="walletID">A wallet ID to filter on.</param>
         /// <param name="cursor">
@@ -402,15 +610,17 @@ namespace FormanceSDK
         /// Set to the value of previous for the previous page of results.<br/>
         /// No other parameters can be set when the cursor is set.
         /// </param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetTransactionsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<Models.Requests.GetTransactionsResponse> GetTransactionsAsync(
             long? pageSize = 15,
             string? walletID = null,
-            string? cursor = null
+            string? cursor = null,
+            string? serverUrl = null
         )
         {
             var request = new GetTransactionsRequest()
@@ -420,7 +630,12 @@ namespace FormanceSDK
                 Cursor = cursor,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetTransactionsServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/transactions", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -433,7 +648,7 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getTransactions", new List<string> { "wallets:read" }, SDKConfiguration.SecuritySource);
@@ -477,14 +692,14 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Components.GetTransactionsResponse obj;
+                    Models.Wallets.GetTransactionsResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Components.GetTransactionsResponse>(httpResponseBody, NullValueHandling.Include);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.GetTransactionsResponse>(httpResponseBody, NullValueHandling.Include);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Components.GetTransactionsResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.GetTransactionsResponse.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
                     var response = new Models.Requests.GetTransactionsResponse()
@@ -506,17 +721,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    WalletsErrorResponsePayload payload;
+                    Models.Wallets.ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<WalletsErrorResponsePayload>(httpResponseBody, NullValueHandling.Include);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Include);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into WalletsErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new WalletsErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Wallets.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -527,15 +742,27 @@ namespace FormanceSDK
         /// <summary>
         /// List all wallets.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="request">A <see cref="ListWalletsRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.ListWalletsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">OK. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">OK. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<Models.Requests.ListWalletsResponse> ListWalletsAsync(ListWalletsRequest? request = null)
+        public async  Task<Models.Requests.ListWalletsResponse> ListWalletsAsync(
+            ListWalletsRequest? request = null,
+            string? serverUrl = null
+        )
         {
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(ListWalletsServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/wallets", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -548,7 +775,7 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listWallets", new List<string> { "wallets:read" }, SDKConfiguration.SecuritySource);
@@ -592,14 +819,14 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Components.ListWalletsResponse obj;
+                    Models.Wallets.ListWalletsResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Components.ListWalletsResponse>(httpResponseBody, NullValueHandling.Include);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.ListWalletsResponse>(httpResponseBody, NullValueHandling.Include);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Components.ListWalletsResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.ListWalletsResponse.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
                     var response = new Models.Requests.ListWalletsResponse()
@@ -621,17 +848,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    WalletsErrorResponsePayload payload;
+                    Models.Wallets.ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<WalletsErrorResponsePayload>(httpResponseBody, NullValueHandling.Include);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Include);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into WalletsErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new WalletsErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Wallets.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -642,16 +869,21 @@ namespace FormanceSDK
         /// <summary>
         /// Create a new wallet.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
-        /// <param name="createWalletRequest">A <see cref="FormanceSDK.Models.Components.CreateWalletRequest"/> parameter.</param>
+        /// <param name="createWalletRequest">A <see cref="FormanceSDK.Models.Wallets.CreateWalletRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.CreateWalletResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<Models.Requests.CreateWalletResponse> CreateWalletAsync(
             string? idempotencyKey = null,
-            Models.Components.CreateWalletRequest? createWalletRequest = null
+            Models.Wallets.CreateWalletRequest? createWalletRequest = null,
+            string? serverUrl = null
         )
         {
             var request = new Models.Requests.CreateWalletRequest()
@@ -660,7 +892,12 @@ namespace FormanceSDK
                 CreateWalletRequestValue = createWalletRequest,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(CreateWalletServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = baseUrl + "/api/wallets/wallets";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -680,7 +917,7 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createWallet", new List<string> { "wallets:write" }, SDKConfiguration.SecuritySource);
@@ -724,14 +961,14 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Components.CreateWalletResponse obj;
+                    Models.Wallets.CreateWalletResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Components.CreateWalletResponse>(httpResponseBody, NullValueHandling.Include);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.CreateWalletResponse>(httpResponseBody, NullValueHandling.Include);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Components.CreateWalletResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.CreateWalletResponse.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
                     var response = new Models.Requests.CreateWalletResponse()
@@ -753,17 +990,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    WalletsErrorResponsePayload payload;
+                    Models.Wallets.ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<WalletsErrorResponsePayload>(httpResponseBody, NullValueHandling.Include);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Include);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into WalletsErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new WalletsErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Wallets.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -774,14 +1011,18 @@ namespace FormanceSDK
         /// <summary>
         /// Get a wallet.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="id">Description not available.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetWalletResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 200 or 404.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200 or 404.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<Models.Requests.GetWalletResponse> GetWalletAsync(string id)
+        public async  Task<Models.Requests.GetWalletResponse> GetWalletAsync(string id, string? serverUrl = null)
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
 
@@ -790,7 +1031,12 @@ namespace FormanceSDK
                 Id = id,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetWalletServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/wallets/{id}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -803,7 +1049,7 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getWallet", new List<string> { "wallets:read" }, SDKConfiguration.SecuritySource);
@@ -847,14 +1093,14 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Components.GetWalletResponse obj;
+                    Models.Wallets.GetWalletResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Components.GetWalletResponse>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.GetWalletResponse>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Components.GetWalletResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.GetWalletResponse.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
                     var response = new Models.Requests.GetWalletResponse()
@@ -887,17 +1133,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    WalletsErrorResponsePayload payload;
+                    Models.Wallets.ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<WalletsErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into WalletsErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new WalletsErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Wallets.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -908,19 +1154,24 @@ namespace FormanceSDK
         /// <summary>
         /// Update a wallet.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="id">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
         /// <param name="requestBody">A <see cref="UpdateWalletRequestBody"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="UpdateWalletResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<UpdateWalletResponse> UpdateWalletAsync(
             string id,
             string? idempotencyKey = null,
-            UpdateWalletRequestBody? requestBody = null
+            UpdateWalletRequestBody? requestBody = null,
+            string? serverUrl = null
         )
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
@@ -932,7 +1183,12 @@ namespace FormanceSDK
                 RequestBody = requestBody,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(UpdateWalletServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/wallets/{id}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Patch, urlString);
@@ -952,7 +1208,7 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "updateWallet", new List<string> { "wallets:write" }, SDKConfiguration.SecuritySource);
@@ -1007,17 +1263,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    WalletsErrorResponsePayload payload;
+                    Models.Wallets.ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<WalletsErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into WalletsErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new WalletsErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Wallets.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1028,14 +1284,21 @@ namespace FormanceSDK
         /// <summary>
         /// Get wallet summary.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="id">Description not available.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetWalletSummaryResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 200 or 404.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200 or 404.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<Models.Requests.GetWalletSummaryResponse> GetWalletSummaryAsync(string id)
+        public async  Task<Models.Requests.GetWalletSummaryResponse> GetWalletSummaryAsync(
+            string id,
+            string? serverUrl = null
+        )
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
 
@@ -1044,7 +1307,12 @@ namespace FormanceSDK
                 Id = id,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetWalletSummaryServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/wallets/{id}/summary", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1057,7 +1325,7 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getWalletSummary", new List<string> { "wallets:read" }, SDKConfiguration.SecuritySource);
@@ -1101,14 +1369,14 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Components.GetWalletSummaryResponse obj;
+                    Models.Wallets.GetWalletSummaryResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Components.GetWalletSummaryResponse>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.GetWalletSummaryResponse>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Components.GetWalletSummaryResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.GetWalletSummaryResponse.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
                     var response = new Models.Requests.GetWalletSummaryResponse()
@@ -1141,17 +1409,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    WalletsErrorResponsePayload payload;
+                    Models.Wallets.ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<WalletsErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into WalletsErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new WalletsErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Wallets.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1162,13 +1430,17 @@ namespace FormanceSDK
         /// <summary>
         /// List balances of a wallet.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="id">Description not available.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.ListBalancesResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public async  Task<Models.Requests.ListBalancesResponse> ListBalancesAsync(string id)
+        public async  Task<Models.Requests.ListBalancesResponse> ListBalancesAsync(string id, string? serverUrl = null)
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
 
@@ -1177,7 +1449,12 @@ namespace FormanceSDK
                 Id = id,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(ListBalancesServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/wallets/{id}/balances", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1190,7 +1467,7 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listBalances", new List<string> { "wallets:read" }, SDKConfiguration.SecuritySource);
@@ -1234,14 +1511,14 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Components.ListBalancesResponse obj;
+                    Models.Wallets.ListBalancesResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Components.ListBalancesResponse>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.ListBalancesResponse>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Components.ListBalancesResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.ListBalancesResponse.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
                     var response = new Models.Requests.ListBalancesResponse()
@@ -1268,31 +1545,41 @@ namespace FormanceSDK
         /// <summary>
         /// Create a balance.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="id">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
-        /// <param name="createBalanceRequest">A <see cref="FormanceSDK.Models.Components.CreateBalanceRequest"/> parameter.</param>
+        /// <param name="balance">A <see cref="Balance"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.CreateBalanceResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<Models.Requests.CreateBalanceResponse> CreateBalanceAsync(
             string id,
             string? idempotencyKey = null,
-            Models.Components.CreateBalanceRequest? createBalanceRequest = null
+            Balance? balance = null,
+            string? serverUrl = null
         )
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
 
-            var request = new Models.Requests.CreateBalanceRequest()
+            var request = new CreateBalanceRequest()
             {
                 Id = id,
                 IdempotencyKey = idempotencyKey,
-                CreateBalanceRequestValue = createBalanceRequest,
+                Balance = balance,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(CreateBalanceServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/wallets/{id}/balances", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -1304,7 +1591,7 @@ namespace FormanceSDK
                 httpRequest.Headers.Add("Accept", "application/json");
             }
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "CreateBalanceRequestValue", "json", false, true);
+            var serializedBody = RequestBodySerializer.Serialize(request, "Balance", "json", false, true);
             if (serializedBody != null)
             {
                 httpRequest.Content = serializedBody;
@@ -1312,7 +1599,7 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createBalance", new List<string> { "wallets:write" }, SDKConfiguration.SecuritySource);
@@ -1356,14 +1643,14 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Components.CreateBalanceResponse obj;
+                    Models.Wallets.CreateBalanceResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Components.CreateBalanceResponse>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.CreateBalanceResponse>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Components.CreateBalanceResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.CreateBalanceResponse.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
                     var response = new Models.Requests.CreateBalanceResponse()
@@ -1385,17 +1672,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    WalletsErrorResponsePayload payload;
+                    Models.Wallets.ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<WalletsErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into WalletsErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new WalletsErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Wallets.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1406,15 +1693,23 @@ namespace FormanceSDK
         /// <summary>
         /// Get detailed balance.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="id">Description not available.</param>
         /// <param name="balanceName">Description not available.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetBalanceResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="id"/> or <paramref name="balanceName"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<Models.Requests.GetBalanceResponse> GetBalanceAsync(string id, string balanceName)
+        public async  Task<Models.Requests.GetBalanceResponse> GetBalanceAsync(
+            string id,
+            string balanceName,
+            string? serverUrl = null
+        )
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
             if (balanceName == null) throw new ArgumentNullException(nameof(balanceName));
@@ -1425,7 +1720,12 @@ namespace FormanceSDK
                 BalanceName = balanceName,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetBalanceServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/wallets/{id}/balances/{balanceName}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1438,7 +1738,7 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getBalance", new List<string> { "wallets:read" }, SDKConfiguration.SecuritySource);
@@ -1482,14 +1782,14 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Components.GetBalanceResponse obj;
+                    Models.Wallets.GetBalanceResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Components.GetBalanceResponse>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.GetBalanceResponse>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Components.GetBalanceResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.GetBalanceResponse.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
                     var response = new Models.Requests.GetBalanceResponse()
@@ -1511,17 +1811,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    WalletsErrorResponsePayload payload;
+                    Models.Wallets.ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<WalletsErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into WalletsErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new WalletsErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Wallets.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1532,19 +1832,24 @@ namespace FormanceSDK
         /// <summary>
         /// Debit a wallet.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="id">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
-        /// <param name="debitWalletRequest">A <see cref="FormanceSDK.Models.Components.DebitWalletRequest"/> parameter.</param>
+        /// <param name="debitWalletRequest">A <see cref="FormanceSDK.Models.Wallets.DebitWalletRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.DebitWalletResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 201 or 204.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 201 or 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<Models.Requests.DebitWalletResponse> DebitWalletAsync(
             string id,
             string? idempotencyKey = null,
-            Models.Components.DebitWalletRequest? debitWalletRequest = null
+            Models.Wallets.DebitWalletRequest? debitWalletRequest = null,
+            string? serverUrl = null
         )
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
@@ -1556,7 +1861,12 @@ namespace FormanceSDK
                 DebitWalletRequestValue = debitWalletRequest,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(DebitWalletServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/wallets/{id}/debit", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -1576,7 +1886,7 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "debitWallet", new List<string> { "wallets:write" }, SDKConfiguration.SecuritySource);
@@ -1620,14 +1930,14 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Components.DebitWalletResponse obj;
+                    Models.Wallets.DebitWalletResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Components.DebitWalletResponse>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.DebitWalletResponse>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Components.DebitWalletResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.DebitWalletResponse.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
                     var response = new Models.Requests.DebitWalletResponse()
@@ -1660,17 +1970,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    WalletsErrorResponsePayload payload;
+                    Models.Wallets.ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<WalletsErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into WalletsErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new WalletsErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Wallets.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1681,19 +1991,24 @@ namespace FormanceSDK
         /// <summary>
         /// Credit a wallet.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="id">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
-        /// <param name="creditWalletRequest">A <see cref="FormanceSDK.Models.Components.CreditWalletRequest"/> parameter.</param>
+        /// <param name="creditWalletRequest">A <see cref="FormanceSDK.Models.Wallets.CreditWalletRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="CreditWalletResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<CreditWalletResponse> CreditWalletAsync(
             string id,
             string? idempotencyKey = null,
-            Models.Components.CreditWalletRequest? creditWalletRequest = null
+            Models.Wallets.CreditWalletRequest? creditWalletRequest = null,
+            string? serverUrl = null
         )
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
@@ -1705,7 +2020,12 @@ namespace FormanceSDK
                 CreditWalletRequestValue = creditWalletRequest,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(CreditWalletServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/wallets/{id}/credit", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -1725,7 +2045,7 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "creditWallet", new List<string> { "wallets:write" }, SDKConfiguration.SecuritySource);
@@ -1780,17 +2100,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    WalletsErrorResponsePayload payload;
+                    Models.Wallets.ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<WalletsErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into WalletsErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new WalletsErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Wallets.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1801,6 +2121,9 @@ namespace FormanceSDK
         /// <summary>
         /// Get all holds for a wallet.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="pageSize">The maximum number of results to return per page.</param>
         /// <param name="walletID">The wallet to filter on.</param>
         /// <param name="metadata">Filter holds by metadata key value pairs. Nested objects can be used as seen in the example below.</param>
@@ -1810,16 +2133,18 @@ namespace FormanceSDK
         /// Set to the value of previous for the previous page of results.<br/>
         /// No other parameters can be set when the pagination token is set.
         /// </param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetHoldsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<Models.Requests.GetHoldsResponse> GetHoldsAsync(
             long? pageSize = 15,
             string? walletID = null,
             Dictionary<string, string>? metadata = null,
-            string? cursor = null
+            string? cursor = null,
+            string? serverUrl = null
         )
         {
             var request = new GetHoldsRequest()
@@ -1830,7 +2155,12 @@ namespace FormanceSDK
                 Cursor = cursor,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetHoldsServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/holds", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1843,7 +2173,7 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getHolds", new List<string> { "wallets:read" }, SDKConfiguration.SecuritySource);
@@ -1887,14 +2217,14 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Components.GetHoldsResponse obj;
+                    Models.Wallets.GetHoldsResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Components.GetHoldsResponse>(httpResponseBody, NullValueHandling.Include);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.GetHoldsResponse>(httpResponseBody, NullValueHandling.Include);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Components.GetHoldsResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.GetHoldsResponse.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
                     var response = new Models.Requests.GetHoldsResponse()
@@ -1916,17 +2246,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    WalletsErrorResponsePayload payload;
+                    Models.Wallets.ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<WalletsErrorResponsePayload>(httpResponseBody, NullValueHandling.Include);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Include);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into WalletsErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new WalletsErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Wallets.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1937,14 +2267,18 @@ namespace FormanceSDK
         /// <summary>
         /// Get a hold.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="holdID">The hold ID.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetHoldResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="holdID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<Models.Requests.GetHoldResponse> GetHoldAsync(string holdID)
+        public async  Task<Models.Requests.GetHoldResponse> GetHoldAsync(string holdID, string? serverUrl = null)
         {
             if (holdID == null) throw new ArgumentNullException(nameof(holdID));
 
@@ -1953,7 +2287,12 @@ namespace FormanceSDK
                 HoldID = holdID,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetHoldServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/holds/{holdID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1966,7 +2305,7 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getHold", new List<string> { "wallets:read" }, SDKConfiguration.SecuritySource);
@@ -2010,14 +2349,14 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Components.GetHoldResponse obj;
+                    Models.Wallets.GetHoldResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Components.GetHoldResponse>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.GetHoldResponse>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Components.GetHoldResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.GetHoldResponse.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
                     var response = new Models.Requests.GetHoldResponse()
@@ -2039,17 +2378,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    WalletsErrorResponsePayload payload;
+                    Models.Wallets.ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<WalletsErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into WalletsErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new WalletsErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Wallets.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -2060,19 +2399,24 @@ namespace FormanceSDK
         /// <summary>
         /// Confirm a hold.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="holdId">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
-        /// <param name="confirmHoldRequest">A <see cref="FormanceSDK.Models.Components.ConfirmHoldRequest"/> parameter.</param>
+        /// <param name="confirmHoldRequest">A <see cref="FormanceSDK.Models.Wallets.ConfirmHoldRequest"/> parameter.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ConfirmHoldResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="holdId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<ConfirmHoldResponse> ConfirmHoldAsync(
             string holdId,
             string? idempotencyKey = null,
-            Models.Components.ConfirmHoldRequest? confirmHoldRequest = null
+            Models.Wallets.ConfirmHoldRequest? confirmHoldRequest = null,
+            string? serverUrl = null
         )
         {
             if (holdId == null) throw new ArgumentNullException(nameof(holdId));
@@ -2084,7 +2428,12 @@ namespace FormanceSDK
                 ConfirmHoldRequestValue = confirmHoldRequest,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(ConfirmHoldServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/holds/{hold_id}/confirm", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -2104,7 +2453,7 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "confirmHold", new List<string> { "wallets:write" }, SDKConfiguration.SecuritySource);
@@ -2159,17 +2508,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    WalletsErrorResponsePayload payload;
+                    Models.Wallets.ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<WalletsErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into WalletsErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new WalletsErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Wallets.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -2180,15 +2529,23 @@ namespace FormanceSDK
         /// <summary>
         /// Cancel a hold.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
         /// <param name="holdId">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="VoidHoldResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="holdId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="WalletsErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<VoidHoldResponse> VoidHoldAsync(string holdId, string? idempotencyKey = null)
+        public async  Task<VoidHoldResponse> VoidHoldAsync(
+            string holdId,
+            string? idempotencyKey = null,
+            string? serverUrl = null
+        )
         {
             if (holdId == null) throw new ArgumentNullException(nameof(holdId));
 
@@ -2198,7 +2555,12 @@ namespace FormanceSDK
                 IdempotencyKey = idempotencyKey,
             };
 
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(VoidHoldServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/holds/{hold_id}/void", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -2212,7 +2574,7 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "voidHold", new List<string> { "wallets:write" }, SDKConfiguration.SecuritySource);
@@ -2267,17 +2629,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    WalletsErrorResponsePayload payload;
+                    Models.Wallets.ErrorResponsePayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<WalletsErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Wallets.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into WalletsErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Wallets.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new WalletsErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Wallets.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());

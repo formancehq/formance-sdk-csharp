@@ -9,7 +9,7 @@
 #nullable enable
 namespace FormanceSDK.Models.Requests
 {
-    using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Ledger;
     using FormanceSDK.Utils;
 
     public class RunScriptRequest
@@ -27,6 +27,6 @@ namespace FormanceSDK.Models.Requests
         public bool? Preview { get; set; }
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public Script Script { get; set; } = default!;
+        public Models.Ledger.Script Script { get; set; } = default!;
     }
 }

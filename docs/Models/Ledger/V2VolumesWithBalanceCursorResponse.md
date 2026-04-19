@@ -1,0 +1,9 @@
+# V2VolumesWithBalanceCursorResponse
+
+
+## Fields
+
+| Field                                                                                                           | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
+| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `Resource`                                                                                                      | [V2VolumesWithBalanceCursorResponseResource](../../Models/Ledger/V2VolumesWithBalanceCursorResponseResource.md) | :heavy_minus_sign:                                                                                              | N/A                                                                                                             |
+| `Cursor`                                                                                                        | [V2VolumesWithBalanceCursorResponseCursor](../../Models/Ledger/V2VolumesWithBalanceCursorResponseCursor.md)     | :heavy_check_mark:                                                                                              | N/A                                                                                                             |

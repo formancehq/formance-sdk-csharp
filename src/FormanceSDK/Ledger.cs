@@ -12,6 +12,7 @@ namespace FormanceSDK
     using FormanceSDK.Hooks;
     using FormanceSDK.Models.Components;
     using FormanceSDK.Models.Errors;
+    using FormanceSDK.Models.Ledger;
     using FormanceSDK.Models.Requests;
     using FormanceSDK.Utils;
     using FormanceSDK.Utils.Retries;
@@ -29,26 +30,48 @@ namespace FormanceSDK
         /// <summary>
         /// Show server information.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetInfoResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200 or 5XX.</exception>
+        /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200 or 5XX.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2GetInfoResponse> GetInfoAsync();
+        public  Task<V2GetInfoResponse> GetInfoAsync(string? serverUrl = null);
 
         /// <summary>
         /// Read in memory metrics.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetMetricsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<GetMetricsResponse> GetMetricsAsync();
+        public  Task<GetMetricsResponse> GetMetricsAsync(string? serverUrl = null);
     }
 
     public class Ledger: ILedger
     {
+        /// <summary>
+        /// List of server URLs available for the v2GetInfo operation.
+        /// </summary>
+        public static readonly string[] V2GetInfoServerList = {
+            "http://localhost:8080/",
+        };
+
+        /// <summary>
+        /// List of server URLs available for the getMetrics operation.
+        /// </summary>
+        public static readonly string[] GetMetricsServerList = {
+            "http://localhost:8080/",
+        };
+
         /// <summary>
         /// SDK Configuration.
         /// <see cref="SDKConfig"/>
@@ -77,14 +100,23 @@ namespace FormanceSDK
         /// <summary>
         /// Show server information.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetInfoResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200 or 5XX.</exception>
+        /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200 or 5XX.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2GetInfoResponse> GetInfoAsync()
+        public async  Task<V2GetInfoResponse> GetInfoAsync(string? serverUrl = null)
         {
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(V2GetInfoServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = baseUrl + "/api/ledger/_/info";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -97,7 +129,7 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2GetInfo", new List<string> { "ledger:read" }, SDKConfiguration.SecuritySource);
@@ -141,14 +173,14 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    V2ConfigInfoResponse obj;
+                    V2ConfigInfo obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<V2ConfigInfoResponse>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<V2ConfigInfo>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into V2ConfigInfoResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into V2ConfigInfo.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
                     var response = new V2GetInfoResponse()
@@ -159,7 +191,7 @@ namespace FormanceSDK
                             Request = httpRequest
                         }
                     };
-                    response.V2ConfigInfoResponse = obj;
+                    response.V2ConfigInfo = obj;
                     return response;
                 }
 
@@ -170,14 +202,14 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Components.V2ErrorResponse obj;
+                    V2ErrorResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Components.V2ErrorResponse>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<V2ErrorResponse>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Components.V2ErrorResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into V2ErrorResponse.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
                     var response = new V2GetInfoResponse()
@@ -199,17 +231,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Errors.V2ErrorResponsePayload payload;
+                    V2ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Errors.V2ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Errors.V2ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into V2ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new Models.Errors.V2ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new V2ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -220,14 +252,23 @@ namespace FormanceSDK
         /// <summary>
         /// Read in memory metrics.
         /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetMetricsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="Models.Errors.V2ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<GetMetricsResponse> GetMetricsAsync()
+        public async  Task<GetMetricsResponse> GetMetricsAsync(string? serverUrl = null)
         {
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetMetricsServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = baseUrl + "/api/ledger/_/metrics";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -240,7 +281,7 @@ namespace FormanceSDK
 
             if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
             }
 
             var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getMetrics", new List<string> { "ledger:read" }, SDKConfiguration.SecuritySource);
@@ -313,17 +354,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Errors.V2ErrorResponsePayload payload;
+                    V2ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Errors.V2ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Errors.V2ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into V2ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new Models.Errors.V2ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new V2ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());

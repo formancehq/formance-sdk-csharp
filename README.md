@@ -35,7 +35,6 @@ and standard method from web, mobile and desktop applications.
   * [SDK Example Usage](#sdk-example-usage)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Error Handling](#error-handling)
-  * [Server Selection](#server-selection)
   * [Authentication](#authentication-1)
   * [Custom HTTP Client](#custom-http-client)
 * [Development](#development)
@@ -91,7 +90,7 @@ var res = await sdk.GetVersionsAsync();
 ### [Auth.V1](docs/sdks/v1/README.md)
 
 * [GetOIDCWellKnowns](docs/sdks/v1/README.md#getoidcwellknowns) - Retrieve OpenID connect well-knowns.
-* [GetServerInfo](docs/sdks/v1/README.md#getserverinfo) - Get server info
+* [GetServerInfoAuth](docs/sdks/v1/README.md#getserverinfoauth) - Get server info
 * [ListClients](docs/sdks/v1/README.md#listclients) - List clients
 * [CreateClient](docs/sdks/v1/README.md#createclient) - Create client
 * [ReadClient](docs/sdks/v1/README.md#readclient) - Read client
@@ -112,8 +111,8 @@ var res = await sdk.GetVersionsAsync();
 * [GetInfo](docs/sdks/formancev1/README.md#getinfo) - Show server information
 * [GetLedgerInfo](docs/sdks/formancev1/README.md#getledgerinfo) - Get information about a ledger
 * [CountAccounts](docs/sdks/formancev1/README.md#countaccounts) - Count the accounts from a ledger
-* [ListAccounts](docs/sdks/formancev1/README.md#listaccounts) - List accounts from a ledger
-* [GetAccount](docs/sdks/formancev1/README.md#getaccount) - Get account by its address
+* [ListAccountsLedger](docs/sdks/formancev1/README.md#listaccountsledger) - List accounts from a ledger
+* [GetAccountLedger](docs/sdks/formancev1/README.md#getaccountledger) - Get account by its address
 * [AddMetadataToAccount](docs/sdks/formancev1/README.md#addmetadatatoaccount) - Add metadata to an account
 * [GetMapping](docs/sdks/formancev1/README.md#getmapping) - Get the mapping of a ledger
 * [UpdateMapping](docs/sdks/formancev1/README.md#updatemapping) - Update the mapping of a ledger
@@ -178,7 +177,7 @@ var res = await sdk.GetVersionsAsync();
 
 ### [Orchestration.V1](docs/sdks/formanceorchestrationv1/README.md)
 
-* [OrchestrationgetServerInfo](docs/sdks/formanceorchestrationv1/README.md#orchestrationgetserverinfo) - Get server info
+* [GetServerInfoOrchestration](docs/sdks/formanceorchestrationv1/README.md#getserverinfoorchestration) - Get server info
 * [ListTriggers](docs/sdks/formanceorchestrationv1/README.md#listtriggers) - List triggers
 * [CreateTrigger](docs/sdks/formanceorchestrationv1/README.md#createtrigger) - Create trigger
 * [ReadTrigger](docs/sdks/formanceorchestrationv1/README.md#readtrigger) - Read trigger
@@ -219,7 +218,7 @@ var res = await sdk.GetVersionsAsync();
 
 ### [Payments.V1](docs/sdks/formancepaymentsv1/README.md)
 
-* [PaymentsgetServerInfo](docs/sdks/formancepaymentsv1/README.md#paymentsgetserverinfo) - Get server info
+* [GetServerInfoPayments](docs/sdks/formancepaymentsv1/README.md#getserverinfopayments) - Get server info
 * [CreatePayment](docs/sdks/formancepaymentsv1/README.md#createpayment) - Create a payment
 * [ListPayments](docs/sdks/formancepaymentsv1/README.md#listpayments) - List payments
 * [GetPayment](docs/sdks/formancepaymentsv1/README.md#getpayment) - Get a payment
@@ -241,8 +240,8 @@ var res = await sdk.GetVersionsAsync();
 * [GetPoolBalances](docs/sdks/formancepaymentsv1/README.md#getpoolbalances) - Get historical pool balances at a particular point in time
 * [GetPoolBalancesLatest](docs/sdks/formancepaymentsv1/README.md#getpoolbalanceslatest) - Get latest pool balances
 * [CreateAccount](docs/sdks/formancepaymentsv1/README.md#createaccount) - Create an account
-* [PaymentslistAccounts](docs/sdks/formancepaymentsv1/README.md#paymentslistaccounts) - List accounts
-* [PaymentsgetAccount](docs/sdks/formancepaymentsv1/README.md#paymentsgetaccount) - Get an account
+* [ListAccountsPayments](docs/sdks/formancepaymentsv1/README.md#listaccountspayments) - List accounts
+* [GetAccountPayments](docs/sdks/formancepaymentsv1/README.md#getaccountpayments) - Get an account
 * [GetAccountBalances](docs/sdks/formancepaymentsv1/README.md#getaccountbalances) - Get account balances
 * [CreateBankAccount](docs/sdks/formancepaymentsv1/README.md#createbankaccount) - Create a BankAccount in Payments and on the PSP
 * [ListBankAccounts](docs/sdks/formancepaymentsv1/README.md#listbankaccounts) - List bank accounts created by user on Formance
@@ -333,7 +332,7 @@ Allows to check if users used the link and completed the oauth flow.
 
 ### [Reconciliation.V1](docs/sdks/formancereconciliationv1/README.md)
 
-* [ReconciliationgetServerInfo](docs/sdks/formancereconciliationv1/README.md#reconciliationgetserverinfo) - Get server info
+* [GetServerInfoReconciliation](docs/sdks/formancereconciliationv1/README.md#getserverinforeconciliation) - Get server info
 * [CreatePolicy](docs/sdks/formancereconciliationv1/README.md#createpolicy) - Create a policy
 * [ListPolicies](docs/sdks/formancereconciliationv1/README.md#listpolicies) - List policies
 * [DeletePolicy](docs/sdks/formancereconciliationv1/README.md#deletepolicy) - Delete a policy
@@ -344,12 +343,12 @@ Allows to check if users used the link and completed the oauth flow.
 
 ### [~~Search.V1~~](docs/sdks/formancesearchv1/README.md)
 
-* [~~SearchgetServerInfo~~](docs/sdks/formancesearchv1/README.md#searchgetserverinfo) - Get server info :warning: **Deprecated**
+* [~~GetServerInfoSearch~~](docs/sdks/formancesearchv1/README.md#getserverinfosearch) - Get server info :warning: **Deprecated**
 * [~~Search~~](docs/sdks/formancesearchv1/README.md#search) - search.v1 :warning: **Deprecated**
 
 ### [Wallets.V1](docs/sdks/formancewalletsv1/README.md)
 
-* [WalletsgetServerInfo](docs/sdks/formancewalletsv1/README.md#walletsgetserverinfo) - Get server info
+* [GetServerInfoWallets](docs/sdks/formancewalletsv1/README.md#getserverinfowallets) - Get server info
 * [GetTransactions](docs/sdks/formancewalletsv1/README.md#gettransactions)
 * [ListWallets](docs/sdks/formancewalletsv1/README.md#listwallets) - List all wallets
 * [CreateWallet](docs/sdks/formancewalletsv1/README.md#createwallet) - Create a new wallet
@@ -399,6 +398,7 @@ Some exceptions in this SDK include an additional `Payload` field, which will co
 using FormanceSDK;
 using FormanceSDK.Models.Components;
 using FormanceSDK.Models.Errors;
+using FormanceSDK.Models.Ledger;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -422,11 +422,11 @@ catch (SDKBaseException ex)  // all SDK exceptions inherit from SDKBaseException
     var statusCode = (int)response.StatusCode;
     var responseBody = ex.Body;
 
-    if (ex is Models.Errors.V2ErrorResponse) // different exceptions may be thrown depending on the method
+    if (ex is V2ErrorResponseError) // different exceptions may be thrown depending on the method
     {
         // Check error data fields
-        Models.Errors.V2ErrorResponsePayload payload = ex.Payload;
-        V2ErrorsEnum ErrorCode = payload.ErrorCode;
+        V2ErrorResponseErrorPayload payload = ex.Payload;
+        V2ErrorsEnum V2ErrorsEnum = payload.V2ErrorsEnum;
         string ErrorMessage = payload.ErrorMessage;
         // ...
     }
@@ -448,74 +448,23 @@ catch (System.Net.Http.HttpRequestException ex)
 **Primary exception:**
 * [`SDKBaseException`](./src/FormanceSDK/Models/Errors/SDKBaseException.cs): The base class for HTTP error responses.
 
-<details><summary>Less common exceptions (11)</summary>
+<details><summary>Less common exceptions (9)</summary>
 
 * [`System.Net.Http.HttpRequestException`](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httprequestexception): Network connectivity error. For more details about the underlying cause, inspect the `ex.InnerException`.
 
 * Inheriting from [`SDKBaseException`](./src/FormanceSDK/Models/Errors/SDKBaseException.cs):
   * [`V3ErrorResponse`](./src/FormanceSDK/Models/Errors/V3ErrorResponse.cs): Error. Applicable to 57 of 249 methods.*
   * [`PaymentsErrorResponse`](./src/FormanceSDK/Models/Errors/PaymentsErrorResponse.cs): Error. Applicable to 46 of 249 methods.*
-  * [`V2ErrorResponse`](./src/FormanceSDK/Models/Errors/V2ErrorResponse.cs): Applicable to 44 of 249 methods.*
-  * [`ErrorResponse`](./src/FormanceSDK/Models/Errors/ErrorResponse.cs): Applicable to 19 of 249 methods.*
+  * [`V2ErrorResponseError`](./src/FormanceSDK/Models/Errors/V2ErrorResponseError.cs): Applicable to 44 of 249 methods.*
+  * [`ErrorResponse`](./src/FormanceSDK/Models/Errors/ErrorResponse.cs): Applicable to 31 of 249 methods.*
+  * [`ErrorResponseError`](./src/FormanceSDK/Models/Errors/ErrorResponseError.cs): Applicable to 19 of 249 methods.*
   * [`V2Error`](./src/FormanceSDK/Models/Errors/V2Error.cs): General error. Applicable to 18 of 249 methods.*
   * [`Error`](./src/FormanceSDK/Models/Errors/Error.cs): General error. Applicable to 17 of 249 methods.*
-  * [`WalletsErrorResponse`](./src/FormanceSDK/Models/Errors/WalletsErrorResponse.cs): Applicable to 15 of 249 methods.*
-  * [`WebhooksErrorResponse`](./src/FormanceSDK/Models/Errors/WebhooksErrorResponse.cs): Error. Applicable to 8 of 249 methods.*
-  * [`ReconciliationErrorResponse`](./src/FormanceSDK/Models/Errors/ReconciliationErrorResponse.cs): Error response. Applicable to 8 of 249 methods.*
   * [`ResponseValidationError`](./src/FormanceSDK/Models/Errors/ResponseValidationError.cs): Thrown when the response data could not be deserialized into the expected type.
 </details>
 
 \* Refer to the [relevant documentation](#available-resources-and-operations) to determine whether an exception applies to a specific operation.
 <!-- End Error Handling [errors] -->
-
-<!-- Start Server Selection [server] -->
-## Server Selection
-
-### Select Server by Index
-
-You can override the default server globally by passing a server index to the `serverIndex: int` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
-
-| #   | Server                                                | Variables                        | Description                                |
-| --- | ----------------------------------------------------- | -------------------------------- | ------------------------------------------ |
-| 0   | `http://localhost`                                    |                                  | local server                               |
-| 1   | `https://{organization}.{environment}.formance.cloud` | `organization`<br/>`environment` | A per-organization and per-environment API |
-
-If the selected server has variables, you may override its default values through the additional parameters made available in the SDK constructor:
-
-| Variable       | Parameter                                           | Supported Values                                         | Default           | Description                                                   |
-| -------------- | --------------------------------------------------- | -------------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
-| `organization` | `organization: string`                              | string                                                   | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
-| `environment`  | `environment: FormanceSDK.Models.ServerEnvironment` | - `"eu.sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"eu.sandbox"`    | The environment name. Defaults to the production environment. |
-
-#### Example
-
-```csharp
-using FormanceSDK;
-
-var sdk = new Formance(
-    serverIndex: 1,
-    organization: "orgID-stackID",
-    environment: "us-east-1"
-);
-
-var res = await sdk.GetVersionsAsync();
-
-// handle response
-```
-
-### Override Server URL Per-Client
-
-The default server can also be overridden globally by passing a URL to the `serverUrl: string` optional parameter when initializing the SDK client instance. For example:
-```csharp
-using FormanceSDK;
-
-var sdk = new Formance(serverUrl: "https://orgID-stackID.eu.sandbox.formance.cloud");
-
-var res = await sdk.GetVersionsAsync();
-
-// handle response
-```
-<!-- End Server Selection [server] -->
 
 <!-- Start Authentication [security] -->
 ## Authentication

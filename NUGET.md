@@ -36,6 +36,7 @@ Some exceptions in this SDK include an additional `Payload` field, which will co
 using FormanceSDK;
 using FormanceSDK.Models.Components;
 using FormanceSDK.Models.Errors;
+using FormanceSDK.Models.Ledger;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -59,11 +60,11 @@ catch (SDKBaseException ex)  // all SDK exceptions inherit from SDKBaseException
     var statusCode = (int)response.StatusCode;
     var responseBody = ex.Body;
 
-    if (ex is Models.Errors.V2ErrorResponse) // different exceptions may be thrown depending on the method
+    if (ex is V2ErrorResponseError) // different exceptions may be thrown depending on the method
     {
         // Check error data fields
-        Models.Errors.V2ErrorResponsePayload payload = ex.Payload;
-        V2ErrorsEnum ErrorCode = payload.ErrorCode;
+        V2ErrorResponseErrorPayload payload = ex.Payload;
+        V2ErrorsEnum V2ErrorsEnum = payload.V2ErrorsEnum;
         string ErrorMessage = payload.ErrorMessage;
         // ...
     }
@@ -85,73 +86,22 @@ catch (System.Net.Http.HttpRequestException ex)
 **Primary exception:**
 * [`SDKBaseException`](./src/FormanceSDK/Models/Errors/SDKBaseException.cs): The base class for HTTP error responses.
 
-**Less common exceptions (11)**
+**Less common exceptions (9)**
 
 * [`System.Net.Http.HttpRequestException`](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httprequestexception): Network connectivity error. For more details about the underlying cause, inspect the `ex.InnerException`.
 
 * Inheriting from [`SDKBaseException`](./src/FormanceSDK/Models/Errors/SDKBaseException.cs):
   * [`V3ErrorResponse`](./src/FormanceSDK/Models/Errors/V3ErrorResponse.cs): Error. Applicable to 57 of 249 methods.*
   * [`PaymentsErrorResponse`](./src/FormanceSDK/Models/Errors/PaymentsErrorResponse.cs): Error. Applicable to 46 of 249 methods.*
-  * [`V2ErrorResponse`](./src/FormanceSDK/Models/Errors/V2ErrorResponse.cs): Applicable to 44 of 249 methods.*
-  * [`ErrorResponse`](./src/FormanceSDK/Models/Errors/ErrorResponse.cs): Applicable to 19 of 249 methods.*
+  * [`V2ErrorResponseError`](./src/FormanceSDK/Models/Errors/V2ErrorResponseError.cs): Applicable to 44 of 249 methods.*
+  * [`ErrorResponse`](./src/FormanceSDK/Models/Errors/ErrorResponse.cs): Applicable to 31 of 249 methods.*
+  * [`ErrorResponseError`](./src/FormanceSDK/Models/Errors/ErrorResponseError.cs): Applicable to 19 of 249 methods.*
   * [`V2Error`](./src/FormanceSDK/Models/Errors/V2Error.cs): General error. Applicable to 18 of 249 methods.*
   * [`Error`](./src/FormanceSDK/Models/Errors/Error.cs): General error. Applicable to 17 of 249 methods.*
-  * [`WalletsErrorResponse`](./src/FormanceSDK/Models/Errors/WalletsErrorResponse.cs): Applicable to 15 of 249 methods.*
-  * [`WebhooksErrorResponse`](./src/FormanceSDK/Models/Errors/WebhooksErrorResponse.cs): Error. Applicable to 8 of 249 methods.*
-  * [`ReconciliationErrorResponse`](./src/FormanceSDK/Models/Errors/ReconciliationErrorResponse.cs): Error response. Applicable to 8 of 249 methods.*
   * [`ResponseValidationError`](./src/FormanceSDK/Models/Errors/ResponseValidationError.cs): Thrown when the response data could not be deserialized into the expected type.
 
 \* Refer to the [relevant documentation](#available-resources-and-operations) to determine whether an exception applies to a specific operation.
 <!-- End Error Handling [errors] -->
-
-<!-- Start Server Selection [server] -->
-## Server Selection
-
-### Select Server by Index
-
-You can override the default server globally by passing a server index to the `serverIndex: int` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
-
-| #   | Server                                                | Variables                        | Description                                |
-| --- | ----------------------------------------------------- | -------------------------------- | ------------------------------------------ |
-| 0   | `http://localhost`                                    |                                  | local server                               |
-| 1   | `https://{organization}.{environment}.formance.cloud` | `organization`<br/>`environment` | A per-organization and per-environment API |
-
-If the selected server has variables, you may override its default values through the additional parameters made available in the SDK constructor:
-
-| Variable       | Parameter                                           | Supported Values                                         | Default           | Description                                                   |
-| -------------- | --------------------------------------------------- | -------------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
-| `organization` | `organization: string`                              | string                                                   | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
-| `environment`  | `environment: FormanceSDK.Models.ServerEnvironment` | - `"eu.sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"eu.sandbox"`    | The environment name. Defaults to the production environment. |
-
-#### Example
-
-```csharp
-using FormanceSDK;
-
-var sdk = new Formance(
-    serverIndex: 1,
-    organization: "orgID-stackID",
-    environment: "us-east-1"
-);
-
-var res = await sdk.GetVersionsAsync();
-
-// handle response
-```
-
-### Override Server URL Per-Client
-
-The default server can also be overridden globally by passing a URL to the `serverUrl: string` optional parameter when initializing the SDK client instance. For example:
-```csharp
-using FormanceSDK;
-
-var sdk = new Formance(serverUrl: "https://orgID-stackID.eu.sandbox.formance.cloud");
-
-var res = await sdk.GetVersionsAsync();
-
-// handle response
-```
-<!-- End Server Selection [server] -->
 
 <!-- Start Authentication [security] -->
 ## Authentication

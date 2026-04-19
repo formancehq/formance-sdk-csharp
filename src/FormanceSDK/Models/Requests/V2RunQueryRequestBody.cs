@@ -10,6 +10,7 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Ledger;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace FormanceSDK.Models.Requests
         public string? Cursor { get; set; }
 
         [JsonProperty("params", NullValueHandling = NullValueHandling.Include)]
-        public V2QueryParams? Params { get; set; }
+        public V2QueryParams? V2QueryParams { get; set; }
 
         [JsonProperty("vars")]
         public Dictionary<string, string>? Vars { get; set; }

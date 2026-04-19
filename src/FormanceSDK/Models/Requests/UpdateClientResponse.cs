@@ -9,6 +9,7 @@
 #nullable enable
 namespace FormanceSDK.Models.Requests
 {
+    using FormanceSDK.Models.Auth;
     using FormanceSDK.Models.Components;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
@@ -21,6 +22,6 @@ namespace FormanceSDK.Models.Requests
         /// <summary>
         /// Updated client.
         /// </summary>
-        public Models.Components.UpdateClientResponse? UpdateClientResponseValue { get; set; }
+        public Models.Auth.CreateClientResponse? CreateClientResponse { get; set; }
     }
 }

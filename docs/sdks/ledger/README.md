@@ -28,16 +28,22 @@ var res = await sdk.Ledger.GetInfoAsync();
 // handle response
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[V2GetInfoResponse](../../Models/Requests/V2GetInfoResponse.md)**
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## GetMetrics
 
@@ -60,13 +66,19 @@ var res = await sdk.Ledger.GetMetricsAsync();
 // handle response
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[GetMetricsResponse](../../Models/Requests/GetMetricsResponse.md)**
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |

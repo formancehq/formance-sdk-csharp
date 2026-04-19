@@ -43,6 +43,7 @@ var res = await sdk.Webhooks.V1.GetManyConfigsAsync(
 | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | `Id`                                 | *string*                             | :heavy_minus_sign:                   | Optional filter by Config ID         | 4997257d-dfb6-445b-929c-cbe2ab182818 |
 | `Endpoint`                           | *string*                             | :heavy_minus_sign:                   | Optional filter by endpoint URL      | https://example.com                  |
+| `serverURL`                          | *string*                             | :heavy_minus_sign:                   | An optional server URL to use.       | http://localhost:8080                |
 
 ### Response
 
@@ -50,10 +51,10 @@ var res = await sdk.Webhooks.V1.GetManyConfigsAsync(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.WebhooksErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Webhooks.ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## InsertConfig
 
@@ -74,6 +75,7 @@ All eventTypes are converted to lower-case when inserted.
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Webhooks;
 using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
@@ -98,9 +100,10 @@ var res = await sdk.Webhooks.V1.InsertConfigAsync(req);
 
 ### Parameters
 
-| Parameter                                           | Type                                                | Required                                            | Description                                         |
-| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
-| `request`                                           | [ConfigUser](../../Models/Components/ConfigUser.md) | :heavy_check_mark:                                  | The request object to use for the request.          |
+| Parameter                                         | Type                                              | Required                                          | Description                                       |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| `request`                                         | [ConfigUser](../../Models/Webhooks/ConfigUser.md) | :heavy_check_mark:                                | The request object to use for the request.        |
+| `serverURL`                                       | *string*                                          | :heavy_minus_sign:                                | An optional server URL to use.                    |
 
 ### Response
 
@@ -108,10 +111,10 @@ var res = await sdk.Webhooks.V1.InsertConfigAsync(req);
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.WebhooksErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Webhooks.ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## DeleteConfig
 
@@ -139,6 +142,7 @@ var res = await sdk.Webhooks.V1.DeleteConfigAsync(id: "4997257d-dfb6-445b-929c-c
 | Parameter                            | Type                                 | Required                             | Description                          | Example                              |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | `Id`                                 | *string*                             | :heavy_check_mark:                   | Config ID                            | 4997257d-dfb6-445b-929c-cbe2ab182818 |
+| `serverURL`                          | *string*                             | :heavy_minus_sign:                   | An optional server URL to use.       | http://localhost:8080                |
 
 ### Response
 
@@ -146,10 +150,10 @@ var res = await sdk.Webhooks.V1.DeleteConfigAsync(id: "4997257d-dfb6-445b-929c-c
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.WebhooksErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Webhooks.ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## UpdateConfig
 
@@ -161,6 +165,7 @@ Update a webhooks config by ID.
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Webhooks;
 using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
@@ -186,10 +191,11 @@ var res = await sdk.Webhooks.V1.UpdateConfigAsync(
 
 ### Parameters
 
-| Parameter                                           | Type                                                | Required                                            | Description                                         | Example                                             |
-| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
-| `Id`                                                | *string*                                            | :heavy_check_mark:                                  | Config ID                                           | 4997257d-dfb6-445b-929c-cbe2ab182818                |
-| `ConfigUser`                                        | [ConfigUser](../../Models/Components/ConfigUser.md) | :heavy_check_mark:                                  | N/A                                                 |                                                     |
+| Parameter                                         | Type                                              | Required                                          | Description                                       | Example                                           |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| `Id`                                              | *string*                                          | :heavy_check_mark:                                | Config ID                                         | 4997257d-dfb6-445b-929c-cbe2ab182818              |
+| `ConfigUser`                                      | [ConfigUser](../../Models/Webhooks/ConfigUser.md) | :heavy_check_mark:                                | N/A                                               |                                                   |
+| `serverURL`                                       | *string*                                          | :heavy_minus_sign:                                | An optional server URL to use.                    | http://localhost:8080                             |
 
 ### Response
 
@@ -197,10 +203,10 @@ var res = await sdk.Webhooks.V1.UpdateConfigAsync(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.WebhooksErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Webhooks.ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## TestConfig
 
@@ -228,6 +234,7 @@ var res = await sdk.Webhooks.V1.TestConfigAsync(id: "4997257d-dfb6-445b-929c-cbe
 | Parameter                            | Type                                 | Required                             | Description                          | Example                              |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | `Id`                                 | *string*                             | :heavy_check_mark:                   | Config ID                            | 4997257d-dfb6-445b-929c-cbe2ab182818 |
+| `serverURL`                          | *string*                             | :heavy_minus_sign:                   | An optional server URL to use.       | http://localhost:8080                |
 
 ### Response
 
@@ -235,10 +242,10 @@ var res = await sdk.Webhooks.V1.TestConfigAsync(id: "4997257d-dfb6-445b-929c-cbe
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.WebhooksErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Webhooks.ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## ActivateConfig
 
@@ -266,6 +273,7 @@ var res = await sdk.Webhooks.V1.ActivateConfigAsync(id: "4997257d-dfb6-445b-929c
 | Parameter                            | Type                                 | Required                             | Description                          | Example                              |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | `Id`                                 | *string*                             | :heavy_check_mark:                   | Config ID                            | 4997257d-dfb6-445b-929c-cbe2ab182818 |
+| `serverURL`                          | *string*                             | :heavy_minus_sign:                   | An optional server URL to use.       | http://localhost:8080                |
 
 ### Response
 
@@ -273,10 +281,10 @@ var res = await sdk.Webhooks.V1.ActivateConfigAsync(id: "4997257d-dfb6-445b-929c
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.WebhooksErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Webhooks.ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## DeactivateConfig
 
@@ -304,6 +312,7 @@ var res = await sdk.Webhooks.V1.DeactivateConfigAsync(id: "4997257d-dfb6-445b-92
 | Parameter                            | Type                                 | Required                             | Description                          | Example                              |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | `Id`                                 | *string*                             | :heavy_check_mark:                   | Config ID                            | 4997257d-dfb6-445b-929c-cbe2ab182818 |
+| `serverURL`                          | *string*                             | :heavy_minus_sign:                   | An optional server URL to use.       | http://localhost:8080                |
 
 ### Response
 
@@ -311,10 +320,10 @@ var res = await sdk.Webhooks.V1.DeactivateConfigAsync(id: "4997257d-dfb6-445b-92
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.WebhooksErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Webhooks.ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## ChangeConfigSecret
 
@@ -330,6 +339,7 @@ The format is a random string of bytes of size 24, base64 encoded. (larger size 
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Webhooks;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -348,10 +358,11 @@ var res = await sdk.Webhooks.V1.ChangeConfigSecretAsync(
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         | Example                                                             |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `Id`                                                                | *string*                                                            | :heavy_check_mark:                                                  | Config ID                                                           | 4997257d-dfb6-445b-929c-cbe2ab182818                                |
-| `ConfigChangeSecret`                                                | [ConfigChangeSecret](../../Models/Components/ConfigChangeSecret.md) | :heavy_minus_sign:                                                  | N/A                                                                 |                                                                     |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       | Example                                                           |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `Id`                                                              | *string*                                                          | :heavy_check_mark:                                                | Config ID                                                         | 4997257d-dfb6-445b-929c-cbe2ab182818                              |
+| `ConfigChangeSecret`                                              | [ConfigChangeSecret](../../Models/Webhooks/ConfigChangeSecret.md) | :heavy_minus_sign:                                                | N/A                                                               |                                                                   |
+| `serverURL`                                                       | *string*                                                          | :heavy_minus_sign:                                                | An optional server URL to use.                                    | http://localhost:8080                                             |
 
 ### Response
 
@@ -359,7 +370,7 @@ var res = await sdk.Webhooks.V1.ChangeConfigSecretAsync(
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| FormanceSDK.Models.Errors.WebhooksErrorResponse | default                                         | application/json                                |
-| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Webhooks.ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |

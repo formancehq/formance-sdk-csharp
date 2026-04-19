@@ -3,7 +3,7 @@
 
 ## Fields
 
-| Field                                                                 | Type                                                                  | Required                                                              | Description                                                           |
-| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `ClientId`                                                            | *string*                                                              | :heavy_check_mark:                                                    | Client ID                                                             |
-| `CreateClientRequest`                                                 | [CreateClientRequest](../../Models/Components/CreateClientRequest.md) | :heavy_minus_sign:                                                    | N/A                                                                   |
+| Field                                                 | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ClientId`                                            | *string*                                              | :heavy_check_mark:                                    | Client ID                                             |
+| `ClientOptions`                                       | [ClientOptions1](../../Models/Auth/ClientOptions1.md) | :heavy_minus_sign:                                    | N/A                                                   |

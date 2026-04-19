@@ -10,6 +10,7 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Wallets;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
@@ -21,6 +22,6 @@ namespace FormanceSDK.Models.Requests
         /// <summary>
         /// Holds.
         /// </summary>
-        public Models.Components.GetHoldsResponse? GetHoldsResponseValue { get; set; }
+        public Models.Wallets.GetHoldsResponse? GetHoldsResponseValue { get; set; }
     }
 }

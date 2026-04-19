@@ -11,6 +11,7 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
     using System;
+    using System.Collections.Generic;
 
     public class V2GetVolumesWithBalancesRequest
     {
@@ -59,5 +60,8 @@ namespace FormanceSDK.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")]
         public string? Sort { get; set; }
+
+        [SpeakeasyMetadata("request:mediaType=application/json")]
+        public Dictionary<string, object> RequestBody { get; set; } = default!;
     }
 }

@@ -10,6 +10,7 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Payments;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
@@ -21,6 +22,6 @@ namespace FormanceSDK.Models.Requests
         /// <summary>
         /// Created.
         /// </summary>
-        public Models.Components.V3CreateBankAccountResponse? V3CreateBankAccountResponseValue { get; set; }
+        public Models.Payments.V3CreateBankAccountResponse? V3CreateBankAccountResponseValue { get; set; }
     }
 }

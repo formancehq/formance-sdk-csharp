@@ -4,7 +4,7 @@
 
 ### Available Operations
 
-* [WalletsgetServerInfo](#walletsgetserverinfo) - Get server info
+* [GetServerInfoWallets](#getserverinfowallets) - Get server info
 * [GetTransactions](#gettransactions)
 * [ListWallets](#listwallets) - List all wallets
 * [CreateWallet](#createwallet) - Create a new wallet
@@ -21,13 +21,13 @@
 * [ConfirmHold](#confirmhold) - Confirm a hold
 * [VoidHold](#voidhold) - Cancel a hold
 
-## WalletsgetServerInfo
+## GetServerInfoWallets
 
 Get server info
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="walletsgetServerInfo" method="get" path="/api/wallets/_info" -->
+<!-- UsageSnippet language="csharp" operationID="getServerInfo_wallets" method="get" path="/api/wallets/_info" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -37,21 +37,27 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Wallets.V1.WalletsgetServerInfoAsync();
+var res = await sdk.Wallets.V1.GetServerInfoWalletsAsync();
 
 // handle response
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
-**[WalletsgetServerInfoResponse](../../Models/Requests/WalletsgetServerInfoResponse.md)**
+**[GetServerInfoWalletsResponse](../../Models/Requests/GetServerInfoWalletsResponse.md)**
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
-| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Wallets.ErrorResponse | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## GetTransactions
 
@@ -83,6 +89,7 @@ var res = await sdk.Wallets.V1.GetTransactionsAsync(
 | `PageSize`                                                                                                                                                                                                           | *long*                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                   | The maximum number of results to return per page                                                                                                                                                                     | 100                                                                                                                                                                                                                  |
 | `WalletID`                                                                                                                                                                                                           | *string*                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                   | A wallet ID to filter on                                                                                                                                                                                             | wallet1                                                                                                                                                                                                              |
 | `Cursor`                                                                                                                                                                                                             | *string*                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                   | Parameter used in pagination requests.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when the cursor is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                         |
+| `serverURL`                                                                                                                                                                                                          | *string*                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                   | An optional server URL to use.                                                                                                                                                                                       | http://localhost:8080                                                                                                                                                                                                |
 
 ### Response
 
@@ -90,10 +97,10 @@ var res = await sdk.Wallets.V1.GetTransactionsAsync(
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
-| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Wallets.ErrorResponse | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## ListWallets
 
@@ -133,6 +140,7 @@ var res = await sdk.Wallets.V1.ListWalletsAsync(req);
 | Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `request`                                                         | [ListWalletsRequest](../../Models/Requests/ListWalletsRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+| `serverURL`                                                       | *string*                                                          | :heavy_minus_sign:                                                | An optional server URL to use.                                    |
 
 ### Response
 
@@ -140,10 +148,10 @@ var res = await sdk.Wallets.V1.ListWalletsAsync(req);
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
-| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Wallets.ErrorResponse | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## CreateWallet
 
@@ -168,10 +176,11 @@ var res = await sdk.Wallets.V1.CreateWalletAsync();
 
 ### Parameters
 
-| Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
-| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `IdempotencyKey`                                                                        | *string*                                                                                | :heavy_minus_sign:                                                                      | Use an idempotency key                                                                  |
-| `CreateWalletRequest`                                                                   | [Models.Components.CreateWalletRequest](../../Models/Components/CreateWalletRequest.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `IdempotencyKey`                                                                  | *string*                                                                          | :heavy_minus_sign:                                                                | Use an idempotency key                                                            |
+| `CreateWalletRequest`                                                             | [Models.Wallets.CreateWalletRequest](../../Models/Wallets/CreateWalletRequest.md) | :heavy_minus_sign:                                                                | N/A                                                                               |
+| `serverURL`                                                                       | *string*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -179,10 +188,10 @@ var res = await sdk.Wallets.V1.CreateWalletAsync();
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
-| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Wallets.ErrorResponse | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## GetWallet
 
@@ -207,9 +216,10 @@ var res = await sdk.Wallets.V1.GetWalletAsync(id: "<id>");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `Id`               | *string*           | :heavy_check_mark: | N/A                |
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Id`                           | *string*                       | :heavy_check_mark:             | N/A                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -217,10 +227,10 @@ var res = await sdk.Wallets.V1.GetWalletAsync(id: "<id>");
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
-| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Wallets.ErrorResponse | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## UpdateWallet
 
@@ -250,6 +260,7 @@ var res = await sdk.Wallets.V1.UpdateWalletAsync(id: "<id>");
 | `Id`                                                                        | *string*                                                                    | :heavy_check_mark:                                                          | N/A                                                                         |
 | `IdempotencyKey`                                                            | *string*                                                                    | :heavy_minus_sign:                                                          | Use an idempotency key                                                      |
 | `RequestBody`                                                               | [UpdateWalletRequestBody](../../Models/Requests/UpdateWalletRequestBody.md) | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `serverURL`                                                                 | *string*                                                                    | :heavy_minus_sign:                                                          | An optional server URL to use.                                              |
 
 ### Response
 
@@ -257,10 +268,10 @@ var res = await sdk.Wallets.V1.UpdateWalletAsync(id: "<id>");
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
-| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Wallets.ErrorResponse | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## GetWalletSummary
 
@@ -285,9 +296,10 @@ var res = await sdk.Wallets.V1.GetWalletSummaryAsync(id: "<id>");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `Id`               | *string*           | :heavy_check_mark: | N/A                |
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Id`                           | *string*                       | :heavy_check_mark:             | N/A                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -295,10 +307,10 @@ var res = await sdk.Wallets.V1.GetWalletSummaryAsync(id: "<id>");
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
-| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Wallets.ErrorResponse | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## ListBalances
 
@@ -323,9 +335,10 @@ var res = await sdk.Wallets.V1.ListBalancesAsync(id: "<id>");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `Id`               | *string*           | :heavy_check_mark: | N/A                |
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Id`                           | *string*                       | :heavy_check_mark:             | N/A                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -360,11 +373,12 @@ var res = await sdk.Wallets.V1.CreateBalanceAsync(id: "<id>");
 
 ### Parameters
 
-| Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
-| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `Id`                                                                                      | *string*                                                                                  | :heavy_check_mark:                                                                        | N/A                                                                                       |
-| `IdempotencyKey`                                                                          | *string*                                                                                  | :heavy_minus_sign:                                                                        | Use an idempotency key                                                                    |
-| `CreateBalanceRequest`                                                                    | [Models.Components.CreateBalanceRequest](../../Models/Components/CreateBalanceRequest.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| Parameter                                  | Type                                       | Required                                   | Description                                |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| `Id`                                       | *string*                                   | :heavy_check_mark:                         | N/A                                        |
+| `IdempotencyKey`                           | *string*                                   | :heavy_minus_sign:                         | Use an idempotency key                     |
+| `Balance`                                  | [Balance](../../Models/Wallets/Balance.md) | :heavy_minus_sign:                         | N/A                                        |
+| `serverURL`                                | *string*                                   | :heavy_minus_sign:                         | An optional server URL to use.             |
 
 ### Response
 
@@ -372,10 +386,10 @@ var res = await sdk.Wallets.V1.CreateBalanceAsync(id: "<id>");
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
-| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Wallets.ErrorResponse | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## GetBalance
 
@@ -403,10 +417,11 @@ var res = await sdk.Wallets.V1.GetBalanceAsync(
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `Id`               | *string*           | :heavy_check_mark: | N/A                |
-| `BalanceName`      | *string*           | :heavy_check_mark: | N/A                |
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Id`                           | *string*                       | :heavy_check_mark:             | N/A                            |
+| `BalanceName`                  | *string*                       | :heavy_check_mark:             | N/A                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -414,10 +429,10 @@ var res = await sdk.Wallets.V1.GetBalanceAsync(
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
-| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Wallets.ErrorResponse | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## DebitWallet
 
@@ -439,8 +454,8 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Wallets.V1.DebitWalletAsync(
     id: "<id>",
-    debitWalletRequest: new FormanceSDK.Models.Components.DebitWalletRequest() {
-        Amount = new Monetary() {
+    debitWalletRequest: new FormanceSDK.Models.Wallets.DebitWalletRequest() {
+        Monetary = new FormanceSDK.Models.Wallets.Monetary() {
             Asset = "USD/2",
             Amount = BigInteger.Parse("100"),
         },
@@ -460,7 +475,8 @@ var res = await sdk.Wallets.V1.DebitWalletAsync(
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `Id`                                                                                          | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `IdempotencyKey`                                                                              | *string*                                                                                      | :heavy_minus_sign:                                                                            | Use an idempotency key                                                                        |                                                                                               |
-| `DebitWalletRequest`                                                                          | [Models.Components.DebitWalletRequest](../../Models/Components/DebitWalletRequest.md)         | :heavy_minus_sign:                                                                            | N/A                                                                                           | {<br/>"amount": {<br/>"asset": "USD/2",<br/>"amount": 100<br/>},<br/>"metadata": {<br/>"key": ""<br/>},<br/>"pending": true<br/>} |
+| `DebitWalletRequest`                                                                          | [Models.Wallets.DebitWalletRequest](../../Models/Wallets/DebitWalletRequest.md)               | :heavy_minus_sign:                                                                            | N/A                                                                                           | {<br/>"amount": {<br/>"asset": "USD/2",<br/>"amount": 100<br/>},<br/>"metadata": {<br/>"key": ""<br/>},<br/>"pending": true<br/>} |
+| `serverURL`                                                                                   | *string*                                                                                      | :heavy_minus_sign:                                                                            | An optional server URL to use.                                                                | http://localhost:8080                                                                         |
 
 ### Response
 
@@ -468,10 +484,10 @@ var res = await sdk.Wallets.V1.DebitWalletAsync(
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
-| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Wallets.ErrorResponse | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## CreditWallet
 
@@ -493,15 +509,15 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Wallets.V1.CreditWalletAsync(
     id: "<id>",
-    creditWalletRequest: new FormanceSDK.Models.Components.CreditWalletRequest() {
-        Amount = new Monetary() {
+    creditWalletRequest: new FormanceSDK.Models.Wallets.CreditWalletRequest() {
+        Monetary = new FormanceSDK.Models.Wallets.Monetary() {
             Asset = "USD/2",
             Amount = BigInteger.Parse("100"),
         },
         Metadata = new Dictionary<string, string>() {
             { "key", "" },
         },
-        Sources = new List<Subject>() {},
+        Sources = new List<FormanceSDK.Models.Wallets.Subject>() {},
     }
 );
 
@@ -514,7 +530,8 @@ var res = await sdk.Wallets.V1.CreditWalletAsync(
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `Id`                                                                                        | *string*                                                                                    | :heavy_check_mark:                                                                          | N/A                                                                                         |                                                                                             |
 | `IdempotencyKey`                                                                            | *string*                                                                                    | :heavy_minus_sign:                                                                          | Use an idempotency key                                                                      |                                                                                             |
-| `CreditWalletRequest`                                                                       | [Models.Components.CreditWalletRequest](../../Models/Components/CreditWalletRequest.md)     | :heavy_minus_sign:                                                                          | N/A                                                                                         | {<br/>"amount": {<br/>"asset": "USD/2",<br/>"amount": 100<br/>},<br/>"metadata": {<br/>"key": ""<br/>},<br/>"sources": []<br/>} |
+| `CreditWalletRequest`                                                                       | [Models.Wallets.CreditWalletRequest](../../Models/Wallets/CreditWalletRequest.md)           | :heavy_minus_sign:                                                                          | N/A                                                                                         | {<br/>"amount": {<br/>"asset": "USD/2",<br/>"amount": 100<br/>},<br/>"metadata": {<br/>"key": ""<br/>},<br/>"sources": []<br/>} |
+| `serverURL`                                                                                 | *string*                                                                                    | :heavy_minus_sign:                                                                          | An optional server URL to use.                                                              | http://localhost:8080                                                                       |
 
 ### Response
 
@@ -522,10 +539,10 @@ var res = await sdk.Wallets.V1.CreditWalletAsync(
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
-| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Wallets.ErrorResponse | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## GetHolds
 
@@ -564,6 +581,7 @@ var res = await sdk.Wallets.V1.GetHoldsAsync(
 | `WalletID`                                                                                                                                                                                                                     | *string*                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                             | The wallet to filter on                                                                                                                                                                                                        | wallet1                                                                                                                                                                                                                        |
 | `Metadata`                                                                                                                                                                                                                     | Dictionary<String, *string*>                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                             | Filter holds by metadata key value pairs. Nested objects can be used as seen in the example below.                                                                                                                             | {<br/>"admin": "true"<br/>}                                                                                                                                                                                                    |
 | `Cursor`                                                                                                                                                                                                                       | *string*                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                             | Parameter used in pagination requests.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when the pagination token is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                   |
+| `serverURL`                                                                                                                                                                                                                    | *string*                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                             | An optional server URL to use.                                                                                                                                                                                                 | http://localhost:8080                                                                                                                                                                                                          |
 
 ### Response
 
@@ -571,10 +589,10 @@ var res = await sdk.Wallets.V1.GetHoldsAsync(
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
-| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Wallets.ErrorResponse | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## GetHold
 
@@ -599,9 +617,10 @@ var res = await sdk.Wallets.V1.GetHoldAsync(holdID: "<id>");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `HoldID`           | *string*           | :heavy_check_mark: | The hold ID        |
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `HoldID`                       | *string*                       | :heavy_check_mark:             | The hold ID                    |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -609,10 +628,10 @@ var res = await sdk.Wallets.V1.GetHoldAsync(holdID: "<id>");
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
-| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Wallets.ErrorResponse | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## ConfirmHold
 
@@ -633,7 +652,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Wallets.V1.ConfirmHoldAsync(
     holdId: "<id>",
-    confirmHoldRequest: new FormanceSDK.Models.Components.ConfirmHoldRequest() {
+    confirmHoldRequest: new FormanceSDK.Models.Wallets.ConfirmHoldRequest() {
         Amount = BigInteger.Parse("100"),
         Final = true,
     }
@@ -644,11 +663,12 @@ var res = await sdk.Wallets.V1.ConfirmHoldAsync(
 
 ### Parameters
 
-| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
-| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `HoldId`                                                                              | *string*                                                                              | :heavy_check_mark:                                                                    | N/A                                                                                   |
-| `IdempotencyKey`                                                                      | *string*                                                                              | :heavy_minus_sign:                                                                    | Use an idempotency key                                                                |
-| `ConfirmHoldRequest`                                                                  | [Models.Components.ConfirmHoldRequest](../../Models/Components/ConfirmHoldRequest.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `HoldId`                                                                        | *string*                                                                        | :heavy_check_mark:                                                              | N/A                                                                             |
+| `IdempotencyKey`                                                                | *string*                                                                        | :heavy_minus_sign:                                                              | Use an idempotency key                                                          |
+| `ConfirmHoldRequest`                                                            | [Models.Wallets.ConfirmHoldRequest](../../Models/Wallets/ConfirmHoldRequest.md) | :heavy_minus_sign:                                                              | N/A                                                                             |
+| `serverURL`                                                                     | *string*                                                                        | :heavy_minus_sign:                                                              | An optional server URL to use.                                                  |
 
 ### Response
 
@@ -656,10 +676,10 @@ var res = await sdk.Wallets.V1.ConfirmHoldAsync(
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
-| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Wallets.ErrorResponse | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
 
 ## VoidHold
 
@@ -684,10 +704,11 @@ var res = await sdk.Wallets.V1.VoidHoldAsync(holdId: "<id>");
 
 ### Parameters
 
-| Parameter              | Type                   | Required               | Description            |
-| ---------------------- | ---------------------- | ---------------------- | ---------------------- |
-| `HoldId`               | *string*               | :heavy_check_mark:     | N/A                    |
-| `IdempotencyKey`       | *string*               | :heavy_minus_sign:     | Use an idempotency key |
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `HoldId`                       | *string*                       | :heavy_check_mark:             | N/A                            |
+| `IdempotencyKey`               | *string*                       | :heavy_minus_sign:             | Use an idempotency key         |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -695,7 +716,7 @@ var res = await sdk.Wallets.V1.VoidHoldAsync(holdId: "<id>");
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| FormanceSDK.Models.Errors.WalletsErrorResponse | default                                        | application/json                               |
-| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                               | Status Code                              | Content Type                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| FormanceSDK.Models.Wallets.ErrorResponse | default                                  | application/json                         |
+| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |

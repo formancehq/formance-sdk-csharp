@@ -7,10 +7,10 @@
 
 ### Available Operations
 
-* [~~SearchgetServerInfo~~](#searchgetserverinfo) - Get server info :warning: **Deprecated**
+* [~~GetServerInfoSearch~~](#getserverinfosearch) - Get server info :warning: **Deprecated**
 * [~~Search~~](#search) - search.v1 :warning: **Deprecated**
 
-## ~~SearchgetServerInfo~~
+## ~~GetServerInfoSearch~~
 
 Get server info
 
@@ -18,7 +18,7 @@ Get server info
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="searchgetServerInfo" method="get" path="/api/search/_info" -->
+<!-- UsageSnippet language="csharp" operationID="getServerInfo_search" method="get" path="/api/search/_info" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -28,14 +28,20 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Search.V1.SearchgetServerInfoAsync();
+var res = await sdk.Search.V1.GetServerInfoSearchAsync();
 
 // handle response
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
-**[SearchgetServerInfoResponse](../../Models/Requests/SearchgetServerInfoResponse.md)**
+**[GetServerInfoSearchResponse](../../Models/Requests/GetServerInfoSearchResponse.md)**
 
 ### Errors
 
@@ -55,6 +61,7 @@ Elasticsearch.v1 query engine
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Search;
 using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
@@ -75,7 +82,7 @@ Query req = new Query() {
     Sort = "id:asc",
     Policy = "OR",
     Cursor = "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
-    Raw = new QueryRaw() {},
+    Raw = new FormanceSDK.Models.Search.Raw() {},
 };
 
 var res = await sdk.Search.V1.SearchAsync(req);
@@ -87,7 +94,8 @@ var res = await sdk.Search.V1.SearchAsync(req);
 
 | Parameter                                  | Type                                       | Required                                   | Description                                |
 | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| `request`                                  | [Query](../../Models/Components/Query.md)  | :heavy_check_mark:                         | The request object to use for the request. |
+| `request`                                  | [Query](../../Models/Search/Query.md)      | :heavy_check_mark:                         | The request object to use for the request. |
+| `serverURL`                                | *string*                                   | :heavy_minus_sign:                         | An optional server URL to use.             |
 
 ### Response
 

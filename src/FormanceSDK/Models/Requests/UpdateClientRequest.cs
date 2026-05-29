@@ -9,7 +9,7 @@
 #nullable enable
 namespace FormanceSDK.Models.Requests
 {
-    using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Auth;
     using FormanceSDK.Utils;
 
     public class UpdateClientRequest
@@ -21,6 +21,6 @@ namespace FormanceSDK.Models.Requests
         public string ClientId { get; set; } = default!;
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public CreateClientRequest? CreateClientRequest { get; set; }
+        public ClientOptions1? ClientOptions { get; set; }
     }
 }

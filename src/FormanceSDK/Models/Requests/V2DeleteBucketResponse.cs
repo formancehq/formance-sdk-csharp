@@ -10,6 +10,7 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Ledger;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
@@ -21,6 +22,6 @@ namespace FormanceSDK.Models.Requests
         /// <summary>
         /// Bucket not found.
         /// </summary>
-        public Models.Components.V2ErrorResponse? V2ErrorResponse { get; set; }
+        public V2ErrorResponse? V2ErrorResponse { get; set; }
     }
 }

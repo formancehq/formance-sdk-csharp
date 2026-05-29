@@ -9,7 +9,7 @@
 #nullable enable
 namespace FormanceSDK.Models.Requests
 {
-    using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Ledger;
     using FormanceSDK.Utils;
     using System.Numerics;
 
@@ -58,6 +58,6 @@ namespace FormanceSDK.Models.Requests
         public string? IdempotencyKey { get; set; }
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public Models.Components.V2RevertTransactionRequest? V2RevertTransactionRequestValue { get; set; }
+        public Models.Ledger.V2RevertTransactionRequest? V2RevertTransactionRequestValue { get; set; }
     }
 }

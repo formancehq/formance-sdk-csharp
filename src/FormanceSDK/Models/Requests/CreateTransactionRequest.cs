@@ -9,7 +9,7 @@
 #nullable enable
 namespace FormanceSDK.Models.Requests
 {
-    using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Ledger;
     using FormanceSDK.Utils;
 
     public class CreateTransactionRequest
@@ -32,6 +32,6 @@ namespace FormanceSDK.Models.Requests
         ///   - `script`: enabling more complex transactions with Numscript.
         /// </summary>
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public PostTransaction PostTransaction { get; set; } = default!;
+        public Models.Ledger.PostTransaction PostTransaction { get; set; } = default!;
     }
 }

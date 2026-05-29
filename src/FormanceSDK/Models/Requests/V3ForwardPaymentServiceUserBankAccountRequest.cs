@@ -9,7 +9,7 @@
 #nullable enable
 namespace FormanceSDK.Models.Requests
 {
-    using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Payments;
     using FormanceSDK.Utils;
 
     public class V3ForwardPaymentServiceUserBankAccountRequest
@@ -27,6 +27,6 @@ namespace FormanceSDK.Models.Requests
         public string BankAccountID { get; set; } = default!;
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public Models.Components.V3ForwardPaymentServiceUserBankAccountRequest? V3ForwardPaymentServiceUserBankAccountRequestValue { get; set; }
+        public Models.Payments.V3ForwardPaymentServiceUserBankAccountRequest? V3ForwardPaymentServiceUserBankAccountRequestValue { get; set; }
     }
 }

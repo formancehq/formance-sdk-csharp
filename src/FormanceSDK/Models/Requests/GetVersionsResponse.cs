@@ -10,6 +10,7 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Gateway;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
@@ -21,6 +22,6 @@ namespace FormanceSDK.Models.Requests
         /// <summary>
         /// OK.
         /// </summary>
-        public Models.Components.GetVersionsResponse? GetVersionsResponseValue { get; set; }
+        public Models.Gateway.GetVersionsResponse? GetVersionsResponseValue { get; set; }
     }
 }

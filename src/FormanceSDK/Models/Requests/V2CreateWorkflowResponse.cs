@@ -10,6 +10,7 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Orchestration;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
@@ -21,6 +22,6 @@ namespace FormanceSDK.Models.Requests
         /// <summary>
         /// Created workflow.
         /// </summary>
-        public Models.Components.V2CreateWorkflowResponse? V2CreateWorkflowResponseValue { get; set; }
+        public Models.Orchestration.V2CreateWorkflowResponse? V2CreateWorkflowResponseValue { get; set; }
     }
 }

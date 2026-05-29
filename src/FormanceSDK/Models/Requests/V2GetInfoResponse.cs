@@ -10,6 +10,7 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Ledger;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
@@ -21,11 +22,11 @@ namespace FormanceSDK.Models.Requests
         /// <summary>
         /// OK.
         /// </summary>
-        public V2ConfigInfoResponse? V2ConfigInfoResponse { get; set; }
+        public V2ConfigInfo? V2ConfigInfo { get; set; }
 
         /// <summary>
         /// Error.
         /// </summary>
-        public Models.Components.V2ErrorResponse? V2ErrorResponse { get; set; }
+        public V2ErrorResponse? V2ErrorResponse { get; set; }
     }
 }

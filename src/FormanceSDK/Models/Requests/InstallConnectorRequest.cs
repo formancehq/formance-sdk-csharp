@@ -10,6 +10,7 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Payments;
     using FormanceSDK.Utils;
 
     public class InstallConnectorRequest
@@ -18,64 +19,9 @@ namespace FormanceSDK.Models.Requests
         /// The name of the connector.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=connector")]
-        public Connector Connector { get; set; } = default!;
+        public Models.Payments.Connector Connector { get; set; } = default!;
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
         public ConnectorConfig ConnectorConfig { get; set; } = default!;
-
-        public StripeConfig? GetConnectorConfigStripe()
-        {
-            return ConnectorConfig.StripeConfig;
-        }
-
-        public DummyPayConfig? GetConnectorConfigDummypay()
-        {
-            return ConnectorConfig.DummyPayConfig;
-        }
-
-        public WiseConfig? GetConnectorConfigWise()
-        {
-            return ConnectorConfig.WiseConfig;
-        }
-
-        public ModulrConfig? GetConnectorConfigModulr()
-        {
-            return ConnectorConfig.ModulrConfig;
-        }
-
-        public CurrencyCloudConfig? GetConnectorConfigCurrencycloud()
-        {
-            return ConnectorConfig.CurrencyCloudConfig;
-        }
-
-        public BankingCircleConfig? GetConnectorConfigBankingcircle()
-        {
-            return ConnectorConfig.BankingCircleConfig;
-        }
-
-        public MangoPayConfig? GetConnectorConfigMangopay()
-        {
-            return ConnectorConfig.MangoPayConfig;
-        }
-
-        public MoneycorpConfig? GetConnectorConfigMoneycorp()
-        {
-            return ConnectorConfig.MoneycorpConfig;
-        }
-
-        public AtlarConfig? GetConnectorConfigAtlar()
-        {
-            return ConnectorConfig.AtlarConfig;
-        }
-
-        public AdyenConfig? GetConnectorConfigAdyen()
-        {
-            return ConnectorConfig.AdyenConfig;
-        }
-
-        public GenericConfig? GetConnectorConfigGeneric()
-        {
-            return ConnectorConfig.GenericConfig;
-        }
     }
 }

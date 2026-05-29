@@ -10,6 +10,7 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Ledger;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
@@ -21,6 +22,6 @@ namespace FormanceSDK.Models.Requests
         /// <summary>
         /// Exporters list.
         /// </summary>
-        public Models.Components.V2ListExportersResponse? V2ListExportersResponseValue { get; set; }
+        public V2ExportersCursorResponse? V2ExportersCursorResponse { get; set; }
     }
 }

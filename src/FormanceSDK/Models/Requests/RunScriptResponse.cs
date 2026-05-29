@@ -10,6 +10,7 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Ledger;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
@@ -22,6 +23,7 @@ namespace FormanceSDK.Models.Requests
         /// On success, it will return a 200 status code, and the resulting transaction under the `transaction` field.<br/>
         /// <br/>
         /// On failure, it will also return a 200 status code, and the following fields:<br/>
+        /// <br/>
         /// <br/>
         ///   - `details`: contains a URL. When there is an error parsing Numscript, the result can be difficult to read—the provided URL will render the error in an easy-to-read format.<br/>
         ///   - `errorCode` and `error_code` (deprecated): contains the string code of the error<br/>

@@ -9,7 +9,7 @@
 #nullable enable
 namespace FormanceSDK.Models.Requests
 {
-    using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Ledger;
     using FormanceSDK.Utils;
 
     public class V2CreateLedgerRequest
@@ -21,6 +21,6 @@ namespace FormanceSDK.Models.Requests
         public string Ledger { get; set; } = default!;
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public Models.Components.V2CreateLedgerRequest V2CreateLedgerRequestValue { get; set; } = default!;
+        public Models.Ledger.V2CreateLedgerRequest V2CreateLedgerRequestValue { get; set; } = default!;
     }
 }

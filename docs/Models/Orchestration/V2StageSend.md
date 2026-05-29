@@ -1,0 +1,12 @@
+# V2StageSend
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `V2Monetary`                                                                          | [V2Monetary](../../Models/Orchestration/V2Monetary.md)                                | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `V2StageSendDestination`                                                              | [V2StageSendDestination](../../Models/Orchestration/V2StageSendDestination.md)        | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `V2StageSendSource`                                                                   | [V2StageSendSource](../../Models/Orchestration/V2StageSendSource.md)                  | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `Metadata`                                                                            | Dictionary<String, *string*>                                                          | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `Timestamp`                                                                           | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_minus_sign:                                                                    | N/A                                                                                   |

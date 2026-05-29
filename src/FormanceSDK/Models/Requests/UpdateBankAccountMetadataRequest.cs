@@ -9,7 +9,7 @@
 #nullable enable
 namespace FormanceSDK.Models.Requests
 {
-    using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Payments;
     using FormanceSDK.Utils;
 
     public class UpdateBankAccountMetadataRequest
@@ -21,6 +21,6 @@ namespace FormanceSDK.Models.Requests
         public string BankAccountId { get; set; } = default!;
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public Models.Components.UpdateBankAccountMetadataRequest UpdateBankAccountMetadataRequestValue { get; set; } = default!;
+        public Models.Payments.UpdateBankAccountMetadataRequest UpdateBankAccountMetadataRequestValue { get; set; } = default!;
     }
 }

@@ -9,7 +9,7 @@
 #nullable enable
 namespace FormanceSDK.Models.Requests
 {
-    using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Payments;
     using FormanceSDK.Utils;
 
     public class V3InitiatePaymentRequest
@@ -21,6 +21,6 @@ namespace FormanceSDK.Models.Requests
         public bool? NoValidation { get; set; } = false;
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public Models.Components.V3InitiatePaymentRequest? V3InitiatePaymentRequestValue { get; set; }
+        public Models.Payments.V3InitiatePaymentRequest? V3InitiatePaymentRequestValue { get; set; }
     }
 }

@@ -9,7 +9,7 @@
 #nullable enable
 namespace FormanceSDK.Models.Requests
 {
-    using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Wallets;
     using FormanceSDK.Utils;
 
     public class DebitWalletRequest
@@ -24,6 +24,6 @@ namespace FormanceSDK.Models.Requests
         public string? IdempotencyKey { get; set; }
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public Models.Components.DebitWalletRequest? DebitWalletRequestValue { get; set; }
+        public Models.Wallets.DebitWalletRequest? DebitWalletRequestValue { get; set; }
     }
 }

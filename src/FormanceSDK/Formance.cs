@@ -12,6 +12,7 @@ namespace FormanceSDK
     using FormanceSDK.Hooks;
     using FormanceSDK.Models.Components;
     using FormanceSDK.Models.Errors;
+    using FormanceSDK.Models.Gateway;
     using FormanceSDK.Models.Requests;
     using FormanceSDK.Utils;
     using FormanceSDK.Utils.Retries;
@@ -20,53 +21,6 @@ namespace FormanceSDK
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Threading.Tasks;
-
-    /// <summary>
-    /// The environment name. Defaults to the production environment.
-    /// </summary>
-    public enum ServerEnvironment
-    {
-        [JsonProperty("eu.sandbox")]
-        EuSandbox,
-        [JsonProperty("eu-west-1")]
-        EuWest1,
-        [JsonProperty("us-east-1")]
-        UsEast1,
-    }
-
-    public static class ServerEnvironmentExtension
-    {
-        public static string Value(this ServerEnvironment value)
-        {
-            return ((JsonPropertyAttribute)value.GetType().GetMember(value.ToString())[0].GetCustomAttributes(typeof(JsonPropertyAttribute), false)[0]).PropertyName ?? value.ToString();
-        }
-
-        public static ServerEnvironment ToEnum(this string value)
-        {
-            foreach(var field in typeof(ServerEnvironment).GetFields())
-            {
-                var attributes = field.GetCustomAttributes(typeof(JsonPropertyAttribute), false);
-                if (attributes.Length == 0)
-                {
-                    continue;
-                }
-
-                var attribute = attributes[0] as JsonPropertyAttribute;
-                if (attribute != null && attribute.PropertyName == value)
-                {
-                    var enumVal = field.GetValue(null);
-
-                    if (enumVal is ServerEnvironment)
-                    {
-                        return (ServerEnvironment)enumVal;
-                    }
-                }
-            }
-
-            throw new Exception($"Unknown value {value} for enum ServerEnvironment");
-        }
-    }
-
     /// <summary>
     /// Formance Stack API: Open, modular foundation for unique payments flows<br/>
     /// <br/>
@@ -101,11 +55,12 @@ namespace FormanceSDK
         /// <summary>
         /// Show stack version information.
         /// </summary>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetVersionsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public  Task<Models.Requests.GetVersionsResponse> GetVersionsAsync();
+        public  Task<Models.Requests.GetVersionsResponse> GetVersionsAsync(string? serverUrl = null);
     }
 
     /// <summary>
@@ -123,6 +78,13 @@ namespace FormanceSDK
     /// </summary>
     public class Formance: IFormance
     {
+        /// <summary>
+        /// List of server URLs available for the getVersions operation.
+        /// </summary>
+        public static readonly string[] GetVersionsServerList = {
+            "http://localhost:8080/",
+        };
+
         /// <summary>
         /// The main SDK Configuration.
         /// </summary>
@@ -192,19 +154,15 @@ namespace FormanceSDK
         /// <param name="security">The security configuration to use for API requests. If provided, this will be used as a static security configuration.</param>
         /// <param name="securitySource">A function that returns the security configuration dynamically. This takes precedence over the static security parameter if both are provided.</param>
         /// <param name="serverIndex">The index of the server to use from the predefined server list. Must be between 0 and the length of the server list. Defaults to 0 if not specified.</param>
-        /// <param name="organization">A per-organization and per-environment API.</param>
-        /// <param name="environment">A per-organization and per-environment API.</param>
         /// <param name="serverUrl">A custom server URL to use instead of the predefined server list. If provided with urlParams, the URL will be templated with the provided parameters.</param>
         /// <param name="urlParams">A dictionary of parameters to use for templating the serverUrl. Only used when serverUrl is provided.</param>
         /// <param name="client">A custom HTTP client implementation to use for making API requests. If not provided, the default SpeakeasyHttpClient will be used.</param>
         /// <param name="retryConfig">Configuration for retry behavior when API requests fail. Defines retry strategies, backoff policies, and maximum retry attempts.</param>
-        /// <exception cref="ArgumentOutOfRangeException">Invalid value provided for <paramref name="serverIndex"/>: must be between 0 (inclusive) and 2 (exclusive).</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Invalid value provided for <paramref name="serverIndex"/>: must be between 0 (inclusive) and 1 (exclusive).</exception>
         public Formance(
             FormanceSDK.Models.Components.Security? security = null,
             Func<FormanceSDK.Models.Components.Security>? securitySource = null,
             int? serverIndex = null,
-            string? organization = null,
-            ServerEnvironment? environment = null,
             string? serverUrl = null,
             Dictionary<string, string>? urlParams = null,
             ISpeakeasyHttpClient? client = null,
@@ -245,16 +203,6 @@ namespace FormanceSDK
                 RetryConfig = retryConfig
             };
 
-            if (organization != null)
-            {
-                SDKConfiguration.SetServerVariable("organization", organization);
-            }
-
-            if (environment != null)
-            {
-                SDKConfiguration.SetServerVariable("environment", ServerEnvironmentExtension.Value(environment.Value));
-            }
-
             InitHooks();
 
             Auth = new Auth(SDKConfiguration);
@@ -290,13 +238,19 @@ namespace FormanceSDK
         /// <summary>
         /// Show stack version information.
         /// </summary>
+        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetVersionsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public async  Task<Models.Requests.GetVersionsResponse> GetVersionsAsync()
+        public async  Task<Models.Requests.GetVersionsResponse> GetVersionsAsync(string? serverUrl = null)
         {
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            string baseUrl = Utilities.TemplateUrl(GetVersionsServerList[0], new Dictionary<string, string>(){
+            });
+            if (serverUrl != null)
+            {
+                baseUrl = serverUrl;
+            }
             var urlString = baseUrl + "/versions";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -348,14 +302,14 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Components.GetVersionsResponse obj;
+                    Models.Gateway.GetVersionsResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Components.GetVersionsResponse>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Gateway.GetVersionsResponse>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Components.GetVersionsResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Gateway.GetVersionsResponse.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
                     var response = new Models.Requests.GetVersionsResponse()
@@ -398,24 +352,6 @@ namespace FormanceSDK
                     throw new ArgumentOutOfRangeException($"Invalid server index {serverIndex}: must be between 0 (inclusive) and {SDKConfig.ServerList.Length} (exclusive)." );
                 }
                 _sdkConfig.ServerIndex = serverIndex;
-                return this;
-            }
-
-            /// <summary>
-            /// Sets the organization server variable for the templated server URL.
-            /// </summary>
-            public SDKBuilder WithOrganization(string organization)
-            {
-                _sdkConfig.SetServerVariable("organization", organization);
-                return this;
-            }
-
-            /// <summary>
-            /// Sets the environment server variable for the templated server URL.
-            /// </summary>
-            public SDKBuilder WithEnvironment(ServerEnvironment environment)
-            {
-                _sdkConfig.SetServerVariable("environment", ServerEnvironmentExtension.Value(environment));
                 return this;
             }
 

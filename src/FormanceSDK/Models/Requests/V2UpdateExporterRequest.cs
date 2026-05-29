@@ -9,7 +9,7 @@
 #nullable enable
 namespace FormanceSDK.Models.Requests
 {
-    using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Ledger;
     using FormanceSDK.Utils;
 
     public class V2UpdateExporterRequest
@@ -21,6 +21,6 @@ namespace FormanceSDK.Models.Requests
         public string ExporterID { get; set; } = default!;
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public V2CreateExporterRequest V2CreateExporterRequest { get; set; } = default!;
+        public V2ExporterConfiguration1 V2ExporterConfiguration { get; set; } = default!;
     }
 }

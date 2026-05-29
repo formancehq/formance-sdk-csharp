@@ -3,7 +3,7 @@
 
 ## Fields
 
-| Field                                                         | Type                                                          | Required                                                      | Description                                                   |
-| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| `Connector`                                                   | [Connector](../../Models/Components/Connector.md)             | :heavy_check_mark:                                            | The name of the connector.                                    |
-| `TransferRequest`                                             | [TransferRequest](../../Models/Components/TransferRequest.md) | :heavy_check_mark:                                            | N/A                                                           |
+| Field                                                           | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `Connector`                                                     | [Models.Payments.Connector](../../Models/Payments/Connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |
+| `TransferRequest`                                               | [TransferRequest](../../Models/Payments/TransferRequest.md)     | :heavy_check_mark:                                              | N/A                                                             |

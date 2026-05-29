@@ -9,7 +9,7 @@
 #nullable enable
 namespace FormanceSDK.Models.Requests
 {
-    using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Ledger;
     using FormanceSDK.Utils;
 
     public class V2CreatePipelineRequest
@@ -21,6 +21,6 @@ namespace FormanceSDK.Models.Requests
         public string Ledger { get; set; } = default!;
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public Models.Components.V2CreatePipelineRequest? V2CreatePipelineRequestValue { get; set; }
+        public Models.Ledger.V2CreatePipelineRequest? V2CreatePipelineRequestValue { get; set; }
     }
 }

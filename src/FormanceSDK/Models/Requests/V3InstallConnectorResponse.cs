@@ -10,6 +10,7 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Payments;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
@@ -21,6 +22,6 @@ namespace FormanceSDK.Models.Requests
         /// <summary>
         /// Accepted.
         /// </summary>
-        public Models.Components.V3InstallConnectorResponse? V3InstallConnectorResponseValue { get; set; }
+        public Models.Payments.V3InstallConnectorResponse? V3InstallConnectorResponseValue { get; set; }
     }
 }

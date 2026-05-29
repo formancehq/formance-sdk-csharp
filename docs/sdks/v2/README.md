@@ -58,30 +58,36 @@ List ledgers
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Requests;
+using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Ledger.V2.ListLedgersAsync(
-    pageSize: 100,
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    includeDeleted: false,
-    sort: "id:desc"
-);
+V2ListLedgersRequest req = new V2ListLedgersRequest() {
+    PageSize = 100,
+    Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    Sort = "id:desc",
+    RequestBody = new Dictionary<string, object>() {
+        { "key", "<value>" },
+        { "key1", "<value>" },
+        { "key2", "<value>" },
+    },
+};
+
+var res = await sdk.Ledger.V2.ListLedgersAsync(req);
 
 // handle response
 ```
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                                                                | Type                                                                                                                                                                                                                                                     | Required                                                                                                                                                                                                                                                 | Description                                                                                                                                                                                                                                              | Example                                                                                                                                                                                                                                                  |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `PageSize`                                                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                       | The maximum number of results to return per page.<br/>                                                                                                                                                                                                   | 100                                                                                                                                                                                                                                                      |
-| `Cursor`                                                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Parameter used in pagination requests. Maximum page size is set to 15.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                                             |
-| `IncludeDeleted`                                                                                                                                                                                                                                         | *bool*                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                       | If true, include deleted ledgers in the results. By default, deleted ledgers are excluded.<br/>                                                                                                                                                          | false                                                                                                                                                                                                                                                    |
-| `Sort`                                                                                                                                                                                                                                                   | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Sort results using a field name and order (ascending or descending).<br/>Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.<br/>                                                                      | id:desc                                                                                                                                                                                                                                                  |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [V2ListLedgersRequest](../../Models/Requests/V2ListLedgersRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `serverURL`                                                           | *string*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -89,10 +95,10 @@ var res = await sdk.Ledger.V2.ListLedgersAsync(
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## GetLedger
 
@@ -117,9 +123,10 @@ var res = await sdk.Ledger.V2.GetLedgerAsync(ledger: "ledger001");
 
 ### Parameters
 
-| Parameter           | Type                | Required            | Description         | Example             |
-| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
-| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -127,10 +134,10 @@ var res = await sdk.Ledger.V2.GetLedgerAsync(ledger: "ledger001");
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## CreateLedger
 
@@ -151,8 +158,8 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V2.CreateLedgerAsync(
     ledger: "ledger001",
-    v2CreateLedgerRequest: new FormanceSDK.Models.Components.V2CreateLedgerRequest() {
-        Metadata = new Dictionary<string, string>() {
+    v2CreateLedgerRequest: new FormanceSDK.Models.Ledger.V2CreateLedgerRequest() {
+        V2Metadata = new Dictionary<string, string>() {
             { "admin", "true" },
         },
     }
@@ -163,10 +170,11 @@ var res = await sdk.Ledger.V2.CreateLedgerAsync(
 
 ### Parameters
 
-| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 | Example                                                                                     |
-| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `Ledger`                                                                                    | *string*                                                                                    | :heavy_check_mark:                                                                          | Name of the ledger.                                                                         | ledger001                                                                                   |
-| `V2CreateLedgerRequest`                                                                     | [Models.Components.V2CreateLedgerRequest](../../Models/Components/V2CreateLedgerRequest.md) | :heavy_check_mark:                                                                          | N/A                                                                                         |                                                                                             |
+| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         | Example                                                                             |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `Ledger`                                                                            | *string*                                                                            | :heavy_check_mark:                                                                  | Name of the ledger.                                                                 | ledger001                                                                           |
+| `V2CreateLedgerRequest`                                                             | [Models.Ledger.V2CreateLedgerRequest](../../Models/Ledger/V2CreateLedgerRequest.md) | :heavy_check_mark:                                                                  | N/A                                                                                 |                                                                                     |
+| `serverURL`                                                                         | *string*                                                                            | :heavy_minus_sign:                                                                  | An optional server URL to use.                                                      | http://localhost:8080                                                               |
 
 ### Response
 
@@ -174,10 +182,10 @@ var res = await sdk.Ledger.V2.CreateLedgerAsync(
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## InsertSchema
 
@@ -189,6 +197,7 @@ Insert a schema for a ledger
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Ledger;
 using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
@@ -200,7 +209,7 @@ var res = await sdk.Ledger.V2.InsertSchemaAsync(
     ledger: "ledger001",
     version: "v1.0.0",
     v2SchemaData: new V2SchemaData() {
-        Chart = new Dictionary<string, V2ChartSegment>() {
+        V2ChartOfAccounts = new Dictionary<string, V2ChartSegment>() {
             { "users", new V2ChartSegment() {
                 AdditionalProperties = new Dictionary<string, V2ChartSegment>() {
                     { "$userID", new V2ChartSegment() {
@@ -209,9 +218,9 @@ var res = await sdk.Ledger.V2.InsertSchemaAsync(
                 },
             } },
         },
-        Queries = new Dictionary<string, V2QueryTemplate>() {
+        V2QueryTemplates = new Dictionary<string, V2QueryTemplate>() {
             { "key", new V2QueryTemplate() {
-                Params = V2QueryParams.CreateQueryTemplateAccountParams(
+                V2QueryParams = V2QueryParams.CreateQueryTemplateAccountParams(
                     new QueryTemplateAccountParams() {
                         PageSize = 100,
                         Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
@@ -228,12 +237,13 @@ var res = await sdk.Ledger.V2.InsertSchemaAsync(
 
 ### Parameters
 
-| Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `Ledger`                                                | *string*                                                | :heavy_check_mark:                                      | Name of the ledger.                                     | ledger001                                               |
-| `Version`                                               | *string*                                                | :heavy_check_mark:                                      | Schema version.                                         | v1.0.0                                                  |
-| `V2SchemaData`                                          | [V2SchemaData](../../Models/Components/V2SchemaData.md) | :heavy_check_mark:                                      | N/A                                                     |                                                         |
-| `IdempotencyKey`                                        | *string*                                                | :heavy_minus_sign:                                      | Use an idempotency key                                  |                                                         |
+| Parameter                                           | Type                                                | Required                                            | Description                                         | Example                                             |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| `Ledger`                                            | *string*                                            | :heavy_check_mark:                                  | Name of the ledger.                                 | ledger001                                           |
+| `Version`                                           | *string*                                            | :heavy_check_mark:                                  | Schema version.                                     | v1.0.0                                              |
+| `V2SchemaData`                                      | [V2SchemaData](../../Models/Ledger/V2SchemaData.md) | :heavy_check_mark:                                  | N/A                                                 |                                                     |
+| `IdempotencyKey`                                    | *string*                                            | :heavy_minus_sign:                                  | Use an idempotency key                              |                                                     |
+| `serverURL`                                         | *string*                                            | :heavy_minus_sign:                                  | An optional server URL to use.                      | http://localhost:8080                               |
 
 ### Response
 
@@ -241,10 +251,10 @@ var res = await sdk.Ledger.V2.InsertSchemaAsync(
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## GetSchema
 
@@ -272,10 +282,11 @@ var res = await sdk.Ledger.V2.GetSchemaAsync(
 
 ### Parameters
 
-| Parameter           | Type                | Required            | Description         | Example             |
-| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
-| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
-| `Version`           | *string*            | :heavy_check_mark:  | Schema version.     | v1.0.0              |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
+| `Version`                      | *string*                       | :heavy_check_mark:             | Schema version.                | v1.0.0                         |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -283,10 +294,10 @@ var res = await sdk.Ledger.V2.GetSchemaAsync(
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## ListSchemas
 
@@ -319,6 +330,7 @@ var res = await sdk.Ledger.V2.ListSchemasAsync(req);
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [V2ListSchemasRequest](../../Models/Requests/V2ListSchemasRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `serverURL`                                                           | *string*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -326,10 +338,10 @@ var res = await sdk.Ledger.V2.ListSchemasAsync(req);
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## UpdateLedgerMetadata
 
@@ -360,10 +372,11 @@ var res = await sdk.Ledger.V2.UpdateLedgerMetadataAsync(
 
 ### Parameters
 
-| Parameter                    | Type                         | Required                     | Description                  | Example                      |
-| ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
-| `Ledger`                     | *string*                     | :heavy_check_mark:           | Name of the ledger.          | ledger001                    |
-| `RequestBody`                | Dictionary<String, *string*> | :heavy_check_mark:           | N/A                          | {<br/>"admin": "true"<br/>}  |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
+| `RequestBody`                  | Dictionary<String, *string*>   | :heavy_check_mark:             | N/A                            | {<br/>"admin": "true"<br/>}    |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -371,10 +384,10 @@ var res = await sdk.Ledger.V2.UpdateLedgerMetadataAsync(
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## DeleteLedgerMetadata
 
@@ -402,10 +415,11 @@ var res = await sdk.Ledger.V2.DeleteLedgerMetadataAsync(
 
 ### Parameters
 
-| Parameter           | Type                | Required            | Description         | Example             |
-| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
-| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
-| `Key`               | *string*            | :heavy_check_mark:  | Key to remove.      | foo                 |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
+| `Key`                          | *string*                       | :heavy_check_mark:             | Key to remove.                 | foo                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -413,10 +427,10 @@ var res = await sdk.Ledger.V2.DeleteLedgerMetadataAsync(
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## GetLedgerInfo
 
@@ -441,9 +455,10 @@ var res = await sdk.Ledger.V2.GetLedgerInfoAsync(ledger: "ledger001");
 
 ### Parameters
 
-| Parameter           | Type                | Required            | Description         | Example             |
-| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
-| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -451,10 +466,10 @@ var res = await sdk.Ledger.V2.GetLedgerInfoAsync(ledger: "ledger001");
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## CreateBulk
 
@@ -466,6 +481,7 @@ Bulk request
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Ledger;
 using FormanceSDK.Models.Requests;
 using System.Collections.Generic;
 
@@ -480,12 +496,10 @@ V2CreateBulkRequest req = new V2CreateBulkRequest() {
     Atomic = true,
     Parallel = true,
     SchemaVersion = "v1.0.0",
-    RequestBody = new List<V2BulkElement>() {
-        V2BulkElement.CreateDeleteMetadata(
-            new V2BulkElementDeleteMetadata() {
-                Action = "DELETE_METADATA",
-            }
-        ),
+    RequestBody = new List<object>() {
+        new V2BaseBulkElement() {
+            Action = "DELETE_METADATA",
+        },
     },
 };
 
@@ -499,6 +513,7 @@ var res = await sdk.Ledger.V2.CreateBulkAsync(req);
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [V2CreateBulkRequest](../../Models/Requests/V2CreateBulkRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `serverURL`                                                         | *string*                                                            | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -506,10 +521,10 @@ var res = await sdk.Ledger.V2.CreateBulkAsync(req);
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## CountAccounts
 
@@ -521,13 +536,20 @@ Count the accounts from a ledger
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Ledger.V2.CountAccountsAsync(ledger: "ledger001");
+var res = await sdk.Ledger.V2.CountAccountsAsync(
+    ledger: "ledger001",
+    requestBody: new Dictionary<string, object>() {
+        { "key", "<value>" },
+        { "key1", "<value>" },
+    }
+);
 
 // handle response
 ```
@@ -537,7 +559,9 @@ var res = await sdk.Ledger.V2.CountAccountsAsync(ledger: "ledger001");
 | Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `Ledger`                                                                              | *string*                                                                              | :heavy_check_mark:                                                                    | Name of the ledger.                                                                   | ledger001                                                                             |
+| `RequestBody`                                                                         | Dictionary<String, *object*>                                                          | :heavy_check_mark:                                                                    | N/A                                                                                   |                                                                                       |
 | `Pit`                                                                                 | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
+| `serverURL`                                                                           | *string*                                                                              | :heavy_minus_sign:                                                                    | An optional server URL to use.                                                        | http://localhost:8080                                                                 |
 
 ### Response
 
@@ -545,10 +569,10 @@ var res = await sdk.Ledger.V2.CountAccountsAsync(ledger: "ledger001");
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## ListAccounts
 
@@ -561,6 +585,7 @@ List accounts from a ledger, sorted by address in descending order.
 using FormanceSDK;
 using FormanceSDK.Models.Components;
 using FormanceSDK.Models.Requests;
+using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -572,6 +597,9 @@ V2ListAccountsRequest req = new V2ListAccountsRequest() {
     PageSize = 100,
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     Sort = "id:desc",
+    RequestBody = new Dictionary<string, object>() {
+
+    },
 };
 
 var res = await sdk.Ledger.V2.ListAccountsAsync(req);
@@ -584,6 +612,7 @@ var res = await sdk.Ledger.V2.ListAccountsAsync(req);
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `request`                                                               | [V2ListAccountsRequest](../../Models/Requests/V2ListAccountsRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+| `serverURL`                                                             | *string*                                                                | :heavy_minus_sign:                                                      | An optional server URL to use.                                          |
 
 ### Response
 
@@ -591,10 +620,10 @@ var res = await sdk.Ledger.V2.ListAccountsAsync(req);
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## GetAccount
 
@@ -628,6 +657,7 @@ var res = await sdk.Ledger.V2.GetAccountAsync(
 | `Address`                                                                                                    | *string*                                                                                                     | :heavy_check_mark:                                                                                           | Exact address of the account. It must match the following regular expressions pattern:<br/>```<br/>^\w+(:\w+)*$<br/>```<br/> | users:001                                                                                                    |
 | `Expand`                                                                                                     | *string*                                                                                                     | :heavy_minus_sign:                                                                                           | N/A                                                                                                          |                                                                                                              |
 | `Pit`                                                                                                        | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0)                        | :heavy_minus_sign:                                                                                           | N/A                                                                                                          |                                                                                                              |
+| `serverURL`                                                                                                  | *string*                                                                                                     | :heavy_minus_sign:                                                                                           | An optional server URL to use.                                                                               | http://localhost:8080                                                                                        |
 
 ### Response
 
@@ -635,10 +665,10 @@ var res = await sdk.Ledger.V2.GetAccountAsync(
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## AddMetadataToAccount
 
@@ -678,6 +708,7 @@ var res = await sdk.Ledger.V2.AddMetadataToAccountAsync(req);
 | Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
 | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | `request`                                                                               | [V2AddMetadataToAccountRequest](../../Models/Requests/V2AddMetadataToAccountRequest.md) | :heavy_check_mark:                                                                      | The request object to use for the request.                                              |
+| `serverURL`                                                                             | *string*                                                                                | :heavy_minus_sign:                                                                      | An optional server URL to use.                                                          |
 
 ### Response
 
@@ -685,10 +716,10 @@ var res = await sdk.Ledger.V2.AddMetadataToAccountAsync(req);
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## DeleteAccountMetadata
 
@@ -717,12 +748,13 @@ var res = await sdk.Ledger.V2.DeleteAccountMetadataAsync(
 
 ### Parameters
 
-| Parameter              | Type                   | Required               | Description            | Example                |
-| ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- |
-| `Ledger`               | *string*               | :heavy_check_mark:     | Name of the ledger.    | ledger001              |
-| `Address`              | *string*               | :heavy_check_mark:     | Account address        |                        |
-| `Key`                  | *string*               | :heavy_check_mark:     | The key to remove.     | foo                    |
-| `IdempotencyKey`       | *string*               | :heavy_minus_sign:     | Use an idempotency key |                        |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
+| `Address`                      | *string*                       | :heavy_check_mark:             | Account address                |                                |
+| `Key`                          | *string*                       | :heavy_check_mark:             | The key to remove.             | foo                            |
+| `IdempotencyKey`               | *string*                       | :heavy_minus_sign:             | Use an idempotency key         |                                |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -730,10 +762,10 @@ var res = await sdk.Ledger.V2.DeleteAccountMetadataAsync(
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## ReadStats
 
@@ -759,9 +791,10 @@ var res = await sdk.Ledger.V2.ReadStatsAsync(ledger: "ledger001");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `Ledger`           | *string*           | :heavy_check_mark: | name of the ledger | ledger001          |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Ledger`                       | *string*                       | :heavy_check_mark:             | name of the ledger             | ledger001                      |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -769,10 +802,10 @@ var res = await sdk.Ledger.V2.ReadStatsAsync(ledger: "ledger001");
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## CountTransactions
 
@@ -784,13 +817,19 @@ Count the transactions from a ledger
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Ledger.V2.CountTransactionsAsync(ledger: "ledger001");
+var res = await sdk.Ledger.V2.CountTransactionsAsync(
+    ledger: "ledger001",
+    requestBody: new Dictionary<string, object>() {
+        { "key", "<value>" },
+    }
+);
 
 // handle response
 ```
@@ -800,7 +839,9 @@ var res = await sdk.Ledger.V2.CountTransactionsAsync(ledger: "ledger001");
 | Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `Ledger`                                                                              | *string*                                                                              | :heavy_check_mark:                                                                    | Name of the ledger.                                                                   | ledger001                                                                             |
+| `RequestBody`                                                                         | Dictionary<String, *object*>                                                          | :heavy_check_mark:                                                                    | N/A                                                                                   |                                                                                       |
 | `Pit`                                                                                 | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
+| `serverURL`                                                                           | *string*                                                                              | :heavy_minus_sign:                                                                    | An optional server URL to use.                                                        | http://localhost:8080                                                                 |
 
 ### Response
 
@@ -808,10 +849,10 @@ var res = await sdk.Ledger.V2.CountTransactionsAsync(ledger: "ledger001");
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## ListTransactions
 
@@ -824,6 +865,7 @@ List transactions from a ledger, sorted by id in descending order.
 using FormanceSDK;
 using FormanceSDK.Models.Components;
 using FormanceSDK.Models.Requests;
+using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -835,6 +877,9 @@ V2ListTransactionsRequest req = new V2ListTransactionsRequest() {
     PageSize = 100,
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     Sort = "id:desc",
+    RequestBody = new Dictionary<string, object>() {
+
+    },
 };
 
 var res = await sdk.Ledger.V2.ListTransactionsAsync(req);
@@ -847,6 +892,7 @@ var res = await sdk.Ledger.V2.ListTransactionsAsync(req);
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `request`                                                                       | [V2ListTransactionsRequest](../../Models/Requests/V2ListTransactionsRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+| `serverURL`                                                                     | *string*                                                                        | :heavy_minus_sign:                                                              | An optional server URL to use.                                                  |
 
 ### Response
 
@@ -854,10 +900,10 @@ var res = await sdk.Ledger.V2.ListTransactionsAsync(req);
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## CreateTransaction
 
@@ -883,16 +929,16 @@ V2CreateTransactionRequest req = new V2CreateTransactionRequest() {
     DryRun = true,
     Force = true,
     SchemaVersion = "v1.0.0",
-    V2PostTransaction = new V2PostTransaction() {
-        Postings = new List<V2Posting>() {
-            new V2Posting() {
+    V2PostTransaction = new FormanceSDK.Models.Ledger.V2PostTransaction() {
+        Postings = new List<FormanceSDK.Models.Ledger.V2Posting>() {
+            new FormanceSDK.Models.Ledger.V2Posting() {
                 Amount = BigInteger.Parse("100"),
                 Asset = "COIN",
                 Destination = "users:002",
                 Source = "users:001",
             },
         },
-        Script = new V2PostTransactionScript() {
+        Script = new FormanceSDK.Models.Ledger.V2PostTransactionScript() {
             Template = "CUSTOMER_DEPOSIT",
             Plain = @"vars {
             account $user
@@ -907,7 +953,7 @@ V2CreateTransactionRequest req = new V2CreateTransactionRequest() {
             },
         },
         Reference = "ref:001",
-        Metadata = new Dictionary<string, string>() {
+        V2Metadata = new Dictionary<string, string>() {
             { "admin", "true" },
         },
         AccountMetadata = new Dictionary<string, Dictionary<string, string>>() {
@@ -934,6 +980,7 @@ var res = await sdk.Ledger.V2.CreateTransactionAsync(req);
 | Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `request`                                                                         | [V2CreateTransactionRequest](../../Models/Requests/V2CreateTransactionRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| `serverURL`                                                                       | *string*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -941,10 +988,10 @@ var res = await sdk.Ledger.V2.CreateTransactionAsync(req);
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## GetTransaction
 
@@ -979,6 +1026,7 @@ var res = await sdk.Ledger.V2.GetTransactionAsync(
 | `Id`                                                                                  | *BigInteger*                                                                          | :heavy_check_mark:                                                                    | Transaction ID.                                                                       | 1234                                                                                  |
 | `Expand`                                                                              | *string*                                                                              | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
 | `Pit`                                                                                 | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
+| `serverURL`                                                                           | *string*                                                                              | :heavy_minus_sign:                                                                    | An optional server URL to use.                                                        | http://localhost:8080                                                                 |
 
 ### Response
 
@@ -986,10 +1034,10 @@ var res = await sdk.Ledger.V2.GetTransactionAsync(
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## AddMetadataOnTransaction
 
@@ -1030,6 +1078,7 @@ var res = await sdk.Ledger.V2.AddMetadataOnTransactionAsync(req);
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `request`                                                                                       | [V2AddMetadataOnTransactionRequest](../../Models/Requests/V2AddMetadataOnTransactionRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
+| `serverURL`                                                                                     | *string*                                                                                        | :heavy_minus_sign:                                                                              | An optional server URL to use.                                                                  |
 
 ### Response
 
@@ -1037,10 +1086,10 @@ var res = await sdk.Ledger.V2.AddMetadataOnTransactionAsync(req);
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## DeleteTransactionMetadata
 
@@ -1070,12 +1119,13 @@ var res = await sdk.Ledger.V2.DeleteTransactionMetadataAsync(
 
 ### Parameters
 
-| Parameter              | Type                   | Required               | Description            | Example                |
-| ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- |
-| `Ledger`               | *string*               | :heavy_check_mark:     | Name of the ledger.    | ledger001              |
-| `Id`                   | *BigInteger*           | :heavy_check_mark:     | Transaction ID.        | 1234                   |
-| `Key`                  | *string*               | :heavy_check_mark:     | The key to remove.     | foo                    |
-| `IdempotencyKey`       | *string*               | :heavy_minus_sign:     | Use an idempotency key |                        |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
+| `Id`                           | *BigInteger*                   | :heavy_check_mark:             | Transaction ID.                | 1234                           |
+| `Key`                          | *string*                       | :heavy_check_mark:             | The key to remove.             | foo                            |
+| `IdempotencyKey`               | *string*                       | :heavy_minus_sign:             | Use an idempotency key         |                                |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -1083,10 +1133,10 @@ var res = await sdk.Ledger.V2.DeleteTransactionMetadataAsync(
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## RevertTransaction
 
@@ -1122,17 +1172,18 @@ var res = await sdk.Ledger.V2.RevertTransactionAsync(req);
 | Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | `request`                                                                                         | [Models.Requests.V2RevertTransactionRequest](../../Models/Requests/V2RevertTransactionRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
+| `serverURL`                                                                                       | *string*                                                                                          | :heavy_minus_sign:                                                                                | An optional server URL to use.                                                                    |
 
 ### Response
 
-**[Models.Requests.V2RevertTransactionResponse](../../Models/Requests/V2RevertTransactionResponse.md)**
+**[V2RevertTransactionResponse](../../Models/Requests/V2RevertTransactionResponse.md)**
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## GetBalancesAggregated
 
@@ -1144,13 +1195,21 @@ Get the aggregated balances from selected accounts
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Ledger.V2.GetBalancesAggregatedAsync(ledger: "ledger001");
+var res = await sdk.Ledger.V2.GetBalancesAggregatedAsync(
+    ledger: "ledger001",
+    requestBody: new Dictionary<string, object>() {
+        { "key", "<value>" },
+        { "key1", "<value>" },
+        { "key2", "<value>" },
+    }
+);
 
 // handle response
 ```
@@ -1160,8 +1219,10 @@ var res = await sdk.Ledger.V2.GetBalancesAggregatedAsync(ledger: "ledger001");
 | Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `Ledger`                                                                              | *string*                                                                              | :heavy_check_mark:                                                                    | Name of the ledger.                                                                   | ledger001                                                                             |
+| `RequestBody`                                                                         | Dictionary<String, *object*>                                                          | :heavy_check_mark:                                                                    | N/A                                                                                   |                                                                                       |
 | `Pit`                                                                                 | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
 | `UseInsertionDate`                                                                    | *bool*                                                                                | :heavy_minus_sign:                                                                    | Use insertion date instead of effective date                                          |                                                                                       |
+| `serverURL`                                                                           | *string*                                                                              | :heavy_minus_sign:                                                                    | An optional server URL to use.                                                        | http://localhost:8080                                                                 |
 
 ### Response
 
@@ -1169,10 +1230,10 @@ var res = await sdk.Ledger.V2.GetBalancesAggregatedAsync(ledger: "ledger001");
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## GetVolumesWithBalances
 
@@ -1185,6 +1246,7 @@ Get list of volumes with balances for (account/asset)
 using FormanceSDK;
 using FormanceSDK.Models.Components;
 using FormanceSDK.Models.Requests;
+using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1197,6 +1259,9 @@ V2GetVolumesWithBalancesRequest req = new V2GetVolumesWithBalancesRequest() {
     Ledger = "ledger001",
     GroupBy = 3,
     Sort = "id:desc",
+    RequestBody = new Dictionary<string, object>() {
+        { "key", "<value>" },
+    },
 };
 
 var res = await sdk.Ledger.V2.GetVolumesWithBalancesAsync(req);
@@ -1209,6 +1274,7 @@ var res = await sdk.Ledger.V2.GetVolumesWithBalancesAsync(req);
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `request`                                                                                   | [V2GetVolumesWithBalancesRequest](../../Models/Requests/V2GetVolumesWithBalancesRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
+| `serverURL`                                                                                 | *string*                                                                                    | :heavy_minus_sign:                                                                          | An optional server URL to use.                                                              |
 
 ### Response
 
@@ -1216,10 +1282,10 @@ var res = await sdk.Ledger.V2.GetVolumesWithBalancesAsync(req);
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## ListLogs
 
@@ -1232,6 +1298,7 @@ List the logs from a ledger, sorted by ID in descending order.
 using FormanceSDK;
 using FormanceSDK.Models.Components;
 using FormanceSDK.Models.Requests;
+using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -1243,6 +1310,9 @@ V2ListLogsRequest req = new V2ListLogsRequest() {
     PageSize = 100,
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     Sort = "id:desc",
+    RequestBody = new Dictionary<string, object>() {
+
+    },
 };
 
 var res = await sdk.Ledger.V2.ListLogsAsync(req);
@@ -1255,6 +1325,7 @@ var res = await sdk.Ledger.V2.ListLogsAsync(req);
 | Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `request`                                                       | [V2ListLogsRequest](../../Models/Requests/V2ListLogsRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
+| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -1262,10 +1333,10 @@ var res = await sdk.Ledger.V2.ListLogsAsync(req);
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## ImportLogs
 
@@ -1292,10 +1363,11 @@ var res = await sdk.Ledger.V2.ImportLogsAsync(
 
 ### Parameters
 
-| Parameter             | Type                  | Required              | Description           | Example               |
-| --------------------- | --------------------- | --------------------- | --------------------- | --------------------- |
-| `Ledger`              | *string*              | :heavy_check_mark:    | Name of the ledger.   | ledger001             |
-| `V2ImportLogsRequest` | *byte[]*              | :heavy_check_mark:    | N/A                   |                       |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
+| `V2ImportLogsRequest`          | *byte[]*                       | :heavy_check_mark:             | N/A                            |                                |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -1303,10 +1375,10 @@ var res = await sdk.Ledger.V2.ImportLogsAsync(
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## ExportLogs
 
@@ -1331,9 +1403,10 @@ var res = await sdk.Ledger.V2.ExportLogsAsync(ledger: "ledger001");
 
 ### Parameters
 
-| Parameter           | Type                | Required            | Description         | Example             |
-| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
-| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -1355,6 +1428,7 @@ Run a query template on a ledger
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Ledger;
 using FormanceSDK.Models.Requests;
 
 var sdk = new Formance(security: new Security() {
@@ -1370,7 +1444,7 @@ V2RunQueryRequest req = new V2RunQueryRequest() {
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     Sort = "id:desc",
     RequestBody = new V2RunQueryRequestBody() {
-        Params = V2QueryParams.CreateQueryTemplateAccountParams(
+        V2QueryParams = V2QueryParams.CreateQueryTemplateAccountParams(
             new QueryTemplateAccountParams() {
                 PageSize = 100,
                 Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
@@ -1390,6 +1464,7 @@ var res = await sdk.Ledger.V2.RunQueryAsync(req);
 | Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `request`                                                       | [V2RunQueryRequest](../../Models/Requests/V2RunQueryRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
+| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -1397,10 +1472,10 @@ var res = await sdk.Ledger.V2.RunQueryAsync(req);
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## ListExporters
 
@@ -1411,28 +1486,30 @@ List exporters
 <!-- UsageSnippet language="csharp" operationID="v2ListExporters" method="get" path="/api/ledger/v2/_/exporters" -->
 ```csharp
 using FormanceSDK;
-using FormanceSDK.Models.Components;
 
-var sdk = new Formance(security: new Security() {
-    ClientID = "<YOUR_CLIENT_ID_HERE>",
-    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
-});
+var sdk = new Formance();
 
 var res = await sdk.Ledger.V2.ListExportersAsync();
 
 // handle response
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
-**[Models.Requests.V2ListExportersResponse](../../Models/Requests/V2ListExportersResponse.md)**
+**[V2ListExportersResponse](../../Models/Requests/V2ListExportersResponse.md)**
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## CreateExporter
 
@@ -1443,15 +1520,12 @@ Create exporter
 <!-- UsageSnippet language="csharp" operationID="v2CreateExporter" method="post" path="/api/ledger/v2/_/exporters" -->
 ```csharp
 using FormanceSDK;
-using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Ledger;
 using System.Collections.Generic;
 
-var sdk = new Formance(security: new Security() {
-    ClientID = "<YOUR_CLIENT_ID_HERE>",
-    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
-});
+var sdk = new Formance();
 
-V2CreateExporterRequest req = new V2CreateExporterRequest() {
+V2ExporterConfiguration1 req = new V2ExporterConfiguration1() {
     Driver = "<value>",
     Config = new Dictionary<string, object>() {
         { "key", "<value>" },
@@ -1465,9 +1539,10 @@ var res = await sdk.Ledger.V2.CreateExporterAsync(req);
 
 ### Parameters
 
-| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
-| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `request`                                                                     | [V2CreateExporterRequest](../../Models/Components/V2CreateExporterRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [V2ExporterConfiguration1](../../Models/Ledger/V2ExporterConfiguration1.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+| `serverURL`                                                                 | *string*                                                                    | :heavy_minus_sign:                                                          | An optional server URL to use.                                              |
 
 ### Response
 
@@ -1475,10 +1550,10 @@ var res = await sdk.Ledger.V2.CreateExporterAsync(req);
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## GetExporterState
 
@@ -1489,12 +1564,8 @@ Get exporter state
 <!-- UsageSnippet language="csharp" operationID="v2GetExporterState" method="get" path="/api/ledger/v2/_/exporters/{exporterID}" -->
 ```csharp
 using FormanceSDK;
-using FormanceSDK.Models.Components;
 
-var sdk = new Formance(security: new Security() {
-    ClientID = "<YOUR_CLIENT_ID_HERE>",
-    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
-});
+var sdk = new Formance();
 
 var res = await sdk.Ledger.V2.GetExporterStateAsync(exporterID: "<id>");
 
@@ -1503,9 +1574,10 @@ var res = await sdk.Ledger.V2.GetExporterStateAsync(exporterID: "<id>");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `ExporterID`       | *string*           | :heavy_check_mark: | The exporter id    |
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `ExporterID`                   | *string*                       | :heavy_check_mark:             | The exporter id                |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -1513,10 +1585,10 @@ var res = await sdk.Ledger.V2.GetExporterStateAsync(exporterID: "<id>");
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## UpdateExporter
 
@@ -1528,6 +1600,7 @@ Update exporter
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Ledger;
 using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
@@ -1537,7 +1610,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V2.UpdateExporterAsync(
     exporterID: "<id>",
-    v2CreateExporterRequest: new V2CreateExporterRequest() {
+    v2ExporterConfiguration: new V2ExporterConfiguration1() {
         Driver = "<value>",
         Config = new Dictionary<string, object>() {
             { "key", "<value>" },
@@ -1552,10 +1625,11 @@ var res = await sdk.Ledger.V2.UpdateExporterAsync(
 
 ### Parameters
 
-| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
-| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `ExporterID`                                                                  | *string*                                                                      | :heavy_check_mark:                                                            | The exporter id                                                               |
-| `V2CreateExporterRequest`                                                     | [V2CreateExporterRequest](../../Models/Components/V2CreateExporterRequest.md) | :heavy_check_mark:                                                            | N/A                                                                           |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `ExporterID`                                                                | *string*                                                                    | :heavy_check_mark:                                                          | The exporter id                                                             |
+| `V2ExporterConfiguration`                                                   | [V2ExporterConfiguration1](../../Models/Ledger/V2ExporterConfiguration1.md) | :heavy_check_mark:                                                          | N/A                                                                         |
+| `serverURL`                                                                 | *string*                                                                    | :heavy_minus_sign:                                                          | An optional server URL to use.                                              |
 
 ### Response
 
@@ -1563,10 +1637,10 @@ var res = await sdk.Ledger.V2.UpdateExporterAsync(
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## DeleteExporter
 
@@ -1577,12 +1651,8 @@ Delete exporter
 <!-- UsageSnippet language="csharp" operationID="v2DeleteExporter" method="delete" path="/api/ledger/v2/_/exporters/{exporterID}" -->
 ```csharp
 using FormanceSDK;
-using FormanceSDK.Models.Components;
 
-var sdk = new Formance(security: new Security() {
-    ClientID = "<YOUR_CLIENT_ID_HERE>",
-    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
-});
+var sdk = new Formance();
 
 var res = await sdk.Ledger.V2.DeleteExporterAsync(exporterID: "<id>");
 
@@ -1591,9 +1661,10 @@ var res = await sdk.Ledger.V2.DeleteExporterAsync(exporterID: "<id>");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `ExporterID`       | *string*           | :heavy_check_mark: | The exporter id    |
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `ExporterID`                   | *string*                       | :heavy_check_mark:             | The exporter id                |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -1601,10 +1672,10 @@ var res = await sdk.Ledger.V2.DeleteExporterAsync(exporterID: "<id>");
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## DeleteBucket
 
@@ -1629,9 +1700,10 @@ var res = await sdk.Ledger.V2.DeleteBucketAsync(bucket: "<value>");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `Bucket`           | *string*           | :heavy_check_mark: | The bucket name    |
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Bucket`                       | *string*                       | :heavy_check_mark:             | The bucket name                |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -1639,10 +1711,10 @@ var res = await sdk.Ledger.V2.DeleteBucketAsync(bucket: "<value>");
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## RestoreBucket
 
@@ -1667,9 +1739,10 @@ var res = await sdk.Ledger.V2.RestoreBucketAsync(bucket: "<value>");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `Bucket`           | *string*           | :heavy_check_mark: | The bucket name    |
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Bucket`                       | *string*                       | :heavy_check_mark:             | The bucket name                |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -1677,10 +1750,10 @@ var res = await sdk.Ledger.V2.RestoreBucketAsync(bucket: "<value>");
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## ListPipelines
 
@@ -1691,12 +1764,8 @@ List pipelines
 <!-- UsageSnippet language="csharp" operationID="v2ListPipelines" method="get" path="/api/ledger/v2/{ledger}/pipelines" -->
 ```csharp
 using FormanceSDK;
-using FormanceSDK.Models.Components;
 
-var sdk = new Formance(security: new Security() {
-    ClientID = "<YOUR_CLIENT_ID_HERE>",
-    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
-});
+var sdk = new Formance();
 
 var res = await sdk.Ledger.V2.ListPipelinesAsync(ledger: "ledger001");
 
@@ -1705,20 +1774,21 @@ var res = await sdk.Ledger.V2.ListPipelinesAsync(ledger: "ledger001");
 
 ### Parameters
 
-| Parameter           | Type                | Required            | Description         | Example             |
-| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
-| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
-**[Models.Requests.V2ListPipelinesResponse](../../Models/Requests/V2ListPipelinesResponse.md)**
+**[V2ListPipelinesResponse](../../Models/Requests/V2ListPipelinesResponse.md)**
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## CreatePipeline
 
@@ -1729,12 +1799,8 @@ Create pipeline
 <!-- UsageSnippet language="csharp" operationID="v2CreatePipeline" method="post" path="/api/ledger/v2/{ledger}/pipelines" -->
 ```csharp
 using FormanceSDK;
-using FormanceSDK.Models.Components;
 
-var sdk = new Formance(security: new Security() {
-    ClientID = "<YOUR_CLIENT_ID_HERE>",
-    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
-});
+var sdk = new Formance();
 
 var res = await sdk.Ledger.V2.CreatePipelineAsync(ledger: "ledger001");
 
@@ -1743,10 +1809,11 @@ var res = await sdk.Ledger.V2.CreatePipelineAsync(ledger: "ledger001");
 
 ### Parameters
 
-| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     | Example                                                                                         |
-| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `Ledger`                                                                                        | *string*                                                                                        | :heavy_check_mark:                                                                              | Name of the ledger.                                                                             | ledger001                                                                                       |
-| `V2CreatePipelineRequest`                                                                       | [Models.Components.V2CreatePipelineRequest](../../Models/Components/V2CreatePipelineRequest.md) | :heavy_minus_sign:                                                                              | N/A                                                                                             |                                                                                                 |
+| Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             | Example                                                                                 |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `Ledger`                                                                                | *string*                                                                                | :heavy_check_mark:                                                                      | Name of the ledger.                                                                     | ledger001                                                                               |
+| `V2CreatePipelineRequest`                                                               | [Models.Ledger.V2CreatePipelineRequest](../../Models/Ledger/V2CreatePipelineRequest.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |                                                                                         |
+| `serverURL`                                                                             | *string*                                                                                | :heavy_minus_sign:                                                                      | An optional server URL to use.                                                          | http://localhost:8080                                                                   |
 
 ### Response
 
@@ -1754,10 +1821,10 @@ var res = await sdk.Ledger.V2.CreatePipelineAsync(ledger: "ledger001");
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## GetPipelineState
 
@@ -1768,12 +1835,8 @@ Get pipeline state
 <!-- UsageSnippet language="csharp" operationID="v2GetPipelineState" method="get" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}" -->
 ```csharp
 using FormanceSDK;
-using FormanceSDK.Models.Components;
 
-var sdk = new Formance(security: new Security() {
-    ClientID = "<YOUR_CLIENT_ID_HERE>",
-    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
-});
+var sdk = new Formance();
 
 var res = await sdk.Ledger.V2.GetPipelineStateAsync(
     ledger: "ledger001",
@@ -1785,10 +1848,11 @@ var res = await sdk.Ledger.V2.GetPipelineStateAsync(
 
 ### Parameters
 
-| Parameter           | Type                | Required            | Description         | Example             |
-| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
-| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
-| `PipelineID`        | *string*            | :heavy_check_mark:  | The pipeline id     |                     |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
+| `PipelineID`                   | *string*                       | :heavy_check_mark:             | The pipeline id                |                                |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -1796,10 +1860,10 @@ var res = await sdk.Ledger.V2.GetPipelineStateAsync(
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## DeletePipeline
 
@@ -1810,12 +1874,8 @@ Delete pipeline
 <!-- UsageSnippet language="csharp" operationID="v2DeletePipeline" method="delete" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}" -->
 ```csharp
 using FormanceSDK;
-using FormanceSDK.Models.Components;
 
-var sdk = new Formance(security: new Security() {
-    ClientID = "<YOUR_CLIENT_ID_HERE>",
-    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
-});
+var sdk = new Formance();
 
 var res = await sdk.Ledger.V2.DeletePipelineAsync(
     ledger: "ledger001",
@@ -1827,10 +1887,11 @@ var res = await sdk.Ledger.V2.DeletePipelineAsync(
 
 ### Parameters
 
-| Parameter           | Type                | Required            | Description         | Example             |
-| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
-| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
-| `PipelineID`        | *string*            | :heavy_check_mark:  | The pipeline id     |                     |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
+| `PipelineID`                   | *string*                       | :heavy_check_mark:             | The pipeline id                |                                |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -1838,10 +1899,10 @@ var res = await sdk.Ledger.V2.DeletePipelineAsync(
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## ResetPipeline
 
@@ -1852,12 +1913,8 @@ Reset pipeline
 <!-- UsageSnippet language="csharp" operationID="v2ResetPipeline" method="post" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}/reset" -->
 ```csharp
 using FormanceSDK;
-using FormanceSDK.Models.Components;
 
-var sdk = new Formance(security: new Security() {
-    ClientID = "<YOUR_CLIENT_ID_HERE>",
-    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
-});
+var sdk = new Formance();
 
 var res = await sdk.Ledger.V2.ResetPipelineAsync(
     ledger: "ledger001",
@@ -1869,10 +1926,11 @@ var res = await sdk.Ledger.V2.ResetPipelineAsync(
 
 ### Parameters
 
-| Parameter           | Type                | Required            | Description         | Example             |
-| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
-| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
-| `PipelineID`        | *string*            | :heavy_check_mark:  | The pipeline id     |                     |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
+| `PipelineID`                   | *string*                       | :heavy_check_mark:             | The pipeline id                |                                |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -1880,10 +1938,10 @@ var res = await sdk.Ledger.V2.ResetPipelineAsync(
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## StartPipeline
 
@@ -1894,12 +1952,8 @@ Start pipeline
 <!-- UsageSnippet language="csharp" operationID="v2StartPipeline" method="post" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}/start" -->
 ```csharp
 using FormanceSDK;
-using FormanceSDK.Models.Components;
 
-var sdk = new Formance(security: new Security() {
-    ClientID = "<YOUR_CLIENT_ID_HERE>",
-    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
-});
+var sdk = new Formance();
 
 var res = await sdk.Ledger.V2.StartPipelineAsync(
     ledger: "ledger001",
@@ -1911,10 +1965,11 @@ var res = await sdk.Ledger.V2.StartPipelineAsync(
 
 ### Parameters
 
-| Parameter           | Type                | Required            | Description         | Example             |
-| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
-| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
-| `PipelineID`        | *string*            | :heavy_check_mark:  | The pipeline id     |                     |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
+| `PipelineID`                   | *string*                       | :heavy_check_mark:             | The pipeline id                |                                |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -1922,10 +1977,10 @@ var res = await sdk.Ledger.V2.StartPipelineAsync(
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## StopPipeline
 
@@ -1936,12 +1991,8 @@ Stop pipeline
 <!-- UsageSnippet language="csharp" operationID="v2StopPipeline" method="post" path="/api/ledger/v2/{ledger}/pipelines/{pipelineID}/stop" -->
 ```csharp
 using FormanceSDK;
-using FormanceSDK.Models.Components;
 
-var sdk = new Formance(security: new Security() {
-    ClientID = "<YOUR_CLIENT_ID_HERE>",
-    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
-});
+var sdk = new Formance();
 
 var res = await sdk.Ledger.V2.StopPipelineAsync(
     ledger: "ledger001",
@@ -1953,10 +2004,11 @@ var res = await sdk.Ledger.V2.StopPipelineAsync(
 
 ### Parameters
 
-| Parameter           | Type                | Required            | Description         | Example             |
-| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
-| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
-| `PipelineID`        | *string*            | :heavy_check_mark:  | The pipeline id     |                     |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
+| `PipelineID`                   | *string*                       | :heavy_check_mark:             | The pipeline id                |                                |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -1964,7 +2016,7 @@ var res = await sdk.Ledger.V2.StopPipelineAsync(
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| FormanceSDK.Models.Errors.V2ErrorResponse | default                                   | application/json                          |
-| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |

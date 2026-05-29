@@ -10,6 +10,7 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Orchestration;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
@@ -21,6 +22,6 @@ namespace FormanceSDK.Models.Requests
         /// <summary>
         /// Created trigger.
         /// </summary>
-        public Models.Components.V2CreateTriggerResponse? V2CreateTriggerResponseValue { get; set; }
+        public Models.Orchestration.V2CreateTriggerResponse? V2CreateTriggerResponseValue { get; set; }
     }
 }

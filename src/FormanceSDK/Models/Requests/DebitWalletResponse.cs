@@ -10,6 +10,7 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Wallets;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
@@ -21,6 +22,6 @@ namespace FormanceSDK.Models.Requests
         /// <summary>
         /// Wallet successfully debited as a pending hold.
         /// </summary>
-        public Models.Components.DebitWalletResponse? DebitWalletResponseValue { get; set; }
+        public Models.Wallets.DebitWalletResponse? DebitWalletResponseValue { get; set; }
     }
 }

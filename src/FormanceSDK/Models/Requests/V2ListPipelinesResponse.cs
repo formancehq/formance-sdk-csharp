@@ -10,6 +10,7 @@
 namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Models.Components;
+    using FormanceSDK.Models.Ledger;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
@@ -21,6 +22,6 @@ namespace FormanceSDK.Models.Requests
         /// <summary>
         /// Pipelines list.
         /// </summary>
-        public Models.Components.V2ListPipelinesResponse? V2ListPipelinesResponseValue { get; set; }
+        public V2PipelinesCursorResponse? V2PipelinesCursorResponse { get; set; }
     }
 }

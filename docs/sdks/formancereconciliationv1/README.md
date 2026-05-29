@@ -4,7 +4,7 @@
 
 ### Available Operations
 
-* [ReconciliationgetServerInfo](#reconciliationgetserverinfo) - Get server info
+* [GetServerInfoReconciliation](#getserverinforeconciliation) - Get server info
 * [CreatePolicy](#createpolicy) - Create a policy
 * [ListPolicies](#listpolicies) - List policies
 * [DeletePolicy](#deletepolicy) - Delete a policy
@@ -13,13 +13,13 @@
 * [ListReconciliations](#listreconciliations) - List reconciliations
 * [GetReconciliation](#getreconciliation) - Get a reconciliation
 
-## ReconciliationgetServerInfo
+## GetServerInfoReconciliation
 
 Get server info
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="reconciliationgetServerInfo" method="get" path="/api/reconciliation/_info" -->
+<!-- UsageSnippet language="csharp" operationID="getServerInfo_reconciliation" method="get" path="/api/reconciliation/_info" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -29,21 +29,27 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Reconciliation.V1.ReconciliationgetServerInfoAsync();
+var res = await sdk.Reconciliation.V1.GetServerInfoReconciliationAsync();
 
 // handle response
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
-**[ReconciliationgetServerInfoResponse](../../Models/Requests/ReconciliationgetServerInfoResponse.md)**
+**[GetServerInfoReconciliationResponse](../../Models/Requests/GetServerInfoReconciliationResponse.md)**
 
 ### Errors
 
-| Error Type                                            | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| FormanceSDK.Models.Errors.ReconciliationErrorResponse | default                                               | application/json                                      |
-| FormanceSDK.Models.Errors.SDKException                | 4XX, 5XX                                              | \*/\*                                                 |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Reconciliation.ErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## CreatePolicy
 
@@ -55,6 +61,7 @@ Create a policy
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Reconciliation;
 using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
@@ -78,9 +85,10 @@ var res = await sdk.Reconciliation.V1.CreatePolicyAsync(req);
 
 ### Parameters
 
-| Parameter                                                 | Type                                                      | Required                                                  | Description                                               |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| `request`                                                 | [PolicyRequest](../../Models/Components/PolicyRequest.md) | :heavy_check_mark:                                        | The request object to use for the request.                |
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `request`                                                     | [PolicyRequest](../../Models/Reconciliation/PolicyRequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
+| `serverURL`                                                   | *string*                                                      | :heavy_minus_sign:                                            | An optional server URL to use.                                |
 
 ### Response
 
@@ -88,10 +96,10 @@ var res = await sdk.Reconciliation.V1.CreatePolicyAsync(req);
 
 ### Errors
 
-| Error Type                                            | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| FormanceSDK.Models.Errors.ReconciliationErrorResponse | default                                               | application/json                                      |
-| FormanceSDK.Models.Errors.SDKException                | 4XX, 5XX                                              | \*/\*                                                 |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Reconciliation.ErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## ListPolicies
 
@@ -123,6 +131,8 @@ var res = await sdk.Reconciliation.V1.ListPoliciesAsync(
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `PageSize`                                                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                       | The maximum number of results to return per page.<br/>                                                                                                                                                                                                   | 100                                                                                                                                                                                                                                                      |
 | `Cursor`                                                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Parameter used in pagination requests. Maximum page size is set to 15.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                                             |
+| `RequestBody`                                                                                                                                                                                                                                            | Dictionary<String, *object*>                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                                       | N/A                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                          |
+| `serverURL`                                                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                                                    |
 
 ### Response
 
@@ -130,10 +140,10 @@ var res = await sdk.Reconciliation.V1.ListPoliciesAsync(
 
 ### Errors
 
-| Error Type                                            | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| FormanceSDK.Models.Errors.ReconciliationErrorResponse | default                                               | application/json                                      |
-| FormanceSDK.Models.Errors.SDKException                | 4XX, 5XX                                              | \*/\*                                                 |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Reconciliation.ErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## DeletePolicy
 
@@ -158,9 +168,10 @@ var res = await sdk.Reconciliation.V1.DeletePolicyAsync(policyID: "XXX");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `PolicyID`         | *string*           | :heavy_check_mark: | The policy ID.     | XXX                |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `PolicyID`                     | *string*                       | :heavy_check_mark:             | The policy ID.                 | XXX                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -168,10 +179,10 @@ var res = await sdk.Reconciliation.V1.DeletePolicyAsync(policyID: "XXX");
 
 ### Errors
 
-| Error Type                                            | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| FormanceSDK.Models.Errors.ReconciliationErrorResponse | default                                               | application/json                                      |
-| FormanceSDK.Models.Errors.SDKException                | 4XX, 5XX                                              | \*/\*                                                 |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Reconciliation.ErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## GetPolicy
 
@@ -196,9 +207,10 @@ var res = await sdk.Reconciliation.V1.GetPolicyAsync(policyID: "XXX");
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        | Example            |
-| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
-| `PolicyID`         | *string*           | :heavy_check_mark: | The policy ID.     | XXX                |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `PolicyID`                     | *string*                       | :heavy_check_mark:             | The policy ID.                 | XXX                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -206,10 +218,10 @@ var res = await sdk.Reconciliation.V1.GetPolicyAsync(policyID: "XXX");
 
 ### Errors
 
-| Error Type                                            | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| FormanceSDK.Models.Errors.ReconciliationErrorResponse | default                                               | application/json                                      |
-| FormanceSDK.Models.Errors.SDKException                | 4XX, 5XX                                              | \*/\*                                                 |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Reconciliation.ErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## Reconcile
 
@@ -221,6 +233,7 @@ Reconcile using a policy
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Reconciliation;
 using System;
 
 var sdk = new Formance(security: new Security() {
@@ -241,10 +254,11 @@ var res = await sdk.Reconciliation.V1.ReconcileAsync(
 
 ### Parameters
 
-| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               | Example                                                                   |
-| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `PolicyID`                                                                | *string*                                                                  | :heavy_check_mark:                                                        | The policy ID.                                                            | XXX                                                                       |
-| `ReconciliationRequest`                                                   | [ReconciliationRequest](../../Models/Components/ReconciliationRequest.md) | :heavy_check_mark:                                                        | N/A                                                                       |                                                                           |
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   | Example                                                                       |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `PolicyID`                                                                    | *string*                                                                      | :heavy_check_mark:                                                            | The policy ID.                                                                | XXX                                                                           |
+| `ReconciliationRequest`                                                       | [ReconciliationRequest](../../Models/Reconciliation/ReconciliationRequest.md) | :heavy_check_mark:                                                            | N/A                                                                           |                                                                               |
+| `serverURL`                                                                   | *string*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                | http://localhost:8080                                                         |
 
 ### Response
 
@@ -252,10 +266,10 @@ var res = await sdk.Reconciliation.V1.ReconcileAsync(
 
 ### Errors
 
-| Error Type                                            | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| FormanceSDK.Models.Errors.ReconciliationErrorResponse | default                                               | application/json                                      |
-| FormanceSDK.Models.Errors.SDKException                | 4XX, 5XX                                              | \*/\*                                                 |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Reconciliation.ErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## ListReconciliations
 
@@ -287,6 +301,8 @@ var res = await sdk.Reconciliation.V1.ListReconciliationsAsync(
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `PageSize`                                                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                       | The maximum number of results to return per page.<br/>                                                                                                                                                                                                   | 100                                                                                                                                                                                                                                                      |
 | `Cursor`                                                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Parameter used in pagination requests. Maximum page size is set to 15.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                                             |
+| `RequestBody`                                                                                                                                                                                                                                            | Dictionary<String, *object*>                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                                       | N/A                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                          |
+| `serverURL`                                                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                                                    |
 
 ### Response
 
@@ -294,10 +310,10 @@ var res = await sdk.Reconciliation.V1.ListReconciliationsAsync(
 
 ### Errors
 
-| Error Type                                            | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| FormanceSDK.Models.Errors.ReconciliationErrorResponse | default                                               | application/json                                      |
-| FormanceSDK.Models.Errors.SDKException                | 4XX, 5XX                                              | \*/\*                                                 |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Reconciliation.ErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |
 
 ## GetReconciliation
 
@@ -322,9 +338,10 @@ var res = await sdk.Reconciliation.V1.GetReconciliationAsync(reconciliationID: "
 
 ### Parameters
 
-| Parameter              | Type                   | Required               | Description            | Example                |
-| ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- |
-| `ReconciliationID`     | *string*               | :heavy_check_mark:     | The reconciliation ID. | XXX                    |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `ReconciliationID`             | *string*                       | :heavy_check_mark:             | The reconciliation ID.         | XXX                            |
+| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
 
 ### Response
 
@@ -332,7 +349,7 @@ var res = await sdk.Reconciliation.V1.GetReconciliationAsync(reconciliationID: "
 
 ### Errors
 
-| Error Type                                            | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| FormanceSDK.Models.Errors.ReconciliationErrorResponse | default                                               | application/json                                      |
-| FormanceSDK.Models.Errors.SDKException                | 4XX, 5XX                                              | \*/\*                                                 |
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| FormanceSDK.Models.Reconciliation.ErrorResponse | default                                         | application/json                                |
+| FormanceSDK.Models.Errors.SDKException          | 4XX, 5XX                                        | \*/\*                                           |

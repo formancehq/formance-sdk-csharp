@@ -1,0 +1,12 @@
+# V2QueryTemplate
+
+
+## Fields
+
+| Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `Description`                                                                       | *string*                                                                            | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `V2QueryResource`                                                                   | [V2QueryResource](../../Models/Ledger/V2QueryResource.md)                           | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `V2QueryParams`                                                                     | [V2QueryParams](../../Models/Ledger/V2QueryParams.md)                               | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `Vars`                                                                              | Dictionary<String, [V2QueryTemplateVar](../../Models/Ledger/V2QueryTemplateVar.md)> | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `Body`                                                                              | Dictionary<String, *object*>                                                        | :heavy_minus_sign:                                                                  | N/A                                                                                 |

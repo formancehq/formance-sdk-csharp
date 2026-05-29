@@ -11,6 +11,7 @@ namespace FormanceSDK.Models.Requests
 {
     using FormanceSDK.Utils;
     using System;
+    using System.Collections.Generic;
 
     public class V2CountAccountsRequest
     {
@@ -22,5 +23,8 @@ namespace FormanceSDK.Models.Requests
 
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=pit")]
         public DateTime? Pit { get; set; }
+
+        [SpeakeasyMetadata("request:mediaType=application/json")]
+        public Dictionary<string, object> RequestBody { get; set; } = default!;
     }
 }

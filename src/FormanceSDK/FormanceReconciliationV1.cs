@@ -31,13 +31,12 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetServerInfoReconciliationResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<GetServerInfoReconciliationResponse> GetServerInfoReconciliationAsync(string? serverUrl = null);
+        public  Task<GetServerInfoReconciliationResponse> GetServerInfoReconciliationAsync();
 
         /// <summary>
         /// Create a policy.
@@ -47,14 +46,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="PolicyRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="CreatePolicyResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<CreatePolicyResponse> CreatePolicyAsync(PolicyRequest request, string? serverUrl = null);
+        public  Task<CreatePolicyResponse> CreatePolicyAsync(PolicyRequest request);
 
         /// <summary>
         /// List policies.
@@ -70,7 +68,6 @@ namespace FormanceSDK
         /// No other parameters can be set when this parameter is set.
         /// </param>
         /// <param name="requestBody">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListPoliciesResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -79,8 +76,7 @@ namespace FormanceSDK
         public  Task<ListPoliciesResponse> ListPoliciesAsync(
             long? pageSize = null,
             string? cursor = null,
-            Dictionary<string, object>? requestBody = null,
-            string? serverUrl = null
+            Dictionary<string, object>? requestBody = null
         );
 
         /// <summary>
@@ -91,14 +87,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="policyID">The policy ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="DeletePolicyResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="policyID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<DeletePolicyResponse> DeletePolicyAsync(string policyID, string? serverUrl = null);
+        public  Task<DeletePolicyResponse> DeletePolicyAsync(string policyID);
 
         /// <summary>
         /// Get a policy.
@@ -107,14 +102,13 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="policyID">The policy ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetPolicyResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="policyID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<GetPolicyResponse> GetPolicyAsync(string policyID, string? serverUrl = null);
+        public  Task<GetPolicyResponse> GetPolicyAsync(string policyID);
 
         /// <summary>
         /// Reconcile using a policy.
@@ -125,18 +119,13 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="policyID">The policy ID.</param>
         /// <param name="reconciliationRequest">A <see cref="ReconciliationRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ReconcileResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="policyID"/> or <paramref name="reconciliationRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<ReconcileResponse> ReconcileAsync(
-            string policyID,
-            ReconciliationRequest reconciliationRequest,
-            string? serverUrl = null
-        );
+        public  Task<ReconcileResponse> ReconcileAsync(string policyID, ReconciliationRequest reconciliationRequest);
 
         /// <summary>
         /// List reconciliations.
@@ -152,7 +141,6 @@ namespace FormanceSDK
         /// No other parameters can be set when this parameter is set.
         /// </param>
         /// <param name="requestBody">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListReconciliationsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -161,8 +149,7 @@ namespace FormanceSDK
         public  Task<ListReconciliationsResponse> ListReconciliationsAsync(
             long? pageSize = null,
             string? cursor = null,
-            Dictionary<string, object>? requestBody = null,
-            string? serverUrl = null
+            Dictionary<string, object>? requestBody = null
         );
 
         /// <summary>
@@ -172,74 +159,17 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="reconciliationID">The reconciliation ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetReconciliationResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="reconciliationID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<GetReconciliationResponse> GetReconciliationAsync(string reconciliationID, string? serverUrl = null);
+        public  Task<GetReconciliationResponse> GetReconciliationAsync(string reconciliationID);
     }
 
     public class FormanceReconciliationV1: IFormanceReconciliationV1
     {
-        /// <summary>
-        /// List of server URLs available for the getServerInfo_reconciliation operation.
-        /// </summary>
-        public static readonly string[] GetServerInfoReconciliationServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the createPolicy operation.
-        /// </summary>
-        public static readonly string[] CreatePolicyServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the listPolicies operation.
-        /// </summary>
-        public static readonly string[] ListPoliciesServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the deletePolicy operation.
-        /// </summary>
-        public static readonly string[] DeletePolicyServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the getPolicy operation.
-        /// </summary>
-        public static readonly string[] GetPolicyServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the reconcile operation.
-        /// </summary>
-        public static readonly string[] ReconcileServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the listReconciliations operation.
-        /// </summary>
-        public static readonly string[] ListReconciliationsServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the getReconciliation operation.
-        /// </summary>
-        public static readonly string[] GetReconciliationServerList = {
-            "http://localhost:8080/",
-        };
-
         /// <summary>
         /// SDK Configuration.
         /// <see cref="SDKConfig"/>
@@ -257,22 +187,14 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetServerInfoReconciliationResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<GetServerInfoReconciliationResponse> GetServerInfoReconciliationAsync(
-            string? serverUrl = null
-        )
+        public async  Task<GetServerInfoReconciliationResponse> GetServerInfoReconciliationAsync()
         {
-            string baseUrl = Utilities.TemplateUrl(GetServerInfoReconciliationServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/reconciliation/_info";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -384,23 +306,17 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="PolicyRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="CreatePolicyResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<CreatePolicyResponse> CreatePolicyAsync(PolicyRequest request, string? serverUrl = null)
+        public async  Task<CreatePolicyResponse> CreatePolicyAsync(PolicyRequest request)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            string baseUrl = Utilities.TemplateUrl(CreatePolicyServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/reconciliation/policies";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -524,7 +440,6 @@ namespace FormanceSDK
         /// No other parameters can be set when this parameter is set.
         /// </param>
         /// <param name="requestBody">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListPoliciesResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -533,8 +448,7 @@ namespace FormanceSDK
         public async  Task<ListPoliciesResponse> ListPoliciesAsync(
             long? pageSize = null,
             string? cursor = null,
-            Dictionary<string, object>? requestBody = null,
-            string? serverUrl = null
+            Dictionary<string, object>? requestBody = null
         )
         {
             var request = new ListPoliciesRequest()
@@ -544,12 +458,7 @@ namespace FormanceSDK
                 RequestBody = requestBody,
             };
 
-            string baseUrl = Utilities.TemplateUrl(ListPoliciesServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/policies", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -667,14 +576,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="policyID">The policy ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="DeletePolicyResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="policyID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<DeletePolicyResponse> DeletePolicyAsync(string policyID, string? serverUrl = null)
+        public async  Task<DeletePolicyResponse> DeletePolicyAsync(string policyID)
         {
             if (policyID == null) throw new ArgumentNullException(nameof(policyID));
 
@@ -683,12 +591,7 @@ namespace FormanceSDK
                 PolicyID = policyID,
             };
 
-            string baseUrl = Utilities.TemplateUrl(DeletePolicyServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/policies/{policyID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
@@ -781,14 +684,13 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="policyID">The policy ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetPolicyResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="policyID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<GetPolicyResponse> GetPolicyAsync(string policyID, string? serverUrl = null)
+        public async  Task<GetPolicyResponse> GetPolicyAsync(string policyID)
         {
             if (policyID == null) throw new ArgumentNullException(nameof(policyID));
 
@@ -797,12 +699,7 @@ namespace FormanceSDK
                 PolicyID = policyID,
             };
 
-            string baseUrl = Utilities.TemplateUrl(GetPolicyServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/policies/{policyID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -915,7 +812,6 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="policyID">The policy ID.</param>
         /// <param name="reconciliationRequest">A <see cref="ReconciliationRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ReconcileResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="policyID"/> or <paramref name="reconciliationRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -924,8 +820,7 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<ReconcileResponse> ReconcileAsync(
             string policyID,
-            ReconciliationRequest reconciliationRequest,
-            string? serverUrl = null
+            ReconciliationRequest reconciliationRequest
         )
         {
             if (policyID == null) throw new ArgumentNullException(nameof(policyID));
@@ -937,12 +832,7 @@ namespace FormanceSDK
                 ReconciliationRequest = reconciliationRequest,
             };
 
-            string baseUrl = Utilities.TemplateUrl(ReconcileServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/policies/{policyID}/reconciliation", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -1066,7 +956,6 @@ namespace FormanceSDK
         /// No other parameters can be set when this parameter is set.
         /// </param>
         /// <param name="requestBody">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ListReconciliationsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -1075,8 +964,7 @@ namespace FormanceSDK
         public async  Task<ListReconciliationsResponse> ListReconciliationsAsync(
             long? pageSize = null,
             string? cursor = null,
-            Dictionary<string, object>? requestBody = null,
-            string? serverUrl = null
+            Dictionary<string, object>? requestBody = null
         )
         {
             var request = new ListReconciliationsRequest()
@@ -1086,12 +974,7 @@ namespace FormanceSDK
                 RequestBody = requestBody,
             };
 
-            string baseUrl = Utilities.TemplateUrl(ListReconciliationsServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/reconciliations", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1208,17 +1091,13 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="reconciliationID">The reconciliation ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetReconciliationResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="reconciliationID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<GetReconciliationResponse> GetReconciliationAsync(
-            string reconciliationID,
-            string? serverUrl = null
-        )
+        public async  Task<GetReconciliationResponse> GetReconciliationAsync(string reconciliationID)
         {
             if (reconciliationID == null) throw new ArgumentNullException(nameof(reconciliationID));
 
@@ -1227,12 +1106,7 @@ namespace FormanceSDK
                 ReconciliationID = reconciliationID,
             };
 
-            string baseUrl = Utilities.TemplateUrl(GetReconciliationServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/reconciliations/{reconciliationID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);

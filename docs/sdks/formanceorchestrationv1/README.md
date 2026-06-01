@@ -43,12 +43,6 @@ var res = await sdk.Orchestration.V1.GetServerInfoOrchestrationAsync();
 // handle response
 ```
 
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
-
 ### Response
 
 **[GetServerInfoOrchestrationResponse](../../Models/Requests/GetServerInfoOrchestrationResponse.md)**
@@ -83,10 +77,9 @@ var res = await sdk.Orchestration.V1.ListTriggersAsync();
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Name`                         | *string*                       | :heavy_minus_sign:             | search by name                 |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `Name`             | *string*           | :heavy_minus_sign: | search by name     |
 
 ### Response
 
@@ -128,7 +121,6 @@ var res = await sdk.Orchestration.V1.CreateTriggerAsync(req);
 | Parameter                                                  | Type                                                       | Required                                                   | Description                                                |
 | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
 | `request`                                                  | [TriggerData1](../../Models/Orchestration/TriggerData1.md) | :heavy_check_mark:                                         | The request object to use for the request.                 |
-| `serverURL`                                                | *string*                                                   | :heavy_minus_sign:                                         | An optional server URL to use.                             |
 
 ### Response
 
@@ -164,10 +156,9 @@ var res = await sdk.Orchestration.V1.ReadTriggerAsync(triggerID: "<id>");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `TriggerID`                    | *string*                       | :heavy_check_mark:             | The trigger id                 |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `TriggerID`        | *string*           | :heavy_check_mark: | The trigger id     |
 
 ### Response
 
@@ -203,10 +194,9 @@ var res = await sdk.Orchestration.V1.DeleteTriggerAsync(triggerID: "<id>");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `TriggerID`                    | *string*                       | :heavy_check_mark:             | The trigger id                 |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `TriggerID`        | *string*           | :heavy_check_mark: | The trigger id     |
 
 ### Response
 
@@ -242,10 +232,9 @@ var res = await sdk.Orchestration.V1.ListTriggersOccurrencesAsync(triggerID: "<i
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `TriggerID`                    | *string*                       | :heavy_check_mark:             | The trigger id                 |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `TriggerID`        | *string*           | :heavy_check_mark: | The trigger id     |
 
 ### Response
 
@@ -278,12 +267,6 @@ var res = await sdk.Orchestration.V1.ListWorkflowsAsync();
 
 // handle response
 ```
-
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -325,7 +308,6 @@ var res = await sdk.Orchestration.V1.CreateWorkflowAsync(req);
 | Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
 | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
 | `request`                                                      | [WorkflowConfig](../../Models/Orchestration/WorkflowConfig.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
-| `serverURL`                                                    | *string*                                                       | :heavy_minus_sign:                                             | An optional server URL to use.                                 |
 
 ### Response
 
@@ -361,10 +343,9 @@ var res = await sdk.Orchestration.V1.GetWorkflowAsync(flowId: "xxx");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `FlowId`                       | *string*                       | :heavy_check_mark:             | The flow id                    | xxx                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `FlowId`           | *string*           | :heavy_check_mark: | The flow id        | xxx                |
 
 ### Response
 
@@ -400,10 +381,9 @@ var res = await sdk.Orchestration.V1.DeleteWorkflowAsync(flowId: "xxx");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `FlowId`                       | *string*                       | :heavy_check_mark:             | The flow id                    | xxx                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `FlowId`           | *string*           | :heavy_check_mark: | The flow id        | xxx                |
 
 ### Response
 
@@ -444,7 +424,6 @@ var res = await sdk.Orchestration.V1.RunWorkflowAsync(workflowID: "xxx");
 | `WorkflowID`                           | *string*                               | :heavy_check_mark:                     | The flow id                            | xxx                                    |
 | `Wait`                                 | *bool*                                 | :heavy_minus_sign:                     | Wait end of the workflow before return |                                        |
 | `RequestBody`                          | Dictionary<String, *string*>           | :heavy_minus_sign:                     | N/A                                    |                                        |
-| `serverURL`                            | *string*                               | :heavy_minus_sign:                     | An optional server URL to use.         | http://localhost:8080                  |
 
 ### Response
 
@@ -483,11 +462,10 @@ var res = await sdk.Orchestration.V1.ListInstancesAsync(
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `WorkflowID`                   | *string*                       | :heavy_minus_sign:             | A workflow id                  | xxx                            |
-| `Running`                      | *bool*                         | :heavy_minus_sign:             | Filter running instances       | true                           |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter                | Type                     | Required                 | Description              | Example                  |
+| ------------------------ | ------------------------ | ------------------------ | ------------------------ | ------------------------ |
+| `WorkflowID`             | *string*                 | :heavy_minus_sign:       | A workflow id            | xxx                      |
+| `Running`                | *bool*                   | :heavy_minus_sign:       | Filter running instances | true                     |
 
 ### Response
 
@@ -523,10 +501,9 @@ var res = await sdk.Orchestration.V1.GetInstanceAsync(instanceID: "xxx");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `InstanceID`                   | *string*                       | :heavy_check_mark:             | The instance id                | xxx                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `InstanceID`       | *string*           | :heavy_check_mark: | The instance id    | xxx                |
 
 ### Response
 
@@ -566,7 +543,6 @@ var res = await sdk.Orchestration.V1.SendEventAsync(instanceID: "xxx");
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `InstanceID`                                                          | *string*                                                              | :heavy_check_mark:                                                    | The instance id                                                       | xxx                                                                   |
 | `RequestBody`                                                         | [SendEventRequestBody](../../Models/Requests/SendEventRequestBody.md) | :heavy_minus_sign:                                                    | N/A                                                                   |                                                                       |
-| `serverURL`                                                           | *string*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        | http://localhost:8080                                                 |
 
 ### Response
 
@@ -602,10 +578,9 @@ var res = await sdk.Orchestration.V1.CancelEventAsync(instanceID: "xxx");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `InstanceID`                   | *string*                       | :heavy_check_mark:             | The instance id                | xxx                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `InstanceID`       | *string*           | :heavy_check_mark: | The instance id    | xxx                |
 
 ### Response
 
@@ -641,10 +616,9 @@ var res = await sdk.Orchestration.V1.GetInstanceHistoryAsync(instanceID: "xxx");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `InstanceID`                   | *string*                       | :heavy_check_mark:             | The instance id                | xxx                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `InstanceID`       | *string*           | :heavy_check_mark: | The instance id    | xxx                |
 
 ### Response
 
@@ -683,11 +657,10 @@ var res = await sdk.Orchestration.V1.GetInstanceStageHistoryAsync(
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `InstanceID`                   | *string*                       | :heavy_check_mark:             | The instance id                | xxx                            |
-| `Number`                       | *long*                         | :heavy_check_mark:             | The stage number               | 0                              |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `InstanceID`       | *string*           | :heavy_check_mark: | The instance id    | xxx                |
+| `Number`           | *long*             | :heavy_check_mark: | The stage number   | 0                  |
 
 ### Response
 

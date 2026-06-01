@@ -33,12 +33,6 @@ var res = await sdk.Search.V1.GetServerInfoSearchAsync();
 // handle response
 ```
 
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
-
 ### Response
 
 **[GetServerInfoSearchResponse](../../Models/Requests/GetServerInfoSearchResponse.md)**
@@ -95,7 +89,6 @@ var res = await sdk.Search.V1.SearchAsync(req);
 | Parameter                                  | Type                                       | Required                                   | Description                                |
 | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
 | `request`                                  | [Query](../../Models/Search/Query.md)      | :heavy_check_mark:                         | The request object to use for the request. |
-| `serverURL`                                | *string*                                   | :heavy_minus_sign:                         | An optional server URL to use.             |
 
 ### Response
 

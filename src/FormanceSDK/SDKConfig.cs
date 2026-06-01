@@ -26,12 +26,14 @@ namespace FormanceSDK
         /// List of server URLs available to the SDK.
         /// </summary>
         public static readonly string[] ServerList = {
-            "/",
+            "http://localhost",
+            "https://{organization}.{environment}.formance.cloud",
         };
 
         public ISpeakeasyHttpClient Client;
         public string ServerUrl;
         public int ServerIndex;
+        public List<Dictionary<string, string>> ServerVariables;
         public string UserAgent;
         public Func<FormanceSDK.Models.Components.Security>? SecuritySource;
         public SDKHooks Hooks;
@@ -45,10 +47,29 @@ namespace FormanceSDK
             Client = client ?? new SpeakeasyHttpClient();
             ServerUrl = "";
             ServerIndex = 0;
-            UserAgent = "speakeasy-sdk/csharp 5.0.0 2.889.1 SDK_VERSION FormanceSDK";
+            ServerVariables = new List<Dictionary<string, string>>()
+            {
+                new Dictionary<string, string>()
+                {
+                },
+                new Dictionary<string, string>()
+                {
+                    {"organization", "orgID-stackID"},
+                    {"environment", "eu.sandbox"},
+                },
+            };
+            UserAgent = "speakeasy-sdk/csharp 5.1.0 2.889.1 SDK_VERSION FormanceSDK";
             SecuritySource = null;
             Hooks = new SDKHooks();
             RetryConfig = null;
+        }
+
+        public void SetServerVariable(string key, string value)
+        {
+            foreach (var serverVariables in this.ServerVariables.Where(dict => dict.ContainsKey(key)))
+            {
+                serverVariables[key] = value;
+            }
         }
 
         public string GetTemplatedServerUrl()
@@ -57,7 +78,7 @@ namespace FormanceSDK
             {
                 return Utilities.TemplateUrl(Utilities.RemoveSuffix(this.ServerUrl, "/"), new Dictionary<string, string>());
             }
-            return Utilities.TemplateUrl(SDKConfig.ServerList[this.ServerIndex], new Dictionary<string, string>());
+            return Utilities.TemplateUrl(SDKConfig.ServerList[this.ServerIndex], this.ServerVariables[this.ServerIndex]);
         }
     }
 }

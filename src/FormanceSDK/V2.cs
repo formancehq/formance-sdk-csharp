@@ -33,14 +33,13 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="request">A <see cref="V2ListLedgersRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ListLedgersResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2ListLedgersResponse> ListLedgersAsync(V2ListLedgersRequest request, string? serverUrl = null);
+        public  Task<V2ListLedgersResponse> ListLedgersAsync(V2ListLedgersRequest request);
 
         /// <summary>
         /// Get a ledger.
@@ -49,14 +48,13 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="ledger">Name of the ledger.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2GetLedgerResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<Models.Requests.V2GetLedgerResponse> GetLedgerAsync(string ledger, string? serverUrl = null);
+        public  Task<Models.Requests.V2GetLedgerResponse> GetLedgerAsync(string ledger);
 
         /// <summary>
         /// Create a ledger.
@@ -66,7 +64,6 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="v2CreateLedgerRequest">A <see cref="FormanceSDK.Models.Ledger.V2CreateLedgerRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2CreateLedgerResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="v2CreateLedgerRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -75,8 +72,7 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<V2CreateLedgerResponse> CreateLedgerAsync(
             string ledger,
-            Models.Ledger.V2CreateLedgerRequest v2CreateLedgerRequest,
-            string? serverUrl = null
+            Models.Ledger.V2CreateLedgerRequest v2CreateLedgerRequest
         );
 
         /// <summary>
@@ -89,7 +85,6 @@ namespace FormanceSDK
         /// <param name="version">Schema version.</param>
         /// <param name="v2SchemaData">A <see cref="V2SchemaData"/> parameter.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2InsertSchemaResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/>, <paramref name="version"/> or <paramref name="v2SchemaData"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -100,8 +95,7 @@ namespace FormanceSDK
             string ledger,
             string version,
             V2SchemaData v2SchemaData,
-            string? idempotencyKey = null,
-            string? serverUrl = null
+            string? idempotencyKey = null
         );
 
         /// <summary>
@@ -112,14 +106,13 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="version">Schema version.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetSchemaResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="version"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2GetSchemaResponse> GetSchemaAsync(string ledger, string version, string? serverUrl = null);
+        public  Task<V2GetSchemaResponse> GetSchemaAsync(string ledger, string version);
 
         /// <summary>
         /// List all schemas for a ledger.
@@ -128,14 +121,13 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="request">A <see cref="V2ListSchemasRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ListSchemasResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2ListSchemasResponse> ListSchemasAsync(V2ListSchemasRequest request, string? serverUrl = null);
+        public  Task<V2ListSchemasResponse> ListSchemasAsync(V2ListSchemasRequest request);
 
         /// <summary>
         /// Update ledger metadata.
@@ -145,7 +137,6 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="requestBody">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2UpdateLedgerMetadataResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="requestBody"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -154,8 +145,7 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<V2UpdateLedgerMetadataResponse> UpdateLedgerMetadataAsync(
             string ledger,
-            Dictionary<string, string> requestBody,
-            string? serverUrl = null
+            Dictionary<string, string> requestBody
         );
 
         /// <summary>
@@ -166,18 +156,13 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="key">Key to remove.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2DeleteLedgerMetadataResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="key"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2DeleteLedgerMetadataResponse> DeleteLedgerMetadataAsync(
-            string ledger,
-            string key,
-            string? serverUrl = null
-        );
+        public  Task<V2DeleteLedgerMetadataResponse> DeleteLedgerMetadataAsync(string ledger, string key);
 
         /// <summary>
         /// Get information about a ledger.
@@ -186,14 +171,13 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="ledger">Name of the ledger.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetLedgerInfoResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2GetLedgerInfoResponse> GetLedgerInfoAsync(string ledger, string? serverUrl = null);
+        public  Task<V2GetLedgerInfoResponse> GetLedgerInfoAsync(string ledger);
 
         /// <summary>
         /// Bulk request.
@@ -202,14 +186,13 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="request">A <see cref="V2CreateBulkRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2CreateBulkResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200 or 400.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2CreateBulkResponse> CreateBulkAsync(V2CreateBulkRequest request, string? serverUrl = null);
+        public  Task<V2CreateBulkResponse> CreateBulkAsync(V2CreateBulkRequest request);
 
         /// <summary>
         /// Count the accounts from a ledger.
@@ -220,7 +203,6 @@ namespace FormanceSDK
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="requestBody">Description not available.</param>
         /// <param name="pit">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2CountAccountsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="requestBody"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -230,8 +212,7 @@ namespace FormanceSDK
         public  Task<V2CountAccountsResponse> CountAccountsAsync(
             string ledger,
             Dictionary<string, object> requestBody,
-            DateTime? pit = null,
-            string? serverUrl = null
+            DateTime? pit = null
         );
 
         /// <summary>
@@ -242,14 +223,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="V2ListAccountsRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ListAccountsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2ListAccountsResponse> ListAccountsAsync(V2ListAccountsRequest request, string? serverUrl = null);
+        public  Task<V2ListAccountsResponse> ListAccountsAsync(V2ListAccountsRequest request);
 
         /// <summary>
         /// Get account by its address.
@@ -266,7 +246,6 @@ namespace FormanceSDK
         /// </param>
         /// <param name="expand">Description not available.</param>
         /// <param name="pit">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetAccountResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="address"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -277,8 +256,7 @@ namespace FormanceSDK
             string ledger,
             string address,
             string? expand = null,
-            DateTime? pit = null,
-            string? serverUrl = null
+            DateTime? pit = null
         );
 
         /// <summary>
@@ -288,17 +266,13 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="request">A <see cref="V2AddMetadataToAccountRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2AddMetadataToAccountResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2AddMetadataToAccountResponse> AddMetadataToAccountAsync(
-            V2AddMetadataToAccountRequest request,
-            string? serverUrl = null
-        );
+        public  Task<V2AddMetadataToAccountResponse> AddMetadataToAccountAsync(V2AddMetadataToAccountRequest request);
 
         /// <summary>
         /// Delete metadata by key.
@@ -311,7 +285,6 @@ namespace FormanceSDK
         /// <param name="address">Account address.</param>
         /// <param name="key">The key to remove.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2DeleteAccountMetadataResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/>, <paramref name="address"/> or <paramref name="key"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -322,8 +295,7 @@ namespace FormanceSDK
             string ledger,
             string address,
             string key,
-            string? idempotencyKey = null,
-            string? serverUrl = null
+            string? idempotencyKey = null
         );
 
         /// <summary>
@@ -335,14 +307,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="ledger">name of the ledger.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ReadStatsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2ReadStatsResponse> ReadStatsAsync(string ledger, string? serverUrl = null);
+        public  Task<V2ReadStatsResponse> ReadStatsAsync(string ledger);
 
         /// <summary>
         /// Count the transactions from a ledger.
@@ -353,7 +324,6 @@ namespace FormanceSDK
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="requestBody">Description not available.</param>
         /// <param name="pit">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2CountTransactionsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="requestBody"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -363,8 +333,7 @@ namespace FormanceSDK
         public  Task<V2CountTransactionsResponse> CountTransactionsAsync(
             string ledger,
             Dictionary<string, object> requestBody,
-            DateTime? pit = null,
-            string? serverUrl = null
+            DateTime? pit = null
         );
 
         /// <summary>
@@ -375,17 +344,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="V2ListTransactionsRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ListTransactionsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2ListTransactionsResponse> ListTransactionsAsync(
-            V2ListTransactionsRequest request,
-            string? serverUrl = null
-        );
+        public  Task<V2ListTransactionsResponse> ListTransactionsAsync(V2ListTransactionsRequest request);
 
         /// <summary>
         /// Create a new transaction to a ledger.
@@ -394,7 +359,6 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="request">A <see cref="V2CreateTransactionRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreateTransactionResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -402,8 +366,7 @@ namespace FormanceSDK
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<Models.Requests.V2CreateTransactionResponse> CreateTransactionAsync(
-            V2CreateTransactionRequest request,
-            string? serverUrl = null
+            V2CreateTransactionRequest request
         );
 
         /// <summary>
@@ -416,7 +379,6 @@ namespace FormanceSDK
         /// <param name="id">Transaction ID.</param>
         /// <param name="expand">Description not available.</param>
         /// <param name="pit">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2GetTransactionResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -427,8 +389,7 @@ namespace FormanceSDK
             string ledger,
             BigInteger id,
             string? expand = null,
-            DateTime? pit = null,
-            string? serverUrl = null
+            DateTime? pit = null
         );
 
         /// <summary>
@@ -438,7 +399,6 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="request">A <see cref="V2AddMetadataOnTransactionRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2AddMetadataOnTransactionResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -446,8 +406,7 @@ namespace FormanceSDK
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<V2AddMetadataOnTransactionResponse> AddMetadataOnTransactionAsync(
-            V2AddMetadataOnTransactionRequest request,
-            string? serverUrl = null
+            V2AddMetadataOnTransactionRequest request
         );
 
         /// <summary>
@@ -461,7 +420,6 @@ namespace FormanceSDK
         /// <param name="id">Transaction ID.</param>
         /// <param name="key">The key to remove.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2DeleteTransactionMetadataResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="key"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -472,8 +430,7 @@ namespace FormanceSDK
             string ledger,
             BigInteger id,
             string key,
-            string? idempotencyKey = null,
-            string? serverUrl = null
+            string? idempotencyKey = null
         );
 
         /// <summary>
@@ -483,7 +440,6 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="request">A <see cref="FormanceSDK.Models.Requests.V2RevertTransactionRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2RevertTransactionResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -491,8 +447,7 @@ namespace FormanceSDK
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<V2RevertTransactionResponse> RevertTransactionAsync(
-            Models.Requests.V2RevertTransactionRequest request,
-            string? serverUrl = null
+            Models.Requests.V2RevertTransactionRequest request
         );
 
         /// <summary>
@@ -505,7 +460,6 @@ namespace FormanceSDK
         /// <param name="requestBody">Description not available.</param>
         /// <param name="pit">Description not available.</param>
         /// <param name="useInsertionDate">Use insertion date instead of effective date.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetBalancesAggregatedResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="requestBody"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -516,8 +470,7 @@ namespace FormanceSDK
             string ledger,
             Dictionary<string, object> requestBody,
             DateTime? pit = null,
-            bool? useInsertionDate = null,
-            string? serverUrl = null
+            bool? useInsertionDate = null
         );
 
         /// <summary>
@@ -527,7 +480,6 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="request">A <see cref="V2GetVolumesWithBalancesRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetVolumesWithBalancesResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -535,8 +487,7 @@ namespace FormanceSDK
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<V2GetVolumesWithBalancesResponse> GetVolumesWithBalancesAsync(
-            V2GetVolumesWithBalancesRequest request,
-            string? serverUrl = null
+            V2GetVolumesWithBalancesRequest request
         );
 
         /// <summary>
@@ -547,32 +498,26 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="V2ListLogsRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ListLogsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2ListLogsResponse> ListLogsAsync(V2ListLogsRequest request, string? serverUrl = null);
+        public  Task<V2ListLogsResponse> ListLogsAsync(V2ListLogsRequest request);
 
         /// <summary>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </summary>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="v2ImportLogsRequest">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ImportLogsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="v2ImportLogsRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2ImportLogsResponse> ImportLogsAsync(
-            string ledger,
-            byte[] v2ImportLogsRequest,
-            string? serverUrl = null
-        );
+        public  Task<V2ImportLogsResponse> ImportLogsAsync(string ledger, byte[] v2ImportLogsRequest);
 
         /// <summary>
         /// Export logs.
@@ -581,12 +526,11 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="ledger">Name of the ledger.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ExportLogsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public  Task<V2ExportLogsResponse> ExportLogsAsync(string ledger, string? serverUrl = null);
+        public  Task<V2ExportLogsResponse> ExportLogsAsync(string ledger);
 
         /// <summary>
         /// Run a query template.
@@ -596,57 +540,47 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="V2RunQueryRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2RunQueryResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2RunQueryResponse> RunQueryAsync(V2RunQueryRequest request, string? serverUrl = null);
+        public  Task<V2RunQueryResponse> RunQueryAsync(V2RunQueryRequest request);
 
         /// <summary>
         /// List exporters.
         /// </summary>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ListExportersResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2ListExportersResponse> ListExportersAsync(string? serverUrl = null);
+        public  Task<V2ListExportersResponse> ListExportersAsync();
 
         /// <summary>
         /// Create exporter.
         /// </summary>
         /// <param name="request">A <see cref="V2ExporterConfiguration1"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreateExporterResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<Models.Requests.V2CreateExporterResponse> CreateExporterAsync(
-            V2ExporterConfiguration1 request,
-            string? serverUrl = null
-        );
+        public  Task<Models.Requests.V2CreateExporterResponse> CreateExporterAsync(V2ExporterConfiguration1 request);
 
         /// <summary>
         /// Get exporter state.
         /// </summary>
         /// <param name="exporterID">The exporter id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2GetExporterStateResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="exporterID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<Models.Requests.V2GetExporterStateResponse> GetExporterStateAsync(
-            string exporterID,
-            string? serverUrl = null
-        );
+        public  Task<Models.Requests.V2GetExporterStateResponse> GetExporterStateAsync(string exporterID);
 
         /// <summary>
         /// Update exporter.
@@ -656,7 +590,6 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="exporterID">The exporter id.</param>
         /// <param name="v2ExporterConfiguration">A <see cref="V2ExporterConfiguration1"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2UpdateExporterResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="exporterID"/> or <paramref name="v2ExporterConfiguration"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -665,22 +598,20 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<V2UpdateExporterResponse> UpdateExporterAsync(
             string exporterID,
-            V2ExporterConfiguration1 v2ExporterConfiguration,
-            string? serverUrl = null
+            V2ExporterConfiguration1 v2ExporterConfiguration
         );
 
         /// <summary>
         /// Delete exporter.
         /// </summary>
         /// <param name="exporterID">The exporter id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2DeleteExporterResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="exporterID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2DeleteExporterResponse> DeleteExporterAsync(string exporterID, string? serverUrl = null);
+        public  Task<V2DeleteExporterResponse> DeleteExporterAsync(string exporterID);
 
         /// <summary>
         /// Delete bucket.
@@ -690,14 +621,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="bucket">The bucket name.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2DeleteBucketResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="bucket"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Bucket not found. Thrown when the response status code is none of 204 or 404.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2DeleteBucketResponse> DeleteBucketAsync(string bucket, string? serverUrl = null);
+        public  Task<V2DeleteBucketResponse> DeleteBucketAsync(string bucket);
 
         /// <summary>
         /// Restore bucket.
@@ -707,34 +637,31 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="bucket">The bucket name.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2RestoreBucketResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="bucket"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Bucket not found. Thrown when the response status code is none of 204 or 404.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2RestoreBucketResponse> RestoreBucketAsync(string bucket, string? serverUrl = null);
+        public  Task<V2RestoreBucketResponse> RestoreBucketAsync(string bucket);
 
         /// <summary>
         /// List pipelines.
         /// </summary>
         /// <param name="ledger">Name of the ledger.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ListPipelinesResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2ListPipelinesResponse> ListPipelinesAsync(string ledger, string? serverUrl = null);
+        public  Task<V2ListPipelinesResponse> ListPipelinesAsync(string ledger);
 
         /// <summary>
         /// Create pipeline.
         /// </summary>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="v2CreatePipelineRequest">A <see cref="FormanceSDK.Models.Ledger.V2CreatePipelineRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreatePipelineResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -743,8 +670,7 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<Models.Requests.V2CreatePipelineResponse> CreatePipelineAsync(
             string ledger,
-            Models.Ledger.V2CreatePipelineRequest? v2CreatePipelineRequest = null,
-            string? serverUrl = null
+            Models.Ledger.V2CreatePipelineRequest? v2CreatePipelineRequest = null
         );
 
         /// <summary>
@@ -752,395 +678,69 @@ namespace FormanceSDK
         /// </summary>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="pipelineID">The pipeline id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2GetPipelineStateResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="pipelineID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<Models.Requests.V2GetPipelineStateResponse> GetPipelineStateAsync(
-            string ledger,
-            string pipelineID,
-            string? serverUrl = null
-        );
+        public  Task<Models.Requests.V2GetPipelineStateResponse> GetPipelineStateAsync(string ledger, string pipelineID);
 
         /// <summary>
         /// Delete pipeline.
         /// </summary>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="pipelineID">The pipeline id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2DeletePipelineResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="pipelineID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2DeletePipelineResponse> DeletePipelineAsync(
-            string ledger,
-            string pipelineID,
-            string? serverUrl = null
-        );
+        public  Task<V2DeletePipelineResponse> DeletePipelineAsync(string ledger, string pipelineID);
 
         /// <summary>
         /// Reset pipeline.
         /// </summary>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="pipelineID">The pipeline id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ResetPipelineResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="pipelineID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 202.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2ResetPipelineResponse> ResetPipelineAsync(
-            string ledger,
-            string pipelineID,
-            string? serverUrl = null
-        );
+        public  Task<V2ResetPipelineResponse> ResetPipelineAsync(string ledger, string pipelineID);
 
         /// <summary>
         /// Start pipeline.
         /// </summary>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="pipelineID">The pipeline id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2StartPipelineResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="pipelineID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 202.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2StartPipelineResponse> StartPipelineAsync(
-            string ledger,
-            string pipelineID,
-            string? serverUrl = null
-        );
+        public  Task<V2StartPipelineResponse> StartPipelineAsync(string ledger, string pipelineID);
 
         /// <summary>
         /// Stop pipeline.
         /// </summary>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="pipelineID">The pipeline id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2StopPipelineResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="pipelineID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 202.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2StopPipelineResponse> StopPipelineAsync(
-            string ledger,
-            string pipelineID,
-            string? serverUrl = null
-        );
+        public  Task<V2StopPipelineResponse> StopPipelineAsync(string ledger, string pipelineID);
     }
 
     public class V2: IV2
     {
-        /// <summary>
-        /// List of server URLs available for the v2ListLedgers operation.
-        /// </summary>
-        public static readonly string[] V2ListLedgersServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2GetLedger operation.
-        /// </summary>
-        public static readonly string[] V2GetLedgerServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2CreateLedger operation.
-        /// </summary>
-        public static readonly string[] V2CreateLedgerServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2InsertSchema operation.
-        /// </summary>
-        public static readonly string[] V2InsertSchemaServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2GetSchema operation.
-        /// </summary>
-        public static readonly string[] V2GetSchemaServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2ListSchemas operation.
-        /// </summary>
-        public static readonly string[] V2ListSchemasServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2UpdateLedgerMetadata operation.
-        /// </summary>
-        public static readonly string[] V2UpdateLedgerMetadataServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2DeleteLedgerMetadata operation.
-        /// </summary>
-        public static readonly string[] V2DeleteLedgerMetadataServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2GetLedgerInfo operation.
-        /// </summary>
-        public static readonly string[] V2GetLedgerInfoServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2CreateBulk operation.
-        /// </summary>
-        public static readonly string[] V2CreateBulkServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2CountAccounts operation.
-        /// </summary>
-        public static readonly string[] V2CountAccountsServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2ListAccounts operation.
-        /// </summary>
-        public static readonly string[] V2ListAccountsServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2GetAccount operation.
-        /// </summary>
-        public static readonly string[] V2GetAccountServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2AddMetadataToAccount operation.
-        /// </summary>
-        public static readonly string[] V2AddMetadataToAccountServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2DeleteAccountMetadata operation.
-        /// </summary>
-        public static readonly string[] V2DeleteAccountMetadataServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2ReadStats operation.
-        /// </summary>
-        public static readonly string[] V2ReadStatsServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2CountTransactions operation.
-        /// </summary>
-        public static readonly string[] V2CountTransactionsServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2ListTransactions operation.
-        /// </summary>
-        public static readonly string[] V2ListTransactionsServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2CreateTransaction operation.
-        /// </summary>
-        public static readonly string[] V2CreateTransactionServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2GetTransaction operation.
-        /// </summary>
-        public static readonly string[] V2GetTransactionServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2AddMetadataOnTransaction operation.
-        /// </summary>
-        public static readonly string[] V2AddMetadataOnTransactionServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2DeleteTransactionMetadata operation.
-        /// </summary>
-        public static readonly string[] V2DeleteTransactionMetadataServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2RevertTransaction operation.
-        /// </summary>
-        public static readonly string[] V2RevertTransactionServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2GetBalancesAggregated operation.
-        /// </summary>
-        public static readonly string[] V2GetBalancesAggregatedServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2GetVolumesWithBalances operation.
-        /// </summary>
-        public static readonly string[] V2GetVolumesWithBalancesServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2ListLogs operation.
-        /// </summary>
-        public static readonly string[] V2ListLogsServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2ImportLogs operation.
-        /// </summary>
-        public static readonly string[] V2ImportLogsServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2ExportLogs operation.
-        /// </summary>
-        public static readonly string[] V2ExportLogsServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2RunQuery operation.
-        /// </summary>
-        public static readonly string[] V2RunQueryServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2ListExporters operation.
-        /// </summary>
-        public static readonly string[] V2ListExportersServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2CreateExporter operation.
-        /// </summary>
-        public static readonly string[] V2CreateExporterServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2GetExporterState operation.
-        /// </summary>
-        public static readonly string[] V2GetExporterStateServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2UpdateExporter operation.
-        /// </summary>
-        public static readonly string[] V2UpdateExporterServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2DeleteExporter operation.
-        /// </summary>
-        public static readonly string[] V2DeleteExporterServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2DeleteBucket operation.
-        /// </summary>
-        public static readonly string[] V2DeleteBucketServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2RestoreBucket operation.
-        /// </summary>
-        public static readonly string[] V2RestoreBucketServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2ListPipelines operation.
-        /// </summary>
-        public static readonly string[] V2ListPipelinesServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2CreatePipeline operation.
-        /// </summary>
-        public static readonly string[] V2CreatePipelineServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2GetPipelineState operation.
-        /// </summary>
-        public static readonly string[] V2GetPipelineStateServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2DeletePipeline operation.
-        /// </summary>
-        public static readonly string[] V2DeletePipelineServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2ResetPipeline operation.
-        /// </summary>
-        public static readonly string[] V2ResetPipelineServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2StartPipeline operation.
-        /// </summary>
-        public static readonly string[] V2StartPipelineServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2StopPipeline operation.
-        /// </summary>
-        public static readonly string[] V2StopPipelineServerList = {
-            "http://localhost:8080/",
-        };
-
         /// <summary>
         /// SDK Configuration.
         /// <see cref="SDKConfig"/>
@@ -1159,26 +759,17 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="request">A <see cref="V2ListLedgersRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ListLedgersResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2ListLedgersResponse> ListLedgersAsync(
-            V2ListLedgersRequest request,
-            string? serverUrl = null
-        )
+        public async  Task<V2ListLedgersResponse> ListLedgersAsync(V2ListLedgersRequest request)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            string baseUrl = Utilities.TemplateUrl(V2ListLedgersServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1295,14 +886,13 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="ledger">Name of the ledger.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2GetLedgerResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<Models.Requests.V2GetLedgerResponse> GetLedgerAsync(string ledger, string? serverUrl = null)
+        public async  Task<Models.Requests.V2GetLedgerResponse> GetLedgerAsync(string ledger)
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
 
@@ -1311,12 +901,7 @@ namespace FormanceSDK
                 Ledger = ledger,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2GetLedgerServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1428,7 +1013,6 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="v2CreateLedgerRequest">A <see cref="FormanceSDK.Models.Ledger.V2CreateLedgerRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2CreateLedgerResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="v2CreateLedgerRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -1437,8 +1021,7 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<V2CreateLedgerResponse> CreateLedgerAsync(
             string ledger,
-            Models.Ledger.V2CreateLedgerRequest v2CreateLedgerRequest,
-            string? serverUrl = null
+            Models.Ledger.V2CreateLedgerRequest v2CreateLedgerRequest
         )
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
@@ -1450,12 +1033,7 @@ namespace FormanceSDK
                 V2CreateLedgerRequestValue = v2CreateLedgerRequest,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2CreateLedgerServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -1557,7 +1135,6 @@ namespace FormanceSDK
         /// <param name="version">Schema version.</param>
         /// <param name="v2SchemaData">A <see cref="V2SchemaData"/> parameter.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2InsertSchemaResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/>, <paramref name="version"/> or <paramref name="v2SchemaData"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -1568,8 +1145,7 @@ namespace FormanceSDK
             string ledger,
             string version,
             V2SchemaData v2SchemaData,
-            string? idempotencyKey = null,
-            string? serverUrl = null
+            string? idempotencyKey = null
         )
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
@@ -1584,12 +1160,7 @@ namespace FormanceSDK
                 IdempotencyKey = idempotencyKey,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2InsertSchemaServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/schemas/{version}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -1691,14 +1262,13 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="version">Schema version.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetSchemaResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="version"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2GetSchemaResponse> GetSchemaAsync(string ledger, string version, string? serverUrl = null)
+        public async  Task<V2GetSchemaResponse> GetSchemaAsync(string ledger, string version)
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
             if (version == null) throw new ArgumentNullException(nameof(version));
@@ -1709,12 +1279,7 @@ namespace FormanceSDK
                 Version = version,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2GetSchemaServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/schemas/{version}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1825,26 +1390,17 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="request">A <see cref="V2ListSchemasRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ListSchemasResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2ListSchemasResponse> ListSchemasAsync(
-            V2ListSchemasRequest request,
-            string? serverUrl = null
-        )
+        public async  Task<V2ListSchemasResponse> ListSchemasAsync(V2ListSchemasRequest request)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            string baseUrl = Utilities.TemplateUrl(V2ListSchemasServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/schemas", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1956,7 +1512,6 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="requestBody">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2UpdateLedgerMetadataResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="requestBody"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -1965,8 +1520,7 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<V2UpdateLedgerMetadataResponse> UpdateLedgerMetadataAsync(
             string ledger,
-            Dictionary<string, string> requestBody,
-            string? serverUrl = null
+            Dictionary<string, string> requestBody
         )
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
@@ -1978,12 +1532,7 @@ namespace FormanceSDK
                 RequestBody = requestBody,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2UpdateLedgerMetadataServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/metadata", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
@@ -2112,18 +1661,13 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="key">Key to remove.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2DeleteLedgerMetadataResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="key"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2DeleteLedgerMetadataResponse> DeleteLedgerMetadataAsync(
-            string ledger,
-            string key,
-            string? serverUrl = null
-        )
+        public async  Task<V2DeleteLedgerMetadataResponse> DeleteLedgerMetadataAsync(string ledger, string key)
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
             if (key == null) throw new ArgumentNullException(nameof(key));
@@ -2134,12 +1678,7 @@ namespace FormanceSDK
                 Key = key,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2DeleteLedgerMetadataServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/metadata/{key}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
@@ -2232,14 +1771,13 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="ledger">Name of the ledger.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetLedgerInfoResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2GetLedgerInfoResponse> GetLedgerInfoAsync(string ledger, string? serverUrl = null)
+        public async  Task<V2GetLedgerInfoResponse> GetLedgerInfoAsync(string ledger)
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
 
@@ -2248,12 +1786,7 @@ namespace FormanceSDK
                 Ledger = ledger,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2GetLedgerInfoServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/_info", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -2364,23 +1897,17 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="request">A <see cref="V2CreateBulkRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2CreateBulkResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200 or 400.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2CreateBulkResponse> CreateBulkAsync(V2CreateBulkRequest request, string? serverUrl = null)
+        public async  Task<V2CreateBulkResponse> CreateBulkAsync(V2CreateBulkRequest request)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            string baseUrl = Utilities.TemplateUrl(V2CreateBulkServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/_bulk", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -2528,7 +2055,6 @@ namespace FormanceSDK
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="requestBody">Description not available.</param>
         /// <param name="pit">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2CountAccountsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="requestBody"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -2538,8 +2064,7 @@ namespace FormanceSDK
         public async  Task<V2CountAccountsResponse> CountAccountsAsync(
             string ledger,
             Dictionary<string, object> requestBody,
-            DateTime? pit = null,
-            string? serverUrl = null
+            DateTime? pit = null
         )
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
@@ -2552,12 +2077,7 @@ namespace FormanceSDK
                 Pit = pit,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2CountAccountsServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/accounts", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Head, urlString);
@@ -2658,26 +2178,17 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="V2ListAccountsRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ListAccountsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2ListAccountsResponse> ListAccountsAsync(
-            V2ListAccountsRequest request,
-            string? serverUrl = null
-        )
+        public async  Task<V2ListAccountsResponse> ListAccountsAsync(V2ListAccountsRequest request)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            string baseUrl = Utilities.TemplateUrl(V2ListAccountsServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/accounts", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -2802,7 +2313,6 @@ namespace FormanceSDK
         /// </param>
         /// <param name="expand">Description not available.</param>
         /// <param name="pit">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetAccountResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="address"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -2813,8 +2323,7 @@ namespace FormanceSDK
             string ledger,
             string address,
             string? expand = null,
-            DateTime? pit = null,
-            string? serverUrl = null
+            DateTime? pit = null
         )
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
@@ -2828,12 +2337,7 @@ namespace FormanceSDK
                 Pit = pit,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2GetAccountServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/accounts/{address}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -2944,7 +2448,6 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="request">A <see cref="V2AddMetadataToAccountRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2AddMetadataToAccountResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -2952,18 +2455,12 @@ namespace FormanceSDK
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<V2AddMetadataToAccountResponse> AddMetadataToAccountAsync(
-            V2AddMetadataToAccountRequest request,
-            string? serverUrl = null
+            V2AddMetadataToAccountRequest request
         )
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            string baseUrl = Utilities.TemplateUrl(V2AddMetadataToAccountServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/accounts/{address}/metadata", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -3068,7 +2565,6 @@ namespace FormanceSDK
         /// <param name="address">Account address.</param>
         /// <param name="key">The key to remove.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2DeleteAccountMetadataResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/>, <paramref name="address"/> or <paramref name="key"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -3079,8 +2575,7 @@ namespace FormanceSDK
             string ledger,
             string address,
             string key,
-            string? idempotencyKey = null,
-            string? serverUrl = null
+            string? idempotencyKey = null
         )
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
@@ -3095,12 +2590,7 @@ namespace FormanceSDK
                 IdempotencyKey = idempotencyKey,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2DeleteAccountMetadataServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/accounts/{address}/metadata/{key}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
@@ -3197,14 +2687,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="ledger">name of the ledger.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ReadStatsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2ReadStatsResponse> ReadStatsAsync(string ledger, string? serverUrl = null)
+        public async  Task<V2ReadStatsResponse> ReadStatsAsync(string ledger)
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
 
@@ -3213,12 +2702,7 @@ namespace FormanceSDK
                 Ledger = ledger,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2ReadStatsServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/stats", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -3331,7 +2815,6 @@ namespace FormanceSDK
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="requestBody">Description not available.</param>
         /// <param name="pit">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2CountTransactionsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="requestBody"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -3341,8 +2824,7 @@ namespace FormanceSDK
         public async  Task<V2CountTransactionsResponse> CountTransactionsAsync(
             string ledger,
             Dictionary<string, object> requestBody,
-            DateTime? pit = null,
-            string? serverUrl = null
+            DateTime? pit = null
         )
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
@@ -3355,12 +2837,7 @@ namespace FormanceSDK
                 Pit = pit,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2CountTransactionsServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Head, urlString);
@@ -3461,26 +2938,17 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="V2ListTransactionsRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ListTransactionsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2ListTransactionsResponse> ListTransactionsAsync(
-            V2ListTransactionsRequest request,
-            string? serverUrl = null
-        )
+        public async  Task<V2ListTransactionsResponse> ListTransactionsAsync(V2ListTransactionsRequest request)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            string baseUrl = Utilities.TemplateUrl(V2ListTransactionsServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -3597,7 +3065,6 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="request">A <see cref="V2CreateTransactionRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreateTransactionResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -3605,18 +3072,12 @@ namespace FormanceSDK
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<Models.Requests.V2CreateTransactionResponse> CreateTransactionAsync(
-            V2CreateTransactionRequest request,
-            string? serverUrl = null
+            V2CreateTransactionRequest request
         )
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            string baseUrl = Utilities.TemplateUrl(V2CreateTransactionServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -3738,7 +3199,6 @@ namespace FormanceSDK
         /// <param name="id">Transaction ID.</param>
         /// <param name="expand">Description not available.</param>
         /// <param name="pit">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2GetTransactionResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -3749,8 +3209,7 @@ namespace FormanceSDK
             string ledger,
             BigInteger id,
             string? expand = null,
-            DateTime? pit = null,
-            string? serverUrl = null
+            DateTime? pit = null
         )
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
@@ -3763,12 +3222,7 @@ namespace FormanceSDK
                 Pit = pit,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2GetTransactionServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions/{id}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -3879,7 +3333,6 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="request">A <see cref="V2AddMetadataOnTransactionRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2AddMetadataOnTransactionResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -3887,18 +3340,12 @@ namespace FormanceSDK
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<V2AddMetadataOnTransactionResponse> AddMetadataOnTransactionAsync(
-            V2AddMetadataOnTransactionRequest request,
-            string? serverUrl = null
+            V2AddMetadataOnTransactionRequest request
         )
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            string baseUrl = Utilities.TemplateUrl(V2AddMetadataOnTransactionServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions/{id}/metadata", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -4003,7 +3450,6 @@ namespace FormanceSDK
         /// <param name="id">Transaction ID.</param>
         /// <param name="key">The key to remove.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2DeleteTransactionMetadataResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="key"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -4014,8 +3460,7 @@ namespace FormanceSDK
             string ledger,
             BigInteger id,
             string key,
-            string? idempotencyKey = null,
-            string? serverUrl = null
+            string? idempotencyKey = null
         )
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
@@ -4029,12 +3474,7 @@ namespace FormanceSDK
                 IdempotencyKey = idempotencyKey,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2DeleteTransactionMetadataServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions/{id}/metadata/{key}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
@@ -4129,7 +3569,6 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="request">A <see cref="FormanceSDK.Models.Requests.V2RevertTransactionRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2RevertTransactionResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -4137,18 +3576,12 @@ namespace FormanceSDK
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<V2RevertTransactionResponse> RevertTransactionAsync(
-            Models.Requests.V2RevertTransactionRequest request,
-            string? serverUrl = null
+            Models.Requests.V2RevertTransactionRequest request
         )
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            string baseUrl = Utilities.TemplateUrl(V2RevertTransactionServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions/{id}/revert", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -4270,7 +3703,6 @@ namespace FormanceSDK
         /// <param name="requestBody">Description not available.</param>
         /// <param name="pit">Description not available.</param>
         /// <param name="useInsertionDate">Use insertion date instead of effective date.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetBalancesAggregatedResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="requestBody"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -4281,8 +3713,7 @@ namespace FormanceSDK
             string ledger,
             Dictionary<string, object> requestBody,
             DateTime? pit = null,
-            bool? useInsertionDate = null,
-            string? serverUrl = null
+            bool? useInsertionDate = null
         )
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
@@ -4296,12 +3727,7 @@ namespace FormanceSDK
                 UseInsertionDate = useInsertionDate,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2GetBalancesAggregatedServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/aggregate/balances", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -4418,7 +3844,6 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="request">A <see cref="V2GetVolumesWithBalancesRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetVolumesWithBalancesResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -4426,18 +3851,12 @@ namespace FormanceSDK
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<V2GetVolumesWithBalancesResponse> GetVolumesWithBalancesAsync(
-            V2GetVolumesWithBalancesRequest request,
-            string? serverUrl = null
+            V2GetVolumesWithBalancesRequest request
         )
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            string baseUrl = Utilities.TemplateUrl(V2GetVolumesWithBalancesServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/volumes", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -4555,23 +3974,17 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="V2ListLogsRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ListLogsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2ListLogsResponse> ListLogsAsync(V2ListLogsRequest request, string? serverUrl = null)
+        public async  Task<V2ListLogsResponse> ListLogsAsync(V2ListLogsRequest request)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            string baseUrl = Utilities.TemplateUrl(V2ListLogsServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/logs", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -4686,18 +4099,13 @@ namespace FormanceSDK
         /// </summary>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="v2ImportLogsRequest">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ImportLogsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="v2ImportLogsRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2ImportLogsResponse> ImportLogsAsync(
-            string ledger,
-            byte[] v2ImportLogsRequest,
-            string? serverUrl = null
-        )
+        public async  Task<V2ImportLogsResponse> ImportLogsAsync(string ledger, byte[] v2ImportLogsRequest)
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
             if (v2ImportLogsRequest == null) throw new ArgumentNullException(nameof(v2ImportLogsRequest));
@@ -4708,12 +4116,7 @@ namespace FormanceSDK
                 V2ImportLogsRequestValue = v2ImportLogsRequest,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2ImportLogsServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/logs/import", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -4812,12 +4215,11 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="ledger">Name of the ledger.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ExportLogsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public async  Task<V2ExportLogsResponse> ExportLogsAsync(string ledger, string? serverUrl = null)
+        public async  Task<V2ExportLogsResponse> ExportLogsAsync(string ledger)
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
 
@@ -4826,12 +4228,7 @@ namespace FormanceSDK
                 Ledger = ledger,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2ExportLogsServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/logs/export", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -4909,23 +4306,17 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="V2RunQueryRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2RunQueryResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2RunQueryResponse> RunQueryAsync(V2RunQueryRequest request, string? serverUrl = null)
+        public async  Task<V2RunQueryResponse> RunQueryAsync(V2RunQueryRequest request)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            string baseUrl = Utilities.TemplateUrl(V2RunQueryServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/queries/{id}/run", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -5038,20 +4429,14 @@ namespace FormanceSDK
         /// <summary>
         /// List exporters.
         /// </summary>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ListExportersResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2ListExportersResponse> ListExportersAsync(string? serverUrl = null)
+        public async  Task<V2ListExportersResponse> ListExportersAsync()
         {
-            string baseUrl = Utilities.TemplateUrl(V2ListExportersServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/ledger/v2/_/exporters";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -5154,7 +4539,6 @@ namespace FormanceSDK
         /// Create exporter.
         /// </summary>
         /// <param name="request">A <see cref="V2ExporterConfiguration1"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreateExporterResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -5162,18 +4546,12 @@ namespace FormanceSDK
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<Models.Requests.V2CreateExporterResponse> CreateExporterAsync(
-            V2ExporterConfiguration1 request,
-            string? serverUrl = null
+            V2ExporterConfiguration1 request
         )
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            string baseUrl = Utilities.TemplateUrl(V2CreateExporterServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/ledger/v2/_/exporters";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -5282,17 +4660,13 @@ namespace FormanceSDK
         /// Get exporter state.
         /// </summary>
         /// <param name="exporterID">The exporter id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2GetExporterStateResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="exporterID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<Models.Requests.V2GetExporterStateResponse> GetExporterStateAsync(
-            string exporterID,
-            string? serverUrl = null
-        )
+        public async  Task<Models.Requests.V2GetExporterStateResponse> GetExporterStateAsync(string exporterID)
         {
             if (exporterID == null) throw new ArgumentNullException(nameof(exporterID));
 
@@ -5301,12 +4675,7 @@ namespace FormanceSDK
                 ExporterID = exporterID,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2GetExporterStateServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/_/exporters/{exporterID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -5413,7 +4782,6 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="exporterID">The exporter id.</param>
         /// <param name="v2ExporterConfiguration">A <see cref="V2ExporterConfiguration1"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2UpdateExporterResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="exporterID"/> or <paramref name="v2ExporterConfiguration"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -5422,8 +4790,7 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<V2UpdateExporterResponse> UpdateExporterAsync(
             string exporterID,
-            V2ExporterConfiguration1 v2ExporterConfiguration,
-            string? serverUrl = null
+            V2ExporterConfiguration1 v2ExporterConfiguration
         )
         {
             if (exporterID == null) throw new ArgumentNullException(nameof(exporterID));
@@ -5435,12 +4802,7 @@ namespace FormanceSDK
                 V2ExporterConfiguration = v2ExporterConfiguration,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2UpdateExporterServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/_/exporters/{exporterID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
@@ -5536,14 +4898,13 @@ namespace FormanceSDK
         /// Delete exporter.
         /// </summary>
         /// <param name="exporterID">The exporter id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2DeleteExporterResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="exporterID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2DeleteExporterResponse> DeleteExporterAsync(string exporterID, string? serverUrl = null)
+        public async  Task<V2DeleteExporterResponse> DeleteExporterAsync(string exporterID)
         {
             if (exporterID == null) throw new ArgumentNullException(nameof(exporterID));
 
@@ -5552,12 +4913,7 @@ namespace FormanceSDK
                 ExporterID = exporterID,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2DeleteExporterServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/_/exporters/{exporterID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
@@ -5646,14 +5002,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="bucket">The bucket name.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2DeleteBucketResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="bucket"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Bucket not found. Thrown when the response status code is none of 204 or 404.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2DeleteBucketResponse> DeleteBucketAsync(string bucket, string? serverUrl = null)
+        public async  Task<V2DeleteBucketResponse> DeleteBucketAsync(string bucket)
         {
             if (bucket == null) throw new ArgumentNullException(nameof(bucket));
 
@@ -5662,12 +5017,7 @@ namespace FormanceSDK
                 Bucket = bucket,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2DeleteBucketServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/_/buckets/{bucket}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
@@ -5790,14 +5140,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="bucket">The bucket name.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2RestoreBucketResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="bucket"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Bucket not found. Thrown when the response status code is none of 204 or 404.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2RestoreBucketResponse> RestoreBucketAsync(string bucket, string? serverUrl = null)
+        public async  Task<V2RestoreBucketResponse> RestoreBucketAsync(string bucket)
         {
             if (bucket == null) throw new ArgumentNullException(nameof(bucket));
 
@@ -5806,12 +5155,7 @@ namespace FormanceSDK
                 Bucket = bucket,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2RestoreBucketServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/_/buckets/{bucket}/restore", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -5930,14 +5274,13 @@ namespace FormanceSDK
         /// List pipelines.
         /// </summary>
         /// <param name="ledger">Name of the ledger.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ListPipelinesResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2ListPipelinesResponse> ListPipelinesAsync(string ledger, string? serverUrl = null)
+        public async  Task<V2ListPipelinesResponse> ListPipelinesAsync(string ledger)
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
 
@@ -5946,12 +5289,7 @@ namespace FormanceSDK
                 Ledger = ledger,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2ListPipelinesServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/pipelines", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -6055,7 +5393,6 @@ namespace FormanceSDK
         /// </summary>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="v2CreatePipelineRequest">A <see cref="FormanceSDK.Models.Ledger.V2CreatePipelineRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreatePipelineResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -6064,8 +5401,7 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<Models.Requests.V2CreatePipelineResponse> CreatePipelineAsync(
             string ledger,
-            Models.Ledger.V2CreatePipelineRequest? v2CreatePipelineRequest = null,
-            string? serverUrl = null
+            Models.Ledger.V2CreatePipelineRequest? v2CreatePipelineRequest = null
         )
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
@@ -6076,12 +5412,7 @@ namespace FormanceSDK
                 V2CreatePipelineRequestValue = v2CreatePipelineRequest,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2CreatePipelineServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/pipelines", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -6191,7 +5522,6 @@ namespace FormanceSDK
         /// </summary>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="pipelineID">The pipeline id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2GetPipelineStateResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="pipelineID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -6200,8 +5530,7 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<Models.Requests.V2GetPipelineStateResponse> GetPipelineStateAsync(
             string ledger,
-            string pipelineID,
-            string? serverUrl = null
+            string pipelineID
         )
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
@@ -6213,12 +5542,7 @@ namespace FormanceSDK
                 PipelineID = pipelineID,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2GetPipelineStateServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/pipelines/{pipelineID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -6322,18 +5646,13 @@ namespace FormanceSDK
         /// </summary>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="pipelineID">The pipeline id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2DeletePipelineResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="pipelineID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2DeletePipelineResponse> DeletePipelineAsync(
-            string ledger,
-            string pipelineID,
-            string? serverUrl = null
-        )
+        public async  Task<V2DeletePipelineResponse> DeletePipelineAsync(string ledger, string pipelineID)
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
             if (pipelineID == null) throw new ArgumentNullException(nameof(pipelineID));
@@ -6344,12 +5663,7 @@ namespace FormanceSDK
                 PipelineID = pipelineID,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2DeletePipelineServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/pipelines/{pipelineID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
@@ -6435,18 +5749,13 @@ namespace FormanceSDK
         /// </summary>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="pipelineID">The pipeline id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ResetPipelineResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="pipelineID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 202.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2ResetPipelineResponse> ResetPipelineAsync(
-            string ledger,
-            string pipelineID,
-            string? serverUrl = null
-        )
+        public async  Task<V2ResetPipelineResponse> ResetPipelineAsync(string ledger, string pipelineID)
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
             if (pipelineID == null) throw new ArgumentNullException(nameof(pipelineID));
@@ -6457,12 +5766,7 @@ namespace FormanceSDK
                 PipelineID = pipelineID,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2ResetPipelineServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/pipelines/{pipelineID}/reset", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -6548,18 +5852,13 @@ namespace FormanceSDK
         /// </summary>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="pipelineID">The pipeline id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2StartPipelineResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="pipelineID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 202.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2StartPipelineResponse> StartPipelineAsync(
-            string ledger,
-            string pipelineID,
-            string? serverUrl = null
-        )
+        public async  Task<V2StartPipelineResponse> StartPipelineAsync(string ledger, string pipelineID)
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
             if (pipelineID == null) throw new ArgumentNullException(nameof(pipelineID));
@@ -6570,12 +5869,7 @@ namespace FormanceSDK
                 PipelineID = pipelineID,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2StartPipelineServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/pipelines/{pipelineID}/start", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -6661,18 +5955,13 @@ namespace FormanceSDK
         /// </summary>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="pipelineID">The pipeline id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2StopPipelineResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="pipelineID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 202.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2StopPipelineResponse> StopPipelineAsync(
-            string ledger,
-            string pipelineID,
-            string? serverUrl = null
-        )
+        public async  Task<V2StopPipelineResponse> StopPipelineAsync(string ledger, string pipelineID)
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
             if (pipelineID == null) throw new ArgumentNullException(nameof(pipelineID));
@@ -6683,12 +5972,7 @@ namespace FormanceSDK
                 PipelineID = pipelineID,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2StopPipelineServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/pipelines/{pipelineID}/stop", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);

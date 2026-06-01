@@ -87,7 +87,6 @@ var res = await sdk.Ledger.V2.ListLedgersAsync(req);
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [V2ListLedgersRequest](../../Models/Requests/V2ListLedgersRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
-| `serverURL`                                                           | *string*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -123,10 +122,9 @@ var res = await sdk.Ledger.V2.GetLedgerAsync(ledger: "ledger001");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter           | Type                | Required            | Description         | Example             |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
 
 ### Response
 
@@ -174,7 +172,6 @@ var res = await sdk.Ledger.V2.CreateLedgerAsync(
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | `Ledger`                                                                            | *string*                                                                            | :heavy_check_mark:                                                                  | Name of the ledger.                                                                 | ledger001                                                                           |
 | `V2CreateLedgerRequest`                                                             | [Models.Ledger.V2CreateLedgerRequest](../../Models/Ledger/V2CreateLedgerRequest.md) | :heavy_check_mark:                                                                  | N/A                                                                                 |                                                                                     |
-| `serverURL`                                                                         | *string*                                                                            | :heavy_minus_sign:                                                                  | An optional server URL to use.                                                      | http://localhost:8080                                                               |
 
 ### Response
 
@@ -243,7 +240,6 @@ var res = await sdk.Ledger.V2.InsertSchemaAsync(
 | `Version`                                           | *string*                                            | :heavy_check_mark:                                  | Schema version.                                     | v1.0.0                                              |
 | `V2SchemaData`                                      | [V2SchemaData](../../Models/Ledger/V2SchemaData.md) | :heavy_check_mark:                                  | N/A                                                 |                                                     |
 | `IdempotencyKey`                                    | *string*                                            | :heavy_minus_sign:                                  | Use an idempotency key                              |                                                     |
-| `serverURL`                                         | *string*                                            | :heavy_minus_sign:                                  | An optional server URL to use.                      | http://localhost:8080                               |
 
 ### Response
 
@@ -282,11 +278,10 @@ var res = await sdk.Ledger.V2.GetSchemaAsync(
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
-| `Version`                      | *string*                       | :heavy_check_mark:             | Schema version.                | v1.0.0                         |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter           | Type                | Required            | Description         | Example             |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
+| `Version`           | *string*            | :heavy_check_mark:  | Schema version.     | v1.0.0              |
 
 ### Response
 
@@ -330,7 +325,6 @@ var res = await sdk.Ledger.V2.ListSchemasAsync(req);
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [V2ListSchemasRequest](../../Models/Requests/V2ListSchemasRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
-| `serverURL`                                                           | *string*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -372,11 +366,10 @@ var res = await sdk.Ledger.V2.UpdateLedgerMetadataAsync(
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
-| `RequestBody`                  | Dictionary<String, *string*>   | :heavy_check_mark:             | N/A                            | {<br/>"admin": "true"<br/>}    |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter                    | Type                         | Required                     | Description                  | Example                      |
+| ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
+| `Ledger`                     | *string*                     | :heavy_check_mark:           | Name of the ledger.          | ledger001                    |
+| `RequestBody`                | Dictionary<String, *string*> | :heavy_check_mark:           | N/A                          | {<br/>"admin": "true"<br/>}  |
 
 ### Response
 
@@ -415,11 +408,10 @@ var res = await sdk.Ledger.V2.DeleteLedgerMetadataAsync(
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
-| `Key`                          | *string*                       | :heavy_check_mark:             | Key to remove.                 | foo                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter           | Type                | Required            | Description         | Example             |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
+| `Key`               | *string*            | :heavy_check_mark:  | Key to remove.      | foo                 |
 
 ### Response
 
@@ -455,10 +447,9 @@ var res = await sdk.Ledger.V2.GetLedgerInfoAsync(ledger: "ledger001");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter           | Type                | Required            | Description         | Example             |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
 
 ### Response
 
@@ -513,7 +504,6 @@ var res = await sdk.Ledger.V2.CreateBulkAsync(req);
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [V2CreateBulkRequest](../../Models/Requests/V2CreateBulkRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
-| `serverURL`                                                         | *string*                                                            | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -561,7 +551,6 @@ var res = await sdk.Ledger.V2.CountAccountsAsync(
 | `Ledger`                                                                              | *string*                                                                              | :heavy_check_mark:                                                                    | Name of the ledger.                                                                   | ledger001                                                                             |
 | `RequestBody`                                                                         | Dictionary<String, *object*>                                                          | :heavy_check_mark:                                                                    | N/A                                                                                   |                                                                                       |
 | `Pit`                                                                                 | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
-| `serverURL`                                                                           | *string*                                                                              | :heavy_minus_sign:                                                                    | An optional server URL to use.                                                        | http://localhost:8080                                                                 |
 
 ### Response
 
@@ -612,7 +601,6 @@ var res = await sdk.Ledger.V2.ListAccountsAsync(req);
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `request`                                                               | [V2ListAccountsRequest](../../Models/Requests/V2ListAccountsRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
-| `serverURL`                                                             | *string*                                                                | :heavy_minus_sign:                                                      | An optional server URL to use.                                          |
 
 ### Response
 
@@ -657,7 +645,6 @@ var res = await sdk.Ledger.V2.GetAccountAsync(
 | `Address`                                                                                                    | *string*                                                                                                     | :heavy_check_mark:                                                                                           | Exact address of the account. It must match the following regular expressions pattern:<br/>```<br/>^\w+(:\w+)*$<br/>```<br/> | users:001                                                                                                    |
 | `Expand`                                                                                                     | *string*                                                                                                     | :heavy_minus_sign:                                                                                           | N/A                                                                                                          |                                                                                                              |
 | `Pit`                                                                                                        | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0)                        | :heavy_minus_sign:                                                                                           | N/A                                                                                                          |                                                                                                              |
-| `serverURL`                                                                                                  | *string*                                                                                                     | :heavy_minus_sign:                                                                                           | An optional server URL to use.                                                                               | http://localhost:8080                                                                                        |
 
 ### Response
 
@@ -708,7 +695,6 @@ var res = await sdk.Ledger.V2.AddMetadataToAccountAsync(req);
 | Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
 | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | `request`                                                                               | [V2AddMetadataToAccountRequest](../../Models/Requests/V2AddMetadataToAccountRequest.md) | :heavy_check_mark:                                                                      | The request object to use for the request.                                              |
-| `serverURL`                                                                             | *string*                                                                                | :heavy_minus_sign:                                                                      | An optional server URL to use.                                                          |
 
 ### Response
 
@@ -748,13 +734,12 @@ var res = await sdk.Ledger.V2.DeleteAccountMetadataAsync(
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
-| `Address`                      | *string*                       | :heavy_check_mark:             | Account address                |                                |
-| `Key`                          | *string*                       | :heavy_check_mark:             | The key to remove.             | foo                            |
-| `IdempotencyKey`               | *string*                       | :heavy_minus_sign:             | Use an idempotency key         |                                |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter              | Type                   | Required               | Description            | Example                |
+| ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- |
+| `Ledger`               | *string*               | :heavy_check_mark:     | Name of the ledger.    | ledger001              |
+| `Address`              | *string*               | :heavy_check_mark:     | Account address        |                        |
+| `Key`                  | *string*               | :heavy_check_mark:     | The key to remove.     | foo                    |
+| `IdempotencyKey`       | *string*               | :heavy_minus_sign:     | Use an idempotency key |                        |
 
 ### Response
 
@@ -791,10 +776,9 @@ var res = await sdk.Ledger.V2.ReadStatsAsync(ledger: "ledger001");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Ledger`                       | *string*                       | :heavy_check_mark:             | name of the ledger             | ledger001                      |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `Ledger`           | *string*           | :heavy_check_mark: | name of the ledger | ledger001          |
 
 ### Response
 
@@ -841,7 +825,6 @@ var res = await sdk.Ledger.V2.CountTransactionsAsync(
 | `Ledger`                                                                              | *string*                                                                              | :heavy_check_mark:                                                                    | Name of the ledger.                                                                   | ledger001                                                                             |
 | `RequestBody`                                                                         | Dictionary<String, *object*>                                                          | :heavy_check_mark:                                                                    | N/A                                                                                   |                                                                                       |
 | `Pit`                                                                                 | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
-| `serverURL`                                                                           | *string*                                                                              | :heavy_minus_sign:                                                                    | An optional server URL to use.                                                        | http://localhost:8080                                                                 |
 
 ### Response
 
@@ -892,7 +875,6 @@ var res = await sdk.Ledger.V2.ListTransactionsAsync(req);
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `request`                                                                       | [V2ListTransactionsRequest](../../Models/Requests/V2ListTransactionsRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
-| `serverURL`                                                                     | *string*                                                                        | :heavy_minus_sign:                                                              | An optional server URL to use.                                                  |
 
 ### Response
 
@@ -980,7 +962,6 @@ var res = await sdk.Ledger.V2.CreateTransactionAsync(req);
 | Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `request`                                                                         | [V2CreateTransactionRequest](../../Models/Requests/V2CreateTransactionRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
-| `serverURL`                                                                       | *string*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -1026,7 +1007,6 @@ var res = await sdk.Ledger.V2.GetTransactionAsync(
 | `Id`                                                                                  | *BigInteger*                                                                          | :heavy_check_mark:                                                                    | Transaction ID.                                                                       | 1234                                                                                  |
 | `Expand`                                                                              | *string*                                                                              | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
 | `Pit`                                                                                 | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
-| `serverURL`                                                                           | *string*                                                                              | :heavy_minus_sign:                                                                    | An optional server URL to use.                                                        | http://localhost:8080                                                                 |
 
 ### Response
 
@@ -1078,7 +1058,6 @@ var res = await sdk.Ledger.V2.AddMetadataOnTransactionAsync(req);
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `request`                                                                                       | [V2AddMetadataOnTransactionRequest](../../Models/Requests/V2AddMetadataOnTransactionRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
-| `serverURL`                                                                                     | *string*                                                                                        | :heavy_minus_sign:                                                                              | An optional server URL to use.                                                                  |
 
 ### Response
 
@@ -1119,13 +1098,12 @@ var res = await sdk.Ledger.V2.DeleteTransactionMetadataAsync(
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
-| `Id`                           | *BigInteger*                   | :heavy_check_mark:             | Transaction ID.                | 1234                           |
-| `Key`                          | *string*                       | :heavy_check_mark:             | The key to remove.             | foo                            |
-| `IdempotencyKey`               | *string*                       | :heavy_minus_sign:             | Use an idempotency key         |                                |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter              | Type                   | Required               | Description            | Example                |
+| ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- |
+| `Ledger`               | *string*               | :heavy_check_mark:     | Name of the ledger.    | ledger001              |
+| `Id`                   | *BigInteger*           | :heavy_check_mark:     | Transaction ID.        | 1234                   |
+| `Key`                  | *string*               | :heavy_check_mark:     | The key to remove.     | foo                    |
+| `IdempotencyKey`       | *string*               | :heavy_minus_sign:     | Use an idempotency key |                        |
 
 ### Response
 
@@ -1172,7 +1150,6 @@ var res = await sdk.Ledger.V2.RevertTransactionAsync(req);
 | Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | `request`                                                                                         | [Models.Requests.V2RevertTransactionRequest](../../Models/Requests/V2RevertTransactionRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
-| `serverURL`                                                                                       | *string*                                                                                          | :heavy_minus_sign:                                                                                | An optional server URL to use.                                                                    |
 
 ### Response
 
@@ -1222,7 +1199,6 @@ var res = await sdk.Ledger.V2.GetBalancesAggregatedAsync(
 | `RequestBody`                                                                         | Dictionary<String, *object*>                                                          | :heavy_check_mark:                                                                    | N/A                                                                                   |                                                                                       |
 | `Pit`                                                                                 | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
 | `UseInsertionDate`                                                                    | *bool*                                                                                | :heavy_minus_sign:                                                                    | Use insertion date instead of effective date                                          |                                                                                       |
-| `serverURL`                                                                           | *string*                                                                              | :heavy_minus_sign:                                                                    | An optional server URL to use.                                                        | http://localhost:8080                                                                 |
 
 ### Response
 
@@ -1274,7 +1250,6 @@ var res = await sdk.Ledger.V2.GetVolumesWithBalancesAsync(req);
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `request`                                                                                   | [V2GetVolumesWithBalancesRequest](../../Models/Requests/V2GetVolumesWithBalancesRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
-| `serverURL`                                                                                 | *string*                                                                                    | :heavy_minus_sign:                                                                          | An optional server URL to use.                                                              |
 
 ### Response
 
@@ -1325,7 +1300,6 @@ var res = await sdk.Ledger.V2.ListLogsAsync(req);
 | Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `request`                                                       | [V2ListLogsRequest](../../Models/Requests/V2ListLogsRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
-| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -1363,11 +1337,10 @@ var res = await sdk.Ledger.V2.ImportLogsAsync(
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
-| `V2ImportLogsRequest`          | *byte[]*                       | :heavy_check_mark:             | N/A                            |                                |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter             | Type                  | Required              | Description           | Example               |
+| --------------------- | --------------------- | --------------------- | --------------------- | --------------------- |
+| `Ledger`              | *string*              | :heavy_check_mark:    | Name of the ledger.   | ledger001             |
+| `V2ImportLogsRequest` | *byte[]*              | :heavy_check_mark:    | N/A                   |                       |
 
 ### Response
 
@@ -1403,10 +1376,9 @@ var res = await sdk.Ledger.V2.ExportLogsAsync(ledger: "ledger001");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter           | Type                | Required            | Description         | Example             |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
 
 ### Response
 
@@ -1464,7 +1436,6 @@ var res = await sdk.Ledger.V2.RunQueryAsync(req);
 | Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `request`                                                       | [V2RunQueryRequest](../../Models/Requests/V2RunQueryRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
-| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -1493,12 +1464,6 @@ var res = await sdk.Ledger.V2.ListExportersAsync();
 
 // handle response
 ```
-
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -1542,7 +1507,6 @@ var res = await sdk.Ledger.V2.CreateExporterAsync(req);
 | Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
 | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | `request`                                                                   | [V2ExporterConfiguration1](../../Models/Ledger/V2ExporterConfiguration1.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
-| `serverURL`                                                                 | *string*                                                                    | :heavy_minus_sign:                                                          | An optional server URL to use.                                              |
 
 ### Response
 
@@ -1574,10 +1538,9 @@ var res = await sdk.Ledger.V2.GetExporterStateAsync(exporterID: "<id>");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `ExporterID`                   | *string*                       | :heavy_check_mark:             | The exporter id                |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `ExporterID`       | *string*           | :heavy_check_mark: | The exporter id    |
 
 ### Response
 
@@ -1629,7 +1592,6 @@ var res = await sdk.Ledger.V2.UpdateExporterAsync(
 | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | `ExporterID`                                                                | *string*                                                                    | :heavy_check_mark:                                                          | The exporter id                                                             |
 | `V2ExporterConfiguration`                                                   | [V2ExporterConfiguration1](../../Models/Ledger/V2ExporterConfiguration1.md) | :heavy_check_mark:                                                          | N/A                                                                         |
-| `serverURL`                                                                 | *string*                                                                    | :heavy_minus_sign:                                                          | An optional server URL to use.                                              |
 
 ### Response
 
@@ -1661,10 +1623,9 @@ var res = await sdk.Ledger.V2.DeleteExporterAsync(exporterID: "<id>");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `ExporterID`                   | *string*                       | :heavy_check_mark:             | The exporter id                |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `ExporterID`       | *string*           | :heavy_check_mark: | The exporter id    |
 
 ### Response
 
@@ -1700,10 +1661,9 @@ var res = await sdk.Ledger.V2.DeleteBucketAsync(bucket: "<value>");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Bucket`                       | *string*                       | :heavy_check_mark:             | The bucket name                |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `Bucket`           | *string*           | :heavy_check_mark: | The bucket name    |
 
 ### Response
 
@@ -1739,10 +1699,9 @@ var res = await sdk.Ledger.V2.RestoreBucketAsync(bucket: "<value>");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Bucket`                       | *string*                       | :heavy_check_mark:             | The bucket name                |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `Bucket`           | *string*           | :heavy_check_mark: | The bucket name    |
 
 ### Response
 
@@ -1774,10 +1733,9 @@ var res = await sdk.Ledger.V2.ListPipelinesAsync(ledger: "ledger001");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter           | Type                | Required            | Description         | Example             |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
 
 ### Response
 
@@ -1813,7 +1771,6 @@ var res = await sdk.Ledger.V2.CreatePipelineAsync(ledger: "ledger001");
 | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | `Ledger`                                                                                | *string*                                                                                | :heavy_check_mark:                                                                      | Name of the ledger.                                                                     | ledger001                                                                               |
 | `V2CreatePipelineRequest`                                                               | [Models.Ledger.V2CreatePipelineRequest](../../Models/Ledger/V2CreatePipelineRequest.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |                                                                                         |
-| `serverURL`                                                                             | *string*                                                                                | :heavy_minus_sign:                                                                      | An optional server URL to use.                                                          | http://localhost:8080                                                                   |
 
 ### Response
 
@@ -1848,11 +1805,10 @@ var res = await sdk.Ledger.V2.GetPipelineStateAsync(
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
-| `PipelineID`                   | *string*                       | :heavy_check_mark:             | The pipeline id                |                                |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter           | Type                | Required            | Description         | Example             |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
+| `PipelineID`        | *string*            | :heavy_check_mark:  | The pipeline id     |                     |
 
 ### Response
 
@@ -1887,11 +1843,10 @@ var res = await sdk.Ledger.V2.DeletePipelineAsync(
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
-| `PipelineID`                   | *string*                       | :heavy_check_mark:             | The pipeline id                |                                |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter           | Type                | Required            | Description         | Example             |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
+| `PipelineID`        | *string*            | :heavy_check_mark:  | The pipeline id     |                     |
 
 ### Response
 
@@ -1926,11 +1881,10 @@ var res = await sdk.Ledger.V2.ResetPipelineAsync(
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
-| `PipelineID`                   | *string*                       | :heavy_check_mark:             | The pipeline id                |                                |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter           | Type                | Required            | Description         | Example             |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
+| `PipelineID`        | *string*            | :heavy_check_mark:  | The pipeline id     |                     |
 
 ### Response
 
@@ -1965,11 +1919,10 @@ var res = await sdk.Ledger.V2.StartPipelineAsync(
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
-| `PipelineID`                   | *string*                       | :heavy_check_mark:             | The pipeline id                |                                |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter           | Type                | Required            | Description         | Example             |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
+| `PipelineID`        | *string*            | :heavy_check_mark:  | The pipeline id     |                     |
 
 ### Response
 
@@ -2004,11 +1957,10 @@ var res = await sdk.Ledger.V2.StopPipelineAsync(
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
-| `PipelineID`                   | *string*                       | :heavy_check_mark:             | The pipeline id                |                                |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter           | Type                | Required            | Description         | Example             |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
+| `PipelineID`        | *string*            | :heavy_check_mark:  | The pipeline id     |                     |
 
 ### Response
 

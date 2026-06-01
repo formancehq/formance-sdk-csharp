@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: bb4a1c17-4efb-4cf4-a5bb-53737f9f624b
 management:
-  docChecksum: bbc9998a879e3617766121aa7fa4ff8e
+  docChecksum: 5a14b806afe8a80f055354bc7f17f3d5
   docVersion: SDK_VERSION
   speakeasyVersion: 1.768.2
   generationVersion: 2.889.1
-  releaseVersion: 5.0.0
-  configChecksum: 25dee0d96e7672f902c8e5d206cfeb7c
+  releaseVersion: 5.1.0
+  configChecksum: 8e387ea75c806bccca436570a1d15ca6
   repoURL: https://github.com/formancehq/formance-sdk-csharp.git
   installationURL: https://github.com/formancehq/formance-sdk-csharp
   published: true
 persistentEdits:
-  generation_id: 7720b8d0-deeb-44d7-9fe3-7c5df0965118
-  pristine_commit_hash: 4150decdb377292788a4118257cd47b547c52e12
-  pristine_tree_hash: e0b5e9e8f8d9d3f4cf2d6a92dfead52f4141b586
+  generation_id: b8373c3c-2781-4e7e-a7cb-efe53cf994da
+  pristine_commit_hash: b6e83f88c8401567ac382304a648b25b7b9502dd
+  pristine_tree_hash: c9989d2b771b24ca1c4a21595ff1064b7b7dcfcf
 features:
   csharp:
     additionalDependencies: 0.1.0
@@ -31,7 +31,6 @@ features:
     ignores: 2.81.1
     intellisenseMarkdownSupport: 0.1.0
     methodArguments: 0.2.1
-    methodServerURLs: 2.82.2
     nameOverrides: 2.81.4
     nullables: 0.1.1
     oauth2ClientCredentials: 1.1.4
@@ -49,8 +48,8 @@ trackedFiles:
     pristine_git_object: 537aedd88493d6f416eb8e8befeef98ebe630a0a
   NUGET.md:
     id: f4c8a442a6e5
-    last_write_checksum: sha1:b648b27a377dbe79297e9f10439900decffb778c
-    pristine_git_object: 0a303c6183645f844f852fe4367c4a4d57ef5141
+    last_write_checksum: sha1:e70a3e707b863acb46ba711c5c0f0b8c18570010
+    pristine_git_object: 8bd4cdbc76ae13318f0c7529cde098dad9a399a6
   USAGE.md:
     id: 3aed33ce6e6f
     last_write_checksum: sha1:f3fcb316aac9df70eb466335aca7b04f40bdd82f
@@ -3253,8 +3252,8 @@ trackedFiles:
     pristine_git_object: 8d6d949840b890cd9b97fbfccc7e1cddd2fbbe97
   docs/Models/Requests/RunScriptResponse.md:
     id: f23f7e37c4a7
-    last_write_checksum: sha1:f0247b7b6e7197993319f889a813eb9c73c9d52e
-    pristine_git_object: b2528efb4adb4829a35a1254249ae8ad4ffab69e
+    last_write_checksum: sha1:7dbcba31ec5b60e2e4ea7495a0183baf82235a07
+    pristine_git_object: c60c63b473ad33fe30d975a9a8534520e70f7c5b
   docs/Models/Requests/RunWorkflowRequest.md:
     id: a6191a35b0f6
     last_write_checksum: sha1:66df22dbd7044efb2dafd785f75faf8238251265
@@ -4573,56 +4572,56 @@ trackedFiles:
     pristine_git_object: 8eab9dcf4d9b84fab8508c30e1dee927ce1b8a0d
   docs/sdks/formance/README.md:
     id: 3df539d44797
-    last_write_checksum: sha1:7547e87ab1a0a838b2f4e616a07b292d07bedcb1
-    pristine_git_object: d7826e5b4c65d9c94b2b43fedc4598f3ceadac33
+    last_write_checksum: sha1:472c7f7d97e5712c365461d72bbbc0c3b0688c01
+    pristine_git_object: c8ca23d9119a9b8c62d3149b613a15e7d5d3b134
   docs/sdks/formanceorchestrationv1/README.md:
     id: 0c80ae47e3a3
-    last_write_checksum: sha1:167010fd1a5ea0b90a6ebb6c21bfdd9aaeeb4725
-    pristine_git_object: bacd4b5fcb60b850953e2fe9970f7ef4b1971b26
+    last_write_checksum: sha1:44a0a991e19560bc8b8421dddf674a440d7b1c6c
+    pristine_git_object: 942707679c927260344e25e70b2bc5da89cb82e9
   docs/sdks/formancepaymentsv1/README.md:
     id: b8c908f4a6fb
-    last_write_checksum: sha1:570843d721e70c20a915c8efdd250199f905acba
-    pristine_git_object: 51935087e98bbce9c328b65adc649daba5917f0b
+    last_write_checksum: sha1:1454f93d6d64917b61dd2489db16beaf9a794ff6
+    pristine_git_object: 6e957ae8ab882af49a4960b32a500cc8a69a7a3a
   docs/sdks/formancereconciliationv1/README.md:
     id: 7eeb18f1403e
-    last_write_checksum: sha1:4d8491300e7b1431bb010ea3b4befb6bf34a78d6
-    pristine_git_object: f15abd18782140263e70960821b972b8d26335e2
+    last_write_checksum: sha1:62f5669631665c02799122ec036f2f37734c2bd1
+    pristine_git_object: 7a220e7ef1f3d1819d573323003b6e4c6e47ca39
   docs/sdks/formancesearchv1/README.md:
     id: abbbd947bcd8
-    last_write_checksum: sha1:bcda61e75dc2bcb18b8579e224ca5994fc02a042
-    pristine_git_object: b9ff938a25f0121baa838ad0f9ad4cc73a291dfa
+    last_write_checksum: sha1:5f774d257d9d31c3f65ea6a0eb36a5c3f98ba9fe
+    pristine_git_object: ec89afd5d19c699380fc26d28b399fb74616e57e
   docs/sdks/formancev1/README.md:
     id: ae7fbe8acfa0
-    last_write_checksum: sha1:2026801129b5dc52c882581ac4c4394f07659093
-    pristine_git_object: ecebb77f0ef3d22e79dc30e72d8bc075a46e1236
+    last_write_checksum: sha1:8c3f488aa08b06041190996ffeed858fb7bc0a58
+    pristine_git_object: 7d6456b70a704f73964c4efb6c40ed71ded01535
   docs/sdks/formancev2/README.md:
     id: 52672158fd06
-    last_write_checksum: sha1:a59a0857fe559518f9417f83bd93e5c402e0c013
-    pristine_git_object: 31e5ec25fc32378fb5dc109c0ea9017829b9cd1d
+    last_write_checksum: sha1:d26076d3bae1017f2c084d1893ac8f21c4f26a05
+    pristine_git_object: 943b447c8b9943b077d98e8deef0f7a621cc5a8f
   docs/sdks/formancewalletsv1/README.md:
     id: 207535ce0ef6
-    last_write_checksum: sha1:960e4a2fa846d84587dd07b98cdf1c21b42a7dea
-    pristine_git_object: aa6b8e3431933e3ec5c9deaa7135c7d01f0a14df
+    last_write_checksum: sha1:65ec85c69909220b4e90712eaf40a177ca3f5393
+    pristine_git_object: 3efb5939ad5705bd96704d33a1ef763c4545256f
   docs/sdks/formancewebhooksv1/README.md:
     id: 4655e2b41188
-    last_write_checksum: sha1:9759cda48db522b4bd21357fdc6d23632e5a753b
-    pristine_git_object: d9843bbbe5bfcea910f56967e533bb3eecabcf78
+    last_write_checksum: sha1:8f67cf2ea61773c301303ca9bbe4a88fafd573d6
+    pristine_git_object: 831f15756aa0dc7b7f11faec762d7fc8b1595c16
   docs/sdks/ledger/README.md:
     id: 9fd00c5da17c
-    last_write_checksum: sha1:3128ddab7fd5723df065b11905f2f08860f69d83
-    pristine_git_object: 390822f3bcdbf4c3710249531a4ede26fb280aa8
+    last_write_checksum: sha1:c8b7f9d3e8b9c8e2b059a4a8df196f72d09ba24f
+    pristine_git_object: 3e5472896bb541dc1839e915cba62282af4f74ce
   docs/sdks/v1/README.md:
     id: 3c6f40f6217a
-    last_write_checksum: sha1:aff89ac20f9ca48a6f46601457087705beeef27a
-    pristine_git_object: dc812a5ecbb9bc5710cc2ebd9006ab48c34a5317
+    last_write_checksum: sha1:7e5786298e2ce2579d6246a9ae805af7efa21982
+    pristine_git_object: f504eeafb1c4bfa50839f3a9e0aff088c3045406
   docs/sdks/v2/README.md:
     id: 1fff216d9073
-    last_write_checksum: sha1:7215b929d5f8b83f239b3b9a454e33dc7ffb21b8
-    pristine_git_object: 654ec277e4cea940ee26196732229a2dc33597fa
+    last_write_checksum: sha1:ed092ba99fc88432067b88080af9f55aca194bef
+    pristine_git_object: 49dbe881177baef10b7cb867dbff7ac0e9567971
   docs/sdks/v3/README.md:
     id: ee683463fcdd
-    last_write_checksum: sha1:e43e8184b28a67be2e6ca68c52f73e54de2cd5d3
-    pristine_git_object: 08ad9c7e283c691ae20078235d64dc32f7a9061c
+    last_write_checksum: sha1:990c65282e2602113c0fa2d0b939d2b1abda260a
+    pristine_git_object: 660a1befb7e5126d4c740d09551f326728e7c712
   global.json:
     id: 908e72401bf4
     last_write_checksum: sha1:3161b880f51cd74e7d1dea069b541d8bf4736dc9
@@ -4633,44 +4632,44 @@ trackedFiles:
     pristine_git_object: 53df4c92730901ae6e0dde2a11af0eae69c5833e
   src/FormanceSDK/Formance.cs:
     id: 3c1d889e77d6
-    last_write_checksum: sha1:df4a411d4e43e932b44b89955b47d0cb4948c30e
-    pristine_git_object: 91b5595bbdf6a5e06d9bb77ef3802b1941f8c745
+    last_write_checksum: sha1:6d6edea008173beabe56aa8ba5d8a617dcccad29
+    pristine_git_object: 3aacf19332e6d3cdee5e26177a124808693fc93f
   src/FormanceSDK/FormanceOrchestrationV1.cs:
     id: 4abeb9218038
-    last_write_checksum: sha1:e4347652ab23e616bd508abbea59115bba80cd4e
-    pristine_git_object: 94293e7f28120ab2bb6b769c7b84118f4682ce65
+    last_write_checksum: sha1:88212928a563eda0ff4c870af5ddce7464bd76b6
+    pristine_git_object: 722e0a0e4c2865704180315d9a41304851b26f50
   src/FormanceSDK/FormancePaymentsV1.cs:
     id: a636aad4ddab
-    last_write_checksum: sha1:9e29e1e0fb1a0226e588c38c411187775f8345f1
-    pristine_git_object: 881c9ab0f06f98b7d6ab1570b2f33a5ecc114e0f
+    last_write_checksum: sha1:46f66631f9dc694d3173a0694ccb7e394aba4e25
+    pristine_git_object: ad074c7beded79a17d6f4c1f96e3b8edf523a408
   src/FormanceSDK/FormanceReconciliationV1.cs:
     id: 681949ba460c
-    last_write_checksum: sha1:5dad0e2adc8a2948277dbbaba9f28cd282a793e5
-    pristine_git_object: a27e52e2571f4d2acb1f236c6e75c938077a68be
+    last_write_checksum: sha1:de38fdec921bcc7e4d2be700f423f07232eccb45
+    pristine_git_object: ef4f0d7698e8e493e492dcc75c006dace0260b66
   src/FormanceSDK/FormanceSDK.csproj:
     id: 83154053cd46
-    last_write_checksum: sha1:6e6add5729201b50b7469dc58f8124f6c5836db5
-    pristine_git_object: b78abfb78c9fdc3eeb507e91b5a3d041c8befd0b
+    last_write_checksum: sha1:a263cd7137689cd414a8024a7d41c445b801e98d
+    pristine_git_object: 772c9b6c3d0405ff0b7b5fc71a94edbc0ff5d0f7
   src/FormanceSDK/FormanceSearchV1.cs:
     id: 11a311a4fb58
-    last_write_checksum: sha1:3dd636c98d40007d22fde8b5e9e8c62b8aebb859
-    pristine_git_object: 82a1d14826b1d3424a0b669f6242cbd7e5eb120c
+    last_write_checksum: sha1:ac672f5b3298fc36fc88928955d2e017519cf14b
+    pristine_git_object: 21880e33a5a55c2d4c366d157975a84a5e8b9193
   src/FormanceSDK/FormanceV1.cs:
     id: b8a1b6a08e54
-    last_write_checksum: sha1:cabb79dd5d9785fa6d88d794aa96a249ad7606fc
-    pristine_git_object: 689c6e11fb782645f48f29289c91585ee84d339d
+    last_write_checksum: sha1:cc7b775a808ddb2f683889caa9d25a5ae36d1080
+    pristine_git_object: 3da6e36c074152ab91394445f0426506df5e6a6b
   src/FormanceSDK/FormanceV2.cs:
     id: a5368c47ec85
-    last_write_checksum: sha1:c89e219b9ba58d44965627cec78abec6a4033455
-    pristine_git_object: e0933386c0db5676e8297058e12eecd7bc754229
+    last_write_checksum: sha1:98e5cd432dee04d948483f8c204a3632ae3401b8
+    pristine_git_object: e795a457d0b6b644022ab24a5a458e1991fa82f9
   src/FormanceSDK/FormanceWalletsV1.cs:
     id: e5e2473ca92a
-    last_write_checksum: sha1:8c1500306c5b0a68d2ede006d21494265ff4e8d9
-    pristine_git_object: d156bceed3e04683a43c8fa20e6cb91c4cd262f3
+    last_write_checksum: sha1:8b358d120977fe4fcee18f94401fb62b4630b664
+    pristine_git_object: eba52ed42465baf7291bcc1541eeeaf46b17bfa0
   src/FormanceSDK/FormanceWebhooksV1.cs:
     id: 095a9da8421b
-    last_write_checksum: sha1:76101fc0d33447174fc5a26d7b03fa9ab9ff21f2
-    pristine_git_object: c3d04dcb8d9b7e8f8e087fa84fc5b074766386c3
+    last_write_checksum: sha1:c6429c572e8feaa16a6e0d37633ecccdc3fa29f6
+    pristine_git_object: c2e7efaa575e430b59e8cb600e64bf190e349472
   src/FormanceSDK/Hooks/ClientCredentials/ClientCredentials.cs:
     id: 61bb5808ce08
     last_write_checksum: sha1:924bdb66cbc1d403633cc3d19b8fd494c5480b89
@@ -4685,8 +4684,8 @@ trackedFiles:
     pristine_git_object: cd1369f641117668e666c054568227c157782006
   src/FormanceSDK/Ledger.cs:
     id: 5be1906b16bb
-    last_write_checksum: sha1:c6e03aca3b101512cba9a8c5c6a539a1f43a3a62
-    pristine_git_object: 34baf69e5984fb4df14fb358a4abf2cc90d8256a
+    last_write_checksum: sha1:bf33a9ef59b5f20334c76024d42e9537c24f5c8f
+    pristine_git_object: 6d3b4e6bee9dab922fd20886aa026ba2f16c7166
   src/FormanceSDK/Models/Auth/ClientOptions.cs:
     id: 69fee06ffbd6
     last_write_checksum: sha1:d6343475f0c707ceabe04124958aa9738cb18ec5
@@ -7897,8 +7896,8 @@ trackedFiles:
     pristine_git_object: d7ee66a10e77b9e6c8f3823d5bcd692c361aa649
   src/FormanceSDK/Models/Requests/RunScriptResponse.cs:
     id: 678feeeb5a90
-    last_write_checksum: sha1:da89c943bcc7149a893bc88c13dad258303e70f1
-    pristine_git_object: 8799b33029249267f70d5bcdc91ab157e2536e40
+    last_write_checksum: sha1:1435a012afc6e83f25f040bf46535be0c0072854
+    pristine_git_object: 16416a8fe1ad77f920a20c68803c06690f57ae8d
   src/FormanceSDK/Models/Requests/RunWorkflowRequest.cs:
     id: df37ae4c3461
     last_write_checksum: sha1:6ae4246004823718e80266d2a61960e495dcec9b
@@ -9229,8 +9228,8 @@ trackedFiles:
     pristine_git_object: 2be4d02024d25c95635d187e88bd552a5547e2f4
   src/FormanceSDK/SDKConfig.cs:
     id: a3374d76e817
-    last_write_checksum: sha1:4a6a63e59669c9b3723da196a155753dab486161
-    pristine_git_object: 6da2b8a2327207266ee1b068821957eee0d49d63
+    last_write_checksum: sha1:a26780740f499f9e364754501148e2804a90278b
+    pristine_git_object: 9716e05546a226274b65bad94c1f37fff958d9d7
   src/FormanceSDK/Search.cs:
     id: 1048ff0d85d5
     last_write_checksum: sha1:057487843da61ac61d1503104cd75ced4a43195e
@@ -9245,8 +9244,8 @@ trackedFiles:
     pristine_git_object: a3c792e24053c9b994ddfbdb6dd9218366d00608
   src/FormanceSDK/Utils/Constants.cs:
     id: d8c5d42c1de3
-    last_write_checksum: sha1:690d13acbffde26af876335603832ba7ddf9b72a
-    pristine_git_object: d53700b61debb6d1a64aefd16d4114d8ab23cbf2
+    last_write_checksum: sha1:6fec53c253c89970da1e8411e0f4dc7b32cfa714
+    pristine_git_object: 2eba8eb87c2afda26fb228c773354f47af280925
   src/FormanceSDK/Utils/DecimalStrConverter.cs:
     id: 7d94c1e8ade0
     last_write_checksum: sha1:2c75e06283283a95f50cbde31dfbe1bf86772e48
@@ -9313,16 +9312,16 @@ trackedFiles:
     pristine_git_object: 3c8a9413f3b34f05bee4c9d5cddf6e476084a474
   src/FormanceSDK/V1.cs:
     id: 3d7e909c8886
-    last_write_checksum: sha1:0b10e02671a8ab9bacf82c52153b33c38d1d0089
-    pristine_git_object: 251ce2b5650ae0ae177e5439f346b95cf08d0b3f
+    last_write_checksum: sha1:adf1802bfd28c2ab577e127662b444c5ac59f46d
+    pristine_git_object: c24dd7937f469fb17d8941c566e9a777755cedb3
   src/FormanceSDK/V2.cs:
     id: cf3b28bc3610
-    last_write_checksum: sha1:fccad1052927eca48c8009c0a4569ee6264f7ffb
-    pristine_git_object: e9abd108483e95b40afd198f0dd593f45448a927
+    last_write_checksum: sha1:c412169afacf284d63d0e07ff955232b23c05c52
+    pristine_git_object: 7f74eeda20e302d446a028c3256d989ff53d51fd
   src/FormanceSDK/V3.cs:
     id: c4b3f0781efa
-    last_write_checksum: sha1:4fcd0e1915f7d9ee9015483515a67be83f79d13c
-    pristine_git_object: e81ea08e82e2f7364132cc85a894bd67c413f3a6
+    last_write_checksum: sha1:f71cd31559ed7fc03a5863d78d2664422227f6c6
+    pristine_git_object: e1264277ad973cd449ddb5de6792588e0166904b
   src/FormanceSDK/Wallets.cs:
     id: f525df384ef4
     last_write_checksum: sha1:9a08c7dfea322183c96bbcaf6eff4c8da1797d54
@@ -11983,7 +11982,6 @@ examples:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Csharp SDK Changes:\n* `Formance.Payments.V1.UpdateConnectorConfigV1()`: \n  *  `request.connectorConfig` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Wallets.V1.CreateBalance()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `Formance.Auth.V1.ListClients()`:  `response.data[]` **Changed** (Breaking ⚠️)\n* `Formance.Auth.V1.UpdateClient()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `Formance.Auth.V1.CreateSecret()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `Formance.Reconciliation.V1.GetReconciliation()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Reconciliation.V1.Reconcile()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Reconciliation.V1.GetPolicy()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Reconciliation.V1.CreatePolicy()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Orchestration.V2.GetInstanceStageHistory()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Orchestration.V2.GetInstanceHistory()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Orchestration.V2.GetInstance()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Orchestration.V2.ListInstances()`:  `response.cursor.Data[]` **Changed** (Breaking ⚠️)\n* `Formance.Orchestration.V2.RunWorkflow()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Orchestration.V2.GetWorkflow()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Orchestration.V2.CreateWorkflow()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Orchestration.V2.ListWorkflows()`:  `response.cursor.Data[]` **Changed** (Breaking ⚠️)\n* `Formance.Orchestration.V2.ListTriggersOccurrences()`:  `response.cursor.Data[]` **Changed** (Breaking ⚠️)\n* `Formance.Orchestration.V2.TestTrigger()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Orchestration.V2.ReadTrigger()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Orchestration.V2.CreateTrigger()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Orchestration.V1.GetInstanceStageHistory()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Orchestration.V1.GetInstanceHistory()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Orchestration.V1.GetInstance()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Auth.V1.ReadUser()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.GetInfo()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.GetMetrics()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V1.GetInfo()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V1.GetLedgerInfo()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V1.CountAccounts()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V1.AddMetadataToAccount()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V1.GetMapping()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V1.UpdateMapping()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V1.RunScript()`: \n  *  `request.script` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V1.ReadStats()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V1.CountTransactions()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V1.ListTransactions()`: \n  *  `response.cursor.Data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V1.CreateTransaction()`: \n  *  `request.postTransaction` **Changed** (Breaking ⚠️)\n  *  `response.data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V1.GetTransaction()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V1.AddMetadataOnTransaction()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V1.RevertTransaction()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V1.CreateTransactions()`: \n  *  `request.transactions.Transactions[]` **Changed** (Breaking ⚠️)\n  *  `response.data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V1.GetBalances()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V1.GetBalancesAggregated()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V1.ListLogs()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.ListLedgers()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response.cursor.Data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.GetLedger()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.CreateLedger()`: \n  *  `request.v2CreateLedgerRequest` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.InsertSchema()`: \n  *  `request.v2SchemaData` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.GetSchema()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.ListSchemas()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.UpdateLedgerMetadata()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.DeleteLedgerMetadata()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.GetLedgerInfo()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.CreateBulk()`: \n  *  `request.RequestBody[]` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.CountAccounts()`: \n  *  `requestBody` **Added** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.ListAccounts()`: \n  *  `request.RequestBody` **Added** (Breaking ⚠️)\n  *  `response.cursor.Data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.GetAccount()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.AddMetadataToAccount()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.DeleteAccountMetadata()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.ReadStats()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.CountTransactions()`: \n  *  `requestBody` **Added** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.ListTransactions()`: \n  *  `request.RequestBody` **Added** (Breaking ⚠️)\n  *  `response.cursor.Data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.CreateTransaction()`: \n  *  `request.V2PostTransaction` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.GetTransaction()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.AddMetadataOnTransaction()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.DeleteTransactionMetadata()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.RevertTransaction()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.GetBalancesAggregated()`: \n  *  `requestBody` **Added** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.GetVolumesWithBalances()`: \n  *  `request.RequestBody` **Added** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.ListLogs()`: \n  *  `request.RequestBody` **Added** (Breaking ⚠️)\n  *  `response.cursor.Data[].Data` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.ImportLogs()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.RunQuery()`: \n  *  `request.RequestBody` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.ListExporters()`: \n  *  `response.cursor` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.CreateExporter()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.GetExporterState()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.UpdateExporter()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.DeleteExporter()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.DeleteBucket()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.RestoreBucket()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.ListPipelines()`: \n  *  `response.cursor` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.CreatePipeline()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.GetPipelineState()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.DeletePipeline()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.ResetPipeline()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.StartPipeline()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V2.StopPipeline()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.CreatePayment()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.ListPayments()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.GetPayment()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.UpdateMetadata()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.ListTransferInitiations()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.CreateTransferInitiation()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.GetTransferInitiation()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.DeleteTransferInitiation()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.UpdateTransferInitiationStatus()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.ReverseTransferInitiation()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.RetryTransferInitiation()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.ListPools()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.CreatePool()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.GetPool()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.DeletePool()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.UpdatePoolQuery()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.AddAccountToPool()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.RemoveAccountFromPool()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.GetPoolBalances()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.GetPoolBalancesLatest()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.CreateAccount()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.GetAccountBalances()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.CreateBankAccount()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.ListBankAccounts()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.GetBankAccount()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.ForwardBankAccount()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.UpdateBankAccountMetadata()`: \n  *  `request.updateBankAccountMetadataRequest` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.ListAllConnectors()`: \n  *  `response.data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.ListConfigsAvailableConnectors()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.InstallConnector()`: \n  *  `request.connectorConfig` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.UninstallConnector()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.UninstallConnectorV1()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.ReadConnectorConfig()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Auth.V1.ReadClient()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Auth.V1.CreateClient()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.ResetConnector()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.ResetConnectorV1()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.ListConnectorTasks()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.ListConnectorTasksV1()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.GetConnectorTask()`: \n  *  `response.data` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.GetConnectorTaskV1()`: \n  *  `response.data` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.ConnectorsTransfer()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.CreateAccount()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.ListAccounts()`: \n  *  `requestBody` **Added**\n  *  `response.cursor.Data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.GetAccount()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.GetAccountBalances()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.CreateBankAccount()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.ListBankAccounts()`: \n  *  `requestBody` **Added**\n  *  `response.cursor.Data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.GetBankAccount()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.UpdateBankAccountMetadata()`: \n  *  `request.v3UpdateBankAccountMetadataRequest` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.ForwardBankAccount()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.ListConnectors()`: \n  *  `requestBody` **Added**\n  *  `response.cursor.Data[].UpdatedAt` **Added**\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.InstallConnector()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.ListConnectorConfigs()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.UninstallConnector()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.GetConnectorConfig()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.V3UpdateConnectorConfig()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.ResetConnector()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.ListConnectorSchedules()`: \n  *  `requestBody` **Added**\n  *  `response.cursor.Data[]` **Changed**\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.GetConnectorSchedule()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.ListConnectorScheduleInstances()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.CreatePayment()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.ListPayments()`: \n  *  `requestBody` **Added**\n  *  `response.cursor.Data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.GetPayment()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.UpdatePaymentMetadata()`: \n  *  `request.v3UpdatePaymentMetadataRequest` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.InitiatePayment()`: \n  *  `request.v3InitiatePaymentRequest` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.ListPaymentInitiations()`: \n  *  `requestBody` **Added**\n  *  `response.cursor.Data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.DeletePaymentInitiation()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.GetPaymentInitiation()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.RetryPaymentInitiation()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.ApprovePaymentInitiation()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.RejectPaymentInitiation()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.ReversePaymentInitiation()`: \n  *  `request.v3ReversePaymentInitiationRequest` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.ListPaymentInitiationAdjustments()`: \n  *  `requestBody` **Added**\n  *  `response.cursor.Data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.ListPaymentInitiationRelatedPayments()`: \n  *  `requestBody` **Added**\n  *  `response.cursor.Data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.CreatePaymentServiceUser()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.ListPaymentServiceUsers()`: \n  *  `requestBody` **Added**\n  *  `response.cursor.Data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.GetPaymentServiceUser()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.DeletePaymentServiceUser()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.ListPaymentServiceUserConnections()`: \n  *  `requestBody` **Added**\n  *  `response.cursor.Data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.DeletePaymentServiceUserConnector()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.ForwardPaymentServiceUserToProvider()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.CreateLinkForPaymentServiceUser()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.ListPaymentServiceUserConnectionsFromConnectorId()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response.cursor.Data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.ListPaymentServiceUserLinkAttemptsFromConnectorId()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response.cursor.Data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.GetPaymentServiceUserLinkAttemptFromConnectorId()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.DeletePaymentServiceUserConnectionFromConnectorId()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.UpdateLinkForPaymentServiceUserOnConnector()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.AddBankAccountToPaymentServiceUser()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.ForwardPaymentServiceUserBankAccount()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.CreatePool()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.ListPools()`: \n  *  `requestBody` **Added**\n  *  `response.cursor.Data[]` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.GetPool()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.DeletePool()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.UpdatePoolQuery()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.GetPoolBalances()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.GetPoolBalancesLatest()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.AddAccountToPool()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.RemoveAccountFromPool()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V3.GetTask()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Webhooks.V1.GetManyConfigs()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Webhooks.V1.InsertConfig()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Webhooks.V1.DeleteConfig()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Webhooks.V1.UpdateConfig()`:  `error` **Changed** (Breaking ⚠️)\n* `Formance.Webhooks.V1.TestConfig()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Webhooks.V1.ActivateConfig()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Webhooks.V1.DeactivateConfig()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Webhooks.V1.ChangeConfigSecret()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Wallets.V1.GetTransactions()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Wallets.V1.ListWallets()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Wallets.V1.CreateWallet()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Wallets.V1.GetWallet()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Wallets.V1.GetWalletSummary()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Wallets.V1.ListBalances()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Payments.V1.ReadConnectorConfigV1()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error` **Changed** (Breaking ⚠️)\n* `Formance.Wallets.V1.GetBalance()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Wallets.V1.DebitWallet()`: \n  *  `request.debitWalletRequest` **Changed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n* `Formance.Wallets.V1.CreditWallet()`:  `request.creditWalletRequest` **Changed** (Breaking ⚠️)\n* `Formance.Wallets.V1.GetHolds()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Wallets.V1.GetHold()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Orchestration.V1.CreateTrigger()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Orchestration.V1.ReadTrigger()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Orchestration.V1.ListTriggersOccurrences()`:  `response.data[]` **Changed** (Breaking ⚠️)\n* `Formance.Orchestration.V1.ListWorkflows()`:  `response.data[]` **Changed** (Breaking ⚠️)\n* `Formance.Orchestration.V1.CreateWorkflow()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Orchestration.V1.GetWorkflow()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Orchestration.V1.RunWorkflow()`:  `response` **Changed** (Breaking ⚠️)\n* `Formance.Orchestration.V1.ListInstances()`:  `response.data[]` **Changed** (Breaking ⚠️)\n* `Formance.Ledger.V1.ListAccountsLedger()`: **Added**\n* `Formance.Ledger.V1.GetAccountLedger()`: **Added**\n* `Formance.Ledger.V1.GetAccount()`: **Removed** (Breaking ⚠️)\n* `Formance.Ledger.V1.ListAccounts()`: **Removed** (Breaking ⚠️)\n* `Formance.Auth.V1.GetServerInfo()`: **Removed** (Breaking ⚠️)\n* `Formance.Reconciliation.V1.GetServerInfoReconciliation()`: **Added**\n* `Formance.Orchestration.V1.GetServerInfoOrchestration()`: **Added**\n* `Formance.Wallets.V1.GetServerInfoWallets()`: **Added**\n* `Formance.Search.V1.GetServerInfoSearch()`: **Added**\n* `Formance.Payments.V3.GetConversion()`: **Added**\n* `Formance.Payments.V1.GetAccountPayments()`: **Added**\n* `Formance.Payments.V1.PaymentslistAccounts()`: **Removed** (Breaking ⚠️)\n* `Formance.Payments.V1.PaymentsgetServerInfo()`: **Removed** (Breaking ⚠️)\n* `Formance.Payments.V3.GetOrder()`: **Added**\n* `Formance.Wallets.V1.WalletsgetServerInfo()`: **Removed** (Breaking ⚠️)\n* `Formance.Payments.V1.GetServerInfoPayments()`: **Added**\n* `Formance.Payments.V1.PaymentsgetAccount()`: **Removed** (Breaking ⚠️)\n* `Formance.Search.V1.SearchgetServerInfo()`: **Removed** (Breaking ⚠️)\n* `Formance.Payments.V1.ListAccountsPayments()`: **Added**\n* `Formance.Orchestration.V1.OrchestrationgetServerInfo()`: **Removed** (Breaking ⚠️)\n* `Formance.Reconciliation.V1.ReconciliationgetServerInfo()`: **Removed** (Breaking ⚠️)\n* `Formance.Reconciliation.V1.ListPolicies()`:  `requestBody` **Added**\n* `Formance.Payments.V3.ListConversions()`: **Added**\n* `Formance.Payments.V3.ListOrders()`: **Added**\n* `Formance.Reconciliation.V1.ListReconciliations()`:  `requestBody` **Added**\n* `Formance.Auth.V1.GetServerInfoAuth()`: **Added**\n"
 generatedFiles:
   - .gitattributes
   - FormanceSDK.sln

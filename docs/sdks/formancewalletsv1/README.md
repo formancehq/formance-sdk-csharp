@@ -42,12 +42,6 @@ var res = await sdk.Wallets.V1.GetServerInfoWalletsAsync();
 // handle response
 ```
 
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
-
 ### Response
 
 **[GetServerInfoWalletsResponse](../../Models/Requests/GetServerInfoWalletsResponse.md)**
@@ -89,7 +83,6 @@ var res = await sdk.Wallets.V1.GetTransactionsAsync(
 | `PageSize`                                                                                                                                                                                                           | *long*                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                   | The maximum number of results to return per page                                                                                                                                                                     | 100                                                                                                                                                                                                                  |
 | `WalletID`                                                                                                                                                                                                           | *string*                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                   | A wallet ID to filter on                                                                                                                                                                                             | wallet1                                                                                                                                                                                                              |
 | `Cursor`                                                                                                                                                                                                             | *string*                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                   | Parameter used in pagination requests.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when the cursor is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                         |
-| `serverURL`                                                                                                                                                                                                          | *string*                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                   | An optional server URL to use.                                                                                                                                                                                       | http://localhost:8080                                                                                                                                                                                                |
 
 ### Response
 
@@ -140,7 +133,6 @@ var res = await sdk.Wallets.V1.ListWalletsAsync(req);
 | Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `request`                                                         | [ListWalletsRequest](../../Models/Requests/ListWalletsRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
-| `serverURL`                                                       | *string*                                                          | :heavy_minus_sign:                                                | An optional server URL to use.                                    |
 
 ### Response
 
@@ -180,7 +172,6 @@ var res = await sdk.Wallets.V1.CreateWalletAsync();
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `IdempotencyKey`                                                                  | *string*                                                                          | :heavy_minus_sign:                                                                | Use an idempotency key                                                            |
 | `CreateWalletRequest`                                                             | [Models.Wallets.CreateWalletRequest](../../Models/Wallets/CreateWalletRequest.md) | :heavy_minus_sign:                                                                | N/A                                                                               |
-| `serverURL`                                                                       | *string*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -216,10 +207,9 @@ var res = await sdk.Wallets.V1.GetWalletAsync(id: "<id>");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Id`                           | *string*                       | :heavy_check_mark:             | N/A                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `Id`               | *string*           | :heavy_check_mark: | N/A                |
 
 ### Response
 
@@ -260,7 +250,6 @@ var res = await sdk.Wallets.V1.UpdateWalletAsync(id: "<id>");
 | `Id`                                                                        | *string*                                                                    | :heavy_check_mark:                                                          | N/A                                                                         |
 | `IdempotencyKey`                                                            | *string*                                                                    | :heavy_minus_sign:                                                          | Use an idempotency key                                                      |
 | `RequestBody`                                                               | [UpdateWalletRequestBody](../../Models/Requests/UpdateWalletRequestBody.md) | :heavy_minus_sign:                                                          | N/A                                                                         |
-| `serverURL`                                                                 | *string*                                                                    | :heavy_minus_sign:                                                          | An optional server URL to use.                                              |
 
 ### Response
 
@@ -296,10 +285,9 @@ var res = await sdk.Wallets.V1.GetWalletSummaryAsync(id: "<id>");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Id`                           | *string*                       | :heavy_check_mark:             | N/A                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `Id`               | *string*           | :heavy_check_mark: | N/A                |
 
 ### Response
 
@@ -335,10 +323,9 @@ var res = await sdk.Wallets.V1.ListBalancesAsync(id: "<id>");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Id`                           | *string*                       | :heavy_check_mark:             | N/A                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `Id`               | *string*           | :heavy_check_mark: | N/A                |
 
 ### Response
 
@@ -378,7 +365,6 @@ var res = await sdk.Wallets.V1.CreateBalanceAsync(id: "<id>");
 | `Id`                                       | *string*                                   | :heavy_check_mark:                         | N/A                                        |
 | `IdempotencyKey`                           | *string*                                   | :heavy_minus_sign:                         | Use an idempotency key                     |
 | `Balance`                                  | [Balance](../../Models/Wallets/Balance.md) | :heavy_minus_sign:                         | N/A                                        |
-| `serverURL`                                | *string*                                   | :heavy_minus_sign:                         | An optional server URL to use.             |
 
 ### Response
 
@@ -417,11 +403,10 @@ var res = await sdk.Wallets.V1.GetBalanceAsync(
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Id`                           | *string*                       | :heavy_check_mark:             | N/A                            |
-| `BalanceName`                  | *string*                       | :heavy_check_mark:             | N/A                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `Id`               | *string*           | :heavy_check_mark: | N/A                |
+| `BalanceName`      | *string*           | :heavy_check_mark: | N/A                |
 
 ### Response
 
@@ -476,7 +461,6 @@ var res = await sdk.Wallets.V1.DebitWalletAsync(
 | `Id`                                                                                          | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `IdempotencyKey`                                                                              | *string*                                                                                      | :heavy_minus_sign:                                                                            | Use an idempotency key                                                                        |                                                                                               |
 | `DebitWalletRequest`                                                                          | [Models.Wallets.DebitWalletRequest](../../Models/Wallets/DebitWalletRequest.md)               | :heavy_minus_sign:                                                                            | N/A                                                                                           | {<br/>"amount": {<br/>"asset": "USD/2",<br/>"amount": 100<br/>},<br/>"metadata": {<br/>"key": ""<br/>},<br/>"pending": true<br/>} |
-| `serverURL`                                                                                   | *string*                                                                                      | :heavy_minus_sign:                                                                            | An optional server URL to use.                                                                | http://localhost:8080                                                                         |
 
 ### Response
 
@@ -531,7 +515,6 @@ var res = await sdk.Wallets.V1.CreditWalletAsync(
 | `Id`                                                                                        | *string*                                                                                    | :heavy_check_mark:                                                                          | N/A                                                                                         |                                                                                             |
 | `IdempotencyKey`                                                                            | *string*                                                                                    | :heavy_minus_sign:                                                                          | Use an idempotency key                                                                      |                                                                                             |
 | `CreditWalletRequest`                                                                       | [Models.Wallets.CreditWalletRequest](../../Models/Wallets/CreditWalletRequest.md)           | :heavy_minus_sign:                                                                          | N/A                                                                                         | {<br/>"amount": {<br/>"asset": "USD/2",<br/>"amount": 100<br/>},<br/>"metadata": {<br/>"key": ""<br/>},<br/>"sources": []<br/>} |
-| `serverURL`                                                                                 | *string*                                                                                    | :heavy_minus_sign:                                                                          | An optional server URL to use.                                                              | http://localhost:8080                                                                       |
 
 ### Response
 
@@ -581,7 +564,6 @@ var res = await sdk.Wallets.V1.GetHoldsAsync(
 | `WalletID`                                                                                                                                                                                                                     | *string*                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                             | The wallet to filter on                                                                                                                                                                                                        | wallet1                                                                                                                                                                                                                        |
 | `Metadata`                                                                                                                                                                                                                     | Dictionary<String, *string*>                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                             | Filter holds by metadata key value pairs. Nested objects can be used as seen in the example below.                                                                                                                             | {<br/>"admin": "true"<br/>}                                                                                                                                                                                                    |
 | `Cursor`                                                                                                                                                                                                                       | *string*                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                             | Parameter used in pagination requests.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when the pagination token is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                   |
-| `serverURL`                                                                                                                                                                                                                    | *string*                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                             | An optional server URL to use.                                                                                                                                                                                                 | http://localhost:8080                                                                                                                                                                                                          |
 
 ### Response
 
@@ -617,10 +599,9 @@ var res = await sdk.Wallets.V1.GetHoldAsync(holdID: "<id>");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `HoldID`                       | *string*                       | :heavy_check_mark:             | The hold ID                    |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `HoldID`           | *string*           | :heavy_check_mark: | The hold ID        |
 
 ### Response
 
@@ -668,7 +649,6 @@ var res = await sdk.Wallets.V1.ConfirmHoldAsync(
 | `HoldId`                                                                        | *string*                                                                        | :heavy_check_mark:                                                              | N/A                                                                             |
 | `IdempotencyKey`                                                                | *string*                                                                        | :heavy_minus_sign:                                                              | Use an idempotency key                                                          |
 | `ConfirmHoldRequest`                                                            | [Models.Wallets.ConfirmHoldRequest](../../Models/Wallets/ConfirmHoldRequest.md) | :heavy_minus_sign:                                                              | N/A                                                                             |
-| `serverURL`                                                                     | *string*                                                                        | :heavy_minus_sign:                                                              | An optional server URL to use.                                                  |
 
 ### Response
 
@@ -704,11 +684,10 @@ var res = await sdk.Wallets.V1.VoidHoldAsync(holdId: "<id>");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `HoldId`                       | *string*                       | :heavy_check_mark:             | N/A                            |
-| `IdempotencyKey`               | *string*                       | :heavy_minus_sign:             | Use an idempotency key         |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+| Parameter              | Type                   | Required               | Description            |
+| ---------------------- | ---------------------- | ---------------------- | ---------------------- |
+| `HoldId`               | *string*               | :heavy_check_mark:     | N/A                    |
+| `IdempotencyKey`       | *string*               | :heavy_minus_sign:     | Use an idempotency key |
 
 ### Response
 

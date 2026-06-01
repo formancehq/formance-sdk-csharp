@@ -35,12 +35,6 @@ var res = await sdk.GetVersionsAsync();
 // handle response
 ```
 
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
-
 ### Response
 
 **[Models.Requests.GetVersionsResponse](../../Models/Requests/GetVersionsResponse.md)**

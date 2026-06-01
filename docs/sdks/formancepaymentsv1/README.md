@@ -71,12 +71,6 @@ var res = await sdk.Payments.V1.GetServerInfoPaymentsAsync();
 // handle response
 ```
 
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
-
 ### Response
 
 **[GetServerInfoPaymentsResponse](../../Models/Requests/GetServerInfoPaymentsResponse.md)**
@@ -128,7 +122,6 @@ var res = await sdk.Payments.V1.CreatePaymentAsync(req);
 | Parameter                                                 | Type                                                      | Required                                                  | Description                                               |
 | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
 | `request`                                                 | [PaymentRequest](../../Models/Payments/PaymentRequest.md) | :heavy_check_mark:                                        | The request object to use for the request.                |
-| `serverURL`                                               | *string*                                                  | :heavy_minus_sign:                                        | An optional server URL to use.                            |
 
 ### Response
 
@@ -178,7 +171,6 @@ var res = await sdk.Payments.V1.ListPaymentsAsync(
 | `Cursor`                                                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Parameter used in pagination requests. Maximum page size is set to 15.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                                             |
 | `Sort`                                                                                                                                                                                                                                                   | List<*string*>                                                                                                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                                                                                                       | Fields used to sort payments (default is date:desc).                                                                                                                                                                                                     | [<br/>"date:asc",<br/>"status:desc"<br/>]                                                                                                                                                                                                                |
 | `Query`                                                                                                                                                                                                                                                  | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Filters used to filter resources.<br/>                                                                                                                                                                                                                   |                                                                                                                                                                                                                                                          |
-| `serverURL`                                                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                                                    |
 
 ### Response
 
@@ -214,10 +206,9 @@ var res = await sdk.Payments.V1.GetPaymentAsync(paymentId: "XXX");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `PaymentId`                    | *string*                       | :heavy_check_mark:             | The payment ID.                | XXX                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `PaymentId`        | *string*           | :heavy_check_mark: | The payment ID.    | XXX                |
 
 ### Response
 
@@ -259,11 +250,10 @@ var res = await sdk.Payments.V1.UpdateMetadataAsync(
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `PaymentId`                    | *string*                       | :heavy_check_mark:             | The payment ID.                | XXX                            |
-| `RequestBody`                  | Dictionary<String, *string*>   | :heavy_check_mark:             | N/A                            |                                |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter                    | Type                         | Required                     | Description                  | Example                      |
+| ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
+| `PaymentId`                  | *string*                     | :heavy_check_mark:           | The payment ID.              | XXX                          |
+| `RequestBody`                | Dictionary<String, *string*> | :heavy_check_mark:           | N/A                          |                              |
 
 ### Response
 
@@ -313,7 +303,6 @@ var res = await sdk.Payments.V1.ListTransferInitiationsAsync(
 | `Cursor`                                                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Parameter used in pagination requests. Maximum page size is set to 15.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                                             |
 | `Sort`                                                                                                                                                                                                                                                   | List<*string*>                                                                                                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                                                                                                       | Fields used to sort payments (default is date:desc).                                                                                                                                                                                                     | [<br/>"date:asc",<br/>"status:desc"<br/>]                                                                                                                                                                                                                |
 | `Query`                                                                                                                                                                                                                                                  | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Filters used to filter resources.<br/>                                                                                                                                                                                                                   |                                                                                                                                                                                                                                                          |
-| `serverURL`                                                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                                                    |
 
 ### Response
 
@@ -367,7 +356,6 @@ var res = await sdk.Payments.V1.CreateTransferInitiationAsync(req);
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `request`                                                                       | [TransferInitiationRequest](../../Models/Payments/TransferInitiationRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
-| `serverURL`                                                                     | *string*                                                                        | :heavy_minus_sign:                                                              | An optional server URL to use.                                                  |
 
 ### Response
 
@@ -403,10 +391,9 @@ var res = await sdk.Payments.V1.GetTransferInitiationAsync(transferId: "XXX");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `TransferId`                   | *string*                       | :heavy_check_mark:             | The transfer ID.               | XXX                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `TransferId`       | *string*           | :heavy_check_mark: | The transfer ID.   | XXX                |
 
 ### Response
 
@@ -442,10 +429,9 @@ var res = await sdk.Payments.V1.DeleteTransferInitiationAsync(transferId: "XXX")
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `TransferId`                   | *string*                       | :heavy_check_mark:             | The transfer ID.               | XXX                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `TransferId`       | *string*           | :heavy_check_mark: | The transfer ID.   | XXX                |
 
 ### Response
 
@@ -491,7 +477,6 @@ var res = await sdk.Payments.V1.UpdateTransferInitiationStatusAsync(
 | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | `TransferId`                                                                                                            | *string*                                                                                                                | :heavy_check_mark:                                                                                                      | The transfer ID.                                                                                                        | XXX                                                                                                                     |
 | `UpdateTransferInitiationStatusRequest`                                                                                 | [Models.Payments.UpdateTransferInitiationStatusRequest](../../Models/Payments/UpdateTransferInitiationStatusRequest.md) | :heavy_check_mark:                                                                                                      | N/A                                                                                                                     |                                                                                                                         |
-| `serverURL`                                                                                                             | *string*                                                                                                                | :heavy_minus_sign:                                                                                                      | An optional server URL to use.                                                                                          | http://localhost:8080                                                                                                   |
 
 ### Response
 
@@ -541,7 +526,6 @@ var res = await sdk.Payments.V1.ReverseTransferInitiationAsync(
 | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | `TransferId`                                                                                                  | *string*                                                                                                      | :heavy_check_mark:                                                                                            | The transfer ID.                                                                                              | XXX                                                                                                           |
 | `ReverseTransferInitiationRequest`                                                                            | [Models.Payments.ReverseTransferInitiationRequest](../../Models/Payments/ReverseTransferInitiationRequest.md) | :heavy_check_mark:                                                                                            | N/A                                                                                                           |                                                                                                               |
-| `serverURL`                                                                                                   | *string*                                                                                                      | :heavy_minus_sign:                                                                                            | An optional server URL to use.                                                                                | http://localhost:8080                                                                                         |
 
 ### Response
 
@@ -577,10 +561,9 @@ var res = await sdk.Payments.V1.RetryTransferInitiationAsync(transferId: "XXX");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `TransferId`                   | *string*                       | :heavy_check_mark:             | The transfer ID.               | XXX                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `TransferId`       | *string*           | :heavy_check_mark: | The transfer ID.   | XXX                |
 
 ### Response
 
@@ -630,7 +613,6 @@ var res = await sdk.Payments.V1.ListPoolsAsync(
 | `Cursor`                                                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Parameter used in pagination requests. Maximum page size is set to 15.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                                             |
 | `Sort`                                                                                                                                                                                                                                                   | List<*string*>                                                                                                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                                                                                                       | Fields used to sort payments (default is date:desc).                                                                                                                                                                                                     | [<br/>"date:asc",<br/>"status:desc"<br/>]                                                                                                                                                                                                                |
 | `Query`                                                                                                                                                                                                                                                  | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Filters used to filter resources.<br/>                                                                                                                                                                                                                   |                                                                                                                                                                                                                                                          |
-| `serverURL`                                                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                                                    |
 
 ### Response
 
@@ -674,7 +656,6 @@ var res = await sdk.Payments.V1.CreatePoolAsync(req);
 | Parameter                                           | Type                                                | Required                                            | Description                                         |
 | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
 | `request`                                           | [PoolRequest](../../Models/Payments/PoolRequest.md) | :heavy_check_mark:                                  | The request object to use for the request.          |
-| `serverURL`                                         | *string*                                            | :heavy_minus_sign:                                  | An optional server URL to use.                      |
 
 ### Response
 
@@ -710,10 +691,9 @@ var res = await sdk.Payments.V1.GetPoolAsync(poolId: "XXX");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `PoolId`                       | *string*                       | :heavy_check_mark:             | The pool ID.                   | XXX                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `PoolId`           | *string*           | :heavy_check_mark: | The pool ID.       | XXX                |
 
 ### Response
 
@@ -749,10 +729,9 @@ var res = await sdk.Payments.V1.DeletePoolAsync(poolId: "XXX");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `PoolId`                       | *string*                       | :heavy_check_mark:             | The pool ID.                   | XXX                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `PoolId`           | *string*           | :heavy_check_mark: | The pool ID.       | XXX                |
 
 ### Response
 
@@ -800,7 +779,6 @@ var res = await sdk.Payments.V1.UpdatePoolQueryAsync(
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `PoolId`                                                                                  | *string*                                                                                  | :heavy_check_mark:                                                                        | The pool ID.                                                                              | XXX                                                                                       |
 | `UpdatePoolQueryRequest`                                                                  | [Models.Payments.UpdatePoolQueryRequest](../../Models/Payments/UpdatePoolQueryRequest.md) | :heavy_check_mark:                                                                        | N/A                                                                                       |                                                                                           |
-| `serverURL`                                                                               | *string*                                                                                  | :heavy_minus_sign:                                                                        | An optional server URL to use.                                                            | http://localhost:8080                                                                     |
 
 ### Response
 
@@ -845,7 +823,6 @@ var res = await sdk.Payments.V1.AddAccountToPoolAsync(
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `PoolId`                                                                                    | *string*                                                                                    | :heavy_check_mark:                                                                          | The pool ID.                                                                                | XXX                                                                                         |
 | `AddAccountToPoolRequest`                                                                   | [Models.Payments.AddAccountToPoolRequest](../../Models/Payments/AddAccountToPoolRequest.md) | :heavy_check_mark:                                                                          | N/A                                                                                         |                                                                                             |
-| `serverURL`                                                                                 | *string*                                                                                    | :heavy_minus_sign:                                                                          | An optional server URL to use.                                                              | http://localhost:8080                                                                       |
 
 ### Response
 
@@ -884,11 +861,10 @@ var res = await sdk.Payments.V1.RemoveAccountFromPoolAsync(
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `PoolId`                       | *string*                       | :heavy_check_mark:             | The pool ID.                   | XXX                            |
-| `AccountId`                    | *string*                       | :heavy_check_mark:             | The account ID.                | XXX                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `PoolId`           | *string*           | :heavy_check_mark: | The pool ID.       | XXX                |
+| `AccountId`        | *string*           | :heavy_check_mark: | The account ID.    | XXX                |
 
 ### Response
 
@@ -932,7 +908,6 @@ var res = await sdk.Payments.V1.GetPoolBalancesAsync(
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `PoolId`                                                                              | *string*                                                                              | :heavy_check_mark:                                                                    | The pool ID.                                                                          | XXX                                                                                   |
 | `At`                                                                                  | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_check_mark:                                                                    | Filter balances by date.<br/>                                                         |                                                                                       |
-| `serverURL`                                                                           | *string*                                                                              | :heavy_minus_sign:                                                                    | An optional server URL to use.                                                        | http://localhost:8080                                                                 |
 
 ### Response
 
@@ -968,10 +943,9 @@ var res = await sdk.Payments.V1.GetPoolBalancesLatestAsync(poolId: "XXX");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `PoolId`                       | *string*                       | :heavy_check_mark:             | The pool ID.                   | XXX                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `PoolId`           | *string*           | :heavy_check_mark: | The pool ID.       | XXX                |
 
 ### Response
 
@@ -1019,7 +993,6 @@ var res = await sdk.Payments.V1.CreateAccountAsync(req);
 | Parameter                                                 | Type                                                      | Required                                                  | Description                                               |
 | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
 | `request`                                                 | [AccountRequest](../../Models/Payments/AccountRequest.md) | :heavy_check_mark:                                        | The request object to use for the request.                |
-| `serverURL`                                               | *string*                                                  | :heavy_minus_sign:                                        | An optional server URL to use.                            |
 
 ### Response
 
@@ -1069,7 +1042,6 @@ var res = await sdk.Payments.V1.ListAccountsPaymentsAsync(req);
 | Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | `request`                                                                           | [ListAccountsPaymentsRequest](../../Models/Requests/ListAccountsPaymentsRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
-| `serverURL`                                                                         | *string*                                                                            | :heavy_minus_sign:                                                                  | An optional server URL to use.                                                      |
 
 ### Response
 
@@ -1105,10 +1077,9 @@ var res = await sdk.Payments.V1.GetAccountPaymentsAsync(accountId: "XXX");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `AccountId`                    | *string*                       | :heavy_check_mark:             | The account ID.                | XXX                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `AccountId`        | *string*           | :heavy_check_mark: | The account ID.    | XXX                |
 
 ### Response
 
@@ -1159,7 +1130,6 @@ var res = await sdk.Payments.V1.GetAccountBalancesAsync(req);
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `request`                                                                       | [GetAccountBalancesRequest](../../Models/Requests/GetAccountBalancesRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
-| `serverURL`                                                                     | *string*                                                                        | :heavy_minus_sign:                                                              | An optional server URL to use.                                                  |
 
 ### Response
 
@@ -1204,7 +1174,6 @@ var res = await sdk.Payments.V1.CreateBankAccountAsync(req);
 | Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `request`                                                         | [BankAccountRequest](../../Models/Payments/BankAccountRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
-| `serverURL`                                                       | *string*                                                          | :heavy_minus_sign:                                                | An optional server URL to use.                                    |
 
 ### Response
 
@@ -1253,7 +1222,6 @@ var res = await sdk.Payments.V1.ListBankAccountsAsync(
 | `PageSize`                                                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                       | The maximum number of results to return per page.<br/>                                                                                                                                                                                                   | 100                                                                                                                                                                                                                                                      |
 | `Cursor`                                                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Parameter used in pagination requests. Maximum page size is set to 15.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                                             |
 | `Sort`                                                                                                                                                                                                                                                   | List<*string*>                                                                                                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                                                                                                       | Fields used to sort payments (default is date:desc).                                                                                                                                                                                                     | [<br/>"date:asc",<br/>"status:desc"<br/>]                                                                                                                                                                                                                |
-| `serverURL`                                                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                                                    |
 
 ### Response
 
@@ -1289,10 +1257,9 @@ var res = await sdk.Payments.V1.GetBankAccountAsync(bankAccountId: "XXX");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `BankAccountId`                | *string*                       | :heavy_check_mark:             | The bank account ID.           | XXX                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter            | Type                 | Required             | Description          | Example              |
+| -------------------- | -------------------- | -------------------- | -------------------- | -------------------- |
+| `BankAccountId`      | *string*             | :heavy_check_mark:   | The bank account ID. | XXX                  |
 
 ### Response
 
@@ -1337,7 +1304,6 @@ var res = await sdk.Payments.V1.ForwardBankAccountAsync(
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `BankAccountId`                                                                                 | *string*                                                                                        | :heavy_check_mark:                                                                              | The bank account ID.                                                                            | XXX                                                                                             |
 | `ForwardBankAccountRequest`                                                                     | [Models.Payments.ForwardBankAccountRequest](../../Models/Payments/ForwardBankAccountRequest.md) | :heavy_check_mark:                                                                              | N/A                                                                                             |                                                                                                 |
-| `serverURL`                                                                                     | *string*                                                                                        | :heavy_minus_sign:                                                                              | An optional server URL to use.                                                                  | http://localhost:8080                                                                           |
 
 ### Response
 
@@ -1387,7 +1353,6 @@ var res = await sdk.Payments.V1.UpdateBankAccountMetadataAsync(
 | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | `BankAccountId`                                                                                               | *string*                                                                                                      | :heavy_check_mark:                                                                                            | The bank account ID.                                                                                          | XXX                                                                                                           |
 | `UpdateBankAccountMetadataRequest`                                                                            | [Models.Payments.UpdateBankAccountMetadataRequest](../../Models/Payments/UpdateBankAccountMetadataRequest.md) | :heavy_check_mark:                                                                                            | N/A                                                                                                           |                                                                                                               |
-| `serverURL`                                                                                                   | *string*                                                                                                      | :heavy_minus_sign:                                                                                            | An optional server URL to use.                                                                                | http://localhost:8080                                                                                         |
 
 ### Response
 
@@ -1421,12 +1386,6 @@ var res = await sdk.Payments.V1.ListAllConnectorsAsync();
 // handle response
 ```
 
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
-
 ### Response
 
 **[ListAllConnectorsResponse](../../Models/Requests/ListAllConnectorsResponse.md)**
@@ -1458,12 +1417,6 @@ var res = await sdk.Payments.V1.ListConfigsAvailableConnectorsAsync();
 
 // handle response
 ```
-
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -1514,7 +1467,6 @@ var res = await sdk.Payments.V1.InstallConnectorAsync(
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `Connector`                                                     | [Models.Payments.Connector](../../Models/Payments/Connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |
 | `ConnectorConfig`                                               | [ConnectorConfig](../../Models/Payments/ConnectorConfig.md)     | :heavy_check_mark:                                              | N/A                                                             |
-| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -1555,7 +1507,6 @@ var res = await sdk.Payments.V1.UninstallConnectorAsync(connector: FormanceSDK.M
 | Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `Connector`                                                     | [Models.Payments.Connector](../../Models/Payments/Connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |
-| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -1598,7 +1549,6 @@ var res = await sdk.Payments.V1.UninstallConnectorV1Async(
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `Connector`                                                     | [Models.Payments.Connector](../../Models/Payments/Connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |                                                                 |
 | `ConnectorId`                                                   | *string*                                                        | :heavy_check_mark:                                              | The connector ID.                                               | XXX                                                             |
-| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  | http://localhost:8080                                           |
 
 ### Response
 
@@ -1639,7 +1589,6 @@ var res = await sdk.Payments.V1.ReadConnectorConfigAsync(connector: FormanceSDK.
 | Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `Connector`                                                     | [Models.Payments.Connector](../../Models/Payments/Connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |
-| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -1694,7 +1643,6 @@ var res = await sdk.Payments.V1.UpdateConnectorConfigV1Async(
 | `Connector`                                                     | [Models.Payments.Connector](../../Models/Payments/Connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |                                                                 |
 | `ConnectorId`                                                   | *string*                                                        | :heavy_check_mark:                                              | The connector ID.                                               | XXX                                                             |
 | `ConnectorConfig`                                               | [ConnectorConfig](../../Models/Payments/ConnectorConfig.md)     | :heavy_check_mark:                                              | N/A                                                             |                                                                 |
-| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  | http://localhost:8080                                           |
 
 ### Response
 
@@ -1737,7 +1685,6 @@ var res = await sdk.Payments.V1.ReadConnectorConfigV1Async(
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `Connector`                                                     | [Models.Payments.Connector](../../Models/Payments/Connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |                                                                 |
 | `ConnectorId`                                                   | *string*                                                        | :heavy_check_mark:                                              | The connector ID.                                               | XXX                                                             |
-| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  | http://localhost:8080                                           |
 
 ### Response
 
@@ -1780,7 +1727,6 @@ var res = await sdk.Payments.V1.ResetConnectorAsync(connector: FormanceSDK.Model
 | Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `Connector`                                                     | [Models.Payments.Connector](../../Models/Payments/Connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |
-| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -1825,7 +1771,6 @@ var res = await sdk.Payments.V1.ResetConnectorV1Async(
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `Connector`                                                     | [Models.Payments.Connector](../../Models/Payments/Connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |                                                                 |
 | `ConnectorId`                                                   | *string*                                                        | :heavy_check_mark:                                              | The connector ID.                                               | XXX                                                             |
-| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  | http://localhost:8080                                           |
 
 ### Response
 
@@ -1872,7 +1817,6 @@ var res = await sdk.Payments.V1.ListConnectorTasksAsync(
 | `Connector`                                                                                                                                                                                                                                              | [Models.Payments.Connector](../../Models/Payments/Connector.md)                                                                                                                                                                                          | :heavy_check_mark:                                                                                                                                                                                                                                       | The name of the connector.                                                                                                                                                                                                                               |                                                                                                                                                                                                                                                          |
 | `PageSize`                                                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                       | The maximum number of results to return per page.<br/>                                                                                                                                                                                                   | 100                                                                                                                                                                                                                                                      |
 | `Cursor`                                                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Parameter used in pagination requests. Maximum page size is set to 15.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                                             |
-| `serverURL`                                                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                                                    |
 
 ### Response
 
@@ -1919,7 +1863,6 @@ var res = await sdk.Payments.V1.ListConnectorTasksV1Async(
 | `ConnectorId`                                                                                                                                                                                                                                            | *string*                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                       | The connector ID.                                                                                                                                                                                                                                        | XXX                                                                                                                                                                                                                                                      |
 | `PageSize`                                                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                       | The maximum number of results to return per page.<br/>                                                                                                                                                                                                   | 100                                                                                                                                                                                                                                                      |
 | `Cursor`                                                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Parameter used in pagination requests. Maximum page size is set to 15.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                                             |
-| `serverURL`                                                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                                                    |
 
 ### Response
 
@@ -1964,7 +1907,6 @@ var res = await sdk.Payments.V1.GetConnectorTaskAsync(
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `Connector`                                                     | [Models.Payments.Connector](../../Models/Payments/Connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |                                                                 |
 | `TaskId`                                                        | *string*                                                        | :heavy_check_mark:                                              | The task ID.                                                    | task1                                                           |
-| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  | http://localhost:8080                                           |
 
 ### Response
 
@@ -2009,7 +1951,6 @@ var res = await sdk.Payments.V1.GetConnectorTaskV1Async(
 | `Connector`                                                     | [Models.Payments.Connector](../../Models/Payments/Connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |                                                                 |
 | `ConnectorId`                                                   | *string*                                                        | :heavy_check_mark:                                              | The connector ID.                                               | XXX                                                             |
 | `TaskId`                                                        | *string*                                                        | :heavy_check_mark:                                              | The task ID.                                                    | task1                                                           |
-| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  | http://localhost:8080                                           |
 
 ### Response
 
@@ -2059,7 +2000,6 @@ var res = await sdk.Payments.V1.ConnectorsTransferAsync(
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `Connector`                                                     | [Models.Payments.Connector](../../Models/Payments/Connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |
 | `TransferRequest`                                               | [TransferRequest](../../Models/Payments/TransferRequest.md)     | :heavy_check_mark:                                              | N/A                                                             |
-| `serverURL`                                                     | *string*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 

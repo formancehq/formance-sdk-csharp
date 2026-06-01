@@ -43,7 +43,6 @@ var res = await sdk.Webhooks.V1.GetManyConfigsAsync(
 | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | `Id`                                 | *string*                             | :heavy_minus_sign:                   | Optional filter by Config ID         | 4997257d-dfb6-445b-929c-cbe2ab182818 |
 | `Endpoint`                           | *string*                             | :heavy_minus_sign:                   | Optional filter by endpoint URL      | https://example.com                  |
-| `serverURL`                          | *string*                             | :heavy_minus_sign:                   | An optional server URL to use.       | http://localhost:8080                |
 
 ### Response
 
@@ -103,7 +102,6 @@ var res = await sdk.Webhooks.V1.InsertConfigAsync(req);
 | Parameter                                         | Type                                              | Required                                          | Description                                       |
 | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
 | `request`                                         | [ConfigUser](../../Models/Webhooks/ConfigUser.md) | :heavy_check_mark:                                | The request object to use for the request.        |
-| `serverURL`                                       | *string*                                          | :heavy_minus_sign:                                | An optional server URL to use.                    |
 
 ### Response
 
@@ -142,7 +140,6 @@ var res = await sdk.Webhooks.V1.DeleteConfigAsync(id: "4997257d-dfb6-445b-929c-c
 | Parameter                            | Type                                 | Required                             | Description                          | Example                              |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | `Id`                                 | *string*                             | :heavy_check_mark:                   | Config ID                            | 4997257d-dfb6-445b-929c-cbe2ab182818 |
-| `serverURL`                          | *string*                             | :heavy_minus_sign:                   | An optional server URL to use.       | http://localhost:8080                |
 
 ### Response
 
@@ -195,7 +192,6 @@ var res = await sdk.Webhooks.V1.UpdateConfigAsync(
 | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
 | `Id`                                              | *string*                                          | :heavy_check_mark:                                | Config ID                                         | 4997257d-dfb6-445b-929c-cbe2ab182818              |
 | `ConfigUser`                                      | [ConfigUser](../../Models/Webhooks/ConfigUser.md) | :heavy_check_mark:                                | N/A                                               |                                                   |
-| `serverURL`                                       | *string*                                          | :heavy_minus_sign:                                | An optional server URL to use.                    | http://localhost:8080                             |
 
 ### Response
 
@@ -234,7 +230,6 @@ var res = await sdk.Webhooks.V1.TestConfigAsync(id: "4997257d-dfb6-445b-929c-cbe
 | Parameter                            | Type                                 | Required                             | Description                          | Example                              |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | `Id`                                 | *string*                             | :heavy_check_mark:                   | Config ID                            | 4997257d-dfb6-445b-929c-cbe2ab182818 |
-| `serverURL`                          | *string*                             | :heavy_minus_sign:                   | An optional server URL to use.       | http://localhost:8080                |
 
 ### Response
 
@@ -273,7 +268,6 @@ var res = await sdk.Webhooks.V1.ActivateConfigAsync(id: "4997257d-dfb6-445b-929c
 | Parameter                            | Type                                 | Required                             | Description                          | Example                              |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | `Id`                                 | *string*                             | :heavy_check_mark:                   | Config ID                            | 4997257d-dfb6-445b-929c-cbe2ab182818 |
-| `serverURL`                          | *string*                             | :heavy_minus_sign:                   | An optional server URL to use.       | http://localhost:8080                |
 
 ### Response
 
@@ -312,7 +306,6 @@ var res = await sdk.Webhooks.V1.DeactivateConfigAsync(id: "4997257d-dfb6-445b-92
 | Parameter                            | Type                                 | Required                             | Description                          | Example                              |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | `Id`                                 | *string*                             | :heavy_check_mark:                   | Config ID                            | 4997257d-dfb6-445b-929c-cbe2ab182818 |
-| `serverURL`                          | *string*                             | :heavy_minus_sign:                   | An optional server URL to use.       | http://localhost:8080                |
 
 ### Response
 
@@ -362,7 +355,6 @@ var res = await sdk.Webhooks.V1.ChangeConfigSecretAsync(
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `Id`                                                              | *string*                                                          | :heavy_check_mark:                                                | Config ID                                                         | 4997257d-dfb6-445b-929c-cbe2ab182818                              |
 | `ConfigChangeSecret`                                              | [ConfigChangeSecret](../../Models/Webhooks/ConfigChangeSecret.md) | :heavy_minus_sign:                                                | N/A                                                               |                                                                   |
-| `serverURL`                                                       | *string*                                                          | :heavy_minus_sign:                                                | An optional server URL to use.                                    | http://localhost:8080                                             |
 
 ### Response
 

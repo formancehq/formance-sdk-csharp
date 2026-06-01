@@ -34,12 +34,6 @@ var res = await sdk.Reconciliation.V1.GetServerInfoReconciliationAsync();
 // handle response
 ```
 
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
-
 ### Response
 
 **[GetServerInfoReconciliationResponse](../../Models/Requests/GetServerInfoReconciliationResponse.md)**
@@ -88,7 +82,6 @@ var res = await sdk.Reconciliation.V1.CreatePolicyAsync(req);
 | Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
 | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
 | `request`                                                     | [PolicyRequest](../../Models/Reconciliation/PolicyRequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
-| `serverURL`                                                   | *string*                                                      | :heavy_minus_sign:                                            | An optional server URL to use.                                |
 
 ### Response
 
@@ -132,7 +125,6 @@ var res = await sdk.Reconciliation.V1.ListPoliciesAsync(
 | `PageSize`                                                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                       | The maximum number of results to return per page.<br/>                                                                                                                                                                                                   | 100                                                                                                                                                                                                                                                      |
 | `Cursor`                                                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Parameter used in pagination requests. Maximum page size is set to 15.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                                             |
 | `RequestBody`                                                                                                                                                                                                                                            | Dictionary<String, *object*>                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                                       | N/A                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                          |
-| `serverURL`                                                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                                                    |
 
 ### Response
 
@@ -168,10 +160,9 @@ var res = await sdk.Reconciliation.V1.DeletePolicyAsync(policyID: "XXX");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `PolicyID`                     | *string*                       | :heavy_check_mark:             | The policy ID.                 | XXX                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `PolicyID`         | *string*           | :heavy_check_mark: | The policy ID.     | XXX                |
 
 ### Response
 
@@ -207,10 +198,9 @@ var res = await sdk.Reconciliation.V1.GetPolicyAsync(policyID: "XXX");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `PolicyID`                     | *string*                       | :heavy_check_mark:             | The policy ID.                 | XXX                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `PolicyID`         | *string*           | :heavy_check_mark: | The policy ID.     | XXX                |
 
 ### Response
 
@@ -258,7 +248,6 @@ var res = await sdk.Reconciliation.V1.ReconcileAsync(
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `PolicyID`                                                                    | *string*                                                                      | :heavy_check_mark:                                                            | The policy ID.                                                                | XXX                                                                           |
 | `ReconciliationRequest`                                                       | [ReconciliationRequest](../../Models/Reconciliation/ReconciliationRequest.md) | :heavy_check_mark:                                                            | N/A                                                                           |                                                                               |
-| `serverURL`                                                                   | *string*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                | http://localhost:8080                                                         |
 
 ### Response
 
@@ -302,7 +291,6 @@ var res = await sdk.Reconciliation.V1.ListReconciliationsAsync(
 | `PageSize`                                                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                       | The maximum number of results to return per page.<br/>                                                                                                                                                                                                   | 100                                                                                                                                                                                                                                                      |
 | `Cursor`                                                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | Parameter used in pagination requests. Maximum page size is set to 15.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                                             |
 | `RequestBody`                                                                                                                                                                                                                                            | Dictionary<String, *object*>                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                                       | N/A                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                          |
-| `serverURL`                                                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                                                    |
 
 ### Response
 
@@ -338,10 +326,9 @@ var res = await sdk.Reconciliation.V1.GetReconciliationAsync(reconciliationID: "
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `ReconciliationID`             | *string*                       | :heavy_check_mark:             | The reconciliation ID.         | XXX                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter              | Type                   | Required               | Description            | Example                |
+| ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- |
+| `ReconciliationID`     | *string*               | :heavy_check_mark:     | The reconciliation ID. | XXX                    |
 
 ### Response
 

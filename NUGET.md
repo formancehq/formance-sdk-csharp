@@ -130,6 +130,55 @@ var res = await sdk.GetVersionsAsync();
 ```
 <!-- End Authentication [security] -->
 
+<!-- Start Server Selection [server] -->
+## Server Selection
+
+### Select Server by Index
+
+You can override the default server globally by passing a server index to the `serverIndex: int` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+
+| #   | Server                                                | Variables                        | Description                                |
+| --- | ----------------------------------------------------- | -------------------------------- | ------------------------------------------ |
+| 0   | `http://localhost`                                    |                                  | local server                               |
+| 1   | `https://{organization}.{environment}.formance.cloud` | `organization`<br/>`environment` | A per-organization and per-environment API |
+
+If the selected server has variables, you may override its default values through the additional parameters made available in the SDK constructor:
+
+| Variable       | Parameter                                           | Supported Values                                         | Default           | Description                                                   |
+| -------------- | --------------------------------------------------- | -------------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
+| `organization` | `organization: string`                              | string                                                   | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
+| `environment`  | `environment: FormanceSDK.Models.ServerEnvironment` | - `"eu.sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"eu.sandbox"`    | The environment name. Defaults to the production environment. |
+
+#### Example
+
+```csharp
+using FormanceSDK;
+
+var sdk = new Formance(
+    serverIndex: 1,
+    organization: "orgID-stackID",
+    environment: "us-east-1"
+);
+
+var res = await sdk.GetVersionsAsync();
+
+// handle response
+```
+
+### Override Server URL Per-Client
+
+The default server can also be overridden globally by passing a URL to the `serverUrl: string` optional parameter when initializing the SDK client instance. For example:
+```csharp
+using FormanceSDK;
+
+var sdk = new Formance(serverUrl: "https://orgID-stackID.eu.sandbox.formance.cloud");
+
+var res = await sdk.GetVersionsAsync();
+
+// handle response
+```
+<!-- End Server Selection [server] -->
+
 <!-- Start Custom HTTP Client [http-client] -->
 ## Custom HTTP Client
 

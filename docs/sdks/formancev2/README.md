@@ -44,12 +44,6 @@ var res = await sdk.Orchestration.V2.GetServerInfoAsync();
 // handle response
 ```
 
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
-
 ### Response
 
 **[V2GetServerInfoResponse](../../Models/Requests/V2GetServerInfoResponse.md)**
@@ -92,7 +86,6 @@ var res = await sdk.Orchestration.V2.ListTriggersAsync(
 | `Cursor`                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                       | Parameter used in pagination requests.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                             |
 | `PageSize`                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                       | The maximum number of results to return per page.<br/>                                                                                                                                                                   | 100                                                                                                                                                                                                                      |
 | `Name`                                                                                                                                                                                                                   | *string*                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                       | search by name                                                                                                                                                                                                           |                                                                                                                                                                                                                          |
-| `serverURL`                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                    |
 
 ### Response
 
@@ -134,7 +127,6 @@ var res = await sdk.Orchestration.V2.CreateTriggerAsync(req);
 | Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
 | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
 | `request`                                                      | [V2TriggerData1](../../Models/Orchestration/V2TriggerData1.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
-| `serverURL`                                                    | *string*                                                       | :heavy_minus_sign:                                             | An optional server URL to use.                                 |
 
 ### Response
 
@@ -170,10 +162,9 @@ var res = await sdk.Orchestration.V2.ReadTriggerAsync(triggerID: "<id>");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `TriggerID`                    | *string*                       | :heavy_check_mark:             | The trigger id                 |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `TriggerID`        | *string*           | :heavy_check_mark: | The trigger id     |
 
 ### Response
 
@@ -209,10 +200,9 @@ var res = await sdk.Orchestration.V2.DeleteTriggerAsync(triggerID: "<id>");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `TriggerID`                    | *string*                       | :heavy_check_mark:             | The trigger id                 |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `TriggerID`        | *string*           | :heavy_check_mark: | The trigger id     |
 
 ### Response
 
@@ -248,11 +238,10 @@ var res = await sdk.Orchestration.V2.TestTriggerAsync(triggerID: "<id>");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `TriggerID`                    | *string*                       | :heavy_check_mark:             | The trigger id                 |
-| `RequestBody`                  | Dictionary<String, *object*>   | :heavy_minus_sign:             | N/A                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+| Parameter                    | Type                         | Required                     | Description                  |
+| ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
+| `TriggerID`                  | *string*                     | :heavy_check_mark:           | The trigger id               |
+| `RequestBody`                | Dictionary<String, *object*> | :heavy_minus_sign:           | N/A                          |
 
 ### Response
 
@@ -297,7 +286,6 @@ var res = await sdk.Orchestration.V2.ListTriggersOccurrencesAsync(
 | `TriggerID`                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                       | The trigger id                                                                                                                                                                                                           |                                                                                                                                                                                                                          |
 | `Cursor`                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                       | Parameter used in pagination requests.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                             |
 | `PageSize`                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                       | The maximum number of results to return per page.<br/>                                                                                                                                                                   | 100                                                                                                                                                                                                                      |
-| `serverURL`                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                    |
 
 ### Response
 
@@ -340,7 +328,6 @@ var res = await sdk.Orchestration.V2.ListWorkflowsAsync(
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `Cursor`                                                                                                                                                                                                                 | *string*                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                       | Parameter used in pagination requests.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when this parameter is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                             |
 | `PageSize`                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                       | The maximum number of results to return per page.<br/>                                                                                                                                                                   | 100                                                                                                                                                                                                                      |
-| `serverURL`                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                    |
 
 ### Response
 
@@ -382,7 +369,6 @@ var res = await sdk.Orchestration.V2.CreateWorkflowAsync(req);
 | Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
 | `request`                                                          | [V2WorkflowConfig](../../Models/Orchestration/V2WorkflowConfig.md) | :heavy_check_mark:                                                 | The request object to use for the request.                         |
-| `serverURL`                                                        | *string*                                                           | :heavy_minus_sign:                                                 | An optional server URL to use.                                     |
 
 ### Response
 
@@ -418,10 +404,9 @@ var res = await sdk.Orchestration.V2.GetWorkflowAsync(flowId: "xxx");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `FlowId`                       | *string*                       | :heavy_check_mark:             | The flow id                    | xxx                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `FlowId`           | *string*           | :heavy_check_mark: | The flow id        | xxx                |
 
 ### Response
 
@@ -457,10 +442,9 @@ var res = await sdk.Orchestration.V2.DeleteWorkflowAsync(flowId: "xxx");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `FlowId`                       | *string*                       | :heavy_check_mark:             | The flow id                    | xxx                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `FlowId`           | *string*           | :heavy_check_mark: | The flow id        | xxx                |
 
 ### Response
 
@@ -501,7 +485,6 @@ var res = await sdk.Orchestration.V2.RunWorkflowAsync(workflowID: "xxx");
 | `WorkflowID`                           | *string*                               | :heavy_check_mark:                     | The flow id                            | xxx                                    |
 | `Wait`                                 | *bool*                                 | :heavy_minus_sign:                     | Wait end of the workflow before return |                                        |
 | `RequestBody`                          | Dictionary<String, *string*>           | :heavy_minus_sign:                     | N/A                                    |                                        |
-| `serverURL`                            | *string*                               | :heavy_minus_sign:                     | An optional server URL to use.         | http://localhost:8080                  |
 
 ### Response
 
@@ -548,7 +531,6 @@ var res = await sdk.Orchestration.V2.ListInstancesAsync(
 | `PageSize`                                                                                                                                                                                                               | *long*                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                       | The maximum number of results to return per page.<br/>                                                                                                                                                                   | 100                                                                                                                                                                                                                      |
 | `WorkflowID`                                                                                                                                                                                                             | *string*                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                       | A workflow id                                                                                                                                                                                                            | xxx                                                                                                                                                                                                                      |
 | `Running`                                                                                                                                                                                                                | *bool*                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                       | Filter running instances                                                                                                                                                                                                 | true                                                                                                                                                                                                                     |
-| `serverURL`                                                                                                                                                                                                              | *string*                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                       | An optional server URL to use.                                                                                                                                                                                           | http://localhost:8080                                                                                                                                                                                                    |
 
 ### Response
 
@@ -584,10 +566,9 @@ var res = await sdk.Orchestration.V2.GetInstanceAsync(instanceID: "xxx");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `InstanceID`                   | *string*                       | :heavy_check_mark:             | The instance id                | xxx                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `InstanceID`       | *string*           | :heavy_check_mark: | The instance id    | xxx                |
 
 ### Response
 
@@ -627,7 +608,6 @@ var res = await sdk.Orchestration.V2.SendEventAsync(instanceID: "xxx");
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `InstanceID`                                                              | *string*                                                                  | :heavy_check_mark:                                                        | The instance id                                                           | xxx                                                                       |
 | `RequestBody`                                                             | [V2SendEventRequestBody](../../Models/Requests/V2SendEventRequestBody.md) | :heavy_minus_sign:                                                        | N/A                                                                       |                                                                           |
-| `serverURL`                                                               | *string*                                                                  | :heavy_minus_sign:                                                        | An optional server URL to use.                                            | http://localhost:8080                                                     |
 
 ### Response
 
@@ -663,10 +643,9 @@ var res = await sdk.Orchestration.V2.CancelEventAsync(instanceID: "xxx");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `InstanceID`                   | *string*                       | :heavy_check_mark:             | The instance id                | xxx                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `InstanceID`       | *string*           | :heavy_check_mark: | The instance id    | xxx                |
 
 ### Response
 
@@ -702,10 +681,9 @@ var res = await sdk.Orchestration.V2.GetInstanceHistoryAsync(instanceID: "xxx");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `InstanceID`                   | *string*                       | :heavy_check_mark:             | The instance id                | xxx                            |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `InstanceID`       | *string*           | :heavy_check_mark: | The instance id    | xxx                |
 
 ### Response
 
@@ -744,11 +722,10 @@ var res = await sdk.Orchestration.V2.GetInstanceStageHistoryAsync(
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `InstanceID`                   | *string*                       | :heavy_check_mark:             | The instance id                | xxx                            |
-| `Number`                       | *long*                         | :heavy_check_mark:             | The stage number               | 0                              |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `InstanceID`       | *string*           | :heavy_check_mark: | The instance id    | xxx                |
+| `Number`           | *long*             | :heavy_check_mark: | The stage number   | 0                  |
 
 ### Response
 

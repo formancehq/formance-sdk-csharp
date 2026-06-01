@@ -31,13 +31,12 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetServerInfoWalletsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<GetServerInfoWalletsResponse> GetServerInfoWalletsAsync(string? serverUrl = null);
+        public  Task<GetServerInfoWalletsResponse> GetServerInfoWalletsAsync();
 
         /// <summary>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
@@ -50,7 +49,6 @@ namespace FormanceSDK
         /// Set to the value of previous for the previous page of results.<br/>
         /// No other parameters can be set when the cursor is set.
         /// </param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetTransactionsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -59,8 +57,7 @@ namespace FormanceSDK
         public  Task<Models.Requests.GetTransactionsResponse> GetTransactionsAsync(
             long? pageSize = 15,
             string? walletID = null,
-            string? cursor = null,
-            string? serverUrl = null
+            string? cursor = null
         );
 
         /// <summary>
@@ -70,16 +67,12 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="request">A <see cref="ListWalletsRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.ListWalletsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Wallets.ErrorResponse">OK. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<Models.Requests.ListWalletsResponse> ListWalletsAsync(
-            ListWalletsRequest? request = null,
-            string? serverUrl = null
-        );
+        public  Task<Models.Requests.ListWalletsResponse> ListWalletsAsync(ListWalletsRequest? request = null);
 
         /// <summary>
         /// Create a new wallet.
@@ -89,7 +82,6 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
         /// <param name="createWalletRequest">A <see cref="FormanceSDK.Models.Wallets.CreateWalletRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.CreateWalletResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -97,8 +89,7 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<Models.Requests.CreateWalletResponse> CreateWalletAsync(
             string? idempotencyKey = null,
-            Models.Wallets.CreateWalletRequest? createWalletRequest = null,
-            string? serverUrl = null
+            Models.Wallets.CreateWalletRequest? createWalletRequest = null
         );
 
         /// <summary>
@@ -108,14 +99,13 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="id">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetWalletResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200 or 404.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<Models.Requests.GetWalletResponse> GetWalletAsync(string id, string? serverUrl = null);
+        public  Task<Models.Requests.GetWalletResponse> GetWalletAsync(string id);
 
         /// <summary>
         /// Update a wallet.
@@ -126,7 +116,6 @@ namespace FormanceSDK
         /// <param name="id">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
         /// <param name="requestBody">A <see cref="UpdateWalletRequestBody"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="UpdateWalletResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -136,8 +125,7 @@ namespace FormanceSDK
         public  Task<UpdateWalletResponse> UpdateWalletAsync(
             string id,
             string? idempotencyKey = null,
-            UpdateWalletRequestBody? requestBody = null,
-            string? serverUrl = null
+            UpdateWalletRequestBody? requestBody = null
         );
 
         /// <summary>
@@ -147,14 +135,13 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="id">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetWalletSummaryResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200 or 404.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<Models.Requests.GetWalletSummaryResponse> GetWalletSummaryAsync(string id, string? serverUrl = null);
+        public  Task<Models.Requests.GetWalletSummaryResponse> GetWalletSummaryAsync(string id);
 
         /// <summary>
         /// List balances of a wallet.
@@ -163,13 +150,12 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="id">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.ListBalancesResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public  Task<Models.Requests.ListBalancesResponse> ListBalancesAsync(string id, string? serverUrl = null);
+        public  Task<Models.Requests.ListBalancesResponse> ListBalancesAsync(string id);
 
         /// <summary>
         /// Create a balance.
@@ -180,7 +166,6 @@ namespace FormanceSDK
         /// <param name="id">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
         /// <param name="balance">A <see cref="Balance"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.CreateBalanceResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -190,8 +175,7 @@ namespace FormanceSDK
         public  Task<Models.Requests.CreateBalanceResponse> CreateBalanceAsync(
             string id,
             string? idempotencyKey = null,
-            Balance? balance = null,
-            string? serverUrl = null
+            Balance? balance = null
         );
 
         /// <summary>
@@ -202,18 +186,13 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="id">Description not available.</param>
         /// <param name="balanceName">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetBalanceResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="id"/> or <paramref name="balanceName"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<Models.Requests.GetBalanceResponse> GetBalanceAsync(
-            string id,
-            string balanceName,
-            string? serverUrl = null
-        );
+        public  Task<Models.Requests.GetBalanceResponse> GetBalanceAsync(string id, string balanceName);
 
         /// <summary>
         /// Debit a wallet.
@@ -224,7 +203,6 @@ namespace FormanceSDK
         /// <param name="id">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
         /// <param name="debitWalletRequest">A <see cref="FormanceSDK.Models.Wallets.DebitWalletRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.DebitWalletResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -234,8 +212,7 @@ namespace FormanceSDK
         public  Task<Models.Requests.DebitWalletResponse> DebitWalletAsync(
             string id,
             string? idempotencyKey = null,
-            Models.Wallets.DebitWalletRequest? debitWalletRequest = null,
-            string? serverUrl = null
+            Models.Wallets.DebitWalletRequest? debitWalletRequest = null
         );
 
         /// <summary>
@@ -247,7 +224,6 @@ namespace FormanceSDK
         /// <param name="id">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
         /// <param name="creditWalletRequest">A <see cref="FormanceSDK.Models.Wallets.CreditWalletRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="CreditWalletResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -257,8 +233,7 @@ namespace FormanceSDK
         public  Task<CreditWalletResponse> CreditWalletAsync(
             string id,
             string? idempotencyKey = null,
-            Models.Wallets.CreditWalletRequest? creditWalletRequest = null,
-            string? serverUrl = null
+            Models.Wallets.CreditWalletRequest? creditWalletRequest = null
         );
 
         /// <summary>
@@ -276,7 +251,6 @@ namespace FormanceSDK
         /// Set to the value of previous for the previous page of results.<br/>
         /// No other parameters can be set when the pagination token is set.
         /// </param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetHoldsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -286,8 +260,7 @@ namespace FormanceSDK
             long? pageSize = 15,
             string? walletID = null,
             Dictionary<string, string>? metadata = null,
-            string? cursor = null,
-            string? serverUrl = null
+            string? cursor = null
         );
 
         /// <summary>
@@ -297,14 +270,13 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="holdID">The hold ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetHoldResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="holdID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<Models.Requests.GetHoldResponse> GetHoldAsync(string holdID, string? serverUrl = null);
+        public  Task<Models.Requests.GetHoldResponse> GetHoldAsync(string holdID);
 
         /// <summary>
         /// Confirm a hold.
@@ -315,7 +287,6 @@ namespace FormanceSDK
         /// <param name="holdId">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
         /// <param name="confirmHoldRequest">A <see cref="FormanceSDK.Models.Wallets.ConfirmHoldRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ConfirmHoldResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="holdId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -325,8 +296,7 @@ namespace FormanceSDK
         public  Task<ConfirmHoldResponse> ConfirmHoldAsync(
             string holdId,
             string? idempotencyKey = null,
-            Models.Wallets.ConfirmHoldRequest? confirmHoldRequest = null,
-            string? serverUrl = null
+            Models.Wallets.ConfirmHoldRequest? confirmHoldRequest = null
         );
 
         /// <summary>
@@ -337,134 +307,17 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="holdId">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="VoidHoldResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="holdId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<VoidHoldResponse> VoidHoldAsync(
-            string holdId,
-            string? idempotencyKey = null,
-            string? serverUrl = null
-        );
+        public  Task<VoidHoldResponse> VoidHoldAsync(string holdId, string? idempotencyKey = null);
     }
 
     public class FormanceWalletsV1: IFormanceWalletsV1
     {
-        /// <summary>
-        /// List of server URLs available for the getServerInfo_wallets operation.
-        /// </summary>
-        public static readonly string[] GetServerInfoWalletsServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the getTransactions operation.
-        /// </summary>
-        public static readonly string[] GetTransactionsServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the listWallets operation.
-        /// </summary>
-        public static readonly string[] ListWalletsServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the createWallet operation.
-        /// </summary>
-        public static readonly string[] CreateWalletServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the getWallet operation.
-        /// </summary>
-        public static readonly string[] GetWalletServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the updateWallet operation.
-        /// </summary>
-        public static readonly string[] UpdateWalletServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the getWalletSummary operation.
-        /// </summary>
-        public static readonly string[] GetWalletSummaryServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the listBalances operation.
-        /// </summary>
-        public static readonly string[] ListBalancesServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the createBalance operation.
-        /// </summary>
-        public static readonly string[] CreateBalanceServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the getBalance operation.
-        /// </summary>
-        public static readonly string[] GetBalanceServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the debitWallet operation.
-        /// </summary>
-        public static readonly string[] DebitWalletServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the creditWallet operation.
-        /// </summary>
-        public static readonly string[] CreditWalletServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the getHolds operation.
-        /// </summary>
-        public static readonly string[] GetHoldsServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the getHold operation.
-        /// </summary>
-        public static readonly string[] GetHoldServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the confirmHold operation.
-        /// </summary>
-        public static readonly string[] ConfirmHoldServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the voidHold operation.
-        /// </summary>
-        public static readonly string[] VoidHoldServerList = {
-            "http://localhost:8080/",
-        };
-
         /// <summary>
         /// SDK Configuration.
         /// <see cref="SDKConfig"/>
@@ -482,20 +335,14 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetServerInfoWalletsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<GetServerInfoWalletsResponse> GetServerInfoWalletsAsync(string? serverUrl = null)
+        public async  Task<GetServerInfoWalletsResponse> GetServerInfoWalletsAsync()
         {
-            string baseUrl = Utilities.TemplateUrl(GetServerInfoWalletsServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/wallets/_info";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -610,7 +457,6 @@ namespace FormanceSDK
         /// Set to the value of previous for the previous page of results.<br/>
         /// No other parameters can be set when the cursor is set.
         /// </param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetTransactionsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -619,8 +465,7 @@ namespace FormanceSDK
         public async  Task<Models.Requests.GetTransactionsResponse> GetTransactionsAsync(
             long? pageSize = 15,
             string? walletID = null,
-            string? cursor = null,
-            string? serverUrl = null
+            string? cursor = null
         )
         {
             var request = new GetTransactionsRequest()
@@ -630,12 +475,7 @@ namespace FormanceSDK
                 Cursor = cursor,
             };
 
-            string baseUrl = Utilities.TemplateUrl(GetTransactionsServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/transactions", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -746,23 +586,14 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="request">A <see cref="ListWalletsRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.ListWalletsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Wallets.ErrorResponse">OK. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<Models.Requests.ListWalletsResponse> ListWalletsAsync(
-            ListWalletsRequest? request = null,
-            string? serverUrl = null
-        )
+        public async  Task<Models.Requests.ListWalletsResponse> ListWalletsAsync(ListWalletsRequest? request = null)
         {
-            string baseUrl = Utilities.TemplateUrl(ListWalletsServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/wallets", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -874,7 +705,6 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
         /// <param name="createWalletRequest">A <see cref="FormanceSDK.Models.Wallets.CreateWalletRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.CreateWalletResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -882,8 +712,7 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<Models.Requests.CreateWalletResponse> CreateWalletAsync(
             string? idempotencyKey = null,
-            Models.Wallets.CreateWalletRequest? createWalletRequest = null,
-            string? serverUrl = null
+            Models.Wallets.CreateWalletRequest? createWalletRequest = null
         )
         {
             var request = new Models.Requests.CreateWalletRequest()
@@ -892,12 +721,7 @@ namespace FormanceSDK
                 CreateWalletRequestValue = createWalletRequest,
             };
 
-            string baseUrl = Utilities.TemplateUrl(CreateWalletServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/wallets/wallets";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -1015,14 +839,13 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="id">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetWalletResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200 or 404.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<Models.Requests.GetWalletResponse> GetWalletAsync(string id, string? serverUrl = null)
+        public async  Task<Models.Requests.GetWalletResponse> GetWalletAsync(string id)
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
 
@@ -1031,12 +854,7 @@ namespace FormanceSDK
                 Id = id,
             };
 
-            string baseUrl = Utilities.TemplateUrl(GetWalletServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/wallets/{id}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1160,7 +978,6 @@ namespace FormanceSDK
         /// <param name="id">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
         /// <param name="requestBody">A <see cref="UpdateWalletRequestBody"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="UpdateWalletResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -1170,8 +987,7 @@ namespace FormanceSDK
         public async  Task<UpdateWalletResponse> UpdateWalletAsync(
             string id,
             string? idempotencyKey = null,
-            UpdateWalletRequestBody? requestBody = null,
-            string? serverUrl = null
+            UpdateWalletRequestBody? requestBody = null
         )
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
@@ -1183,12 +999,7 @@ namespace FormanceSDK
                 RequestBody = requestBody,
             };
 
-            string baseUrl = Utilities.TemplateUrl(UpdateWalletServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/wallets/{id}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Patch, urlString);
@@ -1288,17 +1099,13 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="id">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetWalletSummaryResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200 or 404.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<Models.Requests.GetWalletSummaryResponse> GetWalletSummaryAsync(
-            string id,
-            string? serverUrl = null
-        )
+        public async  Task<Models.Requests.GetWalletSummaryResponse> GetWalletSummaryAsync(string id)
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
 
@@ -1307,12 +1114,7 @@ namespace FormanceSDK
                 Id = id,
             };
 
-            string baseUrl = Utilities.TemplateUrl(GetWalletSummaryServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/wallets/{id}/summary", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1434,13 +1236,12 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="id">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.ListBalancesResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public async  Task<Models.Requests.ListBalancesResponse> ListBalancesAsync(string id, string? serverUrl = null)
+        public async  Task<Models.Requests.ListBalancesResponse> ListBalancesAsync(string id)
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
 
@@ -1449,12 +1250,7 @@ namespace FormanceSDK
                 Id = id,
             };
 
-            string baseUrl = Utilities.TemplateUrl(ListBalancesServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/wallets/{id}/balances", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1551,7 +1347,6 @@ namespace FormanceSDK
         /// <param name="id">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
         /// <param name="balance">A <see cref="Balance"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.CreateBalanceResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -1561,8 +1356,7 @@ namespace FormanceSDK
         public async  Task<Models.Requests.CreateBalanceResponse> CreateBalanceAsync(
             string id,
             string? idempotencyKey = null,
-            Balance? balance = null,
-            string? serverUrl = null
+            Balance? balance = null
         )
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
@@ -1574,12 +1368,7 @@ namespace FormanceSDK
                 Balance = balance,
             };
 
-            string baseUrl = Utilities.TemplateUrl(CreateBalanceServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/wallets/{id}/balances", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -1698,18 +1487,13 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="id">Description not available.</param>
         /// <param name="balanceName">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetBalanceResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="id"/> or <paramref name="balanceName"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<Models.Requests.GetBalanceResponse> GetBalanceAsync(
-            string id,
-            string balanceName,
-            string? serverUrl = null
-        )
+        public async  Task<Models.Requests.GetBalanceResponse> GetBalanceAsync(string id, string balanceName)
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
             if (balanceName == null) throw new ArgumentNullException(nameof(balanceName));
@@ -1720,12 +1504,7 @@ namespace FormanceSDK
                 BalanceName = balanceName,
             };
 
-            string baseUrl = Utilities.TemplateUrl(GetBalanceServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/wallets/{id}/balances/{balanceName}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1838,7 +1617,6 @@ namespace FormanceSDK
         /// <param name="id">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
         /// <param name="debitWalletRequest">A <see cref="FormanceSDK.Models.Wallets.DebitWalletRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.DebitWalletResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -1848,8 +1626,7 @@ namespace FormanceSDK
         public async  Task<Models.Requests.DebitWalletResponse> DebitWalletAsync(
             string id,
             string? idempotencyKey = null,
-            Models.Wallets.DebitWalletRequest? debitWalletRequest = null,
-            string? serverUrl = null
+            Models.Wallets.DebitWalletRequest? debitWalletRequest = null
         )
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
@@ -1861,12 +1638,7 @@ namespace FormanceSDK
                 DebitWalletRequestValue = debitWalletRequest,
             };
 
-            string baseUrl = Utilities.TemplateUrl(DebitWalletServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/wallets/{id}/debit", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -1997,7 +1769,6 @@ namespace FormanceSDK
         /// <param name="id">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
         /// <param name="creditWalletRequest">A <see cref="FormanceSDK.Models.Wallets.CreditWalletRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="CreditWalletResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -2007,8 +1778,7 @@ namespace FormanceSDK
         public async  Task<CreditWalletResponse> CreditWalletAsync(
             string id,
             string? idempotencyKey = null,
-            Models.Wallets.CreditWalletRequest? creditWalletRequest = null,
-            string? serverUrl = null
+            Models.Wallets.CreditWalletRequest? creditWalletRequest = null
         )
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
@@ -2020,12 +1790,7 @@ namespace FormanceSDK
                 CreditWalletRequestValue = creditWalletRequest,
             };
 
-            string baseUrl = Utilities.TemplateUrl(CreditWalletServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/wallets/{id}/credit", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -2133,7 +1898,6 @@ namespace FormanceSDK
         /// Set to the value of previous for the previous page of results.<br/>
         /// No other parameters can be set when the pagination token is set.
         /// </param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetHoldsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -2143,8 +1907,7 @@ namespace FormanceSDK
             long? pageSize = 15,
             string? walletID = null,
             Dictionary<string, string>? metadata = null,
-            string? cursor = null,
-            string? serverUrl = null
+            string? cursor = null
         )
         {
             var request = new GetHoldsRequest()
@@ -2155,12 +1918,7 @@ namespace FormanceSDK
                 Cursor = cursor,
             };
 
-            string baseUrl = Utilities.TemplateUrl(GetHoldsServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/holds", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -2271,14 +2029,13 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="holdID">The hold ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetHoldResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="holdID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<Models.Requests.GetHoldResponse> GetHoldAsync(string holdID, string? serverUrl = null)
+        public async  Task<Models.Requests.GetHoldResponse> GetHoldAsync(string holdID)
         {
             if (holdID == null) throw new ArgumentNullException(nameof(holdID));
 
@@ -2287,12 +2044,7 @@ namespace FormanceSDK
                 HoldID = holdID,
             };
 
-            string baseUrl = Utilities.TemplateUrl(GetHoldServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/holds/{holdID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -2405,7 +2157,6 @@ namespace FormanceSDK
         /// <param name="holdId">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
         /// <param name="confirmHoldRequest">A <see cref="FormanceSDK.Models.Wallets.ConfirmHoldRequest"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ConfirmHoldResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="holdId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -2415,8 +2166,7 @@ namespace FormanceSDK
         public async  Task<ConfirmHoldResponse> ConfirmHoldAsync(
             string holdId,
             string? idempotencyKey = null,
-            Models.Wallets.ConfirmHoldRequest? confirmHoldRequest = null,
-            string? serverUrl = null
+            Models.Wallets.ConfirmHoldRequest? confirmHoldRequest = null
         )
         {
             if (holdId == null) throw new ArgumentNullException(nameof(holdId));
@@ -2428,12 +2178,7 @@ namespace FormanceSDK
                 ConfirmHoldRequestValue = confirmHoldRequest,
             };
 
-            string baseUrl = Utilities.TemplateUrl(ConfirmHoldServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/holds/{hold_id}/confirm", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -2534,18 +2279,13 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="holdId">Description not available.</param>
         /// <param name="idempotencyKey">Use an idempotency key.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="VoidHoldResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="holdId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Wallets.ErrorResponse">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<VoidHoldResponse> VoidHoldAsync(
-            string holdId,
-            string? idempotencyKey = null,
-            string? serverUrl = null
-        )
+        public async  Task<VoidHoldResponse> VoidHoldAsync(string holdId, string? idempotencyKey = null)
         {
             if (holdId == null) throw new ArgumentNullException(nameof(holdId));
 
@@ -2555,12 +2295,7 @@ namespace FormanceSDK
                 IdempotencyKey = idempotencyKey,
             };
 
-            string baseUrl = Utilities.TemplateUrl(VoidHoldServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/wallets/holds/{hold_id}/void", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);

@@ -46,12 +46,6 @@ var res = await sdk.Ledger.V1.GetInfoAsync();
 // handle response
 ```
 
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
-
 ### Response
 
 **[GetInfoResponse](../../Models/Requests/GetInfoResponse.md)**
@@ -86,10 +80,9 @@ var res = await sdk.Ledger.V1.GetLedgerInfoAsync(ledger: "ledger001");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter           | Type                | Required            | Description         | Example             |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
 
 ### Response
 
@@ -186,7 +179,6 @@ var res = await sdk.Ledger.V1.CountAccountsAsync(
 | `Ledger`                                                                                                                         | *string*                                                                                                                         | :heavy_check_mark:                                                                                                               | Name of the ledger.                                                                                                              | ledger001                                                                                                                        |
 | `Address`                                                                                                                        | *string*                                                                                                                         | :heavy_minus_sign:                                                                                                               | Filter accounts by address pattern (regular expression placed between ^ and $).                                                  | users:.+                                                                                                                         |
 | `Metadata`                                                                                                                       | Dictionary<String, *object*>                                                                                                     | :heavy_minus_sign:                                                                                                               | Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&metadata[a.nested.key]=value2 | metadata[key]=value1&metadata[a.nested.key]=value2                                                                               |
-| `serverURL`                                                                                                                      | *string*                                                                                                                         | :heavy_minus_sign:                                                                                                               | An optional server URL to use.                                                                                                   | http://localhost:8080                                                                                                            |
 
 ### Response
 
@@ -288,7 +280,6 @@ var res = await sdk.Ledger.V1.ListAccountsLedgerAsync(req);
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `request`                                                                       | [ListAccountsLedgerRequest](../../Models/Requests/ListAccountsLedgerRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
-| `serverURL`                                                                     | *string*                                                                        | :heavy_minus_sign:                                                              | An optional server URL to use.                                                  |
 
 ### Response
 
@@ -331,7 +322,6 @@ var res = await sdk.Ledger.V1.GetAccountLedgerAsync(
 | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
 | `Ledger`                                                                                                     | *string*                                                                                                     | :heavy_check_mark:                                                                                           | Name of the ledger.                                                                                          | ledger001                                                                                                    |
 | `Address`                                                                                                    | *string*                                                                                                     | :heavy_check_mark:                                                                                           | Exact address of the account. It must match the following regular expressions pattern:<br/>```<br/>^\w+(:\w+)*$<br/>```<br/> | users:001                                                                                                    |
-| `serverURL`                                                                                                  | *string*                                                                                                     | :heavy_minus_sign:                                                                                           | An optional server URL to use.                                                                               | http://localhost:8080                                                                                        |
 
 ### Response
 
@@ -381,7 +371,6 @@ var res = await sdk.Ledger.V1.AddMetadataToAccountAsync(
 | `Ledger`                                                                                                     | *string*                                                                                                     | :heavy_check_mark:                                                                                           | Name of the ledger.                                                                                          | ledger001                                                                                                    |
 | `Address`                                                                                                    | *string*                                                                                                     | :heavy_check_mark:                                                                                           | Exact address of the account. It must match the following regular expressions pattern:<br/>```<br/>^\w+(:\w+)*$<br/>```<br/> | users:001                                                                                                    |
 | `RequestBody`                                                                                                | Dictionary<String, *object*>                                                                                 | :heavy_check_mark:                                                                                           | metadata                                                                                                     |                                                                                                              |
-| `serverURL`                                                                                                  | *string*                                                                                                     | :heavy_minus_sign:                                                                                           | An optional server URL to use.                                                                               | http://localhost:8080                                                                                        |
 
 ### Response
 
@@ -417,10 +406,9 @@ var res = await sdk.Ledger.V1.GetMappingAsync(ledger: "ledger001");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter           | Type                | Required            | Description         | Example             |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
 
 ### Response
 
@@ -463,7 +451,6 @@ var res = await sdk.Ledger.V1.UpdateMappingAsync(
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | `Ledger`                                  | *string*                                  | :heavy_check_mark:                        | Name of the ledger.                       | ledger001                                 |
 | `Mapping`                                 | [Mapping](../../Models/Ledger/Mapping.md) | :heavy_check_mark:                        | N/A                                       |                                           |
-| `serverURL`                               | *string*                                  | :heavy_minus_sign:                        | An optional server URL to use.            | http://localhost:8080                     |
 
 ### Response
 
@@ -525,7 +512,6 @@ var res = await sdk.Ledger.V1.RunScriptAsync(
 | `Ledger`                                                                                                            | *string*                                                                                                            | :heavy_check_mark:                                                                                                  | Name of the ledger.                                                                                                 | ledger001                                                                                                           |
 | `Script`                                                                                                            | [Models.Ledger.Script](../../Models/Ledger/Script.md)                                                               | :heavy_check_mark:                                                                                                  | N/A                                                                                                                 |                                                                                                                     |
 | `Preview`                                                                                                           | *bool*                                                                                                              | :heavy_minus_sign:                                                                                                  | Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker. | true                                                                                                                |
-| `serverURL`                                                                                                         | *string*                                                                                                            | :heavy_minus_sign:                                                                                                  | An optional server URL to use.                                                                                      | http://localhost:8080                                                                                               |
 
 ### Response
 
@@ -561,10 +547,9 @@ var res = await sdk.Ledger.V1.ReadStatsAsync(ledger: "ledger001");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Ledger`                       | *string*                       | :heavy_check_mark:             | name of the ledger             | ledger001                      |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `Ledger`           | *string*           | :heavy_check_mark: | name of the ledger | ledger001          |
 
 ### Response
 
@@ -613,7 +598,6 @@ var res = await sdk.Ledger.V1.CountTransactionsAsync(req);
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [CountTransactionsRequest](../../Models/Requests/CountTransactionsRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
-| `serverURL`                                                                   | *string*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
@@ -664,7 +648,6 @@ var res = await sdk.Ledger.V1.ListTransactionsAsync(req);
 | Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
 | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | `request`                                                                   | [ListTransactionsRequest](../../Models/Requests/ListTransactionsRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
-| `serverURL`                                                                 | *string*                                                                    | :heavy_minus_sign:                                                          | An optional server URL to use.                                              |
 
 ### Response
 
@@ -735,7 +718,6 @@ var res = await sdk.Ledger.V1.CreateTransactionAsync(
 | `Ledger`                                                                                                                                                                               | *string*                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                     | Name of the ledger.                                                                                                                                                                    | ledger001                                                                                                                                                                              |
 | `PostTransaction`                                                                                                                                                                      | [Models.Ledger.PostTransaction](../../Models/Ledger/PostTransaction.md)                                                                                                                | :heavy_check_mark:                                                                                                                                                                     | The request body must contain at least one of the following objects:<br/>  - `postings`: suitable for simple transactions<br/>  - `script`: enabling more complex transactions with Numscript<br/> |                                                                                                                                                                                        |
 | `Preview`                                                                                                                                                                              | *bool*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                     | Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.                                                                    | true                                                                                                                                                                                   |
-| `serverURL`                                                                                                                                                                            | *string*                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                     | An optional server URL to use.                                                                                                                                                         | http://localhost:8080                                                                                                                                                                  |
 
 ### Response
 
@@ -775,11 +757,10 @@ var res = await sdk.Ledger.V1.GetTransactionAsync(
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
-| `Txid`                         | *BigInteger*                   | :heavy_check_mark:             | Transaction ID.                | 1234                           |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter           | Type                | Required            | Description         | Example             |
+| ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| `Ledger`            | *string*            | :heavy_check_mark:  | Name of the ledger. | ledger001           |
+| `Txid`              | *BigInteger*        | :heavy_check_mark:  | Transaction ID.     | 1234                |
 
 ### Response
 
@@ -823,12 +804,11 @@ var res = await sdk.Ledger.V1.AddMetadataOnTransactionAsync(
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    | Example                        |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `Ledger`                       | *string*                       | :heavy_check_mark:             | Name of the ledger.            | ledger001                      |
-| `Txid`                         | *BigInteger*                   | :heavy_check_mark:             | Transaction ID.                | 1234                           |
-| `RequestBody`                  | Dictionary<String, *object*>   | :heavy_check_mark:             | metadata                       |                                |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. | http://localhost:8080          |
+| Parameter                    | Type                         | Required                     | Description                  | Example                      |
+| ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
+| `Ledger`                     | *string*                     | :heavy_check_mark:           | Name of the ledger.          | ledger001                    |
+| `Txid`                       | *BigInteger*                 | :heavy_check_mark:           | Transaction ID.              | 1234                         |
+| `RequestBody`                | Dictionary<String, *object*> | :heavy_check_mark:           | metadata                     |                              |
 
 ### Response
 
@@ -873,7 +853,6 @@ var res = await sdk.Ledger.V1.RevertTransactionAsync(
 | `Ledger`                         | *string*                         | :heavy_check_mark:               | Name of the ledger.              | ledger001                        |
 | `Txid`                           | *BigInteger*                     | :heavy_check_mark:               | Transaction ID.                  | 1234                             |
 | `DisableChecks`                  | *bool*                           | :heavy_minus_sign:               | Allow to disable balances checks |                                  |
-| `serverURL`                      | *string*                         | :heavy_minus_sign:               | An optional server URL to use.   | http://localhost:8080            |
 
 ### Response
 
@@ -933,7 +912,6 @@ var res = await sdk.Ledger.V1.CreateTransactionsAsync(
 | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
 | `Ledger`                                            | *string*                                            | :heavy_check_mark:                                  | Name of the ledger.                                 | ledger001                                           |
 | `Transactions`                                      | [Transactions](../../Models/Ledger/Transactions.md) | :heavy_check_mark:                                  | N/A                                                 |                                                     |
-| `serverURL`                                         | *string*                                            | :heavy_minus_sign:                                  | An optional server URL to use.                      | http://localhost:8080                               |
 
 ### Response
 
@@ -980,7 +958,6 @@ var res = await sdk.Ledger.V1.GetBalancesAsync(req);
 | Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `request`                                                         | [GetBalancesRequest](../../Models/Requests/GetBalancesRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
-| `serverURL`                                                       | *string*                                                          | :heavy_minus_sign:                                                | An optional server URL to use.                                    |
 
 ### Response
 
@@ -1024,7 +1001,6 @@ var res = await sdk.Ledger.V1.GetBalancesAggregatedAsync(
 | `Ledger`                                                                  | *string*                                                                  | :heavy_check_mark:                                                        | Name of the ledger.                                                       | ledger001                                                                 |
 | `Address`                                                                 | *string*                                                                  | :heavy_minus_sign:                                                        | Filter balances involving given account, either as source or destination. | users:001                                                                 |
 | `UseInsertionDate`                                                        | *bool*                                                                    | :heavy_minus_sign:                                                        | Use insertion date instead of effective date                              |                                                                           |
-| `serverURL`                                                               | *string*                                                                  | :heavy_minus_sign:                                                        | An optional server URL to use.                                            | http://localhost:8080                                                     |
 
 ### Response
 
@@ -1071,7 +1047,6 @@ var res = await sdk.Ledger.V1.ListLogsAsync(req);
 | Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
 | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
 | `request`                                                   | [ListLogsRequest](../../Models/Requests/ListLogsRequest.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
-| `serverURL`                                                 | *string*                                                    | :heavy_minus_sign:                                          | An optional server URL to use.                              |
 
 ### Response
 

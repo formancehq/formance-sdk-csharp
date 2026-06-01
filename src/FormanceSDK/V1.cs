@@ -31,11 +31,10 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetOIDCWellKnownsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public  Task<GetOIDCWellKnownsResponse> GetOIDCWellKnownsAsync(string? serverUrl = null);
+        public  Task<GetOIDCWellKnownsResponse> GetOIDCWellKnownsAsync();
 
         /// <summary>
         /// Get server info.
@@ -43,12 +42,11 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetServerInfoAuthResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public  Task<GetServerInfoAuthResponse> GetServerInfoAuthAsync(string? serverUrl = null);
+        public  Task<GetServerInfoAuthResponse> GetServerInfoAuthAsync();
 
         /// <summary>
         /// List clients.
@@ -56,12 +54,11 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.ListClientsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public  Task<Models.Requests.ListClientsResponse> ListClientsAsync(string? serverUrl = null);
+        public  Task<Models.Requests.ListClientsResponse> ListClientsAsync();
 
         /// <summary>
         /// Create client.
@@ -70,15 +67,11 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="request">A <see cref="ClientOptions1"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.CreateClientResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 201.</exception>
-        public  Task<Models.Requests.CreateClientResponse> CreateClientAsync(
-            ClientOptions1? request = null,
-            string? serverUrl = null
-        );
+        public  Task<Models.Requests.CreateClientResponse> CreateClientAsync(ClientOptions1? request = null);
 
         /// <summary>
         /// Read client.
@@ -87,13 +80,12 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="clientId">Client ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.ReadClientResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="clientId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public  Task<Models.Requests.ReadClientResponse> ReadClientAsync(string clientId, string? serverUrl = null);
+        public  Task<Models.Requests.ReadClientResponse> ReadClientAsync(string clientId);
 
         /// <summary>
         /// Update client.
@@ -103,17 +95,12 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="clientId">Client ID.</param>
         /// <param name="clientOptions">A <see cref="ClientOptions1"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="UpdateClientResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="clientId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public  Task<UpdateClientResponse> UpdateClientAsync(
-            string clientId,
-            ClientOptions1? clientOptions = null,
-            string? serverUrl = null
-        );
+        public  Task<UpdateClientResponse> UpdateClientAsync(string clientId, ClientOptions1? clientOptions = null);
 
         /// <summary>
         /// Delete client.
@@ -122,12 +109,11 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="clientId">Client ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteClientResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="clientId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 204.</exception>
-        public  Task<DeleteClientResponse> DeleteClientAsync(string clientId, string? serverUrl = null);
+        public  Task<DeleteClientResponse> DeleteClientAsync(string clientId);
 
         /// <summary>
         /// Add a secret to a client.
@@ -137,7 +123,6 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="clientId">Client ID.</param>
         /// <param name="secretOptions">A <see cref="SecretOptions"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.CreateSecretResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="clientId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -145,8 +130,7 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
         public  Task<Models.Requests.CreateSecretResponse> CreateSecretAsync(
             string clientId,
-            SecretOptions? secretOptions = null,
-            string? serverUrl = null
+            SecretOptions? secretOptions = null
         );
 
         /// <summary>
@@ -157,12 +141,11 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="clientId">Client ID.</param>
         /// <param name="secretId">Secret ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteSecretResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="clientId"/> or <paramref name="secretId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 204.</exception>
-        public  Task<DeleteSecretResponse> DeleteSecretAsync(string clientId, string secretId, string? serverUrl = null);
+        public  Task<DeleteSecretResponse> DeleteSecretAsync(string clientId, string secretId);
 
         /// <summary>
         /// List users.
@@ -171,12 +154,11 @@ namespace FormanceSDK
         /// List users<br/>
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.ListUsersResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public  Task<Models.Requests.ListUsersResponse> ListUsersAsync(string? serverUrl = null);
+        public  Task<Models.Requests.ListUsersResponse> ListUsersAsync();
 
         /// <summary>
         /// Read user.
@@ -186,94 +168,16 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="userId">User ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.ReadUserResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="userId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public  Task<Models.Requests.ReadUserResponse> ReadUserAsync(string userId, string? serverUrl = null);
+        public  Task<Models.Requests.ReadUserResponse> ReadUserAsync(string userId);
     }
 
     public class V1: IV1
     {
-        /// <summary>
-        /// List of server URLs available for the getOIDCWellKnowns operation.
-        /// </summary>
-        public static readonly string[] GetOIDCWellKnownsServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the getServerInfo_auth operation.
-        /// </summary>
-        public static readonly string[] GetServerInfoAuthServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the listClients operation.
-        /// </summary>
-        public static readonly string[] ListClientsServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the createClient operation.
-        /// </summary>
-        public static readonly string[] CreateClientServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the readClient operation.
-        /// </summary>
-        public static readonly string[] ReadClientServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the updateClient operation.
-        /// </summary>
-        public static readonly string[] UpdateClientServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the deleteClient operation.
-        /// </summary>
-        public static readonly string[] DeleteClientServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the createSecret operation.
-        /// </summary>
-        public static readonly string[] CreateSecretServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the deleteSecret operation.
-        /// </summary>
-        public static readonly string[] DeleteSecretServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the listUsers operation.
-        /// </summary>
-        public static readonly string[] ListUsersServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the readUser operation.
-        /// </summary>
-        public static readonly string[] ReadUserServerList = {
-            "http://localhost:8080/",
-        };
-
         /// <summary>
         /// SDK Configuration.
         /// <see cref="SDKConfig"/>
@@ -291,18 +195,12 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetOIDCWellKnownsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public async  Task<GetOIDCWellKnownsResponse> GetOIDCWellKnownsAsync(string? serverUrl = null)
+        public async  Task<GetOIDCWellKnownsResponse> GetOIDCWellKnownsAsync()
         {
-            string baseUrl = Utilities.TemplateUrl(GetOIDCWellKnownsServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/auth/.well-known/openid-configuration";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -378,19 +276,13 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetServerInfoAuthResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public async  Task<GetServerInfoAuthResponse> GetServerInfoAuthAsync(string? serverUrl = null)
+        public async  Task<GetServerInfoAuthResponse> GetServerInfoAuthAsync()
         {
-            string baseUrl = Utilities.TemplateUrl(GetServerInfoAuthServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/auth/_info";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -484,19 +376,13 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.ListClientsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public async  Task<Models.Requests.ListClientsResponse> ListClientsAsync(string? serverUrl = null)
+        public async  Task<Models.Requests.ListClientsResponse> ListClientsAsync()
         {
-            string baseUrl = Utilities.TemplateUrl(ListClientsServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/auth/clients";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -591,22 +477,13 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="request">A <see cref="ClientOptions1"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.CreateClientResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 201.</exception>
-        public async  Task<Models.Requests.CreateClientResponse> CreateClientAsync(
-            ClientOptions1? request = null,
-            string? serverUrl = null
-        )
+        public async  Task<Models.Requests.CreateClientResponse> CreateClientAsync(ClientOptions1? request = null)
         {
-            string baseUrl = Utilities.TemplateUrl(CreateClientServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/auth/clients";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -707,13 +584,12 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="clientId">Client ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.ReadClientResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="clientId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public async  Task<Models.Requests.ReadClientResponse> ReadClientAsync(string clientId, string? serverUrl = null)
+        public async  Task<Models.Requests.ReadClientResponse> ReadClientAsync(string clientId)
         {
             if (clientId == null) throw new ArgumentNullException(nameof(clientId));
 
@@ -722,12 +598,7 @@ namespace FormanceSDK
                 ClientId = clientId,
             };
 
-            string baseUrl = Utilities.TemplateUrl(ReadClientServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -823,17 +694,12 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="clientId">Client ID.</param>
         /// <param name="clientOptions">A <see cref="ClientOptions1"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="UpdateClientResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="clientId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public async  Task<UpdateClientResponse> UpdateClientAsync(
-            string clientId,
-            ClientOptions1? clientOptions = null,
-            string? serverUrl = null
-        )
+        public async  Task<UpdateClientResponse> UpdateClientAsync(string clientId, ClientOptions1? clientOptions = null)
         {
             if (clientId == null) throw new ArgumentNullException(nameof(clientId));
 
@@ -843,12 +709,7 @@ namespace FormanceSDK
                 ClientOptions = clientOptions,
             };
 
-            string baseUrl = Utilities.TemplateUrl(UpdateClientServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
@@ -949,12 +810,11 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="clientId">Client ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteClientResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="clientId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 204.</exception>
-        public async  Task<DeleteClientResponse> DeleteClientAsync(string clientId, string? serverUrl = null)
+        public async  Task<DeleteClientResponse> DeleteClientAsync(string clientId)
         {
             if (clientId == null) throw new ArgumentNullException(nameof(clientId));
 
@@ -963,12 +823,7 @@ namespace FormanceSDK
                 ClientId = clientId,
             };
 
-            string baseUrl = Utilities.TemplateUrl(DeleteClientServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
@@ -1046,7 +901,6 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="clientId">Client ID.</param>
         /// <param name="secretOptions">A <see cref="SecretOptions"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.CreateSecretResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="clientId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -1054,8 +908,7 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
         public async  Task<Models.Requests.CreateSecretResponse> CreateSecretAsync(
             string clientId,
-            SecretOptions? secretOptions = null,
-            string? serverUrl = null
+            SecretOptions? secretOptions = null
         )
         {
             if (clientId == null) throw new ArgumentNullException(nameof(clientId));
@@ -1066,12 +919,7 @@ namespace FormanceSDK
                 SecretOptions = secretOptions,
             };
 
-            string baseUrl = Utilities.TemplateUrl(CreateSecretServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}/secrets", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -1173,16 +1021,11 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="clientId">Client ID.</param>
         /// <param name="secretId">Secret ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteSecretResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="clientId"/> or <paramref name="secretId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 204.</exception>
-        public async  Task<DeleteSecretResponse> DeleteSecretAsync(
-            string clientId,
-            string secretId,
-            string? serverUrl = null
-        )
+        public async  Task<DeleteSecretResponse> DeleteSecretAsync(string clientId, string secretId)
         {
             if (clientId == null) throw new ArgumentNullException(nameof(clientId));
             if (secretId == null) throw new ArgumentNullException(nameof(secretId));
@@ -1193,12 +1036,7 @@ namespace FormanceSDK
                 SecretId = secretId,
             };
 
-            string baseUrl = Utilities.TemplateUrl(DeleteSecretServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/auth/clients/{clientId}/secrets/{secretId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
@@ -1275,19 +1113,13 @@ namespace FormanceSDK
         /// List users<br/>
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.ListUsersResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public async  Task<Models.Requests.ListUsersResponse> ListUsersAsync(string? serverUrl = null)
+        public async  Task<Models.Requests.ListUsersResponse> ListUsersAsync()
         {
-            string baseUrl = Utilities.TemplateUrl(ListUsersServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/auth/users";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1383,13 +1215,12 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="userId">User ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.ReadUserResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="userId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public async  Task<Models.Requests.ReadUserResponse> ReadUserAsync(string userId, string? serverUrl = null)
+        public async  Task<Models.Requests.ReadUserResponse> ReadUserAsync(string userId)
         {
             if (userId == null) throw new ArgumentNullException(nameof(userId));
 
@@ -1398,12 +1229,7 @@ namespace FormanceSDK
                 UserId = userId,
             };
 
-            string baseUrl = Utilities.TemplateUrl(ReadUserServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/auth/users/{userId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);

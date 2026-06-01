@@ -33,13 +33,12 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetInfoResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200 or 5XX.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2GetInfoResponse> GetInfoAsync(string? serverUrl = null);
+        public  Task<V2GetInfoResponse> GetInfoAsync();
 
         /// <summary>
         /// Read in memory metrics.
@@ -47,31 +46,16 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetMetricsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<GetMetricsResponse> GetMetricsAsync(string? serverUrl = null);
+        public  Task<GetMetricsResponse> GetMetricsAsync();
     }
 
     public class Ledger: ILedger
     {
-        /// <summary>
-        /// List of server URLs available for the v2GetInfo operation.
-        /// </summary>
-        public static readonly string[] V2GetInfoServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the getMetrics operation.
-        /// </summary>
-        public static readonly string[] GetMetricsServerList = {
-            "http://localhost:8080/",
-        };
-
         /// <summary>
         /// SDK Configuration.
         /// <see cref="SDKConfig"/>
@@ -103,20 +87,14 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetInfoResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200 or 5XX.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2GetInfoResponse> GetInfoAsync(string? serverUrl = null)
+        public async  Task<V2GetInfoResponse> GetInfoAsync()
         {
-            string baseUrl = Utilities.TemplateUrl(V2GetInfoServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/ledger/_/info";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -255,20 +233,14 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetMetricsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<GetMetricsResponse> GetMetricsAsync(string? serverUrl = null)
+        public async  Task<GetMetricsResponse> GetMetricsAsync()
         {
-            string baseUrl = Utilities.TemplateUrl(GetMetricsServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/ledger/_/metrics";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);

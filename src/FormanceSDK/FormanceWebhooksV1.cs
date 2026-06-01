@@ -34,17 +34,12 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="id">Optional filter by Config ID.</param>
         /// <param name="endpoint">Optional filter by endpoint URL.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetManyConfigsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<GetManyConfigsResponse> GetManyConfigsAsync(
-            string? id = null,
-            string? endpoint = null,
-            string? serverUrl = null
-        );
+        public  Task<GetManyConfigsResponse> GetManyConfigsAsync(string? id = null, string? endpoint = null);
 
         /// <summary>
         /// Insert a new config.
@@ -63,14 +58,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="ConfigUser"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="InsertConfigResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<InsertConfigResponse> InsertConfigAsync(ConfigUser request, string? serverUrl = null);
+        public  Task<InsertConfigResponse> InsertConfigAsync(ConfigUser request);
 
         /// <summary>
         /// Delete one config.
@@ -80,14 +74,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="id">Config ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteConfigResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<DeleteConfigResponse> DeleteConfigAsync(string id, string? serverUrl = null);
+        public  Task<DeleteConfigResponse> DeleteConfigAsync(string id);
 
         /// <summary>
         /// Update one config.
@@ -98,14 +91,13 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="id">Config ID.</param>
         /// <param name="configUser">A <see cref="ConfigUser"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="UpdateConfigResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="id"/> or <paramref name="configUser"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<UpdateConfigResponse> UpdateConfigAsync(string id, ConfigUser configUser, string? serverUrl = null);
+        public  Task<UpdateConfigResponse> UpdateConfigAsync(string id, ConfigUser configUser);
 
         /// <summary>
         /// Test one config.
@@ -115,14 +107,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="id">Config ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="TestConfigResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<TestConfigResponse> TestConfigAsync(string id, string? serverUrl = null);
+        public  Task<TestConfigResponse> TestConfigAsync(string id);
 
         /// <summary>
         /// Activate one config.
@@ -132,14 +123,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="id">Config ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ActivateConfigResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<ActivateConfigResponse> ActivateConfigAsync(string id, string? serverUrl = null);
+        public  Task<ActivateConfigResponse> ActivateConfigAsync(string id);
 
         /// <summary>
         /// Deactivate one config.
@@ -149,14 +139,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="id">Config ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="DeactivateConfigResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<DeactivateConfigResponse> DeactivateConfigAsync(string id, string? serverUrl = null);
+        public  Task<DeactivateConfigResponse> DeactivateConfigAsync(string id);
 
         /// <summary>
         /// Change the signing secret of a config.
@@ -171,7 +160,6 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="id">Config ID.</param>
         /// <param name="configChangeSecret">A <see cref="ConfigChangeSecret"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ChangeConfigSecretResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -180,69 +168,12 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<ChangeConfigSecretResponse> ChangeConfigSecretAsync(
             string id,
-            ConfigChangeSecret? configChangeSecret = null,
-            string? serverUrl = null
+            ConfigChangeSecret? configChangeSecret = null
         );
     }
 
     public class FormanceWebhooksV1: IFormanceWebhooksV1
     {
-        /// <summary>
-        /// List of server URLs available for the getManyConfigs operation.
-        /// </summary>
-        public static readonly string[] GetManyConfigsServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the insertConfig operation.
-        /// </summary>
-        public static readonly string[] InsertConfigServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the deleteConfig operation.
-        /// </summary>
-        public static readonly string[] DeleteConfigServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the updateConfig operation.
-        /// </summary>
-        public static readonly string[] UpdateConfigServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the testConfig operation.
-        /// </summary>
-        public static readonly string[] TestConfigServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the activateConfig operation.
-        /// </summary>
-        public static readonly string[] ActivateConfigServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the deactivateConfig operation.
-        /// </summary>
-        public static readonly string[] DeactivateConfigServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the changeConfigSecret operation.
-        /// </summary>
-        public static readonly string[] ChangeConfigSecretServerList = {
-            "http://localhost:8080/",
-        };
-
         /// <summary>
         /// SDK Configuration.
         /// <see cref="SDKConfig"/>
@@ -263,17 +194,12 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="id">Optional filter by Config ID.</param>
         /// <param name="endpoint">Optional filter by endpoint URL.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="GetManyConfigsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<GetManyConfigsResponse> GetManyConfigsAsync(
-            string? id = null,
-            string? endpoint = null,
-            string? serverUrl = null
-        )
+        public async  Task<GetManyConfigsResponse> GetManyConfigsAsync(string? id = null, string? endpoint = null)
         {
             var request = new GetManyConfigsRequest()
             {
@@ -281,12 +207,7 @@ namespace FormanceSDK
                 Endpoint = endpoint,
             };
 
-            string baseUrl = Utilities.TemplateUrl(GetManyConfigsServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/configs", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -407,23 +328,17 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="ConfigUser"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="InsertConfigResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<InsertConfigResponse> InsertConfigAsync(ConfigUser request, string? serverUrl = null)
+        public async  Task<InsertConfigResponse> InsertConfigAsync(ConfigUser request)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            string baseUrl = Utilities.TemplateUrl(InsertConfigServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/webhooks/configs";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -541,14 +456,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="id">Config ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="DeleteConfigResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<DeleteConfigResponse> DeleteConfigAsync(string id, string? serverUrl = null)
+        public async  Task<DeleteConfigResponse> DeleteConfigAsync(string id)
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
 
@@ -557,12 +471,7 @@ namespace FormanceSDK
                 Id = id,
             };
 
-            string baseUrl = Utilities.TemplateUrl(DeleteConfigServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/configs/{id}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
@@ -657,18 +566,13 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="id">Config ID.</param>
         /// <param name="configUser">A <see cref="ConfigUser"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="UpdateConfigResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="id"/> or <paramref name="configUser"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<UpdateConfigResponse> UpdateConfigAsync(
-            string id,
-            ConfigUser configUser,
-            string? serverUrl = null
-        )
+        public async  Task<UpdateConfigResponse> UpdateConfigAsync(string id, ConfigUser configUser)
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
             if (configUser == null) throw new ArgumentNullException(nameof(configUser));
@@ -679,12 +583,7 @@ namespace FormanceSDK
                 ConfigUser = configUser,
             };
 
-            string baseUrl = Utilities.TemplateUrl(UpdateConfigServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/configs/{id}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
@@ -784,14 +683,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="id">Config ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="TestConfigResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<TestConfigResponse> TestConfigAsync(string id, string? serverUrl = null)
+        public async  Task<TestConfigResponse> TestConfigAsync(string id)
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
 
@@ -800,12 +698,7 @@ namespace FormanceSDK
                 Id = id,
             };
 
-            string baseUrl = Utilities.TemplateUrl(TestConfigServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/configs/{id}/test", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -917,14 +810,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="id">Config ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ActivateConfigResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<ActivateConfigResponse> ActivateConfigAsync(string id, string? serverUrl = null)
+        public async  Task<ActivateConfigResponse> ActivateConfigAsync(string id)
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
 
@@ -933,12 +825,7 @@ namespace FormanceSDK
                 Id = id,
             };
 
-            string baseUrl = Utilities.TemplateUrl(ActivateConfigServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/configs/{id}/activate", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
@@ -1050,14 +937,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="id">Config ID.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="DeactivateConfigResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<DeactivateConfigResponse> DeactivateConfigAsync(string id, string? serverUrl = null)
+        public async  Task<DeactivateConfigResponse> DeactivateConfigAsync(string id)
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
 
@@ -1066,12 +952,7 @@ namespace FormanceSDK
                 Id = id,
             };
 
-            string baseUrl = Utilities.TemplateUrl(DeactivateConfigServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/configs/{id}/deactivate", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
@@ -1188,7 +1069,6 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="id">Config ID.</param>
         /// <param name="configChangeSecret">A <see cref="ConfigChangeSecret"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="ChangeConfigSecretResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -1197,8 +1077,7 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<ChangeConfigSecretResponse> ChangeConfigSecretAsync(
             string id,
-            ConfigChangeSecret? configChangeSecret = null,
-            string? serverUrl = null
+            ConfigChangeSecret? configChangeSecret = null
         )
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
@@ -1209,12 +1088,7 @@ namespace FormanceSDK
                 ConfigChangeSecret = configChangeSecret,
             };
 
-            string baseUrl = Utilities.TemplateUrl(ChangeConfigSecretServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/configs/{id}/secret/change", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);

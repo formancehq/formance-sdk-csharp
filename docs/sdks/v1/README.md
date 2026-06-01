@@ -37,12 +37,6 @@ var res = await sdk.Auth.V1.GetOIDCWellKnownsAsync();
 // handle response
 ```
 
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
-
 ### Response
 
 **[GetOIDCWellKnownsResponse](../../Models/Requests/GetOIDCWellKnownsResponse.md)**
@@ -74,12 +68,6 @@ var res = await sdk.Auth.V1.GetServerInfoAuthAsync();
 // handle response
 ```
 
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
-
 ### Response
 
 **[GetServerInfoAuthResponse](../../Models/Requests/GetServerInfoAuthResponse.md)**
@@ -110,12 +98,6 @@ var res = await sdk.Auth.V1.ListClientsAsync();
 
 // handle response
 ```
-
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -156,7 +138,6 @@ var res = await sdk.Auth.V1.CreateClientAsync(req);
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `request`                                             | [ClientOptions1](../../Models/Auth/ClientOptions1.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
-| `serverURL`                                           | *string*                                              | :heavy_minus_sign:                                    | An optional server URL to use.                        |
 
 ### Response
 
@@ -191,10 +172,9 @@ var res = await sdk.Auth.V1.ReadClientAsync(clientId: "<id>");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `ClientId`                     | *string*                       | :heavy_check_mark:             | Client ID                      |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `ClientId`         | *string*           | :heavy_check_mark: | Client ID          |
 
 ### Response
 
@@ -233,7 +213,6 @@ var res = await sdk.Auth.V1.UpdateClientAsync(clientId: "<id>");
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ClientId`                                            | *string*                                              | :heavy_check_mark:                                    | Client ID                                             |
 | `ClientOptions`                                       | [ClientOptions1](../../Models/Auth/ClientOptions1.md) | :heavy_minus_sign:                                    | N/A                                                   |
-| `serverURL`                                           | *string*                                              | :heavy_minus_sign:                                    | An optional server URL to use.                        |
 
 ### Response
 
@@ -268,10 +247,9 @@ var res = await sdk.Auth.V1.DeleteClientAsync(clientId: "<id>");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `ClientId`                     | *string*                       | :heavy_check_mark:             | Client ID                      |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `ClientId`         | *string*           | :heavy_check_mark: | Client ID          |
 
 ### Response
 
@@ -310,7 +288,6 @@ var res = await sdk.Auth.V1.CreateSecretAsync(clientId: "<id>");
 | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
 | `ClientId`                                          | *string*                                            | :heavy_check_mark:                                  | Client ID                                           |
 | `SecretOptions`                                     | [SecretOptions](../../Models/Auth/SecretOptions.md) | :heavy_minus_sign:                                  | N/A                                                 |
-| `serverURL`                                         | *string*                                            | :heavy_minus_sign:                                  | An optional server URL to use.                      |
 
 ### Response
 
@@ -348,11 +325,10 @@ var res = await sdk.Auth.V1.DeleteSecretAsync(
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `ClientId`                     | *string*                       | :heavy_check_mark:             | Client ID                      |
-| `SecretId`                     | *string*                       | :heavy_check_mark:             | Secret ID                      |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `ClientId`         | *string*           | :heavy_check_mark: | Client ID          |
+| `SecretId`         | *string*           | :heavy_check_mark: | Secret ID          |
 
 ### Response
 
@@ -384,12 +360,6 @@ var res = await sdk.Auth.V1.ListUsersAsync();
 
 // handle response
 ```
-
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -424,10 +394,9 @@ var res = await sdk.Auth.V1.ReadUserAsync(userId: "<id>");
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `UserId`                       | *string*                       | :heavy_check_mark:             | User ID                        |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `UserId`           | *string*           | :heavy_check_mark: | User ID            |
 
 ### Response
 

@@ -28,12 +28,6 @@ var res = await sdk.Ledger.GetInfoAsync();
 // handle response
 ```
 
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
-
 ### Response
 
 **[V2GetInfoResponse](../../Models/Requests/V2GetInfoResponse.md)**
@@ -65,12 +59,6 @@ var res = await sdk.Ledger.GetMetricsAsync();
 
 // handle response
 ```
-
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `serverURL`                    | *string*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 

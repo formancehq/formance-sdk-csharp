@@ -31,13 +31,12 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetServerInfoResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2GetServerInfoResponse> GetServerInfoAsync(string? serverUrl = null);
+        public  Task<V2GetServerInfoResponse> GetServerInfoAsync();
 
         /// <summary>
         /// List triggers.
@@ -54,7 +53,6 @@ namespace FormanceSDK
         /// </param>
         /// <param name="pageSize">The maximum number of results to return per page.</param>
         /// <param name="name">search by name.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2ListTriggersResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -63,8 +61,7 @@ namespace FormanceSDK
         public  Task<Models.Requests.V2ListTriggersResponse> ListTriggersAsync(
             string? cursor = null,
             long? pageSize = null,
-            string? name = null,
-            string? serverUrl = null
+            string? name = null
         );
 
         /// <summary>
@@ -75,16 +72,12 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="V2TriggerData1"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreateTriggerResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<Models.Requests.V2CreateTriggerResponse> CreateTriggerAsync(
-            V2TriggerData1? request = null,
-            string? serverUrl = null
-        );
+        public  Task<Models.Requests.V2CreateTriggerResponse> CreateTriggerAsync(V2TriggerData1? request = null);
 
         /// <summary>
         /// Read trigger.
@@ -94,14 +87,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="triggerID">The trigger id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2ReadTriggerResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="triggerID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<Models.Requests.V2ReadTriggerResponse> ReadTriggerAsync(string triggerID, string? serverUrl = null);
+        public  Task<Models.Requests.V2ReadTriggerResponse> ReadTriggerAsync(string triggerID);
 
         /// <summary>
         /// Delete trigger.
@@ -111,14 +103,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="triggerID">The trigger id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2DeleteTriggerResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="triggerID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2DeleteTriggerResponse> DeleteTriggerAsync(string triggerID, string? serverUrl = null);
+        public  Task<V2DeleteTriggerResponse> DeleteTriggerAsync(string triggerID);
 
         /// <summary>
         /// Test trigger.
@@ -129,7 +120,6 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="triggerID">The trigger id.</param>
         /// <param name="requestBody">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="TestTriggerResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="triggerID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -138,8 +128,7 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<TestTriggerResponse> TestTriggerAsync(
             string triggerID,
-            Dictionary<string, object>? requestBody = null,
-            string? serverUrl = null
+            Dictionary<string, object>? requestBody = null
         );
 
         /// <summary>
@@ -157,7 +146,6 @@ namespace FormanceSDK
         /// No other parameters can be set when this parameter is set.
         /// </param>
         /// <param name="pageSize">The maximum number of results to return per page.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2ListTriggersOccurrencesResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="triggerID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -167,8 +155,7 @@ namespace FormanceSDK
         public  Task<Models.Requests.V2ListTriggersOccurrencesResponse> ListTriggersOccurrencesAsync(
             string triggerID,
             string? cursor = null,
-            long? pageSize = null,
-            string? serverUrl = null
+            long? pageSize = null
         );
 
         /// <summary>
@@ -185,7 +172,6 @@ namespace FormanceSDK
         /// No other parameters can be set when this parameter is set.
         /// </param>
         /// <param name="pageSize">The maximum number of results to return per page.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2ListWorkflowsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -193,8 +179,7 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<Models.Requests.V2ListWorkflowsResponse> ListWorkflowsAsync(
             string? cursor = null,
-            long? pageSize = null,
-            string? serverUrl = null
+            long? pageSize = null
         );
 
         /// <summary>
@@ -205,16 +190,12 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="V2WorkflowConfig"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreateWorkflowResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<Models.Requests.V2CreateWorkflowResponse> CreateWorkflowAsync(
-            V2WorkflowConfig? request = null,
-            string? serverUrl = null
-        );
+        public  Task<Models.Requests.V2CreateWorkflowResponse> CreateWorkflowAsync(V2WorkflowConfig? request = null);
 
         /// <summary>
         /// Get a flow by id.
@@ -224,14 +205,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="flowId">The flow id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2GetWorkflowResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="flowId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<Models.Requests.V2GetWorkflowResponse> GetWorkflowAsync(string flowId, string? serverUrl = null);
+        public  Task<Models.Requests.V2GetWorkflowResponse> GetWorkflowAsync(string flowId);
 
         /// <summary>
         /// Delete a flow by id.
@@ -241,14 +221,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="flowId">The flow id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2DeleteWorkflowResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="flowId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2DeleteWorkflowResponse> DeleteWorkflowAsync(string flowId, string? serverUrl = null);
+        public  Task<V2DeleteWorkflowResponse> DeleteWorkflowAsync(string flowId);
 
         /// <summary>
         /// Run workflow.
@@ -260,7 +239,6 @@ namespace FormanceSDK
         /// <param name="workflowID">The flow id.</param>
         /// <param name="wait">Wait end of the workflow before return.</param>
         /// <param name="requestBody">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2RunWorkflowResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="workflowID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -270,8 +248,7 @@ namespace FormanceSDK
         public  Task<Models.Requests.V2RunWorkflowResponse> RunWorkflowAsync(
             string workflowID,
             bool? wait = null,
-            Dictionary<string, string>? requestBody = null,
-            string? serverUrl = null
+            Dictionary<string, string>? requestBody = null
         );
 
         /// <summary>
@@ -290,7 +267,6 @@ namespace FormanceSDK
         /// <param name="pageSize">The maximum number of results to return per page.</param>
         /// <param name="workflowID">A workflow id.</param>
         /// <param name="running">Filter running instances.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ListInstancesResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -300,8 +276,7 @@ namespace FormanceSDK
             string? cursor = null,
             long? pageSize = null,
             string? workflowID = null,
-            bool? running = null,
-            string? serverUrl = null
+            bool? running = null
         );
 
         /// <summary>
@@ -312,14 +287,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="instanceID">The instance id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetInstanceResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2GetInstanceResponse> GetInstanceAsync(string instanceID, string? serverUrl = null);
+        public  Task<V2GetInstanceResponse> GetInstanceAsync(string instanceID);
 
         /// <summary>
         /// Send an event to a running workflow.
@@ -330,18 +304,13 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="instanceID">The instance id.</param>
         /// <param name="requestBody">A <see cref="V2SendEventRequestBody"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2SendEventResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2SendEventResponse> SendEventAsync(
-            string instanceID,
-            V2SendEventRequestBody? requestBody = null,
-            string? serverUrl = null
-        );
+        public  Task<V2SendEventResponse> SendEventAsync(string instanceID, V2SendEventRequestBody? requestBody = null);
 
         /// <summary>
         /// Cancel a running workflow.
@@ -351,14 +320,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="instanceID">The instance id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2CancelEventResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2CancelEventResponse> CancelEventAsync(string instanceID, string? serverUrl = null);
+        public  Task<V2CancelEventResponse> CancelEventAsync(string instanceID);
 
         /// <summary>
         /// Get a workflow instance history by id.
@@ -368,14 +336,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="instanceID">The instance id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetInstanceHistoryResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2GetInstanceHistoryResponse> GetInstanceHistoryAsync(string instanceID, string? serverUrl = null);
+        public  Task<V2GetInstanceHistoryResponse> GetInstanceHistoryAsync(string instanceID);
 
         /// <summary>
         /// Get a workflow instance stage history.
@@ -386,148 +353,17 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="instanceID">The instance id.</param>
         /// <param name="number">The stage number.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetInstanceStageHistoryResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2GetInstanceStageHistoryResponse> GetInstanceStageHistoryAsync(
-            string instanceID,
-            long number,
-            string? serverUrl = null
-        );
+        public  Task<V2GetInstanceStageHistoryResponse> GetInstanceStageHistoryAsync(string instanceID, long number);
     }
 
     public class FormanceV2: IFormanceV2
     {
-        /// <summary>
-        /// List of server URLs available for the v2GetServerInfo operation.
-        /// </summary>
-        public static readonly string[] V2GetServerInfoServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2ListTriggers operation.
-        /// </summary>
-        public static readonly string[] V2ListTriggersServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2CreateTrigger operation.
-        /// </summary>
-        public static readonly string[] V2CreateTriggerServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2ReadTrigger operation.
-        /// </summary>
-        public static readonly string[] V2ReadTriggerServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2DeleteTrigger operation.
-        /// </summary>
-        public static readonly string[] V2DeleteTriggerServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the testTrigger operation.
-        /// </summary>
-        public static readonly string[] TestTriggerServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2ListTriggersOccurrences operation.
-        /// </summary>
-        public static readonly string[] V2ListTriggersOccurrencesServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2ListWorkflows operation.
-        /// </summary>
-        public static readonly string[] V2ListWorkflowsServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2CreateWorkflow operation.
-        /// </summary>
-        public static readonly string[] V2CreateWorkflowServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2GetWorkflow operation.
-        /// </summary>
-        public static readonly string[] V2GetWorkflowServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2DeleteWorkflow operation.
-        /// </summary>
-        public static readonly string[] V2DeleteWorkflowServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2RunWorkflow operation.
-        /// </summary>
-        public static readonly string[] V2RunWorkflowServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2ListInstances operation.
-        /// </summary>
-        public static readonly string[] V2ListInstancesServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2GetInstance operation.
-        /// </summary>
-        public static readonly string[] V2GetInstanceServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2SendEvent operation.
-        /// </summary>
-        public static readonly string[] V2SendEventServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2CancelEvent operation.
-        /// </summary>
-        public static readonly string[] V2CancelEventServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2GetInstanceHistory operation.
-        /// </summary>
-        public static readonly string[] V2GetInstanceHistoryServerList = {
-            "http://localhost:8080/",
-        };
-
-        /// <summary>
-        /// List of server URLs available for the v2GetInstanceStageHistory operation.
-        /// </summary>
-        public static readonly string[] V2GetInstanceStageHistoryServerList = {
-            "http://localhost:8080/",
-        };
-
         /// <summary>
         /// SDK Configuration.
         /// <see cref="SDKConfig"/>
@@ -545,20 +381,14 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetServerInfoResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2GetServerInfoResponse> GetServerInfoAsync(string? serverUrl = null)
+        public async  Task<V2GetServerInfoResponse> GetServerInfoAsync()
         {
-            string baseUrl = Utilities.TemplateUrl(V2GetServerInfoServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/orchestration/v2/_info";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -677,7 +507,6 @@ namespace FormanceSDK
         /// </param>
         /// <param name="pageSize">The maximum number of results to return per page.</param>
         /// <param name="name">search by name.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2ListTriggersResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -686,8 +515,7 @@ namespace FormanceSDK
         public async  Task<Models.Requests.V2ListTriggersResponse> ListTriggersAsync(
             string? cursor = null,
             long? pageSize = null,
-            string? name = null,
-            string? serverUrl = null
+            string? name = null
         )
         {
             var request = new V2ListTriggersRequest()
@@ -697,12 +525,7 @@ namespace FormanceSDK
                 Name = name,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2ListTriggersServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/v2/triggers", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -814,23 +637,14 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="V2TriggerData1"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreateTriggerResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<Models.Requests.V2CreateTriggerResponse> CreateTriggerAsync(
-            V2TriggerData1? request = null,
-            string? serverUrl = null
-        )
+        public async  Task<Models.Requests.V2CreateTriggerResponse> CreateTriggerAsync(V2TriggerData1? request = null)
         {
-            string baseUrl = Utilities.TemplateUrl(V2CreateTriggerServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/orchestration/v2/triggers";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -948,17 +762,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="triggerID">The trigger id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2ReadTriggerResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="triggerID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<Models.Requests.V2ReadTriggerResponse> ReadTriggerAsync(
-            string triggerID,
-            string? serverUrl = null
-        )
+        public async  Task<Models.Requests.V2ReadTriggerResponse> ReadTriggerAsync(string triggerID)
         {
             if (triggerID == null) throw new ArgumentNullException(nameof(triggerID));
 
@@ -967,12 +777,7 @@ namespace FormanceSDK
                 TriggerID = triggerID,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2ReadTriggerServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/v2/triggers/{triggerID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1084,14 +889,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="triggerID">The trigger id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2DeleteTriggerResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="triggerID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2DeleteTriggerResponse> DeleteTriggerAsync(string triggerID, string? serverUrl = null)
+        public async  Task<V2DeleteTriggerResponse> DeleteTriggerAsync(string triggerID)
         {
             if (triggerID == null) throw new ArgumentNullException(nameof(triggerID));
 
@@ -1100,12 +904,7 @@ namespace FormanceSDK
                 TriggerID = triggerID,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2DeleteTriggerServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/v2/triggers/{triggerID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
@@ -1200,7 +999,6 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="triggerID">The trigger id.</param>
         /// <param name="requestBody">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="TestTriggerResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="triggerID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -1209,8 +1007,7 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<TestTriggerResponse> TestTriggerAsync(
             string triggerID,
-            Dictionary<string, object>? requestBody = null,
-            string? serverUrl = null
+            Dictionary<string, object>? requestBody = null
         )
         {
             if (triggerID == null) throw new ArgumentNullException(nameof(triggerID));
@@ -1221,12 +1018,7 @@ namespace FormanceSDK
                 RequestBody = requestBody,
             };
 
-            string baseUrl = Utilities.TemplateUrl(TestTriggerServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/v2/triggers/{triggerID}/test", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -1351,7 +1143,6 @@ namespace FormanceSDK
         /// No other parameters can be set when this parameter is set.
         /// </param>
         /// <param name="pageSize">The maximum number of results to return per page.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2ListTriggersOccurrencesResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="triggerID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -1361,8 +1152,7 @@ namespace FormanceSDK
         public async  Task<Models.Requests.V2ListTriggersOccurrencesResponse> ListTriggersOccurrencesAsync(
             string triggerID,
             string? cursor = null,
-            long? pageSize = null,
-            string? serverUrl = null
+            long? pageSize = null
         )
         {
             if (triggerID == null) throw new ArgumentNullException(nameof(triggerID));
@@ -1374,12 +1164,7 @@ namespace FormanceSDK
                 PageSize = pageSize,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2ListTriggersOccurrencesServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/v2/triggers/{triggerID}/occurrences", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1497,7 +1282,6 @@ namespace FormanceSDK
         /// No other parameters can be set when this parameter is set.
         /// </param>
         /// <param name="pageSize">The maximum number of results to return per page.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2ListWorkflowsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -1505,8 +1289,7 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<Models.Requests.V2ListWorkflowsResponse> ListWorkflowsAsync(
             string? cursor = null,
-            long? pageSize = null,
-            string? serverUrl = null
+            long? pageSize = null
         )
         {
             var request = new V2ListWorkflowsRequest()
@@ -1515,12 +1298,7 @@ namespace FormanceSDK
                 PageSize = pageSize,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2ListWorkflowsServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/v2/workflows", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1632,23 +1410,16 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="request">A <see cref="V2WorkflowConfig"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreateWorkflowResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<Models.Requests.V2CreateWorkflowResponse> CreateWorkflowAsync(
-            V2WorkflowConfig? request = null,
-            string? serverUrl = null
+            V2WorkflowConfig? request = null
         )
         {
-            string baseUrl = Utilities.TemplateUrl(V2CreateWorkflowServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/orchestration/v2/workflows";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -1766,17 +1537,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="flowId">The flow id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2GetWorkflowResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="flowId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<Models.Requests.V2GetWorkflowResponse> GetWorkflowAsync(
-            string flowId,
-            string? serverUrl = null
-        )
+        public async  Task<Models.Requests.V2GetWorkflowResponse> GetWorkflowAsync(string flowId)
         {
             if (flowId == null) throw new ArgumentNullException(nameof(flowId));
 
@@ -1785,12 +1552,7 @@ namespace FormanceSDK
                 FlowId = flowId,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2GetWorkflowServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/v2/workflows/{flowId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -1902,14 +1664,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="flowId">The flow id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2DeleteWorkflowResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="flowId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2DeleteWorkflowResponse> DeleteWorkflowAsync(string flowId, string? serverUrl = null)
+        public async  Task<V2DeleteWorkflowResponse> DeleteWorkflowAsync(string flowId)
         {
             if (flowId == null) throw new ArgumentNullException(nameof(flowId));
 
@@ -1918,12 +1679,7 @@ namespace FormanceSDK
                 FlowId = flowId,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2DeleteWorkflowServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/v2/workflows/{flowId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
@@ -2019,7 +1775,6 @@ namespace FormanceSDK
         /// <param name="workflowID">The flow id.</param>
         /// <param name="wait">Wait end of the workflow before return.</param>
         /// <param name="requestBody">Description not available.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2RunWorkflowResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="workflowID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -2029,8 +1784,7 @@ namespace FormanceSDK
         public async  Task<Models.Requests.V2RunWorkflowResponse> RunWorkflowAsync(
             string workflowID,
             bool? wait = null,
-            Dictionary<string, string>? requestBody = null,
-            string? serverUrl = null
+            Dictionary<string, string>? requestBody = null
         )
         {
             if (workflowID == null) throw new ArgumentNullException(nameof(workflowID));
@@ -2042,12 +1796,7 @@ namespace FormanceSDK
                 RequestBody = requestBody,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2RunWorkflowServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/v2/workflows/{workflowID}/instances", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -2173,7 +1922,6 @@ namespace FormanceSDK
         /// <param name="pageSize">The maximum number of results to return per page.</param>
         /// <param name="workflowID">A workflow id.</param>
         /// <param name="running">Filter running instances.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2ListInstancesResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
@@ -2183,8 +1931,7 @@ namespace FormanceSDK
             string? cursor = null,
             long? pageSize = null,
             string? workflowID = null,
-            bool? running = null,
-            string? serverUrl = null
+            bool? running = null
         )
         {
             var request = new V2ListInstancesRequest()
@@ -2195,12 +1942,7 @@ namespace FormanceSDK
                 Running = running,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2ListInstancesServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/v2/instances", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -2312,14 +2054,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="instanceID">The instance id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetInstanceResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2GetInstanceResponse> GetInstanceAsync(string instanceID, string? serverUrl = null)
+        public async  Task<V2GetInstanceResponse> GetInstanceAsync(string instanceID)
         {
             if (instanceID == null) throw new ArgumentNullException(nameof(instanceID));
 
@@ -2328,12 +2069,7 @@ namespace FormanceSDK
                 InstanceID = instanceID,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2GetInstanceServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/v2/instances/{instanceID}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -2446,7 +2182,6 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="instanceID">The instance id.</param>
         /// <param name="requestBody">A <see cref="V2SendEventRequestBody"/> parameter.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2SendEventResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -2455,8 +2190,7 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<V2SendEventResponse> SendEventAsync(
             string instanceID,
-            V2SendEventRequestBody? requestBody = null,
-            string? serverUrl = null
+            V2SendEventRequestBody? requestBody = null
         )
         {
             if (instanceID == null) throw new ArgumentNullException(nameof(instanceID));
@@ -2467,12 +2201,7 @@ namespace FormanceSDK
                 RequestBody = requestBody,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2SendEventServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/v2/instances/{instanceID}/events", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
@@ -2572,14 +2301,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="instanceID">The instance id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2CancelEventResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2CancelEventResponse> CancelEventAsync(string instanceID, string? serverUrl = null)
+        public async  Task<V2CancelEventResponse> CancelEventAsync(string instanceID)
         {
             if (instanceID == null) throw new ArgumentNullException(nameof(instanceID));
 
@@ -2588,12 +2316,7 @@ namespace FormanceSDK
                 InstanceID = instanceID,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2CancelEventServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/v2/instances/{instanceID}/abort", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
@@ -2687,17 +2410,13 @@ namespace FormanceSDK
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
         /// <param name="instanceID">The instance id.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetInstanceHistoryResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2GetInstanceHistoryResponse> GetInstanceHistoryAsync(
-            string instanceID,
-            string? serverUrl = null
-        )
+        public async  Task<V2GetInstanceHistoryResponse> GetInstanceHistoryAsync(string instanceID)
         {
             if (instanceID == null) throw new ArgumentNullException(nameof(instanceID));
 
@@ -2706,12 +2425,7 @@ namespace FormanceSDK
                 InstanceID = instanceID,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2GetInstanceHistoryServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/v2/instances/{instanceID}/history", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
@@ -2824,7 +2538,6 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="instanceID">The instance id.</param>
         /// <param name="number">The stage number.</param>
-        /// <param name="serverUrl">The server URL to use for this operation. If not provided, the default server URL will be used.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetInstanceStageHistoryResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -2833,8 +2546,7 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<V2GetInstanceStageHistoryResponse> GetInstanceStageHistoryAsync(
             string instanceID,
-            long number,
-            string? serverUrl = null
+            long number
         )
         {
             if (instanceID == null) throw new ArgumentNullException(nameof(instanceID));
@@ -2845,12 +2557,7 @@ namespace FormanceSDK
                 Number = number,
             };
 
-            string baseUrl = Utilities.TemplateUrl(V2GetInstanceStageHistoryServerList[0], new Dictionary<string, string>(){
-            });
-            if (serverUrl != null)
-            {
-                baseUrl = serverUrl;
-            }
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/v2/instances/{instanceID}/stages/{number}/history", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);

@@ -5,15 +5,15 @@ management:
   docVersion: SDK_VERSION
   speakeasyVersion: 1.770.0
   generationVersion: 2.893.0
-  releaseVersion: 5.1.1
-  configChecksum: 081cc597cf980f02a4106be6ca453289
+  releaseVersion: 5.1.2
+  configChecksum: 4eb18c4d327750eb80b22b40f0e7ca10
   repoURL: https://github.com/formancehq/formance-sdk-csharp.git
   installationURL: https://github.com/formancehq/formance-sdk-csharp
   published: true
 persistentEdits:
-  generation_id: 566acb87-d0d2-4173-9fb9-9e3f32bae981
-  pristine_commit_hash: 729d7e9032288f74491526f5cd3d8bc03d3ed154
-  pristine_tree_hash: d4bc5e4e16a28ad32969111c2101a987a85b845f
+  generation_id: 2e30da40-e942-444b-80a6-e4141964748c
+  pristine_commit_hash: 8af4c3e6a033f3a7bad578ca527f07b99875ee84
+  pristine_tree_hash: cfdce890bf64f50878e9af672fed9c660e1c4eeb
 features:
   csharp:
     additionalDependencies: 0.1.0
@@ -4776,8 +4776,8 @@ trackedFiles:
     pristine_git_object: ef4f0d7698e8e493e492dcc75c006dace0260b66
   src/FormanceSDK/FormanceSDK.csproj:
     id: 83154053cd46
-    last_write_checksum: sha1:fd5f5f340985154201ca0ab184e8689d67e17bac
-    pristine_git_object: 30fb43fb072182b2d600b2e85dbb0172898fa940
+    last_write_checksum: sha1:4d2195530af61c8ad40c2a9c6a8fd0bc5dbf5716
+    pristine_git_object: 938a8acdc44143b024d125daa01ca8dc19711a29
   src/FormanceSDK/FormanceSearchV1.cs:
     id: 11a311a4fb58
     last_write_checksum: sha1:ac672f5b3298fc36fc88928955d2e017519cf14b
@@ -9484,8 +9484,8 @@ trackedFiles:
     pristine_git_object: 2be4d02024d25c95635d187e88bd552a5547e2f4
   src/FormanceSDK/SDKConfig.cs:
     id: a3374d76e817
-    last_write_checksum: sha1:96e98154bf5b4cfbff6f3c94d4692df4a38d6662
-    pristine_git_object: 5c76d9a90e0f0a5e3d7ab3391b0f8b0c04570ec7
+    last_write_checksum: sha1:dede7789e1c0ac3ac53d1fc6dd2307d35137b92b
+    pristine_git_object: 978505d8006780084e45448e5fcb2869bbe56b1b
   src/FormanceSDK/Search.cs:
     id: 1048ff0d85d5
     last_write_checksum: sha1:057487843da61ac61d1503104cd75ced4a43195e
@@ -9500,8 +9500,8 @@ trackedFiles:
     pristine_git_object: a3c792e24053c9b994ddfbdb6dd9218366d00608
   src/FormanceSDK/Utils/Constants.cs:
     id: d8c5d42c1de3
-    last_write_checksum: sha1:81fd63ed0fb2280c684581df1e3111755c7c1cb2
-    pristine_git_object: 7d0e8ab3644ea1bf2e50e3dbbd5f20d872c286bd
+    last_write_checksum: sha1:baac8da5bf83121e1efb7b8a9d82bb081a0fd36a
+    pristine_git_object: ab7de5f00ca27b3ca382a1dd9d14819f4e0ff547
   src/FormanceSDK/Utils/DecimalStrConverter.cs:
     id: 7d94c1e8ade0
     last_write_checksum: sha1:2c75e06283283a95f50cbde31dfbe1bf86772e48

@@ -25,7 +25,7 @@ namespace FormanceSDK.Models.Payments
         public DateTime CreatedAt { get; set; } = default!;
 
         [JsonProperty("status")]
-        public V3PaymentStatusEnum V3PaymentStatusEnum { get; set; } = default!;
+        public V3PaymentStatusEnum Status { get; set; } = default!;
 
         [JsonProperty("amount")]
         public BigInteger? Amount { get; set; }
@@ -34,6 +34,6 @@ namespace FormanceSDK.Models.Payments
         public string? Asset { get; set; }
 
         [JsonProperty("metadata")]
-        public Dictionary<string, string>? V3Metadata { get; set; } = null;
+        public Dictionary<string, string>? Metadata { get; set; } = null;
     }
 }

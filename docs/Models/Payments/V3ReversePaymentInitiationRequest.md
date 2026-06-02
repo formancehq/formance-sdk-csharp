@@ -9,4 +9,4 @@
 | `Description`                | *string*                     | :heavy_check_mark:           | N/A                          |
 | `Amount`                     | *BigInteger*                 | :heavy_check_mark:           | N/A                          |
 | `Asset`                      | *string*                     | :heavy_check_mark:           | N/A                          |
-| `V3Metadata`                 | Dictionary<String, *string*> | :heavy_minus_sign:           | N/A                          |
+| `Metadata`                   | Dictionary<String, *string*> | :heavy_minus_sign:           | N/A                          |

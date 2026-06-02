@@ -39,7 +39,7 @@ namespace FormanceSDK.Models.Payments
         public string? Country { get; set; } = null;
 
         [JsonProperty("metadata")]
-        public Dictionary<string, string>? V3Metadata { get; set; } = null;
+        public Dictionary<string, string>? Metadata { get; set; } = null;
 
         [JsonProperty("relatedAccounts")]
         public List<V3BankAccountRelatedAccount>? RelatedAccounts { get; set; }

@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Orchestration
     public class AccountResponse
     {
         [JsonProperty("data")]
-        public Models.Orchestration.Account Account { get; set; } = default!;
+        public Models.Orchestration.Account Data { get; set; } = default!;
     }
 }

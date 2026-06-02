@@ -29,6 +29,6 @@ namespace FormanceSDK.Models.Ledger
         public string? Next { get; set; }
 
         [JsonProperty("data")]
-        public List<V2ExporterConfiguration> Data { get; set; } = default!;
+        public List<V2Exporter> Data { get; set; } = default!;
     }
 }

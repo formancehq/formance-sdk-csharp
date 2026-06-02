@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Ledger
     public class MappingResponse
     {
         [JsonProperty("data")]
-        public Mapping? Mapping { get; set; } = null;
+        public Mapping? Data { get; set; } = null;
     }
 }

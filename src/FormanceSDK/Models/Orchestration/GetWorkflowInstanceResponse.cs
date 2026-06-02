@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Orchestration
     public class GetWorkflowInstanceResponse
     {
         [JsonProperty("data")]
-        public WorkflowInstance WorkflowInstance { get; set; } = default!;
+        public WorkflowInstance Data { get; set; } = default!;
     }
 }

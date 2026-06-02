@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Auth
     public class CreateSecretResponse
     {
         [JsonProperty("data")]
-        public SecretOptions1? SecretOptions { get; set; }
+        public Secret? Data { get; set; }
     }
 }

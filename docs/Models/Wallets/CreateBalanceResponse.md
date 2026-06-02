@@ -5,4 +5,4 @@
 
 | Field                                      | Type                                       | Required                                   | Description                                |
 | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| `Balance`                                  | [Balance](../../Models/Wallets/Balance.md) | :heavy_check_mark:                         | N/A                                        |
+| `Data`                                     | [Balance](../../Models/Wallets/Balance.md) | :heavy_check_mark:                         | N/A                                        |

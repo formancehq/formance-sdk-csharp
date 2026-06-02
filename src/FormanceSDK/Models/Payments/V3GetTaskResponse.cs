@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Payments
     public class V3GetTaskResponse
     {
         [JsonProperty("data")]
-        public V3Task V3Task { get; set; } = default!;
+        public V3Task Data { get; set; } = default!;
     }
 }

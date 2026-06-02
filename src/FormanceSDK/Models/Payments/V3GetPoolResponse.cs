@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Payments
     public class V3GetPoolResponse
     {
         [JsonProperty("data")]
-        public V3Pool V3Pool { get; set; } = default!;
+        public V3Pool Data { get; set; } = default!;
     }
 }

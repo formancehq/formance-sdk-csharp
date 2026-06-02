@@ -66,12 +66,12 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="request">A <see cref="ClientOptions1"/> parameter.</param>
+        /// <param name="request">A <see cref="ClientOptions"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.CreateClientResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 201.</exception>
-        public  Task<Models.Requests.CreateClientResponse> CreateClientAsync(ClientOptions1? request = null);
+        public  Task<Models.Requests.CreateClientResponse> CreateClientAsync(ClientOptions? request = null);
 
         /// <summary>
         /// Read client.
@@ -94,13 +94,13 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="clientId">Client ID.</param>
-        /// <param name="clientOptions">A <see cref="ClientOptions1"/> parameter.</param>
+        /// <param name="clientOptions">A <see cref="ClientOptions"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="UpdateClientResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="clientId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public  Task<UpdateClientResponse> UpdateClientAsync(string clientId, ClientOptions1? clientOptions = null);
+        public  Task<UpdateClientResponse> UpdateClientAsync(string clientId, ClientOptions? clientOptions = null);
 
         /// <summary>
         /// Delete client.
@@ -476,12 +476,12 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="request">A <see cref="ClientOptions1"/> parameter.</param>
+        /// <param name="request">A <see cref="ClientOptions"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.CreateClientResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 201.</exception>
-        public async  Task<Models.Requests.CreateClientResponse> CreateClientAsync(ClientOptions1? request = null)
+        public async  Task<Models.Requests.CreateClientResponse> CreateClientAsync(ClientOptions? request = null)
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/auth/clients";
@@ -693,13 +693,13 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="clientId">Client ID.</param>
-        /// <param name="clientOptions">A <see cref="ClientOptions1"/> parameter.</param>
+        /// <param name="clientOptions">A <see cref="ClientOptions"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="UpdateClientResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="clientId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
-        public async  Task<UpdateClientResponse> UpdateClientAsync(string clientId, ClientOptions1? clientOptions = null)
+        public async  Task<UpdateClientResponse> UpdateClientAsync(string clientId, ClientOptions? clientOptions = null)
         {
             if (clientId == null) throw new ArgumentNullException(nameof(clientId));
 

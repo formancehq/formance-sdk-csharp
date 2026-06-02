@@ -126,7 +126,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-ClientOptions1? req = null;
+ClientOptions? req = null;
 
 var res = await sdk.Auth.V1.CreateClientAsync(req);
 
@@ -135,9 +135,9 @@ var res = await sdk.Auth.V1.CreateClientAsync(req);
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `request`                                             | [ClientOptions1](../../Models/Auth/ClientOptions1.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
+| Parameter                                           | Type                                                | Required                                            | Description                                         |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| `request`                                           | [ClientOptions](../../Models/Auth/ClientOptions.md) | :heavy_check_mark:                                  | The request object to use for the request.          |
 
 ### Response
 
@@ -209,10 +209,10 @@ var res = await sdk.Auth.V1.UpdateClientAsync(clientId: "<id>");
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ClientId`                                            | *string*                                              | :heavy_check_mark:                                    | Client ID                                             |
-| `ClientOptions`                                       | [ClientOptions1](../../Models/Auth/ClientOptions1.md) | :heavy_minus_sign:                                    | N/A                                                   |
+| Parameter                                           | Type                                                | Required                                            | Description                                         |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| `ClientId`                                          | *string*                                            | :heavy_check_mark:                                  | Client ID                                           |
+| `ClientOptions`                                     | [ClientOptions](../../Models/Auth/ClientOptions.md) | :heavy_minus_sign:                                  | N/A                                                 |
 
 ### Response
 

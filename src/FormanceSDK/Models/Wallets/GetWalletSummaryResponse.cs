@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Wallets
     public class GetWalletSummaryResponse
     {
         [JsonProperty("data")]
-        public WalletSummary WalletSummary { get; set; } = default!;
+        public WalletSummary Data { get; set; } = default!;
     }
 }

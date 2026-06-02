@@ -20,7 +20,7 @@ namespace FormanceSDK.Models.Ledger
         public List<V2BulkElementResult>? Data { get; set; }
 
         [JsonProperty("errorCode")]
-        public V2ErrorsEnum? V2ErrorsEnum { get; set; }
+        public V2ErrorsEnum? ErrorCode { get; set; }
 
         [JsonProperty("errorMessage")]
         public string? ErrorMessage { get; set; }

@@ -21,6 +21,6 @@ namespace FormanceSDK.Models.Requests
         public string ExporterID { get; set; } = default!;
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public V2ExporterConfiguration1 V2ExporterConfiguration { get; set; } = default!;
+        public V2ExporterConfiguration V2ExporterConfiguration { get; set; } = default!;
     }
 }

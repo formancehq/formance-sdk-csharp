@@ -19,6 +19,6 @@ namespace FormanceSDK.Models.Reconciliation
     public class PolicyResponse
     {
         [JsonProperty("data")]
-        public Policy Policy { get; set; } = default!;
+        public Policy Data { get; set; } = default!;
     }
 }

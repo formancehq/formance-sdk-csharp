@@ -21,7 +21,7 @@ namespace FormanceSDK.Models.Orchestration
         public string Name { get; set; } = default!;
 
         [JsonProperty("input", NullValueHandling = NullValueHandling.Include)]
-        public V2Stage V2Stage { get; set; } = default!;
+        public V2Stage Input { get; set; } = default!;
 
         [JsonProperty("error")]
         public string? Error { get; set; }

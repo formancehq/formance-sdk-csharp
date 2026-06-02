@@ -16,7 +16,7 @@ namespace FormanceSDK.Models.Payments
     public class Data
     {
         [JsonProperty("provider")]
-        public Models.Payments.Connector Connector { get; set; } = default!;
+        public Models.Payments.Connector Provider { get; set; } = default!;
 
         [JsonProperty("name")]
         public string Name { get; set; } = default!;

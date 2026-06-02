@@ -42,6 +42,6 @@ namespace FormanceSDK.Models.Wallets
         public string Description { get; set; } = default!;
 
         [JsonProperty("destination", NullValueHandling = NullValueHandling.Include)]
-        public Models.Wallets.Subject? Subject { get; set; }
+        public Models.Wallets.Subject? Destination { get; set; }
     }
 }

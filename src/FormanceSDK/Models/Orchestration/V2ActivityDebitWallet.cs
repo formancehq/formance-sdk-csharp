@@ -19,6 +19,6 @@ namespace FormanceSDK.Models.Orchestration
         public string? Id { get; set; }
 
         [JsonProperty("data")]
-        public V2DebitWalletRequest? V2DebitWalletRequest { get; set; }
+        public V2DebitWalletRequest? Data { get; set; }
     }
 }

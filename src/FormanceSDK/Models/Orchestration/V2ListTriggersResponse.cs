@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Orchestration
     public class V2ListTriggersResponse
     {
         [JsonProperty("cursor")]
-        public Models.Orchestration.Cursor Cursor { get; set; } = default!;
+        public V2ListTriggersResponseCursor Cursor { get; set; } = default!;
     }
 }

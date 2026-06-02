@@ -19,6 +19,6 @@ namespace FormanceSDK.Models.Orchestration
         public string? Id { get; set; }
 
         [JsonProperty("data")]
-        public Models.Orchestration.CreditWalletRequest? CreditWalletRequest { get; set; }
+        public Models.Orchestration.CreditWalletRequest? Data { get; set; }
     }
 }

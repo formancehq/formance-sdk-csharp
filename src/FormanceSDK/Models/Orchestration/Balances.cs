@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Orchestration
     public class Balances
     {
         [JsonProperty("main")]
-        public Models.Orchestration.AssetHolder AssetHolder { get; set; } = default!;
+        public Models.Orchestration.AssetHolder Main { get; set; } = default!;
     }
 }

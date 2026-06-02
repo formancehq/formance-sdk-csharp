@@ -28,7 +28,7 @@ namespace FormanceSDK.Models.Ledger
         public List<Models.Ledger.V2Posting> Postings { get; set; } = default!;
 
         [JsonProperty("metadata")]
-        public Dictionary<string, string> V2Metadata { get; set; } = default!;
+        public Dictionary<string, string> Metadata { get; set; } = default!;
 
         [JsonProperty("timestamp")]
         public DateTime Timestamp { get; set; } = default!;
@@ -58,15 +58,15 @@ namespace FormanceSDK.Models.Ledger
         public string? Template { get; set; }
 
         [JsonProperty("postCommitVolumes")]
-        public Dictionary<string, Dictionary<string, Models.Ledger.V2Volume>>? V2AggregatedVolumes { get; set; }
+        public Dictionary<string, Dictionary<string, Models.Ledger.V2Volume>>? PostCommitVolumes { get; set; }
 
         [JsonProperty("postCommitEffectiveVolumes")]
-        public Dictionary<string, Dictionary<string, Models.Ledger.V2Volume>>? V2AggregatedVolumes1 { get; set; }
+        public Dictionary<string, Dictionary<string, Models.Ledger.V2Volume>>? PostCommitEffectiveVolumes { get; set; }
 
         [JsonProperty("preCommitVolumes")]
-        public Dictionary<string, Dictionary<string, Models.Ledger.V2Volume>>? V2AggregatedVolumes2 { get; set; }
+        public Dictionary<string, Dictionary<string, Models.Ledger.V2Volume>>? PreCommitVolumes { get; set; }
 
         [JsonProperty("preCommitEffectiveVolumes")]
-        public Dictionary<string, Dictionary<string, Models.Ledger.V2Volume>>? V2AggregatedVolumes3 { get; set; }
+        public Dictionary<string, Dictionary<string, Models.Ledger.V2Volume>>? PreCommitEffectiveVolumes { get; set; }
     }
 }

@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Orchestration
     public class V2WalletWithBalancesBalances
     {
         [JsonProperty("main")]
-        public V2AssetHolder V2AssetHolder { get; set; } = default!;
+        public V2AssetHolder Main { get; set; } = default!;
     }
 }

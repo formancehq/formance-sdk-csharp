@@ -27,7 +27,7 @@ namespace FormanceSDK.Models.Payments
         public DateTime CreatedAt { get; set; } = default!;
 
         [JsonProperty("type")]
-        public V3PoolTypeEnum? V3PoolTypeEnum { get; set; }
+        public V3PoolTypeEnum? Type { get; set; }
 
         [JsonProperty("query")]
         public Dictionary<string, object>? Query { get; set; }

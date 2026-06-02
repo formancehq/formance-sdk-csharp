@@ -5,4 +5,4 @@
 
 | Field                                                  | Type                                                   | Required                                               | Description                                            |
 | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| `WalletSummary`                                        | [WalletSummary](../../Models/Wallets/WalletSummary.md) | :heavy_check_mark:                                     | N/A                                                    |
+| `Data`                                                 | [WalletSummary](../../Models/Wallets/WalletSummary.md) | :heavy_check_mark:                                     | N/A                                                    |

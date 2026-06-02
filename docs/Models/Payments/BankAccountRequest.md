@@ -11,4 +11,4 @@
 | `AccountNumber`              | *string*                     | :heavy_minus_sign:           | N/A                          |                              |
 | `Iban`                       | *string*                     | :heavy_minus_sign:           | N/A                          |                              |
 | `SwiftBicCode`               | *string*                     | :heavy_minus_sign:           | N/A                          |                              |
-| `BankAccountMetadata`        | Dictionary<String, *string*> | :heavy_minus_sign:           | N/A                          |                              |
+| `Metadata`                   | Dictionary<String, *string*> | :heavy_minus_sign:           | N/A                          |                              |

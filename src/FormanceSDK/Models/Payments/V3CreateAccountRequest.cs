@@ -30,12 +30,12 @@ namespace FormanceSDK.Models.Payments
         public string AccountName { get; set; } = default!;
 
         [JsonProperty("type")]
-        public V3AccountTypeEnum V3AccountTypeEnum { get; set; } = default!;
+        public V3AccountTypeEnum Type { get; set; } = default!;
 
         [JsonProperty("defaultAsset")]
         public string? DefaultAsset { get; set; } = null;
 
         [JsonProperty("metadata")]
-        public Dictionary<string, string>? V3Metadata { get; set; } = null;
+        public Dictionary<string, string>? Metadata { get; set; } = null;
     }
 }

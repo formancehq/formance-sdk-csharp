@@ -39,6 +39,6 @@ namespace FormanceSDK.Models.Orchestration
         public string Description { get; set; } = default!;
 
         [JsonProperty("destination", NullValueHandling = NullValueHandling.Include)]
-        public Models.Orchestration.Subject? Subject { get; set; }
+        public Models.Orchestration.Subject? Destination { get; set; }
     }
 }

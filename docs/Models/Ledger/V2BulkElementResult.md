@@ -3,32 +3,32 @@
 
 ## Supported Types
 
-### V2BaseBulkElementResult
+### V2BulkElementResultCreateTransaction
 
 ```csharp
-V2BulkElementResult.CreateV2BaseBulkElementResult(/* values here */);
+V2BulkElementResult.CreateV2BulkElementResultCreateTransaction(/* values here */);
 ```
 
-### LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult
+### V2BulkElementResultAddMetadata
 
 ```csharp
-V2BulkElementResult.CreateLedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult(/* values here */);
+V2BulkElementResult.CreateV2BulkElementResultAddMetadata(/* values here */);
 ```
 
-### LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult
+### V2BulkElementResultRevertTransaction
 
 ```csharp
-V2BulkElementResult.CreateLedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult(/* values here */);
+V2BulkElementResult.CreateV2BulkElementResultRevertTransaction(/* values here */);
 ```
 
-### LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult
+### V2BulkElementResultDeleteMetadata
 
 ```csharp
-V2BulkElementResult.CreateLedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult(/* values here */);
+V2BulkElementResult.CreateV2BulkElementResultDeleteMetadata(/* values here */);
 ```
 
-### LedgerV2BulkElementResultErrorV2BaseBulkElementResult
+### V2BulkElementResultError
 
 ```csharp
-V2BulkElementResult.CreateLedgerV2BulkElementResultErrorV2BaseBulkElementResult(/* values here */);
+V2BulkElementResult.CreateV2BulkElementResultError(/* values here */);
 ```

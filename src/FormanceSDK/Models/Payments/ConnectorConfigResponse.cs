@@ -20,6 +20,6 @@ namespace FormanceSDK.Models.Payments
     public class ConnectorConfigResponse
     {
         [JsonProperty("data", NullValueHandling = NullValueHandling.Include)]
-        public ConnectorConfig ConnectorConfig { get; set; } = default!;
+        public ConnectorConfig Data { get; set; } = default!;
     }
 }

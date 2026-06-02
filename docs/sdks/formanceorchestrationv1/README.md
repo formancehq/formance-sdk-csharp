@@ -109,7 +109,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-TriggerData1? req = null;
+TriggerData? req = null;
 
 var res = await sdk.Orchestration.V1.CreateTriggerAsync(req);
 
@@ -118,9 +118,9 @@ var res = await sdk.Orchestration.V1.CreateTriggerAsync(req);
 
 ### Parameters
 
-| Parameter                                                  | Type                                                       | Required                                                   | Description                                                |
-| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| `request`                                                  | [TriggerData1](../../Models/Orchestration/TriggerData1.md) | :heavy_check_mark:                                         | The request object to use for the request.                 |
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `request`                                                | [TriggerData](../../Models/Orchestration/TriggerData.md) | :heavy_check_mark:                                       | The request object to use for the request.               |
 
 ### Response
 

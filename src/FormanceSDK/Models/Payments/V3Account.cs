@@ -24,7 +24,7 @@ namespace FormanceSDK.Models.Payments
         public string ConnectorID { get; set; } = default!;
 
         [JsonProperty("connector")]
-        public V3ConnectorBase? V3ConnectorBase { get; set; }
+        public V3ConnectorBase? Connector { get; set; }
 
         [JsonProperty("provider")]
         public string Provider { get; set; } = default!;
@@ -36,7 +36,7 @@ namespace FormanceSDK.Models.Payments
         public DateTime CreatedAt { get; set; } = default!;
 
         [JsonProperty("type")]
-        public V3AccountTypeEnum V3AccountTypeEnum { get; set; } = default!;
+        public V3AccountTypeEnum Type { get; set; } = default!;
 
         [JsonProperty("name")]
         public string? Name { get; set; } = null;
@@ -45,7 +45,7 @@ namespace FormanceSDK.Models.Payments
         public string? DefaultAsset { get; set; } = null;
 
         [JsonProperty("metadata")]
-        public Dictionary<string, string>? V3Metadata { get; set; } = null;
+        public Dictionary<string, string>? Metadata { get; set; } = null;
 
         [JsonProperty("raw")]
         public V3AccountRaw Raw { get; set; } = default!;

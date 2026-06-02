@@ -19,7 +19,7 @@ namespace FormanceSDK.Models.Payments
     public class V3ErrorResponsePayload
     {
         [JsonProperty("errorCode")]
-        public V3ErrorsEnum V3ErrorsEnum { get; set; } = default!;
+        public V3ErrorsEnum ErrorCode { get; set; } = default!;
 
         [JsonProperty("errorMessage")]
         public string ErrorMessage { get; set; } = default!;
@@ -35,8 +35,8 @@ namespace FormanceSDK.Models.Payments
         /// </summary>
         public V3ErrorResponsePayload Payload { get; }
 
-        [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible. Use V3ErrorResponse.Payload.V3ErrorsEnum instead.")]
-        public V3ErrorsEnum V3ErrorsEnum { get; set; } = default!;
+        [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible. Use V3ErrorResponse.Payload.ErrorCode instead.")]
+        public V3ErrorsEnum ErrorCode { get; set; } = default!;
 
         [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible. Use V3ErrorResponse.Payload.ErrorMessage instead.")]
         public string ErrorMessage { get; set; } = default!;
@@ -54,7 +54,7 @@ namespace FormanceSDK.Models.Payments
            Payload = payload;
 
            #pragma warning disable CS0618
-           V3ErrorsEnum = payload.V3ErrorsEnum;
+           ErrorCode = payload.ErrorCode;
            ErrorMessage = payload.ErrorMessage;
            Details = payload.Details;
            #pragma warning restore CS0618

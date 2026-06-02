@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Orchestration
     public class V2ListWalletsResponse
     {
         [JsonProperty("cursor")]
-        public V2Cursor V2Cursor { get; set; } = default!;
+        public V2ListWalletsResponseCursor Cursor { get; set; } = default!;
     }
 }

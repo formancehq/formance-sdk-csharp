@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Ledger
     public class AccountResponse
     {
         [JsonProperty("data")]
-        public AccountWithVolumesAndBalances AccountWithVolumesAndBalances { get; set; } = default!;
+        public AccountWithVolumesAndBalances Data { get; set; } = default!;
     }
 }

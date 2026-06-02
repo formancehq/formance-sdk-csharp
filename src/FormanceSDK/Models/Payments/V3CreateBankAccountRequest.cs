@@ -31,6 +31,6 @@ namespace FormanceSDK.Models.Payments
         public string? Country { get; set; }
 
         [JsonProperty("metadata")]
-        public Dictionary<string, string>? V3Metadata { get; set; } = null;
+        public Dictionary<string, string>? Metadata { get; set; } = null;
     }
 }

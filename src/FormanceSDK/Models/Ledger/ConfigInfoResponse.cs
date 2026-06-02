@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Ledger
     public class ConfigInfoResponse
     {
         [JsonProperty("data")]
-        public ConfigInfo ConfigInfo { get; set; } = default!;
+        public ConfigInfo Data { get; set; } = default!;
     }
 }

@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Orchestration
     public class ReadTriggerResponse
     {
         [JsonProperty("data")]
-        public TriggerData TriggerData { get; set; } = default!;
+        public Trigger Data { get; set; } = default!;
     }
 }

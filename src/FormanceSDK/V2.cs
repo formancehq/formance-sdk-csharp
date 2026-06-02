@@ -561,14 +561,14 @@ namespace FormanceSDK
         /// <summary>
         /// Create exporter.
         /// </summary>
-        /// <param name="request">A <see cref="V2ExporterConfiguration1"/> parameter.</param>
+        /// <param name="request">A <see cref="V2ExporterConfiguration"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreateExporterResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<Models.Requests.V2CreateExporterResponse> CreateExporterAsync(V2ExporterConfiguration1 request);
+        public  Task<Models.Requests.V2CreateExporterResponse> CreateExporterAsync(V2ExporterConfiguration request);
 
         /// <summary>
         /// Get exporter state.
@@ -589,7 +589,7 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="exporterID">The exporter id.</param>
-        /// <param name="v2ExporterConfiguration">A <see cref="V2ExporterConfiguration1"/> parameter.</param>
+        /// <param name="v2ExporterConfiguration">A <see cref="V2ExporterConfiguration"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="V2UpdateExporterResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="exporterID"/> or <paramref name="v2ExporterConfiguration"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -598,7 +598,7 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<V2UpdateExporterResponse> UpdateExporterAsync(
             string exporterID,
-            V2ExporterConfiguration1 v2ExporterConfiguration
+            V2ExporterConfiguration v2ExporterConfiguration
         );
 
         /// <summary>
@@ -4538,16 +4538,14 @@ namespace FormanceSDK
         /// <summary>
         /// Create exporter.
         /// </summary>
-        /// <param name="request">A <see cref="V2ExporterConfiguration1"/> parameter.</param>
+        /// <param name="request">A <see cref="V2ExporterConfiguration"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreateExporterResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<Models.Requests.V2CreateExporterResponse> CreateExporterAsync(
-            V2ExporterConfiguration1 request
-        )
+        public async  Task<Models.Requests.V2CreateExporterResponse> CreateExporterAsync(V2ExporterConfiguration request)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
@@ -4781,7 +4779,7 @@ namespace FormanceSDK
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
         /// <param name="exporterID">The exporter id.</param>
-        /// <param name="v2ExporterConfiguration">A <see cref="V2ExporterConfiguration1"/> parameter.</param>
+        /// <param name="v2ExporterConfiguration">A <see cref="V2ExporterConfiguration"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="V2UpdateExporterResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">One of <paramref name="exporterID"/> or <paramref name="v2ExporterConfiguration"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
@@ -4790,7 +4788,7 @@ namespace FormanceSDK
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<V2UpdateExporterResponse> UpdateExporterAsync(
             string exporterID,
-            V2ExporterConfiguration1 v2ExporterConfiguration
+            V2ExporterConfiguration v2ExporterConfiguration
         )
         {
             if (exporterID == null) throw new ArgumentNullException(nameof(exporterID));

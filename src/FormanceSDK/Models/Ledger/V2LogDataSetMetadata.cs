@@ -30,6 +30,6 @@ namespace FormanceSDK.Models.Ledger
         public TargetId TargetId { get; set; } = default!;
 
         [JsonProperty("metadata")]
-        public Dictionary<string, string> V2Metadata { get; set; } = default!;
+        public Dictionary<string, string> Metadata { get; set; } = default!;
     }
 }

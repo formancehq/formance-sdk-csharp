@@ -431,7 +431,7 @@ catch (SDKBaseException ex)  // all SDK exceptions inherit from SDKBaseException
     {
         // Check error data fields
         V2ErrorResponseErrorPayload payload = ex.Payload;
-        V2ErrorsEnum V2ErrorsEnum = payload.V2ErrorsEnum;
+        V2ErrorsEnum ErrorCode = payload.ErrorCode;
         string ErrorMessage = payload.ErrorMessage;
         // ...
     }

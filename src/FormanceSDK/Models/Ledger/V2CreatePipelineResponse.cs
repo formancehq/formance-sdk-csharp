@@ -19,6 +19,6 @@ namespace FormanceSDK.Models.Ledger
     public class V2CreatePipelineResponse
     {
         [JsonProperty("data")]
-        public V2PipelineConfiguration V2PipelineConfiguration { get; set; } = default!;
+        public V2Pipeline Data { get; set; } = default!;
     }
 }

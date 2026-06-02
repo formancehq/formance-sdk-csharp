@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Ledger
     public class V2StatsResponse
     {
         [JsonProperty("data")]
-        public V2Stats V2Stats { get; set; } = default!;
+        public V2Stats Data { get; set; } = default!;
     }
 }

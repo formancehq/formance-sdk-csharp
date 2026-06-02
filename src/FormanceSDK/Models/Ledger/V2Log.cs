@@ -44,7 +44,7 @@ namespace FormanceSDK.Models.Ledger
         /// - INSERTED_SCHEMA: V2LogDataInsertedSchema.
         /// </summary>
         [JsonProperty("data", NullValueHandling = NullValueHandling.Include)]
-        public Models.Ledger.Data Data { get; set; } = default!;
+        public V2LogData Data { get; set; } = default!;
 
         /// <summary>
         /// SHA256 hash of the log entry, chained from the previous log for integrity verification.

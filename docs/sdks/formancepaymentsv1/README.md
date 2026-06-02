@@ -106,9 +106,9 @@ PaymentRequest req = new PaymentRequest() {
     ConnectorID = "<id>",
     CreatedAt = System.DateTime.Parse("2025-08-26T06:29:11.777Z").ToUniversalTime(),
     Amount = BigInteger.Parse("100"),
-    PaymentType = FormanceSDK.Models.Payments.PaymentType.Other,
-    PaymentStatus = FormanceSDK.Models.Payments.PaymentStatus.RefundedFailure,
-    PaymentScheme = PaymentScheme.Unionpay,
+    Type = FormanceSDK.Models.Payments.PaymentType.Other,
+    Status = FormanceSDK.Models.Payments.PaymentStatus.RefundedFailure,
+    Scheme = PaymentScheme.Unionpay,
     Asset = "USD",
 };
 
@@ -980,7 +980,7 @@ AccountRequest req = new AccountRequest() {
     Reference = "<value>",
     ConnectorID = "<id>",
     CreatedAt = System.DateTime.Parse("2025-07-27T08:57:17.388Z").ToUniversalTime(),
-    AccountType = AccountType.Unknown,
+    Type = AccountType.Unknown,
 };
 
 var res = await sdk.Payments.V1.CreateAccountAsync(req);
@@ -1336,7 +1336,7 @@ var sdk = new Formance(security: new Security() {
 var res = await sdk.Payments.V1.UpdateBankAccountMetadataAsync(
     bankAccountId: "XXX",
     updateBankAccountMetadataRequest: new FormanceSDK.Models.Payments.UpdateBankAccountMetadataRequest() {
-        BankAccountMetadata = new Dictionary<string, string>() {
+        Metadata = new Dictionary<string, string>() {
             { "key", "<value>" },
             { "key1", "<value>" },
             { "key2", "<value>" },

@@ -20,15 +20,15 @@ namespace FormanceSDK.Models.Payments
         public string Name { get; set; } = default!;
 
         [JsonProperty("contactDetails")]
-        public V3ContactDetailsRequest? V3ContactDetailsRequest { get; set; }
+        public V3ContactDetailsRequest? ContactDetails { get; set; }
 
         [JsonProperty("address")]
-        public V3AddressRequest? V3AddressRequest { get; set; }
+        public V3AddressRequest? Address { get; set; }
 
         [JsonProperty("bankAccountIDs")]
         public List<string>? BankAccountIDs { get; set; } = null;
 
         [JsonProperty("metadata")]
-        public Dictionary<string, string>? V3Metadata { get; set; } = null;
+        public Dictionary<string, string>? Metadata { get; set; } = null;
     }
 }

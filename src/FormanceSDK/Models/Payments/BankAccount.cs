@@ -51,6 +51,6 @@ namespace FormanceSDK.Models.Payments
         public List<BankAccountRelatedAccounts>? RelatedAccounts { get; set; }
 
         [JsonProperty("metadata")]
-        public Dictionary<string, string>? BankAccountMetadata { get; set; } = null;
+        public Dictionary<string, string>? Metadata { get; set; } = null;
     }
 }

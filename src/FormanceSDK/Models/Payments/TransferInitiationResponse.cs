@@ -19,6 +19,6 @@ namespace FormanceSDK.Models.Payments
     public class TransferInitiationResponse
     {
         [JsonProperty("data")]
-        public TransferInitiation TransferInitiation { get; set; } = default!;
+        public TransferInitiation Data { get; set; } = default!;
     }
 }

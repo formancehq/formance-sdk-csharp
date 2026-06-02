@@ -7,4 +7,4 @@ OK
 
 | Field                                                       | Type                                                        | Required                                                    | Description                                                 |
 | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `Payment`                                                   | [Models.Payments.Payment](../../Models/Payments/Payment.md) | :heavy_check_mark:                                          | N/A                                                         |
+| `Data`                                                      | [Models.Payments.Payment](../../Models/Payments/Payment.md) | :heavy_check_mark:                                          | N/A                                                         |

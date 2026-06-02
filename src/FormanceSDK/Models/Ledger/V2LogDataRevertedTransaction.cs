@@ -22,12 +22,12 @@ namespace FormanceSDK.Models.Ledger
         /// Transaction structure as it appears in log payloads.
         /// </summary>
         [JsonProperty("revertedTransaction")]
-        public V2LogTransaction V2LogTransaction { get; set; } = default!;
+        public V2LogTransaction RevertedTransaction { get; set; } = default!;
 
         /// <summary>
         /// Transaction structure as it appears in log payloads.
         /// </summary>
         [JsonProperty("transaction")]
-        public V2LogTransaction V2LogTransaction1 { get; set; } = default!;
+        public V2LogTransaction Transaction { get; set; } = default!;
     }
 }

@@ -17,6 +17,6 @@ namespace FormanceSDK.Models.Payments
     public class V3GetConnectorConfigResponse
     {
         [JsonProperty("data", NullValueHandling = NullValueHandling.Include)]
-        public V3ConnectorConfig V3ConnectorConfig { get; set; } = default!;
+        public V3ConnectorConfig Data { get; set; } = default!;
     }
 }

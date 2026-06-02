@@ -20,10 +20,10 @@ namespace FormanceSDK.Models.Orchestration
         public string Name { get; set; } = default!;
 
         [JsonProperty("input")]
-        public WorkflowInstanceHistoryStageInput WorkflowInstanceHistoryStageInput { get; set; } = default!;
+        public WorkflowInstanceHistoryStageInput Input { get; set; } = default!;
 
         [JsonProperty("output")]
-        public WorkflowInstanceHistoryStageOutput? WorkflowInstanceHistoryStageOutput { get; set; }
+        public WorkflowInstanceHistoryStageOutput? Output { get; set; }
 
         [JsonProperty("error")]
         public string? Error { get; set; }

@@ -440,7 +440,7 @@ var sdk = new Formance(security: new Security() {
 var res = await sdk.Wallets.V1.DebitWalletAsync(
     id: "<id>",
     debitWalletRequest: new FormanceSDK.Models.Wallets.DebitWalletRequest() {
-        Monetary = new FormanceSDK.Models.Wallets.Monetary() {
+        Amount = new FormanceSDK.Models.Wallets.Monetary() {
             Asset = "USD/2",
             Amount = BigInteger.Parse("100"),
         },
@@ -494,7 +494,7 @@ var sdk = new Formance(security: new Security() {
 var res = await sdk.Wallets.V1.CreditWalletAsync(
     id: "<id>",
     creditWalletRequest: new FormanceSDK.Models.Wallets.CreditWalletRequest() {
-        Monetary = new FormanceSDK.Models.Wallets.Monetary() {
+        Amount = new FormanceSDK.Models.Wallets.Monetary() {
             Asset = "USD/2",
             Amount = BigInteger.Parse("100"),
         },

@@ -24,7 +24,7 @@ namespace FormanceSDK.Models.Payments
         public DateTime CreatedAt { get; set; } = default!;
 
         [JsonProperty("status")]
-        public Models.Payments.PaymentStatus PaymentStatus { get; set; } = default!;
+        public Models.Payments.PaymentStatus Status { get; set; } = default!;
 
         [JsonProperty("amount")]
         public BigInteger Amount { get; set; } = default!;

@@ -104,7 +104,7 @@ namespace FormanceSDK.Models.Payments
         /// `FAILED` — rejected or reverted, terminal. See `error`.
         /// </summary>
         [JsonProperty("status")]
-        public V3ConversionStatusEnum V3ConversionStatusEnum { get; set; } = default!;
+        public V3ConversionStatusEnum Status { get; set; } = default!;
 
         /// <summary>
         /// Formance account ID of the wallet the source asset was debited from.
@@ -119,7 +119,7 @@ namespace FormanceSDK.Models.Payments
         public string? DestinationAccountID { get; set; } = null;
 
         [JsonProperty("metadata")]
-        public Dictionary<string, string>? V3Metadata { get; set; } = null;
+        public Dictionary<string, string>? Metadata { get; set; } = null;
 
         /// <summary>
         /// Human-readable error from the PSP when `status` is `FAILED`. Null otherwise.

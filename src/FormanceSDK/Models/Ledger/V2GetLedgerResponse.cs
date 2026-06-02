@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Ledger
     public class V2GetLedgerResponse
     {
         [JsonProperty("data")]
-        public V2Ledger V2Ledger { get; set; } = default!;
+        public V2Ledger Data { get; set; } = default!;
     }
 }

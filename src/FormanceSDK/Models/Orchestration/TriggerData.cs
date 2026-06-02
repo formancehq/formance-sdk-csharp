@@ -11,7 +11,6 @@ namespace FormanceSDK.Models.Orchestration
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    using System;
     using System.Collections.Generic;
 
     public class TriggerData
@@ -33,11 +32,5 @@ namespace FormanceSDK.Models.Orchestration
 
         [JsonProperty("name")]
         public string? Name { get; set; }
-
-        [JsonProperty("id")]
-        public string Id { get; set; } = default!;
-
-        [JsonProperty("createdAt")]
-        public DateTime CreatedAt { get; set; } = default!;
     }
 }

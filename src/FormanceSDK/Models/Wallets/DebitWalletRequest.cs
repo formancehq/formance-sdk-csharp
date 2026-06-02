@@ -19,7 +19,7 @@ namespace FormanceSDK.Models.Wallets
     public class DebitWalletRequest
     {
         [JsonProperty("amount")]
-        public Models.Wallets.Monetary Monetary { get; set; } = default!;
+        public Models.Wallets.Monetary Amount { get; set; } = default!;
 
         /// <summary>
         /// Set to true to create a pending hold. If false, the wallet will be debited immediately.
@@ -37,7 +37,7 @@ namespace FormanceSDK.Models.Wallets
         public string? Description { get; set; }
 
         [JsonProperty("destination", NullValueHandling = NullValueHandling.Include)]
-        public Models.Wallets.Subject? Subject { get; set; }
+        public Models.Wallets.Subject? Destination { get; set; }
 
         [JsonProperty("balances")]
         public List<string>? Balances { get; set; }

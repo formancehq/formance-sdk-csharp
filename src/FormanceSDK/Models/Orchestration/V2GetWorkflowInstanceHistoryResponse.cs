@@ -17,6 +17,6 @@ namespace FormanceSDK.Models.Orchestration
     public class V2GetWorkflowInstanceHistoryResponse
     {
         [JsonProperty("data")]
-        public List<V2WorkflowInstanceHistory> V2WorkflowInstanceHistoryList { get; set; } = default!;
+        public List<V2WorkflowInstanceHistory> Data { get; set; } = default!;
     }
 }

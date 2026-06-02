@@ -18,13 +18,13 @@ namespace FormanceSDK.Models.Orchestration
     public class V2StageSend
     {
         [JsonProperty("amount")]
-        public V2Monetary? V2Monetary { get; set; }
+        public V2Monetary? Amount { get; set; }
 
         [JsonProperty("destination")]
-        public V2StageSendDestination? V2StageSendDestination { get; set; }
+        public V2StageSendDestination? Destination { get; set; }
 
         [JsonProperty("source")]
-        public V2StageSendSource? V2StageSendSource { get; set; }
+        public V2StageSendSource? Source { get; set; }
 
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; }

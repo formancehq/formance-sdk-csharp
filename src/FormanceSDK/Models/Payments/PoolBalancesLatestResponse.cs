@@ -20,6 +20,6 @@ namespace FormanceSDK.Models.Payments
     public class PoolBalancesLatestResponse
     {
         [JsonProperty("data")]
-        public List<PoolBalance> PoolBalancesLatest { get; set; } = default!;
+        public List<PoolBalance> Data { get; set; } = default!;
     }
 }

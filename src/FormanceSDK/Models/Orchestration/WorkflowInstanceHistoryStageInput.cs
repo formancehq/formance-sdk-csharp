@@ -16,42 +16,42 @@ namespace FormanceSDK.Models.Orchestration
     public class WorkflowInstanceHistoryStageInput
     {
         [JsonProperty("GetAccount")]
-        public ActivityGetAccount? ActivityGetAccount { get; set; }
+        public ActivityGetAccount? GetAccount { get; set; }
 
         [JsonProperty("AddAccountMetadata")]
-        public ActivityAddAccountMetadata? ActivityAddAccountMetadata { get; set; }
+        public ActivityAddAccountMetadata? AddAccountMetadata { get; set; }
 
         [JsonProperty("CreateTransaction")]
-        public ActivityCreateTransaction? ActivityCreateTransaction { get; set; }
+        public ActivityCreateTransaction? CreateTransaction { get; set; }
 
         [JsonProperty("RevertTransaction")]
-        public ActivityRevertTransaction? ActivityRevertTransaction { get; set; }
+        public ActivityRevertTransaction? RevertTransaction { get; set; }
 
         [JsonProperty("StripeTransfer")]
-        public StripeTransferRequest? StripeTransferRequest { get; set; }
+        public StripeTransferRequest? StripeTransfer { get; set; }
 
         [JsonProperty("CreateTransferInitiation")]
-        public CreateTransferInitiationRequest? CreateTransferInitiationRequest { get; set; }
+        public CreateTransferInitiationRequest? CreateTransferInitiation { get; set; }
 
         [JsonProperty("GetPayment")]
-        public ActivityGetPayment? ActivityGetPayment { get; set; }
+        public ActivityGetPayment? GetPayment { get; set; }
 
         [JsonProperty("ConfirmHold")]
-        public ActivityConfirmHold? ActivityConfirmHold { get; set; }
+        public ActivityConfirmHold? ConfirmHold { get; set; }
 
         [JsonProperty("CreditWallet")]
-        public ActivityCreditWallet? ActivityCreditWallet { get; set; }
+        public ActivityCreditWallet? CreditWallet { get; set; }
 
         [JsonProperty("DebitWallet")]
-        public ActivityDebitWallet? ActivityDebitWallet { get; set; }
+        public ActivityDebitWallet? DebitWallet { get; set; }
 
         [JsonProperty("GetWallet")]
-        public ActivityGetWallet? ActivityGetWallet { get; set; }
+        public ActivityGetWallet? GetWallet { get; set; }
 
         [JsonProperty("VoidHold")]
-        public ActivityVoidHold? ActivityVoidHold { get; set; }
+        public ActivityVoidHold? VoidHold { get; set; }
 
         [JsonProperty("ListWallets")]
-        public ActivityListWallets? ActivityListWallets { get; set; }
+        public ActivityListWallets? ListWallets { get; set; }
     }
 }

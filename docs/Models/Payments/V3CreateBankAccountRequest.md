@@ -10,4 +10,4 @@
 | `Iban`                       | *string*                     | :heavy_minus_sign:           | N/A                          |
 | `SwiftBicCode`               | *string*                     | :heavy_minus_sign:           | N/A                          |
 | `Country`                    | *string*                     | :heavy_minus_sign:           | N/A                          |
-| `V3Metadata`                 | Dictionary<String, *string*> | :heavy_minus_sign:           | N/A                          |
+| `Metadata`                   | Dictionary<String, *string*> | :heavy_minus_sign:           | N/A                          |

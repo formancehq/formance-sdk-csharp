@@ -19,6 +19,6 @@ namespace FormanceSDK.Models.Payments
     public class PaymentResponse
     {
         [JsonProperty("data")]
-        public Models.Payments.Payment Payment { get; set; } = default!;
+        public Models.Payments.Payment Data { get; set; } = default!;
     }
 }

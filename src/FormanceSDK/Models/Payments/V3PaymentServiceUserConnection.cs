@@ -30,12 +30,12 @@ namespace FormanceSDK.Models.Payments
         public DateTime DataUpdatedAt { get; set; } = default!;
 
         [JsonProperty("status")]
-        public V3ConnectionStatusEnum V3ConnectionStatusEnum { get; set; } = default!;
+        public V3ConnectionStatusEnum Status { get; set; } = default!;
 
         [JsonProperty("error")]
         public string? Error { get; set; } = null;
 
         [JsonProperty("metadata")]
-        public Dictionary<string, string>? V3Metadata { get; set; } = null;
+        public Dictionary<string, string>? Metadata { get; set; } = null;
     }
 }

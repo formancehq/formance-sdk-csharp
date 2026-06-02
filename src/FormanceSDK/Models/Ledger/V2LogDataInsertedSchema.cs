@@ -22,6 +22,6 @@ namespace FormanceSDK.Models.Ledger
         /// Complete schema structure with metadata.
         /// </summary>
         [JsonProperty("schema")]
-        public V2SchemaData1 V2SchemaData { get; set; } = default!;
+        public V2Schema Schema { get; set; } = default!;
     }
 }

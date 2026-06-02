@@ -26,7 +26,7 @@ namespace FormanceSDK.Models.Ledger
         public string? DotPattern { get; set; }
 
         [JsonProperty(".rules")]
-        public V2ChartAccountRules? V2ChartAccountRules { get; set; }
+        public V2ChartAccountRules? DotRules { get; set; }
 
         [JsonProperty(".metadata")]
         public Dictionary<string, V2ChartAccountMetadata>? DotMetadata { get; set; }

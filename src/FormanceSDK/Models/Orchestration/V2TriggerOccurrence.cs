@@ -24,7 +24,7 @@ namespace FormanceSDK.Models.Orchestration
         public string? WorkflowInstanceID { get; set; }
 
         [JsonProperty("workflowInstance")]
-        public V2WorkflowInstance? V2WorkflowInstance { get; set; }
+        public V2WorkflowInstance? WorkflowInstance { get; set; }
 
         [JsonProperty("triggerID")]
         public string TriggerID { get; set; } = default!;

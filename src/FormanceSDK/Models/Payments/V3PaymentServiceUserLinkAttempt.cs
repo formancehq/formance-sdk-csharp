@@ -29,7 +29,7 @@ namespace FormanceSDK.Models.Payments
         public DateTime CreatedAt { get; set; } = default!;
 
         [JsonProperty("status")]
-        public V3OpenBankingConnectionAttemptStatusEnum V3OpenBankingConnectionAttemptStatusEnum { get; set; } = default!;
+        public V3OpenBankingConnectionAttemptStatusEnum Status { get; set; } = default!;
 
         [JsonProperty("clientRedirectURL")]
         public string ClientRedirectURL { get; set; } = default!;

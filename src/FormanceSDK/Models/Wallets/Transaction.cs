@@ -39,9 +39,9 @@ namespace FormanceSDK.Models.Wallets
         public long Id { get; set; } = default!;
 
         [JsonProperty("preCommitVolumes")]
-        public Dictionary<string, Dictionary<string, Models.Wallets.Volume>>? AggregatedVolumes { get; set; }
+        public Dictionary<string, Dictionary<string, Models.Wallets.Volume>>? PreCommitVolumes { get; set; }
 
         [JsonProperty("postCommitVolumes")]
-        public Dictionary<string, Dictionary<string, Models.Wallets.Volume>>? AggregatedVolumes1 { get; set; }
+        public Dictionary<string, Dictionary<string, Models.Wallets.Volume>>? PostCommitVolumes { get; set; }
     }
 }

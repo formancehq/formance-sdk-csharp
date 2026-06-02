@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Ledger
     public class LedgerInfoResponse
     {
         [JsonProperty("data")]
-        public LedgerInfo? LedgerInfo { get; set; }
+        public LedgerInfo? Data { get; set; }
     }
 }

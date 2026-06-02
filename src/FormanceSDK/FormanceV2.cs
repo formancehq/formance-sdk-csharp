@@ -71,13 +71,13 @@ namespace FormanceSDK
         /// Create trigger<br/>
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
-        /// <param name="request">A <see cref="V2TriggerData1"/> parameter.</param>
+        /// <param name="request">A <see cref="V2TriggerData"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreateTriggerResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<Models.Requests.V2CreateTriggerResponse> CreateTriggerAsync(V2TriggerData1? request = null);
+        public  Task<Models.Requests.V2CreateTriggerResponse> CreateTriggerAsync(V2TriggerData? request = null);
 
         /// <summary>
         /// Read trigger.
@@ -636,13 +636,13 @@ namespace FormanceSDK
         /// Create trigger<br/>
         /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
         /// </remarks>
-        /// <param name="request">A <see cref="V2TriggerData1"/> parameter.</param>
+        /// <param name="request">A <see cref="V2TriggerData"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreateTriggerResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2Error">General error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<Models.Requests.V2CreateTriggerResponse> CreateTriggerAsync(V2TriggerData1? request = null)
+        public async  Task<Models.Requests.V2CreateTriggerResponse> CreateTriggerAsync(V2TriggerData? request = null)
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/api/orchestration/v2/triggers";

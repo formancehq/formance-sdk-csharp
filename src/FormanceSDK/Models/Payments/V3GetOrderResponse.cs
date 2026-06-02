@@ -22,6 +22,6 @@ namespace FormanceSDK.Models.Payments
         /// adjustment is a point-in-time snapshot from the PSP.
         /// </summary>
         [JsonProperty("data")]
-        public V3Order V3Order { get; set; } = default!;
+        public V3Order Data { get; set; } = default!;
     }
 }

@@ -9,4 +9,4 @@
 | `WalletID`                                           | *string*                                             | :heavy_check_mark:                                   | The ID of the wallet the hold is associated with.    |
 | `Metadata`                                           | Dictionary<String, *string*>                         | :heavy_check_mark:                                   | Metadata associated with the hold.                   |
 | `Description`                                        | *string*                                             | :heavy_check_mark:                                   | N/A                                                  |
-| `V2Subject`                                          | [V2Subject](../../Models/Orchestration/V2Subject.md) | :heavy_minus_sign:                                   | N/A                                                  |
+| `Destination`                                        | [V2Subject](../../Models/Orchestration/V2Subject.md) | :heavy_minus_sign:                                   | N/A                                                  |

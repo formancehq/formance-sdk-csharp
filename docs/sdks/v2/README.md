@@ -157,7 +157,7 @@ var sdk = new Formance(security: new Security() {
 var res = await sdk.Ledger.V2.CreateLedgerAsync(
     ledger: "ledger001",
     v2CreateLedgerRequest: new FormanceSDK.Models.Ledger.V2CreateLedgerRequest() {
-        V2Metadata = new Dictionary<string, string>() {
+        Metadata = new Dictionary<string, string>() {
             { "admin", "true" },
         },
     }
@@ -206,7 +206,7 @@ var res = await sdk.Ledger.V2.InsertSchemaAsync(
     ledger: "ledger001",
     version: "v1.0.0",
     v2SchemaData: new V2SchemaData() {
-        V2ChartOfAccounts = new Dictionary<string, V2ChartSegment>() {
+        Chart = new Dictionary<string, V2ChartSegment>() {
             { "users", new V2ChartSegment() {
                 AdditionalProperties = new Dictionary<string, V2ChartSegment>() {
                     { "$userID", new V2ChartSegment() {
@@ -215,9 +215,9 @@ var res = await sdk.Ledger.V2.InsertSchemaAsync(
                 },
             } },
         },
-        V2QueryTemplates = new Dictionary<string, V2QueryTemplate>() {
+        Queries = new Dictionary<string, V2QueryTemplate>() {
             { "key", new V2QueryTemplate() {
-                V2QueryParams = V2QueryParams.CreateQueryTemplateAccountParams(
+                Params = V2QueryParams.CreateQueryTemplateAccountParams(
                     new QueryTemplateAccountParams() {
                         PageSize = 100,
                         Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
@@ -487,10 +487,12 @@ V2CreateBulkRequest req = new V2CreateBulkRequest() {
     Atomic = true,
     Parallel = true,
     SchemaVersion = "v1.0.0",
-    RequestBody = new List<object>() {
-        new V2BaseBulkElement() {
-            Action = "DELETE_METADATA",
-        },
+    RequestBody = new List<V2BulkElement>() {
+        V2BulkElement.CreateV2BulkElementCreateTransaction(
+            new V2BulkElementCreateTransaction() {
+                Action = "DELETE_METADATA",
+            }
+        ),
     },
 };
 
@@ -935,7 +937,7 @@ V2CreateTransactionRequest req = new V2CreateTransactionRequest() {
             },
         },
         Reference = "ref:001",
-        V2Metadata = new Dictionary<string, string>() {
+        Metadata = new Dictionary<string, string>() {
             { "admin", "true" },
         },
         AccountMetadata = new Dictionary<string, Dictionary<string, string>>() {
@@ -1416,7 +1418,7 @@ V2RunQueryRequest req = new V2RunQueryRequest() {
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     Sort = "id:desc",
     RequestBody = new V2RunQueryRequestBody() {
-        V2QueryParams = V2QueryParams.CreateQueryTemplateAccountParams(
+        Params = V2QueryParams.CreateQueryTemplateAccountParams(
             new QueryTemplateAccountParams() {
                 PageSize = 100,
                 Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
@@ -1490,7 +1492,7 @@ using System.Collections.Generic;
 
 var sdk = new Formance();
 
-V2ExporterConfiguration1 req = new V2ExporterConfiguration1() {
+V2ExporterConfiguration req = new V2ExporterConfiguration() {
     Driver = "<value>",
     Config = new Dictionary<string, object>() {
         { "key", "<value>" },
@@ -1504,9 +1506,9 @@ var res = await sdk.Ledger.V2.CreateExporterAsync(req);
 
 ### Parameters
 
-| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
-| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `request`                                                                   | [V2ExporterConfiguration1](../../Models/Ledger/V2ExporterConfiguration1.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [V2ExporterConfiguration](../../Models/Ledger/V2ExporterConfiguration.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
 
 ### Response
 
@@ -1573,7 +1575,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Ledger.V2.UpdateExporterAsync(
     exporterID: "<id>",
-    v2ExporterConfiguration: new V2ExporterConfiguration1() {
+    v2ExporterConfiguration: new V2ExporterConfiguration() {
         Driver = "<value>",
         Config = new Dictionary<string, object>() {
             { "key", "<value>" },
@@ -1588,10 +1590,10 @@ var res = await sdk.Ledger.V2.UpdateExporterAsync(
 
 ### Parameters
 
-| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
-| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `ExporterID`                                                                | *string*                                                                    | :heavy_check_mark:                                                          | The exporter id                                                             |
-| `V2ExporterConfiguration`                                                   | [V2ExporterConfiguration1](../../Models/Ledger/V2ExporterConfiguration1.md) | :heavy_check_mark:                                                          | N/A                                                                         |
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `ExporterID`                                                              | *string*                                                                  | :heavy_check_mark:                                                        | The exporter id                                                           |
+| `V2ExporterConfiguration`                                                 | [V2ExporterConfiguration](../../Models/Ledger/V2ExporterConfiguration.md) | :heavy_check_mark:                                                        | N/A                                                                       |
 
 ### Response
 

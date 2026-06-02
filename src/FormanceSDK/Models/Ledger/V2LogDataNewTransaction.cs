@@ -23,7 +23,7 @@ namespace FormanceSDK.Models.Ledger
         /// Transaction structure as it appears in log payloads.
         /// </summary>
         [JsonProperty("transaction")]
-        public V2LogTransaction V2LogTransaction { get; set; } = default!;
+        public V2LogTransaction Transaction { get; set; } = default!;
 
         /// <summary>
         /// Metadata applied to accounts involved in the transaction.

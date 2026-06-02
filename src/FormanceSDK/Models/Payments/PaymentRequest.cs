@@ -30,13 +30,13 @@ namespace FormanceSDK.Models.Payments
         public BigInteger Amount { get; set; } = default!;
 
         [JsonProperty("type")]
-        public Models.Payments.PaymentType PaymentType { get; set; } = default!;
+        public Models.Payments.PaymentType Type { get; set; } = default!;
 
         [JsonProperty("status")]
-        public Models.Payments.PaymentStatus PaymentStatus { get; set; } = default!;
+        public Models.Payments.PaymentStatus Status { get; set; } = default!;
 
         [JsonProperty("scheme")]
-        public PaymentScheme PaymentScheme { get; set; } = default!;
+        public PaymentScheme Scheme { get; set; } = default!;
 
         [JsonProperty("asset")]
         public string Asset { get; set; } = default!;

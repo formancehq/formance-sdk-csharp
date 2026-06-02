@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Wallets
     public class ListWalletsResponse
     {
         [JsonProperty("cursor")]
-        public Models.Wallets.ListWalletsResponseCursor Cursor { get; set; } = default!;
+        public ListWalletsResponseCursor Cursor { get; set; } = default!;
     }
 }

@@ -14,7 +14,7 @@ generation:
     securityFeb2025: false
     sharedErrorComponentsApr2025: false
     sharedNestedComponentsJan2026: false
-    nameOverrideFeb2026: false
+    nameOverrideFeb2026: true
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
@@ -29,7 +29,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 csharp:
-  version: 5.1.0
+  version: 5.1.1
   additionalDependencies: []
   author: Formance
   baseErrorName: SDKBaseException

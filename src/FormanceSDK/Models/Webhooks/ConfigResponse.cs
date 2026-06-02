@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Webhooks
     public class ConfigResponse
     {
         [JsonProperty("data")]
-        public WebhooksConfig WebhooksConfig { get; set; } = default!;
+        public WebhooksConfig Data { get; set; } = default!;
     }
 }

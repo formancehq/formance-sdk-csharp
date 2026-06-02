@@ -19,7 +19,7 @@ namespace FormanceSDK.Models.Webhooks
     public class ErrorResponsePayload
     {
         [JsonProperty("errorCode")]
-        public Models.Webhooks.ErrorsEnum ErrorsEnum { get; set; } = default!;
+        public Models.Webhooks.ErrorsEnum ErrorCode { get; set; } = default!;
 
         [JsonProperty("errorMessage")]
         public string ErrorMessage { get; set; } = default!;
@@ -35,8 +35,8 @@ namespace FormanceSDK.Models.Webhooks
         /// </summary>
         public ErrorResponsePayload Payload { get; }
 
-        [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible. Use ErrorResponse.Payload.ErrorsEnum instead.")]
-        public Models.Webhooks.ErrorsEnum ErrorsEnum { get; set; } = default!;
+        [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible. Use ErrorResponse.Payload.ErrorCode instead.")]
+        public Models.Webhooks.ErrorsEnum ErrorCode { get; set; } = default!;
 
         [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible. Use ErrorResponse.Payload.ErrorMessage instead.")]
         public string ErrorMessage { get; set; } = default!;
@@ -54,7 +54,7 @@ namespace FormanceSDK.Models.Webhooks
            Payload = payload;
 
            #pragma warning disable CS0618
-           ErrorsEnum = payload.ErrorsEnum;
+           ErrorCode = payload.ErrorCode;
            ErrorMessage = payload.ErrorMessage;
            Details = payload.Details;
            #pragma warning restore CS0618

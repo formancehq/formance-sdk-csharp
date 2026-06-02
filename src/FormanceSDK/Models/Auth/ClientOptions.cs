@@ -9,7 +9,6 @@
 #nullable enable
 namespace FormanceSDK.Models.Auth
 {
-    using FormanceSDK.Models.Auth;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System.Collections.Generic;
@@ -39,11 +38,5 @@ namespace FormanceSDK.Models.Auth
 
         [JsonProperty("scopes")]
         public List<string>? Scopes { get; set; }
-
-        [JsonProperty("id")]
-        public string Id { get; set; } = default!;
-
-        [JsonProperty("secrets")]
-        public List<ClientSecret>? Secrets { get; set; }
     }
 }

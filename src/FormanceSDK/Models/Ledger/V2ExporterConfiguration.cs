@@ -11,7 +11,6 @@ namespace FormanceSDK.Models.Ledger
 {
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    using System;
     using System.Collections.Generic;
 
     public class V2ExporterConfiguration
@@ -21,11 +20,5 @@ namespace FormanceSDK.Models.Ledger
 
         [JsonProperty("config")]
         public Dictionary<string, object> Config { get; set; } = default!;
-
-        [JsonProperty("id")]
-        public string Id { get; set; } = default!;
-
-        [JsonProperty("createdAt")]
-        public DateTime CreatedAt { get; set; } = default!;
     }
 }

@@ -18,7 +18,7 @@ namespace FormanceSDK.Models.Orchestration
     public class PaymentAdjustment
     {
         [JsonProperty("status")]
-        public Models.Orchestration.PaymentStatus PaymentStatus { get; set; } = default!;
+        public Models.Orchestration.PaymentStatus Status { get; set; } = default!;
 
         [JsonProperty("amount")]
         public BigInteger Amount { get; set; } = default!;

@@ -19,6 +19,6 @@ namespace FormanceSDK.Models.Payments
     public class PoolsCursor
     {
         [JsonProperty("cursor")]
-        public PoolsCursorCursorBase CursorBase { get; set; } = default!;
+        public PoolsCursorCursor Cursor { get; set; } = default!;
     }
 }

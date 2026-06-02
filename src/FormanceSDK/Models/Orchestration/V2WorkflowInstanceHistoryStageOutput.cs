@@ -16,21 +16,21 @@ namespace FormanceSDK.Models.Orchestration
     public class V2WorkflowInstanceHistoryStageOutput
     {
         [JsonProperty("GetAccount")]
-        public Models.Orchestration.V2AccountResponse? V2AccountResponse { get; set; }
+        public Models.Orchestration.V2AccountResponse? GetAccount { get; set; }
 
         [JsonProperty("CreateTransaction")]
-        public Models.Orchestration.V2CreateTransactionResponse? V2CreateTransactionResponse { get; set; }
+        public Models.Orchestration.V2CreateTransactionResponse? CreateTransaction { get; set; }
 
         [JsonProperty("GetPayment")]
-        public V2PaymentResponse? V2PaymentResponse { get; set; }
+        public V2PaymentResponse? GetPayment { get; set; }
 
         [JsonProperty("DebitWallet")]
-        public V2DebitWalletResponse? V2DebitWalletResponse { get; set; }
+        public V2DebitWalletResponse? DebitWallet { get; set; }
 
         [JsonProperty("GetWallet")]
-        public V2GetWalletResponse? V2GetWalletResponse { get; set; }
+        public V2GetWalletResponse? GetWallet { get; set; }
 
         [JsonProperty("ListWallets")]
-        public V2ListWalletsResponse? V2ListWalletsResponse { get; set; }
+        public V2ListWalletsResponse? ListWallets { get; set; }
     }
 }

@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Ledger
     public class V2SchemasCursorResponse
     {
         [JsonProperty("cursor")]
-        public V2SchemasCursor V2SchemasCursor { get; set; } = default!;
+        public V2SchemasCursor Cursor { get; set; } = default!;
     }
 }

@@ -20,7 +20,7 @@ namespace FormanceSDK.Models.Orchestration
         public long PageSize { get; set; } = default!;
 
         [JsonProperty("hasMore")]
-        public bool HasMore { get; set; } = default!;
+        public bool? HasMore { get; set; }
 
         [JsonProperty("previous")]
         public string? Previous { get; set; }
@@ -29,6 +29,6 @@ namespace FormanceSDK.Models.Orchestration
         public string? Next { get; set; }
 
         [JsonProperty("data")]
-        public List<V2TriggerData> Data { get; set; } = default!;
+        public List<Models.Orchestration.Wallet> Data { get; set; } = default!;
     }
 }

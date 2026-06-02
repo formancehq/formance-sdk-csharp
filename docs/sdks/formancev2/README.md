@@ -115,7 +115,7 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-V2TriggerData1? req = null;
+V2TriggerData? req = null;
 
 var res = await sdk.Orchestration.V2.CreateTriggerAsync(req);
 
@@ -124,9 +124,9 @@ var res = await sdk.Orchestration.V2.CreateTriggerAsync(req);
 
 ### Parameters
 
-| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
-| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
-| `request`                                                      | [V2TriggerData1](../../Models/Orchestration/V2TriggerData1.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `request`                                                    | [V2TriggerData](../../Models/Orchestration/V2TriggerData.md) | :heavy_check_mark:                                           | The request object to use for the request.                   |
 
 ### Response
 

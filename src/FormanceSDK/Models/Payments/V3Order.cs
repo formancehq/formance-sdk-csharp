@@ -73,7 +73,7 @@ namespace FormanceSDK.Models.Payments
         /// Whether an order buys or sells the base asset.
         /// </summary>
         [JsonProperty("direction")]
-        public V3OrderDirectionEnum V3OrderDirectionEnum { get; set; } = default!;
+        public V3OrderDirectionEnum Direction { get; set; } = default!;
 
         /// <summary>
         /// Asset being spent, in `SYMBOL/precision` form (e.g. `USD/2`,<br/>
@@ -96,7 +96,7 @@ namespace FormanceSDK.Models.Payments
         /// `stopPrice`; TWAP/VWAP are time-weighted execution algorithms.
         /// </summary>
         [JsonProperty("type")]
-        public V3OrderTypeEnum V3OrderTypeEnum { get; set; } = default!;
+        public V3OrderTypeEnum Type { get; set; } = default!;
 
         /// <summary>
         /// Lifecycle of an order on the exchange.<br/>
@@ -109,7 +109,7 @@ namespace FormanceSDK.Models.Payments
         /// `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
         /// </summary>
         [JsonProperty("status")]
-        public V3OrderStatusEnum V3OrderStatusEnum { get; set; } = default!;
+        public V3OrderStatusEnum Status { get; set; } = default!;
 
         /// <summary>
         /// Amount of base asset the order was placed for, as an integer at the base asset's precision.
@@ -143,7 +143,7 @@ namespace FormanceSDK.Models.Payments
         /// `FILL_OR_KILL` — fill fully and immediately, or cancel entirely.
         /// </summary>
         [JsonProperty("timeInForce")]
-        public V3TimeInForceEnum V3TimeInForceEnum { get; set; } = default!;
+        public V3TimeInForceEnum TimeInForce { get; set; } = default!;
 
         /// <summary>
         /// Expiration instant for `GOOD_UNTIL_DATE_TIME` orders. Null for other time-in-force values.
@@ -207,7 +207,7 @@ namespace FormanceSDK.Models.Payments
         public string? DestinationAccountID { get; set; } = null;
 
         [JsonProperty("metadata")]
-        public Dictionary<string, string>? V3Metadata { get; set; } = null;
+        public Dictionary<string, string>? Metadata { get; set; } = null;
 
         /// <summary>
         /// Ordered history of state snapshots for this order. The most recent element reflects the current `status`.

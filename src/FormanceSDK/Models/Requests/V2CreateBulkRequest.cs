@@ -9,6 +9,7 @@
 #nullable enable
 namespace FormanceSDK.Models.Requests
 {
+    using FormanceSDK.Models.Ledger;
     using FormanceSDK.Utils;
     using System.Collections.Generic;
 
@@ -45,6 +46,6 @@ namespace FormanceSDK.Models.Requests
         public string? SchemaVersion { get; set; }
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public List<object> RequestBody { get; set; } = default!;
+        public List<V2BulkElement> RequestBody { get; set; } = default!;
     }
 }

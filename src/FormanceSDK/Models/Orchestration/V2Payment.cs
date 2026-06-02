@@ -34,13 +34,13 @@ namespace FormanceSDK.Models.Orchestration
         public string ConnectorID { get; set; } = default!;
 
         [JsonProperty("provider")]
-        public V2Connector? V2Connector { get; set; }
+        public V2Connector? Provider { get; set; }
 
         [JsonProperty("type")]
         public V2PaymentType Type { get; set; } = default!;
 
         [JsonProperty("status")]
-        public V2PaymentStatus V2PaymentStatus { get; set; } = default!;
+        public V2PaymentStatus Status { get; set; } = default!;
 
         [JsonProperty("initialAmount")]
         public BigInteger InitialAmount { get; set; } = default!;
@@ -61,6 +61,6 @@ namespace FormanceSDK.Models.Orchestration
         public List<V2PaymentAdjustment> Adjustments { get; set; } = default!;
 
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Include)]
-        public V2PaymentMetadata? V2PaymentMetadata { get; set; }
+        public V2PaymentMetadata? Metadata { get; set; }
     }
 }

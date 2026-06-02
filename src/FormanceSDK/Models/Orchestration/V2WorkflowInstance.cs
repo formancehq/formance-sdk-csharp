@@ -42,6 +42,6 @@ namespace FormanceSDK.Models.Orchestration
         public string? Error { get; set; }
 
         [JsonProperty("workflow")]
-        public V2Workflow? V2Workflow { get; set; }
+        public V2Workflow? Workflow { get; set; }
     }
 }

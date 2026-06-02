@@ -19,7 +19,7 @@ namespace FormanceSDK.Models.Ledger
     public class ErrorResponseErrorPayload
     {
         [JsonProperty("errorCode")]
-        public Models.Ledger.ErrorsEnum ErrorsEnum { get; set; } = default!;
+        public Models.Ledger.ErrorsEnum ErrorCode { get; set; } = default!;
 
         [JsonProperty("errorMessage")]
         public string ErrorMessage { get; set; } = default!;
@@ -35,8 +35,8 @@ namespace FormanceSDK.Models.Ledger
         /// </summary>
         public ErrorResponseErrorPayload Payload { get; }
 
-        [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible. Use ErrorResponseError.Payload.ErrorsEnum instead.")]
-        public Models.Ledger.ErrorsEnum ErrorsEnum { get; set; } = default!;
+        [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible. Use ErrorResponseError.Payload.ErrorCode instead.")]
+        public Models.Ledger.ErrorsEnum ErrorCode { get; set; } = default!;
 
         [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible. Use ErrorResponseError.Payload.ErrorMessage instead.")]
         public string ErrorMessage { get; set; } = default!;
@@ -54,7 +54,7 @@ namespace FormanceSDK.Models.Ledger
            Payload = payload;
 
            #pragma warning disable CS0618
-           ErrorsEnum = payload.ErrorsEnum;
+           ErrorCode = payload.ErrorCode;
            ErrorMessage = payload.ErrorMessage;
            Details = payload.Details;
            #pragma warning restore CS0618

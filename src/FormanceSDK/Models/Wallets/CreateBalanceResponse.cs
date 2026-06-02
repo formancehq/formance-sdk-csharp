@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Wallets
     public class CreateBalanceResponse
     {
         [JsonProperty("data")]
-        public Balance Balance { get; set; } = default!;
+        public Balance Data { get; set; } = default!;
     }
 }

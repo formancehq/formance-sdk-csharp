@@ -16,39 +16,39 @@ namespace FormanceSDK.Models.Orchestration
     public class V2WorkflowInstanceHistoryStageInput
     {
         [JsonProperty("GetAccount")]
-        public V2ActivityGetAccount? V2ActivityGetAccount { get; set; }
+        public V2ActivityGetAccount? GetAccount { get; set; }
 
         [JsonProperty("AddAccountMetadata")]
-        public V2ActivityAddAccountMetadata? V2ActivityAddAccountMetadata { get; set; }
+        public V2ActivityAddAccountMetadata? AddAccountMetadata { get; set; }
 
         [JsonProperty("CreateTransaction")]
-        public V2ActivityCreateTransaction? V2ActivityCreateTransaction { get; set; }
+        public V2ActivityCreateTransaction? CreateTransaction { get; set; }
 
         [JsonProperty("StripeTransfer")]
-        public V2StripeTransferRequest? V2StripeTransferRequest { get; set; }
+        public V2StripeTransferRequest? StripeTransfer { get; set; }
 
         [JsonProperty("CreateTransferInitiation")]
-        public V2CreateTransferInitiationRequest? V2CreateTransferInitiationRequest { get; set; }
+        public V2CreateTransferInitiationRequest? CreateTransferInitiation { get; set; }
 
         [JsonProperty("GetPayment")]
-        public V2ActivityGetPayment? V2ActivityGetPayment { get; set; }
+        public V2ActivityGetPayment? GetPayment { get; set; }
 
         [JsonProperty("ConfirmHold")]
-        public V2ActivityConfirmHold? V2ActivityConfirmHold { get; set; }
+        public V2ActivityConfirmHold? ConfirmHold { get; set; }
 
         [JsonProperty("CreditWallet")]
-        public V2ActivityCreditWallet? V2ActivityCreditWallet { get; set; }
+        public V2ActivityCreditWallet? CreditWallet { get; set; }
 
         [JsonProperty("DebitWallet")]
-        public V2ActivityDebitWallet? V2ActivityDebitWallet { get; set; }
+        public V2ActivityDebitWallet? DebitWallet { get; set; }
 
         [JsonProperty("GetWallet")]
-        public V2ActivityGetWallet? V2ActivityGetWallet { get; set; }
+        public V2ActivityGetWallet? GetWallet { get; set; }
 
         [JsonProperty("VoidHold")]
-        public V2ActivityVoidHold? V2ActivityVoidHold { get; set; }
+        public V2ActivityVoidHold? VoidHold { get; set; }
 
         [JsonProperty("ListWallets")]
-        public V2ActivityListWallets? V2ActivityListWallets { get; set; }
+        public V2ActivityListWallets? ListWallets { get; set; }
     }
 }

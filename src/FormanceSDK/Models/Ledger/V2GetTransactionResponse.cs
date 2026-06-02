@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Ledger
     public class V2GetTransactionResponse
     {
         [JsonProperty("data")]
-        public Models.Ledger.V2Transaction V2Transaction { get; set; } = default!;
+        public Models.Ledger.V2Transaction Data { get; set; } = default!;
     }
 }

@@ -7,4 +7,4 @@ OK
 
 | Field                                           | Type                                            | Required                                        | Description                                     |
 | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| `Policy`                                        | [Policy](../../Models/Reconciliation/Policy.md) | :heavy_check_mark:                              | N/A                                             |
+| `Data`                                          | [Policy](../../Models/Reconciliation/Policy.md) | :heavy_check_mark:                              | N/A                                             |

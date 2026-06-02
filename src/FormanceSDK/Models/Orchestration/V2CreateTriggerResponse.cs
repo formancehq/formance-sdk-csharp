@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Orchestration
     public class V2CreateTriggerResponse
     {
         [JsonProperty("data")]
-        public V2TriggerData V2TriggerData { get; set; } = default!;
+        public V2Trigger Data { get; set; } = default!;
     }
 }

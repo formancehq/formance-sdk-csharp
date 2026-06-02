@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Wallets
     public class Balances
     {
         [JsonProperty("main")]
-        public Models.Wallets.AssetHolder AssetHolder { get; set; } = default!;
+        public Models.Wallets.AssetHolder Main { get; set; } = default!;
     }
 }

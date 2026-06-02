@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Orchestration
     public class V2CreateWorkflowResponse
     {
         [JsonProperty("data")]
-        public V2Workflow V2Workflow { get; set; } = default!;
+        public V2Workflow Data { get; set; } = default!;
     }
 }

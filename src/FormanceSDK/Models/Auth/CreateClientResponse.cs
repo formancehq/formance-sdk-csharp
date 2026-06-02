@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Auth
     public class CreateClientResponse
     {
         [JsonProperty("data")]
-        public ClientOptions? ClientOptions { get; set; }
+        public Client? Data { get; set; }
     }
 }

@@ -19,6 +19,6 @@ namespace FormanceSDK.Models.Reconciliation
     public class ReconciliationResponse
     {
         [JsonProperty("data")]
-        public Models.Reconciliation.Reconciliation Reconciliation { get; set; } = default!;
+        public Models.Reconciliation.Reconciliation Data { get; set; } = default!;
     }
 }

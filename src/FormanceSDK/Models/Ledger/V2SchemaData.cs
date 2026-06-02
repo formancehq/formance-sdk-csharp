@@ -23,18 +23,18 @@ namespace FormanceSDK.Models.Ledger
         /// Chart of account.
         /// </summary>
         [JsonProperty("chart")]
-        public Dictionary<string, V2ChartSegment> V2ChartOfAccounts { get; set; } = default!;
+        public Dictionary<string, V2ChartSegment> Chart { get; set; } = default!;
 
         /// <summary>
         /// Transaction templates.
         /// </summary>
         [JsonProperty("transactions")]
-        public Dictionary<string, V2TransactionTemplate>? V2TransactionTemplates { get; set; }
+        public Dictionary<string, V2TransactionTemplate>? Transactions { get; set; }
 
         /// <summary>
         /// Query templates.
         /// </summary>
         [JsonProperty("queries")]
-        public Dictionary<string, V2QueryTemplate>? V2QueryTemplates { get; set; }
+        public Dictionary<string, V2QueryTemplate>? Queries { get; set; }
     }
 }

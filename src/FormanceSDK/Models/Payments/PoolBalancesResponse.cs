@@ -19,6 +19,6 @@ namespace FormanceSDK.Models.Payments
     public class PoolBalancesResponse
     {
         [JsonProperty("data")]
-        public PoolBalances PoolBalances { get; set; } = default!;
+        public PoolBalances Data { get; set; } = default!;
     }
 }

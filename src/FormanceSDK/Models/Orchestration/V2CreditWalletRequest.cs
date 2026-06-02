@@ -18,7 +18,7 @@ namespace FormanceSDK.Models.Orchestration
     public class V2CreditWalletRequest
     {
         [JsonProperty("amount")]
-        public V2Monetary V2Monetary { get; set; } = default!;
+        public V2Monetary Amount { get; set; } = default!;
 
         /// <summary>
         /// Metadata associated with the wallet.

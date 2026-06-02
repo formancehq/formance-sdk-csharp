@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Orchestration
     public class CreateWorkflowResponse
     {
         [JsonProperty("data")]
-        public Workflow Workflow { get; set; } = default!;
+        public Workflow Data { get; set; } = default!;
     }
 }

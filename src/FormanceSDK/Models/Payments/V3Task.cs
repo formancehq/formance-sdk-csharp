@@ -20,7 +20,7 @@ namespace FormanceSDK.Models.Payments
         public string Id { get; set; } = default!;
 
         [JsonProperty("status")]
-        public V3TaskStatusEnum V3TaskStatusEnum { get; set; } = default!;
+        public V3TaskStatusEnum Status { get; set; } = default!;
 
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;

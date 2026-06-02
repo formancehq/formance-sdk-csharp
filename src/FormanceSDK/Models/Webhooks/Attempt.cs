@@ -29,7 +29,7 @@ namespace FormanceSDK.Models.Webhooks
         public DateTime UpdatedAt { get; set; } = default!;
 
         [JsonProperty("config")]
-        public WebhooksConfig WebhooksConfig { get; set; } = default!;
+        public WebhooksConfig Config { get; set; } = default!;
 
         [JsonProperty("payload")]
         public string Payload { get; set; } = default!;

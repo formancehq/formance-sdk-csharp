@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Webhooks
     public class AttemptResponse
     {
         [JsonProperty("data")]
-        public Attempt Attempt { get; set; } = default!;
+        public Attempt Data { get; set; } = default!;
     }
 }

@@ -24,25 +24,25 @@ namespace FormanceSDK.Models.Ledger
 
         public string Value { get; private set; }
 
-        public static V2BulkElementResultType V2BaseBulkElementResult { get { return new V2BulkElementResultType("V2BaseBulkElementResult"); } }
+        public static V2BulkElementResultType V2BulkElementResultCreateTransaction { get { return new V2BulkElementResultType("V2BulkElementResultCreateTransaction"); } }
 
-        public static V2BulkElementResultType LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult { get { return new V2BulkElementResultType("ledger_V2BulkElementResultAddMetadata_V2BaseBulkElementResult"); } }
+        public static V2BulkElementResultType V2BulkElementResultAddMetadata { get { return new V2BulkElementResultType("V2BulkElementResultAddMetadata"); } }
 
-        public static V2BulkElementResultType LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult { get { return new V2BulkElementResultType("ledger_V2BulkElementResultRevertTransaction_V2BaseBulkElementResult"); } }
+        public static V2BulkElementResultType V2BulkElementResultRevertTransaction { get { return new V2BulkElementResultType("V2BulkElementResultRevertTransaction"); } }
 
-        public static V2BulkElementResultType LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult { get { return new V2BulkElementResultType("ledger_V2BulkElementResultDeleteMetadata_V2BaseBulkElementResult"); } }
+        public static V2BulkElementResultType V2BulkElementResultDeleteMetadata { get { return new V2BulkElementResultType("V2BulkElementResultDeleteMetadata"); } }
 
-        public static V2BulkElementResultType LedgerV2BulkElementResultErrorV2BaseBulkElementResult { get { return new V2BulkElementResultType("ledger_V2BulkElementResultError_V2BaseBulkElementResult"); } }
+        public static V2BulkElementResultType V2BulkElementResultError { get { return new V2BulkElementResultType("V2BulkElementResultError"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(V2BulkElementResultType v) { return v.Value; }
         public static V2BulkElementResultType FromString(string v) {
             switch(v) {
-                case "V2BaseBulkElementResult": return V2BaseBulkElementResult;
-                case "ledger_V2BulkElementResultAddMetadata_V2BaseBulkElementResult": return LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult;
-                case "ledger_V2BulkElementResultRevertTransaction_V2BaseBulkElementResult": return LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult;
-                case "ledger_V2BulkElementResultDeleteMetadata_V2BaseBulkElementResult": return LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult;
-                case "ledger_V2BulkElementResultError_V2BaseBulkElementResult": return LedgerV2BulkElementResultErrorV2BaseBulkElementResult;
+                case "V2BulkElementResultCreateTransaction": return V2BulkElementResultCreateTransaction;
+                case "V2BulkElementResultAddMetadata": return V2BulkElementResultAddMetadata;
+                case "V2BulkElementResultRevertTransaction": return V2BulkElementResultRevertTransaction;
+                case "V2BulkElementResultDeleteMetadata": return V2BulkElementResultDeleteMetadata;
+                case "V2BulkElementResultError": return V2BulkElementResultError;
                 default: throw new ArgumentException("Invalid value for V2BulkElementResultType");
             }
         }
@@ -70,59 +70,59 @@ namespace FormanceSDK.Models.Ledger
         }
 
         [SpeakeasyMetadata("form:explode=true")]
-        public V2BaseBulkElementResult? V2BaseBulkElementResult { get; set; }
+        public V2BulkElementResultCreateTransaction? V2BulkElementResultCreateTransaction { get; set; }
 
         [SpeakeasyMetadata("form:explode=true")]
-        public LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult? LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult { get; set; }
+        public V2BulkElementResultAddMetadata? V2BulkElementResultAddMetadata { get; set; }
 
         [SpeakeasyMetadata("form:explode=true")]
-        public LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult? LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult { get; set; }
+        public V2BulkElementResultRevertTransaction? V2BulkElementResultRevertTransaction { get; set; }
 
         [SpeakeasyMetadata("form:explode=true")]
-        public LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult? LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult { get; set; }
+        public V2BulkElementResultDeleteMetadata? V2BulkElementResultDeleteMetadata { get; set; }
 
         [SpeakeasyMetadata("form:explode=true")]
-        public LedgerV2BulkElementResultErrorV2BaseBulkElementResult? LedgerV2BulkElementResultErrorV2BaseBulkElementResult { get; set; }
+        public V2BulkElementResultError? V2BulkElementResultError { get; set; }
 
         public V2BulkElementResultType Type { get; set; }
-        public static V2BulkElementResult CreateV2BaseBulkElementResult(V2BaseBulkElementResult v2BaseBulkElementResult)
+        public static V2BulkElementResult CreateV2BulkElementResultCreateTransaction(V2BulkElementResultCreateTransaction v2BulkElementResultCreateTransaction)
         {
-            V2BulkElementResultType typ = V2BulkElementResultType.V2BaseBulkElementResult;
+            V2BulkElementResultType typ = V2BulkElementResultType.V2BulkElementResultCreateTransaction;
 
             V2BulkElementResult res = new V2BulkElementResult(typ);
-            res.V2BaseBulkElementResult = v2BaseBulkElementResult;
+            res.V2BulkElementResultCreateTransaction = v2BulkElementResultCreateTransaction;
             return res;
         }
-        public static V2BulkElementResult CreateLedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult(LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult ledgerV2BulkElementResultAddMetadataV2BaseBulkElementResult)
+        public static V2BulkElementResult CreateV2BulkElementResultAddMetadata(V2BulkElementResultAddMetadata v2BulkElementResultAddMetadata)
         {
-            V2BulkElementResultType typ = V2BulkElementResultType.LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult;
+            V2BulkElementResultType typ = V2BulkElementResultType.V2BulkElementResultAddMetadata;
 
             V2BulkElementResult res = new V2BulkElementResult(typ);
-            res.LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult = ledgerV2BulkElementResultAddMetadataV2BaseBulkElementResult;
+            res.V2BulkElementResultAddMetadata = v2BulkElementResultAddMetadata;
             return res;
         }
-        public static V2BulkElementResult CreateLedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult(LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult ledgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult)
+        public static V2BulkElementResult CreateV2BulkElementResultRevertTransaction(V2BulkElementResultRevertTransaction v2BulkElementResultRevertTransaction)
         {
-            V2BulkElementResultType typ = V2BulkElementResultType.LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult;
+            V2BulkElementResultType typ = V2BulkElementResultType.V2BulkElementResultRevertTransaction;
 
             V2BulkElementResult res = new V2BulkElementResult(typ);
-            res.LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult = ledgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult;
+            res.V2BulkElementResultRevertTransaction = v2BulkElementResultRevertTransaction;
             return res;
         }
-        public static V2BulkElementResult CreateLedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult(LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult ledgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult)
+        public static V2BulkElementResult CreateV2BulkElementResultDeleteMetadata(V2BulkElementResultDeleteMetadata v2BulkElementResultDeleteMetadata)
         {
-            V2BulkElementResultType typ = V2BulkElementResultType.LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult;
+            V2BulkElementResultType typ = V2BulkElementResultType.V2BulkElementResultDeleteMetadata;
 
             V2BulkElementResult res = new V2BulkElementResult(typ);
-            res.LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult = ledgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult;
+            res.V2BulkElementResultDeleteMetadata = v2BulkElementResultDeleteMetadata;
             return res;
         }
-        public static V2BulkElementResult CreateLedgerV2BulkElementResultErrorV2BaseBulkElementResult(LedgerV2BulkElementResultErrorV2BaseBulkElementResult ledgerV2BulkElementResultErrorV2BaseBulkElementResult)
+        public static V2BulkElementResult CreateV2BulkElementResultError(V2BulkElementResultError v2BulkElementResultError)
         {
-            V2BulkElementResultType typ = V2BulkElementResultType.LedgerV2BulkElementResultErrorV2BaseBulkElementResult;
+            V2BulkElementResultType typ = V2BulkElementResultType.V2BulkElementResultError;
 
             V2BulkElementResult res = new V2BulkElementResult(typ);
-            res.LedgerV2BulkElementResultErrorV2BaseBulkElementResult = ledgerV2BulkElementResultErrorV2BaseBulkElementResult;
+            res.V2BulkElementResultError = v2BulkElementResultError;
             return res;
         }
 
@@ -144,14 +144,14 @@ namespace FormanceSDK.Models.Ledger
 
                 try
                 {
-                    return new V2BulkElementResult(V2BulkElementResultType.LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult)
+                    return new V2BulkElementResult(V2BulkElementResultType.V2BulkElementResultAddMetadata)
                     {
-                        LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult>(json)
+                        V2BulkElementResultAddMetadata = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<V2BulkElementResultAddMetadata>(json)
                     };
                 }
                 catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    fallbackCandidates.Add((typeof(LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult), new V2BulkElementResult(V2BulkElementResultType.LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult), "LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult"));
+                    fallbackCandidates.Add((typeof(V2BulkElementResultAddMetadata), new V2BulkElementResult(V2BulkElementResultType.V2BulkElementResultAddMetadata), "V2BulkElementResultAddMetadata"));
                 }
                 catch (ResponseBodyDeserializer.DeserializationException)
                 {
@@ -164,14 +164,14 @@ namespace FormanceSDK.Models.Ledger
 
                 try
                 {
-                    return new V2BulkElementResult(V2BulkElementResultType.LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult)
+                    return new V2BulkElementResult(V2BulkElementResultType.V2BulkElementResultDeleteMetadata)
                     {
-                        LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult>(json)
+                        V2BulkElementResultDeleteMetadata = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<V2BulkElementResultDeleteMetadata>(json)
                     };
                 }
                 catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    fallbackCandidates.Add((typeof(LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult), new V2BulkElementResult(V2BulkElementResultType.LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult), "LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult"));
+                    fallbackCandidates.Add((typeof(V2BulkElementResultDeleteMetadata), new V2BulkElementResult(V2BulkElementResultType.V2BulkElementResultDeleteMetadata), "V2BulkElementResultDeleteMetadata"));
                 }
                 catch (ResponseBodyDeserializer.DeserializationException)
                 {
@@ -184,14 +184,14 @@ namespace FormanceSDK.Models.Ledger
 
                 try
                 {
-                    return new V2BulkElementResult(V2BulkElementResultType.V2BaseBulkElementResult)
+                    return new V2BulkElementResult(V2BulkElementResultType.V2BulkElementResultCreateTransaction)
                     {
-                        V2BaseBulkElementResult = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<V2BaseBulkElementResult>(json)
+                        V2BulkElementResultCreateTransaction = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<V2BulkElementResultCreateTransaction>(json)
                     };
                 }
                 catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    fallbackCandidates.Add((typeof(V2BaseBulkElementResult), new V2BulkElementResult(V2BulkElementResultType.V2BaseBulkElementResult), "V2BaseBulkElementResult"));
+                    fallbackCandidates.Add((typeof(V2BulkElementResultCreateTransaction), new V2BulkElementResult(V2BulkElementResultType.V2BulkElementResultCreateTransaction), "V2BulkElementResultCreateTransaction"));
                 }
                 catch (ResponseBodyDeserializer.DeserializationException)
                 {
@@ -204,14 +204,14 @@ namespace FormanceSDK.Models.Ledger
 
                 try
                 {
-                    return new V2BulkElementResult(V2BulkElementResultType.LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult)
+                    return new V2BulkElementResult(V2BulkElementResultType.V2BulkElementResultRevertTransaction)
                     {
-                        LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult>(json)
+                        V2BulkElementResultRevertTransaction = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<V2BulkElementResultRevertTransaction>(json)
                     };
                 }
                 catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    fallbackCandidates.Add((typeof(LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult), new V2BulkElementResult(V2BulkElementResultType.LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult), "LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult"));
+                    fallbackCandidates.Add((typeof(V2BulkElementResultRevertTransaction), new V2BulkElementResult(V2BulkElementResultType.V2BulkElementResultRevertTransaction), "V2BulkElementResultRevertTransaction"));
                 }
                 catch (ResponseBodyDeserializer.DeserializationException)
                 {
@@ -224,14 +224,14 @@ namespace FormanceSDK.Models.Ledger
 
                 try
                 {
-                    return new V2BulkElementResult(V2BulkElementResultType.LedgerV2BulkElementResultErrorV2BaseBulkElementResult)
+                    return new V2BulkElementResult(V2BulkElementResultType.V2BulkElementResultError)
                     {
-                        LedgerV2BulkElementResultErrorV2BaseBulkElementResult = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<LedgerV2BulkElementResultErrorV2BaseBulkElementResult>(json)
+                        V2BulkElementResultError = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<V2BulkElementResultError>(json)
                     };
                 }
                 catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    fallbackCandidates.Add((typeof(LedgerV2BulkElementResultErrorV2BaseBulkElementResult), new V2BulkElementResult(V2BulkElementResultType.LedgerV2BulkElementResultErrorV2BaseBulkElementResult), "LedgerV2BulkElementResultErrorV2BaseBulkElementResult"));
+                    fallbackCandidates.Add((typeof(V2BulkElementResultError), new V2BulkElementResult(V2BulkElementResultType.V2BulkElementResultError), "V2BulkElementResultError"));
                 }
                 catch (ResponseBodyDeserializer.DeserializationException)
                 {
@@ -274,33 +274,33 @@ namespace FormanceSDK.Models.Ledger
 
                 V2BulkElementResult res = (V2BulkElementResult)value;
 
-                if (res.V2BaseBulkElementResult != null)
+                if (res.V2BulkElementResultCreateTransaction != null)
                 {
-                    writer.WriteRawValue(Utilities.SerializeJSON(res.V2BaseBulkElementResult));
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.V2BulkElementResultCreateTransaction));
                     return;
                 }
 
-                if (res.LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult != null)
+                if (res.V2BulkElementResultAddMetadata != null)
                 {
-                    writer.WriteRawValue(Utilities.SerializeJSON(res.LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult));
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.V2BulkElementResultAddMetadata));
                     return;
                 }
 
-                if (res.LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult != null)
+                if (res.V2BulkElementResultRevertTransaction != null)
                 {
-                    writer.WriteRawValue(Utilities.SerializeJSON(res.LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult));
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.V2BulkElementResultRevertTransaction));
                     return;
                 }
 
-                if (res.LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult != null)
+                if (res.V2BulkElementResultDeleteMetadata != null)
                 {
-                    writer.WriteRawValue(Utilities.SerializeJSON(res.LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult));
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.V2BulkElementResultDeleteMetadata));
                     return;
                 }
 
-                if (res.LedgerV2BulkElementResultErrorV2BaseBulkElementResult != null)
+                if (res.V2BulkElementResultError != null)
                 {
-                    writer.WriteRawValue(Utilities.SerializeJSON(res.LedgerV2BulkElementResultErrorV2BaseBulkElementResult));
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.V2BulkElementResultError));
                     return;
                 }
             }

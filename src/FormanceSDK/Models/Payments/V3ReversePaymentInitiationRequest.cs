@@ -29,6 +29,6 @@ namespace FormanceSDK.Models.Payments
         public string Asset { get; set; } = default!;
 
         [JsonProperty("metadata")]
-        public Dictionary<string, string>? V3Metadata { get; set; } = null;
+        public Dictionary<string, string>? Metadata { get; set; } = null;
     }
 }

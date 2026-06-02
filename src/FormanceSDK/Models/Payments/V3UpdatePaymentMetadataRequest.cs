@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Payments
     public class V3UpdatePaymentMetadataRequest
     {
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Include)]
-        public Dictionary<string, string>? V3Metadata { get; set; }
+        public Dictionary<string, string>? Metadata { get; set; }
     }
 }

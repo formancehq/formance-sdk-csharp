@@ -19,6 +19,6 @@ namespace FormanceSDK.Models.Orchestration
         public string? Ledger { get; set; }
 
         [JsonProperty("data")]
-        public Models.Orchestration.V2PostTransaction? V2PostTransaction { get; set; }
+        public Models.Orchestration.V2PostTransaction? Data { get; set; }
     }
 }

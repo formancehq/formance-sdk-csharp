@@ -19,7 +19,7 @@ namespace FormanceSDK.Models.Payments
     public class PaymentsErrorResponsePayload
     {
         [JsonProperty("errorCode")]
-        public PaymentsErrorsEnum PaymentsErrorsEnum { get; set; } = default!;
+        public PaymentsErrorsEnum ErrorCode { get; set; } = default!;
 
         [JsonProperty("errorMessage")]
         public string ErrorMessage { get; set; } = default!;
@@ -35,8 +35,8 @@ namespace FormanceSDK.Models.Payments
         /// </summary>
         public PaymentsErrorResponsePayload Payload { get; }
 
-        [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible. Use PaymentsErrorResponse.Payload.PaymentsErrorsEnum instead.")]
-        public PaymentsErrorsEnum PaymentsErrorsEnum { get; set; } = default!;
+        [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible. Use PaymentsErrorResponse.Payload.ErrorCode instead.")]
+        public PaymentsErrorsEnum ErrorCode { get; set; } = default!;
 
         [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible. Use PaymentsErrorResponse.Payload.ErrorMessage instead.")]
         public string ErrorMessage { get; set; } = default!;
@@ -51,7 +51,7 @@ namespace FormanceSDK.Models.Payments
            Payload = payload;
 
            #pragma warning disable CS0618
-           PaymentsErrorsEnum = payload.PaymentsErrorsEnum;
+           ErrorCode = payload.ErrorCode;
            ErrorMessage = payload.ErrorMessage;
            #pragma warning restore CS0618
         }

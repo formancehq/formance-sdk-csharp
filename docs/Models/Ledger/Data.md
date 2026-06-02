@@ -1,42 +1,10 @@
 # Data
 
-The payload of the log entry. Structure depends on the log type:
-- NEW_TRANSACTION: V2LogDataNewTransaction
-- SET_METADATA: V2LogDataSetMetadata
-- REVERTED_TRANSACTION: V2LogDataRevertedTransaction
-- DELETE_METADATA: V2LogDataDeleteMetadata
-- INSERTED_SCHEMA: V2LogDataInsertedSchema
 
+## Fields
 
-
-## Supported Types
-
-### V2LogDataNewTransaction
-
-```csharp
-Data.CreateV2LogDataNewTransaction(/* values here */);
-```
-
-### V2LogDataSetMetadata
-
-```csharp
-Data.CreateV2LogDataSetMetadata(/* values here */);
-```
-
-### V2LogDataRevertedTransaction
-
-```csharp
-Data.CreateV2LogDataRevertedTransaction(/* values here */);
-```
-
-### V2LogDataDeleteMetadata
-
-```csharp
-Data.CreateV2LogDataDeleteMetadata(/* values here */);
-```
-
-### V2LogDataInsertedSchema
-
-```csharp
-Data.CreateV2LogDataInsertedSchema(/* values here */);
-```
+| Field                                               | Type                                                | Required                                            | Description                                         |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| `TargetId`                                          | [V2TargetId](../../Models/Ledger/V2TargetId.md)     | :heavy_check_mark:                                  | N/A                                                 |
+| `TargetType`                                        | [V2TargetType](../../Models/Ledger/V2TargetType.md) | :heavy_check_mark:                                  | N/A                                                 |
+| `Metadata`                                          | Dictionary<String, *string*>                        | :heavy_check_mark:                                  | N/A                                                 |

@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Wallets
     public class DebitWalletResponse
     {
         [JsonProperty("data")]
-        public Models.Wallets.Hold Hold { get; set; } = default!;
+        public Models.Wallets.Hold Data { get; set; } = default!;
     }
 }

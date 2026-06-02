@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Payments
     public class V3ConnectorScheduleResponse
     {
         [JsonProperty("data")]
-        public V3Schedule V3Schedule { get; set; } = default!;
+        public V3Schedule Data { get; set; } = default!;
     }
 }

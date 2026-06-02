@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Orchestration
     public class V2Update
     {
         [JsonProperty("account")]
-        public V2UpdateAccount? V2UpdateAccount { get; set; }
+        public V2UpdateAccount? Account { get; set; }
     }
 }

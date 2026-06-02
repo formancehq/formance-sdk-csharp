@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Orchestration
     public class V2DebitWalletResponse
     {
         [JsonProperty("data")]
-        public V2Hold V2Hold { get; set; } = default!;
+        public V2Hold Data { get; set; } = default!;
     }
 }

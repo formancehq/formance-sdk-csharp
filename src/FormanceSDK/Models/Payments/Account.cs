@@ -43,13 +43,13 @@ namespace FormanceSDK.Models.Payments
         public string AccountName { get; set; } = default!;
 
         [JsonProperty("type")]
-        public AccountType AccountType { get; set; } = default!;
+        public AccountType Type { get; set; } = default!;
 
         [JsonProperty("pools")]
         public List<string>? Pools { get; set; }
 
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Include)]
-        public Dictionary<string, string>? AccountMetadata { get; set; }
+        public Dictionary<string, string>? Metadata { get; set; }
 
         [JsonProperty("raw", NullValueHandling = NullValueHandling.Include)]
         public AccountRaw? Raw { get; set; }

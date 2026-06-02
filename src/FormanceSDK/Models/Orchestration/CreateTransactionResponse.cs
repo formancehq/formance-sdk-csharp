@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Orchestration
     public class CreateTransactionResponse
     {
         [JsonProperty("data")]
-        public Models.Orchestration.Transaction Transaction { get; set; } = default!;
+        public Models.Orchestration.Transaction Data { get; set; } = default!;
     }
 }

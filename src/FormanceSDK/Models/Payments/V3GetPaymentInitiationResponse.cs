@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Payments
     public class V3GetPaymentInitiationResponse
     {
         [JsonProperty("data")]
-        public V3PaymentInitiation V3PaymentInitiation { get; set; } = default!;
+        public V3PaymentInitiation Data { get; set; } = default!;
     }
 }

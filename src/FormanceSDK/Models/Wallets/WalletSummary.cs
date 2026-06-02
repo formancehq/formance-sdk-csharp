@@ -18,7 +18,7 @@ namespace FormanceSDK.Models.Wallets
     public class WalletSummary
     {
         [JsonProperty("balances")]
-        public List<AssetHolder1> Balances { get; set; } = default!;
+        public List<BalanceWithAssets> Balances { get; set; } = default!;
 
         [JsonProperty("availableFunds")]
         public Dictionary<string, BigInteger> AvailableFunds { get; set; } = default!;

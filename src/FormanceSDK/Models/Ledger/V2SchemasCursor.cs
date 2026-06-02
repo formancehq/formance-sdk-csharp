@@ -17,7 +17,7 @@ namespace FormanceSDK.Models.Ledger
     public class V2SchemasCursor
     {
         [JsonProperty("data")]
-        public List<V2SchemaData1> Data { get; set; } = default!;
+        public List<V2Schema> Data { get; set; } = default!;
 
         [JsonProperty("hasMore")]
         public bool HasMore { get; set; } = default!;

@@ -27,7 +27,7 @@ namespace FormanceSDK.Models.Payments
         public DateTime CreatedAt { get; set; } = default!;
 
         [JsonProperty("type")]
-        public AccountType AccountType { get; set; } = default!;
+        public AccountType Type { get; set; } = default!;
 
         [JsonProperty("defaultAsset")]
         public string? DefaultAsset { get; set; }
@@ -36,6 +36,6 @@ namespace FormanceSDK.Models.Payments
         public string? AccountName { get; set; }
 
         [JsonProperty("metadata")]
-        public Dictionary<string, string>? AccountMetadata { get; set; } = null;
+        public Dictionary<string, string>? Metadata { get; set; } = null;
     }
 }

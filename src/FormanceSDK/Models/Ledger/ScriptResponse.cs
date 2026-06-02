@@ -16,7 +16,7 @@ namespace FormanceSDK.Models.Ledger
     public class ScriptResponse
     {
         [JsonProperty("errorCode")]
-        public Models.Ledger.ErrorsEnum? ErrorsEnum { get; set; }
+        public Models.Ledger.ErrorsEnum? ErrorCode { get; set; }
 
         [JsonProperty("errorMessage")]
         public string? ErrorMessage { get; set; }

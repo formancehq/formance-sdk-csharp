@@ -23,7 +23,7 @@ namespace FormanceSDK.Models.Payments
         public DateTime CreatedAt { get; set; } = default!;
 
         [JsonProperty("status")]
-        public LegacyPaymentStatus LegacyPaymentStatus { get; set; } = default!;
+        public LegacyPaymentStatus Status { get; set; } = default!;
 
         [JsonProperty("error")]
         public string? Error { get; set; } = null;

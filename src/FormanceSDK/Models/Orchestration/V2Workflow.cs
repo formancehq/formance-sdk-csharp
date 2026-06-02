@@ -17,7 +17,7 @@ namespace FormanceSDK.Models.Orchestration
     public class V2Workflow
     {
         [JsonProperty("config")]
-        public V2WorkflowConfig V2WorkflowConfig { get; set; } = default!;
+        public V2WorkflowConfig Config { get; set; } = default!;
 
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;

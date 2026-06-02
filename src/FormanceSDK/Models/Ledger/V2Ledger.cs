@@ -29,7 +29,7 @@ namespace FormanceSDK.Models.Ledger
         public DateTime? DeletedAt { get; set; } = null;
 
         [JsonProperty("metadata")]
-        public Dictionary<string, string>? V2Metadata { get; set; }
+        public Dictionary<string, string>? Metadata { get; set; }
 
         [JsonProperty("features")]
         public Dictionary<string, string>? Features { get; set; }

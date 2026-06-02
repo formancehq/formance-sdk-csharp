@@ -16,12 +16,12 @@ namespace FormanceSDK.Models.Orchestration
     public class V2StageSendSource
     {
         [JsonProperty("wallet")]
-        public V2StageSendSourceWallet? V2StageSendSourceWallet { get; set; }
+        public V2StageSendSourceWallet? Wallet { get; set; }
 
         [JsonProperty("account")]
-        public V2StageSendSourceAccount? V2StageSendSourceAccount { get; set; }
+        public V2StageSendSourceAccount? Account { get; set; }
 
         [JsonProperty("payment")]
-        public V2StageSendSourcePayment? V2StageSendSourcePayment { get; set; }
+        public V2StageSendSourcePayment? Payment { get; set; }
     }
 }

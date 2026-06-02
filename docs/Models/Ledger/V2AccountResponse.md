@@ -5,4 +5,4 @@
 
 | Field                                                       | Type                                                        | Required                                                    | Description                                                 |
 | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `V2Account`                                                 | [Models.Ledger.V2Account](../../Models/Ledger/V2Account.md) | :heavy_check_mark:                                          | N/A                                                         |
+| `Data`                                                      | [Models.Ledger.V2Account](../../Models/Ledger/V2Account.md) | :heavy_check_mark:                                          | N/A                                                         |

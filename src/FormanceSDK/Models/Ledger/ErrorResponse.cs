@@ -16,7 +16,7 @@ namespace FormanceSDK.Models.Ledger
     public class ErrorResponse
     {
         [JsonProperty("errorCode")]
-        public Models.Ledger.ErrorsEnum ErrorsEnum { get; set; } = default!;
+        public Models.Ledger.ErrorsEnum ErrorCode { get; set; } = default!;
 
         [JsonProperty("errorMessage")]
         public string ErrorMessage { get; set; } = default!;

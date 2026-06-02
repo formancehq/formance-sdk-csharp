@@ -34,9 +34,9 @@ namespace FormanceSDK.Models.Ledger
         public BigInteger Txid { get; set; } = default!;
 
         [JsonProperty("preCommitVolumes")]
-        public Dictionary<string, Dictionary<string, Models.Ledger.Volume>>? AggregatedVolumes { get; set; }
+        public Dictionary<string, Dictionary<string, Models.Ledger.Volume>>? PreCommitVolumes { get; set; }
 
         [JsonProperty("postCommitVolumes")]
-        public Dictionary<string, Dictionary<string, Models.Ledger.Volume>>? AggregatedVolumes1 { get; set; }
+        public Dictionary<string, Dictionary<string, Models.Ledger.Volume>>? PostCommitVolumes { get; set; }
     }
 }

@@ -23,7 +23,7 @@ namespace FormanceSDK.Models.Payments
         public string Name { get; set; } = default!;
 
         [JsonProperty("type")]
-        public PoolTypeEnum? PoolTypeEnum { get; set; }
+        public PoolTypeEnum? Type { get; set; }
 
         [JsonProperty("query")]
         public Dictionary<string, object>? Query { get; set; }

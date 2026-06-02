@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Ledger
     public class Config
     {
         [JsonProperty("storage")]
-        public LedgerStorage LedgerStorage { get; set; } = default!;
+        public LedgerStorage Storage { get; set; } = default!;
     }
 }

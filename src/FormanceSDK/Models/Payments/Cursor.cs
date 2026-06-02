@@ -29,6 +29,6 @@ namespace FormanceSDK.Models.Payments
         public string? Next { get; set; }
 
         [JsonProperty("data")]
-        public List<V3Account> Data { get; set; } = default!;
+        public List<Models.Payments.Payment> Data { get; set; } = default!;
     }
 }

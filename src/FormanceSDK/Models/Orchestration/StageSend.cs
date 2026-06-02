@@ -18,13 +18,13 @@ namespace FormanceSDK.Models.Orchestration
     public class StageSend
     {
         [JsonProperty("amount")]
-        public Models.Orchestration.Monetary? Monetary { get; set; }
+        public Models.Orchestration.Monetary? Amount { get; set; }
 
         [JsonProperty("destination")]
-        public StageSendDestination? StageSendDestination { get; set; }
+        public StageSendDestination? Destination { get; set; }
 
         [JsonProperty("source")]
-        public StageSendSource? StageSendSource { get; set; }
+        public StageSendSource? Source { get; set; }
 
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; }

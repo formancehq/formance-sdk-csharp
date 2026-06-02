@@ -23,9 +23,9 @@ namespace FormanceSDK.Models.Orchestration
         public Dictionary<string, string> Metadata { get; set; } = default!;
 
         [JsonProperty("volumes")]
-        public Dictionary<string, Models.Orchestration.V2Volume>? V2Volumes { get; set; }
+        public Dictionary<string, Models.Orchestration.V2Volume>? Volumes { get; set; }
 
         [JsonProperty("effectiveVolumes")]
-        public Dictionary<string, Models.Orchestration.V2Volume>? V2Volumes1 { get; set; }
+        public Dictionary<string, Models.Orchestration.V2Volume>? EffectiveVolumes { get; set; }
     }
 }

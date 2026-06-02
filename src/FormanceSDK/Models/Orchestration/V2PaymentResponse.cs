@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Orchestration
     public class V2PaymentResponse
     {
         [JsonProperty("data")]
-        public V2Payment V2Payment { get; set; } = default!;
+        public V2Payment Data { get; set; } = default!;
     }
 }

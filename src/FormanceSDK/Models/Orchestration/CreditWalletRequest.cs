@@ -18,7 +18,7 @@ namespace FormanceSDK.Models.Orchestration
     public class CreditWalletRequest
     {
         [JsonProperty("amount")]
-        public Models.Orchestration.Monetary Monetary { get; set; } = default!;
+        public Models.Orchestration.Monetary Amount { get; set; } = default!;
 
         /// <summary>
         /// Metadata associated with the wallet.

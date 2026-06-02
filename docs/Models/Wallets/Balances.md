@@ -5,4 +5,4 @@
 
 | Field                                                             | Type                                                              | Required                                                          | Description                                                       |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `AssetHolder`                                                     | [Models.Wallets.AssetHolder](../../Models/Wallets/AssetHolder.md) | :heavy_check_mark:                                                | N/A                                                               |
+| `Main`                                                            | [Models.Wallets.AssetHolder](../../Models/Wallets/AssetHolder.md) | :heavy_check_mark:                                                | N/A                                                               |

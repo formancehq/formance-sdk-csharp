@@ -21,7 +21,7 @@ namespace FormanceSDK.Models.Requests
         public string? Cursor { get; set; }
 
         [JsonProperty("params", NullValueHandling = NullValueHandling.Include)]
-        public V2QueryParams? V2QueryParams { get; set; }
+        public V2QueryParams? Params { get; set; }
 
         [JsonProperty("vars")]
         public Dictionary<string, string>? Vars { get; set; }

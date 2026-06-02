@@ -34,13 +34,13 @@ namespace FormanceSDK.Models.Payments
         public string ConnectorID { get; set; } = default!;
 
         [JsonProperty("provider")]
-        public Models.Payments.Connector? Connector { get; set; }
+        public Models.Payments.Connector? Provider { get; set; }
 
         [JsonProperty("type")]
-        public Models.Payments.PaymentType PaymentType { get; set; } = default!;
+        public Models.Payments.PaymentType Type { get; set; } = default!;
 
         [JsonProperty("status")]
-        public Models.Payments.PaymentStatus PaymentStatus { get; set; } = default!;
+        public Models.Payments.PaymentStatus Status { get; set; } = default!;
 
         [JsonProperty("initialAmount")]
         public BigInteger InitialAmount { get; set; } = default!;
@@ -49,7 +49,7 @@ namespace FormanceSDK.Models.Payments
         public BigInteger Amount { get; set; } = default!;
 
         [JsonProperty("scheme")]
-        public PaymentScheme PaymentScheme { get; set; } = default!;
+        public PaymentScheme Scheme { get; set; } = default!;
 
         [JsonProperty("asset")]
         public string Asset { get; set; } = default!;
@@ -64,6 +64,6 @@ namespace FormanceSDK.Models.Payments
         public List<Models.Payments.PaymentAdjustment> Adjustments { get; set; } = default!;
 
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Include)]
-        public Dictionary<string, string>? PaymentMetadata { get; set; }
+        public Dictionary<string, string>? Metadata { get; set; }
     }
 }

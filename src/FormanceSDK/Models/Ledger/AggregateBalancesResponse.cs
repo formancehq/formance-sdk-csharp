@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Ledger
     public class AggregateBalancesResponse
     {
         [JsonProperty("data")]
-        public Dictionary<string, long> AssetsBalances { get; set; } = default!;
+        public Dictionary<string, long> Data { get; set; } = default!;
     }
 }

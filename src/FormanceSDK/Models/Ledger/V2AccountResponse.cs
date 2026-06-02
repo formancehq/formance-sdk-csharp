@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Ledger
     public class V2AccountResponse
     {
         [JsonProperty("data")]
-        public Models.Ledger.V2Account V2Account { get; set; } = default!;
+        public Models.Ledger.V2Account Data { get; set; } = default!;
     }
 }

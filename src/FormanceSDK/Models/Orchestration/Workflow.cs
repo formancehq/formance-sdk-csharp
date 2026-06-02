@@ -17,7 +17,7 @@ namespace FormanceSDK.Models.Orchestration
     public class Workflow
     {
         [JsonProperty("config")]
-        public WorkflowConfig WorkflowConfig { get; set; } = default!;
+        public WorkflowConfig Config { get; set; } = default!;
 
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;

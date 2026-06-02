@@ -19,6 +19,6 @@ namespace FormanceSDK.Models.Ledger
     public class V2GetExporterStateResponse
     {
         [JsonProperty("data")]
-        public V2ExporterConfiguration V2ExporterConfiguration { get; set; } = default!;
+        public V2Exporter Data { get; set; } = default!;
     }
 }

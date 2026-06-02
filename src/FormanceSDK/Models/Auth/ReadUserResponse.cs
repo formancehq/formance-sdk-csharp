@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Auth
     public class ReadUserResponse
     {
         [JsonProperty("data")]
-        public User? User { get; set; }
+        public User? Data { get; set; }
     }
 }

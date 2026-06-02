@@ -54,7 +54,7 @@ namespace FormanceSDK.Models.Payments
         /// `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
         /// </summary>
         [JsonProperty("status")]
-        public V3OrderStatusEnum V3OrderStatusEnum { get; set; } = default!;
+        public V3OrderStatusEnum Status { get; set; } = default!;
 
         /// <summary>
         /// Base asset filled at this observation, at the base asset's precision.
@@ -75,7 +75,7 @@ namespace FormanceSDK.Models.Payments
         public string? FeeAsset { get; set; } = null;
 
         [JsonProperty("metadata")]
-        public Dictionary<string, string>? V3Metadata { get; set; } = null;
+        public Dictionary<string, string>? Metadata { get; set; } = null;
 
         /// <summary>
         /// Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay.

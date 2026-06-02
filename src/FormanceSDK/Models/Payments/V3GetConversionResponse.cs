@@ -23,6 +23,6 @@ namespace FormanceSDK.Models.Payments
         /// Formance records the final state only.
         /// </summary>
         [JsonProperty("data")]
-        public V3Conversion V3Conversion { get; set; } = default!;
+        public V3Conversion Data { get; set; } = default!;
     }
 }

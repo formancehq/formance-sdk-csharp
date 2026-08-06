@@ -4,6 +4,8 @@
 
 ### Available Operations
 
+* [GetInfo](#getinfo) - Show server information
+* [GetMetrics](#getmetrics) - Read in memory metrics
 * [ListLedgers](#listledgers) - List ledgers
 * [GetLedger](#getledger) - Get a ledger
 * [CreateLedger](#createledger) - Create a ledger
@@ -47,6 +49,70 @@
 * [ResetPipeline](#resetpipeline) - Reset pipeline
 * [StartPipeline](#startpipeline) - Start pipeline
 * [StopPipeline](#stoppipeline) - Stop pipeline
+
+## GetInfo
+
+Show server information
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="v2GetInfo" method="get" path="/api/ledger/_/info" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Ledger.V2.GetInfoAsync();
+
+// handle response
+```
+
+### Response
+
+**[V2GetInfoResponse](../../Models/Requests/V2GetInfoResponse.md)**
+
+### Errors
+
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
+
+## GetMetrics
+
+Read in memory metrics
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getMetrics" method="get" path="/api/ledger/_/metrics" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Ledger.V2.GetMetricsAsync();
+
+// handle response
+```
+
+### Response
+
+**[GetMetricsResponse](../../Models/Requests/GetMetricsResponse.md)**
+
+### Errors
+
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## ListLedgers
 
@@ -488,8 +554,8 @@ V2CreateBulkRequest req = new V2CreateBulkRequest() {
     Parallel = true,
     SchemaVersion = "v1.0.0",
     RequestBody = new List<V2BulkElement>() {
-        V2BulkElement.CreateV2BulkElementCreateTransaction(
-            new V2BulkElementCreateTransaction() {
+        V2BulkElement.CreateDeleteMetadata(
+            new V2BulkElementDeleteMetadata() {
                 Action = "DELETE_METADATA",
             }
         ),

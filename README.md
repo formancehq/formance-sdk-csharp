@@ -102,12 +102,7 @@ var res = await sdk.GetVersionsAsync();
 * [ListUsers](docs/sdks/v1/README.md#listusers) - List users
 * [ReadUser](docs/sdks/v1/README.md#readuser) - Read user
 
-### [Ledger](docs/sdks/ledger/README.md)
-
-* [GetInfo](docs/sdks/ledger/README.md#getinfo) - Show server information
-* [GetMetrics](docs/sdks/ledger/README.md#getmetrics) - Read in memory metrics
-
-#### [Ledger.V1](docs/sdks/formancev1/README.md)
+### [Ledger.V1](docs/sdks/formancev1/README.md)
 
 * [GetInfo](docs/sdks/formancev1/README.md#getinfo) - Show server information
 * [GetLedgerInfo](docs/sdks/formancev1/README.md#getledgerinfo) - Get information about a ledger
@@ -130,8 +125,10 @@ var res = await sdk.GetVersionsAsync();
 * [GetBalancesAggregated](docs/sdks/formancev1/README.md#getbalancesaggregated) - Get the aggregated balances from selected accounts
 * [ListLogs](docs/sdks/formancev1/README.md#listlogs) - List the logs from a ledger
 
-#### [Ledger.V2](docs/sdks/v2/README.md)
+### [Ledger.V2](docs/sdks/v2/README.md)
 
+* [GetInfo](docs/sdks/v2/README.md#getinfo) - Show server information
+* [GetMetrics](docs/sdks/v2/README.md#getmetrics) - Read in memory metrics
 * [ListLedgers](docs/sdks/v2/README.md#listledgers) - List ledgers
 * [GetLedger](docs/sdks/v2/README.md#getledger) - Get a ledger
 * [CreateLedger](docs/sdks/v2/README.md#createledger) - Create a ledger
@@ -281,9 +278,11 @@ var res = await sdk.GetVersionsAsync();
 * [ListConnectors](docs/sdks/v3/README.md#listconnectors) - List all connectors
 * [InstallConnector](docs/sdks/v3/README.md#installconnector) - Install a connector
 * [ListConnectorConfigs](docs/sdks/v3/README.md#listconnectorconfigs) - List all connector configurations
+* [ListConnectorCapabilities](docs/sdks/v3/README.md#listconnectorcapabilities) - List the plugin capabilities advertised by every supported provider
 * [UninstallConnector](docs/sdks/v3/README.md#uninstallconnector) - Uninstall a connector
 * [GetConnectorConfig](docs/sdks/v3/README.md#getconnectorconfig) - Get a connector configuration by ID
 * [V3UpdateConnectorConfig](docs/sdks/v3/README.md#v3updateconnectorconfig) - Update the config of a connector
+* [GetConnectorCapabilities](docs/sdks/v3/README.md#getconnectorcapabilities) - Get the plugin capabilities of an installed connector
 * [ResetConnector](docs/sdks/v3/README.md#resetconnector) - Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment initiations and bank account creations.
 * [ListConnectorSchedules](docs/sdks/v3/README.md#listconnectorschedules) - List all connector schedules
 * [GetConnectorSchedule](docs/sdks/v3/README.md#getconnectorschedule) - Get a connector schedule by ID
@@ -345,6 +344,22 @@ Allows to check if users used the link and completed the oauth flow.
 * [Reconcile](docs/sdks/formancereconciliationv1/README.md#reconcile) - Reconcile using a policy
 * [ListReconciliations](docs/sdks/formancereconciliationv1/README.md#listreconciliations) - List reconciliations
 * [GetReconciliation](docs/sdks/formancereconciliationv1/README.md#getreconciliation) - Get a reconciliation
+* [CreateRule](docs/sdks/formancereconciliationv1/README.md#createrule) - Create a rule
+* [ListRules](docs/sdks/formancereconciliationv1/README.md#listrules) - List rules
+* [GetRule](docs/sdks/formancereconciliationv1/README.md#getrule) - Get a rule
+* [PatchRule](docs/sdks/formancereconciliationv1/README.md#patchrule) - Patch a rule (partial update)
+* [DeleteRule](docs/sdks/formancereconciliationv1/README.md#deleterule) - Delete a rule (cascades to evaluations + alerts + alert events)
+* [EvaluateRule](docs/sdks/formancereconciliationv1/README.md#evaluaterule) - Evaluate a rule now
+* [ListEvaluations](docs/sdks/formancereconciliationv1/README.md#listevaluations) - List evaluations
+* [GetEvaluation](docs/sdks/formancereconciliationv1/README.md#getevaluation) - Get an evaluation
+* [ListAlerts](docs/sdks/formancereconciliationv1/README.md#listalerts) - List alerts
+* [GetAlert](docs/sdks/formancereconciliationv1/README.md#getalert) - Get an alert
+* [ListAlertEvents](docs/sdks/formancereconciliationv1/README.md#listalertevents) - List alert events (append-only timeline)
+* [AckAlert](docs/sdks/formancereconciliationv1/README.md#ackalert) - Acknowledge an alert
+* [ResolveAlert](docs/sdks/formancereconciliationv1/README.md#resolvealert) - Resolve an alert (fixed_by_booking)
+* [AcceptAlert](docs/sdks/formancereconciliationv1/README.md#acceptalert) - Accept an alert (accepted_by_business)
+* [SnoozeAlert](docs/sdks/formancereconciliationv1/README.md#snoozealert) - Snooze an alert's notifications until a future instant
+* [UnsnoozeAlert](docs/sdks/formancereconciliationv1/README.md#unsnoozealert) - Lift a snooze early
 
 ### [~~Search.V1~~](docs/sdks/formancesearchv1/README.md)
 
@@ -380,6 +395,11 @@ Allows to check if users used the link and completed the oauth flow.
 * [ActivateConfig](docs/sdks/formancewebhooksv1/README.md#activateconfig) - Activate one config
 * [DeactivateConfig](docs/sdks/formancewebhooksv1/README.md#deactivateconfig) - Deactivate one config
 * [ChangeConfigSecret](docs/sdks/formancewebhooksv1/README.md#changeconfigsecret) - Change the signing secret of a config
+* [GetDeliveries](docs/sdks/formancewebhooksv1/README.md#getdeliveries) - List webhook deliveries
+* [ReplayDeliveries](docs/sdks/formancewebhooksv1/README.md#replaydeliveries) - Replay a page of failed or pending deliveries
+* [GetDelivery](docs/sdks/formancewebhooksv1/README.md#getdelivery) - Get a webhook delivery
+* [GetDeliveryAttempts](docs/sdks/formancewebhooksv1/README.md#getdeliveryattempts) - List attempts for a webhook delivery
+* [ReplayDelivery](docs/sdks/formancewebhooksv1/README.md#replaydelivery) - Replay one failed or pending delivery
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -403,7 +423,6 @@ Some exceptions in this SDK include an additional `Payload` field, which will co
 using FormanceSDK;
 using FormanceSDK.Models.Components;
 using FormanceSDK.Models.Errors;
-using FormanceSDK.Models.Ledger;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -412,7 +431,7 @@ var sdk = new Formance(security: new Security() {
 
 try
 {
-    var res = await sdk.Ledger.GetInfoAsync();
+    var res = await sdk.Ledger.V1.GetInfoAsync();
 
     // handle response
 }
@@ -427,11 +446,11 @@ catch (SDKBaseException ex)  // all SDK exceptions inherit from SDKBaseException
     var statusCode = (int)response.StatusCode;
     var responseBody = ex.Body;
 
-    if (ex is V2ErrorResponseError) // different exceptions may be thrown depending on the method
+    if (ex is Models.Ledger.ErrorResponseError) // different exceptions may be thrown depending on the method
     {
         // Check error data fields
-        V2ErrorResponseErrorPayload payload = ex.Payload;
-        V2ErrorsEnum ErrorCode = payload.ErrorCode;
+        Models.Ledger.ErrorResponseErrorPayload payload = ex.Payload;
+        FormanceSDK.Models.Ledger.ErrorsEnum ErrorCode = payload.ErrorCode;
         string ErrorMessage = payload.ErrorMessage;
         // ...
     }
@@ -458,13 +477,13 @@ catch (System.Net.Http.HttpRequestException ex)
 * [`System.Net.Http.HttpRequestException`](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httprequestexception): Network connectivity error. For more details about the underlying cause, inspect the `ex.InnerException`.
 
 * Inheriting from [`SDKBaseException`](./src/FormanceSDK/Models/Errors/SDKBaseException.cs):
-  * [`V3ErrorResponse`](./src/FormanceSDK/Models/Errors/V3ErrorResponse.cs): Error. Applicable to 61 of 253 methods.*
-  * [`PaymentsErrorResponse`](./src/FormanceSDK/Models/Errors/PaymentsErrorResponse.cs): Error. Applicable to 46 of 253 methods.*
-  * [`V2ErrorResponseError`](./src/FormanceSDK/Models/Errors/V2ErrorResponseError.cs): Applicable to 44 of 253 methods.*
-  * [`ErrorResponse`](./src/FormanceSDK/Models/Errors/ErrorResponse.cs): Applicable to 31 of 253 methods.*
-  * [`ErrorResponseError`](./src/FormanceSDK/Models/Errors/ErrorResponseError.cs): Applicable to 19 of 253 methods.*
-  * [`V2Error`](./src/FormanceSDK/Models/Errors/V2Error.cs): General error. Applicable to 18 of 253 methods.*
-  * [`Error`](./src/FormanceSDK/Models/Errors/Error.cs): General error. Applicable to 17 of 253 methods.*
+  * [`V3ErrorResponse`](./src/FormanceSDK/Models/Errors/V3ErrorResponse.cs): Error. Applicable to 63 of 276 methods.*
+  * [`PaymentsErrorResponse`](./src/FormanceSDK/Models/Errors/PaymentsErrorResponse.cs): Error. Applicable to 46 of 276 methods.*
+  * [`V2ErrorResponseError`](./src/FormanceSDK/Models/Errors/V2ErrorResponseError.cs): Applicable to 44 of 276 methods.*
+  * [`ErrorResponseError`](./src/FormanceSDK/Models/Errors/ErrorResponseError.cs): Applicable to 43 of 276 methods.*
+  * [`ErrorResponse`](./src/FormanceSDK/Models/Errors/ErrorResponse.cs): Applicable to 28 of 276 methods.*
+  * [`V2Error`](./src/FormanceSDK/Models/Errors/V2Error.cs): General error. Applicable to 18 of 276 methods.*
+  * [`Error`](./src/FormanceSDK/Models/Errors/Error.cs): General error. Applicable to 17 of 276 methods.*
   * [`ResponseValidationError`](./src/FormanceSDK/Models/Errors/ResponseValidationError.cs): Thrown when the response data could not be deserialized into the expected type.
 </details>
 

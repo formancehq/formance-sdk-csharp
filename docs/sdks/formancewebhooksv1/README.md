@@ -12,6 +12,11 @@
 * [ActivateConfig](#activateconfig) - Activate one config
 * [DeactivateConfig](#deactivateconfig) - Deactivate one config
 * [ChangeConfigSecret](#changeconfigsecret) - Change the signing secret of a config
+* [GetDeliveries](#getdeliveries) - List webhook deliveries
+* [ReplayDeliveries](#replaydeliveries) - Replay a page of failed or pending deliveries
+* [GetDelivery](#getdelivery) - Get a webhook delivery
+* [GetDeliveryAttempts](#getdeliveryattempts) - List attempts for a webhook delivery
+* [ReplayDelivery](#replaydelivery) - Replay one failed or pending delivery
 
 ## GetManyConfigs
 
@@ -83,7 +88,6 @@ var sdk = new Formance(security: new Security() {
 });
 
 ConfigUser req = new ConfigUser() {
-    Name = "customer_payment",
     Endpoint = "https://example.com",
     Secret = "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
     EventTypes = new List<string>() {
@@ -173,7 +177,6 @@ var sdk = new Formance(security: new Security() {
 var res = await sdk.Webhooks.V1.UpdateConfigAsync(
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
     configUser: new ConfigUser() {
-        Name = "customer_payment",
         Endpoint = "https://example.com",
         Secret = "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
         EventTypes = new List<string>() {
@@ -359,6 +362,215 @@ var res = await sdk.Webhooks.V1.ChangeConfigSecretAsync(
 ### Response
 
 **[ChangeConfigSecretResponse](../../Models/Requests/ChangeConfigSecretResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Webhooks.ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## GetDeliveries
+
+List webhook deliveries
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getDeliveries" method="get" path="/api/webhooks/deliveries" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Requests;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+GetDeliveriesRequest req = new GetDeliveriesRequest() {};
+
+var res = await sdk.Webhooks.V1.GetDeliveriesAsync(req);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [GetDeliveriesRequest](../../Models/Requests/GetDeliveriesRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+
+### Response
+
+**[GetDeliveriesResponse](../../Models/Requests/GetDeliveriesResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Webhooks.ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## ReplayDeliveries
+
+Replay a page of failed or pending deliveries
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="replayDeliveries" method="post" path="/api/webhooks/deliveries/replay" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using System;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Webhooks.V1.ReplayDeliveriesAsync(
+    idempotencyKey: "<value>",
+    replayDeliveriesRequest: new FormanceSDK.Models.Webhooks.ReplayDeliveriesRequest() {
+        CreatedAtFrom = System.DateTime.Parse("2026-10-16T11:02:44.647Z").ToUniversalTime(),
+    }
+);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `IdempotencyKey`                                                                            | *string*                                                                                    | :heavy_check_mark:                                                                          | N/A                                                                                         |
+| `ReplayDeliveriesRequest`                                                                   | [Models.Webhooks.ReplayDeliveriesRequest](../../Models/Webhooks/ReplayDeliveriesRequest.md) | :heavy_check_mark:                                                                          | N/A                                                                                         |
+
+### Response
+
+**[Models.Requests.ReplayDeliveriesResponse](../../Models/Requests/ReplayDeliveriesResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Webhooks.ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## GetDelivery
+
+Get a webhook delivery
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getDelivery" method="get" path="/api/webhooks/deliveries/{id}" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Webhooks.V1.GetDeliveryAsync(id: "01e5cac6-75f1-4720-81ca-5563ce22d2e0");
+
+// handle response
+```
+
+### Parameters
+
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `Id`               | *string*           | :heavy_check_mark: | N/A                |
+
+### Response
+
+**[GetDeliveryResponse](../../Models/Requests/GetDeliveryResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Webhooks.ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## GetDeliveryAttempts
+
+List attempts for a webhook delivery
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="getDeliveryAttempts" method="get" path="/api/webhooks/deliveries/{id}/attempts" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Webhooks.V1.GetDeliveryAttemptsAsync(
+    id: "967e7a38-b11b-4809-92cf-6789e24dbe13",
+    pageSize: 100
+);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `Id`               | *string*           | :heavy_check_mark: | N/A                |
+| `Cursor`           | *string*           | :heavy_minus_sign: | N/A                |
+| `PageSize`         | *long*             | :heavy_minus_sign: | N/A                |
+
+### Response
+
+**[GetDeliveryAttemptsResponse](../../Models/Requests/GetDeliveryAttemptsResponse.md)**
+
+### Errors
+
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Webhooks.ErrorResponse | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## ReplayDelivery
+
+Replay one failed or pending delivery
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="replayDelivery" method="post" path="/api/webhooks/deliveries/{id}/replay" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Webhooks.V1.ReplayDeliveryAsync(
+    id: "06a0d0bb-48de-45f0-b12f-6458a3a41bbe",
+    idempotencyKey: "<value>"
+);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `Id`               | *string*           | :heavy_check_mark: | N/A                |
+| `IdempotencyKey`   | *string*           | :heavy_check_mark: | N/A                |
+
+### Response
+
+**[ReplayDeliveryResponse](../../Models/Requests/ReplayDeliveryResponse.md)**
 
 ### Errors
 

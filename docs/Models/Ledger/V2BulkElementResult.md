@@ -3,32 +3,32 @@
 
 ## Supported Types
 
-### V2BulkElementResultCreateTransaction
+### CreateTransaction
 
 ```csharp
-V2BulkElementResult.CreateV2BulkElementResultCreateTransaction(/* values here */);
+V2BulkElementResult.CreateCreateTransaction(/* values here */);
 ```
 
-### V2BulkElementResultAddMetadata
+### AddMetadata
 
 ```csharp
-V2BulkElementResult.CreateV2BulkElementResultAddMetadata(/* values here */);
+V2BulkElementResult.CreateAddMetadata(/* values here */);
 ```
 
-### V2BulkElementResultRevertTransaction
+### RevertTransaction
 
 ```csharp
-V2BulkElementResult.CreateV2BulkElementResultRevertTransaction(/* values here */);
+V2BulkElementResult.CreateRevertTransaction(/* values here */);
 ```
 
-### V2BulkElementResultDeleteMetadata
+### DeleteMetadata
 
 ```csharp
-V2BulkElementResult.CreateV2BulkElementResultDeleteMetadata(/* values here */);
+V2BulkElementResult.CreateDeleteMetadata(/* values here */);
 ```
 
-### V2BulkElementResultError
+### Error
 
 ```csharp
-V2BulkElementResult.CreateV2BulkElementResultError(/* values here */);
+V2BulkElementResult.CreateError(/* values here */);
 ```

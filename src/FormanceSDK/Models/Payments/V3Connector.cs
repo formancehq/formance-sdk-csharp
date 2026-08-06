@@ -13,6 +13,7 @@ namespace FormanceSDK.Models.Payments
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
+    using System.Collections.Generic;
 
     public class V3Connector
     {
@@ -36,6 +37,12 @@ namespace FormanceSDK.Models.Payments
 
         [JsonProperty("config")]
         public Models.Payments.Config Config { get; set; } = default!;
+
+        /// <summary>
+        /// Plugin capabilities advertised by the connector's provider.
+        /// </summary>
+        [JsonProperty("capabilities")]
+        public List<V3Capability>? Capabilities { get; set; }
 
         [JsonProperty("updatedAt")]
         public DateTime? UpdatedAt { get; set; } = null;

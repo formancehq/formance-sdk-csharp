@@ -16,6 +16,6 @@ namespace FormanceSDK.Models.Payments
     public class UpdateTransferInitiationStatusRequest
     {
         [JsonProperty("status")]
-        public Status Status { get; set; } = default!;
+        public Models.Payments.Status Status { get; set; } = default!;
     }
 }

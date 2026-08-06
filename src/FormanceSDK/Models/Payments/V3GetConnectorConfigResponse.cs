@@ -18,5 +18,120 @@ namespace FormanceSDK.Models.Payments
     {
         [JsonProperty("data", NullValueHandling = NullValueHandling.Include)]
         public V3ConnectorConfig Data { get; set; } = default!;
+
+        public V3AdyenConfig? GetDataAdyen()
+        {
+            return Data.V3AdyenConfig;
+        }
+
+        public V3AtlarConfig? GetDataAtlar()
+        {
+            return Data.V3AtlarConfig;
+        }
+
+        public V3BankingbridgeConfig? GetDataBankingbridge()
+        {
+            return Data.V3BankingbridgeConfig;
+        }
+
+        public V3BankingcircleConfig? GetDataBankingcircle()
+        {
+            return Data.V3BankingcircleConfig;
+        }
+
+        public V3BitstampConfig? GetDataBitstamp()
+        {
+            return Data.V3BitstampConfig;
+        }
+
+        public V3CoinbaseprimeConfig? GetDataCoinbaseprime()
+        {
+            return Data.V3CoinbaseprimeConfig;
+        }
+
+        public V3ColumnConfig? GetDataColumn()
+        {
+            return Data.V3ColumnConfig;
+        }
+
+        public V3CurrencycloudConfig? GetDataCurrencycloud()
+        {
+            return Data.V3CurrencycloudConfig;
+        }
+
+        public V3DummypayConfig? GetDataDummypay()
+        {
+            return Data.V3DummypayConfig;
+        }
+
+        public V3FireblocksConfig? GetDataFireblocks()
+        {
+            return Data.V3FireblocksConfig;
+        }
+
+        public V3GenericConfig? GetDataGeneric()
+        {
+            return Data.V3GenericConfig;
+        }
+
+        public V3IncreaseConfig? GetDataIncrease()
+        {
+            return Data.V3IncreaseConfig;
+        }
+
+        public V3KrakenproConfig? GetDataKrakenpro()
+        {
+            return Data.V3KrakenproConfig;
+        }
+
+        public V3MangopayConfig? GetDataMangopay()
+        {
+            return Data.V3MangopayConfig;
+        }
+
+        public V3ModulrConfig? GetDataModulr()
+        {
+            return Data.V3ModulrConfig;
+        }
+
+        public V3MoneycorpConfig? GetDataMoneycorp()
+        {
+            return Data.V3MoneycorpConfig;
+        }
+
+        public V3PlaidConfig? GetDataPlaid()
+        {
+            return Data.V3PlaidConfig;
+        }
+
+        public V3PowensConfig? GetDataPowens()
+        {
+            return Data.V3PowensConfig;
+        }
+
+        public V3QontoConfig? GetDataQonto()
+        {
+            return Data.V3QontoConfig;
+        }
+
+        public V3RoutableConfig? GetDataRoutable()
+        {
+            return Data.V3RoutableConfig;
+        }
+
+        public V3StripeConfig? GetDataStripe()
+        {
+            return Data.V3StripeConfig;
+        }
+
+        public V3TinkConfig? GetDataTink()
+        {
+            return Data.V3TinkConfig;
+        }
+
+        public V3WiseConfig? GetDataWise()
+        {
+            return Data.V3WiseConfig;
+        }
     }
 }

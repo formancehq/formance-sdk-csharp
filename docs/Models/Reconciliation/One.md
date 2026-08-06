@@ -1,0 +1,12 @@
+# One
+
+
+## Fields
+
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `Fingerprint`                                                                        | *string*                                                                             | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `Passed`                                                                             | *bool*                                                                               | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `Proof`                                                                              | Dictionary<String, *string*>                                                         | :heavy_minus_sign:                                                                   | Compact green-proof (observed balance integers as strings). Present on PASS entries. |
+| `Evidence`                                                                           | Dictionary<String, *object*>                                                         | :heavy_minus_sign:                                                                   | Full breakdown. Present on FAIL entries.                                             |
+| `AdditionalProperties`                                                               | Dictionary<String, *object*>                                                         | :heavy_minus_sign:                                                                   | N/A                                                                                  |

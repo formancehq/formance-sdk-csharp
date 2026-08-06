@@ -222,6 +222,22 @@ namespace FormanceSDK
         public  Task<V3ListConnectorConfigsResponse> ListConnectorConfigsAsync();
 
         /// <summary>
+        /// List the plugin capabilities advertised by every supported provider.
+        /// </summary>
+        /// <remarks>
+        /// Returns the static map of provider name to the list of plugin capabilities (`FETCH_ACCOUNTS`, `CREATE_TRANSFER`, ...) compiled into this binary. The catalog is immutable for the lifetime of the process and is therefore safe to cache: the response carries a strong ETag and a `Cache-Control: public, max-age=3600, must-revalidate` directive. Stateless consumers (e.g. console) should set `If-None-Match` on subsequent requests to receive a `304 Not Modified`.<br/>
+        /// <br/>
+        /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
+        /// </remarks>
+        /// <param name="ifNoneMatch">ETag from a previous response; a matching value yields 304 Not Modified.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListConnectorCapabilitiesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200 or 304.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3ListConnectorCapabilitiesResponse> ListConnectorCapabilitiesAsync(string? ifNoneMatch = null);
+
+        /// <summary>
         /// Uninstall a connector.
         /// </summary>
         /// <remarks>
@@ -270,6 +286,23 @@ namespace FormanceSDK
             string connectorID,
             V3ConnectorConfig? v3ConnectorConfig = null
         );
+
+        /// <summary>
+        /// Get the plugin capabilities of an installed connector.
+        /// </summary>
+        /// <remarks>
+        /// Returns the list of plugin capabilities advertised by the provider backing this installed connector (`FETCH_ACCOUNTS`, `CREATE_TRANSFER`, ...). The same values are also inlined on each row of `v3ListConnectors`; prefer that endpoint when listing multiple connectors.<br/>
+        /// <br/>
+        /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
+        /// </remarks>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3GetConnectorCapabilitiesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<V3GetConnectorCapabilitiesResponse> GetConnectorCapabilitiesAsync(string connectorID);
 
         /// <summary>
         /// Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment initiations and bank account creations.
@@ -2706,6 +2739,147 @@ namespace FormanceSDK
 
 
         /// <summary>
+        /// List the plugin capabilities advertised by every supported provider.
+        /// </summary>
+        /// <remarks>
+        /// Returns the static map of provider name to the list of plugin capabilities (`FETCH_ACCOUNTS`, `CREATE_TRANSFER`, ...) compiled into this binary. The catalog is immutable for the lifetime of the process and is therefore safe to cache: the response carries a strong ETag and a `Cache-Control: public, max-age=3600, must-revalidate` directive. Stateless consumers (e.g. console) should set `If-None-Match` on subsequent requests to receive a `304 Not Modified`.<br/>
+        /// <br/>
+        /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
+        /// </remarks>
+        /// <param name="ifNoneMatch">ETag from a previous response; a matching value yields 304 Not Modified.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3ListConnectorCapabilitiesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200 or 304.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3ListConnectorCapabilitiesResponse> ListConnectorCapabilitiesAsync(
+            string? ifNoneMatch = null
+        )
+        {
+            var request = new V3ListConnectorCapabilitiesRequest()
+            {
+                IfNoneMatch = ifNoneMatch,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = baseUrl + "/api/payments/v3/connectors/capabilities";
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3ListConnectorCapabilities", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (!new List<int>{200, 304}.Contains(_statusCode))
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3ConnectorCapabilitiesResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<V3ConnectorCapabilitiesResponse>(httpResponseBody, NullValueHandling.Include);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3ConnectorCapabilitiesResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new V3ListConnectorCapabilitiesResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        },
+                        Headers = Utilities.CollectHeaders(httpResponse.Headers)
+                    };
+                    response.V3ConnectorCapabilitiesResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else if(responseStatusCode == 304)
+            {
+                return new V3ListConnectorCapabilitiesResponse()
+                {
+                    HttpMeta = new Models.Components.HTTPMetadata()
+                    {
+                        Response = httpResponse,
+                        Request = httpRequest
+                    },
+                    Headers = Utilities.CollectHeaders(httpResponse.Headers)
+                };
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V3ErrorResponsePayload>(httpResponseBody, NullValueHandling.Include);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new V3ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
         /// Uninstall a connector.
         /// </summary>
         /// <remarks>
@@ -3070,6 +3244,134 @@ namespace FormanceSDK
                     }
 
                     throw new PaymentsErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Get the plugin capabilities of an installed connector.
+        /// </summary>
+        /// <remarks>
+        /// Returns the list of plugin capabilities advertised by the provider backing this installed connector (`FETCH_ACCOUNTS`, `CREATE_TRANSFER`, ...). The same values are also inlined on each row of `v3ListConnectors`; prefer that endpoint when listing multiple connectors.<br/>
+        /// <br/>
+        /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
+        /// </remarks>
+        /// <param name="connectorID">The connector ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="V3GetConnectorCapabilitiesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="connectorID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V3ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<V3GetConnectorCapabilitiesResponse> GetConnectorCapabilitiesAsync(string connectorID)
+        {
+            if (connectorID == null) throw new ArgumentNullException(nameof(connectorID));
+
+            var request = new V3GetConnectorCapabilitiesRequest()
+            {
+                ConnectorID = connectorID,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/payments/v3/connectors/{connectorID}/capabilities", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v3GetConnectorCapabilities", new List<string> { "payments:read" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3ConnectorCapabilityResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<V3ConnectorCapabilityResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3ConnectorCapabilityResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new V3GetConnectorCapabilitiesResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.V3ConnectorCapabilityResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V3ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V3ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V3ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new V3ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());

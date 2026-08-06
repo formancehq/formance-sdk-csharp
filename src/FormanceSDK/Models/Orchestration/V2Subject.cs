@@ -24,16 +24,16 @@ namespace FormanceSDK.Models.Orchestration
 
         public string Value { get; private set; }
 
-        public static V2SubjectType V2LedgerAccountSubject { get { return new V2SubjectType("V2LedgerAccountSubject"); } }
+        public static V2SubjectType Account { get { return new V2SubjectType("ACCOUNT"); } }
 
-        public static V2SubjectType V2WalletSubject { get { return new V2SubjectType("V2WalletSubject"); } }
+        public static V2SubjectType Wallet { get { return new V2SubjectType("WALLET"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(V2SubjectType v) { return v.Value; }
         public static V2SubjectType FromString(string v) {
             switch(v) {
-                case "V2LedgerAccountSubject": return V2LedgerAccountSubject;
-                case "V2WalletSubject": return V2WalletSubject;
+                case "ACCOUNT": return Account;
+                case "WALLET": return Wallet;
                 default: throw new ArgumentException("Invalid value for V2SubjectType");
             }
         }
@@ -67,20 +67,24 @@ namespace FormanceSDK.Models.Orchestration
         public V2WalletSubject? V2WalletSubject { get; set; }
 
         public V2SubjectType Type { get; set; }
-        public static V2Subject CreateV2LedgerAccountSubject(V2LedgerAccountSubject v2LedgerAccountSubject)
-        {
-            V2SubjectType typ = V2SubjectType.V2LedgerAccountSubject;
 
+        public static V2Subject CreateAccount(V2LedgerAccountSubject account)
+        {
+            V2SubjectType typ = V2SubjectType.Account;
+            string typStr = V2SubjectType.Account.ToString();
+            account.Type = typStr;
             V2Subject res = new V2Subject(typ);
-            res.V2LedgerAccountSubject = v2LedgerAccountSubject;
+            res.V2LedgerAccountSubject = account;
             return res;
         }
-        public static V2Subject CreateV2WalletSubject(V2WalletSubject v2WalletSubject)
-        {
-            V2SubjectType typ = V2SubjectType.V2WalletSubject;
 
+        public static V2Subject CreateWallet(V2WalletSubject wallet)
+        {
+            V2SubjectType typ = V2SubjectType.Wallet;
+            string typStr = V2SubjectType.Wallet.ToString();
+            wallet.Type = typStr;
             V2Subject res = new V2Subject(typ);
-            res.V2WalletSubject = v2WalletSubject;
+            res.V2WalletSubject = wallet;
             return res;
         }
 
@@ -97,67 +101,17 @@ namespace FormanceSDK.Models.Orchestration
                     throw new InvalidOperationException("Received unexpected null JSON value");
                 }
 
-                var json = JRaw.Create(reader).ToString();
-                var fallbackCandidates = new List<(System.Type, object, string)>();
-
-                try
+                JObject jo = JObject.Load(reader);
+                string discriminator = jo.GetValue("type")?.ToString() ?? throw new ArgumentNullException("Could not find discriminator field.");
+                if (discriminator == V2SubjectType.Account.ToString())
                 {
-                    return new V2Subject(V2SubjectType.V2LedgerAccountSubject)
-                    {
-                        V2LedgerAccountSubject = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<V2LedgerAccountSubject>(json)
-                    };
+                    V2LedgerAccountSubject v2LedgerAccountSubject = ResponseBodyDeserializer.DeserializeNotNull<V2LedgerAccountSubject>(jo.ToString());
+                    return CreateAccount(v2LedgerAccountSubject);
                 }
-                catch (ResponseBodyDeserializer.MissingMemberException)
+                if (discriminator == V2SubjectType.Wallet.ToString())
                 {
-                    fallbackCandidates.Add((typeof(V2LedgerAccountSubject), new V2Subject(V2SubjectType.V2LedgerAccountSubject), "V2LedgerAccountSubject"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new V2Subject(V2SubjectType.V2WalletSubject)
-                    {
-                        V2WalletSubject = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<V2WalletSubject>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(V2WalletSubject), new V2Subject(V2SubjectType.V2WalletSubject), "V2WalletSubject"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                if (fallbackCandidates.Count > 0)
-                {
-                    fallbackCandidates.Sort((a, b) => ResponseBodyDeserializer.CompareFallbackCandidates(a.Item1, b.Item1, json));
-                    foreach(var (deserializationType, returnObject, propertyName) in fallbackCandidates)
-                    {
-                        try
-                        {
-                            return ResponseBodyDeserializer.DeserializeUndiscriminatedUnionFallback(deserializationType, returnObject, propertyName, json);
-                        }
-                        catch (ResponseBodyDeserializer.DeserializationException)
-                        {
-                            // try next fallback option
-                        }
-                        catch (Exception)
-                        {
-                            throw;
-                        }
-                    }
+                    V2WalletSubject v2WalletSubject = ResponseBodyDeserializer.DeserializeNotNull<V2WalletSubject>(jo.ToString());
+                    return CreateWallet(v2WalletSubject);
                 }
 
                 throw new InvalidOperationException("Could not deserialize into any supported types.");

@@ -24,22 +24,22 @@ namespace FormanceSDK.Models.Ledger
 
         public string Value { get; private set; }
 
-        public static V2BulkElementType V2BulkElementCreateTransaction { get { return new V2BulkElementType("V2BulkElementCreateTransaction"); } }
+        public static V2BulkElementType CreateTransaction { get { return new V2BulkElementType("CREATE_TRANSACTION"); } }
 
-        public static V2BulkElementType V2BulkElementAddMetadata { get { return new V2BulkElementType("V2BulkElementAddMetadata"); } }
+        public static V2BulkElementType AddMetadata { get { return new V2BulkElementType("ADD_METADATA"); } }
 
-        public static V2BulkElementType V2BulkElementRevertTransaction { get { return new V2BulkElementType("V2BulkElementRevertTransaction"); } }
+        public static V2BulkElementType RevertTransaction { get { return new V2BulkElementType("REVERT_TRANSACTION"); } }
 
-        public static V2BulkElementType V2BulkElementDeleteMetadata { get { return new V2BulkElementType("V2BulkElementDeleteMetadata"); } }
+        public static V2BulkElementType DeleteMetadata { get { return new V2BulkElementType("DELETE_METADATA"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(V2BulkElementType v) { return v.Value; }
         public static V2BulkElementType FromString(string v) {
             switch(v) {
-                case "V2BulkElementCreateTransaction": return V2BulkElementCreateTransaction;
-                case "V2BulkElementAddMetadata": return V2BulkElementAddMetadata;
-                case "V2BulkElementRevertTransaction": return V2BulkElementRevertTransaction;
-                case "V2BulkElementDeleteMetadata": return V2BulkElementDeleteMetadata;
+                case "CREATE_TRANSACTION": return CreateTransaction;
+                case "ADD_METADATA": return AddMetadata;
+                case "REVERT_TRANSACTION": return RevertTransaction;
+                case "DELETE_METADATA": return DeleteMetadata;
                 default: throw new ArgumentException("Invalid value for V2BulkElementType");
             }
         }
@@ -79,36 +79,44 @@ namespace FormanceSDK.Models.Ledger
         public V2BulkElementDeleteMetadata? V2BulkElementDeleteMetadata { get; set; }
 
         public V2BulkElementType Type { get; set; }
-        public static V2BulkElement CreateV2BulkElementCreateTransaction(V2BulkElementCreateTransaction v2BulkElementCreateTransaction)
-        {
-            V2BulkElementType typ = V2BulkElementType.V2BulkElementCreateTransaction;
 
+        public static V2BulkElement CreateCreateTransaction(V2BulkElementCreateTransaction createTransaction)
+        {
+            V2BulkElementType typ = V2BulkElementType.CreateTransaction;
+            string typStr = V2BulkElementType.CreateTransaction.ToString();
+            createTransaction.Action = typStr;
             V2BulkElement res = new V2BulkElement(typ);
-            res.V2BulkElementCreateTransaction = v2BulkElementCreateTransaction;
+            res.V2BulkElementCreateTransaction = createTransaction;
             return res;
         }
-        public static V2BulkElement CreateV2BulkElementAddMetadata(V2BulkElementAddMetadata v2BulkElementAddMetadata)
-        {
-            V2BulkElementType typ = V2BulkElementType.V2BulkElementAddMetadata;
 
+        public static V2BulkElement CreateAddMetadata(V2BulkElementAddMetadata addMetadata)
+        {
+            V2BulkElementType typ = V2BulkElementType.AddMetadata;
+            string typStr = V2BulkElementType.AddMetadata.ToString();
+            addMetadata.Action = typStr;
             V2BulkElement res = new V2BulkElement(typ);
-            res.V2BulkElementAddMetadata = v2BulkElementAddMetadata;
+            res.V2BulkElementAddMetadata = addMetadata;
             return res;
         }
-        public static V2BulkElement CreateV2BulkElementRevertTransaction(V2BulkElementRevertTransaction v2BulkElementRevertTransaction)
-        {
-            V2BulkElementType typ = V2BulkElementType.V2BulkElementRevertTransaction;
 
+        public static V2BulkElement CreateRevertTransaction(V2BulkElementRevertTransaction revertTransaction)
+        {
+            V2BulkElementType typ = V2BulkElementType.RevertTransaction;
+            string typStr = V2BulkElementType.RevertTransaction.ToString();
+            revertTransaction.Action = typStr;
             V2BulkElement res = new V2BulkElement(typ);
-            res.V2BulkElementRevertTransaction = v2BulkElementRevertTransaction;
+            res.V2BulkElementRevertTransaction = revertTransaction;
             return res;
         }
-        public static V2BulkElement CreateV2BulkElementDeleteMetadata(V2BulkElementDeleteMetadata v2BulkElementDeleteMetadata)
-        {
-            V2BulkElementType typ = V2BulkElementType.V2BulkElementDeleteMetadata;
 
+        public static V2BulkElement CreateDeleteMetadata(V2BulkElementDeleteMetadata deleteMetadata)
+        {
+            V2BulkElementType typ = V2BulkElementType.DeleteMetadata;
+            string typStr = V2BulkElementType.DeleteMetadata.ToString();
+            deleteMetadata.Action = typStr;
             V2BulkElement res = new V2BulkElement(typ);
-            res.V2BulkElementDeleteMetadata = v2BulkElementDeleteMetadata;
+            res.V2BulkElementDeleteMetadata = deleteMetadata;
             return res;
         }
 
@@ -125,107 +133,27 @@ namespace FormanceSDK.Models.Ledger
                     throw new InvalidOperationException("Received unexpected null JSON value");
                 }
 
-                var json = JRaw.Create(reader).ToString();
-                var fallbackCandidates = new List<(System.Type, object, string)>();
-
-                try
+                JObject jo = JObject.Load(reader);
+                string discriminator = jo.GetValue("action")?.ToString() ?? throw new ArgumentNullException("Could not find discriminator field.");
+                if (discriminator == V2BulkElementType.CreateTransaction.ToString())
                 {
-                    return new V2BulkElement(V2BulkElementType.V2BulkElementCreateTransaction)
-                    {
-                        V2BulkElementCreateTransaction = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<V2BulkElementCreateTransaction>(json)
-                    };
+                    V2BulkElementCreateTransaction v2BulkElementCreateTransaction = ResponseBodyDeserializer.DeserializeNotNull<V2BulkElementCreateTransaction>(jo.ToString());
+                    return CreateCreateTransaction(v2BulkElementCreateTransaction);
                 }
-                catch (ResponseBodyDeserializer.MissingMemberException)
+                if (discriminator == V2BulkElementType.AddMetadata.ToString())
                 {
-                    fallbackCandidates.Add((typeof(V2BulkElementCreateTransaction), new V2BulkElement(V2BulkElementType.V2BulkElementCreateTransaction), "V2BulkElementCreateTransaction"));
+                    V2BulkElementAddMetadata v2BulkElementAddMetadata = ResponseBodyDeserializer.DeserializeNotNull<V2BulkElementAddMetadata>(jo.ToString());
+                    return CreateAddMetadata(v2BulkElementAddMetadata);
                 }
-                catch (ResponseBodyDeserializer.DeserializationException)
+                if (discriminator == V2BulkElementType.RevertTransaction.ToString())
                 {
-                    // try next option
+                    V2BulkElementRevertTransaction v2BulkElementRevertTransaction = ResponseBodyDeserializer.DeserializeNotNull<V2BulkElementRevertTransaction>(jo.ToString());
+                    return CreateRevertTransaction(v2BulkElementRevertTransaction);
                 }
-                catch (Exception)
+                if (discriminator == V2BulkElementType.DeleteMetadata.ToString())
                 {
-                    throw;
-                }
-
-                try
-                {
-                    return new V2BulkElement(V2BulkElementType.V2BulkElementAddMetadata)
-                    {
-                        V2BulkElementAddMetadata = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<V2BulkElementAddMetadata>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(V2BulkElementAddMetadata), new V2BulkElement(V2BulkElementType.V2BulkElementAddMetadata), "V2BulkElementAddMetadata"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new V2BulkElement(V2BulkElementType.V2BulkElementRevertTransaction)
-                    {
-                        V2BulkElementRevertTransaction = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<V2BulkElementRevertTransaction>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(V2BulkElementRevertTransaction), new V2BulkElement(V2BulkElementType.V2BulkElementRevertTransaction), "V2BulkElementRevertTransaction"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new V2BulkElement(V2BulkElementType.V2BulkElementDeleteMetadata)
-                    {
-                        V2BulkElementDeleteMetadata = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<V2BulkElementDeleteMetadata>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(V2BulkElementDeleteMetadata), new V2BulkElement(V2BulkElementType.V2BulkElementDeleteMetadata), "V2BulkElementDeleteMetadata"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                if (fallbackCandidates.Count > 0)
-                {
-                    fallbackCandidates.Sort((a, b) => ResponseBodyDeserializer.CompareFallbackCandidates(a.Item1, b.Item1, json));
-                    foreach(var (deserializationType, returnObject, propertyName) in fallbackCandidates)
-                    {
-                        try
-                        {
-                            return ResponseBodyDeserializer.DeserializeUndiscriminatedUnionFallback(deserializationType, returnObject, propertyName, json);
-                        }
-                        catch (ResponseBodyDeserializer.DeserializationException)
-                        {
-                            // try next fallback option
-                        }
-                        catch (Exception)
-                        {
-                            throw;
-                        }
-                    }
+                    V2BulkElementDeleteMetadata v2BulkElementDeleteMetadata = ResponseBodyDeserializer.DeserializeNotNull<V2BulkElementDeleteMetadata>(jo.ToString());
+                    return CreateDeleteMetadata(v2BulkElementDeleteMetadata);
                 }
 
                 throw new InvalidOperationException("Could not deserialize into any supported types.");

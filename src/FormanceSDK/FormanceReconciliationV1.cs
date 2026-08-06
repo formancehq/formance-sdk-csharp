@@ -34,7 +34,7 @@ namespace FormanceSDK
         /// <returns>An awaitable task that returns a <see cref="GetServerInfoReconciliationResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<GetServerInfoReconciliationResponse> GetServerInfoReconciliationAsync();
 
@@ -50,7 +50,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<CreatePolicyResponse> CreatePolicyAsync(PolicyRequest request);
 
@@ -71,7 +71,7 @@ namespace FormanceSDK
         /// <returns>An awaitable task that returns a <see cref="ListPoliciesResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<ListPoliciesResponse> ListPoliciesAsync(
             long? pageSize = null,
@@ -91,7 +91,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="policyID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<DeletePolicyResponse> DeletePolicyAsync(string policyID);
 
@@ -106,7 +106,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="policyID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<GetPolicyResponse> GetPolicyAsync(string policyID);
 
@@ -123,7 +123,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">One of <paramref name="policyID"/> or <paramref name="reconciliationRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<ReconcileResponse> ReconcileAsync(string policyID, ReconciliationRequest reconciliationRequest);
 
@@ -144,7 +144,7 @@ namespace FormanceSDK
         /// <returns>An awaitable task that returns a <see cref="ListReconciliationsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<ListReconciliationsResponse> ListReconciliationsAsync(
             long? pageSize = null,
@@ -163,9 +163,331 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="reconciliationID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<GetReconciliationResponse> GetReconciliationAsync(string reconciliationID);
+
+        /// <summary>
+        /// Create a rule.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="request">A <see cref="RuleRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="CreateRuleResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<CreateRuleResponse> CreateRuleAsync(RuleRequest request);
+
+        /// <summary>
+        /// List rules.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <param name="requestBody">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="ListRulesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ListRulesResponse> ListRulesAsync(
+            long? pageSize = null,
+            string? cursor = null,
+            Dictionary<string, object>? requestBody = null
+        );
+
+        /// <summary>
+        /// Get a rule.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="ruleID">The rule ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetRuleResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ruleID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<GetRuleResponse> GetRuleAsync(string ruleID);
+
+        /// <summary>
+        /// Patch a rule (partial update).
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="ruleID">The rule ID.</param>
+        /// <param name="rulePatchRequest">A <see cref="RulePatchRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="PatchRuleResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ruleID"/> or <paramref name="rulePatchRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<PatchRuleResponse> PatchRuleAsync(string ruleID, RulePatchRequest rulePatchRequest);
+
+        /// <summary>
+        /// Delete a rule (cascades to evaluations + alerts + alert events).
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="ruleID">The rule ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeleteRuleResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ruleID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<DeleteRuleResponse> DeleteRuleAsync(string ruleID);
+
+        /// <summary>
+        /// Evaluate a rule now.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="ruleID">The rule ID.</param>
+        /// <param name="evaluateRuleRequest">A <see cref="FormanceSDK.Models.Reconciliation.EvaluateRuleRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="EvaluateRuleResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ruleID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200 or 409.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<EvaluateRuleResponse> EvaluateRuleAsync(
+            string ruleID,
+            Models.Reconciliation.EvaluateRuleRequest? evaluateRuleRequest = null
+        );
+
+        /// <summary>
+        /// List evaluations.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <param name="requestBody">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="ListEvaluationsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ListEvaluationsResponse> ListEvaluationsAsync(
+            long? pageSize = null,
+            string? cursor = null,
+            Dictionary<string, object>? requestBody = null
+        );
+
+        /// <summary>
+        /// Get an evaluation.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="evaluationID">The evaluation ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetEvaluationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="evaluationID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<GetEvaluationResponse> GetEvaluationAsync(string evaluationID);
+
+        /// <summary>
+        /// List alerts.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <param name="requestBody">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="ListAlertsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ListAlertsResponse> ListAlertsAsync(
+            long? pageSize = null,
+            string? cursor = null,
+            Dictionary<string, object>? requestBody = null
+        );
+
+        /// <summary>
+        /// Get an alert.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="alertID">The alert ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetAlertResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="alertID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<GetAlertResponse> GetAlertAsync(string alertID);
+
+        /// <summary>
+        /// List alert events (append-only timeline).
+        /// </summary>
+        /// <remarks>
+        /// Returns a page of the events recorded for this alert — every evaluation<br/>
+        /// that touched it plus every manual transition. The list is append-only;<br/>
+        /// events are never modified or deleted. Ordered most-recent-first and<br/>
+        /// cursor-paginated: a long-lived alert's timeline is unbounded (one row per<br/>
+        /// failing evaluation), so callers must page through it.<br/>
+        /// <br/>
+        /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
+        /// </remarks>
+        /// <param name="alertID">The alert ID.</param>
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <returns>An awaitable task that returns a <see cref="ListAlertEventsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="alertID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ListAlertEventsResponse> ListAlertEventsAsync(
+            string alertID,
+            long? pageSize = null,
+            string? cursor = null
+        );
+
+        /// <summary>
+        /// Acknowledge an alert.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="alertID">The alert ID.</param>
+        /// <param name="ackAlertRequest">A <see cref="FormanceSDK.Models.Reconciliation.AckAlertRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="AckAlertResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="alertID"/> or <paramref name="ackAlertRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<AckAlertResponse> AckAlertAsync(
+            string alertID,
+            Models.Reconciliation.AckAlertRequest ackAlertRequest
+        );
+
+        /// <summary>
+        /// Resolve an alert (fixed_by_booking).
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="alertID">The alert ID.</param>
+        /// <param name="resolveAlertRequest">A <see cref="FormanceSDK.Models.Reconciliation.ResolveAlertRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ResolveAlertResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="alertID"/> or <paramref name="resolveAlertRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ResolveAlertResponse> ResolveAlertAsync(
+            string alertID,
+            Models.Reconciliation.ResolveAlertRequest resolveAlertRequest
+        );
+
+        /// <summary>
+        /// Accept an alert (accepted_by_business).
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="alertID">The alert ID.</param>
+        /// <param name="acceptAlertRequest">A <see cref="FormanceSDK.Models.Reconciliation.AcceptAlertRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="AcceptAlertResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="alertID"/> or <paramref name="acceptAlertRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<AcceptAlertResponse> AcceptAlertAsync(
+            string alertID,
+            Models.Reconciliation.AcceptAlertRequest acceptAlertRequest
+        );
+
+        /// <summary>
+        /// Snooze an alert's notifications until a future instant.
+        /// </summary>
+        /// <remarks>
+        /// Mutes the alert's webhook notifications until `until`. The alert keeps<br/>
+        /// failing, keeps its status, and keeps counting against period-green —<br/>
+        /// only its notifications are suppressed, even if the discrepancy changes.<br/>
+        /// The first failing evaluation at or after `until` clears the snooze and<br/>
+        /// notifies once. Re-snoozing overwrites the window. Rejects RESOLVED<br/>
+        /// alerts and a non-future `until`.<br/>
+        /// <br/>
+        /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
+        /// </remarks>
+        /// <param name="alertID">The alert ID.</param>
+        /// <param name="snoozeAlertRequest">A <see cref="FormanceSDK.Models.Reconciliation.SnoozeAlertRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="SnoozeAlertResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="alertID"/> or <paramref name="snoozeAlertRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<SnoozeAlertResponse> SnoozeAlertAsync(
+            string alertID,
+            Models.Reconciliation.SnoozeAlertRequest snoozeAlertRequest
+        );
+
+        /// <summary>
+        /// Lift a snooze early.
+        /// </summary>
+        /// <remarks>
+        /// Clears an active snooze before its window elapses. Idempotent —<br/>
+        /// unsnoozing an alert that is not snoozed returns it unchanged.<br/>
+        /// <br/>
+        /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
+        /// </remarks>
+        /// <param name="alertID">The alert ID.</param>
+        /// <param name="unsnoozeAlertRequest">A <see cref="FormanceSDK.Models.Reconciliation.UnsnoozeAlertRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="UnsnoozeAlertResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="alertID"/> or <paramref name="unsnoozeAlertRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<UnsnoozeAlertResponse> UnsnoozeAlertAsync(
+            string alertID,
+            Models.Reconciliation.UnsnoozeAlertRequest unsnoozeAlertRequest
+        );
     }
 
     public class FormanceReconciliationV1: IFormanceReconciliationV1
@@ -190,7 +512,7 @@ namespace FormanceSDK
         /// <returns>An awaitable task that returns a <see cref="GetServerInfoReconciliationResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<GetServerInfoReconciliationResponse> GetServerInfoReconciliationAsync()
         {
@@ -280,17 +602,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Reconciliation.ErrorResponsePayload payload;
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new Models.Reconciliation.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -310,7 +632,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<CreatePolicyResponse> CreatePolicyAsync(PolicyRequest request)
         {
@@ -408,17 +730,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Reconciliation.ErrorResponsePayload payload;
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new Models.Reconciliation.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -443,7 +765,7 @@ namespace FormanceSDK
         /// <returns>An awaitable task that returns a <see cref="ListPoliciesResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<ListPoliciesResponse> ListPoliciesAsync(
             long? pageSize = null,
@@ -550,17 +872,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Reconciliation.ErrorResponsePayload payload;
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Include);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Include);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new Models.Reconciliation.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -580,7 +902,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="policyID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<DeletePolicyResponse> DeletePolicyAsync(string policyID)
         {
@@ -659,17 +981,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Reconciliation.ErrorResponsePayload payload;
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new Models.Reconciliation.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -688,7 +1010,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="policyID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<GetPolicyResponse> GetPolicyAsync(string policyID)
         {
@@ -785,17 +1107,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Reconciliation.ErrorResponsePayload payload;
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new Models.Reconciliation.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -816,7 +1138,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">One of <paramref name="policyID"/> or <paramref name="reconciliationRequest"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<ReconcileResponse> ReconcileAsync(
             string policyID,
@@ -924,17 +1246,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Reconciliation.ErrorResponsePayload payload;
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new Models.Reconciliation.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -959,7 +1281,7 @@ namespace FormanceSDK
         /// <returns>An awaitable task that returns a <see cref="ListReconciliationsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<ListReconciliationsResponse> ListReconciliationsAsync(
             long? pageSize = null,
@@ -1066,17 +1388,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Reconciliation.ErrorResponsePayload payload;
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Include);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Include);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new Models.Reconciliation.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1095,7 +1417,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="reconciliationID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="Models.Reconciliation.ErrorResponse">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<GetReconciliationResponse> GetReconciliationAsync(string reconciliationID)
         {
@@ -1192,17 +1514,2202 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Reconciliation.ErrorResponsePayload payload;
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new Models.Reconciliation.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Create a rule.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="request">A <see cref="RuleRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="CreateRuleResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<CreateRuleResponse> CreateRuleAsync(RuleRequest request)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = baseUrl + "/api/reconciliation/rules";
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "Request", "json", false, false);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "createRule", new List<string> { "reconciliation:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 201)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 201)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    RuleResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<RuleResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into RuleResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new CreateRuleResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.RuleResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// List rules.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <param name="requestBody">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="ListRulesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ListRulesResponse> ListRulesAsync(
+            long? pageSize = null,
+            string? cursor = null,
+            Dictionary<string, object>? requestBody = null
+        )
+        {
+            var request = new ListRulesRequest()
+            {
+                PageSize = pageSize,
+                Cursor = cursor,
+                RequestBody = requestBody,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/rules", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listRules", new List<string> { "reconciliation:read" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    RulesCursorResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<RulesCursorResponse>(httpResponseBody, NullValueHandling.Include);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into RulesCursorResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new ListRulesResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.RulesCursorResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Include);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Get a rule.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="ruleID">The rule ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetRuleResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ruleID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<GetRuleResponse> GetRuleAsync(string ruleID)
+        {
+            if (ruleID == null) throw new ArgumentNullException(nameof(ruleID));
+
+            var request = new GetRuleRequest()
+            {
+                RuleID = ruleID,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/rules/{ruleID}", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getRule", new List<string> { "reconciliation:read" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    RuleResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<RuleResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into RuleResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new GetRuleResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.RuleResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Patch a rule (partial update).
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="ruleID">The rule ID.</param>
+        /// <param name="rulePatchRequest">A <see cref="RulePatchRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="PatchRuleResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="ruleID"/> or <paramref name="rulePatchRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<PatchRuleResponse> PatchRuleAsync(string ruleID, RulePatchRequest rulePatchRequest)
+        {
+            if (ruleID == null) throw new ArgumentNullException(nameof(ruleID));
+            if (rulePatchRequest == null) throw new ArgumentNullException(nameof(rulePatchRequest));
+
+            var request = new PatchRuleRequest()
+            {
+                RuleID = ruleID,
+                RulePatchRequest = rulePatchRequest,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/rules/{ruleID}", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Patch, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "RulePatchRequest", "json", false, false);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "patchRule", new List<string> { "reconciliation:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    RuleResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<RuleResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into RuleResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new PatchRuleResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.RuleResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Delete a rule (cascades to evaluations + alerts + alert events).
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="ruleID">The rule ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="DeleteRuleResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ruleID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<DeleteRuleResponse> DeleteRuleAsync(string ruleID)
+        {
+            if (ruleID == null) throw new ArgumentNullException(nameof(ruleID));
+
+            var request = new DeleteRuleRequest()
+            {
+                RuleID = ruleID,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/rules/{ruleID}", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "deleteRule", new List<string> { "reconciliation:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 204)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 204)
+            {
+                return new DeleteRuleResponse()
+                {
+                    HttpMeta = new Models.Components.HTTPMetadata()
+                    {
+                        Response = httpResponse,
+                        Request = httpRequest
+                    }
+                };
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Evaluate a rule now.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="ruleID">The rule ID.</param>
+        /// <param name="evaluateRuleRequest">A <see cref="FormanceSDK.Models.Reconciliation.EvaluateRuleRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="EvaluateRuleResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ruleID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200 or 409.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<EvaluateRuleResponse> EvaluateRuleAsync(
+            string ruleID,
+            Models.Reconciliation.EvaluateRuleRequest? evaluateRuleRequest = null
+        )
+        {
+            if (ruleID == null) throw new ArgumentNullException(nameof(ruleID));
+
+            var request = new Models.Requests.EvaluateRuleRequest()
+            {
+                RuleID = ruleID,
+                EvaluateRuleRequestValue = evaluateRuleRequest,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/rules/{ruleID}/evaluate", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "EvaluateRuleRequestValue", "json", false, true);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "evaluateRule", new List<string> { "reconciliation:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (!new List<int>{200, 409}.Contains(_statusCode))
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    EvaluationResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<EvaluationResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into EvaluationResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new EvaluateRuleResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.EvaluationResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else if(responseStatusCode == 409)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Reconciliation.ErrorResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new EvaluateRuleResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.ErrorResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// List evaluations.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <param name="requestBody">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="ListEvaluationsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ListEvaluationsResponse> ListEvaluationsAsync(
+            long? pageSize = null,
+            string? cursor = null,
+            Dictionary<string, object>? requestBody = null
+        )
+        {
+            var request = new ListEvaluationsRequest()
+            {
+                PageSize = pageSize,
+                Cursor = cursor,
+                RequestBody = requestBody,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/evaluations", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listEvaluations", new List<string> { "reconciliation:read" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    EvaluationsCursorResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<EvaluationsCursorResponse>(httpResponseBody, NullValueHandling.Include);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into EvaluationsCursorResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new ListEvaluationsResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.EvaluationsCursorResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Include);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Get an evaluation.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="evaluationID">The evaluation ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetEvaluationResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="evaluationID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<GetEvaluationResponse> GetEvaluationAsync(string evaluationID)
+        {
+            if (evaluationID == null) throw new ArgumentNullException(nameof(evaluationID));
+
+            var request = new GetEvaluationRequest()
+            {
+                EvaluationID = evaluationID,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/evaluations/{evaluationID}", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getEvaluation", new List<string> { "reconciliation:read" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    EvaluationResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<EvaluationResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into EvaluationResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new GetEvaluationResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.EvaluationResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// List alerts.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <param name="requestBody">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="ListAlertsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ListAlertsResponse> ListAlertsAsync(
+            long? pageSize = null,
+            string? cursor = null,
+            Dictionary<string, object>? requestBody = null
+        )
+        {
+            var request = new ListAlertsRequest()
+            {
+                PageSize = pageSize,
+                Cursor = cursor,
+                RequestBody = requestBody,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/alerts", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, true);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listAlerts", new List<string> { "reconciliation:read" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    AlertsCursorResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<AlertsCursorResponse>(httpResponseBody, NullValueHandling.Include);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into AlertsCursorResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new ListAlertsResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.AlertsCursorResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Include);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Get an alert.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="alertID">The alert ID.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetAlertResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="alertID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<GetAlertResponse> GetAlertAsync(string alertID)
+        {
+            if (alertID == null) throw new ArgumentNullException(nameof(alertID));
+
+            var request = new GetAlertRequest()
+            {
+                AlertID = alertID,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/alerts/{alertID}", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getAlert", new List<string> { "reconciliation:read" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    AlertResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<AlertResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into AlertResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new GetAlertResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.AlertResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// List alert events (append-only timeline).
+        /// </summary>
+        /// <remarks>
+        /// Returns a page of the events recorded for this alert — every evaluation<br/>
+        /// that touched it plus every manual transition. The list is append-only;<br/>
+        /// events are never modified or deleted. Ordered most-recent-first and<br/>
+        /// cursor-paginated: a long-lived alert's timeline is unbounded (one row per<br/>
+        /// failing evaluation), so callers must page through it.<br/>
+        /// <br/>
+        /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
+        /// </remarks>
+        /// <param name="alertID">The alert ID.</param>
+        /// <param name="pageSize">The maximum number of results to return per page.</param>
+        /// <param name="cursor">
+        /// Parameter used in pagination requests. Maximum page size is set to 15.<br/>
+        /// Set to the value of next for the next page of results.<br/>
+        /// Set to the value of previous for the previous page of results.<br/>
+        /// No other parameters can be set when this parameter is set.
+        /// </param>
+        /// <returns>An awaitable task that returns a <see cref="ListAlertEventsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="alertID"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ListAlertEventsResponse> ListAlertEventsAsync(
+            string alertID,
+            long? pageSize = null,
+            string? cursor = null
+        )
+        {
+            if (alertID == null) throw new ArgumentNullException(nameof(alertID));
+
+            var request = new ListAlertEventsRequest()
+            {
+                AlertID = alertID,
+                PageSize = pageSize,
+                Cursor = cursor,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/alerts/{alertID}/events", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "listAlertEvents", new List<string> { "reconciliation:read" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    AlertEventsCursorResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<AlertEventsCursorResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into AlertEventsCursorResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new ListAlertEventsResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.AlertEventsCursorResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Acknowledge an alert.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="alertID">The alert ID.</param>
+        /// <param name="ackAlertRequest">A <see cref="FormanceSDK.Models.Reconciliation.AckAlertRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="AckAlertResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="alertID"/> or <paramref name="ackAlertRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<AckAlertResponse> AckAlertAsync(
+            string alertID,
+            Models.Reconciliation.AckAlertRequest ackAlertRequest
+        )
+        {
+            if (alertID == null) throw new ArgumentNullException(nameof(alertID));
+            if (ackAlertRequest == null) throw new ArgumentNullException(nameof(ackAlertRequest));
+
+            var request = new Models.Requests.AckAlertRequest()
+            {
+                AlertID = alertID,
+                AckAlertRequestValue = ackAlertRequest,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/alerts/{alertID}/ack", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "AckAlertRequestValue", "json", false, false);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "ackAlert", new List<string> { "reconciliation:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    AlertResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<AlertResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into AlertResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new AckAlertResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.AlertResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Resolve an alert (fixed_by_booking).
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="alertID">The alert ID.</param>
+        /// <param name="resolveAlertRequest">A <see cref="FormanceSDK.Models.Reconciliation.ResolveAlertRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ResolveAlertResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="alertID"/> or <paramref name="resolveAlertRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ResolveAlertResponse> ResolveAlertAsync(
+            string alertID,
+            Models.Reconciliation.ResolveAlertRequest resolveAlertRequest
+        )
+        {
+            if (alertID == null) throw new ArgumentNullException(nameof(alertID));
+            if (resolveAlertRequest == null) throw new ArgumentNullException(nameof(resolveAlertRequest));
+
+            var request = new Models.Requests.ResolveAlertRequest()
+            {
+                AlertID = alertID,
+                ResolveAlertRequestValue = resolveAlertRequest,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/alerts/{alertID}/resolve", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "ResolveAlertRequestValue", "json", false, false);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "resolveAlert", new List<string> { "reconciliation:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    AlertResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<AlertResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into AlertResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new ResolveAlertResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.AlertResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Accept an alert (accepted_by_business).
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="alertID">The alert ID.</param>
+        /// <param name="acceptAlertRequest">A <see cref="FormanceSDK.Models.Reconciliation.AcceptAlertRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="AcceptAlertResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="alertID"/> or <paramref name="acceptAlertRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<AcceptAlertResponse> AcceptAlertAsync(
+            string alertID,
+            Models.Reconciliation.AcceptAlertRequest acceptAlertRequest
+        )
+        {
+            if (alertID == null) throw new ArgumentNullException(nameof(alertID));
+            if (acceptAlertRequest == null) throw new ArgumentNullException(nameof(acceptAlertRequest));
+
+            var request = new Models.Requests.AcceptAlertRequest()
+            {
+                AlertID = alertID,
+                AcceptAlertRequestValue = acceptAlertRequest,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/alerts/{alertID}/accept", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "AcceptAlertRequestValue", "json", false, false);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "acceptAlert", new List<string> { "reconciliation:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    AlertResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<AlertResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into AlertResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new AcceptAlertResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.AlertResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Snooze an alert's notifications until a future instant.
+        /// </summary>
+        /// <remarks>
+        /// Mutes the alert's webhook notifications until `until`. The alert keeps<br/>
+        /// failing, keeps its status, and keeps counting against period-green —<br/>
+        /// only its notifications are suppressed, even if the discrepancy changes.<br/>
+        /// The first failing evaluation at or after `until` clears the snooze and<br/>
+        /// notifies once. Re-snoozing overwrites the window. Rejects RESOLVED<br/>
+        /// alerts and a non-future `until`.<br/>
+        /// <br/>
+        /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
+        /// </remarks>
+        /// <param name="alertID">The alert ID.</param>
+        /// <param name="snoozeAlertRequest">A <see cref="FormanceSDK.Models.Reconciliation.SnoozeAlertRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="SnoozeAlertResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="alertID"/> or <paramref name="snoozeAlertRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<SnoozeAlertResponse> SnoozeAlertAsync(
+            string alertID,
+            Models.Reconciliation.SnoozeAlertRequest snoozeAlertRequest
+        )
+        {
+            if (alertID == null) throw new ArgumentNullException(nameof(alertID));
+            if (snoozeAlertRequest == null) throw new ArgumentNullException(nameof(snoozeAlertRequest));
+
+            var request = new Models.Requests.SnoozeAlertRequest()
+            {
+                AlertID = alertID,
+                SnoozeAlertRequestValue = snoozeAlertRequest,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/alerts/{alertID}/snooze", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "SnoozeAlertRequestValue", "json", false, false);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "snoozeAlert", new List<string> { "reconciliation:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    AlertResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<AlertResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into AlertResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new SnoozeAlertResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.AlertResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Lift a snooze early.
+        /// </summary>
+        /// <remarks>
+        /// Clears an active snooze before its window elapses. Idempotent —<br/>
+        /// unsnoozing an alert that is not snoozed returns it unchanged.<br/>
+        /// <br/>
+        /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
+        /// </remarks>
+        /// <param name="alertID">The alert ID.</param>
+        /// <param name="unsnoozeAlertRequest">A <see cref="FormanceSDK.Models.Reconciliation.UnsnoozeAlertRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="UnsnoozeAlertResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="alertID"/> or <paramref name="unsnoozeAlertRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Reconciliation.ErrorResponseError">Error response. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<UnsnoozeAlertResponse> UnsnoozeAlertAsync(
+            string alertID,
+            Models.Reconciliation.UnsnoozeAlertRequest unsnoozeAlertRequest
+        )
+        {
+            if (alertID == null) throw new ArgumentNullException(nameof(alertID));
+            if (unsnoozeAlertRequest == null) throw new ArgumentNullException(nameof(unsnoozeAlertRequest));
+
+            var request = new Models.Requests.UnsnoozeAlertRequest()
+            {
+                AlertID = alertID,
+                UnsnoozeAlertRequestValue = unsnoozeAlertRequest,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/reconciliation/alerts/{alertID}/unsnooze", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "UnsnoozeAlertRequestValue", "json", false, false);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "unsnoozeAlert", new List<string> { "reconciliation:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    AlertResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<AlertResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into AlertResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new UnsnoozeAlertResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.AlertResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Reconciliation.ErrorResponseErrorPayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Reconciliation.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Reconciliation.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Reconciliation.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());

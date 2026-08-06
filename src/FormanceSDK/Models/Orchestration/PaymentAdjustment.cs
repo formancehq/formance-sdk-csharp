@@ -27,7 +27,7 @@ namespace FormanceSDK.Models.Orchestration
         public DateTime Date { get; set; } = default!;
 
         [JsonProperty("raw")]
-        public Models.Orchestration.PaymentAdjustmentRaw Raw { get; set; } = default!;
+        public PaymentAdjustmentRaw Raw { get; set; } = default!;
 
         [JsonProperty("absolute")]
         public bool Absolute { get; set; } = default!;

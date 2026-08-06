@@ -170,6 +170,91 @@ namespace FormanceSDK
             string id,
             ConfigChangeSecret? configChangeSecret = null
         );
+
+        /// <summary>
+        /// List webhook deliveries.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="request">A <see cref="GetDeliveriesRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetDeliveriesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<GetDeliveriesResponse> GetDeliveriesAsync(GetDeliveriesRequest? request = null);
+
+        /// <summary>
+        /// Replay a page of failed or pending deliveries.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="idempotencyKey">Description not available.</param>
+        /// <param name="replayDeliveriesRequest">A <see cref="FormanceSDK.Models.Webhooks.ReplayDeliveriesRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.ReplayDeliveriesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="idempotencyKey"/> or <paramref name="replayDeliveriesRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<Models.Requests.ReplayDeliveriesResponse> ReplayDeliveriesAsync(
+            string idempotencyKey,
+            Models.Webhooks.ReplayDeliveriesRequest replayDeliveriesRequest
+        );
+
+        /// <summary>
+        /// Get a webhook delivery.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="id">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetDeliveryResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<GetDeliveryResponse> GetDeliveryAsync(string id);
+
+        /// <summary>
+        /// List attempts for a webhook delivery.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="id">Description not available.</param>
+        /// <param name="cursor">Description not available.</param>
+        /// <param name="pageSize">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetDeliveryAttemptsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<GetDeliveryAttemptsResponse> GetDeliveryAttemptsAsync(
+            string id,
+            string? cursor = null,
+            long? pageSize = 100
+        );
+
+        /// <summary>
+        /// Replay one failed or pending delivery.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="id">Description not available.</param>
+        /// <param name="idempotencyKey">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="ReplayDeliveryResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="id"/> or <paramref name="idempotencyKey"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public  Task<ReplayDeliveryResponse> ReplayDeliveryAsync(string id, string idempotencyKey);
     }
 
     public class FormanceWebhooksV1: IFormanceWebhooksV1
@@ -1170,6 +1255,653 @@ namespace FormanceSDK
                         }
                     };
                     response.ConfigResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Webhooks.ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Webhooks.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Webhooks.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Webhooks.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// List webhook deliveries.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="request">A <see cref="GetDeliveriesRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetDeliveriesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<GetDeliveriesResponse> GetDeliveriesAsync(GetDeliveriesRequest? request = null)
+        {
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/deliveries", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getDeliveries", new List<string> { "webhooks:read" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    DeliveriesResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<DeliveriesResponse>(httpResponseBody, NullValueHandling.Include);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into DeliveriesResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new GetDeliveriesResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.DeliveriesResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Webhooks.ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Webhooks.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Include);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Webhooks.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Webhooks.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Replay a page of failed or pending deliveries.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="idempotencyKey">Description not available.</param>
+        /// <param name="replayDeliveriesRequest">A <see cref="FormanceSDK.Models.Webhooks.ReplayDeliveriesRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.ReplayDeliveriesResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="idempotencyKey"/> or <paramref name="replayDeliveriesRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<Models.Requests.ReplayDeliveriesResponse> ReplayDeliveriesAsync(
+            string idempotencyKey,
+            Models.Webhooks.ReplayDeliveriesRequest replayDeliveriesRequest
+        )
+        {
+            if (idempotencyKey == null) throw new ArgumentNullException(nameof(idempotencyKey));
+            if (replayDeliveriesRequest == null) throw new ArgumentNullException(nameof(replayDeliveriesRequest));
+
+            var request = new Models.Requests.ReplayDeliveriesRequest()
+            {
+                IdempotencyKey = idempotencyKey,
+                ReplayDeliveriesRequestValue = replayDeliveriesRequest,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = baseUrl + "/api/webhooks/deliveries/replay";
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "ReplayDeliveriesRequestValue", "json", false, false);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "replayDeliveries", new List<string> { "webhooks:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Webhooks.ReplayDeliveriesResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Webhooks.ReplayDeliveriesResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Webhooks.ReplayDeliveriesResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new Models.Requests.ReplayDeliveriesResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.ReplayDeliveriesResponseValue = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Webhooks.ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Webhooks.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Webhooks.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Webhooks.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Get a webhook delivery.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="id">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetDeliveryResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<GetDeliveryResponse> GetDeliveryAsync(string id)
+        {
+            if (id == null) throw new ArgumentNullException(nameof(id));
+
+            var request = new GetDeliveryRequest()
+            {
+                Id = id,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/deliveries/{id}", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getDelivery", new List<string> { "webhooks:read" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    DeliveryResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<DeliveryResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into DeliveryResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new GetDeliveryResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.DeliveryResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Webhooks.ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Webhooks.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Webhooks.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Webhooks.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// List attempts for a webhook delivery.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="id">Description not available.</param>
+        /// <param name="cursor">Description not available.</param>
+        /// <param name="pageSize">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="GetDeliveryAttemptsResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="id"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<GetDeliveryAttemptsResponse> GetDeliveryAttemptsAsync(
+            string id,
+            string? cursor = null,
+            long? pageSize = 100
+        )
+        {
+            if (id == null) throw new ArgumentNullException(nameof(id));
+
+            var request = new GetDeliveryAttemptsRequest()
+            {
+                Id = id,
+                Cursor = cursor,
+                PageSize = pageSize,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/deliveries/{id}/attempts", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "getDeliveryAttempts", new List<string> { "webhooks:read" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    DeliveryAttemptsResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<DeliveryAttemptsResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into DeliveryAttemptsResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new GetDeliveryAttemptsResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.DeliveryAttemptsResponse = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Models.Webhooks.ErrorResponsePayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Webhooks.ErrorResponsePayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Webhooks.ErrorResponsePayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new Models.Webhooks.ErrorResponse(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Replay one failed or pending delivery.
+        /// </summary>
+        /// <remarks>
+        /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
+        /// </remarks>
+        /// <param name="id">Description not available.</param>
+        /// <param name="idempotencyKey">Description not available.</param>
+        /// <returns>An awaitable task that returns a <see cref="ReplayDeliveryResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="id"/> or <paramref name="idempotencyKey"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="Models.Webhooks.ErrorResponse">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
+        public async  Task<ReplayDeliveryResponse> ReplayDeliveryAsync(string id, string idempotencyKey)
+        {
+            if (id == null) throw new ArgumentNullException(nameof(id));
+            if (idempotencyKey == null) throw new ArgumentNullException(nameof(idempotencyKey));
+
+            var request = new ReplayDeliveryRequest()
+            {
+                Id = id,
+                IdempotencyKey = idempotencyKey,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/webhooks/deliveries/{id}/replay", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "replayDelivery", new List<string> { "webhooks:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (_statusCode != 200)
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 200)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    DeliveryResponse obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<DeliveryResponse>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into DeliveryResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new ReplayDeliveryResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.DeliveryResponse = obj;
                     return response;
                 }
 

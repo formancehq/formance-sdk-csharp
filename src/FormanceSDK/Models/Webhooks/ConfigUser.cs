@@ -15,9 +15,6 @@ namespace FormanceSDK.Models.Webhooks
 
     public class ConfigUser
     {
-        [JsonProperty("name")]
-        public string? Name { get; set; }
-
         [JsonProperty("endpoint")]
         public string Endpoint { get; set; } = default!;
 

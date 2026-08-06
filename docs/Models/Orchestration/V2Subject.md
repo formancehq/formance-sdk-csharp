@@ -3,14 +3,14 @@
 
 ## Supported Types
 
-### V2LedgerAccountSubject
+### Account
 
 ```csharp
-V2Subject.CreateV2LedgerAccountSubject(/* values here */);
+V2Subject.CreateAccount(/* values here */);
 ```
 
-### V2WalletSubject
+### Wallet
 
 ```csharp
-V2Subject.CreateV2WalletSubject(/* values here */);
+V2Subject.CreateWallet(/* values here */);
 ```

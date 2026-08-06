@@ -9,7 +9,6 @@
 #nullable enable
 namespace FormanceSDK.Models.Ledger
 {
-    using FormanceSDK.Models.Ledger;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
@@ -17,7 +16,7 @@ namespace FormanceSDK.Models.Ledger
     public class QueryTemplateTransactionParams
     {
         [JsonProperty("resource")]
-        public V2QueryParamsResource? Resource { get; set; }
+        public string Resource { get; } = "transactions";
 
         /// <summary>
         /// The maximum number of results to return per page.

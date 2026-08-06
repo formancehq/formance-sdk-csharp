@@ -58,7 +58,7 @@ namespace FormanceSDK.Models.Payments
         public DateTime CreatedAt { get; set; } = default!;
 
         [JsonProperty("raw", NullValueHandling = NullValueHandling.Include)]
-        public Models.Payments.Raw? Raw { get; set; }
+        public Dictionary<string, object>? Raw { get; set; }
 
         [JsonProperty("adjustments")]
         public List<Models.Payments.PaymentAdjustment> Adjustments { get; set; } = default!;

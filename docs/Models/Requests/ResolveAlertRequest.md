@@ -1,0 +1,9 @@
+# ResolveAlertRequest
+
+
+## Fields
+
+| Field                                                                                           | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `AlertID`                                                                                       | *string*                                                                                        | :heavy_check_mark:                                                                              | The alert ID.                                                                                   |
+| `ResolveAlertRequestValue`                                                                      | [Models.Reconciliation.ResolveAlertRequest](../../Models/Reconciliation/ResolveAlertRequest.md) | :heavy_check_mark:                                                                              | N/A                                                                                             |

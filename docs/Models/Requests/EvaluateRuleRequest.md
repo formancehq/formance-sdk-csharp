@@ -1,0 +1,9 @@
+# EvaluateRuleRequest
+
+
+## Fields
+
+| Field                                                                                           | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `RuleID`                                                                                        | *string*                                                                                        | :heavy_check_mark:                                                                              | The rule ID.                                                                                    |
+| `EvaluateRuleRequestValue`                                                                      | [Models.Reconciliation.EvaluateRuleRequest](../../Models/Reconciliation/EvaluateRuleRequest.md) | :heavy_minus_sign:                                                                              | N/A                                                                                             |

@@ -35,7 +35,7 @@ namespace FormanceSDK
         /// <returns>An awaitable task that returns a <see cref="GetInfoResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<GetInfoResponse> GetInfoAsync();
 
@@ -50,7 +50,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<GetLedgerInfoResponse> GetLedgerInfoAsync(string ledger);
 
@@ -67,7 +67,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<CountAccountsResponse> CountAccountsAsync(
             string ledger,
@@ -87,7 +87,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Not found. Thrown when the response status code is none of 200 or 404.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Not found. Thrown when the response status code is none of 200 or 404.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<ListAccountsLedgerResponse> ListAccountsLedgerAsync(ListAccountsLedgerRequest request);
 
@@ -108,7 +108,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="address"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<GetAccountLedgerResponse> GetAccountLedgerAsync(string ledger, string address);
 
@@ -130,7 +130,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="address"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<AddMetadataToAccountResponse> AddMetadataToAccountAsync(
             string ledger,
@@ -149,7 +149,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<GetMappingResponse> GetMappingAsync(string ledger);
 
@@ -165,7 +165,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<UpdateMappingResponse> UpdateMappingAsync(string ledger, Mapping? mapping = null);
 
@@ -201,7 +201,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<ReadStatsResponse> ReadStatsAsync(string ledger);
 
@@ -216,7 +216,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<CountTransactionsResponse> CountTransactionsAsync(CountTransactionsRequest request);
 
@@ -232,7 +232,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<ListTransactionsResponse> ListTransactionsAsync(ListTransactionsRequest request);
 
@@ -253,7 +253,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="postTransaction"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<Models.Requests.CreateTransactionResponse> CreateTransactionAsync(
             string ledger,
@@ -273,7 +273,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<GetTransactionResponse> GetTransactionAsync(string ledger, BigInteger txid);
 
@@ -290,7 +290,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<AddMetadataOnTransactionResponse> AddMetadataOnTransactionAsync(
             string ledger,
@@ -311,7 +311,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<RevertTransactionResponse> RevertTransactionAsync(
             string ledger,
@@ -331,7 +331,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="transactions"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<CreateTransactionsResponse> CreateTransactionsAsync(string ledger, Transactions transactions);
 
@@ -346,7 +346,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<GetBalancesResponse> GetBalancesAsync(GetBalancesRequest request);
 
@@ -363,7 +363,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<GetBalancesAggregatedResponse> GetBalancesAggregatedAsync(
             string ledger,
@@ -383,7 +383,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<ListLogsResponse> ListLogsAsync(ListLogsRequest request);
     }
@@ -410,7 +410,7 @@ namespace FormanceSDK
         /// <returns>An awaitable task that returns a <see cref="GetInfoResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<GetInfoResponse> GetInfoAsync()
         {
@@ -500,17 +500,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ErrorResponseErrorPayload payload;
+                    Models.Ledger.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Ledger.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Ledger.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Ledger.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -529,7 +529,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<GetLedgerInfoResponse> GetLedgerInfoAsync(string ledger)
         {
@@ -626,17 +626,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ErrorResponseErrorPayload payload;
+                    Models.Ledger.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Ledger.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Ledger.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Ledger.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -657,7 +657,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<CountAccountsResponse> CountAccountsAsync(
             string ledger,
@@ -743,17 +743,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ErrorResponseErrorPayload payload;
+                    Models.Ledger.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Ledger.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Ledger.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Ledger.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -773,7 +773,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Not found. Thrown when the response status code is none of 200 or 404.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Not found. Thrown when the response status code is none of 200 or 404.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<ListAccountsLedgerResponse> ListAccountsLedgerAsync(ListAccountsLedgerRequest request)
         {
@@ -894,17 +894,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ErrorResponseErrorPayload payload;
+                    Models.Ledger.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Ledger.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Ledger.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Ledger.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -929,7 +929,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="address"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<GetAccountLedgerResponse> GetAccountLedgerAsync(string ledger, string address)
         {
@@ -1028,17 +1028,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ErrorResponseErrorPayload payload;
+                    Models.Ledger.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Ledger.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Ledger.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Ledger.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1064,7 +1064,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="address"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<AddMetadataToAccountResponse> AddMetadataToAccountAsync(
             string ledger,
@@ -1157,17 +1157,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ErrorResponseErrorPayload payload;
+                    Models.Ledger.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Ledger.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Ledger.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Ledger.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1186,7 +1186,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<GetMappingResponse> GetMappingAsync(string ledger)
         {
@@ -1283,17 +1283,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ErrorResponseErrorPayload payload;
+                    Models.Ledger.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Ledger.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Ledger.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Ledger.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1313,7 +1313,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<UpdateMappingResponse> UpdateMappingAsync(string ledger, Mapping? mapping = null)
         {
@@ -1417,17 +1417,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ErrorResponseErrorPayload payload;
+                    Models.Ledger.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Ledger.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Ledger.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Ledger.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1575,7 +1575,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<ReadStatsResponse> ReadStatsAsync(string ledger)
         {
@@ -1672,17 +1672,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ErrorResponseErrorPayload payload;
+                    Models.Ledger.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Ledger.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Ledger.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Ledger.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1701,7 +1701,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<CountTransactionsResponse> CountTransactionsAsync(CountTransactionsRequest request)
         {
@@ -1776,17 +1776,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ErrorResponseErrorPayload payload;
+                    Models.Ledger.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Ledger.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Ledger.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Ledger.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1806,7 +1806,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<ListTransactionsResponse> ListTransactionsAsync(ListTransactionsRequest request)
         {
@@ -1898,17 +1898,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ErrorResponseErrorPayload payload;
+                    Models.Ledger.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Ledger.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Ledger.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Ledger.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1933,7 +1933,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="postTransaction"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<Models.Requests.CreateTransactionResponse> CreateTransactionAsync(
             string ledger,
@@ -2044,17 +2044,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ErrorResponseErrorPayload payload;
+                    Models.Ledger.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Ledger.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Ledger.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Ledger.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -2074,7 +2074,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<GetTransactionResponse> GetTransactionAsync(string ledger, BigInteger txid)
         {
@@ -2172,17 +2172,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ErrorResponseErrorPayload payload;
+                    Models.Ledger.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Ledger.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Ledger.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Ledger.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -2203,7 +2203,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<AddMetadataOnTransactionResponse> AddMetadataOnTransactionAsync(
             string ledger,
@@ -2295,17 +2295,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ErrorResponseErrorPayload payload;
+                    Models.Ledger.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Ledger.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Ledger.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Ledger.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -2326,7 +2326,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<RevertTransactionResponse> RevertTransactionAsync(
             string ledger,
@@ -2430,17 +2430,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ErrorResponseErrorPayload payload;
+                    Models.Ledger.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Ledger.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Ledger.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Ledger.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -2460,7 +2460,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="transactions"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<CreateTransactionsResponse> CreateTransactionsAsync(string ledger, Transactions transactions)
         {
@@ -2565,17 +2565,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ErrorResponseErrorPayload payload;
+                    Models.Ledger.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Ledger.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Ledger.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Ledger.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -2594,7 +2594,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<GetBalancesResponse> GetBalancesAsync(GetBalancesRequest request)
         {
@@ -2686,17 +2686,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ErrorResponseErrorPayload payload;
+                    Models.Ledger.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Ledger.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Ledger.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Ledger.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -2717,7 +2717,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<GetBalancesAggregatedResponse> GetBalancesAggregatedAsync(
             string ledger,
@@ -2820,17 +2820,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ErrorResponseErrorPayload payload;
+                    Models.Ledger.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Ledger.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Ledger.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Ledger.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -2850,7 +2850,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<ListLogsResponse> ListLogsAsync(ListLogsRequest request)
         {
@@ -2942,17 +2942,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    ErrorResponseErrorPayload payload;
+                    Models.Ledger.ErrorResponseErrorPayload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<Models.Ledger.ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Ledger.ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new Models.Ledger.ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());

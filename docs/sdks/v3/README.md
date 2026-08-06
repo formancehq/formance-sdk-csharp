@@ -18,9 +18,11 @@
 * [ListConnectors](#listconnectors) - List all connectors
 * [InstallConnector](#installconnector) - Install a connector
 * [ListConnectorConfigs](#listconnectorconfigs) - List all connector configurations
+* [ListConnectorCapabilities](#listconnectorcapabilities) - List the plugin capabilities advertised by every supported provider
 * [UninstallConnector](#uninstallconnector) - Uninstall a connector
 * [GetConnectorConfig](#getconnectorconfig) - Get a connector configuration by ID
 * [V3UpdateConnectorConfig](#v3updateconnectorconfig) - Update the config of a connector
+* [GetConnectorCapabilities](#getconnectorcapabilities) - Get the plugin capabilities of an installed connector
 * [ResetConnector](#resetconnector) - Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment initiations and bank account creations.
 * [ListConnectorSchedules](#listconnectorschedules) - List all connector schedules
 * [GetConnectorSchedule](#getconnectorschedule) - Get a connector schedule by ID
@@ -543,6 +545,45 @@ var res = await sdk.Payments.V3.ListConnectorConfigsAsync();
 | FormanceSDK.Models.Payments.V3ErrorResponse | default                                     | application/json                            |
 | FormanceSDK.Models.Errors.SDKException      | 4XX, 5XX                                    | \*/\*                                       |
 
+## ListConnectorCapabilities
+
+Returns the static map of provider name to the list of plugin capabilities (`FETCH_ACCOUNTS`, `CREATE_TRANSFER`, ...) compiled into this binary. The catalog is immutable for the lifetime of the process and is therefore safe to cache: the response carries a strong ETag and a `Cache-Control: public, max-age=3600, must-revalidate` directive. Stateless consumers (e.g. console) should set `If-None-Match` on subsequent requests to receive a `304 Not Modified`.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="v3ListConnectorCapabilities" method="get" path="/api/payments/v3/connectors/capabilities" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Payments.V3.ListConnectorCapabilitiesAsync();
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `IfNoneMatch`                                                            | *string*                                                                 | :heavy_minus_sign:                                                       | ETag from a previous response; a matching value yields 304 Not Modified. |
+
+### Response
+
+**[V3ListConnectorCapabilitiesResponse](../../Models/Requests/V3ListConnectorCapabilitiesResponse.md)**
+
+### Errors
+
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| FormanceSDK.Models.Payments.V3ErrorResponse | default                                     | application/json                            |
+| FormanceSDK.Models.Errors.SDKException      | 4XX, 5XX                                    | \*/\*                                       |
+
 ## UninstallConnector
 
 Uninstall a connector
@@ -657,6 +698,45 @@ var res = await sdk.Payments.V3.V3UpdateConnectorConfigAsync(connectorID: "<id>"
 | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
 | FormanceSDK.Models.Payments.PaymentsErrorResponse | default                                           | application/json                                  |
 | FormanceSDK.Models.Errors.SDKException            | 4XX, 5XX                                          | \*/\*                                             |
+
+## GetConnectorCapabilities
+
+Returns the list of plugin capabilities advertised by the provider backing this installed connector (`FETCH_ACCOUNTS`, `CREATE_TRANSFER`, ...). The same values are also inlined on each row of `v3ListConnectors`; prefer that endpoint when listing multiple connectors.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="v3GetConnectorCapabilities" method="get" path="/api/payments/v3/connectors/{connectorID}/capabilities" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Payments.V3.GetConnectorCapabilitiesAsync(connectorID: "<id>");
+
+// handle response
+```
+
+### Parameters
+
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `ConnectorID`      | *string*           | :heavy_check_mark: | The connector ID   |
+
+### Response
+
+**[V3GetConnectorCapabilitiesResponse](../../Models/Requests/V3GetConnectorCapabilitiesResponse.md)**
+
+### Errors
+
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| FormanceSDK.Models.Payments.V3ErrorResponse | default                                     | application/json                            |
+| FormanceSDK.Models.Errors.SDKException      | 4XX, 5XX                                    | \*/\*                                       |
 
 ## ResetConnector
 

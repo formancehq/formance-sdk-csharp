@@ -3,14 +3,14 @@
 
 ## Supported Types
 
-### LedgerAccountSubject
+### Account
 
 ```csharp
-Subject.CreateLedgerAccountSubject(/* values here */);
+Subject.CreateAccount(/* values here */);
 ```
 
-### WalletSubject
+### Wallet
 
 ```csharp
-Subject.CreateWalletSubject(/* values here */);
+Subject.CreateWallet(/* values here */);
 ```

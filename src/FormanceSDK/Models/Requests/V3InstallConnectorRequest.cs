@@ -23,5 +23,120 @@ namespace FormanceSDK.Models.Requests
 
         [SpeakeasyMetadata("request:mediaType=application/json")]
         public V3ConnectorConfig? V3ConnectorConfig { get; set; }
+
+        public V3AdyenConfig? GetV3ConnectorConfigAdyen()
+        {
+            return V3ConnectorConfig != null ? V3ConnectorConfig.V3AdyenConfig : null;
+        }
+
+        public V3AtlarConfig? GetV3ConnectorConfigAtlar()
+        {
+            return V3ConnectorConfig != null ? V3ConnectorConfig.V3AtlarConfig : null;
+        }
+
+        public V3BankingbridgeConfig? GetV3ConnectorConfigBankingbridge()
+        {
+            return V3ConnectorConfig != null ? V3ConnectorConfig.V3BankingbridgeConfig : null;
+        }
+
+        public V3BankingcircleConfig? GetV3ConnectorConfigBankingcircle()
+        {
+            return V3ConnectorConfig != null ? V3ConnectorConfig.V3BankingcircleConfig : null;
+        }
+
+        public V3BitstampConfig? GetV3ConnectorConfigBitstamp()
+        {
+            return V3ConnectorConfig != null ? V3ConnectorConfig.V3BitstampConfig : null;
+        }
+
+        public V3CoinbaseprimeConfig? GetV3ConnectorConfigCoinbaseprime()
+        {
+            return V3ConnectorConfig != null ? V3ConnectorConfig.V3CoinbaseprimeConfig : null;
+        }
+
+        public V3ColumnConfig? GetV3ConnectorConfigColumn()
+        {
+            return V3ConnectorConfig != null ? V3ConnectorConfig.V3ColumnConfig : null;
+        }
+
+        public V3CurrencycloudConfig? GetV3ConnectorConfigCurrencycloud()
+        {
+            return V3ConnectorConfig != null ? V3ConnectorConfig.V3CurrencycloudConfig : null;
+        }
+
+        public V3DummypayConfig? GetV3ConnectorConfigDummypay()
+        {
+            return V3ConnectorConfig != null ? V3ConnectorConfig.V3DummypayConfig : null;
+        }
+
+        public V3FireblocksConfig? GetV3ConnectorConfigFireblocks()
+        {
+            return V3ConnectorConfig != null ? V3ConnectorConfig.V3FireblocksConfig : null;
+        }
+
+        public V3GenericConfig? GetV3ConnectorConfigGeneric()
+        {
+            return V3ConnectorConfig != null ? V3ConnectorConfig.V3GenericConfig : null;
+        }
+
+        public V3IncreaseConfig? GetV3ConnectorConfigIncrease()
+        {
+            return V3ConnectorConfig != null ? V3ConnectorConfig.V3IncreaseConfig : null;
+        }
+
+        public V3KrakenproConfig? GetV3ConnectorConfigKrakenpro()
+        {
+            return V3ConnectorConfig != null ? V3ConnectorConfig.V3KrakenproConfig : null;
+        }
+
+        public V3MangopayConfig? GetV3ConnectorConfigMangopay()
+        {
+            return V3ConnectorConfig != null ? V3ConnectorConfig.V3MangopayConfig : null;
+        }
+
+        public V3ModulrConfig? GetV3ConnectorConfigModulr()
+        {
+            return V3ConnectorConfig != null ? V3ConnectorConfig.V3ModulrConfig : null;
+        }
+
+        public V3MoneycorpConfig? GetV3ConnectorConfigMoneycorp()
+        {
+            return V3ConnectorConfig != null ? V3ConnectorConfig.V3MoneycorpConfig : null;
+        }
+
+        public V3PlaidConfig? GetV3ConnectorConfigPlaid()
+        {
+            return V3ConnectorConfig != null ? V3ConnectorConfig.V3PlaidConfig : null;
+        }
+
+        public V3PowensConfig? GetV3ConnectorConfigPowens()
+        {
+            return V3ConnectorConfig != null ? V3ConnectorConfig.V3PowensConfig : null;
+        }
+
+        public V3QontoConfig? GetV3ConnectorConfigQonto()
+        {
+            return V3ConnectorConfig != null ? V3ConnectorConfig.V3QontoConfig : null;
+        }
+
+        public V3RoutableConfig? GetV3ConnectorConfigRoutable()
+        {
+            return V3ConnectorConfig != null ? V3ConnectorConfig.V3RoutableConfig : null;
+        }
+
+        public V3StripeConfig? GetV3ConnectorConfigStripe()
+        {
+            return V3ConnectorConfig != null ? V3ConnectorConfig.V3StripeConfig : null;
+        }
+
+        public V3TinkConfig? GetV3ConnectorConfigTink()
+        {
+            return V3ConnectorConfig != null ? V3ConnectorConfig.V3TinkConfig : null;
+        }
+
+        public V3WiseConfig? GetV3ConnectorConfigWise()
+        {
+            return V3ConnectorConfig != null ? V3ConnectorConfig.V3WiseConfig : null;
+        }
     }
 }

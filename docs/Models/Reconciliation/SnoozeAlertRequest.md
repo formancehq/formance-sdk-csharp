@@ -1,0 +1,12 @@
+# SnoozeAlertRequest
+
+Mute an alert's notifications until `until` (which must be in the future).
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `By`                                                                                  | *string*                                                                              | :heavy_check_mark:                                                                    | N/A                                                                                   | ops@buildr.com                                                                        |
+| `Until`                                                                               | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_check_mark:                                                                    | N/A                                                                                   |                                                                                       |
+| `Note`                                                                                | *string*                                                                              | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |

@@ -21,6 +21,8 @@ namespace FormanceSDK.Models.Webhooks
         Validation,
         [JsonProperty("NOT_FOUND")]
         NotFound,
+        [JsonProperty("CONFLICT")]
+        Conflict,
     }
 
     public static class ErrorsEnumExtension

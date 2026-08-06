@@ -36,7 +36,6 @@ Some exceptions in this SDK include an additional `Payload` field, which will co
 using FormanceSDK;
 using FormanceSDK.Models.Components;
 using FormanceSDK.Models.Errors;
-using FormanceSDK.Models.Ledger;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -45,7 +44,7 @@ var sdk = new Formance(security: new Security() {
 
 try
 {
-    var res = await sdk.Ledger.GetInfoAsync();
+    var res = await sdk.Ledger.V1.GetInfoAsync();
 
     // handle response
 }
@@ -60,11 +59,11 @@ catch (SDKBaseException ex)  // all SDK exceptions inherit from SDKBaseException
     var statusCode = (int)response.StatusCode;
     var responseBody = ex.Body;
 
-    if (ex is V2ErrorResponseError) // different exceptions may be thrown depending on the method
+    if (ex is Models.Ledger.ErrorResponseError) // different exceptions may be thrown depending on the method
     {
         // Check error data fields
-        V2ErrorResponseErrorPayload payload = ex.Payload;
-        V2ErrorsEnum ErrorCode = payload.ErrorCode;
+        Models.Ledger.ErrorResponseErrorPayload payload = ex.Payload;
+        FormanceSDK.Models.Ledger.ErrorsEnum ErrorCode = payload.ErrorCode;
         string ErrorMessage = payload.ErrorMessage;
         // ...
     }
@@ -91,13 +90,13 @@ catch (System.Net.Http.HttpRequestException ex)
 * [`System.Net.Http.HttpRequestException`](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httprequestexception): Network connectivity error. For more details about the underlying cause, inspect the `ex.InnerException`.
 
 * Inheriting from [`SDKBaseException`](./src/FormanceSDK/Models/Errors/SDKBaseException.cs):
-  * [`V3ErrorResponse`](./src/FormanceSDK/Models/Errors/V3ErrorResponse.cs): Error. Applicable to 61 of 253 methods.*
-  * [`PaymentsErrorResponse`](./src/FormanceSDK/Models/Errors/PaymentsErrorResponse.cs): Error. Applicable to 46 of 253 methods.*
-  * [`V2ErrorResponseError`](./src/FormanceSDK/Models/Errors/V2ErrorResponseError.cs): Applicable to 44 of 253 methods.*
-  * [`ErrorResponse`](./src/FormanceSDK/Models/Errors/ErrorResponse.cs): Applicable to 31 of 253 methods.*
-  * [`ErrorResponseError`](./src/FormanceSDK/Models/Errors/ErrorResponseError.cs): Applicable to 19 of 253 methods.*
-  * [`V2Error`](./src/FormanceSDK/Models/Errors/V2Error.cs): General error. Applicable to 18 of 253 methods.*
-  * [`Error`](./src/FormanceSDK/Models/Errors/Error.cs): General error. Applicable to 17 of 253 methods.*
+  * [`V3ErrorResponse`](./src/FormanceSDK/Models/Errors/V3ErrorResponse.cs): Error. Applicable to 63 of 276 methods.*
+  * [`PaymentsErrorResponse`](./src/FormanceSDK/Models/Errors/PaymentsErrorResponse.cs): Error. Applicable to 46 of 276 methods.*
+  * [`V2ErrorResponseError`](./src/FormanceSDK/Models/Errors/V2ErrorResponseError.cs): Applicable to 44 of 276 methods.*
+  * [`ErrorResponseError`](./src/FormanceSDK/Models/Errors/ErrorResponseError.cs): Applicable to 43 of 276 methods.*
+  * [`ErrorResponse`](./src/FormanceSDK/Models/Errors/ErrorResponse.cs): Applicable to 28 of 276 methods.*
+  * [`V2Error`](./src/FormanceSDK/Models/Errors/V2Error.cs): General error. Applicable to 18 of 276 methods.*
+  * [`Error`](./src/FormanceSDK/Models/Errors/Error.cs): General error. Applicable to 17 of 276 methods.*
   * [`ResponseValidationError`](./src/FormanceSDK/Models/Errors/ResponseValidationError.cs): Thrown when the response data could not be deserialized into the expected type.
 
 \* Refer to the [relevant documentation](#available-resources-and-operations) to determine whether an exception applies to a specific operation.

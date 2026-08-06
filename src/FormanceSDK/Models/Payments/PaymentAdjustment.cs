@@ -13,6 +13,7 @@ namespace FormanceSDK.Models.Payments
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
+    using System.Collections.Generic;
     using System.Numerics;
 
     public class PaymentAdjustment
@@ -30,6 +31,6 @@ namespace FormanceSDK.Models.Payments
         public BigInteger Amount { get; set; } = default!;
 
         [JsonProperty("raw")]
-        public Models.Payments.PaymentAdjustmentRaw Raw { get; set; } = default!;
+        public Dictionary<string, object> Raw { get; set; } = default!;
     }
 }

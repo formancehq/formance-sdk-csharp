@@ -24,16 +24,16 @@ namespace FormanceSDK.Models.Orchestration
 
         public string Value { get; private set; }
 
-        public static SubjectType LedgerAccountSubject { get { return new SubjectType("LedgerAccountSubject"); } }
+        public static SubjectType Account { get { return new SubjectType("ACCOUNT"); } }
 
-        public static SubjectType WalletSubject { get { return new SubjectType("WalletSubject"); } }
+        public static SubjectType Wallet { get { return new SubjectType("WALLET"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(SubjectType v) { return v.Value; }
         public static SubjectType FromString(string v) {
             switch(v) {
-                case "LedgerAccountSubject": return LedgerAccountSubject;
-                case "WalletSubject": return WalletSubject;
+                case "ACCOUNT": return Account;
+                case "WALLET": return Wallet;
                 default: throw new ArgumentException("Invalid value for SubjectType");
             }
         }
@@ -67,20 +67,24 @@ namespace FormanceSDK.Models.Orchestration
         public Models.Orchestration.WalletSubject? WalletSubject { get; set; }
 
         public SubjectType Type { get; set; }
-        public static Subject CreateLedgerAccountSubject(Models.Orchestration.LedgerAccountSubject ledgerAccountSubject)
-        {
-            SubjectType typ = SubjectType.LedgerAccountSubject;
 
+        public static Subject CreateAccount(Models.Orchestration.LedgerAccountSubject account)
+        {
+            SubjectType typ = SubjectType.Account;
+            string typStr = SubjectType.Account.ToString();
+            account.Type = typStr;
             Subject res = new Subject(typ);
-            res.LedgerAccountSubject = ledgerAccountSubject;
+            res.LedgerAccountSubject = account;
             return res;
         }
-        public static Subject CreateWalletSubject(Models.Orchestration.WalletSubject walletSubject)
-        {
-            SubjectType typ = SubjectType.WalletSubject;
 
+        public static Subject CreateWallet(Models.Orchestration.WalletSubject wallet)
+        {
+            SubjectType typ = SubjectType.Wallet;
+            string typStr = SubjectType.Wallet.ToString();
+            wallet.Type = typStr;
             Subject res = new Subject(typ);
-            res.WalletSubject = walletSubject;
+            res.WalletSubject = wallet;
             return res;
         }
 
@@ -97,67 +101,17 @@ namespace FormanceSDK.Models.Orchestration
                     throw new InvalidOperationException("Received unexpected null JSON value");
                 }
 
-                var json = JRaw.Create(reader).ToString();
-                var fallbackCandidates = new List<(System.Type, object, string)>();
-
-                try
+                JObject jo = JObject.Load(reader);
+                string discriminator = jo.GetValue("type")?.ToString() ?? throw new ArgumentNullException("Could not find discriminator field.");
+                if (discriminator == SubjectType.Account.ToString())
                 {
-                    return new Subject(SubjectType.LedgerAccountSubject)
-                    {
-                        LedgerAccountSubject = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<Models.Orchestration.LedgerAccountSubject>(json)
-                    };
+                    Models.Orchestration.LedgerAccountSubject ledgerAccountSubject = ResponseBodyDeserializer.DeserializeNotNull<Models.Orchestration.LedgerAccountSubject>(jo.ToString());
+                    return CreateAccount(ledgerAccountSubject);
                 }
-                catch (ResponseBodyDeserializer.MissingMemberException)
+                if (discriminator == SubjectType.Wallet.ToString())
                 {
-                    fallbackCandidates.Add((typeof(Models.Orchestration.LedgerAccountSubject), new Subject(SubjectType.LedgerAccountSubject), "LedgerAccountSubject"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new Subject(SubjectType.WalletSubject)
-                    {
-                        WalletSubject = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<Models.Orchestration.WalletSubject>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(Models.Orchestration.WalletSubject), new Subject(SubjectType.WalletSubject), "WalletSubject"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                if (fallbackCandidates.Count > 0)
-                {
-                    fallbackCandidates.Sort((a, b) => ResponseBodyDeserializer.CompareFallbackCandidates(a.Item1, b.Item1, json));
-                    foreach(var (deserializationType, returnObject, propertyName) in fallbackCandidates)
-                    {
-                        try
-                        {
-                            return ResponseBodyDeserializer.DeserializeUndiscriminatedUnionFallback(deserializationType, returnObject, propertyName, json);
-                        }
-                        catch (ResponseBodyDeserializer.DeserializationException)
-                        {
-                            // try next fallback option
-                        }
-                        catch (Exception)
-                        {
-                            throw;
-                        }
-                    }
+                    Models.Orchestration.WalletSubject walletSubject = ResponseBodyDeserializer.DeserializeNotNull<Models.Orchestration.WalletSubject>(jo.ToString());
+                    return CreateWallet(walletSubject);
                 }
 
                 throw new InvalidOperationException("Could not deserialize into any supported types.");

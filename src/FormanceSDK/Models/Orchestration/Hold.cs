@@ -40,5 +40,15 @@ namespace FormanceSDK.Models.Orchestration
 
         [JsonProperty("destination", NullValueHandling = NullValueHandling.Include)]
         public Models.Orchestration.Subject? Destination { get; set; }
+
+        public Models.Orchestration.LedgerAccountSubject? GetDestinationAccount()
+        {
+            return Destination != null ? Destination.LedgerAccountSubject : null;
+        }
+
+        public Models.Orchestration.WalletSubject? GetDestinationWallet()
+        {
+            return Destination != null ? Destination.WalletSubject : null;
+        }
     }
 }

@@ -9,7 +9,6 @@
 #nullable enable
 namespace FormanceSDK.Models.Ledger
 {
-    using FormanceSDK.Models.Ledger;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
@@ -17,7 +16,7 @@ namespace FormanceSDK.Models.Ledger
     public class QueryTemplateVolumeParams
     {
         [JsonProperty("resource")]
-        public V2QueryParamsLedger4Resource? Resource { get; set; }
+        public string Resource { get; } = "volumes";
 
         [JsonProperty("insertionDate")]
         public bool? InsertionDate { get; set; }

@@ -52,6 +52,6 @@ namespace FormanceSDK.Models.Payments
         public Dictionary<string, string>? Metadata { get; set; }
 
         [JsonProperty("raw", NullValueHandling = NullValueHandling.Include)]
-        public AccountRaw? Raw { get; set; }
+        public Dictionary<string, object>? Raw { get; set; }
     }
 }

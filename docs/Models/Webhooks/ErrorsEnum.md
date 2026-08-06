@@ -16,3 +16,4 @@ var value = ErrorsEnum.Internal;
 | `Internal`   | INTERNAL     |
 | `Validation` | VALIDATION   |
 | `NotFound`   | NOT_FOUND    |
+| `Conflict`   | CONFLICT     |

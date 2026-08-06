@@ -48,6 +48,6 @@ namespace FormanceSDK.Models.Payments
         public Dictionary<string, string>? Metadata { get; set; } = null;
 
         [JsonProperty("raw")]
-        public V3AccountRaw Raw { get; set; } = default!;
+        public Dictionary<string, object> Raw { get; set; } = default!;
     }
 }

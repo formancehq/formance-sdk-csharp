@@ -81,6 +81,6 @@ namespace FormanceSDK.Models.Payments
         /// Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay.
         /// </summary>
         [JsonProperty("raw")]
-        public V3OrderAdjustmentRaw? Raw { get; set; }
+        public Dictionary<string, object>? Raw { get; set; }
     }
 }

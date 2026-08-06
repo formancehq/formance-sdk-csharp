@@ -454,7 +454,6 @@ Update a transfer initiation status
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
-using FormanceSDK.Models.Payments;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
@@ -464,7 +463,7 @@ var sdk = new Formance(security: new Security() {
 var res = await sdk.Payments.V1.UpdateTransferInitiationStatusAsync(
     transferId: "XXX",
     updateTransferInitiationStatusRequest: new FormanceSDK.Models.Payments.UpdateTransferInitiationStatusRequest() {
-        Status = Status.Validated,
+        Status = FormanceSDK.Models.Payments.Status.Validated,
     }
 );
 
@@ -1448,7 +1447,7 @@ var sdk = new Formance(security: new Security() {
 
 var res = await sdk.Payments.V1.InstallConnectorAsync(
     connector: FormanceSDK.Models.Payments.Connector.Mangopay,
-    connectorConfig: ConnectorConfig.CreateModulrConfig(
+    connectorConfig: ConnectorConfig.CreateModulr(
         new ModulrConfig() {
             Name = "My Modulr Account",
             ApiKey = "XXX",
@@ -1621,14 +1620,13 @@ var sdk = new Formance(security: new Security() {
 var res = await sdk.Payments.V1.UpdateConnectorConfigV1Async(
     connector: FormanceSDK.Models.Payments.Connector.Mangopay,
     connectorId: "XXX",
-    connectorConfig: ConnectorConfig.CreateMangoPayConfig(
-        new MangoPayConfig() {
+    connectorConfig: ConnectorConfig.CreateMoneycorp(
+        new MoneycorpConfig() {
             Name = "My Moneycorp Account",
-            Provider = "Moneycorp",
-            PollingPeriod = "60s",
             ClientID = "XXX",
             ApiKey = "XXX",
             Endpoint = "XXX",
+            PollingPeriod = "60s",
         }
     )
 );

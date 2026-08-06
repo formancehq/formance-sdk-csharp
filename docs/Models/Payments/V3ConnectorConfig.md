@@ -3,134 +3,140 @@
 
 ## Supported Types
 
-### V3AdyenConfig
+### Adyen
 
 ```csharp
-V3ConnectorConfig.CreateV3AdyenConfig(/* values here */);
+V3ConnectorConfig.CreateAdyen(/* values here */);
 ```
 
-### V3AtlarConfig
+### Atlar
 
 ```csharp
-V3ConnectorConfig.CreateV3AtlarConfig(/* values here */);
+V3ConnectorConfig.CreateAtlar(/* values here */);
 ```
 
-### V3BankingcircleConfig
+### Bankingbridge
 
 ```csharp
-V3ConnectorConfig.CreateV3BankingcircleConfig(/* values here */);
+V3ConnectorConfig.CreateBankingbridge(/* values here */);
 ```
 
-### V3ColumnConfig
+### Bankingcircle
 
 ```csharp
-V3ConnectorConfig.CreateV3ColumnConfig(/* values here */);
+V3ConnectorConfig.CreateBankingcircle(/* values here */);
 ```
 
-### V3CurrencycloudConfig
+### Bitstamp
 
 ```csharp
-V3ConnectorConfig.CreateV3CurrencycloudConfig(/* values here */);
+V3ConnectorConfig.CreateBitstamp(/* values here */);
 ```
 
-### V3DummypayConfig
+### Coinbaseprime
 
 ```csharp
-V3ConnectorConfig.CreateV3DummypayConfig(/* values here */);
+V3ConnectorConfig.CreateCoinbaseprime(/* values here */);
 ```
 
-### V3GenericConfig
+### Column
 
 ```csharp
-V3ConnectorConfig.CreateV3GenericConfig(/* values here */);
+V3ConnectorConfig.CreateColumn(/* values here */);
 ```
 
-### V3IncreaseConfig
+### Currencycloud
 
 ```csharp
-V3ConnectorConfig.CreateV3IncreaseConfig(/* values here */);
+V3ConnectorConfig.CreateCurrencycloud(/* values here */);
 ```
 
-### V3MangopayConfig
+### Dummypay
 
 ```csharp
-V3ConnectorConfig.CreateV3MangopayConfig(/* values here */);
+V3ConnectorConfig.CreateDummypay(/* values here */);
 ```
 
-### V3ModulrConfig
+### Fireblocks
 
 ```csharp
-V3ConnectorConfig.CreateV3ModulrConfig(/* values here */);
+V3ConnectorConfig.CreateFireblocks(/* values here */);
 ```
 
-### V3MoneycorpConfig
+### Generic
 
 ```csharp
-V3ConnectorConfig.CreateV3MoneycorpConfig(/* values here */);
+V3ConnectorConfig.CreateGeneric(/* values here */);
 ```
 
-### V3PlaidConfig
+### Increase
 
 ```csharp
-V3ConnectorConfig.CreateV3PlaidConfig(/* values here */);
+V3ConnectorConfig.CreateIncrease(/* values here */);
 ```
 
-### V3PowensConfig
+### Krakenpro
 
 ```csharp
-V3ConnectorConfig.CreateV3PowensConfig(/* values here */);
+V3ConnectorConfig.CreateKrakenpro(/* values here */);
 ```
 
-### V3QontoConfig
+### Mangopay
 
 ```csharp
-V3ConnectorConfig.CreateV3QontoConfig(/* values here */);
+V3ConnectorConfig.CreateMangopay(/* values here */);
 ```
 
-### V3StripeConfig
+### Modulr
 
 ```csharp
-V3ConnectorConfig.CreateV3StripeConfig(/* values here */);
+V3ConnectorConfig.CreateModulr(/* values here */);
 ```
 
-### V3TinkConfig
+### Moneycorp
 
 ```csharp
-V3ConnectorConfig.CreateV3TinkConfig(/* values here */);
+V3ConnectorConfig.CreateMoneycorp(/* values here */);
 ```
 
-### V3WiseConfig
+### Plaid
 
 ```csharp
-V3ConnectorConfig.CreateV3WiseConfig(/* values here */);
+V3ConnectorConfig.CreatePlaid(/* values here */);
 ```
 
-### V3BankingbridgeConfig
+### Powens
 
 ```csharp
-V3ConnectorConfig.CreateV3BankingbridgeConfig(/* values here */);
+V3ConnectorConfig.CreatePowens(/* values here */);
 ```
 
-### V3BitstampConfig
+### Qonto
 
 ```csharp
-V3ConnectorConfig.CreateV3BitstampConfig(/* values here */);
+V3ConnectorConfig.CreateQonto(/* values here */);
 ```
 
-### V3CoinbaseprimeConfig
+### Routable
 
 ```csharp
-V3ConnectorConfig.CreateV3CoinbaseprimeConfig(/* values here */);
+V3ConnectorConfig.CreateRoutable(/* values here */);
 ```
 
-### V3FireblocksConfig
+### Stripe
 
 ```csharp
-V3ConnectorConfig.CreateV3FireblocksConfig(/* values here */);
+V3ConnectorConfig.CreateStripe(/* values here */);
 ```
 
-### V3RoutableConfig
+### Tink
 
 ```csharp
-V3ConnectorConfig.CreateV3RoutableConfig(/* values here */);
+V3ConnectorConfig.CreateTink(/* values here */);
+```
+
+### Wise
+
+```csharp
+V3ConnectorConfig.CreateWise(/* values here */);
 ```

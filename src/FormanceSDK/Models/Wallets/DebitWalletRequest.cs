@@ -39,6 +39,16 @@ namespace FormanceSDK.Models.Wallets
         [JsonProperty("destination", NullValueHandling = NullValueHandling.Include)]
         public Models.Wallets.Subject? Destination { get; set; }
 
+        public Models.Wallets.LedgerAccountSubject? GetDestinationAccount()
+        {
+            return Destination != null ? Destination.LedgerAccountSubject : null;
+        }
+
+        public Models.Wallets.WalletSubject? GetDestinationWallet()
+        {
+            return Destination != null ? Destination.WalletSubject : null;
+        }
+
         [JsonProperty("balances")]
         public List<string>? Balances { get; set; }
 

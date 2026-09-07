@@ -13,20 +13,38 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// A recurring job a connector runs to fetch data from its provider.
+    /// </summary>
     public class V3Schedule
     {
+        /// <summary>
+        /// Unique identifier of the schedule.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the connector this schedule belongs to.
+        /// </summary>
         [JsonProperty("connectorID")]
         public string ConnectorID { get; set; } = default!;
 
+        /// <summary>
+        /// When the schedule was created.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// When the schedule was paused, absent while it is running.
+        /// </summary>
         [JsonProperty("pausedAt")]
         public DateTime? PausedAt { get; set; } = null;
 
+        /// <summary>
+        /// Why the schedule was paused.
+        /// </summary>
         [JsonProperty("pausedReason")]
         public string? PausedReason { get; set; } = null;
     }

@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3PaymentServiceUserDeleteConnectionResponse
     {
+        /// <summary>
+        /// The task tracking the deletion, which completes asynchronously.
+        /// </summary>
         [JsonProperty("data")]
         public V3PaymentServiceUserDeleteConnectionResponseData Data { get; set; } = default!;
     }

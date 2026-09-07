@@ -16,15 +16,27 @@ namespace FormanceSDK.Models.Payments
 
     public class TransferInitiationPayments
     {
+        /// <summary>
+        /// Identifier of the payment produced by the initiation.
+        /// </summary>
         [JsonProperty("paymentID")]
         public string PaymentID { get; set; } = default!;
 
+        /// <summary>
+        /// When the payment was produced.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Status of a payment as reported by the legacy payments API.
+        /// </summary>
         [JsonProperty("status")]
         public LegacyPaymentStatus Status { get; set; } = default!;
 
+        /// <summary>
+        /// Why the payment failed, absent when it succeeded.
+        /// </summary>
         [JsonProperty("error")]
         public string? Error { get; set; } = null;
     }

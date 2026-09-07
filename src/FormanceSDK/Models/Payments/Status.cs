@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Whether to approve or reject the pending transfer.
+    /// </summary>
     public enum Status
     {
         [JsonProperty("REJECTED")]

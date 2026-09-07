@@ -20,6 +20,9 @@ namespace FormanceSDK.Models.Payments
         [JsonProperty("applicationName")]
         public string? ApplicationName { get; set; }
 
+        /// <summary>
+        /// URL to send the user back to once the provider's flow finishes.
+        /// </summary>
         [JsonProperty("clientRedirectURL")]
         public string ClientRedirectURL { get; set; } = default!;
     }

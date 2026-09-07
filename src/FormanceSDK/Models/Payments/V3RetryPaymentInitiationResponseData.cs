@@ -12,6 +12,9 @@ namespace FormanceSDK.Models.Payments
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// The task tracking the retry, which completes asynchronously.
+    /// </summary>
     public class V3RetryPaymentInitiationResponseData
     {
         /// <summary>

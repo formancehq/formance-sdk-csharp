@@ -15,23 +15,44 @@ namespace FormanceSDK.Models.Payments
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// A named group of accounts whose balances are aggregated together.
+    /// </summary>
     public class V3Pool
     {
+        /// <summary>
+        /// Unique identifier of the pool.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable name of the pool.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// When the pool was created.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Whether a pool holds a fixed account list or is driven by a query.
+        /// </summary>
         [JsonProperty("type")]
         public V3PoolTypeEnum? Type { get; set; }
 
+        /// <summary>
+        /// Filter selecting the accounts a dynamic pool contains.
+        /// </summary>
         [JsonProperty("query")]
         public Dictionary<string, object>? Query { get; set; }
 
+        /// <summary>
+        /// Accounts currently in the pool.
+        /// </summary>
         [JsonProperty("poolAccounts")]
         public List<string> PoolAccounts { get; set; } = default!;
     }

@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Where a payment initiation stands in its lifecycle.
+    /// </summary>
     public enum V3PaymentInitiationStatusEnum
     {
         [JsonProperty("UNKNOWN")]

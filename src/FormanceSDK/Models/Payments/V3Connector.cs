@@ -17,24 +17,45 @@ namespace FormanceSDK.Models.Payments
 
     public class V3Connector
     {
+        /// <summary>
+        /// Unique identifier of the connector.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Stable reference identifying the connector.
+        /// </summary>
         [JsonProperty("reference")]
         public string Reference { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable name of the connector instance.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// When the connector was installed.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Name of the payment provider behind the connector.
+        /// </summary>
         [JsonProperty("provider")]
         public string Provider { get; set; } = default!;
 
+        /// <summary>
+        /// Whether the connector is being uninstalled.
+        /// </summary>
         [JsonProperty("scheduledForDeletion")]
         public bool ScheduledForDeletion { get; set; } = default!;
 
+        /// <summary>
+        /// The connector's configuration, whose shape depends on the provider.
+        /// </summary>
         [JsonProperty("config")]
         public Models.Payments.Config Config { get; set; } = default!;
 
@@ -44,6 +65,9 @@ namespace FormanceSDK.Models.Payments
         [JsonProperty("capabilities")]
         public List<V3Capability>? Capabilities { get; set; }
 
+        /// <summary>
+        /// When the connector's configuration was last changed.
+        /// </summary>
         [JsonProperty("updatedAt")]
         public DateTime? UpdatedAt { get; set; } = null;
     }

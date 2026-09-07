@@ -74,6 +74,9 @@ namespace FormanceSDK.Models.Payments
         [JsonProperty("feeAsset")]
         public string? FeeAsset { get; set; } = null;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
 

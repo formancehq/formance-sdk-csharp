@@ -18,39 +18,75 @@ namespace FormanceSDK.Models.Payments
 
     public class V3CreatePaymentRequest
     {
+        /// <summary>
+        /// Identifier the payment carries at the provider.
+        /// </summary>
         [JsonProperty("reference")]
         public string Reference { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the connector the payment belongs to.
+        /// </summary>
         [JsonProperty("connectorID")]
         public string ConnectorID { get; set; } = default!;
 
+        /// <summary>
+        /// When the payment was created at the provider.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Direction of a payment.
+        /// </summary>
         [JsonProperty("type")]
         public V3PaymentTypeEnum Type { get; set; } = default!;
 
+        /// <summary>
+        /// Amount the payment was created with, before any adjustment.
+        /// </summary>
         [JsonProperty("initialAmount")]
         public BigInteger InitialAmount { get; set; } = default!;
 
+        /// <summary>
+        /// Current amount of the payment, in the asset's smallest unit.
+        /// </summary>
         [JsonProperty("amount")]
         public BigInteger Amount { get; set; } = default!;
 
+        /// <summary>
+        /// Asset the payment is denominated in.
+        /// </summary>
         [JsonProperty("asset")]
         public string Asset { get; set; } = default!;
 
+        /// <summary>
+        /// Payment scheme or rail the payment travels over.
+        /// </summary>
         [JsonProperty("scheme")]
         public string Scheme { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the account the funds leave.
+        /// </summary>
         [JsonProperty("sourceAccountID")]
         public string? SourceAccountID { get; set; }
 
+        /// <summary>
+        /// Identifier of the account the funds reach.
+        /// </summary>
         [JsonProperty("destinationAccountID")]
         public string? DestinationAccountID { get; set; }
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
 
+        /// <summary>
+        /// Status and amount changes to record alongside the payment.
+        /// </summary>
         [JsonProperty("adjustments")]
         public List<V3CreatePaymentAdjustmentRequest>? Adjustments { get; set; }
     }

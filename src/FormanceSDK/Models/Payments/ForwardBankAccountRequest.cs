@@ -14,6 +14,9 @@ namespace FormanceSDK.Models.Payments
 
     public class ForwardBankAccountRequest
     {
+        /// <summary>
+        /// Identifier of the connector to forward the bank account to.
+        /// </summary>
         [JsonProperty("connectorID")]
         public string ConnectorID { get; set; } = default!;
     }

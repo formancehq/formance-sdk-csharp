@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Whether a pool holds a fixed account list or is driven by a query.
+    /// </summary>
     public enum V3PoolTypeEnum
     {
         [JsonProperty("STATIC")]

@@ -17,18 +17,33 @@ namespace FormanceSDK.Models.Payments
 
     public class TransferInitiationAdjustments
     {
+        /// <summary>
+        /// Unique identifier of the adjustment.
+        /// </summary>
         [JsonProperty("adjustmentID")]
         public string AdjustmentID { get; set; } = default!;
 
+        /// <summary>
+        /// When the adjustment was recorded.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Where a transfer initiation stands in its lifecycle.
+        /// </summary>
         [JsonProperty("status")]
         public TransferInitiationStatus Status { get; set; } = default!;
 
+        /// <summary>
+        /// Why this step failed, absent when it succeeded.
+        /// </summary>
         [JsonProperty("error")]
         public string? Error { get; set; } = null;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the adjustment.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
     }

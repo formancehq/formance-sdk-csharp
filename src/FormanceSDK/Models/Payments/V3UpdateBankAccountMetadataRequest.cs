@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3UpdateBankAccountMetadataRequest
     {
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Include)]
         public Dictionary<string, string>? Metadata { get; set; }
     }

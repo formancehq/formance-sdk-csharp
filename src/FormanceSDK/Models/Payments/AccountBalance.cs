@@ -16,22 +16,40 @@ namespace FormanceSDK.Models.Payments
 
     public class AccountBalance
     {
+        /// <summary>
+        /// Identifier of the account this balance belongs to.
+        /// </summary>
         [JsonProperty("accountId")]
         public string AccountId { get; set; } = default!;
 
+        /// <summary>
+        /// Start of the period this balance covers.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// When the balance was last refreshed from the provider.
+        /// </summary>
         [JsonProperty("lastUpdatedAt")]
         public DateTime LastUpdatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Deprecated alias of asset, kept for backwards compatibility.
+        /// </summary>
         [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible")]
         [JsonProperty("currency")]
         public string Currency { get; set; } = default!;
 
+        /// <summary>
+        /// Asset the balance is denominated in.
+        /// </summary>
         [JsonProperty("asset")]
         public string Asset { get; set; } = default!;
 
+        /// <summary>
+        /// Amount held, in the asset's smallest unit.
+        /// </summary>
         [JsonProperty("balance")]
         public BigInteger Balance { get; set; } = default!;
     }

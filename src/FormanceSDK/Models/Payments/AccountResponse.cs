@@ -18,6 +18,9 @@ namespace FormanceSDK.Models.Payments
     /// </summary>
     public class AccountResponse
     {
+        /// <summary>
+        /// An account held at a payment provider, surfaced through a connector.
+        /// </summary>
         [JsonProperty("data")]
         public Models.Payments.Account Data { get; set; } = default!;
     }

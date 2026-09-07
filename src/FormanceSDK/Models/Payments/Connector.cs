@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// The payment provider behind a connector.
+    /// </summary>
     public enum Connector
     {
         [JsonProperty("STRIPE")]

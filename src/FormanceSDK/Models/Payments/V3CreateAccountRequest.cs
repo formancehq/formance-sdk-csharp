@@ -17,24 +17,45 @@ namespace FormanceSDK.Models.Payments
 
     public class V3CreateAccountRequest
     {
+        /// <summary>
+        /// Identifier the account carries at the provider.
+        /// </summary>
         [JsonProperty("reference")]
         public string Reference { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the connector the account belongs to.
+        /// </summary>
         [JsonProperty("connectorID")]
         public string ConnectorID { get; set; } = default!;
 
+        /// <summary>
+        /// When the account was created at the provider.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable name of the account.
+        /// </summary>
         [JsonProperty("accountName")]
         public string AccountName { get; set; } = default!;
 
+        /// <summary>
+        /// Whether an account is internal to the provider or belongs to an external party.
+        /// </summary>
         [JsonProperty("type")]
         public V3AccountTypeEnum Type { get; set; } = default!;
 
+        /// <summary>
+        /// Asset the account is denominated in by default.
+        /// </summary>
         [JsonProperty("defaultAsset")]
         public string? DefaultAsset { get; set; } = null;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
     }

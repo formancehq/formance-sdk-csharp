@@ -15,32 +15,62 @@ namespace FormanceSDK.Models.Payments
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// A bank account registered with Formance and forwardable to connectors.
+    /// </summary>
     public class V3BankAccount
     {
+        /// <summary>
+        /// Unique identifier of the bank account within Formance.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// When the bank account was registered.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable name of the bank account.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// Domestic account number, when the account is identified that way.
+        /// </summary>
         [JsonProperty("accountNumber")]
         public string? AccountNumber { get; set; } = null;
 
+        /// <summary>
+        /// International bank account number, when the account is identified that way.
+        /// </summary>
         [JsonProperty("iban")]
         public string? Iban { get; set; } = null;
 
+        /// <summary>
+        /// SWIFT/BIC code identifying the bank.
+        /// </summary>
         [JsonProperty("swiftBicCode")]
         public string? SwiftBicCode { get; set; } = null;
 
+        /// <summary>
+        /// Country the account is held in, as an ISO 3166-1 alpha-2 code.
+        /// </summary>
         [JsonProperty("country")]
         public string? Country { get; set; } = null;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
 
+        /// <summary>
+        /// Provider-side accounts this bank account has been forwarded to.
+        /// </summary>
         [JsonProperty("relatedAccounts")]
         public List<V3BankAccountRelatedAccount>? RelatedAccounts { get; set; }
     }

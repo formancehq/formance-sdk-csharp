@@ -16,18 +16,33 @@ namespace FormanceSDK.Models.Payments
 
     public class ReverseTransferInitiationRequest
     {
+        /// <summary>
+        /// Caller-supplied identifier for the reversal, used to deduplicate retries.
+        /// </summary>
         [JsonProperty("reference")]
         public string Reference { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable reason for the reversal.
+        /// </summary>
         [JsonProperty("description")]
         public string Description { get; set; } = default!;
 
+        /// <summary>
+        /// Amount to reverse, in the asset's smallest unit.
+        /// </summary>
         [JsonProperty("amount")]
         public BigInteger Amount { get; set; } = default!;
 
+        /// <summary>
+        /// Asset the reversal is denominated in.
+        /// </summary>
         [JsonProperty("asset")]
         public string Asset { get; set; } = default!;
 
+        /// <summary>
+        /// Arbitrary key/value pairs to attach to the reversal.
+        /// </summary>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Include)]
         public Dictionary<string, string>? Metadata { get; set; }
     }

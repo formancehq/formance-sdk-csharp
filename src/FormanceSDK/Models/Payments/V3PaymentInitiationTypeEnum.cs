@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Kind of movement a payment initiation performs, such as a transfer or a payout.
+    /// </summary>
     public enum V3PaymentInitiationTypeEnum
     {
         [JsonProperty("UNKNOWN")]

@@ -15,42 +15,81 @@ namespace FormanceSDK.Models.Payments
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// An account held at a payment provider, surfaced through a connector.
+    /// </summary>
     public class Account
     {
+        /// <summary>
+        /// Unique identifier of the account within Formance.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// When the account was created at the provider.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier the account carries at the provider.
+        /// </summary>
         [JsonProperty("reference")]
         public string Reference { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the connector the account belongs to.
+        /// </summary>
         [JsonProperty("connectorID")]
         public string ConnectorID { get; set; } = default!;
 
+        /// <summary>
+        /// Name of the payment provider behind the connector.
+        /// </summary>
         [JsonProperty("provider")]
         public string? Provider { get; set; }
 
+        /// <summary>
+        /// Deprecated alias of defaultAsset, kept for backwards compatibility.
+        /// </summary>
         [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible")]
         [JsonProperty("defaultCurrency")]
         public string DefaultCurrency { get; set; } = default!;
 
+        /// <summary>
+        /// Asset the account is denominated in by default.
+        /// </summary>
         [JsonProperty("defaultAsset")]
         public string DefaultAsset { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable name of the account.
+        /// </summary>
         [JsonProperty("accountName")]
         public string AccountName { get; set; } = default!;
 
+        /// <summary>
+        /// Whether an account is internal to the provider or belongs to an external party.
+        /// </summary>
         [JsonProperty("type")]
         public AccountType Type { get; set; } = default!;
 
+        /// <summary>
+        /// Pools this account belongs to.
+        /// </summary>
         [JsonProperty("pools")]
         public List<string>? Pools { get; set; }
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the account.
+        /// </summary>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Include)]
         public Dictionary<string, string>? Metadata { get; set; }
 
+        /// <summary>
+        /// The provider's original payload, passed through untouched.
+        /// </summary>
         [JsonProperty("raw", NullValueHandling = NullValueHandling.Include)]
         public Dictionary<string, object>? Raw { get; set; }
     }

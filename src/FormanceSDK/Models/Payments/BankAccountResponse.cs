@@ -18,6 +18,9 @@ namespace FormanceSDK.Models.Payments
     /// </summary>
     public class BankAccountResponse
     {
+        /// <summary>
+        /// A bank account registered with Formance and forwardable to connectors.
+        /// </summary>
         [JsonProperty("data")]
         public BankAccount Data { get; set; } = default!;
     }

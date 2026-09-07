@@ -14,26 +14,50 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// An asynchronous unit of work, tracking an operation that completes in the background.
+    /// </summary>
     public class V3Task
     {
+        /// <summary>
+        /// Unique identifier of the task.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Where a task stands, from processing through to succeeded or failed.
+        /// </summary>
         [JsonProperty("status")]
         public V3TaskStatusEnum Status { get; set; } = default!;
 
+        /// <summary>
+        /// When the task was created.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// When the task was last updated.
+        /// </summary>
         [JsonProperty("updatedAt")]
         public DateTime UpdatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the connector the task runs against.
+        /// </summary>
         [JsonProperty("connectorID")]
         public string? ConnectorID { get; set; }
 
+        /// <summary>
+        /// Identifier of the object the task created, once it has succeeded.
+        /// </summary>
         [JsonProperty("createdObjectID")]
         public string? CreatedObjectID { get; set; }
 
+        /// <summary>
+        /// Why the task failed, absent when it succeeded.
+        /// </summary>
         [JsonProperty("error")]
         public string? Error { get; set; } = null;
     }

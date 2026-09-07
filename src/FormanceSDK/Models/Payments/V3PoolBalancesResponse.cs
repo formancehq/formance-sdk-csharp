@@ -16,6 +16,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3PoolBalancesResponse
     {
+        /// <summary>
+        /// Aggregated balances across a pool's accounts.
+        /// </summary>
         [JsonProperty("data")]
         public List<V3PoolBalance> Data { get; set; } = default!;
     }

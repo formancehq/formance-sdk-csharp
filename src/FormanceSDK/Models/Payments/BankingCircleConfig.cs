@@ -14,27 +14,51 @@ namespace FormanceSDK.Models.Payments
 
     public class BankingCircleConfig
     {
+        /// <summary>
+        /// Human-readable name identifying this connector instance.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// Identifies the payment provider this configuration targets.
+        /// </summary>
         [JsonProperty("provider")]
         public string? Provider { get; set; } = "Bankingcircle";
 
+        /// <summary>
+        /// Username issued by Banking Circle, used to authenticate the connector.
+        /// </summary>
         [JsonProperty("username")]
         public string Username { get; set; } = default!;
 
+        /// <summary>
+        /// Password issued by Banking Circle, used to authenticate the connector.
+        /// </summary>
         [JsonProperty("password")]
         public string Password { get; set; } = default!;
 
+        /// <summary>
+        /// Base URL of the Banking Circle API the connector calls.
+        /// </summary>
         [JsonProperty("endpoint")]
         public string Endpoint { get; set; } = default!;
 
+        /// <summary>
+        /// URL the connector calls to obtain an access token.
+        /// </summary>
         [JsonProperty("authorizationEndpoint")]
         public string AuthorizationEndpoint { get; set; } = default!;
 
+        /// <summary>
+        /// Client certificate presented on the mutual-TLS connection to Banking Circle.
+        /// </summary>
         [JsonProperty("userCertificate")]
         public string UserCertificate { get; set; } = default!;
 
+        /// <summary>
+        /// Private key matching the client certificate.
+        /// </summary>
         [JsonProperty("userCertificateKey")]
         public string UserCertificateKey { get; set; } = default!;
 

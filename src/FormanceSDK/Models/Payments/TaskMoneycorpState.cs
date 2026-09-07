@@ -11,6 +11,9 @@ namespace FormanceSDK.Models.Payments
 {
     using FormanceSDK.Utils;
 
+    /// <summary>
+    /// Internal progress state the task resumes from.
+    /// </summary>
     public class TaskMoneycorpState
     {
     }

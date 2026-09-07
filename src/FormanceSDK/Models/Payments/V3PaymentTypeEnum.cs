@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Direction of a payment.
+    /// </summary>
     public enum V3PaymentTypeEnum
     {
         [JsonProperty("UNKNOWN")]

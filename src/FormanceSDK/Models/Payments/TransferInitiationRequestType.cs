@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Whether the funds move between your accounts or out to a third party.
+    /// </summary>
     public enum TransferInitiationRequestType
     {
         [JsonProperty("TRANSFER")]

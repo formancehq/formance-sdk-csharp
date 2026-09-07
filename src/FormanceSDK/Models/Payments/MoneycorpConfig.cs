@@ -14,18 +14,33 @@ namespace FormanceSDK.Models.Payments
 
     public class MoneycorpConfig
     {
+        /// <summary>
+        /// Human-readable name identifying this connector instance.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// Identifies the payment provider this configuration targets.
+        /// </summary>
         [JsonProperty("provider")]
         public string? Provider { get; set; } = "Moneycorp";
 
+        /// <summary>
+        /// Client ID issued by Moneycorp.
+        /// </summary>
         [JsonProperty("clientID")]
         public string ClientID { get; set; } = default!;
 
+        /// <summary>
+        /// API key issued by Moneycorp, used to authenticate the connector's requests.
+        /// </summary>
         [JsonProperty("apiKey")]
         public string ApiKey { get; set; } = default!;
 
+        /// <summary>
+        /// Base URL of the Moneycorp API the connector calls.
+        /// </summary>
         [JsonProperty("endpoint")]
         public string Endpoint { get; set; } = default!;
 

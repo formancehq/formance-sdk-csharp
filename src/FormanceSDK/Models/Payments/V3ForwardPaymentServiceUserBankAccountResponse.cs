@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3ForwardPaymentServiceUserBankAccountResponse
     {
+        /// <summary>
+        /// The task tracking the forwarding, which completes asynchronously.
+        /// </summary>
         [JsonProperty("data")]
         public V3ForwardPaymentServiceUserBankAccountResponseData Data { get; set; } = default!;
     }

@@ -16,53 +16,104 @@ namespace FormanceSDK.Models.Payments
     using System.Collections.Generic;
     using System.Numerics;
 
+    /// <summary>
+    /// A payment observed at a provider and surfaced through a connector.
+    /// </summary>
     public class Payment
     {
+        /// <summary>
+        /// Unique identifier of the payment within Formance.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier the payment carries at the provider.
+        /// </summary>
         [JsonProperty("reference")]
         public string Reference { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the account the funds left.
+        /// </summary>
         [JsonProperty("sourceAccountID")]
         public string SourceAccountID { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the account the funds reached.
+        /// </summary>
         [JsonProperty("destinationAccountID")]
         public string DestinationAccountID { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the connector the payment belongs to.
+        /// </summary>
         [JsonProperty("connectorID")]
         public string ConnectorID { get; set; } = default!;
 
+        /// <summary>
+        /// The payment provider behind a connector.
+        /// </summary>
         [JsonProperty("provider")]
         public Models.Payments.Connector? Provider { get; set; }
 
+        /// <summary>
+        /// Direction of a payment.
+        /// </summary>
         [JsonProperty("type")]
         public Models.Payments.PaymentType Type { get; set; } = default!;
 
+        /// <summary>
+        /// Where a payment stands in its lifecycle.
+        /// </summary>
         [JsonProperty("status")]
         public Models.Payments.PaymentStatus Status { get; set; } = default!;
 
+        /// <summary>
+        /// Amount the payment was created with, before any adjustment.
+        /// </summary>
         [JsonProperty("initialAmount")]
         public BigInteger InitialAmount { get; set; } = default!;
 
+        /// <summary>
+        /// Current amount of the payment after applying its adjustments.
+        /// </summary>
         [JsonProperty("amount")]
         public BigInteger Amount { get; set; } = default!;
 
+        /// <summary>
+        /// Payment scheme or rail a payment travels over.
+        /// </summary>
         [JsonProperty("scheme")]
         public PaymentScheme Scheme { get; set; } = default!;
 
+        /// <summary>
+        /// Asset the payment is denominated in.
+        /// </summary>
         [JsonProperty("asset")]
         public string Asset { get; set; } = default!;
 
+        /// <summary>
+        /// When the payment was created at the provider.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// The provider's original payload, passed through untouched.
+        /// </summary>
         [JsonProperty("raw", NullValueHandling = NullValueHandling.Include)]
         public Dictionary<string, object>? Raw { get; set; }
 
+        /// <summary>
+        /// Successive changes to the payment's amount and status.
+        /// </summary>
         [JsonProperty("adjustments")]
         public List<Models.Payments.PaymentAdjustment> Adjustments { get; set; } = default!;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the payment.
+        /// </summary>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Include)]
         public Dictionary<string, string>? Metadata { get; set; }
     }

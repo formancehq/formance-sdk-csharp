@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3UninstallConnectorResponse
     {
+        /// <summary>
+        /// The task tracking the uninstall, which completes asynchronously.
+        /// </summary>
         [JsonProperty("data")]
         public V3UninstallConnectorResponseData Data { get; set; } = default!;
     }

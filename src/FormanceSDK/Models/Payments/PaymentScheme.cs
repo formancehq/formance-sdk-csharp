@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Payment scheme or rail a payment travels over.
+    /// </summary>
     public enum PaymentScheme
     {
         [JsonProperty("unknown")]

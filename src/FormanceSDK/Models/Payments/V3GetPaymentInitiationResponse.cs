@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3GetPaymentInitiationResponse
     {
+        /// <summary>
+        /// A payment Formance asked a connector to execute.
+        /// </summary>
         [JsonProperty("data")]
         public V3PaymentInitiation Data { get; set; } = default!;
     }

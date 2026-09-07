@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Where a task stands, from pending or active through to stopped, terminated or failed.
+    /// </summary>
     public enum TaskStatus
     {
         [JsonProperty("PENDING")]

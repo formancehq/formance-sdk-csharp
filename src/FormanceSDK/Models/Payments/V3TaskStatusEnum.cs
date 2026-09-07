@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Where a task stands, from processing through to succeeded or failed.
+    /// </summary>
     public enum V3TaskStatusEnum
     {
         [JsonProperty("PROCESSING")]

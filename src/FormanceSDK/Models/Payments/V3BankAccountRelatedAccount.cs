@@ -15,9 +15,15 @@ namespace FormanceSDK.Models.Payments
 
     public class V3BankAccountRelatedAccount
     {
+        /// <summary>
+        /// Identifier of the provider-side account.
+        /// </summary>
         [JsonProperty("accountID")]
         public string AccountID { get; set; } = default!;
 
+        /// <summary>
+        /// When the bank account was forwarded to this provider.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
     }

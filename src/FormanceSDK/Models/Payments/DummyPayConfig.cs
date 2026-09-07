@@ -14,9 +14,15 @@ namespace FormanceSDK.Models.Payments
 
     public class DummyPayConfig
     {
+        /// <summary>
+        /// Human-readable name identifying this connector instance.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// Identifies the payment provider this configuration targets.
+        /// </summary>
         [JsonProperty("provider")]
         public string? Provider { get; set; } = "Dummypay";
 
@@ -26,15 +32,27 @@ namespace FormanceSDK.Models.Payments
         [JsonProperty("filePollingPeriod")]
         public string? FilePollingPeriod { get; set; } = "30s";
 
+        /// <summary>
+        /// Filesystem directory the connector reads payment files from.
+        /// </summary>
         [JsonProperty("directory")]
         public string Directory { get; set; } = default!;
 
+        /// <summary>
+        /// Only ingest files whose name starts with this prefix.
+        /// </summary>
         [JsonProperty("prefixFileToIngest")]
         public string? PrefixFileToIngest { get; set; }
 
+        /// <summary>
+        /// How many synthetic accounts to create on startup.
+        /// </summary>
         [JsonProperty("numberOfAccountsPreGenerated")]
         public long? NumberOfAccountsPreGenerated { get; set; }
 
+        /// <summary>
+        /// How many synthetic payments to create on startup.
+        /// </summary>
         [JsonProperty("numberOfPaymentsPreGenerated")]
         public long? NumberOfPaymentsPreGenerated { get; set; }
     }

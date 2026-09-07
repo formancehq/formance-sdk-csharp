@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3GetPoolResponse
     {
+        /// <summary>
+        /// A named group of accounts whose balances are aggregated together.
+        /// </summary>
         [JsonProperty("data")]
         public V3Pool Data { get; set; } = default!;
     }

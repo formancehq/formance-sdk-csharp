@@ -206,6 +206,9 @@ namespace FormanceSDK.Models.Payments
         [JsonProperty("destinationAccountID")]
         public string? DestinationAccountID { get; set; } = null;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
 

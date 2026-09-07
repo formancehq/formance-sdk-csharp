@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3ConnectorsCursorResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the list of connectors.
+        /// </summary>
         [JsonProperty("cursor")]
         public V3ConnectorsCursorResponseCursor Cursor { get; set; } = default!;
     }

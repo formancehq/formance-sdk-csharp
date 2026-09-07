@@ -14,20 +14,38 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// A named group of accounts whose balances are aggregated together.
+    /// </summary>
     public class Pool
     {
+        /// <summary>
+        /// Unique identifier of the pool.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable name of the pool.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// Whether a pool holds a fixed account list or is driven by a query.
+        /// </summary>
         [JsonProperty("type")]
         public PoolTypeEnum? Type { get; set; }
 
+        /// <summary>
+        /// Filter selecting the accounts a dynamic pool contains.
+        /// </summary>
         [JsonProperty("query")]
         public Dictionary<string, object>? Query { get; set; }
 
+        /// <summary>
+        /// Accounts currently in the pool.
+        /// </summary>
         [JsonProperty("accounts")]
         public List<string> Accounts { get; set; } = default!;
     }

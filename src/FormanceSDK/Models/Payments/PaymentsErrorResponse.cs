@@ -18,9 +18,15 @@ namespace FormanceSDK.Models.Payments
 
     public class PaymentsErrorResponsePayload
     {
+        /// <summary>
+        /// Machine-readable error code identifying the failure.
+        /// </summary>
         [JsonProperty("errorCode")]
         public PaymentsErrorsEnum ErrorCode { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable description of the error.
+        /// </summary>
         [JsonProperty("errorMessage")]
         public string ErrorMessage { get; set; } = default!;
     }

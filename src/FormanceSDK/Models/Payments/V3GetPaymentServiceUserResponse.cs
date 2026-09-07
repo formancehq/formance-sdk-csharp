@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3GetPaymentServiceUserResponse
     {
+        /// <summary>
+        /// An end user on whose behalf payments and open banking connections are made.
+        /// </summary>
         [JsonProperty("data")]
         public V3PaymentServiceUser Data { get; set; } = default!;
     }

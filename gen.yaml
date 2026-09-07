@@ -29,7 +29,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 csharp:
-  version: 6.0.0
+  version: 6.0.1
   additionalDependencies: []
   author: Formance
   baseErrorName: SDKBaseException

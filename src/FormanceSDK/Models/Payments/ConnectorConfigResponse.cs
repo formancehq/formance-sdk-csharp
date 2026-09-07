@@ -19,6 +19,9 @@ namespace FormanceSDK.Models.Payments
     /// </summary>
     public class ConnectorConfigResponse
     {
+        /// <summary>
+        /// A connector's configuration, whose shape depends on the provider.
+        /// </summary>
         [JsonProperty("data", NullValueHandling = NullValueHandling.Include)]
         public ConnectorConfig Data { get; set; } = default!;
 

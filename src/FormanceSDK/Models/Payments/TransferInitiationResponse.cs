@@ -18,6 +18,9 @@ namespace FormanceSDK.Models.Payments
     /// </summary>
     public class TransferInitiationResponse
     {
+        /// <summary>
+        /// A transfer Formance asked a connector to execute.
+        /// </summary>
         [JsonProperty("data")]
         public TransferInitiation Data { get; set; } = default!;
     }

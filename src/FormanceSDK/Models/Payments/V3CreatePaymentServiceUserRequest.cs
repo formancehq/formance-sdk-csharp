@@ -16,18 +16,33 @@ namespace FormanceSDK.Models.Payments
 
     public class V3CreatePaymentServiceUserRequest
     {
+        /// <summary>
+        /// Full name of the payment service user.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// How to reach the payment service user.
+        /// </summary>
         [JsonProperty("contactDetails")]
         public V3ContactDetailsRequest? ContactDetails { get; set; }
 
+        /// <summary>
+        /// A postal address to record on the payment service user.
+        /// </summary>
         [JsonProperty("address")]
         public V3AddressRequest? Address { get; set; }
 
+        /// <summary>
+        /// Bank accounts to associate with the user.
+        /// </summary>
         [JsonProperty("bankAccountIDs")]
         public List<string>? BankAccountIDs { get; set; } = null;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
     }

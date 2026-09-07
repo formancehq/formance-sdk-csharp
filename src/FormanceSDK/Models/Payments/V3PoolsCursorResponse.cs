@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3PoolsCursorResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the list of pools.
+        /// </summary>
         [JsonProperty("cursor")]
         public V3PoolsCursorResponseCursor Cursor { get; set; } = default!;
     }

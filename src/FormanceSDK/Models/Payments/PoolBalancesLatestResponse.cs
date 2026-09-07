@@ -19,6 +19,9 @@ namespace FormanceSDK.Models.Payments
     /// </summary>
     public class PoolBalancesLatestResponse
     {
+        /// <summary>
+        /// Most recent aggregated balances across a pool's accounts.
+        /// </summary>
         [JsonProperty("data")]
         public List<PoolBalance> Data { get; set; } = default!;
     }

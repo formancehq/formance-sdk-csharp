@@ -79,6 +79,9 @@ namespace FormanceSDK.Models.Payments
         }
     }
 
+    /// <summary>
+    /// A connector's configuration, whose shape depends on the provider.
+    /// </summary>
     [JsonConverter(typeof(ConnectorConfig.ConnectorConfigConverter))]
     public class ConnectorConfig
     {

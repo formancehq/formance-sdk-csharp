@@ -18,18 +18,33 @@ namespace FormanceSDK.Models.Payments
 
     public class PaymentAdjustment
     {
+        /// <summary>
+        /// Identifier the adjustment carries at the provider.
+        /// </summary>
         [JsonProperty("reference")]
         public string Reference { get; set; } = default!;
 
+        /// <summary>
+        /// When the adjustment occurred at the provider.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Where a payment stands in its lifecycle.
+        /// </summary>
         [JsonProperty("status")]
         public Models.Payments.PaymentStatus Status { get; set; } = default!;
 
+        /// <summary>
+        /// Amount carried by this adjustment.
+        /// </summary>
         [JsonProperty("amount")]
         public BigInteger Amount { get; set; } = default!;
 
+        /// <summary>
+        /// The provider's original payload for this adjustment.
+        /// </summary>
         [JsonProperty("raw")]
         public Dictionary<string, object> Raw { get; set; } = default!;
     }

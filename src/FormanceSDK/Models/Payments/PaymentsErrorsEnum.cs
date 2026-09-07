@@ -13,12 +13,23 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Machine-readable error code identifying the failure.
+    /// </summary>
     public enum PaymentsErrorsEnum
     {
         [JsonProperty("INTERNAL")]
         Internal,
         [JsonProperty("VALIDATION")]
         Validation,
+        [JsonProperty("INVALID_ID")]
+        InvalidId,
+        [JsonProperty("MISSING_OR_INVALID_BODY")]
+        MissingOrInvalidBody,
+        [JsonProperty("CONFLICT")]
+        Conflict,
+        [JsonProperty("CONNECTOR_CAPABILITY_NOT_SUPPORTED")]
+        ConnectorCapabilityNotSupported,
         [JsonProperty("NOT_FOUND")]
         NotFound,
     }

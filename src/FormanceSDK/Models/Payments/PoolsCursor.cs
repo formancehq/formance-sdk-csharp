@@ -18,6 +18,9 @@ namespace FormanceSDK.Models.Payments
     /// </summary>
     public class PoolsCursor
     {
+        /// <summary>
+        /// Paginated cursor wrapping the list of pools.
+        /// </summary>
         [JsonProperty("cursor")]
         public PoolsCursorCursor Cursor { get; set; } = default!;
     }

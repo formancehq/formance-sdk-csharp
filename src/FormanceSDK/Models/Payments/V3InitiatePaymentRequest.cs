@@ -18,33 +18,63 @@ namespace FormanceSDK.Models.Payments
 
     public class V3InitiatePaymentRequest
     {
+        /// <summary>
+        /// Caller-supplied identifier for the initiation, used to deduplicate retries.
+        /// </summary>
         [JsonProperty("reference")]
         public string Reference { get; set; } = default!;
 
+        /// <summary>
+        /// When the payment should be executed.
+        /// </summary>
         [JsonProperty("scheduledAt")]
         public DateTime ScheduledAt { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the connector to execute the payment through.
+        /// </summary>
         [JsonProperty("connectorID")]
         public string ConnectorID { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable description carried with the payment.
+        /// </summary>
         [JsonProperty("description")]
         public string Description { get; set; } = default!;
 
+        /// <summary>
+        /// Kind of movement a payment initiation performs, such as a transfer or a payout.
+        /// </summary>
         [JsonProperty("type")]
         public V3PaymentInitiationTypeEnum Type { get; set; } = default!;
 
+        /// <summary>
+        /// Amount to move, in the asset's smallest unit.
+        /// </summary>
         [JsonProperty("amount")]
         public BigInteger Amount { get; set; } = default!;
 
+        /// <summary>
+        /// Asset the payment is denominated in.
+        /// </summary>
         [JsonProperty("asset")]
         public string Asset { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the account the funds leave.
+        /// </summary>
         [JsonProperty("sourceAccountID")]
         public string? SourceAccountID { get; set; } = null;
 
+        /// <summary>
+        /// Identifier of the account the funds reach.
+        /// </summary>
         [JsonProperty("destinationAccountID")]
         public string? DestinationAccountID { get; set; }
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
     }

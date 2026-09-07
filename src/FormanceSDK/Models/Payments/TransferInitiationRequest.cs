@@ -18,36 +18,69 @@ namespace FormanceSDK.Models.Payments
 
     public class TransferInitiationRequest
     {
+        /// <summary>
+        /// Caller-supplied identifier for the initiation, used to deduplicate retries.
+        /// </summary>
         [JsonProperty("reference")]
         public string Reference { get; set; } = default!;
 
+        /// <summary>
+        /// When the transfer should be executed.
+        /// </summary>
         [JsonProperty("scheduledAt")]
         public DateTime ScheduledAt { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable description carried with the transfer.
+        /// </summary>
         [JsonProperty("description")]
         public string Description { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the account the funds leave.
+        /// </summary>
         [JsonProperty("sourceAccountID")]
         public string SourceAccountID { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the account the funds reach.
+        /// </summary>
         [JsonProperty("destinationAccountID")]
         public string DestinationAccountID { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the connector to execute the transfer through.
+        /// </summary>
         [JsonProperty("connectorID")]
         public string? ConnectorID { get; set; }
 
+        /// <summary>
+        /// Whether the funds move between your accounts or out to a third party.
+        /// </summary>
         [JsonProperty("type")]
         public TransferInitiationRequestType Type { get; set; } = default!;
 
+        /// <summary>
+        /// Amount to move, in the asset's smallest unit.
+        /// </summary>
         [JsonProperty("amount")]
         public BigInteger Amount { get; set; } = default!;
 
+        /// <summary>
+        /// Asset the transfer is denominated in.
+        /// </summary>
         [JsonProperty("asset")]
         public string Asset { get; set; } = default!;
 
+        /// <summary>
+        /// When true, the transfer executes immediately instead of waiting for approval.
+        /// </summary>
         [JsonProperty("validated")]
         public bool Validated { get; set; } = default!;
 
+        /// <summary>
+        /// Arbitrary key/value pairs to attach to the initiation.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
     }

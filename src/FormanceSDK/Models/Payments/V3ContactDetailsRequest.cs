@@ -12,11 +12,20 @@ namespace FormanceSDK.Models.Payments
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// How to reach the payment service user.
+    /// </summary>
     public class V3ContactDetailsRequest
     {
+        /// <summary>
+        /// Email address of the user.
+        /// </summary>
         [JsonProperty("email")]
         public string? Email { get; set; }
 
+        /// <summary>
+        /// Phone number of the user, in international format.
+        /// </summary>
         [JsonProperty("phoneNumber")]
         public string? PhoneNumber { get; set; }
     }

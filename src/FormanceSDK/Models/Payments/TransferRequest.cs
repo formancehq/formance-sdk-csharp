@@ -15,15 +15,27 @@ namespace FormanceSDK.Models.Payments
 
     public class TransferRequest
     {
+        /// <summary>
+        /// Amount to transfer, in the asset's smallest unit.
+        /// </summary>
         [JsonProperty("amount")]
         public BigInteger Amount { get; set; } = default!;
 
+        /// <summary>
+        /// Asset the transfer is denominated in.
+        /// </summary>
         [JsonProperty("asset")]
         public string Asset { get; set; } = default!;
 
+        /// <summary>
+        /// Provider-side account receiving the funds.
+        /// </summary>
         [JsonProperty("destination")]
         public string Destination { get; set; } = default!;
 
+        /// <summary>
+        /// Provider-side account the funds leave. Defaults to the connector's main account.
+        /// </summary>
         [JsonProperty("source")]
         public string? Source { get; set; }
     }

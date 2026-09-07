@@ -15,38 +15,74 @@ namespace FormanceSDK.Models.Payments
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// An account held at a payment provider, surfaced through a connector.
+    /// </summary>
     public class V3Account
     {
+        /// <summary>
+        /// Unique identifier of the account within Formance.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the connector the account belongs to.
+        /// </summary>
         [JsonProperty("connectorID")]
         public string ConnectorID { get; set; } = default!;
 
+        /// <summary>
+        /// Summary of a connector, without its configuration.
+        /// </summary>
         [JsonProperty("connector")]
         public V3ConnectorBase? Connector { get; set; }
 
+        /// <summary>
+        /// Name of the payment provider behind the connector.
+        /// </summary>
         [JsonProperty("provider")]
         public string Provider { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier the account carries at the provider.
+        /// </summary>
         [JsonProperty("reference")]
         public string Reference { get; set; } = default!;
 
+        /// <summary>
+        /// When the account was created at the provider.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Whether an account is internal to the provider or belongs to an external party.
+        /// </summary>
         [JsonProperty("type")]
         public V3AccountTypeEnum Type { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable name of the account.
+        /// </summary>
         [JsonProperty("name")]
         public string? Name { get; set; } = null;
 
+        /// <summary>
+        /// Asset the account is denominated in by default.
+        /// </summary>
         [JsonProperty("defaultAsset")]
         public string? DefaultAsset { get; set; } = null;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
 
+        /// <summary>
+        /// The provider's original payload, passed through untouched.
+        /// </summary>
         [JsonProperty("raw")]
         public Dictionary<string, object> Raw { get; set; } = default!;
     }

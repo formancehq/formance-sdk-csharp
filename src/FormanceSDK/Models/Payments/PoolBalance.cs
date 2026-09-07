@@ -16,12 +16,21 @@ namespace FormanceSDK.Models.Payments
 
     public class PoolBalance
     {
+        /// <summary>
+        /// Total held across the pool for this asset, in the asset's smallest unit.
+        /// </summary>
         [JsonProperty("amount")]
         public BigInteger Amount { get; set; } = default!;
 
+        /// <summary>
+        /// Asset the balance is denominated in.
+        /// </summary>
         [JsonProperty("asset")]
         public string Asset { get; set; } = default!;
 
+        /// <summary>
+        /// Accounts contributing to this balance.
+        /// </summary>
         [JsonProperty("relatedAccounts")]
         public List<string>? RelatedAccounts { get; set; } = null;
     }

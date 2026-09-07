@@ -18,6 +18,9 @@ namespace FormanceSDK.Models.Payments
     /// </summary>
     public class PoolResponse
     {
+        /// <summary>
+        /// A named group of accounts whose balances are aggregated together.
+        /// </summary>
         [JsonProperty("data")]
         public Pool Data { get; set; } = default!;
     }

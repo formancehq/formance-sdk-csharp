@@ -15,26 +15,50 @@ namespace FormanceSDK.Models.Payments
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// An end user on whose behalf payments and open banking connections are made.
+    /// </summary>
     public class V3PaymentServiceUser
     {
+        /// <summary>
+        /// Unique identifier of the payment service user.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Full name of the payment service user.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// When the user was registered.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// How to reach a payment service user.
+        /// </summary>
         [JsonProperty("contactDetails")]
         public V3ContactDetails? ContactDetails { get; set; }
 
+        /// <summary>
+        /// A postal address.
+        /// </summary>
         [JsonProperty("address")]
         public V3Address? Address { get; set; }
 
+        /// <summary>
+        /// Bank accounts associated with the user.
+        /// </summary>
         [JsonProperty("bankAccountIDs")]
         public List<string>? BankAccountIDs { get; set; } = null;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
     }

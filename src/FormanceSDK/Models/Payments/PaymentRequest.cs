@@ -17,33 +17,63 @@ namespace FormanceSDK.Models.Payments
 
     public class PaymentRequest
     {
+        /// <summary>
+        /// Identifier the payment carries at the provider.
+        /// </summary>
         [JsonProperty("reference")]
         public string Reference { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the connector the payment belongs to.
+        /// </summary>
         [JsonProperty("connectorID")]
         public string ConnectorID { get; set; } = default!;
 
+        /// <summary>
+        /// When the payment was created at the provider.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Amount of the payment, in the asset's smallest unit.
+        /// </summary>
         [JsonProperty("amount")]
         public BigInteger Amount { get; set; } = default!;
 
+        /// <summary>
+        /// Direction of a payment.
+        /// </summary>
         [JsonProperty("type")]
         public Models.Payments.PaymentType Type { get; set; } = default!;
 
+        /// <summary>
+        /// Where a payment stands in its lifecycle.
+        /// </summary>
         [JsonProperty("status")]
         public Models.Payments.PaymentStatus Status { get; set; } = default!;
 
+        /// <summary>
+        /// Payment scheme or rail a payment travels over.
+        /// </summary>
         [JsonProperty("scheme")]
         public PaymentScheme Scheme { get; set; } = default!;
 
+        /// <summary>
+        /// Asset the payment is denominated in.
+        /// </summary>
         [JsonProperty("asset")]
         public string Asset { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the account the funds leave.
+        /// </summary>
         [JsonProperty("sourceAccountID")]
         public string? SourceAccountID { get; set; }
 
+        /// <summary>
+        /// Identifier of the account the funds reach.
+        /// </summary>
         [JsonProperty("destinationAccountID")]
         public string? DestinationAccountID { get; set; }
     }

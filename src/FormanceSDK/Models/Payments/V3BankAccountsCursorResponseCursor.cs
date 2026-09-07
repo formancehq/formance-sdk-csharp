@@ -14,6 +14,9 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Paginated cursor wrapping the list of bank accounts.
+    /// </summary>
     public class V3BankAccountsCursorResponseCursor
     {
         [JsonProperty("pageSize")]

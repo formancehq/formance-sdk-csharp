@@ -14,6 +14,9 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Paginated cursor wrapping the list of pools.
+    /// </summary>
     public class V3PoolsCursorResponseCursor
     {
         [JsonProperty("pageSize")]

@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3PaymentServiceUserLinkAttemptsCursorResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the user's link attempts.
+        /// </summary>
         [JsonProperty("cursor")]
         public V3PaymentServiceUserLinkAttemptsCursorResponseCursor Cursor { get; set; } = default!;
     }

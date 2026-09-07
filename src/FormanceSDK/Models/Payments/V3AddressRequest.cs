@@ -12,23 +12,44 @@ namespace FormanceSDK.Models.Payments
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// A postal address to record on the payment service user.
+    /// </summary>
     public class V3AddressRequest
     {
+        /// <summary>
+        /// Street number of the address.
+        /// </summary>
         [JsonProperty("streetNumber")]
         public string? StreetNumber { get; set; }
 
+        /// <summary>
+        /// Street name of the address.
+        /// </summary>
         [JsonProperty("streetName")]
         public string? StreetName { get; set; }
 
+        /// <summary>
+        /// City of the address.
+        /// </summary>
         [JsonProperty("city")]
         public string? City { get; set; }
 
+        /// <summary>
+        /// Region, state or province of the address.
+        /// </summary>
         [JsonProperty("region")]
         public string? Region { get; set; }
 
+        /// <summary>
+        /// Postal or ZIP code of the address.
+        /// </summary>
         [JsonProperty("postalCode")]
         public string? PostalCode { get; set; }
 
+        /// <summary>
+        /// Country of the address, as an ISO 3166-1 alpha-2 code.
+        /// </summary>
         [JsonProperty("country")]
         public string? Country { get; set; }
     }

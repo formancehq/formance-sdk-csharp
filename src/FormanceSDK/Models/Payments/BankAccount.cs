@@ -15,41 +15,80 @@ namespace FormanceSDK.Models.Payments
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// A bank account registered with Formance and forwardable to connectors.
+    /// </summary>
     public class BankAccount
     {
+        /// <summary>
+        /// Unique identifier of the bank account within Formance.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable name of the bank account.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// When the bank account was registered.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Country the account is held in, as an ISO 3166-1 alpha-2 code.
+        /// </summary>
         [JsonProperty("country")]
         public string Country { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the connector the account has been forwarded to.
+        /// </summary>
         [JsonProperty("connectorID")]
         public string? ConnectorID { get; set; }
 
+        /// <summary>
+        /// Identifier of the provider-side account created by forwarding.
+        /// </summary>
         [JsonProperty("accountID")]
         public string? AccountID { get; set; }
 
+        /// <summary>
+        /// Name of the payment provider behind the connector.
+        /// </summary>
         [JsonProperty("provider")]
         public string? Provider { get; set; }
 
+        /// <summary>
+        /// International bank account number, when the account is identified that way.
+        /// </summary>
         [JsonProperty("iban")]
         public string? Iban { get; set; }
 
+        /// <summary>
+        /// Domestic account number, when the account is identified that way.
+        /// </summary>
         [JsonProperty("accountNumber")]
         public string? AccountNumber { get; set; }
 
+        /// <summary>
+        /// SWIFT/BIC code identifying the bank.
+        /// </summary>
         [JsonProperty("swiftBicCode")]
         public string? SwiftBicCode { get; set; }
 
+        /// <summary>
+        /// Provider-side accounts this bank account has been forwarded to.
+        /// </summary>
         [JsonProperty("relatedAccounts")]
         public List<BankAccountRelatedAccounts>? RelatedAccounts { get; set; }
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the bank account.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
     }

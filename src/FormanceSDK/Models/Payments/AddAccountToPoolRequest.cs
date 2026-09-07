@@ -14,6 +14,9 @@ namespace FormanceSDK.Models.Payments
 
     public class AddAccountToPoolRequest
     {
+        /// <summary>
+        /// Identifier of the account to add to the pool.
+        /// </summary>
         [JsonProperty("accountID")]
         public string AccountID { get; set; } = default!;
     }

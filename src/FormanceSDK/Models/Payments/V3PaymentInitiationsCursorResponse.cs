@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3PaymentInitiationsCursorResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the list of payment initiations.
+        /// </summary>
         [JsonProperty("cursor")]
         public V3PaymentInitiationsCursorResponseCursor Cursor { get; set; } = default!;
     }

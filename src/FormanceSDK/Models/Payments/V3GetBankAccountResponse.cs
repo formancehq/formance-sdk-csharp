@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3GetBankAccountResponse
     {
+        /// <summary>
+        /// A bank account registered with Formance and forwardable to connectors.
+        /// </summary>
         [JsonProperty("data")]
         public V3BankAccount Data { get; set; } = default!;
     }

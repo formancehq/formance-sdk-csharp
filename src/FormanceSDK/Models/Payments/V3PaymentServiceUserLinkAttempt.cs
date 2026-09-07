@@ -16,24 +16,45 @@ namespace FormanceSDK.Models.Payments
 
     public class V3PaymentServiceUserLinkAttempt
     {
+        /// <summary>
+        /// Unique identifier of the link attempt.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the payment service user the attempt belongs to.
+        /// </summary>
         [JsonProperty("psuID")]
         public string PsuID { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the connector the user is linking to.
+        /// </summary>
         [JsonProperty("connectorID")]
         public string ConnectorID { get; set; } = default!;
 
+        /// <summary>
+        /// When the attempt was started.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Where a link attempt stands, from pending through to completed on success or exited when the user abandoned the flow or the provider reported an error.
+        /// </summary>
         [JsonProperty("status")]
         public V3OpenBankingConnectionAttemptStatusEnum Status { get; set; } = default!;
 
+        /// <summary>
+        /// URL the user is sent back to once the provider's flow finishes.
+        /// </summary>
         [JsonProperty("clientRedirectURL")]
         public string ClientRedirectURL { get; set; } = default!;
 
+        /// <summary>
+        /// Why the attempt exited, absent when it completed.
+        /// </summary>
         [JsonProperty("error")]
         public string? Error { get; set; } = null;
     }

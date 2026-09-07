@@ -16,6 +16,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3ConnectorCapabilityResponse
     {
+        /// <summary>
+        /// Operations this connector supports.
+        /// </summary>
         [JsonProperty("data")]
         public List<V3Capability> Data { get; set; } = default!;
     }

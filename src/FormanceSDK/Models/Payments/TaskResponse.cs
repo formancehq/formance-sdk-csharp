@@ -19,6 +19,9 @@ namespace FormanceSDK.Models.Payments
     /// </summary>
     public class TaskResponse
     {
+        /// <summary>
+        /// The requested task.
+        /// </summary>
         [JsonProperty("data", NullValueHandling = NullValueHandling.Include)]
         public TaskResponseData Data { get; set; } = default!;
     }

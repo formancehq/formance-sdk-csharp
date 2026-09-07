@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3InitiatePaymentResponse
     {
+        /// <summary>
+        /// The task tracking the initiation, which completes asynchronously.
+        /// </summary>
         [JsonProperty("data")]
         public V3InitiatePaymentResponseData Data { get; set; } = default!;
     }

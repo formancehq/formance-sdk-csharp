@@ -14,6 +14,9 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Paginated cursor wrapping the user's open banking connections.
+    /// </summary>
     public class V3PaymentServiceUserConnectionsCursorResponseCursor
     {
         [JsonProperty("pageSize")]

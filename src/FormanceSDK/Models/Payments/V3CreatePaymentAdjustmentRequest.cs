@@ -18,21 +18,39 @@ namespace FormanceSDK.Models.Payments
 
     public class V3CreatePaymentAdjustmentRequest
     {
+        /// <summary>
+        /// Identifier the adjustment carries at the provider.
+        /// </summary>
         [JsonProperty("reference")]
         public string Reference { get; set; } = default!;
 
+        /// <summary>
+        /// When the adjustment occurred at the provider.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Where a payment stands in its lifecycle.
+        /// </summary>
         [JsonProperty("status")]
         public V3PaymentStatusEnum Status { get; set; } = default!;
 
+        /// <summary>
+        /// Amount carried by this adjustment.
+        /// </summary>
         [JsonProperty("amount")]
         public BigInteger? Amount { get; set; }
 
+        /// <summary>
+        /// Asset the adjustment is denominated in.
+        /// </summary>
         [JsonProperty("asset")]
         public string? Asset { get; set; }
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
     }

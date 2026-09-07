@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3GetTaskResponse
     {
+        /// <summary>
+        /// An asynchronous unit of work, tracking an operation that completes in the background.
+        /// </summary>
         [JsonProperty("data")]
         public V3Task Data { get; set; } = default!;
     }

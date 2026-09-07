@@ -12,6 +12,9 @@ namespace FormanceSDK.Models.Payments
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// The task tracking the uninstall, which completes asynchronously.
+    /// </summary>
     public class V3UninstallConnectorResponseData
     {
         /// <summary>

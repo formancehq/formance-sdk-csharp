@@ -14,9 +14,15 @@ namespace FormanceSDK.Models.Payments
 
     public class StripeConfig
     {
+        /// <summary>
+        /// Human-readable name identifying this connector instance.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// Identifies the payment provider this configuration targets.
+        /// </summary>
         [JsonProperty("provider")]
         public string? Provider { get; set; } = "Stripe";
 
@@ -26,6 +32,9 @@ namespace FormanceSDK.Models.Payments
         [JsonProperty("pollingPeriod")]
         public string? PollingPeriod { get; set; } = "30m";
 
+        /// <summary>
+        /// API key issued by Stripe, used to authenticate the connector's requests.
+        /// </summary>
         [JsonProperty("apiKey")]
         public string ApiKey { get; set; } = default!;
 

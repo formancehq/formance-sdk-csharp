@@ -17,24 +17,45 @@ namespace FormanceSDK.Models.Payments
 
     public class V3PaymentServiceUserConnection
     {
+        /// <summary>
+        /// Identifier of the open banking connection at the provider.
+        /// </summary>
         [JsonProperty("connectionID")]
         public string ConnectionID { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the connector holding the connection.
+        /// </summary>
         [JsonProperty("connectorID")]
         public string ConnectorID { get; set; } = default!;
 
+        /// <summary>
+        /// When the connection was established.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// When data was last refreshed over this connection.
+        /// </summary>
         [JsonProperty("dataUpdatedAt")]
         public DateTime DataUpdatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Whether an open banking connection is still usable or needs the user to reconnect.
+        /// </summary>
         [JsonProperty("status")]
         public V3ConnectionStatusEnum Status { get; set; } = default!;
 
+        /// <summary>
+        /// Why the connection is failing, absent while it is healthy.
+        /// </summary>
         [JsonProperty("error")]
         public string? Error { get; set; } = null;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
     }

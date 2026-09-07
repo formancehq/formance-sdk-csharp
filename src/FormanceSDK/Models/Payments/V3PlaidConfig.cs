@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3PlaidConfig
     {
+        [JsonProperty("baseURL")]
+        public string? BaseURL { get; set; }
+
         [JsonProperty("clientID")]
         public string ClientID { get; set; } = default!;
 

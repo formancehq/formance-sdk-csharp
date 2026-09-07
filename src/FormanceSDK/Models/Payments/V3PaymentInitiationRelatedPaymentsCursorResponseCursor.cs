@@ -14,6 +14,9 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Paginated cursor wrapping the payments produced by the initiation.
+    /// </summary>
     public class V3PaymentInitiationRelatedPaymentsCursorResponseCursor
     {
         [JsonProperty("pageSize")]

@@ -14,15 +14,27 @@ namespace FormanceSDK.Models.Payments
 
     public class GenericConfig
     {
+        /// <summary>
+        /// Human-readable name identifying this connector instance.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// Identifies the payment provider this configuration targets.
+        /// </summary>
         [JsonProperty("provider")]
         public string? Provider { get; set; } = "Generic";
 
+        /// <summary>
+        /// API key used to authenticate the connector's requests.
+        /// </summary>
         [JsonProperty("apiKey")]
         public string ApiKey { get; set; } = default!;
 
+        /// <summary>
+        /// Base URL of the API the connector calls.
+        /// </summary>
         [JsonProperty("endpoint")]
         public string Endpoint { get; set; } = default!;
 

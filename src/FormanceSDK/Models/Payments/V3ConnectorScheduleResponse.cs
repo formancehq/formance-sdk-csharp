@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3ConnectorScheduleResponse
     {
+        /// <summary>
+        /// A recurring job a connector runs to fetch data from its provider.
+        /// </summary>
         [JsonProperty("data")]
         public V3Schedule Data { get; set; } = default!;
     }

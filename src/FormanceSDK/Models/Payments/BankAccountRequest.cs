@@ -15,24 +15,45 @@ namespace FormanceSDK.Models.Payments
 
     public class BankAccountRequest
     {
+        /// <summary>
+        /// Country the account is held in, as an ISO 3166-1 alpha-2 code.
+        /// </summary>
         [JsonProperty("country")]
         public string Country { get; set; } = default!;
 
+        /// <summary>
+        /// Connector to forward the bank account to on creation.
+        /// </summary>
         [JsonProperty("connectorID")]
         public string? ConnectorID { get; set; }
 
+        /// <summary>
+        /// Human-readable name for the bank account.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// Domestic account number. Supply this or an IBAN.
+        /// </summary>
         [JsonProperty("accountNumber")]
         public string? AccountNumber { get; set; }
 
+        /// <summary>
+        /// International bank account number. Supply this or an account number.
+        /// </summary>
         [JsonProperty("iban")]
         public string? Iban { get; set; }
 
+        /// <summary>
+        /// SWIFT/BIC code identifying the bank.
+        /// </summary>
         [JsonProperty("swiftBicCode")]
         public string? SwiftBicCode { get; set; }
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the bank account.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
     }

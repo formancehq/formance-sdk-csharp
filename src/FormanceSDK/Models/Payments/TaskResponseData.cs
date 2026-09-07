@@ -70,6 +70,9 @@ namespace FormanceSDK.Models.Payments
         }
     }
 
+    /// <summary>
+    /// The requested task.
+    /// </summary>
     [JsonConverter(typeof(TaskResponseData.TaskResponseDataConverter))]
     public class TaskResponseData
     {

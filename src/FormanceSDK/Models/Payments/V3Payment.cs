@@ -16,50 +16,98 @@ namespace FormanceSDK.Models.Payments
     using System.Collections.Generic;
     using System.Numerics;
 
+    /// <summary>
+    /// A payment observed at a provider and surfaced through a connector.
+    /// </summary>
     public class V3Payment
     {
+        /// <summary>
+        /// Unique identifier of the payment within Formance.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the connector the payment belongs to.
+        /// </summary>
         [JsonProperty("connectorID")]
         public string ConnectorID { get; set; } = default!;
 
+        /// <summary>
+        /// Name of the payment provider behind the connector.
+        /// </summary>
         [JsonProperty("provider")]
         public string Provider { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier the payment carries at the provider.
+        /// </summary>
         [JsonProperty("reference")]
         public string Reference { get; set; } = default!;
 
+        /// <summary>
+        /// When the payment was created at the provider.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Direction of a payment.
+        /// </summary>
         [JsonProperty("type")]
         public V3PaymentTypeEnum Type { get; set; } = default!;
 
+        /// <summary>
+        /// Amount the payment was created with, before any adjustment.
+        /// </summary>
         [JsonProperty("initialAmount")]
         public BigInteger InitialAmount { get; set; } = default!;
 
+        /// <summary>
+        /// Current amount of the payment after applying its adjustments.
+        /// </summary>
         [JsonProperty("amount")]
         public BigInteger Amount { get; set; } = default!;
 
+        /// <summary>
+        /// Asset the payment is denominated in.
+        /// </summary>
         [JsonProperty("asset")]
         public string Asset { get; set; } = default!;
 
+        /// <summary>
+        /// Payment scheme or rail the payment travelled over.
+        /// </summary>
         [JsonProperty("scheme")]
         public string Scheme { get; set; } = default!;
 
+        /// <summary>
+        /// Where a payment stands in its lifecycle.
+        /// </summary>
         [JsonProperty("status")]
         public V3PaymentStatusEnum Status { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the account the funds left.
+        /// </summary>
         [JsonProperty("sourceAccountID")]
         public string? SourceAccountID { get; set; } = null;
 
+        /// <summary>
+        /// Identifier of the account the funds reached.
+        /// </summary>
         [JsonProperty("destinationAccountID")]
         public string? DestinationAccountID { get; set; } = null;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
 
+        /// <summary>
+        /// Successive changes to the payment's amount and status, newest first.
+        /// </summary>
         [JsonProperty("adjustments")]
         public List<V3PaymentAdjustment>? Adjustments { get; set; } = null;
     }

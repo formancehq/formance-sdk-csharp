@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Whether an account is internal to the provider or belongs to an external party.
+    /// </summary>
     public enum V3AccountTypeEnum
     {
         [JsonProperty("UNKNOWN")]

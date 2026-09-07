@@ -13,20 +13,38 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Summary of a connector, without its configuration.
+    /// </summary>
     public class V3ConnectorBase
     {
+        /// <summary>
+        /// Unique identifier of the connector.
+        /// </summary>
         [JsonProperty("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// Stable reference identifying the connector.
+        /// </summary>
         [JsonProperty("reference")]
         public string? Reference { get; set; }
 
+        /// <summary>
+        /// Human-readable name of the connector instance.
+        /// </summary>
         [JsonProperty("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// When the connector was installed.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime? CreatedAt { get; set; }
 
+        /// <summary>
+        /// Name of the payment provider behind the connector.
+        /// </summary>
         [JsonProperty("provider")]
         public string? Provider { get; set; }
     }

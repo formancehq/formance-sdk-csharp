@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Whether an open banking connection is still usable or needs the user to reconnect.
+    /// </summary>
     public enum V3ConnectionStatusEnum
     {
         [JsonProperty("ACTIVE")]

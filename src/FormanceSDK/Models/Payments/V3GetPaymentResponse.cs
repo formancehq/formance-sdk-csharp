@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3GetPaymentResponse
     {
+        /// <summary>
+        /// A payment observed at a provider and surfaced through a connector.
+        /// </summary>
         [JsonProperty("data")]
         public V3Payment Data { get; set; } = default!;
     }

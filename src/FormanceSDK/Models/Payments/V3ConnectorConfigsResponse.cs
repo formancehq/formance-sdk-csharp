@@ -16,6 +16,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3ConnectorConfigsResponse
     {
+        /// <summary>
+        /// Configuration schema of every available connector, keyed by provider.
+        /// </summary>
         [JsonProperty("data")]
         public Dictionary<string, Dictionary<string, V3ConnectorConfigsResponseData>> Data { get; set; } = default!;
     }

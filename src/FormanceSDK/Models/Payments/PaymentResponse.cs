@@ -18,6 +18,9 @@ namespace FormanceSDK.Models.Payments
     /// </summary>
     public class PaymentResponse
     {
+        /// <summary>
+        /// A payment observed at a provider and surfaced through a connector.
+        /// </summary>
         [JsonProperty("data")]
         public Models.Payments.Payment Data { get; set; } = default!;
     }

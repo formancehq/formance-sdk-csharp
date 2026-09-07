@@ -18,6 +18,9 @@ namespace FormanceSDK.Models.Payments
     /// </summary>
     public class TransferInitiationsCursor
     {
+        /// <summary>
+        /// Paginated cursor wrapping the list of transfer initiations.
+        /// </summary>
         [JsonProperty("cursor")]
         public TransferInitiationsCursorCursor Cursor { get; set; } = default!;
     }

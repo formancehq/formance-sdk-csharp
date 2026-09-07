@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Where a payment stands in its lifecycle.
+    /// </summary>
     public enum PaymentStatus
     {
         [JsonProperty("PENDING")]

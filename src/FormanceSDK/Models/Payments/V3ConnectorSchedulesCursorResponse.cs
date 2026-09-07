@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3ConnectorSchedulesCursorResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the connector's schedules.
+        /// </summary>
         [JsonProperty("cursor")]
         public V3ConnectorSchedulesCursorResponseCursor Cursor { get; set; } = default!;
     }

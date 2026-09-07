@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3UpdatePoolQueryRequest
     {
+        /// <summary>
+        /// Filter selecting the accounts a dynamic pool contains.
+        /// </summary>
         [JsonProperty("query")]
         public Dictionary<string, object> Query { get; set; } = default!;
     }

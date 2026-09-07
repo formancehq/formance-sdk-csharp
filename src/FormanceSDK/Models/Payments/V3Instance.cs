@@ -15,27 +15,51 @@ namespace FormanceSDK.Models.Payments
 
     public class V3Instance
     {
+        /// <summary>
+        /// Unique identifier of the run.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the connector this run belongs to.
+        /// </summary>
         [JsonProperty("connectorID")]
         public string ConnectorID { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the schedule that started this run.
+        /// </summary>
         [JsonProperty("scheduleID")]
         public string ScheduleID { get; set; } = default!;
 
+        /// <summary>
+        /// When the run started.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// When the run was last updated.
+        /// </summary>
         [JsonProperty("updatedAt")]
         public DateTime UpdatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Whether the run has finished, successfully or not.
+        /// </summary>
         [JsonProperty("terminated")]
         public bool Terminated { get; set; } = default!;
 
+        /// <summary>
+        /// When the run finished, absent while it is still running.
+        /// </summary>
         [JsonProperty("terminatedAt")]
         public DateTime? TerminatedAt { get; set; }
 
+        /// <summary>
+        /// Why the run failed, absent when it succeeded.
+        /// </summary>
         [JsonProperty("error")]
         public string? Error { get; set; } = null;
     }

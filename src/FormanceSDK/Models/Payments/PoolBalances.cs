@@ -14,8 +14,14 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Aggregated balances across a pool's accounts.
+    /// </summary>
     public class PoolBalances
     {
+        /// <summary>
+        /// Aggregated balance per asset across the pool's accounts.
+        /// </summary>
         [JsonProperty("balances")]
         public List<PoolBalance> Balances { get; set; } = default!;
     }

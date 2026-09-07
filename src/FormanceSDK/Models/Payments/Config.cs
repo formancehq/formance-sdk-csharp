@@ -11,6 +11,9 @@ namespace FormanceSDK.Models.Payments
 {
     using FormanceSDK.Utils;
 
+    /// <summary>
+    /// The connector's configuration, whose shape depends on the provider.
+    /// </summary>
     public class Config
     {
     }

@@ -16,59 +16,116 @@ namespace FormanceSDK.Models.Payments
     using System.Collections.Generic;
     using System.Numerics;
 
+    /// <summary>
+    /// A transfer Formance asked a connector to execute.
+    /// </summary>
     public class TransferInitiation
     {
+        /// <summary>
+        /// Unique identifier of the transfer initiation.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Caller-supplied identifier for the initiation.
+        /// </summary>
         [JsonProperty("reference")]
         public string Reference { get; set; } = default!;
 
+        /// <summary>
+        /// When the initiation was created.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// When the transfer is scheduled to execute.
+        /// </summary>
         [JsonProperty("scheduledAt")]
         public DateTime ScheduledAt { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable description carried with the transfer.
+        /// </summary>
         [JsonProperty("description")]
         public string Description { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the account the funds leave.
+        /// </summary>
         [JsonProperty("sourceAccountID")]
         public string SourceAccountID { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the account the funds reach.
+        /// </summary>
         [JsonProperty("destinationAccountID")]
         public string DestinationAccountID { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the connector executing the transfer.
+        /// </summary>
         [JsonProperty("connectorID")]
         public string ConnectorID { get; set; } = default!;
 
+        /// <summary>
+        /// Name of the payment provider behind the connector.
+        /// </summary>
         [JsonProperty("provider", NullValueHandling = NullValueHandling.Include)]
         public string? Provider { get; set; }
 
+        /// <summary>
+        /// Whether the funds move between your accounts or out to a third party.
+        /// </summary>
         [JsonProperty("type")]
         public Models.Payments.Type Type { get; set; } = default!;
 
+        /// <summary>
+        /// Amount to move, in the asset's smallest unit.
+        /// </summary>
         [JsonProperty("amount")]
         public BigInteger Amount { get; set; } = default!;
 
+        /// <summary>
+        /// Amount the initiation was created with, before any adjustment.
+        /// </summary>
         [JsonProperty("initialAmount")]
         public BigInteger InitialAmount { get; set; } = default!;
 
+        /// <summary>
+        /// Asset the transfer is denominated in.
+        /// </summary>
         [JsonProperty("asset")]
         public string Asset { get; set; } = default!;
 
+        /// <summary>
+        /// Where a transfer initiation stands in its lifecycle.
+        /// </summary>
         [JsonProperty("status")]
         public TransferInitiationStatus Status { get; set; } = default!;
 
+        /// <summary>
+        /// Why the initiation failed, absent when it succeeded.
+        /// </summary>
         [JsonProperty("error")]
         public string? Error { get; set; } = null;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the initiation.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
 
+        /// <summary>
+        /// Payments produced by this initiation.
+        /// </summary>
         [JsonProperty("relatedPayments")]
         public List<TransferInitiationPayments>? RelatedPayments { get; set; } = null;
 
+        /// <summary>
+        /// Successive status changes recorded against the initiation.
+        /// </summary>
         [JsonProperty("relatedAdjustments")]
         public List<TransferInitiationAdjustments>? RelatedAdjustments { get; set; }
     }

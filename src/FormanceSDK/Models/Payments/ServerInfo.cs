@@ -17,9 +17,15 @@ namespace FormanceSDK.Models.Payments
     /// </summary>
     public class ServerInfo
     {
+        /// <summary>
+        /// Version of the payments service.
+        /// </summary>
         [JsonProperty("version")]
         public string? Version { get; set; }
 
+        /// <summary>
+        /// Whether the service is running in debug mode.
+        /// </summary>
         [JsonProperty("debug")]
         public bool? Debug { get; set; }
     }

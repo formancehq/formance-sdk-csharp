@@ -19,6 +19,9 @@ namespace FormanceSDK.Models.Payments
     /// </summary>
     public class ConnectorsResponse
     {
+        /// <summary>
+        /// The connectors installed on this stack.
+        /// </summary>
         [JsonProperty("data")]
         public List<Models.Payments.Data> Data { get; set; } = default!;
     }

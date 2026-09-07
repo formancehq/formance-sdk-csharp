@@ -14,9 +14,15 @@ namespace FormanceSDK.Models.Payments
 
     public class V3PaymentServiceUserCreateLinkResponse
     {
+        /// <summary>
+        /// Identifier of the link attempt this URL belongs to.
+        /// </summary>
         [JsonProperty("attemptID")]
         public string AttemptID { get; set; } = default!;
 
+        /// <summary>
+        /// URL to send the user to so they can authorise the connection.
+        /// </summary>
         [JsonProperty("link")]
         public string Link { get; set; } = default!;
     }

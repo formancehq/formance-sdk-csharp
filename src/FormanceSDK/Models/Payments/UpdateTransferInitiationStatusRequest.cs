@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class UpdateTransferInitiationStatusRequest
     {
+        /// <summary>
+        /// Whether to approve or reject the pending transfer.
+        /// </summary>
         [JsonProperty("status")]
         public Models.Payments.Status Status { get; set; } = default!;
     }

@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Where a link attempt stands, from pending through to completed on success or exited when the user abandoned the flow or the provider reported an error.
+    /// </summary>
     public enum V3OpenBankingConnectionAttemptStatusEnum
     {
         [JsonProperty("pending")]

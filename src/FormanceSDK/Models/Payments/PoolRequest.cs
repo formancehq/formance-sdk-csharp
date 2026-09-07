@@ -18,15 +18,21 @@ namespace FormanceSDK.Models.Payments
     /// </summary>
     public class PoolRequest
     {
+        /// <summary>
+        /// Human-readable name for the pool.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
         /// <summary>
-        /// The same query than in ListAccount. Allowed properties are id, reference, connector_id, type, default_asset, name, psu_id, open_banking_connection_id and metadata.
+        /// The same query as in ListAccount. Allowed properties are id, reference, connector_id, type, default_asset, name, psu_id, open_banking_connection_id and metadata.
         /// </summary>
         [JsonProperty("query")]
         public Dictionary<string, object>? Query { get; set; }
 
+        /// <summary>
+        /// Accounts to place in the pool. Omit when the pool is driven by a query.
+        /// </summary>
         [JsonProperty("accountIDs")]
         public List<string>? AccountIDs { get; set; }
     }

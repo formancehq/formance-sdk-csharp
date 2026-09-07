@@ -18,24 +18,45 @@ namespace FormanceSDK.Models.Payments
 
     public class V3PaymentInitiationAdjustment
     {
+        /// <summary>
+        /// Unique identifier of the adjustment.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// When the adjustment was recorded.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Where a payment initiation stands in its lifecycle.
+        /// </summary>
         [JsonProperty("status")]
         public V3PaymentInitiationStatusEnum Status { get; set; } = default!;
 
+        /// <summary>
+        /// Amount carried by this adjustment.
+        /// </summary>
         [JsonProperty("amount")]
         public BigInteger? Amount { get; set; }
 
+        /// <summary>
+        /// Asset the adjustment is denominated in.
+        /// </summary>
         [JsonProperty("asset")]
         public string? Asset { get; set; }
 
+        /// <summary>
+        /// Why this step failed, absent when it succeeded.
+        /// </summary>
         [JsonProperty("error")]
         public string? Error { get; set; } = null;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
     }

@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3RetryPaymentInitiationResponse
     {
+        /// <summary>
+        /// The task tracking the retry, which completes asynchronously.
+        /// </summary>
         [JsonProperty("data")]
         public V3RetryPaymentInitiationResponseData Data { get; set; } = default!;
     }

@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3ConversionsCursorResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the list of conversions.
+        /// </summary>
         [JsonProperty("cursor")]
         public V3ConversionsCursorResponseCursor Cursor { get; set; } = default!;
     }

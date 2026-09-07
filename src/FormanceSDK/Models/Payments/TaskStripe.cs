@@ -16,24 +16,45 @@ namespace FormanceSDK.Models.Payments
 
     public class TaskStripe
     {
+        /// <summary>
+        /// Unique identifier of the task.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the connector the task runs against.
+        /// </summary>
         [JsonProperty("connectorID")]
         public string ConnectorID { get; set; } = default!;
 
+        /// <summary>
+        /// When the task was created.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// When the task was last updated.
+        /// </summary>
         [JsonProperty("updatedAt")]
         public DateTime UpdatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Where a task stands, from pending or active through to stopped, terminated or failed.
+        /// </summary>
         [JsonProperty("status")]
         public TaskStatus Status { get; set; } = default!;
 
+        /// <summary>
+        /// Internal progress state the task resumes from.
+        /// </summary>
         [JsonProperty("state")]
         public Models.Payments.State? State { get; set; } = null;
 
+        /// <summary>
+        /// Why the task failed, absent when it succeeded.
+        /// </summary>
         [JsonProperty("error")]
         public string? Error { get; set; } = null;
 

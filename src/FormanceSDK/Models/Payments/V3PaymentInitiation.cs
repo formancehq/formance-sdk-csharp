@@ -16,50 +16,98 @@ namespace FormanceSDK.Models.Payments
     using System.Collections.Generic;
     using System.Numerics;
 
+    /// <summary>
+    /// A payment Formance asked a connector to execute.
+    /// </summary>
     public class V3PaymentInitiation
     {
+        /// <summary>
+        /// Unique identifier of the payment initiation.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the connector executing the payment.
+        /// </summary>
         [JsonProperty("connectorID")]
         public string ConnectorID { get; set; } = default!;
 
+        /// <summary>
+        /// Name of the payment provider behind the connector.
+        /// </summary>
         [JsonProperty("provider")]
         public string Provider { get; set; } = default!;
 
+        /// <summary>
+        /// Caller-supplied identifier for the initiation.
+        /// </summary>
         [JsonProperty("reference")]
         public string Reference { get; set; } = default!;
 
+        /// <summary>
+        /// When the initiation was created.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// When the payment is scheduled to execute.
+        /// </summary>
         [JsonProperty("scheduledAt")]
         public DateTime ScheduledAt { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable description carried with the payment.
+        /// </summary>
         [JsonProperty("description")]
         public string Description { get; set; } = default!;
 
+        /// <summary>
+        /// Kind of movement a payment initiation performs, such as a transfer or a payout.
+        /// </summary>
         [JsonProperty("type")]
         public V3PaymentInitiationTypeEnum Type { get; set; } = default!;
 
+        /// <summary>
+        /// Amount to move, in the asset's smallest unit.
+        /// </summary>
         [JsonProperty("amount")]
         public BigInteger Amount { get; set; } = default!;
 
+        /// <summary>
+        /// Asset the payment is denominated in.
+        /// </summary>
         [JsonProperty("asset")]
         public string Asset { get; set; } = default!;
 
+        /// <summary>
+        /// Where a payment initiation stands in its lifecycle.
+        /// </summary>
         [JsonProperty("status")]
         public V3PaymentInitiationStatusEnum Status { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the account the funds leave.
+        /// </summary>
         [JsonProperty("sourceAccountID")]
         public string? SourceAccountID { get; set; }
 
+        /// <summary>
+        /// Identifier of the account the funds reach.
+        /// </summary>
         [JsonProperty("destinationAccountID")]
         public string? DestinationAccountID { get; set; }
 
+        /// <summary>
+        /// Why the initiation failed, absent when it succeeded.
+        /// </summary>
         [JsonProperty("error")]
         public string? Error { get; set; } = null;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
     }

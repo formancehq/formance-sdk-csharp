@@ -17,6 +17,9 @@ namespace FormanceSDK.Models.Payments
     /// </summary>
     public class TransferResponse
     {
+        /// <summary>
+        /// Identifier of the transfer created at the provider.
+        /// </summary>
         [JsonProperty("id")]
         public string? Id { get; set; }
     }

@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Payments
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Where a transfer initiation stands in its lifecycle.
+    /// </summary>
     public enum TransferInitiationStatus
     {
         [JsonProperty("WAITING_FOR_VALIDATION")]

@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3ReversePaymentInitiationResponse
     {
+        /// <summary>
+        /// The task tracking the reversal, which completes asynchronously.
+        /// </summary>
         [JsonProperty("data")]
         public V3ReversePaymentInitiationResponseData Data { get; set; } = default!;
     }

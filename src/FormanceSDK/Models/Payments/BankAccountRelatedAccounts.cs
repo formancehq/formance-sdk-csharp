@@ -15,18 +15,33 @@ namespace FormanceSDK.Models.Payments
 
     public class BankAccountRelatedAccounts
     {
+        /// <summary>
+        /// Unique identifier of the link between the bank account and the provider.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// When the bank account was forwarded to this provider.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Name of the payment provider behind the connector.
+        /// </summary>
         [JsonProperty("provider")]
         public string Provider { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the connector holding the provider-side account.
+        /// </summary>
         [JsonProperty("connectorID")]
         public string ConnectorID { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the provider-side account.
+        /// </summary>
         [JsonProperty("accountID")]
         public string AccountID { get; set; } = default!;
     }

@@ -12,6 +12,9 @@ namespace FormanceSDK.Models.Payments
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// The connector that was installed.
+    /// </summary>
     public class ConnectorResponseData
     {
         [JsonProperty("connectorID")]

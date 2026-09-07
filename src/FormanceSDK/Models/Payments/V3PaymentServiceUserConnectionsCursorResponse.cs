@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Payments
 
     public class V3PaymentServiceUserConnectionsCursorResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the user's open banking connections.
+        /// </summary>
         [JsonProperty("cursor")]
         public V3PaymentServiceUserConnectionsCursorResponseCursor Cursor { get; set; } = default!;
     }

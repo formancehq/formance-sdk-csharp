@@ -14,6 +14,9 @@ namespace FormanceSDK.Models.Orchestration
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Paginated cursor wrapping the trigger's occurrences.
+    /// </summary>
     public class V2ListTriggersOccurrencesResponseCursor
     {
         [JsonProperty("pageSize")]

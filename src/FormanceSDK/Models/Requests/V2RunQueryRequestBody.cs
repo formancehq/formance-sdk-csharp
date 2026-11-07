@@ -9,7 +9,6 @@
 #nullable enable
 namespace FormanceSDK.Models.Requests
 {
-    using FormanceSDK.Models.Components;
     using FormanceSDK.Models.Ledger;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
@@ -20,8 +19,11 @@ namespace FormanceSDK.Models.Requests
         [JsonProperty("cursor")]
         public string? Cursor { get; set; }
 
-        [JsonProperty("params", NullValueHandling = NullValueHandling.Include)]
-        public V2QueryParams? Params { get; set; }
+        /// <summary>
+        /// Parameter overrides applied when running a query template. `insertionDate` and `groupBy` only apply to volume queries.
+        /// </summary>
+        [JsonProperty("params")]
+        public V2RunQueryParams? Params { get; set; }
 
         [JsonProperty("vars")]
         public Dictionary<string, string>? Vars { get; set; }

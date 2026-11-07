@@ -17,15 +17,27 @@ namespace FormanceSDK.Models.Wallets
 
     public class Transaction
     {
+        /// <summary>
+        /// Name of the ledger the transaction was recorded in.
+        /// </summary>
         [JsonProperty("ledger")]
         public string? Ledger { get; set; }
 
+        /// <summary>
+        /// The transaction time: when the transaction is considered to have occurred. See <a href="https://docs.formance.com/modules/ledger/working-with/bi-temporality">bi- temporality</a>
+        /// </summary>
         [JsonProperty("timestamp")]
         public DateTime Timestamp { get; set; } = default!;
 
+        /// <summary>
+        /// The fund movements making up the transaction.
+        /// </summary>
         [JsonProperty("postings")]
         public List<Models.Wallets.Posting> Postings { get; set; } = default!;
 
+        /// <summary>
+        /// Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions.
+        /// </summary>
         [JsonProperty("reference")]
         public string? Reference { get; set; }
 
@@ -35,12 +47,21 @@ namespace FormanceSDK.Models.Wallets
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; } = default!;
 
+        /// <summary>
+        /// Unique sequential identifier for this transaction within the ledger.
+        /// </summary>
         [JsonProperty("id")]
         public long Id { get; set; } = default!;
 
+        /// <summary>
+        /// Volumes aggregated per account and per asset.
+        /// </summary>
         [JsonProperty("preCommitVolumes")]
         public Dictionary<string, Dictionary<string, Models.Wallets.Volume>>? PreCommitVolumes { get; set; }
 
+        /// <summary>
+        /// Volumes aggregated per account and per asset.
+        /// </summary>
         [JsonProperty("postCommitVolumes")]
         public Dictionary<string, Dictionary<string, Models.Wallets.Volume>>? PostCommitVolumes { get; set; }
     }

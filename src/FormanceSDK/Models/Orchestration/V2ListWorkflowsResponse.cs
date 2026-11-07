@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Orchestration
 
     public class V2ListWorkflowsResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the list of workflows.
+        /// </summary>
         [JsonProperty("cursor")]
         public V2ListWorkflowsResponseCursor Cursor { get; set; } = default!;
     }

@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Reconciliation
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Status before this event. Null only for the alert's inaugural event.
+    /// </summary>
     public enum PrevStatus
     {
         [JsonProperty("OPEN")]

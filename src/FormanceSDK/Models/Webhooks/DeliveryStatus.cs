@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Webhooks
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Current state of a delivery in its retry lifecycle.
+    /// </summary>
     public enum DeliveryStatus
     {
         [JsonProperty("pending")]

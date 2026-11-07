@@ -15,12 +15,21 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2CreateLedgerRequest
     {
+        /// <summary>
+        /// Name of the storage bucket backing the ledger. Ledgers sharing a bucket share a database schema.
+        /// </summary>
         [JsonProperty("bucket")]
         public string? Bucket { get; set; }
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; }
 
+        /// <summary>
+        /// Feature flags to enable on the ledger, keyed by feature name.
+        /// </summary>
         [JsonProperty("features")]
         public Dictionary<string, string>? Features { get; set; }
     }

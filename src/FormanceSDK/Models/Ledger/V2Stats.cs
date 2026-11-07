@@ -13,11 +13,20 @@ namespace FormanceSDK.Models.Ledger
     using Newtonsoft.Json;
     using System.Numerics;
 
+    /// <summary>
+    /// Aggregate counts for a ledger.
+    /// </summary>
     public class V2Stats
     {
+        /// <summary>
+        /// Total number of accounts in the ledger.
+        /// </summary>
         [JsonProperty("accounts")]
         public long Accounts { get; set; } = default!;
 
+        /// <summary>
+        /// Total number of transactions in the ledger.
+        /// </summary>
         [JsonProperty("transactions")]
         public BigInteger Transactions { get; set; } = default!;
     }

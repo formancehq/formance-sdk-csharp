@@ -9,27 +9,194 @@
 #nullable enable
 namespace FormanceSDK.Models.Ledger
 {
-    using FormanceSDK.Models.Components;
     using FormanceSDK.Models.Ledger;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+    using System;
     using System.Collections.Generic;
+    using System.Numerics;
+    using System.Reflection;
 
+    public class V2QueryTemplateType
+    {
+        private V2QueryTemplateType(string value) { Value = value; }
+
+        public string Value { get; private set; }
+
+        public static V2QueryTemplateType Accounts { get { return new V2QueryTemplateType("accounts"); } }
+
+        public static V2QueryTemplateType Transactions { get { return new V2QueryTemplateType("transactions"); } }
+
+        public static V2QueryTemplateType Logs { get { return new V2QueryTemplateType("logs"); } }
+
+        public static V2QueryTemplateType Volumes { get { return new V2QueryTemplateType("volumes"); } }
+
+        public override string ToString() { return Value; }
+        public static implicit operator String(V2QueryTemplateType v) { return v.Value; }
+        public static V2QueryTemplateType FromString(string v) {
+            switch(v) {
+                case "accounts": return Accounts;
+                case "transactions": return Transactions;
+                case "logs": return Logs;
+                case "volumes": return Volumes;
+                default: throw new ArgumentException("Invalid value for V2QueryTemplateType");
+            }
+        }
+        public override bool Equals(object? obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+            return Value.Equals(((V2QueryTemplateType)obj).Value);
+        }
+
+        public override int GetHashCode()
+        {
+            return Value.GetHashCode();
+        }
+    }
+
+    /// <summary>
+    /// A query template. `resource` selects which parameters apply.
+    /// </summary>
+    [JsonConverter(typeof(V2QueryTemplate.V2QueryTemplateConverter))]
     public class V2QueryTemplate
     {
-        [JsonProperty("description")]
-        public string? Description { get; set; }
+        public V2QueryTemplate(V2QueryTemplateType type)
+        {
+            Type = type;
+        }
 
-        [JsonProperty("resource")]
-        public V2QueryResource? Resource { get; set; }
+        [SpeakeasyMetadata("form:explode=true")]
+        public V2AccountQueryTemplate? V2AccountQueryTemplate { get; set; }
 
-        [JsonProperty("params", NullValueHandling = NullValueHandling.Include)]
-        public V2QueryParams? Params { get; set; }
+        [SpeakeasyMetadata("form:explode=true")]
+        public V2TransactionQueryTemplate? V2TransactionQueryTemplate { get; set; }
 
-        [JsonProperty("vars")]
-        public Dictionary<string, V2QueryTemplateVar>? Vars { get; set; }
+        [SpeakeasyMetadata("form:explode=true")]
+        public V2LogQueryTemplate? V2LogQueryTemplate { get; set; }
 
-        [JsonProperty("body")]
-        public Dictionary<string, object>? Body { get; set; }
+        [SpeakeasyMetadata("form:explode=true")]
+        public V2VolumeQueryTemplate? V2VolumeQueryTemplate { get; set; }
+
+        public V2QueryTemplateType Type { get; set; }
+
+        public static V2QueryTemplate CreateAccounts(V2AccountQueryTemplate accounts)
+        {
+            V2QueryTemplateType typ = V2QueryTemplateType.Accounts;
+            string typStr = V2QueryTemplateType.Accounts.ToString();
+            accounts.Resource = V2AccountQueryTemplateResourceExtension.ToEnum(V2QueryTemplateType.Accounts.ToString());
+            V2QueryTemplate res = new V2QueryTemplate(typ);
+            res.V2AccountQueryTemplate = accounts;
+            return res;
+        }
+
+        public static V2QueryTemplate CreateTransactions(V2TransactionQueryTemplate transactions)
+        {
+            V2QueryTemplateType typ = V2QueryTemplateType.Transactions;
+            string typStr = V2QueryTemplateType.Transactions.ToString();
+            transactions.Resource = V2TransactionQueryTemplateResourceExtension.ToEnum(V2QueryTemplateType.Transactions.ToString());
+            V2QueryTemplate res = new V2QueryTemplate(typ);
+            res.V2TransactionQueryTemplate = transactions;
+            return res;
+        }
+
+        public static V2QueryTemplate CreateLogs(V2LogQueryTemplate logs)
+        {
+            V2QueryTemplateType typ = V2QueryTemplateType.Logs;
+            string typStr = V2QueryTemplateType.Logs.ToString();
+            logs.Resource = V2LogQueryTemplateResourceExtension.ToEnum(V2QueryTemplateType.Logs.ToString());
+            V2QueryTemplate res = new V2QueryTemplate(typ);
+            res.V2LogQueryTemplate = logs;
+            return res;
+        }
+
+        public static V2QueryTemplate CreateVolumes(V2VolumeQueryTemplate volumes)
+        {
+            V2QueryTemplateType typ = V2QueryTemplateType.Volumes;
+            string typStr = V2QueryTemplateType.Volumes.ToString();
+            volumes.Resource = V2VolumeQueryTemplateResourceExtension.ToEnum(V2QueryTemplateType.Volumes.ToString());
+            V2QueryTemplate res = new V2QueryTemplate(typ);
+            res.V2VolumeQueryTemplate = volumes;
+            return res;
+        }
+
+        public class V2QueryTemplateConverter : JsonConverter
+        {
+            public override bool CanConvert(System.Type objectType) => objectType == typeof(V2QueryTemplate);
+
+            public override bool CanRead => true;
+
+            public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
+            {
+                if (reader.TokenType == JsonToken.Null)
+                {
+                    throw new InvalidOperationException("Received unexpected null JSON value");
+                }
+
+                JObject jo = JObject.Load(reader);
+                string discriminator = jo.GetValue("resource")?.ToString() ?? throw new ArgumentNullException("Could not find discriminator field.");
+                if (discriminator == V2QueryTemplateType.Accounts.ToString())
+                {
+                    V2AccountQueryTemplate v2AccountQueryTemplate = ResponseBodyDeserializer.DeserializeNotNull<V2AccountQueryTemplate>(jo.ToString());
+                    return CreateAccounts(v2AccountQueryTemplate);
+                }
+                if (discriminator == V2QueryTemplateType.Transactions.ToString())
+                {
+                    V2TransactionQueryTemplate v2TransactionQueryTemplate = ResponseBodyDeserializer.DeserializeNotNull<V2TransactionQueryTemplate>(jo.ToString());
+                    return CreateTransactions(v2TransactionQueryTemplate);
+                }
+                if (discriminator == V2QueryTemplateType.Logs.ToString())
+                {
+                    V2LogQueryTemplate v2LogQueryTemplate = ResponseBodyDeserializer.DeserializeNotNull<V2LogQueryTemplate>(jo.ToString());
+                    return CreateLogs(v2LogQueryTemplate);
+                }
+                if (discriminator == V2QueryTemplateType.Volumes.ToString())
+                {
+                    V2VolumeQueryTemplate v2VolumeQueryTemplate = ResponseBodyDeserializer.DeserializeNotNull<V2VolumeQueryTemplate>(jo.ToString());
+                    return CreateVolumes(v2VolumeQueryTemplate);
+                }
+
+                throw new InvalidOperationException("Could not deserialize into any supported types.");
+            }
+
+            public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
+            {
+                if (value == null)
+                {
+                    throw new InvalidOperationException("Unexpected null JSON value.");
+                }
+
+                V2QueryTemplate res = (V2QueryTemplate)value;
+
+                if (res.V2AccountQueryTemplate != null)
+                {
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.V2AccountQueryTemplate));
+                    return;
+                }
+
+                if (res.V2TransactionQueryTemplate != null)
+                {
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.V2TransactionQueryTemplate));
+                    return;
+                }
+
+                if (res.V2LogQueryTemplate != null)
+                {
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.V2LogQueryTemplate));
+                    return;
+                }
+
+                if (res.V2VolumeQueryTemplate != null)
+                {
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.V2VolumeQueryTemplate));
+                    return;
+                }
+            }
+
+        }
+
     }
 }

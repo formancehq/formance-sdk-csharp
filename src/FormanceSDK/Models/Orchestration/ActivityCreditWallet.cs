@@ -13,11 +13,20 @@ namespace FormanceSDK.Models.Orchestration
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Arguments for the activity that credits a wallet.
+    /// </summary>
     public class ActivityCreditWallet
     {
+        /// <summary>
+        /// Identifier of the wallet to credit.
+        /// </summary>
         [JsonProperty("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// A credit to apply to a wallet.
+        /// </summary>
         [JsonProperty("data")]
         public Models.Orchestration.CreditWalletRequest? Data { get; set; }
     }

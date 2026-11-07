@@ -9,25 +9,54 @@
 #nullable enable
 namespace FormanceSDK.Models.Orchestration
 {
+    using FormanceSDK.Models.Orchestration;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
     using System;
+    using System.Collections.Generic;
 
     public class V2StageStatus
     {
+        /// <summary>
+        /// Zero-based position of the stage within the workflow.
+        /// </summary>
         [JsonProperty("stage")]
         public double Stage { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the workflow instance this stage belongs to.
+        /// </summary>
         [JsonProperty("instanceID")]
         public string InstanceID { get; set; } = default!;
 
+        /// <summary>
+        /// When the stage started.
+        /// </summary>
         [JsonProperty("startedAt")]
         public DateTime StartedAt { get; set; } = default!;
 
+        /// <summary>
+        /// When the stage finished, absent while it is still running.
+        /// </summary>
         [JsonProperty("terminatedAt")]
         public DateTime? TerminatedAt { get; set; }
 
+        /// <summary>
+        /// Why the stage failed, absent when it succeeded.
+        /// </summary>
         [JsonProperty("error")]
         public string? Error { get; set; }
+
+        /// <summary>
+        /// Paused activities hydrated on instance detail reads only; absent when none are paused or legacy Temporal execution is unavailable.
+        /// </summary>
+        [JsonProperty("pendingActivities")]
+        public List<V2ActivityPause>? PendingActivities { get; set; }
+
+        /// <summary>
+        /// True when Temporal pause state could not be read; display UNKNOWN rather than inferring active from absent pendingActivities. Omitted on successful reads and missing legacy executions.
+        /// </summary>
+        [JsonProperty("pauseStateUnavailable")]
+        public bool? PauseStateUnavailable { get; set; }
     }
 }

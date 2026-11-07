@@ -16,6 +16,8 @@ namespace FormanceSDK
 
     public interface ILedger
     {
+        public IV3 V3 { get; }
+
         public IFormanceV1 V1 { get; }
 
         public IV2 V2 { get; }
@@ -28,6 +30,12 @@ namespace FormanceSDK
         /// <see cref="SDKConfig"/>
         /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
+
+        /// <summary>
+        /// V3 SubSDK.
+        /// <see cref="IV3"/>
+        /// </summary>
+        public IV3 V3 { get; private set; }
 
         /// <summary>
         /// V1 SubSDK.
@@ -44,6 +52,7 @@ namespace FormanceSDK
         public Ledger(SDKConfig config)
         {
             SDKConfiguration = config;
+            V3 = new V3(SDKConfiguration);
             V1 = new FormanceV1(SDKConfiguration);
             V2 = new V2(SDKConfiguration);
         }

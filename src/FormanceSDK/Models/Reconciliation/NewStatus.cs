@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Reconciliation
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Status after this event.
+    /// </summary>
     public enum NewStatus
     {
         [JsonProperty("OPEN")]

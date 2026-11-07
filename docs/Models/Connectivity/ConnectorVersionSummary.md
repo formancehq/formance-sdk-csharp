@@ -1,0 +1,10 @@
+# ConnectorVersionSummary
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `Version`                                                                             | *string*                                                                              | :heavy_check_mark:                                                                    | Version tag (e.g. `v1.4.2`)                                                           |
+| `Digest`                                                                              | *string*                                                                              | :heavy_minus_sign:                                                                    | Image digest pinning this version immutably, when known                               |
+| `ReleaseDate`                                                                         | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_minus_sign:                                                                    | N/A                                                                                   |

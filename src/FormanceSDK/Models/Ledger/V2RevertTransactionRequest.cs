@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2RevertTransactionRequest
     {
+        /// <summary>
+        /// Metadata to attach to the compensating transaction created by the revert.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; }
     }

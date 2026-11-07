@@ -13,11 +13,20 @@ namespace FormanceSDK.Models.Orchestration
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Arguments for the activity that debits a wallet.
+    /// </summary>
     public class V2ActivityDebitWallet
     {
+        /// <summary>
+        /// Identifier of the wallet to debit.
+        /// </summary>
         [JsonProperty("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// A debit to apply to a wallet.
+        /// </summary>
         [JsonProperty("data")]
         public V2DebitWalletRequest? Data { get; set; }
     }

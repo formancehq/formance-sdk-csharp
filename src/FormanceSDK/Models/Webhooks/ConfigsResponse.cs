@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Webhooks
 
     public class ConfigsResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the list of configurations.
+        /// </summary>
         [JsonProperty("cursor")]
         public Models.Webhooks.Cursor Cursor { get; set; } = default!;
     }

@@ -15,9 +15,15 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2AccountsCursorResponse
     {
+        /// <summary>
+        /// The resource type carried by this cursor.
+        /// </summary>
         [JsonProperty("resource")]
         public Resource? Resource { get; set; }
 
+        /// <summary>
+        /// Paginated cursor wrapping the list of accounts.
+        /// </summary>
         [JsonProperty("cursor")]
         public V2AccountsCursorResponseCursor Cursor { get; set; } = default!;
     }

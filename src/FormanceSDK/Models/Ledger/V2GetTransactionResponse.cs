@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2GetTransactionResponse
     {
+        /// <summary>
+        /// A transaction recorded in the ledger, carrying its postings, metadata and both bi-temporal timestamps.
+        /// </summary>
         [JsonProperty("data")]
         public Models.Ledger.V2Transaction Data { get; set; } = default!;
     }

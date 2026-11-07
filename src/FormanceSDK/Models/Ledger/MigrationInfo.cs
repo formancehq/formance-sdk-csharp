@@ -16,15 +16,27 @@ namespace FormanceSDK.Models.Ledger
 
     public class MigrationInfo
     {
+        /// <summary>
+        /// Sequence number of the migration.
+        /// </summary>
         [JsonProperty("version")]
         public string? Version { get; set; }
 
+        /// <summary>
+        /// Name of the migration.
+        /// </summary>
         [JsonProperty("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// When the migration was applied.
+        /// </summary>
         [JsonProperty("date")]
         public DateTime? Date { get; set; }
 
+        /// <summary>
+        /// Current state of the migration.
+        /// </summary>
         [JsonProperty("state")]
         public Models.Ledger.State? State { get; set; }
     }

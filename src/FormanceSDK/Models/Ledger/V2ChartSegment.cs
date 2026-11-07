@@ -19,15 +19,27 @@ namespace FormanceSDK.Models.Ledger
     /// </summary>
     public class V2ChartSegment
     {
+        /// <summary>
+        /// Rules and metadata applied to the segment's own account, as opposed to its children.
+        /// </summary>
         [JsonProperty(".self")]
         public DotSelf? DotSelf { get; set; }
 
+        /// <summary>
+        /// Regular expression every child segment name must match.
+        /// </summary>
         [JsonProperty(".pattern")]
         public string? DotPattern { get; set; }
 
+        /// <summary>
+        /// Rules applied to accounts matching a chart-of-accounts segment.
+        /// </summary>
         [JsonProperty(".rules")]
         public V2ChartAccountRules? DotRules { get; set; }
 
+        /// <summary>
+        /// Metadata applied to accounts matching this segment, keyed by metadata key.
+        /// </summary>
         [JsonProperty(".metadata")]
         public Dictionary<string, V2ChartAccountMetadata>? DotMetadata { get; set; }
 

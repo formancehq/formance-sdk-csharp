@@ -16,6 +16,9 @@ namespace FormanceSDK.Models.Orchestration
 
     public class ListRunsResponse
     {
+        /// <summary>
+        /// The runs of this workflow.
+        /// </summary>
         [JsonProperty("data")]
         public List<WorkflowInstance> Data { get; set; } = default!;
     }

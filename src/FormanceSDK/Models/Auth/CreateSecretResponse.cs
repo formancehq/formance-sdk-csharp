@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Auth
 
     public class CreateSecretResponse
     {
+        /// <summary>
+        /// A client secret. The full value is returned only at creation and cannot be retrieved again.
+        /// </summary>
         [JsonProperty("data")]
         public Secret? Data { get; set; }
     }

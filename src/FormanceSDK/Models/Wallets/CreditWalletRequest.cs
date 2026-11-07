@@ -17,6 +17,9 @@ namespace FormanceSDK.Models.Wallets
 
     public class CreditWalletRequest
     {
+        /// <summary>
+        /// An amount together with the asset it is denominated in.
+        /// </summary>
         [JsonProperty("amount")]
         public Models.Wallets.Monetary Amount { get; set; } = default!;
 
@@ -26,9 +29,15 @@ namespace FormanceSDK.Models.Wallets
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
 
+        /// <summary>
+        /// Optional caller-supplied identifier used to deduplicate the credit.
+        /// </summary>
         [JsonProperty("reference")]
         public string? Reference { get; set; }
 
+        /// <summary>
+        /// Where the funds come from. Defaults to the world account when omitted.
+        /// </summary>
         [JsonProperty("sources")]
         public List<Models.Wallets.Subject>? Sources { get; set; } = null;
 
@@ -38,6 +47,9 @@ namespace FormanceSDK.Models.Wallets
         [JsonProperty("balance")]
         public string? Balance { get; set; }
 
+        /// <summary>
+        /// The transaction time to record, letting you backdate or postdate the credit. See <a href="https://docs.formance.com/modules/ledger/working-with/bi-temporality">bi- temporality</a>
+        /// </summary>
         [JsonProperty("timestamp")]
         public DateTime? Timestamp { get; set; }
     }

@@ -14,10 +14,37 @@ namespace FormanceSDK.Models.Reconciliation
     using System;
 
     /// <summary>
-    /// Reconciliation rhythm. Scopes each failing fingerprint into a period so a<br/>
-    /// March break and an April break are distinct, independently-closable cases.<br/>
-    /// `continuous` (default) is a single unbounded period (live monitoring).
+    /// Deprecated alias of `periodType`. Same members. Use `periodType`; this is<br/>
+    /// removed at the next API major.<br/>
+    /// <br/>
+    /// Kept as its own component so regenerated SDKs keep emitting the<br/>
+    /// `Cadence` type and its constants — dropping it would delete<br/>
+    /// `CadenceMonthly` and friends from generated clients and break code that<br/>
+    /// compiles today, even though the wire contract stays compatible.<br/>
+    /// <br/>
+    /// On requests either key is accepted. If both carry a value and the values<br/>
+    /// differ the request is rejected with 400 rather than one being chosen<br/>
+    /// silently; an empty `cadence` counts as unset rather than as a<br/>
+    /// conflicting value.<br/>
+    /// <br/>
+    /// On responses the server always emits both keys, mirroring, but neither<br/>
+    /// is listed in the `Rule` required set. That understates the guarantee on<br/>
+    /// purpose. A required property with no schema default generates a value<br/>
+    /// type in Go, which would turn the published `Rule.Cadence *Cadence` and<br/>
+    /// `GetCadence() *Cadence` into non-pointers and break existing consumers;<br/>
+    /// optional-without-default reproduces the published pointer signatures.<br/>
+    /// The default cannot come back, because generators materialize it into<br/>
+    /// request bodies and that collides with this alias. Both become required<br/>
+    /// again at the next API major, when `cadence` goes.<br/>
+    /// <br/>
+    /// Servers before 2.5.0 do not know `periodType` and ignore it, falling<br/>
+    /// back to `continuous`. Normally that cannot bite you: `periodType`<br/>
+    /// reaches clients via an SDK regenerated from this spec, which only exists<br/>
+    /// once 2.5.0 is released. If you need determinism while a fleet is<br/>
+    /// mid-upgrade, send both keys with equal values — accepted on every<br/>
+    /// version.
     /// </summary>
+    [Obsolete("This will be removed in a future release, please migrate away from it as soon as possible")]
     public enum Cadence
     {
         [JsonProperty("continuous")]
@@ -29,6 +56,7 @@ namespace FormanceSDK.Models.Reconciliation
         [JsonProperty("monthly")]
         Monthly,
     }
+#pragma warning disable 0618
 
     public static class CadenceExtension
     {
@@ -62,4 +90,5 @@ namespace FormanceSDK.Models.Reconciliation
             throw new Exception($"Unknown value {value} for enum Cadence");
         }
     }
+#pragma warning restore 0618
 }

@@ -17,21 +17,39 @@ namespace FormanceSDK.Models.Orchestration
 
     public class V2TriggerOccurrence
     {
+        /// <summary>
+        /// When the trigger fired.
+        /// </summary>
         [JsonProperty("date")]
         public DateTime Date { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the run the trigger started, absent when it started none.
+        /// </summary>
         [JsonProperty("workflowInstanceID")]
         public string? WorkflowInstanceID { get; set; }
 
+        /// <summary>
+        /// One run of a workflow, tracking its per-stage progress.
+        /// </summary>
         [JsonProperty("workflowInstance")]
         public V2WorkflowInstance? WorkflowInstance { get; set; }
 
+        /// <summary>
+        /// Identifier of the trigger that fired.
+        /// </summary>
         [JsonProperty("triggerID")]
         public string TriggerID { get; set; } = default!;
 
+        /// <summary>
+        /// Why the trigger failed to start a run, absent when it succeeded.
+        /// </summary>
         [JsonProperty("error")]
         public string? Error { get; set; }
 
+        /// <summary>
+        /// The event that fired the trigger.
+        /// </summary>
         [JsonProperty("event")]
         public Dictionary<string, object> Event { get; set; } = default!;
     }

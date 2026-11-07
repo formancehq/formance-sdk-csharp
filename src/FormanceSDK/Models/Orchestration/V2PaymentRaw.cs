@@ -11,6 +11,9 @@ namespace FormanceSDK.Models.Orchestration
 {
     using FormanceSDK.Utils;
 
+    /// <summary>
+    /// The provider's original payload, passed through untouched.
+    /// </summary>
     public class V2PaymentRaw
     {
     }

@@ -12,8 +12,14 @@ namespace FormanceSDK.Models.Orchestration
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Arguments for the activity that lists wallets.
+    /// </summary>
     public class V2ActivityListWallets
     {
+        /// <summary>
+        /// Restrict the listing to wallets with this name.
+        /// </summary>
         [JsonProperty("name")]
         public string? Name { get; set; }
     }

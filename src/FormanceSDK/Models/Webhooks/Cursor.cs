@@ -14,8 +14,14 @@ namespace FormanceSDK.Models.Webhooks
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Paginated cursor wrapping the list of configurations.
+    /// </summary>
     public class Cursor
     {
+        /// <summary>
+        /// Whether further pages are available.
+        /// </summary>
         [JsonProperty("hasMore")]
         public bool HasMore { get; set; } = default!;
 

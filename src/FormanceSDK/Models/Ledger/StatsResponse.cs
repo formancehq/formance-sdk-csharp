@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Ledger
 
     public class StatsResponse
     {
+        /// <summary>
+        /// Aggregate counts for a ledger.
+        /// </summary>
         [JsonProperty("data")]
         public Stats Data { get; set; } = default!;
     }

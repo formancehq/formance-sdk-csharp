@@ -18,6 +18,9 @@ namespace FormanceSDK.Models.Reconciliation
     /// </summary>
     public class RulesCursorResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the list of rules.
+        /// </summary>
         [JsonProperty("cursor")]
         public RulesCursorResponseCursor Cursor { get; set; } = default!;
     }

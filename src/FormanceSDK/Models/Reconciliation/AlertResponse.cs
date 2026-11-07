@@ -23,7 +23,7 @@ namespace FormanceSDK.Models.Reconciliation
         /// reconciliation period. There is exactly one Alert per<br/>
         /// (ruleID, fingerprint, periodID) — within a period, re-opens after resolve<br/>
         /// flip the status back to OPEN in place; the same fingerprint failing in a<br/>
-        /// new period is a separate Alert. For a `continuous`-cadence rule there is<br/>
+        /// new period is a separate Alert. For a `continuous` period type there is<br/>
         /// one unbounded period, so it behaves as one Alert per (ruleID, fingerprint).<br/>
         /// The full history of transitions lives in alert_event<br/>
         /// (see /alerts/{alertID}/events).

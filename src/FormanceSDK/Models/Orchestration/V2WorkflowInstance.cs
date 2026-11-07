@@ -15,32 +15,62 @@ namespace FormanceSDK.Models.Orchestration
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// One run of a workflow, tracking its per-stage progress.
+    /// </summary>
     public class V2WorkflowInstance
     {
+        /// <summary>
+        /// Identifier of the workflow this run belongs to.
+        /// </summary>
         [JsonProperty("workflowID")]
         public string WorkflowID { get; set; } = default!;
 
+        /// <summary>
+        /// Unique identifier of the run.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// When the run was started.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// When the run was last updated.
+        /// </summary>
         [JsonProperty("updatedAt")]
         public DateTime UpdatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Per-stage progress of the run.
+        /// </summary>
         [JsonProperty("status")]
         public List<V2StageStatus>? Status { get; set; }
 
+        /// <summary>
+        /// Whether the run has finished, successfully or not.
+        /// </summary>
         [JsonProperty("terminated")]
         public bool Terminated { get; set; } = default!;
 
+        /// <summary>
+        /// When the run finished, absent while it is still running.
+        /// </summary>
         [JsonProperty("terminatedAt")]
         public DateTime? TerminatedAt { get; set; }
 
+        /// <summary>
+        /// Why the run failed, absent when it succeeded.
+        /// </summary>
         [JsonProperty("error")]
         public string? Error { get; set; }
 
+        /// <summary>
+        /// A workflow definition and the stages it runs.
+        /// </summary>
         [JsonProperty("workflow")]
         public V2Workflow? Workflow { get; set; }
     }

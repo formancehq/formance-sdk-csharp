@@ -16,6 +16,9 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2AggregateBalancesResponse
     {
+        /// <summary>
+        /// Balances keyed by asset.
+        /// </summary>
         [JsonProperty("data")]
         public Dictionary<string, BigInteger> Data { get; set; } = default!;
     }

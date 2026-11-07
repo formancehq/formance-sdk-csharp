@@ -14,26 +14,50 @@ namespace FormanceSDK.Models.Webhooks
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// A webhook endpoint together with the event types it subscribes to.
+    /// </summary>
     public class WebhooksConfig
     {
+        /// <summary>
+        /// Unique identifier of the configuration.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// URL events are delivered to.
+        /// </summary>
         [JsonProperty("endpoint")]
         public string Endpoint { get; set; } = default!;
 
+        /// <summary>
+        /// Secret used to sign delivery payloads, letting the receiver verify their authenticity.
+        /// </summary>
         [JsonProperty("secret")]
         public string Secret { get; set; } = default!;
 
+        /// <summary>
+        /// Types of event that trigger a delivery to this endpoint.
+        /// </summary>
         [JsonProperty("eventTypes")]
         public List<string> EventTypes { get; set; } = default!;
 
+        /// <summary>
+        /// Whether the configuration is active. Deactivated configurations receive no deliveries.
+        /// </summary>
         [JsonProperty("active")]
         public bool Active { get; set; } = default!;
 
+        /// <summary>
+        /// When the configuration was created.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// When the configuration was last modified.
+        /// </summary>
         [JsonProperty("updatedAt")]
         public DateTime UpdatedAt { get; set; } = default!;
     }

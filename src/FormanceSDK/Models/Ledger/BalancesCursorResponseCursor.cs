@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Ledger
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Paginated cursor wrapping the list of balances.
+    /// </summary>
     public class BalancesCursorResponseCursor
     {
         [JsonProperty("pageSize")]

@@ -14,17 +14,32 @@ namespace FormanceSDK.Models.Orchestration
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// A workflow definition and the stages it runs.
+    /// </summary>
     public class V2Workflow
     {
+        /// <summary>
+        /// The stages a workflow runs, in order.
+        /// </summary>
         [JsonProperty("config")]
         public V2WorkflowConfig Config { get; set; } = default!;
 
+        /// <summary>
+        /// When the workflow was created.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// When the workflow was last modified.
+        /// </summary>
         [JsonProperty("updatedAt")]
         public DateTime UpdatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Unique identifier of the workflow.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
     }

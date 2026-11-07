@@ -30,6 +30,8 @@ namespace FormanceSDK.Models.Payments
         Processed,
         [JsonProperty("FAILED")]
         Failed,
+        [JsonProperty("NOT_INITIATED")]
+        NotInitiated,
         [JsonProperty("REJECTED")]
         Rejected,
         [JsonProperty("REVERSE_PROCESSING")]

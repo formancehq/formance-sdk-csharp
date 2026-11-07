@@ -13,26 +13,50 @@ namespace FormanceSDK.Models.Orchestration
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Result an activity returned, keyed by activity name.
+    /// </summary>
     public class WorkflowInstanceHistoryStageOutput
     {
+        /// <summary>
+        /// Result of the activity that reads a ledger account.
+        /// </summary>
         [JsonProperty("GetAccount")]
-        public Models.Orchestration.AccountResponse? GetAccount { get; set; }
+        public ActivityGetAccountOutput? GetAccount { get; set; }
 
+        /// <summary>
+        /// Result of the activity that writes a transaction to a ledger.
+        /// </summary>
         [JsonProperty("CreateTransaction")]
-        public Models.Orchestration.CreateTransactionResponse? CreateTransaction { get; set; }
+        public ActivityCreateTransactionOutput? CreateTransaction { get; set; }
 
+        /// <summary>
+        /// Result of the activity that reverts a ledger transaction.
+        /// </summary>
         [JsonProperty("RevertTransaction")]
-        public Models.Orchestration.CreateTransactionResponse? RevertTransaction { get; set; }
+        public ActivityRevertTransactionOutput? RevertTransaction { get; set; }
 
+        /// <summary>
+        /// Result of the activity that reads a payment.
+        /// </summary>
         [JsonProperty("GetPayment")]
-        public Models.Orchestration.PaymentResponse? GetPayment { get; set; }
+        public ActivityGetPaymentOutput? GetPayment { get; set; }
 
+        /// <summary>
+        /// Result of the activity that debits a wallet.
+        /// </summary>
         [JsonProperty("DebitWallet")]
-        public Models.Orchestration.DebitWalletResponse? DebitWallet { get; set; }
+        public ActivityDebitWalletOutput? DebitWallet { get; set; }
 
+        /// <summary>
+        /// Result of the activity that reads a wallet.
+        /// </summary>
         [JsonProperty("GetWallet")]
-        public Models.Orchestration.GetWalletResponse? GetWallet { get; set; }
+        public ActivityGetWalletOutput? GetWallet { get; set; }
 
+        /// <summary>
+        /// A page of wallets.
+        /// </summary>
         [JsonProperty("ListWallets")]
         public Models.Orchestration.ListWalletsResponse? ListWallets { get; set; }
     }

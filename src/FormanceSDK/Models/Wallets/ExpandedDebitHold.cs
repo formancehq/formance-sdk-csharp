@@ -16,6 +16,9 @@ namespace FormanceSDK.Models.Wallets
     using System.Collections.Generic;
     using System.Numerics;
 
+    /// <summary>
+    /// A hold together with the amounts it currently locks and has already released.
+    /// </summary>
     public class ExpandedDebitHold
     {
         /// <summary>
@@ -36,12 +39,21 @@ namespace FormanceSDK.Models.Wallets
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; } = default!;
 
+        /// <summary>
+        /// Asset the held funds are denominated in.
+        /// </summary>
         [JsonProperty("asset")]
         public string Asset { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable reason the funds were held.
+        /// </summary>
         [JsonProperty("description")]
         public string Description { get; set; } = default!;
 
+        /// <summary>
+        /// The counterparty of a wallet movement, either a ledger account or another wallet.
+        /// </summary>
         [JsonProperty("destination", NullValueHandling = NullValueHandling.Include)]
         public Models.Wallets.Subject? Destination { get; set; }
 

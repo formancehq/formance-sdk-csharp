@@ -17,18 +17,33 @@ namespace FormanceSDK.Models.Orchestration
 
     public class PaymentAdjustment
     {
+        /// <summary>
+        /// Where a payment stands in its lifecycle.
+        /// </summary>
         [JsonProperty("status")]
         public Models.Orchestration.PaymentStatus Status { get; set; } = default!;
 
+        /// <summary>
+        /// Amount carried by this adjustment.
+        /// </summary>
         [JsonProperty("amount")]
         public BigInteger Amount { get; set; } = default!;
 
+        /// <summary>
+        /// When the adjustment was recorded.
+        /// </summary>
         [JsonProperty("date")]
         public DateTime Date { get; set; } = default!;
 
+        /// <summary>
+        /// The provider's original payload for this adjustment.
+        /// </summary>
         [JsonProperty("raw")]
         public PaymentAdjustmentRaw Raw { get; set; } = default!;
 
+        /// <summary>
+        /// Whether amount replaces the payment's amount rather than adding to it.
+        /// </summary>
         [JsonProperty("absolute")]
         public bool Absolute { get; set; } = default!;
     }

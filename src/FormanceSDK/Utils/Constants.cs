@@ -22,7 +22,7 @@ namespace FormanceSDK.Utils
         /// <summary>
         /// The version of the SDK.
         /// </summary>
-        public const string SdkVersion = "6.0.1";
+        public const string SdkVersion = "6.1.0";
 
         /// <summary>
         /// The version of the SDK generator used to create this SDK.

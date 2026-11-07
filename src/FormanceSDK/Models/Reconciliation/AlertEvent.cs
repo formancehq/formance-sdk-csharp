@@ -27,21 +27,39 @@ namespace FormanceSDK.Models.Reconciliation
     /// </summary>
     public class AlertEvent
     {
+        /// <summary>
+        /// Unique identifier of the event.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the alert this event belongs to.
+        /// </summary>
         [JsonProperty("alertID")]
         public string AlertID { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the evaluation that produced this event, absent for manual transitions.
+        /// </summary>
         [JsonProperty("evaluationID")]
         public string? EvaluationID { get; set; } = null;
 
+        /// <summary>
+        /// What happened, whether an evaluation outcome or a manual transition.
+        /// </summary>
         [JsonProperty("type")]
         public Models.Reconciliation.Type Type { get; set; } = default!;
 
+        /// <summary>
+        /// Status before this event. Null only for the alert's inaugural event.
+        /// </summary>
         [JsonProperty("prevStatus")]
         public PrevStatus? PrevStatus { get; set; } = null;
 
+        /// <summary>
+        /// Status after this event.
+        /// </summary>
         [JsonProperty("newStatus")]
         public NewStatus NewStatus { get; set; } = default!;
 
@@ -51,9 +69,15 @@ namespace FormanceSDK.Models.Reconciliation
         [JsonProperty("payload")]
         public Dictionary<string, object>? Payload { get; set; }
 
+        /// <summary>
+        /// When the event occurred.
+        /// </summary>
         [JsonProperty("at")]
         public DateTime At { get; set; } = default!;
 
+        /// <summary>
+        /// True when a failure landed on an already-resolved alert, reopening it.
+        /// </summary>
         [JsonProperty("isReopen")]
         public bool IsReopen { get; set; } = default!;
 

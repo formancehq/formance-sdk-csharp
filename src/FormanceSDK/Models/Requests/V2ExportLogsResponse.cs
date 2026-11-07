@@ -17,5 +17,10 @@ namespace FormanceSDK.Models.Requests
     {
         [JsonProperty("-")]
         public HTTPMetadata HttpMeta { get; set; } = default!;
+
+        /// <summary>
+        /// Export OK.
+        /// </summary>
+        public byte[]? Bytes { get; set; }
     }
 }

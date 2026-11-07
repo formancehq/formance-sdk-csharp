@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Webhooks
 
     public class ReplayDeliveriesResponse
     {
+        /// <summary>
+        /// Outcome of a bulk replay, counting the deliveries it moved.
+        /// </summary>
         [JsonProperty("data")]
         public ReplayDeliveriesResult Data { get; set; } = default!;
     }

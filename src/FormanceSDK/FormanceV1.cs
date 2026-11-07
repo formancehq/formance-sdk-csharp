@@ -269,13 +269,13 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="txid">Transaction ID.</param>
-        /// <returns>An awaitable task that returns a <see cref="GetTransactionResponse"/> response envelope when completed.</returns>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetTransactionResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<GetTransactionResponse> GetTransactionAsync(string ledger, BigInteger txid);
+        public  Task<Models.Requests.GetTransactionResponse> GetTransactionAsync(string ledger, BigInteger txid);
 
         /// <summary>
         /// Set the metadata of a transaction by its ID.
@@ -415,7 +415,7 @@ namespace FormanceSDK
         public async  Task<GetInfoResponse> GetInfoAsync()
         {
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = baseUrl + "/api/ledger/_info";
+            var urlString = baseUrl + "/api/ledger/_info#ledger";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
@@ -1944,7 +1944,7 @@ namespace FormanceSDK
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
             if (postTransaction == null) throw new ArgumentNullException(nameof(postTransaction));
 
-            var request = new CreateTransactionRequest()
+            var request = new Models.Requests.CreateTransactionRequest()
             {
                 Ledger = ledger,
                 PostTransaction = postTransaction,
@@ -2070,13 +2070,13 @@ namespace FormanceSDK
         /// </remarks>
         /// <param name="ledger">Name of the ledger.</param>
         /// <param name="txid">Transaction ID.</param>
-        /// <returns>An awaitable task that returns a <see cref="GetTransactionResponse"/> response envelope when completed.</returns>
+        /// <returns>An awaitable task that returns a <see cref="Models.Requests.GetTransactionResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="Models.Ledger.ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<GetTransactionResponse> GetTransactionAsync(string ledger, BigInteger txid)
+        public async  Task<Models.Requests.GetTransactionResponse> GetTransactionAsync(string ledger, BigInteger txid)
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
 
@@ -2143,17 +2143,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    TransactionResponse obj;
+                    Models.Ledger.TransactionResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<TransactionResponse>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Ledger.TransactionResponse>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into TransactionResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Ledger.TransactionResponse.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    var response = new GetTransactionResponse()
+                    var response = new Models.Requests.GetTransactionResponse()
                     {
                         HttpMeta = new Models.Components.HTTPMetadata()
                         {
@@ -2336,7 +2336,7 @@ namespace FormanceSDK
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
 
-            var request = new RevertTransactionRequest()
+            var request = new Models.Requests.RevertTransactionRequest()
             {
                 Ledger = ledger,
                 Txid = txid,
@@ -2400,14 +2400,14 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    TransactionResponse obj;
+                    Models.Ledger.TransactionResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<TransactionResponse>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Ledger.TransactionResponse>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into TransactionResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into Models.Ledger.TransactionResponse.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
                     var response = new RevertTransactionResponse()

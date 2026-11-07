@@ -1,0 +1,10 @@
+# DeleteMetadataRequest
+
+
+## Fields
+
+| Field                                                                                       | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `TargetType`                                                                                | [DeleteMetadataRequestTargetType](../../Models/LedgerV3/DeleteMetadataRequestTargetType.md) | :heavy_check_mark:                                                                          | Type of target (account or transaction)                                                     |
+| `TargetId`                                                                                  | [DeleteMetadataRequestTargetId](../../Models/LedgerV3/DeleteMetadataRequestTargetId.md)     | :heavy_check_mark:                                                                          | ID of the target (account address or transaction ID). Required.<br/>                        |
+| `Key`                                                                                       | *string*                                                                                    | :heavy_check_mark:                                                                          | Metadata key to delete                                                                      |

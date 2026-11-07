@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Ledger
 
     public class AccountsCursorResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the list of accounts.
+        /// </summary>
         [JsonProperty("cursor")]
         public Models.Ledger.Cursor Cursor { get; set; } = default!;
     }

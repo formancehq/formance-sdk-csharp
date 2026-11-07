@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Orchestration
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Machine-readable error code identifying the failure.
+    /// </summary>
     public enum V2ErrorErrorCode
     {
         [JsonProperty("VALIDATION")]
@@ -21,6 +24,8 @@ namespace FormanceSDK.Models.Orchestration
         NotFound,
         [JsonProperty("INTERNAL")]
         Internal,
+        [JsonProperty("CONFLICT")]
+        Conflict,
     }
 
     public static class V2ErrorErrorCodeExtension

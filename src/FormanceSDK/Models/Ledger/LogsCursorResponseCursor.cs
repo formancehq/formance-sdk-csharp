@@ -14,6 +14,9 @@ namespace FormanceSDK.Models.Ledger
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Paginated cursor wrapping the list of logs.
+    /// </summary>
     public class LogsCursorResponseCursor
     {
         [JsonProperty("pageSize")]

@@ -16,47 +16,92 @@ namespace FormanceSDK.Models.Ledger
     using System.Collections.Generic;
     using System.Numerics;
 
+    /// <summary>
+    /// A transaction recorded in the ledger, carrying its postings, metadata and both bi-temporal timestamps.
+    /// </summary>
     public class V2Transaction
     {
+        /// <summary>
+        /// The request time: when the transaction was actually written to the ledger. Set by the ledger, not the caller. See <a href="https://docs.formance.com/modules/ledger/working-with/bi-temporality">bi-temporality</a>
+        /// </summary>
         [JsonProperty("insertedAt")]
         public DateTime? InsertedAt { get; set; }
 
+        /// <summary>
+        /// When the transaction row was last modified, for example by a metadata change or a revert.
+        /// </summary>
         [JsonProperty("updatedAt")]
         public DateTime? UpdatedAt { get; set; }
 
+        /// <summary>
+        /// The transaction time: when the transaction is considered to have occurred, also called the effective or booking date. This is the axis the ledger uses to compute balances and resolve point-in-time queries. Settable at creation, defaulting to current machine time if omitted, and immutable once written. See <a href="https://docs.formance.com/modules/ledger/working-with/bi-temporality">bi-temporality</a>
+        /// </summary>
         [JsonProperty("timestamp")]
         public DateTime Timestamp { get; set; } = default!;
 
+        /// <summary>
+        /// The fund movements making up the transaction.
+        /// </summary>
         [JsonProperty("postings")]
         public List<Models.Ledger.V2Posting> Postings { get; set; } = default!;
 
+        /// <summary>
+        /// Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions.
+        /// </summary>
         [JsonProperty("reference")]
         public string? Reference { get; set; }
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the transaction. Transaction metadata is bi-temporal, so a point-in-time query returns it as it stood at that time.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; } = default!;
 
+        /// <summary>
+        /// Unique sequential identifier for this transaction within the ledger.
+        /// </summary>
         [JsonProperty("id")]
         public BigInteger Id { get; set; } = default!;
 
+        /// <summary>
+        /// Indicates if the transaction has been reverted.
+        /// </summary>
         [JsonProperty("reverted")]
         public bool Reverted { get; set; } = default!;
 
+        /// <summary>
+        /// When the transaction was reverted, on the request-time axis. Absent if the transaction has not been reverted.
+        /// </summary>
         [JsonProperty("revertedAt")]
         public DateTime? RevertedAt { get; set; }
 
+        /// <summary>
+        /// Volumes aggregated per account and per asset.
+        /// </summary>
         [JsonProperty("preCommitVolumes")]
         public Dictionary<string, Dictionary<string, Models.Ledger.V2Volume>>? PreCommitVolumes { get; set; }
 
+        /// <summary>
+        /// Volumes aggregated per account and per asset.
+        /// </summary>
         [JsonProperty("postCommitVolumes")]
         public Dictionary<string, Dictionary<string, Models.Ledger.V2Volume>>? PostCommitVolumes { get; set; }
 
+        /// <summary>
+        /// Volumes aggregated per account and per asset.
+        /// </summary>
         [JsonProperty("preCommitEffectiveVolumes")]
         public Dictionary<string, Dictionary<string, Models.Ledger.V2Volume>>? PreCommitEffectiveVolumes { get; set; }
 
+        /// <summary>
+        /// Volumes aggregated per account and per asset.
+        /// </summary>
         [JsonProperty("postCommitEffectiveVolumes")]
         public Dictionary<string, Dictionary<string, Models.Ledger.V2Volume>>? PostCommitEffectiveVolumes { get; set; }
 
+        /// <summary>
+        /// Name of the transaction template this transaction was created from, if any.
+        /// </summary>
         [JsonProperty("template")]
         public string? Template { get; set; }
     }

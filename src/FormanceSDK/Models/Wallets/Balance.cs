@@ -14,14 +14,26 @@ namespace FormanceSDK.Models.Wallets
     using System;
     using System.Numerics;
 
+    /// <summary>
+    /// A named balance within a wallet, optionally carrying an expiry date.
+    /// </summary>
     public class Balance
     {
+        /// <summary>
+        /// Name of the balance within the wallet.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// When the funds in this balance expire. Expired funds stop counting towards available funds.
+        /// </summary>
         [JsonProperty("expiresAt")]
         public DateTime? ExpiresAt { get; set; } = null;
 
+        /// <summary>
+        /// Ordering hint when choosing which balances to debit first. Lower values are debited first, and it only breaks ties between balances that carry no expiry date.
+        /// </summary>
         [JsonProperty("priority")]
         public BigInteger? Priority { get; set; }
     }

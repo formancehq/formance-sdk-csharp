@@ -11,6 +11,9 @@ namespace FormanceSDK.Models.Orchestration
 {
     using FormanceSDK.Utils;
 
+    /// <summary>
+    /// The provider's original payload for this adjustment.
+    /// </summary>
     public class PaymentAdjustmentRaw
     {
     }

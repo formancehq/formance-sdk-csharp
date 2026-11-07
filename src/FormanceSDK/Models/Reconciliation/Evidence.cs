@@ -64,13 +64,13 @@ namespace FormanceSDK.Models.Reconciliation
         }
 
         [SpeakeasyMetadata("form:explode=true")]
-        public List<One>? ArrayOf1 { get; set; }
+        public List<Models.Reconciliation.One>? ArrayOf1 { get; set; }
 
         [SpeakeasyMetadata("form:explode=true")]
         public Dictionary<string, object>? MapOfAny { get; set; }
 
         public EvidenceType Type { get; set; }
-        public static Evidence CreateArrayOf1(List<One> arrayOf1)
+        public static Evidence CreateArrayOf1(List<Models.Reconciliation.One> arrayOf1)
         {
             EvidenceType typ = EvidenceType.ArrayOf1;
 
@@ -107,12 +107,12 @@ namespace FormanceSDK.Models.Reconciliation
                 {
                     return new Evidence(EvidenceType.ArrayOf1)
                     {
-                        ArrayOf1 = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<List<One>>(json)
+                        ArrayOf1 = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<List<Models.Reconciliation.One>>(json)
                     };
                 }
                 catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    fallbackCandidates.Add((typeof(List<One>), new Evidence(EvidenceType.ArrayOf1), "ArrayOf1"));
+                    fallbackCandidates.Add((typeof(List<Models.Reconciliation.One>), new Evidence(EvidenceType.ArrayOf1), "ArrayOf1"));
                 }
                 catch (ResponseBodyDeserializer.DeserializationException)
                 {

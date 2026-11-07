@@ -13,11 +13,20 @@ namespace FormanceSDK.Models.Ledger
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Storage backend the ledgers are held in.
+    /// </summary>
     public class LedgerStorage
     {
+        /// <summary>
+        /// Name of the storage driver backing the ledgers.
+        /// </summary>
         [JsonProperty("driver")]
         public string Driver { get; set; } = default!;
 
+        /// <summary>
+        /// Names of the ledgers held in this storage backend.
+        /// </summary>
         [JsonProperty("ledgers")]
         public List<string> Ledgers { get; set; } = default!;
     }

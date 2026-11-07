@@ -14,6 +14,9 @@ namespace FormanceSDK.Models.Reconciliation
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Paginated cursor wrapping the list of evaluations.
+    /// </summary>
     public class EvaluationsCursorResponseCursor
     {
         [JsonProperty("pageSize")]

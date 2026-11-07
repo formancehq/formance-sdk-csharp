@@ -15,23 +15,44 @@ namespace FormanceSDK.Models.Reconciliation
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Record of how an alert was resolved and by whom.
+    /// </summary>
     public class Resolution
     {
+        /// <summary>
+        /// How the alert was resolved, whether automatically, by booking a correcting transaction, or by business acceptance.
+        /// </summary>
         [JsonProperty("kind")]
         public ResolutionKind Kind { get; set; } = default!;
 
+        /// <summary>
+        /// Who resolved the alert.
+        /// </summary>
         [JsonProperty("by")]
         public string By { get; set; } = default!;
 
+        /// <summary>
+        /// When the alert was resolved.
+        /// </summary>
         [JsonProperty("at")]
         public DateTime At { get; set; } = default!;
 
+        /// <summary>
+        /// Free-text note left by whoever resolved the alert.
+        /// </summary>
         [JsonProperty("note")]
         public string? Note { get; set; }
 
+        /// <summary>
+        /// References of the transactions booked to correct the break.
+        /// </summary>
         [JsonProperty("transactionRefs")]
         public List<string>? TransactionRefs { get; set; }
 
+        /// <summary>
+        /// The alert's evidence captured at resolution time, kept for audit.
+        /// </summary>
         [JsonProperty("evidenceSnapshot")]
         public Dictionary<string, object>? EvidenceSnapshot { get; set; }
     }

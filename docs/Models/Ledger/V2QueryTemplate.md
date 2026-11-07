@@ -1,12 +1,30 @@
 # V2QueryTemplate
 
+A query template. `resource` selects which parameters apply.
 
-## Fields
 
-| Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `Description`                                                                       | *string*                                                                            | :heavy_minus_sign:                                                                  | N/A                                                                                 |
-| `Resource`                                                                          | [V2QueryResource](../../Models/Ledger/V2QueryResource.md)                           | :heavy_minus_sign:                                                                  | N/A                                                                                 |
-| `Params`                                                                            | [V2QueryParams](../../Models/Ledger/V2QueryParams.md)                               | :heavy_minus_sign:                                                                  | N/A                                                                                 |
-| `Vars`                                                                              | Dictionary<String, [V2QueryTemplateVar](../../Models/Ledger/V2QueryTemplateVar.md)> | :heavy_minus_sign:                                                                  | N/A                                                                                 |
-| `Body`                                                                              | Dictionary<String, *object*>                                                        | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+## Supported Types
+
+### Accounts
+
+```csharp
+V2QueryTemplate.CreateAccounts(/* values here */);
+```
+
+### Transactions
+
+```csharp
+V2QueryTemplate.CreateTransactions(/* values here */);
+```
+
+### Logs
+
+```csharp
+V2QueryTemplate.CreateLogs(/* values here */);
+```
+
+### Volumes
+
+```csharp
+V2QueryTemplate.CreateVolumes(/* values here */);
+```

@@ -14,20 +14,38 @@ namespace FormanceSDK.Models.Ledger
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Paginated cursor over the ledger's schemas.
+    /// </summary>
     public class V2SchemasCursor
     {
+        /// <summary>
+        /// The schemas on this page.
+        /// </summary>
         [JsonProperty("data")]
         public List<V2Schema> Data { get; set; } = default!;
 
+        /// <summary>
+        /// Whether further pages are available.
+        /// </summary>
         [JsonProperty("hasMore")]
         public bool HasMore { get; set; } = default!;
 
+        /// <summary>
+        /// Cursor for the previous page, absent on the first page.
+        /// </summary>
         [JsonProperty("previous")]
         public string? Previous { get; set; }
 
+        /// <summary>
+        /// Cursor for the next page, absent on the last page.
+        /// </summary>
         [JsonProperty("next")]
         public string? Next { get; set; }
 
+        /// <summary>
+        /// Number of items requested per page.
+        /// </summary>
         [JsonProperty("pageSize")]
         public long PageSize { get; set; } = default!;
     }

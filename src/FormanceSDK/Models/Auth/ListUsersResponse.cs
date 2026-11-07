@@ -16,6 +16,9 @@ namespace FormanceSDK.Models.Auth
 
     public class ListUsersResponse
     {
+        /// <summary>
+        /// The users known to this stack.
+        /// </summary>
         [JsonProperty("data")]
         public List<User>? Data { get; set; }
     }

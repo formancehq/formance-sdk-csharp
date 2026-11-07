@@ -16,33 +16,93 @@ namespace FormanceSDK.Models.Orchestration
 
     public class V2WorkflowInstanceHistoryStage
     {
+        /// <summary>
+        /// Stable identifier of the activity within its workflow execution.
+        /// </summary>
+        [JsonProperty("activityID")]
+        public string? ActivityID { get; set; }
+
+        /// <summary>
+        /// Run identifier of the described stage workflow execution.
+        /// </summary>
+        [JsonProperty("temporalRunID")]
+        public string? TemporalRunID { get; set; }
+
+        /// <summary>
+        /// Whether Temporal has paused this pending activity; a pause is not a terminal failure.
+        /// </summary>
+        [JsonProperty("paused")]
+        public bool? Paused { get; set; }
+
+        /// <summary>
+        /// Reason recorded by Temporal for the activity pause, when available.
+        /// </summary>
+        [JsonProperty("pauseReason")]
+        public string? PauseReason { get; set; }
+
+        /// <summary>
+        /// Application failure type of the most recent failed attempt, when available.
+        /// </summary>
+        [JsonProperty("lastFailureType")]
+        public string? LastFailureType { get; set; }
+
+        /// <summary>
+        /// Name of the activity this history entry records.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// Arguments an activity was called with, keyed by activity name.
+        /// </summary>
         [JsonProperty("input")]
         public V2WorkflowInstanceHistoryStageInput Input { get; set; } = default!;
 
+        /// <summary>
+        /// Result an activity returned, keyed by activity name.
+        /// </summary>
         [JsonProperty("output")]
         public V2WorkflowInstanceHistoryStageOutput? Output { get; set; }
 
+        /// <summary>
+        /// Why the activity failed, absent when it succeeded.
+        /// </summary>
         [JsonProperty("error")]
         public string? Error { get; set; }
 
+        /// <summary>
+        /// Whether the activity has finished.
+        /// </summary>
         [JsonProperty("terminated")]
         public bool Terminated { get; set; } = default!;
 
+        /// <summary>
+        /// When the activity started.
+        /// </summary>
         [JsonProperty("startedAt")]
         public DateTime StartedAt { get; set; } = default!;
 
+        /// <summary>
+        /// When the activity finished, absent while it is still running.
+        /// </summary>
         [JsonProperty("terminatedAt")]
         public DateTime? TerminatedAt { get; set; }
 
+        /// <summary>
+        /// Error reported by the most recent failed attempt.
+        /// </summary>
         [JsonProperty("lastFailure")]
         public string? LastFailure { get; set; }
 
+        /// <summary>
+        /// How many times the activity has been attempted.
+        /// </summary>
         [JsonProperty("attempt")]
         public long Attempt { get; set; } = default!;
 
+        /// <summary>
+        /// When the next retry is scheduled, absent while paused, when no retry is scheduled, or once settled.
+        /// </summary>
         [JsonProperty("nextExecution")]
         public DateTime? NextExecution { get; set; }
     }

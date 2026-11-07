@@ -31,6 +31,9 @@ namespace FormanceSDK.Models.Payments
         [JsonProperty("pageSize")]
         public long? PageSize { get; set; } = 25;
 
+        [JsonProperty("payoutsPerMinute")]
+        public long? PayoutsPerMinute { get; set; }
+
         [JsonProperty("pollingPeriod")]
         public string? PollingPeriod { get; set; } = "30m";
 

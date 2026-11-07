@@ -15,9 +15,15 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2Pipeline
     {
+        /// <summary>
+        /// Name of the ledger the pipeline reads from.
+        /// </summary>
         [JsonProperty("ledger")]
         public string Ledger { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the exporter the pipeline feeds.
+        /// </summary>
         [JsonProperty("exporterID")]
         public string ExporterID { get; set; } = default!;
 

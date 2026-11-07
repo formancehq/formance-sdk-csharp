@@ -15,12 +15,21 @@ namespace FormanceSDK.Models.Ledger
 
     public class Account
     {
+        /// <summary>
+        /// The account address, a colon-separated segmented path such as users:001.
+        /// </summary>
         [JsonProperty("address")]
         public string Address { get; set; } = default!;
 
+        /// <summary>
+        /// Free-form classification of the account.
+        /// </summary>
         [JsonProperty("type")]
         public string? Type { get; set; }
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the account.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, object>? Metadata { get; set; }
     }

@@ -15,15 +15,27 @@ namespace FormanceSDK.Models.Auth
 
     public class ClientSecret
     {
+        /// <summary>
+        /// Last digits of the secret. The full plaintext is hidden, and only the last digits are exposed.
+        /// </summary>
         [JsonProperty("lastDigits")]
         public string LastDigits { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable name identifying the secret.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// Unique identifier of the secret.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
     }

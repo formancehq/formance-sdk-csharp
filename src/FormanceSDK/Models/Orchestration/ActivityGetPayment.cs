@@ -12,8 +12,14 @@ namespace FormanceSDK.Models.Orchestration
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Arguments for the activity that reads a payment.
+    /// </summary>
     public class ActivityGetPayment
     {
+        /// <summary>
+        /// Identifier of the payment to read.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
     }

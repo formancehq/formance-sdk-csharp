@@ -22,6 +22,7 @@
 * [CancelEvent](#cancelevent) - Cancel a running workflow
 * [GetInstanceHistory](#getinstancehistory) - Get a workflow instance history by id
 * [GetInstanceStageHistory](#getinstancestagehistory) - Get a workflow instance stage history
+* [ResumeActivity](#resumeactivity) - Resume a paused activity
 
 ## GetServerInfo
 
@@ -50,10 +51,10 @@ var res = await sdk.Orchestration.V2.GetServerInfoAsync();
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
-| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error1 | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## ListTriggers
 
@@ -93,10 +94,10 @@ var res = await sdk.Orchestration.V2.ListTriggersAsync(
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
-| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error1 | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## CreateTrigger
 
@@ -134,10 +135,10 @@ var res = await sdk.Orchestration.V2.CreateTriggerAsync(req);
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
-| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error1 | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## ReadTrigger
 
@@ -172,10 +173,10 @@ var res = await sdk.Orchestration.V2.ReadTriggerAsync(triggerID: "<id>");
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
-| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error1 | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## DeleteTrigger
 
@@ -210,10 +211,10 @@ var res = await sdk.Orchestration.V2.DeleteTriggerAsync(triggerID: "<id>");
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
-| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error1 | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## TestTrigger
 
@@ -249,10 +250,10 @@ var res = await sdk.Orchestration.V2.TestTriggerAsync(triggerID: "<id>");
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
-| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error1 | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## ListTriggersOccurrences
 
@@ -293,10 +294,10 @@ var res = await sdk.Orchestration.V2.ListTriggersOccurrencesAsync(
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
-| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error1 | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## ListWorkflows
 
@@ -335,10 +336,10 @@ var res = await sdk.Orchestration.V2.ListWorkflowsAsync(
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
-| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error1 | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## CreateWorkflow
 
@@ -376,10 +377,10 @@ var res = await sdk.Orchestration.V2.CreateWorkflowAsync(req);
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
-| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error1 | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## GetWorkflow
 
@@ -414,10 +415,10 @@ var res = await sdk.Orchestration.V2.GetWorkflowAsync(flowId: "xxx");
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
-| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error1 | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## DeleteWorkflow
 
@@ -452,10 +453,10 @@ var res = await sdk.Orchestration.V2.DeleteWorkflowAsync(flowId: "xxx");
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
-| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error1 | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## RunWorkflow
 
@@ -492,10 +493,10 @@ var res = await sdk.Orchestration.V2.RunWorkflowAsync(workflowID: "xxx");
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
-| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error1 | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## ListInstances
 
@@ -538,10 +539,10 @@ var res = await sdk.Orchestration.V2.ListInstancesAsync(
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
-| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error1 | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## GetInstance
 
@@ -576,10 +577,10 @@ var res = await sdk.Orchestration.V2.GetInstanceAsync(instanceID: "xxx");
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
-| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error1 | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## SendEvent
 
@@ -615,10 +616,10 @@ var res = await sdk.Orchestration.V2.SendEventAsync(instanceID: "xxx");
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
-| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error1 | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## CancelEvent
 
@@ -653,10 +654,10 @@ var res = await sdk.Orchestration.V2.CancelEventAsync(instanceID: "xxx");
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
-| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error1 | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## GetInstanceHistory
 
@@ -691,10 +692,10 @@ var res = await sdk.Orchestration.V2.GetInstanceHistoryAsync(instanceID: "xxx");
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
-| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error1 | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
 
 ## GetInstanceStageHistory
 
@@ -733,7 +734,61 @@ var res = await sdk.Orchestration.V2.GetInstanceStageHistoryAsync(
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| FormanceSDK.Models.Orchestration.V2Error | default                                  | application/json                         |
-| FormanceSDK.Models.Errors.SDKException   | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| FormanceSDK.Models.Orchestration.V2Error1 | default                                   | application/json                          |
+| FormanceSDK.Models.Errors.SDKException    | 4XX, 5XX                                  | \*/\*                                     |
+
+## ResumeActivity
+
+Resume a paused activity identified by temporalRunID and pausedAt.
+Use both values from the paused activity projection. A stale run id or
+pause timestamp returns a conflict, preventing a delayed resend from
+resuming an activity in a newer run or a subsequent pause generation.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="csharp" operationID="v2ResumeActivity" method="post" path="/api/orchestration/v2/instances/{instanceID}/stages/{number}/activities/{activityID}/resume" -->
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Requests;
+using System;
+
+var sdk = new Formance(security: new Security() {
+    ClientID = "<YOUR_CLIENT_ID_HERE>",
+    ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
+});
+
+var res = await sdk.Orchestration.V2.ResumeActivityAsync(
+    instanceID: "<id>",
+    number: 875674,
+    activityID: "<id>",
+    requestBody: new V2ResumeActivityRequestBody() {
+        TemporalRunID = "<id>",
+        PausedAt = System.DateTime.Parse("2025-02-08T07:52:47.097Z").ToUniversalTime(),
+    }
+);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `InstanceID`                                                                        | *string*                                                                            | :heavy_check_mark:                                                                  | The instance id                                                                     |
+| `Number`                                                                            | *long*                                                                              | :heavy_check_mark:                                                                  | The nonnegative stage number                                                        |
+| `ActivityID`                                                                        | *string*                                                                            | :heavy_check_mark:                                                                  | The paused activity id                                                              |
+| `RequestBody`                                                                       | [V2ResumeActivityRequestBody](../../Models/Requests/V2ResumeActivityRequestBody.md) | :heavy_check_mark:                                                                  | N/A                                                                                 |
+
+### Response
+
+**[V2ResumeActivityResponse](../../Models/Requests/V2ResumeActivityResponse.md)**
+
+### Errors
+
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |

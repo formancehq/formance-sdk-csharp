@@ -15,12 +15,21 @@ namespace FormanceSDK.Models.Webhooks
 
     public class ConfigUser
     {
+        /// <summary>
+        /// URL events are delivered to.
+        /// </summary>
         [JsonProperty("endpoint")]
         public string Endpoint { get; set; } = default!;
 
+        /// <summary>
+        /// Secret used to sign delivery payloads. Generated automatically when omitted.
+        /// </summary>
         [JsonProperty("secret")]
         public string? Secret { get; set; }
 
+        /// <summary>
+        /// Types of event that trigger a delivery to this endpoint.
+        /// </summary>
         [JsonProperty("eventTypes")]
         public List<string> EventTypes { get; set; } = default!;
     }

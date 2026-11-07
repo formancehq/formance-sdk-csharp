@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Ledger
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Current state of the migration.
+    /// </summary>
     public enum State
     {
         [JsonProperty("TO DO")]

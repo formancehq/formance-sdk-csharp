@@ -13,8 +13,14 @@ namespace FormanceSDK.Models.Orchestration
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// A page of wallets.
+    /// </summary>
     public class V2ListWalletsResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the list of wallets.
+        /// </summary>
         [JsonProperty("cursor")]
         public V2ListWalletsResponseCursor Cursor { get; set; } = default!;
     }

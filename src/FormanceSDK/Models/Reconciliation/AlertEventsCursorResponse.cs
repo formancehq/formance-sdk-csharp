@@ -18,6 +18,9 @@ namespace FormanceSDK.Models.Reconciliation
     /// </summary>
     public class AlertEventsCursorResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the alert's event log.
+        /// </summary>
         [JsonProperty("cursor")]
         public AlertEventsCursorResponseCursor Cursor { get; set; } = default!;
     }

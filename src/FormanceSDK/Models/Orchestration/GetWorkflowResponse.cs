@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Orchestration
 
     public class GetWorkflowResponse
     {
+        /// <summary>
+        /// A workflow definition and the stages it runs.
+        /// </summary>
         [JsonProperty("data")]
         public Workflow Data { get; set; } = default!;
     }

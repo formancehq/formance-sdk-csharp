@@ -20,15 +20,27 @@ namespace FormanceSDK.Models.Reconciliation
     /// </summary>
     public class Snooze
     {
+        /// <summary>
+        /// When the mute expires and notifications resume. Must be in the future.
+        /// </summary>
         [JsonProperty("until")]
         public DateTime Until { get; set; } = default!;
 
+        /// <summary>
+        /// Who snoozed the alert.
+        /// </summary>
         [JsonProperty("by")]
         public string By { get; set; } = default!;
 
+        /// <summary>
+        /// When the alert was snoozed.
+        /// </summary>
         [JsonProperty("at")]
         public DateTime At { get; set; } = default!;
 
+        /// <summary>
+        /// Free-text note left by whoever snoozed the alert.
+        /// </summary>
         [JsonProperty("note")]
         public string? Note { get; set; }
     }

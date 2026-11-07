@@ -12,11 +12,20 @@ namespace FormanceSDK.Models.Orchestration
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Take the funds from a ledger account.
+    /// </summary>
     public class StageSendSourceAccount
     {
+        /// <summary>
+        /// Address of the ledger account to take funds from.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Name of the ledger holding the account.
+        /// </summary>
         [JsonProperty("ledger")]
         public string? Ledger { get; set; }
 

@@ -14,6 +14,9 @@ namespace FormanceSDK.Models.Orchestration
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Paginated cursor wrapping the list of runs.
+    /// </summary>
     public class V2ListRunsResponseCursor
     {
         [JsonProperty("pageSize")]

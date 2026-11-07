@@ -15,9 +15,15 @@ namespace FormanceSDK.Models.Ledger
 
     public class Script
     {
+        /// <summary>
+        /// The Numscript program to execute.
+        /// </summary>
         [JsonProperty("plain")]
         public string Plain { get; set; } = default!;
 
+        /// <summary>
+        /// Values bound to the script's declared variables, keyed by variable name.
+        /// </summary>
         [JsonProperty("vars")]
         public Dictionary<string, object>? Vars { get; set; }
 
@@ -27,6 +33,9 @@ namespace FormanceSDK.Models.Ledger
         [JsonProperty("reference")]
         public string? Reference { get; set; }
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, object>? Metadata { get; set; } = null;
     }

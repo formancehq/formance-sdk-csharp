@@ -15,15 +15,27 @@ namespace FormanceSDK.Models.Reconciliation
 
     public class PolicyRequest
     {
+        /// <summary>
+        /// Human-readable name for the policy.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// Name of the ledger the policy reconciles against.
+        /// </summary>
         [JsonProperty("ledgerName")]
         public string LedgerName { get; set; } = default!;
 
+        /// <summary>
+        /// Filter selecting the ledger accounts whose balances are reconciled.
+        /// </summary>
         [JsonProperty("ledgerQuery")]
         public Dictionary<string, object> LedgerQuery { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the payments pool the ledger side is compared against.
+        /// </summary>
         [JsonProperty("paymentsPoolID")]
         public string PaymentsPoolID { get; set; } = default!;
     }

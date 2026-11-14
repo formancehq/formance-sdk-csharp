@@ -12,11 +12,20 @@ namespace FormanceSDK.Models.Orchestration
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Arguments for the activity that reverts a ledger transaction.
+    /// </summary>
     public class ActivityRevertTransaction
     {
+        /// <summary>
+        /// Name of the ledger holding the transaction.
+        /// </summary>
         [JsonProperty("ledger")]
         public string Ledger { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the transaction to revert.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
     }

@@ -18,7 +18,7 @@ namespace FormanceSDK
     {
         public IFormancePaymentsV1 V1 { get; }
 
-        public IV3 V3 { get; }
+        public IFormanceV3 V3 { get; }
     }
 
     public class Payments: IPayments
@@ -37,15 +37,15 @@ namespace FormanceSDK
 
         /// <summary>
         /// V3 SubSDK.
-        /// <see cref="IV3"/>
+        /// <see cref="IFormanceV3"/>
         /// </summary>
-        public IV3 V3 { get; private set; }
+        public IFormanceV3 V3 { get; private set; }
 
         public Payments(SDKConfig config)
         {
             SDKConfiguration = config;
             V1 = new FormancePaymentsV1(SDKConfiguration);
-            V3 = new V3(SDKConfiguration);
+            V3 = new FormanceV3(SDKConfiguration);
         }
     }
 }

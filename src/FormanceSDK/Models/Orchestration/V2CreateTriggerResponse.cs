@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Orchestration
 
     public class V2CreateTriggerResponse
     {
+        /// <summary>
+        /// A rule that starts a workflow when a matching event arrives.
+        /// </summary>
         [JsonProperty("data")]
         public V2Trigger Data { get; set; } = default!;
     }

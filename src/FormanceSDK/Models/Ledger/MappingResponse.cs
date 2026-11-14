@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Ledger
 
     public class MappingResponse
     {
+        /// <summary>
+        /// Contracts constraining the balances a ledger's accounts may hold.
+        /// </summary>
         [JsonProperty("data")]
         public Mapping? Data { get; set; } = null;
     }

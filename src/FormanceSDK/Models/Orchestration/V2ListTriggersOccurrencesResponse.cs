@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Orchestration
 
     public class V2ListTriggersOccurrencesResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the trigger's occurrences.
+        /// </summary>
         [JsonProperty("cursor")]
         public V2ListTriggersOccurrencesResponseCursor Cursor { get; set; } = default!;
     }

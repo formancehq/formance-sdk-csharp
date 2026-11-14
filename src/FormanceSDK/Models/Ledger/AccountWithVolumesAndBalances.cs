@@ -15,20 +15,38 @@ namespace FormanceSDK.Models.Ledger
     using System.Collections.Generic;
     using System.Numerics;
 
+    /// <summary>
+    /// An account together with its volumes and net balances per asset.
+    /// </summary>
     public class AccountWithVolumesAndBalances
     {
+        /// <summary>
+        /// The account address, a colon-separated segmented path such as users:001.
+        /// </summary>
         [JsonProperty("address")]
         public string Address { get; set; } = default!;
 
+        /// <summary>
+        /// Free-form classification of the account.
+        /// </summary>
         [JsonProperty("type")]
         public string? Type { get; set; }
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the account.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, object>? Metadata { get; set; }
 
+        /// <summary>
+        /// Volumes per asset for a single account.
+        /// </summary>
         [JsonProperty("volumes")]
         public Dictionary<string, Models.Ledger.Volume>? Volumes { get; set; }
 
+        /// <summary>
+        /// Net balance per asset, equal to input minus output.
+        /// </summary>
         [JsonProperty("balances")]
         public Dictionary<string, BigInteger>? Balances { get; set; }
     }

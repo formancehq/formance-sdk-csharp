@@ -382,7 +382,7 @@ RuleRequest req = new RuleRequest() {
 
     },
     Schedule = new Schedule() {
-        Kind = Kind.Cron,
+        Kind = FormanceSDK.Models.Reconciliation.Kind.Cron,
         Expr = "*/15 * * * *",
         Tz = "UTC",
         SafetyMargin = "30s",
@@ -513,7 +513,7 @@ var res = await sdk.Reconciliation.V1.PatchRuleAsync(
     ruleID: "0b4aa7b1-cc5d-4700-91ec-4983510fef86",
     rulePatchRequest: new RulePatchRequest() {
         Schedule = new Schedule() {
-            Kind = Kind.Cron,
+            Kind = FormanceSDK.Models.Reconciliation.Kind.Cron,
             Expr = "*/15 * * * *",
             Tz = "UTC",
             SafetyMargin = "30s",

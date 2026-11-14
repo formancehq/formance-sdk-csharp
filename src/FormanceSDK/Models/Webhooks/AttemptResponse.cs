@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Webhooks
 
     public class AttemptResponse
     {
+        /// <summary>
+        /// A single delivery attempt made against a webhook endpoint.
+        /// </summary>
         [JsonProperty("data")]
         public Attempt Data { get; set; } = default!;
     }

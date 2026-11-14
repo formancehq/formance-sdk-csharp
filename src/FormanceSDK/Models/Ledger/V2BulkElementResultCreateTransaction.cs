@@ -15,12 +15,21 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2BulkElementResultCreateTransaction
     {
+        /// <summary>
+        /// The action this result corresponds to.
+        /// </summary>
         [JsonProperty("responseType")]
         public string ResponseType { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the log entry produced by this element.
+        /// </summary>
         [JsonProperty("logID")]
         public long LogID { get; set; } = default!;
 
+        /// <summary>
+        /// A transaction recorded in the ledger, carrying its postings, metadata and both bi-temporal timestamps.
+        /// </summary>
         [JsonProperty("data")]
         public Models.Ledger.V2Transaction Data { get; set; } = default!;
     }

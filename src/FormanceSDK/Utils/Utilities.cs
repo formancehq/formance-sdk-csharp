@@ -138,13 +138,14 @@ namespace FormanceSDK.Utils
                 "FormanceSDK.Models.Gateway",
                 "FormanceSDK.Models.Components",
                 "FormanceSDK.Models.Auth",
+                "FormanceSDK.Models.LedgerV3",
                 "FormanceSDK.Models.Ledger",
                 "FormanceSDK.Models.Payments",
-                "FormanceSDK.Models.Search",
                 "FormanceSDK.Models.Webhooks",
                 "FormanceSDK.Models.Wallets",
                 "FormanceSDK.Models.Orchestration",
                 "FormanceSDK.Models.Reconciliation",
+                "FormanceSDK.Models.Connectivity",
             };
 
             return modelNamespaces.Contains(ns);

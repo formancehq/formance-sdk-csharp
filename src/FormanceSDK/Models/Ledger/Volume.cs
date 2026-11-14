@@ -15,12 +15,21 @@ namespace FormanceSDK.Models.Ledger
 
     public class Volume
     {
+        /// <summary>
+        /// Total amount credited for this asset.
+        /// </summary>
         [JsonProperty("input")]
         public BigInteger Input { get; set; } = default!;
 
+        /// <summary>
+        /// Total amount debited for this asset.
+        /// </summary>
         [JsonProperty("output")]
         public BigInteger Output { get; set; } = default!;
 
+        /// <summary>
+        /// Net balance, equal to input minus output.
+        /// </summary>
         [JsonProperty("balance")]
         public BigInteger? Balance { get; set; }
     }

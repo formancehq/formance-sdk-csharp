@@ -11,6 +11,9 @@ namespace FormanceSDK.Models.Ledger
 {
     using FormanceSDK.Utils;
 
+    /// <summary>
+    /// Rules and metadata applied to the segment's own account, as opposed to its children.
+    /// </summary>
     public class DotSelf
     {
     }

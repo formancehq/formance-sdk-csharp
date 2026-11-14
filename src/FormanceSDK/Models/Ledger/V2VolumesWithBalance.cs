@@ -15,18 +15,33 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2VolumesWithBalance
     {
+        /// <summary>
+        /// The account address these volumes belong to.
+        /// </summary>
         [JsonProperty("account")]
         public string Account { get; set; } = default!;
 
+        /// <summary>
+        /// The asset these volumes are denominated in.
+        /// </summary>
         [JsonProperty("asset")]
         public string Asset { get; set; } = default!;
 
+        /// <summary>
+        /// Total amount credited to the account for this asset.
+        /// </summary>
         [JsonProperty("input")]
         public BigInteger Input { get; set; } = default!;
 
+        /// <summary>
+        /// Total amount debited from the account for this asset.
+        /// </summary>
         [JsonProperty("output")]
         public BigInteger Output { get; set; } = default!;
 
+        /// <summary>
+        /// Net balance for this asset, equal to input minus output.
+        /// </summary>
         [JsonProperty("balance")]
         public BigInteger Balance { get; set; } = default!;
     }

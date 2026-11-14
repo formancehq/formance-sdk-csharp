@@ -19,15 +19,15 @@ namespace FormanceSDK.Models.Ledger
     public class V2LogDataRevertedTransaction
     {
         /// <summary>
-        /// Transaction structure as it appears in log payloads.
+        /// The original transaction that was reverted.
         /// </summary>
         [JsonProperty("revertedTransaction")]
-        public V2LogTransaction RevertedTransaction { get; set; } = default!;
+        public Models.Ledger.RevertedTransaction RevertedTransaction { get; set; } = default!;
 
         /// <summary>
-        /// Transaction structure as it appears in log payloads.
+        /// The new reverting transaction created to cancel the original.
         /// </summary>
         [JsonProperty("transaction")]
-        public V2LogTransaction Transaction { get; set; } = default!;
+        public V2LogDataRevertedTransactionTransaction Transaction { get; set; } = default!;
     }
 }

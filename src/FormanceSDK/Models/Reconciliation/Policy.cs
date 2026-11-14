@@ -14,23 +14,44 @@ namespace FormanceSDK.Models.Reconciliation
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// A reconciliation policy pairing a ledger query with a payments pool.
+    /// </summary>
     public class Policy
     {
+        /// <summary>
+        /// Unique identifier of the policy.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable name of the policy.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// When the policy was created.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Name of the ledger the policy reconciles against.
+        /// </summary>
         [JsonProperty("ledgerName")]
         public string LedgerName { get; set; } = default!;
 
+        /// <summary>
+        /// Filter selecting the ledger accounts whose balances are reconciled.
+        /// </summary>
         [JsonProperty("ledgerQuery")]
         public Dictionary<string, object> LedgerQuery { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the payments pool the ledger side is compared against.
+        /// </summary>
         [JsonProperty("paymentsPoolID")]
         public string PaymentsPoolID { get; set; } = default!;
     }

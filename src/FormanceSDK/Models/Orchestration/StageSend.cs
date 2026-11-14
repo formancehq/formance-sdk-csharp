@@ -17,18 +17,33 @@ namespace FormanceSDK.Models.Orchestration
 
     public class StageSend
     {
+        /// <summary>
+        /// An amount together with the asset it is denominated in.
+        /// </summary>
         [JsonProperty("amount")]
         public Models.Orchestration.Monetary? Amount { get; set; }
 
+        /// <summary>
+        /// Where a send stage puts the funds.
+        /// </summary>
         [JsonProperty("destination")]
         public StageSendDestination? Destination { get; set; }
 
+        /// <summary>
+        /// Where a send stage takes the funds from.
+        /// </summary>
         [JsonProperty("source")]
         public StageSendSource? Source { get; set; }
 
+        /// <summary>
+        /// Metadata to attach to the resulting transaction.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; }
 
+        /// <summary>
+        /// The transaction time to record on the resulting transaction. See <a href="https://docs.formance.com/modules/ledger/working-with/bi-temporality">bi-temporality</a>
+        /// </summary>
         [JsonProperty("timestamp")]
         public DateTime? Timestamp { get; set; }
     }

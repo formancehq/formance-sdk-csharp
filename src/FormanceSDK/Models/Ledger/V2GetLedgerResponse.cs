@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2GetLedgerResponse
     {
+        /// <summary>
+        /// A ledger and its configuration.
+        /// </summary>
         [JsonProperty("data")]
         public V2Ledger Data { get; set; } = default!;
     }

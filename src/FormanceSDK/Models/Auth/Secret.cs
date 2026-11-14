@@ -13,11 +13,20 @@ namespace FormanceSDK.Models.Auth
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// A client secret. The full value is returned only at creation and cannot be retrieved again.
+    /// </summary>
     public class Secret
     {
+        /// <summary>
+        /// Human-readable name identifying the secret.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
 

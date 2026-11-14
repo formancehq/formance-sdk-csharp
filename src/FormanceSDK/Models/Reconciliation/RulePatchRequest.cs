@@ -19,27 +19,51 @@ namespace FormanceSDK.Models.Reconciliation
     /// </summary>
     public class RulePatchRequest
     {
+        /// <summary>
+        /// New human-readable name for the rule.
+        /// </summary>
         [JsonProperty("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// Which built-in check a rule applies, determining the shape of its templateSpec.
+        /// </summary>
         [JsonProperty("templateKind")]
         public TemplateKind? TemplateKind { get; set; }
 
+        /// <summary>
+        /// New parameters for the template, whose shape depends on templateKind.
+        /// </summary>
         [JsonProperty("templateSpec")]
         public Dictionary<string, object>? TemplateSpec { get; set; }
 
+        /// <summary>
+        /// Whether the rule should be evaluated.
+        /// </summary>
         [JsonProperty("enabled")]
         public bool? Enabled { get; set; }
 
+        /// <summary>
+        /// How serious an alert is, used to route and prioritise notifications.
+        /// </summary>
         [JsonProperty("severity")]
         public Severity? Severity { get; set; }
 
+        /// <summary>
+        /// When a rule runs, either on demand or on a cron expression.
+        /// </summary>
         [JsonProperty("schedule")]
         public Schedule? Schedule { get; set; }
 
+        /// <summary>
+        /// New set of channels to notify when this rule raises an alert.
+        /// </summary>
         [JsonProperty("notifications")]
         public List<string>? Notifications { get; set; }
 
+        /// <summary>
+        /// New set of key/value pairs attached to the rule.
+        /// </summary>
         [JsonProperty("labels")]
         public Dictionary<string, string>? Labels { get; set; }
     }

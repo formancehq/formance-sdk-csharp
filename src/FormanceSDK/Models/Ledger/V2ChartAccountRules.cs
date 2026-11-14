@@ -11,6 +11,9 @@ namespace FormanceSDK.Models.Ledger
 {
     using FormanceSDK.Utils;
 
+    /// <summary>
+    /// Rules applied to accounts matching a chart-of-accounts segment.
+    /// </summary>
     public class V2ChartAccountRules
     {
     }

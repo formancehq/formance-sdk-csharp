@@ -14,8 +14,14 @@ namespace FormanceSDK.Models.Ledger
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Contracts constraining the balances a ledger's accounts may hold.
+    /// </summary>
     public class Mapping
     {
+        /// <summary>
+        /// Constraints enforced on the ledger's accounts.
+        /// </summary>
         [JsonProperty("contracts")]
         public List<Contract> Contracts { get; set; } = default!;
     }

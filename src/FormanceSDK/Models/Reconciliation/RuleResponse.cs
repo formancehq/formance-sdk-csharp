@@ -18,6 +18,9 @@ namespace FormanceSDK.Models.Reconciliation
     /// </summary>
     public class RuleResponse
     {
+        /// <summary>
+        /// A monitoring rule evaluated on a schedule, raising alerts when it fails.
+        /// </summary>
         [JsonProperty("data")]
         public Rule Data { get; set; } = default!;
     }

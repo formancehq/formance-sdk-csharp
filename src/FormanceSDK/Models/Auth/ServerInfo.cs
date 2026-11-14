@@ -14,6 +14,9 @@ namespace FormanceSDK.Models.Auth
 
     public class ServerInfo
     {
+        /// <summary>
+        /// Version of the auth service.
+        /// </summary>
         [JsonProperty("version")]
         public string Version { get; set; } = default!;
     }

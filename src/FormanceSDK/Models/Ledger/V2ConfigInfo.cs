@@ -15,12 +15,21 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2ConfigInfo
     {
+        /// <summary>
+        /// Name of the server serving the API.
+        /// </summary>
         [JsonProperty("server")]
         public string Server { get; set; } = default!;
 
+        /// <summary>
+        /// Version of the ledger service.
+        /// </summary>
         [JsonProperty("version")]
         public string Version { get; set; } = default!;
 
+        /// <summary>
+        /// Experimental feature flags enabled on this deployment.
+        /// </summary>
         [JsonProperty("experimentalFeatures")]
         public List<string>? ExperimentalFeatures { get; set; }
     }

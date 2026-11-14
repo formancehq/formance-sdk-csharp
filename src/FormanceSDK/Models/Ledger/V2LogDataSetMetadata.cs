@@ -24,11 +24,17 @@ namespace FormanceSDK.Models.Ledger
         /// Type of the target entity.
         /// </summary>
         [JsonProperty("targetType")]
-        public TargetType TargetType { get; set; } = default!;
+        public Models.Ledger.TargetType TargetType { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the entity the metadata was set on, either an account address or a transaction ID.
+        /// </summary>
         [JsonProperty("targetId", NullValueHandling = NullValueHandling.Include)]
-        public TargetId TargetId { get; set; } = default!;
+        public Models.Ledger.TargetId TargetId { get; set; } = default!;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; } = default!;
     }

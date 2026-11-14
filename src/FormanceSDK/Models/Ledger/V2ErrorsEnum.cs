@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Ledger
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Machine-readable error code identifying the failure.
+    /// </summary>
     public enum V2ErrorsEnum
     {
         [JsonProperty("INTERNAL")]

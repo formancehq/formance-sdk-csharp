@@ -14,17 +14,32 @@ namespace FormanceSDK.Models.Orchestration
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// An account in the ledger, identified by its address.
+    /// </summary>
     public class V2Account
     {
+        /// <summary>
+        /// The account address, a colon-separated segmented path such as users:001.
+        /// </summary>
         [JsonProperty("address")]
         public string Address { get; set; } = default!;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the account.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; } = default!;
 
+        /// <summary>
+        /// Volumes per asset for a single account.
+        /// </summary>
         [JsonProperty("volumes")]
         public Dictionary<string, Models.Orchestration.V2Volume>? Volumes { get; set; }
 
+        /// <summary>
+        /// Volumes per asset for a single account.
+        /// </summary>
         [JsonProperty("effectiveVolumes")]
         public Dictionary<string, Models.Orchestration.V2Volume>? EffectiveVolumes { get; set; }
     }

@@ -14,6 +14,9 @@ namespace FormanceSDK.Models.Webhooks
 
     public class ConfigChangeSecret
     {
+        /// <summary>
+        /// The new signing secret, 24 random bytes encoded as base64.
+        /// </summary>
         [JsonProperty("secret")]
         public string Secret { get; set; } = default!;
     }

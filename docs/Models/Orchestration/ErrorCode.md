@@ -1,5 +1,7 @@
 # ErrorCode
 
+Machine-readable error code identifying the failure
+
 ## Example Usage
 
 ```csharp
@@ -16,3 +18,4 @@ var value = ErrorCode.Validation;
 | `Validation` | VALIDATION   |
 | `NotFound`   | NOT_FOUND    |
 | `Internal`   | INTERNAL     |
+| `Conflict`   | CONFLICT     |

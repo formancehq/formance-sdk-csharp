@@ -13,14 +13,26 @@ namespace FormanceSDK.Models.Orchestration
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Where a send stage puts the funds.
+    /// </summary>
     public class V2StageSendDestination
     {
+        /// <summary>
+        /// Send the funds to a wallet.
+        /// </summary>
         [JsonProperty("wallet")]
-        public V2StageSendSourceWallet? Wallet { get; set; }
+        public V2StageSendDestinationWallet? Wallet { get; set; }
 
+        /// <summary>
+        /// Send the funds to a ledger account.
+        /// </summary>
         [JsonProperty("account")]
-        public V2StageSendSourceAccount? Account { get; set; }
+        public V2StageSendDestinationAccount? Account { get; set; }
 
+        /// <summary>
+        /// Send the funds to a payment.
+        /// </summary>
         [JsonProperty("payment")]
         public V2StageSendDestinationPayment? Payment { get; set; }
     }

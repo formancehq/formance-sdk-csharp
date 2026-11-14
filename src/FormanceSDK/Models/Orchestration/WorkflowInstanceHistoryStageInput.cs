@@ -13,44 +13,86 @@ namespace FormanceSDK.Models.Orchestration
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Arguments an activity was called with, keyed by activity name.
+    /// </summary>
     public class WorkflowInstanceHistoryStageInput
     {
+        /// <summary>
+        /// Arguments for the activity that reads a ledger account.
+        /// </summary>
         [JsonProperty("GetAccount")]
         public ActivityGetAccount? GetAccount { get; set; }
 
+        /// <summary>
+        /// Arguments for the activity that sets metadata on a ledger account.
+        /// </summary>
         [JsonProperty("AddAccountMetadata")]
         public ActivityAddAccountMetadata? AddAccountMetadata { get; set; }
 
+        /// <summary>
+        /// Arguments for the activity that writes a transaction to a ledger.
+        /// </summary>
         [JsonProperty("CreateTransaction")]
         public ActivityCreateTransaction? CreateTransaction { get; set; }
 
+        /// <summary>
+        /// Arguments for the activity that reverts a ledger transaction.
+        /// </summary>
         [JsonProperty("RevertTransaction")]
         public ActivityRevertTransaction? RevertTransaction { get; set; }
 
+        /// <summary>
+        /// Arguments for the activity that transfers funds through Stripe.
+        /// </summary>
         [JsonProperty("StripeTransfer")]
-        public StripeTransferRequest? StripeTransfer { get; set; }
+        public ActivityStripeTransfer? StripeTransfer { get; set; }
 
+        /// <summary>
+        /// Arguments for the activity that initiates a transfer through a connector.
+        /// </summary>
         [JsonProperty("CreateTransferInitiation")]
-        public CreateTransferInitiationRequest? CreateTransferInitiation { get; set; }
+        public ActivityCreateTransferInitiation? CreateTransferInitiation { get; set; }
 
+        /// <summary>
+        /// Arguments for the activity that reads a payment.
+        /// </summary>
         [JsonProperty("GetPayment")]
         public ActivityGetPayment? GetPayment { get; set; }
 
+        /// <summary>
+        /// Arguments for the activity that confirms a wallet hold.
+        /// </summary>
         [JsonProperty("ConfirmHold")]
         public ActivityConfirmHold? ConfirmHold { get; set; }
 
+        /// <summary>
+        /// Arguments for the activity that credits a wallet.
+        /// </summary>
         [JsonProperty("CreditWallet")]
         public ActivityCreditWallet? CreditWallet { get; set; }
 
+        /// <summary>
+        /// Arguments for the activity that debits a wallet.
+        /// </summary>
         [JsonProperty("DebitWallet")]
         public ActivityDebitWallet? DebitWallet { get; set; }
 
+        /// <summary>
+        /// Arguments for the activity that reads a wallet.
+        /// </summary>
         [JsonProperty("GetWallet")]
         public ActivityGetWallet? GetWallet { get; set; }
 
+        /// <summary>
+        /// Arguments for the activity that releases a wallet hold.
+        /// </summary>
         [JsonProperty("VoidHold")]
         public ActivityVoidHold? VoidHold { get; set; }
 
+        /// <summary>
+        /// Arguments for the activity that lists wallets.
+        /// </summary>
         [JsonProperty("ListWallets")]
         public ActivityListWallets? ListWallets { get; set; }
     }

@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Webhooks
 
     public class DeliveryResponse
     {
+        /// <summary>
+        /// An event queued for delivery to a webhook endpoint, tracking its retry state.
+        /// </summary>
         [JsonProperty("data")]
         public Delivery Data { get; set; } = default!;
     }

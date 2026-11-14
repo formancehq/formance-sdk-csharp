@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Wallets
 
     public class GetBalanceResponse
     {
+        /// <summary>
+        /// A named balance within a wallet together with the amounts it holds per asset.
+        /// </summary>
         [JsonProperty("data")]
         public BalanceWithAssets Data { get; set; } = default!;
     }

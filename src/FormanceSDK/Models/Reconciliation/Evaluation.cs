@@ -16,17 +16,32 @@ namespace FormanceSDK.Models.Reconciliation
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// One run of a rule, carrying its outcome and cost.
+    /// </summary>
     public class Evaluation
     {
+        /// <summary>
+        /// Unique identifier of the evaluation.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the rule that was evaluated.
+        /// </summary>
         [JsonProperty("ruleID")]
         public string RuleID { get; set; } = default!;
 
+        /// <summary>
+        /// When the evaluation started.
+        /// </summary>
         [JsonProperty("startedAt")]
         public DateTime StartedAt { get; set; } = default!;
 
+        /// <summary>
+        /// When the evaluation finished.
+        /// </summary>
         [JsonProperty("endedAt")]
         public DateTime EndedAt { get; set; } = default!;
 
@@ -36,6 +51,9 @@ namespace FormanceSDK.Models.Reconciliation
         [JsonProperty("pitPerSource")]
         public Dictionary<string, DateTime>? PitPerSource { get; set; }
 
+        /// <summary>
+        /// Whether the rule passed, failed, or could not be evaluated.
+        /// </summary>
         [JsonProperty("result")]
         public Result Result { get; set; } = default!;
 
@@ -45,12 +63,21 @@ namespace FormanceSDK.Models.Reconciliation
         [JsonProperty("evidence", NullValueHandling = NullValueHandling.Include)]
         public Evidence? Evidence { get; set; }
 
+        /// <summary>
+        /// Why the evaluation could not complete, when its result reports an error.
+        /// </summary>
         [JsonProperty("error")]
         public string? Error { get; set; }
 
+        /// <summary>
+        /// Cumulative CEL runtime cost of the evaluation, used to track expensive rules.
+        /// </summary>
         [JsonProperty("costUnits")]
         public long? CostUnits { get; set; }
 
+        /// <summary>
+        /// When the evaluation record was created.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
     }

@@ -15,12 +15,21 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2ErrorResponse
     {
+        /// <summary>
+        /// Machine-readable error code identifying the failure.
+        /// </summary>
         [JsonProperty("errorCode")]
         public V2ErrorsEnum ErrorCode { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable description of the error.
+        /// </summary>
         [JsonProperty("errorMessage")]
         public string ErrorMessage { get; set; } = default!;
 
+        /// <summary>
+        /// Optional link carrying additional context about the error, such as a Numscript playground URL reproducing it.
+        /// </summary>
         [JsonProperty("details")]
         public string? Details { get; set; }
     }

@@ -1,8 +1,10 @@
 # Mapping
 
+Contracts constraining the balances a ledger's accounts may hold
+
 
 ## Fields
 
 | Field                                             | Type                                              | Required                                          | Description                                       |
 | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| `Contracts`                                       | List<[Contract](../../Models/Ledger/Contract.md)> | :heavy_check_mark:                                | N/A                                               |
+| `Contracts`                                       | List<[Contract](../../Models/Ledger/Contract.md)> | :heavy_check_mark:                                | Constraints enforced on the ledger's accounts     |

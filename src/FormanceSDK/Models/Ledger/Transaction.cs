@@ -16,26 +16,50 @@ namespace FormanceSDK.Models.Ledger
     using System.Collections.Generic;
     using System.Numerics;
 
+    /// <summary>
+    /// A transaction recorded in the ledger, carrying its postings and metadata.
+    /// </summary>
     public class Transaction
     {
+        /// <summary>
+        /// The transaction time: when the transaction is considered to have occurred. See <a href="https://docs.formance.com/modules/ledger/working-with/bi-temporality">bi-temporality</a>
+        /// </summary>
         [JsonProperty("timestamp")]
         public DateTime Timestamp { get; set; } = default!;
 
+        /// <summary>
+        /// The fund movements making up the transaction.
+        /// </summary>
         [JsonProperty("postings")]
         public List<Models.Ledger.Posting> Postings { get; set; } = default!;
 
+        /// <summary>
+        /// Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions.
+        /// </summary>
         [JsonProperty("reference")]
         public string? Reference { get; set; }
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, object>? Metadata { get; set; } = null;
 
+        /// <summary>
+        /// Unique sequential identifier for this transaction within the ledger.
+        /// </summary>
         [JsonProperty("txid")]
         public BigInteger Txid { get; set; } = default!;
 
+        /// <summary>
+        /// Volumes aggregated per account and per asset.
+        /// </summary>
         [JsonProperty("preCommitVolumes")]
         public Dictionary<string, Dictionary<string, Models.Ledger.Volume>>? PreCommitVolumes { get; set; }
 
+        /// <summary>
+        /// Volumes aggregated per account and per asset.
+        /// </summary>
         [JsonProperty("postCommitVolumes")]
         public Dictionary<string, Dictionary<string, Models.Ledger.Volume>>? PostCommitVolumes { get; set; }
     }

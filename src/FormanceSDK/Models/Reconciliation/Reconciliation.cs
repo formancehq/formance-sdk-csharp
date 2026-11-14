@@ -15,35 +15,68 @@ namespace FormanceSDK.Models.Reconciliation
     using System.Collections.Generic;
     using System.Numerics;
 
+    /// <summary>
+    /// One run of a policy, comparing both sides and reporting the drift between them.
+    /// </summary>
     public class Reconciliation
     {
+        /// <summary>
+        /// Unique identifier of the reconciliation run.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the policy this run applied.
+        /// </summary>
         [JsonProperty("policyID")]
         public string PolicyID { get; set; } = default!;
 
+        /// <summary>
+        /// When the reconciliation was run.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Point in time at which the ledger side was evaluated.
+        /// </summary>
         [JsonProperty("reconciledAtLedger")]
         public DateTime ReconciledAtLedger { get; set; } = default!;
 
+        /// <summary>
+        /// Point in time at which the payments side was evaluated.
+        /// </summary>
         [JsonProperty("reconciledAtPayments")]
         public DateTime ReconciledAtPayments { get; set; } = default!;
 
+        /// <summary>
+        /// Outcome of the reconciliation run.
+        /// </summary>
         [JsonProperty("status")]
         public string Status { get; set; } = default!;
 
+        /// <summary>
+        /// Balances observed on the payments side, keyed by asset.
+        /// </summary>
         [JsonProperty("paymentsBalances")]
         public Dictionary<string, BigInteger> PaymentsBalances { get; set; } = default!;
 
+        /// <summary>
+        /// Balances observed on the ledger side, keyed by asset.
+        /// </summary>
         [JsonProperty("ledgerBalances")]
         public Dictionary<string, BigInteger> LedgerBalances { get; set; } = default!;
 
+        /// <summary>
+        /// Difference between the two sides, keyed by asset. All-zero means the sides agree.
+        /// </summary>
         [JsonProperty("driftBalances")]
         public Dictionary<string, BigInteger> DriftBalances { get; set; } = default!;
 
+        /// <summary>
+        /// Why the run failed, when its status reports an error.
+        /// </summary>
         [JsonProperty("error")]
         public string? Error { get; set; }
     }

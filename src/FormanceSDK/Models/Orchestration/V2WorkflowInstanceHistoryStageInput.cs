@@ -13,41 +13,80 @@ namespace FormanceSDK.Models.Orchestration
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Arguments an activity was called with, keyed by activity name.
+    /// </summary>
     public class V2WorkflowInstanceHistoryStageInput
     {
+        /// <summary>
+        /// Arguments for the activity that reads a ledger account.
+        /// </summary>
         [JsonProperty("GetAccount")]
         public V2ActivityGetAccount? GetAccount { get; set; }
 
+        /// <summary>
+        /// Arguments for the activity that sets metadata on a ledger account.
+        /// </summary>
         [JsonProperty("AddAccountMetadata")]
         public V2ActivityAddAccountMetadata? AddAccountMetadata { get; set; }
 
+        /// <summary>
+        /// Arguments for the activity that writes a transaction to a ledger.
+        /// </summary>
         [JsonProperty("CreateTransaction")]
         public V2ActivityCreateTransaction? CreateTransaction { get; set; }
 
+        /// <summary>
+        /// Arguments for the activity that transfers funds through Stripe.
+        /// </summary>
         [JsonProperty("StripeTransfer")]
-        public V2StripeTransferRequest? StripeTransfer { get; set; }
+        public V2ActivityStripeTransfer? StripeTransfer { get; set; }
 
+        /// <summary>
+        /// Arguments for the activity that initiates a transfer through a connector.
+        /// </summary>
         [JsonProperty("CreateTransferInitiation")]
-        public V2CreateTransferInitiationRequest? CreateTransferInitiation { get; set; }
+        public V2ActivityCreateTransferInitiation? CreateTransferInitiation { get; set; }
 
+        /// <summary>
+        /// Arguments for the activity that reads a payment.
+        /// </summary>
         [JsonProperty("GetPayment")]
         public V2ActivityGetPayment? GetPayment { get; set; }
 
+        /// <summary>
+        /// Arguments for the activity that confirms a wallet hold.
+        /// </summary>
         [JsonProperty("ConfirmHold")]
         public V2ActivityConfirmHold? ConfirmHold { get; set; }
 
+        /// <summary>
+        /// Arguments for the activity that credits a wallet.
+        /// </summary>
         [JsonProperty("CreditWallet")]
         public V2ActivityCreditWallet? CreditWallet { get; set; }
 
+        /// <summary>
+        /// Arguments for the activity that debits a wallet.
+        /// </summary>
         [JsonProperty("DebitWallet")]
         public V2ActivityDebitWallet? DebitWallet { get; set; }
 
+        /// <summary>
+        /// Arguments for the activity that reads a wallet.
+        /// </summary>
         [JsonProperty("GetWallet")]
         public V2ActivityGetWallet? GetWallet { get; set; }
 
+        /// <summary>
+        /// Arguments for the activity that releases a wallet hold.
+        /// </summary>
         [JsonProperty("VoidHold")]
         public V2ActivityVoidHold? VoidHold { get; set; }
 
+        /// <summary>
+        /// Arguments for the activity that lists wallets.
+        /// </summary>
         [JsonProperty("ListWallets")]
         public V2ActivityListWallets? ListWallets { get; set; }
     }

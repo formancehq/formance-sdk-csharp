@@ -1,0 +1,11 @@
+# MirrorOAuthRead
+
+
+## Fields
+
+| Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `ClientId`                                                                                     | *string*                                                                                       | :heavy_minus_sign:                                                                             | N/A                                                                                            |
+| `ClientSecret`                                                                                 | [Models.LedgerV3.ClientSecret](../../Models/LedgerV3/ClientSecret.md)                          | :heavy_minus_sign:                                                                             | Empty when unset; otherwise a presence marker only. Reusable secret material is never returned |
+| `TokenEndpoint`                                                                                | *string*                                                                                       | :heavy_minus_sign:                                                                             | OAuth endpoint URL with userinfo (including passwordless tokens) and query credentials masked  |
+| `Scopes`                                                                                       | List<*string*>                                                                                 | :heavy_minus_sign:                                                                             | N/A                                                                                            |

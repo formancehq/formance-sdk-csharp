@@ -19,12 +19,21 @@ namespace FormanceSDK.Models.Reconciliation
     /// </summary>
     public class ResolveAlertRequest
     {
+        /// <summary>
+        /// Who is resolving the alert.
+        /// </summary>
         [JsonProperty("by")]
         public string By { get; set; } = default!;
 
+        /// <summary>
+        /// Free-text note to record with the resolution.
+        /// </summary>
         [JsonProperty("note")]
         public string? Note { get; set; }
 
+        /// <summary>
+        /// References of the transactions booked to correct the break. Supplying any records the resolution as fixed_by_booking.
+        /// </summary>
         [JsonProperty("transactionRefs")]
         public List<string>? TransactionRefs { get; set; }
     }

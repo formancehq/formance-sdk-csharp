@@ -5,4 +5,4 @@
 
 | Field                                   | Type                                    | Required                                | Description                             |
 | --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| `Data`                                  | List<[User](../../Models/Auth/User.md)> | :heavy_minus_sign:                      | N/A                                     |
+| `Data`                                  | List<[User](../../Models/Auth/User.md)> | :heavy_minus_sign:                      | The users known to this stack           |

@@ -17,21 +17,39 @@ namespace FormanceSDK.Models.Orchestration
 
     public class V2WorkflowInstanceHistory
     {
+        /// <summary>
+        /// Name of the stage this history entry records.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// One step of a workflow, whose shape depends on the stage type.
+        /// </summary>
         [JsonProperty("input", NullValueHandling = NullValueHandling.Include)]
         public V2Stage Input { get; set; } = default!;
 
+        /// <summary>
+        /// Why the stage failed, absent when it succeeded.
+        /// </summary>
         [JsonProperty("error")]
         public string? Error { get; set; }
 
+        /// <summary>
+        /// Whether the stage has finished.
+        /// </summary>
         [JsonProperty("terminated")]
         public bool Terminated { get; set; } = default!;
 
+        /// <summary>
+        /// When the stage started.
+        /// </summary>
         [JsonProperty("startedAt")]
         public DateTime StartedAt { get; set; } = default!;
 
+        /// <summary>
+        /// When the stage finished, absent while it is still running.
+        /// </summary>
         [JsonProperty("terminatedAt")]
         public DateTime? TerminatedAt { get; set; }
     }

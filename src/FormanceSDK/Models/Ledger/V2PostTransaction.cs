@@ -17,12 +17,21 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2PostTransaction
     {
+        /// <summary>
+        /// The transaction time to record, letting you backdate or postdate the transaction. Defaults to current machine time if omitted. See <a href="https://docs.formance.com/modules/ledger/working-with/bi-temporality">bi-temporality</a>
+        /// </summary>
         [JsonProperty("timestamp")]
         public DateTime? Timestamp { get; set; }
 
+        /// <summary>
+        /// Fund movements to apply. Mutually exclusive with script and template.
+        /// </summary>
         [JsonProperty("postings")]
         public List<Models.Ledger.V2Posting>? Postings { get; set; }
 
+        /// <summary>
+        /// A Numscript program executed to produce the postings. Mutually exclusive with postings.
+        /// </summary>
         [JsonProperty("script")]
         public Models.Ledger.V2PostTransactionScript? Script { get; set; }
 
@@ -32,15 +41,27 @@ namespace FormanceSDK.Models.Ledger
         [JsonProperty("runtime")]
         public Runtime? Runtime { get; set; }
 
+        /// <summary>
+        /// Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions.
+        /// </summary>
         [JsonProperty("reference")]
         public string? Reference { get; set; }
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; } = default!;
 
+        /// <summary>
+        /// Metadata to set on the accounts involved in the transaction, keyed by account address.
+        /// </summary>
         [JsonProperty("accountMetadata")]
         public Dictionary<string, Dictionary<string, string>>? AccountMetadata { get; set; }
 
+        /// <summary>
+        /// When true, lets source accounts overdraft without bound, bypassing the balance check. Applies to the postings form only.
+        /// </summary>
         [JsonProperty("force")]
         public bool? Force { get; set; }
     }

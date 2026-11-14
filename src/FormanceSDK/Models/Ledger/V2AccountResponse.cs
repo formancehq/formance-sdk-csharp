@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2AccountResponse
     {
+        /// <summary>
+        /// An account in the ledger, identified by its address and carrying its metadata and volumes.
+        /// </summary>
         [JsonProperty("data")]
         public Models.Ledger.V2Account Data { get; set; } = default!;
     }

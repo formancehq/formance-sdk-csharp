@@ -13,8 +13,14 @@ namespace FormanceSDK.Models.Ledger
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Configuration the ledger server is running with.
+    /// </summary>
     public class Config
     {
+        /// <summary>
+        /// Storage backend the ledgers are held in.
+        /// </summary>
         [JsonProperty("storage")]
         public LedgerStorage Storage { get; set; } = default!;
     }

@@ -58,6 +58,9 @@ namespace FormanceSDK.Models.Orchestration
         }
     }
 
+    /// <summary>
+    /// One step of a workflow, whose shape depends on the stage type.
+    /// </summary>
     [JsonConverter(typeof(Stage.StageConverter))]
     public class Stage
     {

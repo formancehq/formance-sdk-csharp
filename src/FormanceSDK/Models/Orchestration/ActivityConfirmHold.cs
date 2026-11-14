@@ -12,8 +12,14 @@ namespace FormanceSDK.Models.Orchestration
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Arguments for the activity that confirms a wallet hold.
+    /// </summary>
     public class ActivityConfirmHold
     {
+        /// <summary>
+        /// Identifier of the hold to confirm.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
     }

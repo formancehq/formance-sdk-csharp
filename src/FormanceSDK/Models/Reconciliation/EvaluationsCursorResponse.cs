@@ -18,6 +18,9 @@ namespace FormanceSDK.Models.Reconciliation
     /// </summary>
     public class EvaluationsCursorResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the list of evaluations.
+        /// </summary>
         [JsonProperty("cursor")]
         public EvaluationsCursorResponseCursor Cursor { get; set; } = default!;
     }

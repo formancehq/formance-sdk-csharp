@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Orchestration
     using Newtonsoft.Json;
     using System.Numerics;
 
+    /// <summary>
+    /// An amount together with the asset it is denominated in.
+    /// </summary>
     public class V2Monetary
     {
         /// <summary>

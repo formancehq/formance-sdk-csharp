@@ -18,9 +18,15 @@ namespace FormanceSDK.Models.Wallets
 
     public class ErrorResponsePayload
     {
+        /// <summary>
+        /// Machine-readable error code identifying the failure.
+        /// </summary>
         [JsonProperty("errorCode")]
         public Models.Wallets.ErrorCode ErrorCode { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable description of the error.
+        /// </summary>
         [JsonProperty("errorMessage")]
         public string ErrorMessage { get; set; } = default!;
     }

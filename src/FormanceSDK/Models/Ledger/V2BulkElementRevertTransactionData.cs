@@ -25,6 +25,9 @@ namespace FormanceSDK.Models.Ledger
         [JsonProperty("atEffectiveDate")]
         public bool? AtEffectiveDate { get; set; }
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; }
     }

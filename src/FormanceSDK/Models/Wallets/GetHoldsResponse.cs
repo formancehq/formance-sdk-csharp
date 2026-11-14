@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Wallets
 
     public class GetHoldsResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the list of holds.
+        /// </summary>
         [JsonProperty("cursor")]
         public GetHoldsResponseCursor Cursor { get; set; } = default!;
     }

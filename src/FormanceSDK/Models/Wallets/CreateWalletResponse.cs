@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Wallets
 
     public class CreateWalletResponse
     {
+        /// <summary>
+        /// A wallet backed by a set of ledger accounts.
+        /// </summary>
         [JsonProperty("data")]
         public Models.Wallets.Wallet Data { get; set; } = default!;
     }

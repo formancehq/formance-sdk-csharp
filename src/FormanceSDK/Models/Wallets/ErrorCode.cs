@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Wallets
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Machine-readable error code identifying the failure.
+    /// </summary>
     public enum ErrorCode
     {
         [JsonProperty("VALIDATION")]

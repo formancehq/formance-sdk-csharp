@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Ledger
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// The resource type carried by this cursor.
+    /// </summary>
     public enum V2LogsCursorResponseResource
     {
         [JsonProperty("logs")]

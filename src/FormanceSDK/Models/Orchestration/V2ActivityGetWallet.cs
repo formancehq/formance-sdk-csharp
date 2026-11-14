@@ -12,8 +12,14 @@ namespace FormanceSDK.Models.Orchestration
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Arguments for the activity that reads a wallet.
+    /// </summary>
     public class V2ActivityGetWallet
     {
+        /// <summary>
+        /// Identifier of the wallet to read.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
     }

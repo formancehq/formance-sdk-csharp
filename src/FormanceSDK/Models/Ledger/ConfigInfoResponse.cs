@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Ledger
 
     public class ConfigInfoResponse
     {
+        /// <summary>
+        /// Configuration and version information for the ledger server.
+        /// </summary>
         [JsonProperty("data")]
         public ConfigInfo Data { get; set; } = default!;
     }

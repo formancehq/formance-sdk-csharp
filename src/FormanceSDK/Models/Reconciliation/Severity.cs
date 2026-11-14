@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Reconciliation
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// How serious an alert is, used to route and prioritise notifications.
+    /// </summary>
     public enum Severity
     {
         [JsonProperty("info")]

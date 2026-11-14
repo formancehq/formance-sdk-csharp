@@ -1,0 +1,10 @@
+# V2ActivityCreateTransactionOutput
+
+Result of the activity that writes a transaction to a ledger
+
+
+## Fields
+
+| Field                                                                                   | Type                                                                                    | Required                                                                                | Description                                                                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `Data`                                                                                  | List<[Models.Orchestration.V2Transaction](../../Models/Orchestration/V2Transaction.md)> | :heavy_check_mark:                                                                      | The transactions that were created                                                      |

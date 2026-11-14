@@ -12,11 +12,20 @@ namespace FormanceSDK.Models.Orchestration
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Arguments for the activity that reads a ledger account.
+    /// </summary>
     public class ActivityGetAccount
     {
+        /// <summary>
+        /// Address of the ledger account to read.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Name of the ledger holding the account.
+        /// </summary>
         [JsonProperty("ledger")]
         public string Ledger { get; set; } = default!;
     }

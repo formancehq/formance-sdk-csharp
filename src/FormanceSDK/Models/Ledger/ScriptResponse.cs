@@ -15,15 +15,27 @@ namespace FormanceSDK.Models.Ledger
 
     public class ScriptResponse
     {
+        /// <summary>
+        /// Machine-readable error code identifying the failure.
+        /// </summary>
         [JsonProperty("errorCode")]
         public Models.Ledger.ErrorsEnum? ErrorCode { get; set; }
 
+        /// <summary>
+        /// Human-readable description of the error.
+        /// </summary>
         [JsonProperty("errorMessage")]
         public string? ErrorMessage { get; set; }
 
+        /// <summary>
+        /// Optional link carrying additional context about the error, such as a Numscript playground URL reproducing it.
+        /// </summary>
         [JsonProperty("details")]
         public string? Details { get; set; }
 
+        /// <summary>
+        /// A transaction recorded in the ledger, carrying its postings and metadata.
+        /// </summary>
         [JsonProperty("transaction")]
         public Models.Ledger.Transaction? Transaction { get; set; }
     }

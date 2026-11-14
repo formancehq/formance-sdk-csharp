@@ -1,0 +1,10 @@
+# V3SaveLedgerMetadataRequest
+
+
+## Fields
+
+| Field                                                                       | Type                                                                        | Required                                                                    | Description                                                                 | Example                                                                     |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `LedgerName`                                                                | *string*                                                                    | :heavy_check_mark:                                                          | Name of the ledger                                                          |                                                                             |
+| `IdempotencyKey`                                                            | *string*                                                                    | :heavy_minus_sign:                                                          | Idempotency key for the request                                             |                                                                             |
+| `RequestBody`                                                               | Dictionary<String, [MetadataValue](../../Models/LedgerV3/MetadataValue.md)> | :heavy_check_mark:                                                          | N/A                                                                         | {<br/>"environment": "production",<br/>"team": "payments",<br/>"region": "eu-west-1"<br/>} |

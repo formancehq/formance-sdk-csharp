@@ -12,8 +12,14 @@ namespace FormanceSDK.Models.Orchestration
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Arbitrary key/value pairs attached to a payment.
+    /// </summary>
     public class PaymentMetadata
     {
+        /// <summary>
+        /// Metadata value carried by the payment.
+        /// </summary>
         [JsonProperty("key")]
         public string? Key { get; set; }
     }

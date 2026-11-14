@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Orchestration
 
     public class V2Update
     {
+        /// <summary>
+        /// Metadata to set on a ledger account.
+        /// </summary>
         [JsonProperty("account")]
         public V2UpdateAccount? Account { get; set; }
     }

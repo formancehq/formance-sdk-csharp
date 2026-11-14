@@ -18,6 +18,9 @@ namespace FormanceSDK.Models.Ledger
     /// </summary>
     public class V2ExportersCursorResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the list of exporters.
+        /// </summary>
         [JsonProperty("cursor")]
         public V2ExportersCursorResponseCursor Cursor { get; set; } = default!;
     }

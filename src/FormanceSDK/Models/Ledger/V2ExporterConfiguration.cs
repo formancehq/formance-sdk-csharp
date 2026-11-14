@@ -15,9 +15,15 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2ExporterConfiguration
     {
+        /// <summary>
+        /// Name of the exporter driver to use.
+        /// </summary>
         [JsonProperty("driver")]
         public string Driver { get; set; } = default!;
 
+        /// <summary>
+        /// Driver-specific configuration for the exporter.
+        /// </summary>
         [JsonProperty("config")]
         public Dictionary<string, object> Config { get; set; } = default!;
     }

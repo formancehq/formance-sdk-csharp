@@ -51,6 +51,9 @@ namespace FormanceSDK.Models.Ledger
         }
     }
 
+    /// <summary>
+    /// Identifier of the entity the metadata was deleted from, either an account address or a transaction ID.
+    /// </summary>
     [JsonConverter(typeof(V2LogDataDeleteMetadataTargetId.V2LogDataDeleteMetadataTargetIdConverter))]
     public class V2LogDataDeleteMetadataTargetId
     {

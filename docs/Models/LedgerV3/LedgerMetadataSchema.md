@@ -1,0 +1,10 @@
+# LedgerMetadataSchema
+
+
+## Fields
+
+| Field                                                                                               | Type                                                                                                | Required                                                                                            | Description                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `AccountFields`                                                                                     | Dictionary<String, [LedgerMetadataFieldSchema](../../Models/LedgerV3/LedgerMetadataFieldSchema.md)> | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |
+| `TransactionFields`                                                                                 | Dictionary<String, [LedgerMetadataFieldSchema](../../Models/LedgerV3/LedgerMetadataFieldSchema.md)> | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |
+| `LedgerFields`                                                                                      | Dictionary<String, [LedgerMetadataFieldSchema](../../Models/LedgerV3/LedgerMetadataFieldSchema.md)> | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |

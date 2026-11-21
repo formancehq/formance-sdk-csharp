@@ -9,51 +9,25 @@
 #nullable enable
 namespace FormanceSDK.Models.Orchestration
 {
-    using FormanceSDK.Models.Errors;
     using FormanceSDK.Models.Orchestration;
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
-    using System;
-    using System.Net.Http;
-
-    public class ErrorPayload
-    {
-        [JsonProperty("errorCode")]
-        public Models.Orchestration.ErrorCode ErrorCode { get; set; } = default!;
-
-        [JsonProperty("errorMessage")]
-        public string ErrorMessage { get; set; } = default!;
-    }
 
     /// <summary>
     /// General error.
     /// </summary>
-    public class Error : SDKBaseException
+    public class Error
     {
         /// <summary>
-        ///  The original data that was passed to this exception.
+        /// Machine-readable error code identifying the failure.
         /// </summary>
-        public ErrorPayload Payload { get; }
-
-        [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible. Use Error.Payload.ErrorCode instead.")]
+        [JsonProperty("errorCode")]
         public Models.Orchestration.ErrorCode ErrorCode { get; set; } = default!;
 
-        [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible. Use Error.Payload.ErrorMessage instead.")]
+        /// <summary>
+        /// Human-readable description of the error.
+        /// </summary>
+        [JsonProperty("errorMessage")]
         public string ErrorMessage { get; set; } = default!;
-
-        public Error(
-            ErrorPayload payload,
-            HttpRequestMessage request,
-            HttpResponseMessage response,
-            string body
-        ): base("API error occurred", request, response, body)
-        {
-           Payload = payload;
-
-           #pragma warning disable CS0618
-           ErrorCode = payload.ErrorCode;
-           ErrorMessage = payload.ErrorMessage;
-           #pragma warning restore CS0618
-        }
     }
 }

@@ -18,6 +18,9 @@ namespace FormanceSDK.Models.Reconciliation
     /// </summary>
     public class EvaluationResponse
     {
+        /// <summary>
+        /// One run of a rule, carrying its outcome and cost.
+        /// </summary>
         [JsonProperty("data")]
         public Evaluation Data { get; set; } = default!;
     }

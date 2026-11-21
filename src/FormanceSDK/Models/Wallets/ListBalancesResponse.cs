@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Wallets
 
     public class ListBalancesResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the list of balances.
+        /// </summary>
         [JsonProperty("cursor")]
         public ListBalancesResponseCursor Cursor { get; set; } = default!;
     }

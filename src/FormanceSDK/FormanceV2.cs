@@ -34,7 +34,7 @@ namespace FormanceSDK
         /// <returns>An awaitable task that returns a <see cref="V2GetServerInfoResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<V2GetServerInfoResponse> GetServerInfoAsync();
 
@@ -56,7 +56,7 @@ namespace FormanceSDK
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2ListTriggersResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<Models.Requests.V2ListTriggersResponse> ListTriggersAsync(
             string? cursor = null,
@@ -75,7 +75,7 @@ namespace FormanceSDK
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreateTriggerResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<Models.Requests.V2CreateTriggerResponse> CreateTriggerAsync(V2TriggerData? request = null);
 
@@ -91,7 +91,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="triggerID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<Models.Requests.V2ReadTriggerResponse> ReadTriggerAsync(string triggerID);
 
@@ -107,7 +107,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="triggerID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<V2DeleteTriggerResponse> DeleteTriggerAsync(string triggerID);
 
@@ -124,7 +124,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="triggerID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<TestTriggerResponse> TestTriggerAsync(
             string triggerID,
@@ -150,7 +150,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="triggerID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<Models.Requests.V2ListTriggersOccurrencesResponse> ListTriggersOccurrencesAsync(
             string triggerID,
@@ -175,7 +175,7 @@ namespace FormanceSDK
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2ListWorkflowsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<Models.Requests.V2ListWorkflowsResponse> ListWorkflowsAsync(
             string? cursor = null,
@@ -193,7 +193,7 @@ namespace FormanceSDK
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreateWorkflowResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<Models.Requests.V2CreateWorkflowResponse> CreateWorkflowAsync(V2WorkflowConfig? request = null);
 
@@ -209,7 +209,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="flowId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<Models.Requests.V2GetWorkflowResponse> GetWorkflowAsync(string flowId);
 
@@ -225,7 +225,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="flowId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<V2DeleteWorkflowResponse> DeleteWorkflowAsync(string flowId);
 
@@ -243,7 +243,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="workflowID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<Models.Requests.V2RunWorkflowResponse> RunWorkflowAsync(
             string workflowID,
@@ -270,7 +270,7 @@ namespace FormanceSDK
         /// <returns>An awaitable task that returns a <see cref="V2ListInstancesResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<V2ListInstancesResponse> ListInstancesAsync(
             string? cursor = null,
@@ -291,7 +291,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<V2GetInstanceResponse> GetInstanceAsync(string instanceID);
 
@@ -308,7 +308,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<V2SendEventResponse> SendEventAsync(string instanceID, V2SendEventRequestBody? requestBody = null);
 
@@ -324,7 +324,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<V2CancelEventResponse> CancelEventAsync(string instanceID);
 
@@ -340,7 +340,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<V2GetInstanceHistoryResponse> GetInstanceHistoryAsync(string instanceID);
 
@@ -357,9 +357,36 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<V2GetInstanceStageHistoryResponse> GetInstanceStageHistoryAsync(string instanceID, long number);
+
+        /// <summary>
+        /// Resume a paused activity.
+        /// </summary>
+        /// <remarks>
+        /// Resume a paused activity identified by temporalRunID and pausedAt.<br/>
+        /// Use both values from the paused activity projection. A stale run id or<br/>
+        /// pause timestamp returns a conflict, preventing a delayed resend from<br/>
+        /// resuming an activity in a newer run or a subsequent pause generation.<br/>
+        /// <br/>
+        /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
+        /// </remarks>
+        /// <param name="instanceID">The instance id.</param>
+        /// <param name="number">The nonnegative stage number.</param>
+        /// <param name="activityID">The paused activity id.</param>
+        /// <param name="requestBody">A <see cref="V2ResumeActivityRequestBody"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2ResumeActivityResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="instanceID"/>, <paramref name="activityID"/> or <paramref name="requestBody"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 204, 400, 404, 409 or 500.</exception>
+        public  Task<V2ResumeActivityResponse> ResumeActivityAsync(
+            string instanceID,
+            long number,
+            string activityID,
+            V2ResumeActivityRequestBody requestBody
+        );
     }
 
     public class FormanceV2: IFormanceV2
@@ -384,7 +411,7 @@ namespace FormanceSDK
         /// <returns>An awaitable task that returns a <see cref="V2GetServerInfoResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<V2GetServerInfoResponse> GetServerInfoAsync()
         {
@@ -474,17 +501,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    V2ErrorPayload payload;
+                    V2Error1Payload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2ErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2Error1Payload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into V2ErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into V2Error1Payload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new V2Error(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new V2Error1(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -510,7 +537,7 @@ namespace FormanceSDK
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2ListTriggersResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<Models.Requests.V2ListTriggersResponse> ListTriggersAsync(
             string? cursor = null,
@@ -611,17 +638,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    V2ErrorPayload payload;
+                    V2Error1Payload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2ErrorPayload>(httpResponseBody, NullValueHandling.Include);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2Error1Payload>(httpResponseBody, NullValueHandling.Include);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into V2ErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into V2Error1Payload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new V2Error(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new V2Error1(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -640,7 +667,7 @@ namespace FormanceSDK
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreateTriggerResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<Models.Requests.V2CreateTriggerResponse> CreateTriggerAsync(V2TriggerData? request = null)
         {
@@ -736,17 +763,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    V2ErrorPayload payload;
+                    V2Error1Payload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2ErrorPayload>(httpResponseBody, NullValueHandling.Include);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2Error1Payload>(httpResponseBody, NullValueHandling.Include);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into V2ErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into V2Error1Payload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new V2Error(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new V2Error1(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -766,7 +793,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="triggerID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<Models.Requests.V2ReadTriggerResponse> ReadTriggerAsync(string triggerID)
         {
@@ -863,17 +890,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    V2ErrorPayload payload;
+                    V2Error1Payload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2ErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2Error1Payload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into V2ErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into V2Error1Payload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new V2Error(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new V2Error1(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -893,7 +920,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="triggerID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<V2DeleteTriggerResponse> DeleteTriggerAsync(string triggerID)
         {
@@ -972,17 +999,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    V2ErrorPayload payload;
+                    V2Error1Payload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2ErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2Error1Payload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into V2ErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into V2Error1Payload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new V2Error(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new V2Error1(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1003,7 +1030,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="triggerID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<TestTriggerResponse> TestTriggerAsync(
             string triggerID,
@@ -1110,17 +1137,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    V2ErrorPayload payload;
+                    V2Error1Payload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2ErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2Error1Payload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into V2ErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into V2Error1Payload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new V2Error(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new V2Error1(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1147,7 +1174,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="triggerID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<Models.Requests.V2ListTriggersOccurrencesResponse> ListTriggersOccurrencesAsync(
             string triggerID,
@@ -1250,17 +1277,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    V2ErrorPayload payload;
+                    V2Error1Payload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2ErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2Error1Payload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into V2ErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into V2Error1Payload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new V2Error(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new V2Error1(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1285,7 +1312,7 @@ namespace FormanceSDK
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2ListWorkflowsResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<Models.Requests.V2ListWorkflowsResponse> ListWorkflowsAsync(
             string? cursor = null,
@@ -1384,17 +1411,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    V2ErrorPayload payload;
+                    V2Error1Payload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2ErrorPayload>(httpResponseBody, NullValueHandling.Include);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2Error1Payload>(httpResponseBody, NullValueHandling.Include);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into V2ErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into V2Error1Payload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new V2Error(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new V2Error1(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1413,7 +1440,7 @@ namespace FormanceSDK
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2CreateWorkflowResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<Models.Requests.V2CreateWorkflowResponse> CreateWorkflowAsync(
             V2WorkflowConfig? request = null
@@ -1511,17 +1538,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    V2ErrorPayload payload;
+                    V2Error1Payload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2ErrorPayload>(httpResponseBody, NullValueHandling.Include);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2Error1Payload>(httpResponseBody, NullValueHandling.Include);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into V2ErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into V2Error1Payload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new V2Error(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new V2Error1(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1541,7 +1568,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="flowId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<Models.Requests.V2GetWorkflowResponse> GetWorkflowAsync(string flowId)
         {
@@ -1638,17 +1665,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    V2ErrorPayload payload;
+                    V2Error1Payload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2ErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2Error1Payload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into V2ErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into V2Error1Payload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new V2Error(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new V2Error1(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1668,7 +1695,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="flowId"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<V2DeleteWorkflowResponse> DeleteWorkflowAsync(string flowId)
         {
@@ -1747,17 +1774,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    V2ErrorPayload payload;
+                    V2Error1Payload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2ErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2Error1Payload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into V2ErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into V2Error1Payload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new V2Error(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new V2Error1(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1779,7 +1806,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="workflowID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 201.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 201.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<Models.Requests.V2RunWorkflowResponse> RunWorkflowAsync(
             string workflowID,
@@ -1888,17 +1915,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    V2ErrorPayload payload;
+                    V2Error1Payload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2ErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2Error1Payload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into V2ErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into V2Error1Payload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new V2Error(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new V2Error1(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -1925,7 +1952,7 @@ namespace FormanceSDK
         /// <returns>An awaitable task that returns a <see cref="V2ListInstancesResponse"/> response envelope when completed.</returns>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<V2ListInstancesResponse> ListInstancesAsync(
             string? cursor = null,
@@ -2028,17 +2055,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    V2ErrorPayload payload;
+                    V2Error1Payload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2ErrorPayload>(httpResponseBody, NullValueHandling.Include);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2Error1Payload>(httpResponseBody, NullValueHandling.Include);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into V2ErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into V2Error1Payload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new V2Error(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new V2Error1(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -2058,7 +2085,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<V2GetInstanceResponse> GetInstanceAsync(string instanceID)
         {
@@ -2155,17 +2182,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    V2ErrorPayload payload;
+                    V2Error1Payload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2ErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2Error1Payload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into V2ErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into V2Error1Payload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new V2Error(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new V2Error1(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -2186,7 +2213,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<V2SendEventResponse> SendEventAsync(
             string instanceID,
@@ -2275,17 +2302,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    V2ErrorPayload payload;
+                    V2Error1Payload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2ErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2Error1Payload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into V2ErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into V2Error1Payload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new V2Error(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new V2Error1(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -2305,7 +2332,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 204.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 204.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<V2CancelEventResponse> CancelEventAsync(string instanceID)
         {
@@ -2384,17 +2411,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    V2ErrorPayload payload;
+                    V2Error1Payload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2ErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2Error1Payload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into V2ErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into V2Error1Payload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new V2Error(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new V2Error1(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -2414,7 +2441,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<V2GetInstanceHistoryResponse> GetInstanceHistoryAsync(string instanceID)
         {
@@ -2511,17 +2538,17 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    V2ErrorPayload payload;
+                    V2Error1Payload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2ErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2Error1Payload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into V2ErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into V2Error1Payload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new V2Error(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new V2Error1(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
@@ -2542,7 +2569,7 @@ namespace FormanceSDK
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="instanceID"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
-        /// <exception cref="V2Error">General error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="V2Error1">General error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<V2GetInstanceStageHistoryResponse> GetInstanceStageHistoryAsync(
             string instanceID,
@@ -2643,20 +2670,193 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    V2ErrorPayload payload;
+                    V2Error1Payload payload;
                     try
                     {
-                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2ErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2Error1Payload>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into V2ErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into V2Error1Payload.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
-                    throw new V2Error(payload, httpRequest, httpResponse, httpResponseBody);
+                    throw new V2Error1(payload, httpRequest, httpResponse, httpResponseBody);
                 }
 
                 throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+        }
+
+
+        /// <summary>
+        /// Resume a paused activity.
+        /// </summary>
+        /// <remarks>
+        /// Resume a paused activity identified by temporalRunID and pausedAt.<br/>
+        /// Use both values from the paused activity projection. A stale run id or<br/>
+        /// pause timestamp returns a conflict, preventing a delayed resend from<br/>
+        /// resuming an activity in a newer run or a subsequent pause generation.<br/>
+        /// <br/>
+        /// <para>If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.</para>
+        /// </remarks>
+        /// <param name="instanceID">The instance id.</param>
+        /// <param name="number">The nonnegative stage number.</param>
+        /// <param name="activityID">The paused activity id.</param>
+        /// <param name="requestBody">A <see cref="V2ResumeActivityRequestBody"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="V2ResumeActivityResponse"/> response envelope when completed.</returns>
+        /// <exception cref="ArgumentNullException">One of <paramref name="instanceID"/>, <paramref name="activityID"/> or <paramref name="requestBody"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 204, 400, 404, 409 or 500.</exception>
+        public async  Task<V2ResumeActivityResponse> ResumeActivityAsync(
+            string instanceID,
+            long number,
+            string activityID,
+            V2ResumeActivityRequestBody requestBody
+        )
+        {
+            if (instanceID == null) throw new ArgumentNullException(nameof(instanceID));
+            if (activityID == null) throw new ArgumentNullException(nameof(activityID));
+            if (requestBody == null) throw new ArgumentNullException(nameof(requestBody));
+
+            var request = new V2ResumeActivityRequest()
+            {
+                InstanceID = instanceID,
+                Number = number,
+                ActivityID = activityID,
+                RequestBody = requestBody,
+            };
+
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
+            var urlString = URLBuilder.Build(baseUrl, "/api/orchestration/v2/instances/{instanceID}/stages/{number}/activities/{activityID}/resume", request, null);
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
+
+            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
+            if (serializedBody != null)
+            {
+                httpRequest.Content = serializedBody;
+            }
+
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource, new string[] { "ClientID" }).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "v2ResumeActivity", new List<string> { "orchestration:write" }, SDKConfiguration.SecuritySource);
+
+            httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
+
+            HttpResponseMessage httpResponse;
+            try
+            {
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                int _statusCode = (int)httpResponse.StatusCode;
+
+                if (!new List<int>{204, 400, 404, 409, 500}.Contains(_statusCode))
+                {
+                    var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
+                    if (_httpResponse != null)
+                    {
+                        httpResponse = _httpResponse;
+                    }
+                }
+            }
+            catch (Exception _hookError)
+            {
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
+                if (_httpResponse != null)
+                {
+                    httpResponse = _httpResponse;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            httpResponse = await this.SDKConfiguration.Hooks.AfterSuccessAsync(new AfterSuccessContext(hookCtx), httpResponse);
+
+            var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
+            int responseStatusCode = (int)httpResponse.StatusCode;
+            if(responseStatusCode == 204)
+            {
+                return new V2ResumeActivityResponse()
+                {
+                    HttpMeta = new Models.Components.HTTPMetadata()
+                    {
+                        Response = httpResponse,
+                        Request = httpRequest
+                    }
+                };
+            }
+            else if(new List<int>{400, 404, 409}.Contains(responseStatusCode))
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V2Error obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<V2Error>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V2Error.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new V2ResumeActivityResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.V2Error = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else if(responseStatusCode == 500)
+            {
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V2Error obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<V2Error>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V2Error.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    var response = new V2ResumeActivityResponse()
+                    {
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.V2Error = obj;
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                throw new Models.Errors.SDKException("API error occurred", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
         }
 

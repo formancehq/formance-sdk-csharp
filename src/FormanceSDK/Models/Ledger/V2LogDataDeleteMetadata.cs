@@ -25,6 +25,9 @@ namespace FormanceSDK.Models.Ledger
         [JsonProperty("targetType")]
         public V2LogDataDeleteMetadataTargetType TargetType { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the entity the metadata was deleted from, either an account address or a transaction ID.
+        /// </summary>
         [JsonProperty("targetId", NullValueHandling = NullValueHandling.Include)]
         public V2LogDataDeleteMetadataTargetId TargetId { get; set; } = default!;
 

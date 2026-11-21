@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Auth
 
     public class ReadClientResponse
     {
+        /// <summary>
+        /// An OAuth2 client registered on the stack.
+        /// </summary>
         [JsonProperty("data")]
         public Client? Data { get; set; }
     }

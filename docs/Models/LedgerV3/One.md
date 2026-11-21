@@ -1,0 +1,12 @@
+# One
+
+
+## Fields
+
+| Field                                                                         | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `LedgerName`                                                                  | *string*                                                                      | :heavy_check_mark:                                                            | N/A                                                                           |
+| `BatchSize`                                                                   | *long*                                                                        | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `RewriteRules`                                                                | List<[MirrorRewriteRuleRead](../../Models/LedgerV3/MirrorRewriteRuleRead.md)> | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `Http`                                                                        | [HttpMirrorSourceRead](../../Models/LedgerV3/HttpMirrorSourceRead.md)         | :heavy_check_mark:                                                            | N/A                                                                           |
+| `Postgres`                                                                    | [PostgresMirrorSourceRead](../../Models/LedgerV3/PostgresMirrorSourceRead.md) | :heavy_minus_sign:                                                            | N/A                                                                           |

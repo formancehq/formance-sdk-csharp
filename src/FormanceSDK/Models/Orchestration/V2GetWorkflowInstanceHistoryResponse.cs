@@ -16,6 +16,9 @@ namespace FormanceSDK.Models.Orchestration
 
     public class V2GetWorkflowInstanceHistoryResponse
     {
+        /// <summary>
+        /// Per-stage history of a workflow run.
+        /// </summary>
         [JsonProperty("data")]
         public List<V2WorkflowInstanceHistory> Data { get; set; } = default!;
     }

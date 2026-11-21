@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Reconciliation
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Whether the rule passed, failed, or could not be evaluated.
+    /// </summary>
     public enum Result
     {
         [JsonProperty("PASS")]

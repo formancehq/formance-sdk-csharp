@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Orchestration
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Funds locked by a pending wallet debit, later either confirmed or voided.
+    /// </summary>
     public class V2Hold
     {
         /// <summary>
@@ -35,9 +38,15 @@ namespace FormanceSDK.Models.Orchestration
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable reason the funds were held.
+        /// </summary>
         [JsonProperty("description")]
         public string Description { get; set; } = default!;
 
+        /// <summary>
+        /// The counterparty of a wallet movement, either a ledger account or another wallet.
+        /// </summary>
         [JsonProperty("destination", NullValueHandling = NullValueHandling.Include)]
         public V2Subject? Destination { get; set; }
 

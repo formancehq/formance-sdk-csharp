@@ -14,9 +14,15 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2BulkElementResultError
     {
+        /// <summary>
+        /// The action this result corresponds to.
+        /// </summary>
         [JsonProperty("responseType")]
         public string ResponseType { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the log entry produced by this element.
+        /// </summary>
         [JsonProperty("logID")]
         public long LogID { get; set; } = default!;
 

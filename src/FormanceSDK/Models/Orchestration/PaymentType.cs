@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Orchestration
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Direction of the payment.
+    /// </summary>
     public enum PaymentType
     {
         [JsonProperty("PAY-IN")]

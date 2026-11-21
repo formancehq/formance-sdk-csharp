@@ -3,9 +3,9 @@
 
 ## Fields
 
-| Field                        | Type                         | Required                     | Description                  |
-| ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
-| `LastDigits`                 | *string*                     | :heavy_check_mark:           | N/A                          |
-| `Name`                       | *string*                     | :heavy_check_mark:           | N/A                          |
-| `Id`                         | *string*                     | :heavy_check_mark:           | N/A                          |
-| `Metadata`                   | Dictionary<String, *string*> | :heavy_minus_sign:           | N/A                          |
+| Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `LastDigits`                                                                                   | *string*                                                                                       | :heavy_check_mark:                                                                             | Last digits of the secret. The full plaintext is hidden, and only the last digits are exposed. |
+| `Name`                                                                                         | *string*                                                                                       | :heavy_check_mark:                                                                             | Human-readable name identifying the secret                                                     |
+| `Id`                                                                                           | *string*                                                                                       | :heavy_check_mark:                                                                             | Unique identifier of the secret                                                                |
+| `Metadata`                                                                                     | Dictionary<String, *string*>                                                                   | :heavy_minus_sign:                                                                             | Arbitrary key/value pairs attached to the resource                                             |

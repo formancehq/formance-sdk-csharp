@@ -14,9 +14,15 @@ namespace FormanceSDK.Models.Orchestration
 
     public class V2LedgerAccountSubject
     {
+        /// <summary>
+        /// Discriminator identifying this subject as a ledger account.
+        /// </summary>
         [JsonProperty("type")]
         public string Type { get; set; } = default!;
 
+        /// <summary>
+        /// Address of the ledger account.
+        /// </summary>
         [JsonProperty("identifier")]
         public string Identifier { get; set; } = default!;
     }

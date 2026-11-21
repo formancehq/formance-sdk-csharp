@@ -16,6 +16,9 @@ namespace FormanceSDK.Models.Auth
 
     public class ListClientsResponse
     {
+        /// <summary>
+        /// The clients registered on this stack.
+        /// </summary>
         [JsonProperty("data")]
         public List<Client>? Data { get; set; }
     }

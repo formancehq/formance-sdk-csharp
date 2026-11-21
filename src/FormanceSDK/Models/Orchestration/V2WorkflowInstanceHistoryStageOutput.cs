@@ -13,23 +13,44 @@ namespace FormanceSDK.Models.Orchestration
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Result an activity returned, keyed by activity name.
+    /// </summary>
     public class V2WorkflowInstanceHistoryStageOutput
     {
+        /// <summary>
+        /// Result of the activity that reads a ledger account.
+        /// </summary>
         [JsonProperty("GetAccount")]
-        public Models.Orchestration.V2AccountResponse? GetAccount { get; set; }
+        public V2ActivityGetAccountOutput? GetAccount { get; set; }
 
+        /// <summary>
+        /// Result of the activity that writes a transaction to a ledger.
+        /// </summary>
         [JsonProperty("CreateTransaction")]
-        public Models.Orchestration.V2CreateTransactionResponse? CreateTransaction { get; set; }
+        public V2ActivityCreateTransactionOutput? CreateTransaction { get; set; }
 
+        /// <summary>
+        /// Result of the activity that reads a payment.
+        /// </summary>
         [JsonProperty("GetPayment")]
-        public V2PaymentResponse? GetPayment { get; set; }
+        public V2ActivityGetPaymentOutput? GetPayment { get; set; }
 
+        /// <summary>
+        /// Result of the activity that debits a wallet.
+        /// </summary>
         [JsonProperty("DebitWallet")]
-        public V2DebitWalletResponse? DebitWallet { get; set; }
+        public V2ActivityDebitWalletOutput? DebitWallet { get; set; }
 
+        /// <summary>
+        /// Result of the activity that reads a wallet.
+        /// </summary>
         [JsonProperty("GetWallet")]
-        public V2GetWalletResponse? GetWallet { get; set; }
+        public V2ActivityGetWalletOutput? GetWallet { get; set; }
 
+        /// <summary>
+        /// A page of wallets.
+        /// </summary>
         [JsonProperty("ListWallets")]
         public V2ListWalletsResponse? ListWallets { get; set; }
     }

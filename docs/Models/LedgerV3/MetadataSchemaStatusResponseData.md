@@ -1,0 +1,10 @@
+# MetadataSchemaStatusResponseData
+
+
+## Fields
+
+| Field                                                                                   | Type                                                                                    | Required                                                                                | Description                                                                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `AccountFields`                                                                         | Dictionary<String, [MetadataFieldStatus](../../Models/LedgerV3/MetadataFieldStatus.md)> | :heavy_check_mark:                                                                      | Account metadata field declarations                                                     |
+| `TransactionFields`                                                                     | Dictionary<String, [MetadataFieldStatus](../../Models/LedgerV3/MetadataFieldStatus.md)> | :heavy_check_mark:                                                                      | Transaction metadata field declarations                                                 |
+| `LedgerFields`                                                                          | Dictionary<String, [MetadataFieldStatus](../../Models/LedgerV3/MetadataFieldStatus.md)> | :heavy_check_mark:                                                                      | Ledger metadata field declarations                                                      |

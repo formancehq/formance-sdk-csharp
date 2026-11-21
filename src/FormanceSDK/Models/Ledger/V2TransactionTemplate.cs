@@ -15,9 +15,15 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2TransactionTemplate
     {
+        /// <summary>
+        /// Human-readable description of what the template does.
+        /// </summary>
         [JsonProperty("description")]
         public string? Description { get; set; }
 
+        /// <summary>
+        /// The Numscript program the template executes.
+        /// </summary>
         [JsonProperty("script")]
         public string Script { get; set; } = default!;
 

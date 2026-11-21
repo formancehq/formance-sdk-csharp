@@ -15,9 +15,15 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2VolumesWithBalanceCursorResponse
     {
+        /// <summary>
+        /// The resource type carried by this cursor.
+        /// </summary>
         [JsonProperty("resource")]
         public V2VolumesWithBalanceCursorResponseResource? Resource { get; set; }
 
+        /// <summary>
+        /// Paginated cursor wrapping the list of volumes.
+        /// </summary>
         [JsonProperty("cursor")]
         public V2VolumesWithBalanceCursorResponseCursor Cursor { get; set; } = default!;
     }

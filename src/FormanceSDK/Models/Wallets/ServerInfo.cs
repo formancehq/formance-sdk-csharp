@@ -14,6 +14,9 @@ namespace FormanceSDK.Models.Wallets
 
     public class ServerInfo
     {
+        /// <summary>
+        /// Version of the wallets service.
+        /// </summary>
         [JsonProperty("version")]
         public string Version { get; set; } = default!;
     }

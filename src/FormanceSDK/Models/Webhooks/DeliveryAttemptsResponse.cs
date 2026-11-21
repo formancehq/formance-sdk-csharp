@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Webhooks
 
     public class DeliveryAttemptsResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the list of delivery attempts.
+        /// </summary>
         [JsonProperty("cursor")]
         public DeliveryAttemptsResponseCursor Cursor { get; set; } = default!;
     }

@@ -12,8 +12,14 @@ namespace FormanceSDK.Models.Orchestration
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Arguments for the activity that releases a wallet hold.
+    /// </summary>
     public class ActivityVoidHold
     {
+        /// <summary>
+        /// Identifier of the hold to release.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
     }

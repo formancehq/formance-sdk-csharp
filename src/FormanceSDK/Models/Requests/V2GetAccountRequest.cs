@@ -15,6 +15,14 @@ namespace FormanceSDK.Models.Requests
     public class V2GetAccountRequest
     {
         /// <summary>
+        /// When set to `true`, all bigint values in the response will be serialized<br/>
+        /// as strings instead of JSON numbers.<br/>
+        /// Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+        /// </summary>
+        [SpeakeasyMetadata("header:style=simple,explode=false,name=Formance-Bigint-As-String")]
+        public bool? FormanceBigintAsString { get; set; } = false;
+
+        /// <summary>
         /// Name of the ledger.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")]

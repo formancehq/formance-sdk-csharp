@@ -89,8 +89,6 @@ namespace FormanceSDK
 
         public IPayments Payments { get; }
 
-        public ISearch Search { get; }
-
         public IWebhooks Webhooks { get; }
 
         public IWallets Wallets { get; }
@@ -98,6 +96,8 @@ namespace FormanceSDK
         public IOrchestration Orchestration { get; }
 
         public IReconciliation Reconciliation { get; }
+
+        public IConnectivity Connectivity { get; }
 
         /// <summary>
         /// Show stack version information.
@@ -141,10 +141,6 @@ namespace FormanceSDK
         /// </summary>
         public IPayments Payments { get; private set; }
         /// <summary>
-        /// The Search sub-SDK.
-        /// </summary>
-        public ISearch Search { get; private set; }
-        /// <summary>
         /// The Webhooks sub-SDK.
         /// </summary>
         public IWebhooks Webhooks { get; private set; }
@@ -160,6 +156,10 @@ namespace FormanceSDK
         /// The Reconciliation sub-SDK.
         /// </summary>
         public IReconciliation Reconciliation { get; private set; }
+        /// <summary>
+        /// The Connectivity sub-SDK.
+        /// </summary>
+        public IConnectivity Connectivity { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the SDK based on a <see cref="SDKConfig"/> configuration object.
@@ -176,8 +176,6 @@ namespace FormanceSDK
 
             Payments = new Payments(SDKConfiguration);
 
-            Search = new Search(SDKConfiguration);
-
             Webhooks = new Webhooks(SDKConfiguration);
 
             Wallets = new Wallets(SDKConfiguration);
@@ -185,6 +183,8 @@ namespace FormanceSDK
             Orchestration = new Orchestration(SDKConfiguration);
 
             Reconciliation = new Reconciliation(SDKConfiguration);
+
+            Connectivity = new Connectivity(SDKConfiguration);
         }
 
         /// <summary>
@@ -264,8 +264,6 @@ namespace FormanceSDK
 
             Payments = new Payments(SDKConfiguration);
 
-            Search = new Search(SDKConfiguration);
-
             Webhooks = new Webhooks(SDKConfiguration);
 
             Wallets = new Wallets(SDKConfiguration);
@@ -273,6 +271,8 @@ namespace FormanceSDK
             Orchestration = new Orchestration(SDKConfiguration);
 
             Reconciliation = new Reconciliation(SDKConfiguration);
+
+            Connectivity = new Connectivity(SDKConfiguration);
         }
 
         private void InitHooks()

@@ -1,28 +1,14 @@
 # V2QueryParams
 
+Parameters applied when running a query template
 
-## Supported Types
 
-### QueryTemplateAccountParams
+## Fields
 
-```csharp
-V2QueryParams.CreateQueryTemplateAccountParams(/* values here */);
-```
-
-### QueryTemplateTransactionParams
-
-```csharp
-V2QueryParams.CreateQueryTemplateTransactionParams(/* values here */);
-```
-
-### QueryTemplateLogParams
-
-```csharp
-V2QueryParams.CreateQueryTemplateLogParams(/* values here */);
-```
-
-### QueryTemplateVolumeParams
-
-```csharp
-V2QueryParams.CreateQueryTemplateVolumeParams(/* values here */);
-```
+| Field                                                                                                                                                                       | Type                                                                                                                                                                        | Required                                                                                                                                                                    | Description                                                                                                                                                                 | Example                                                                                                                                                                     |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `PageSize`                                                                                                                                                                  | *long*                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                          | The maximum number of results to return per page.<br/>                                                                                                                      | 100                                                                                                                                                                         |
+| `Sort`                                                                                                                                                                      | *string*                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                          | Sort results using a field name and order (ascending or descending).<br/>Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.<br/> | id:desc                                                                                                                                                                     |
+| `Expand`                                                                                                                                                                    | List<*string*>                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                          | Additional data to include in the response, such as volumes                                                                                                                 |                                                                                                                                                                             |
+| `StartTime`                                                                                                                                                                 | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0)                                                                                       | :heavy_minus_sign:                                                                                                                                                          | Lower bound of the time window the query covers                                                                                                                             |                                                                                                                                                                             |
+| `EndTime`                                                                                                                                                                   | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0)                                                                                       | :heavy_minus_sign:                                                                                                                                                          | Upper bound of the time window the query covers                                                                                                                             |                                                                                                                                                                             |

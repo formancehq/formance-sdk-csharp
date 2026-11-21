@@ -15,9 +15,15 @@ namespace FormanceSDK.Models.Reconciliation
 
     public class ReconciliationRequest
     {
+        /// <summary>
+        /// Point in time at which the ledger side is evaluated.
+        /// </summary>
         [JsonProperty("reconciledAtLedger")]
         public DateTime ReconciledAtLedger { get; set; } = default!;
 
+        /// <summary>
+        /// Point in time at which the payments side is evaluated.
+        /// </summary>
         [JsonProperty("reconciledAtPayments")]
         public DateTime ReconciledAtPayments { get; set; } = default!;
     }

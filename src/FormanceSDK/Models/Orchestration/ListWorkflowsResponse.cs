@@ -16,6 +16,9 @@ namespace FormanceSDK.Models.Orchestration
 
     public class ListWorkflowsResponse
     {
+        /// <summary>
+        /// The workflows defined on this stack.
+        /// </summary>
         [JsonProperty("data")]
         public List<Workflow> Data { get; set; } = default!;
     }

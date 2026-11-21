@@ -12,6 +12,9 @@ namespace FormanceSDK.Models.Orchestration
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// How the trigger's filter evaluated against the sample event.
+    /// </summary>
     public class Filter
     {
         [JsonProperty("match")]

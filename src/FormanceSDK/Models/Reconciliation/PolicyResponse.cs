@@ -18,6 +18,9 @@ namespace FormanceSDK.Models.Reconciliation
     /// </summary>
     public class PolicyResponse
     {
+        /// <summary>
+        /// A reconciliation policy pairing a ledger query with a payments pool.
+        /// </summary>
         [JsonProperty("data")]
         public Policy Data { get; set; } = default!;
     }

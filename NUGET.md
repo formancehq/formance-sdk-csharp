@@ -85,18 +85,20 @@ catch (System.Net.Http.HttpRequestException ex)
 **Primary exception:**
 * [`SDKBaseException`](./src/FormanceSDK/Models/Errors/SDKBaseException.cs): The base class for HTTP error responses.
 
-**Less common exceptions (9)**
+**Less common exceptions (11)**
 
 * [`System.Net.Http.HttpRequestException`](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httprequestexception): Network connectivity error. For more details about the underlying cause, inspect the `ex.InnerException`.
 
 * Inheriting from [`SDKBaseException`](./src/FormanceSDK/Models/Errors/SDKBaseException.cs):
-  * [`V3ErrorResponse`](./src/FormanceSDK/Models/Errors/V3ErrorResponse.cs): Error. Applicable to 63 of 276 methods.*
-  * [`PaymentsErrorResponse`](./src/FormanceSDK/Models/Errors/PaymentsErrorResponse.cs): Error. Applicable to 46 of 276 methods.*
-  * [`V2ErrorResponseError`](./src/FormanceSDK/Models/Errors/V2ErrorResponseError.cs): Applicable to 44 of 276 methods.*
-  * [`ErrorResponseError`](./src/FormanceSDK/Models/Errors/ErrorResponseError.cs): Applicable to 43 of 276 methods.*
-  * [`ErrorResponse`](./src/FormanceSDK/Models/Errors/ErrorResponse.cs): Applicable to 28 of 276 methods.*
-  * [`V2Error`](./src/FormanceSDK/Models/Errors/V2Error.cs): General error. Applicable to 18 of 276 methods.*
-  * [`Error`](./src/FormanceSDK/Models/Errors/Error.cs): General error. Applicable to 17 of 276 methods.*
+  * [`V3ErrorResponse`](./src/FormanceSDK/Models/Errors/V3ErrorResponse.cs): Error. Applicable to 63 of 353 methods.*
+  * [`PaymentsErrorResponse`](./src/FormanceSDK/Models/Errors/PaymentsErrorResponse.cs): Error. Applicable to 46 of 353 methods.*
+  * [`V2ErrorResponseError`](./src/FormanceSDK/Models/Errors/V2ErrorResponseError.cs): Applicable to 45 of 353 methods.*
+  * [`ErrorResponseError`](./src/FormanceSDK/Models/Errors/ErrorResponseError.cs): Applicable to 43 of 353 methods.*
+  * [`ErrorResponse`](./src/FormanceSDK/Models/Errors/ErrorResponse.cs): Applicable to 28 of 353 methods.*
+  * [`V2Error1`](./src/FormanceSDK/Models/Errors/V2Error1.cs): General error. Applicable to 18 of 353 methods.*
+  * [`Error1`](./src/FormanceSDK/Models/Errors/Error1.cs): General error. Applicable to 17 of 353 methods.*
+  * [`Error`](./src/FormanceSDK/Models/Errors/Error.cs): Request or server error. The HTTP status and code identify the failure. Applicable to 14 of 353 methods.*
+  * [`HealthError`](./src/FormanceSDK/Models/Errors/HealthError.cs): Ready. Status code `500`. Applicable to 1 of 353 methods.*
   * [`ResponseValidationError`](./src/FormanceSDK/Models/Errors/ResponseValidationError.cs): Thrown when the response data could not be deserialized into the expected type.
 
 \* Refer to the [relevant documentation](#available-resources-and-operations) to determine whether an exception applies to a specific operation.
@@ -124,6 +126,28 @@ var sdk = new Formance(security: new Security() {
 });
 
 var res = await sdk.GetVersionsAsync();
+
+// handle response
+```
+
+### Per-Operation Security Schemes
+
+Some operations in this SDK require the security scheme to be specified at the request level. For example:
+```csharp
+using FormanceSDK;
+using FormanceSDK.Models.LedgerV3;
+using FormanceSDK.Models.Requests;
+
+var sdk = new Formance();
+
+var res = await sdk.Ledger.V3.ListAllLedgersAsync(
+    security: new V3ListAllLedgersSecurity() {
+
+    },
+    xConsistency: Consistency.Linearizable,
+    pageSize: 100,
+    reverse: false
+);
 
 // handle response
 ```

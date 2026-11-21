@@ -14,6 +14,9 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2CreatePipelineRequest
     {
+        /// <summary>
+        /// Identifier of the exporter this pipeline feeds.
+        /// </summary>
         [JsonProperty("exporterID")]
         public string ExporterID { get; set; } = default!;
     }

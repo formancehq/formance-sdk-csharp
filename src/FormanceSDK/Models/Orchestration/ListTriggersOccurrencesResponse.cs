@@ -16,6 +16,9 @@ namespace FormanceSDK.Models.Orchestration
 
     public class ListTriggersOccurrencesResponse
     {
+        /// <summary>
+        /// The trigger's occurrences.
+        /// </summary>
         [JsonProperty("data")]
         public List<TriggerOccurrence> Data { get; set; } = default!;
     }

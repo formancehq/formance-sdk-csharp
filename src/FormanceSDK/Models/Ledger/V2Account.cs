@@ -15,26 +15,50 @@ namespace FormanceSDK.Models.Ledger
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// An account in the ledger, identified by its address and carrying its metadata and volumes.
+    /// </summary>
     public class V2Account
     {
+        /// <summary>
+        /// The account address, a colon-separated segmented path such as users:001.
+        /// </summary>
         [JsonProperty("address")]
         public string Address { get; set; } = default!;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the account. Metadata is bi-temporal, so a point-in-time query returns the metadata as it stood at that time.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; } = default!;
 
+        /// <summary>
+        /// When the account was first written to the ledger, on the request-time axis.
+        /// </summary>
         [JsonProperty("insertionDate")]
         public DateTime? InsertionDate { get; set; }
 
+        /// <summary>
+        /// When the account was last modified, for example by a metadata change.
+        /// </summary>
         [JsonProperty("updatedAt")]
         public DateTime? UpdatedAt { get; set; }
 
+        /// <summary>
+        /// Transaction time of the earliest transaction touching this account. Inserting a backdated transaction can move it earlier.
+        /// </summary>
         [JsonProperty("firstUsage")]
         public DateTime? FirstUsage { get; set; }
 
+        /// <summary>
+        /// Volumes per asset for a single account.
+        /// </summary>
         [JsonProperty("volumes")]
         public Dictionary<string, Models.Ledger.V2Volume>? Volumes { get; set; }
 
+        /// <summary>
+        /// Volumes per asset for a single account.
+        /// </summary>
         [JsonProperty("effectiveVolumes")]
         public Dictionary<string, Models.Ledger.V2Volume>? EffectiveVolumes { get; set; }
     }

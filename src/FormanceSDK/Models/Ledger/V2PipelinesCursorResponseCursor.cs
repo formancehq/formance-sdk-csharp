@@ -14,6 +14,9 @@ namespace FormanceSDK.Models.Ledger
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Paginated cursor wrapping the list of pipelines.
+    /// </summary>
     public class V2PipelinesCursorResponseCursor
     {
         [JsonProperty("pageSize")]

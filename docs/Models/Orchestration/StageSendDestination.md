@@ -1,10 +1,12 @@
 # StageSendDestination
 
+Where a send stage puts the funds
+
 
 ## Fields
 
 | Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `Wallet`                                                                                 | [StageSendSourceWallet](../../Models/Orchestration/StageSendSourceWallet.md)             | :heavy_minus_sign:                                                                       | N/A                                                                                      |
-| `Account`                                                                                | [StageSendSourceAccount](../../Models/Orchestration/StageSendSourceAccount.md)           | :heavy_minus_sign:                                                                       | N/A                                                                                      |
-| `Payment`                                                                                | [StageSendDestinationPayment](../../Models/Orchestration/StageSendDestinationPayment.md) | :heavy_minus_sign:                                                                       | N/A                                                                                      |
+| `Wallet`                                                                                 | [StageSendDestinationWallet](../../Models/Orchestration/StageSendDestinationWallet.md)   | :heavy_minus_sign:                                                                       | Send the funds to a wallet                                                               |
+| `Account`                                                                                | [StageSendDestinationAccount](../../Models/Orchestration/StageSendDestinationAccount.md) | :heavy_minus_sign:                                                                       | Send the funds to a ledger account                                                       |
+| `Payment`                                                                                | [StageSendDestinationPayment](../../Models/Orchestration/StageSendDestinationPayment.md) | :heavy_minus_sign:                                                                       | Send the funds to a payment                                                              |

@@ -14,26 +14,50 @@ namespace FormanceSDK.Models.Ledger
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// A ledger and its configuration.
+    /// </summary>
     public class V2Ledger
     {
+        /// <summary>
+        /// Name of the ledger.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// When the ledger was created.
+        /// </summary>
         [JsonProperty("addedAt")]
         public DateTime AddedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Name of the storage bucket backing the ledger.
+        /// </summary>
         [JsonProperty("bucket")]
         public string Bucket { get; set; } = default!;
 
+        /// <summary>
+        /// When the ledger was deleted, absent for active ledgers.
+        /// </summary>
         [JsonProperty("deletedAt")]
         public DateTime? DeletedAt { get; set; } = null;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; }
 
+        /// <summary>
+        /// Feature flags enabled on the ledger, keyed by feature name.
+        /// </summary>
         [JsonProperty("features")]
         public Dictionary<string, string>? Features { get; set; }
 
+        /// <summary>
+        /// Unique sequential identifier for the ledger.
+        /// </summary>
         [JsonProperty("id")]
         public long? Id { get; set; }
     }

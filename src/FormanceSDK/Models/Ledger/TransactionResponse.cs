@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Ledger
 
     public class TransactionResponse
     {
+        /// <summary>
+        /// A transaction recorded in the ledger, carrying its postings and metadata.
+        /// </summary>
         [JsonProperty("data")]
         public Models.Ledger.Transaction Data { get; set; } = default!;
     }

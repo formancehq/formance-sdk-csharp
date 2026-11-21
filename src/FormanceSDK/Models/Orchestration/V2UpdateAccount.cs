@@ -13,14 +13,26 @@ namespace FormanceSDK.Models.Orchestration
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Metadata to set on a ledger account.
+    /// </summary>
     public class V2UpdateAccount
     {
+        /// <summary>
+        /// Address of the ledger account to update.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Metadata to set on the account.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; } = default!;
 
+        /// <summary>
+        /// Name of the ledger holding the account.
+        /// </summary>
         [JsonProperty("ledger")]
         public string Ledger { get; set; } = default!;
     }

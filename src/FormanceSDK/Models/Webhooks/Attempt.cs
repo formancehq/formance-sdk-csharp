@@ -14,35 +14,68 @@ namespace FormanceSDK.Models.Webhooks
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// A single delivery attempt made against a webhook endpoint.
+    /// </summary>
     public class Attempt
     {
+        /// <summary>
+        /// Unique identifier of the attempt.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the webhook this attempt belongs to.
+        /// </summary>
         [JsonProperty("webhookID")]
         public string WebhookID { get; set; } = default!;
 
+        /// <summary>
+        /// When the attempt was created.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// When the attempt was last modified.
+        /// </summary>
         [JsonProperty("updatedAt")]
         public DateTime UpdatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// A webhook endpoint together with the event types it subscribes to.
+        /// </summary>
         [JsonProperty("config")]
         public WebhooksConfig Config { get; set; } = default!;
 
+        /// <summary>
+        /// The event body sent to the endpoint.
+        /// </summary>
         [JsonProperty("payload")]
         public string Payload { get; set; } = default!;
 
+        /// <summary>
+        /// HTTP status code returned by the endpoint.
+        /// </summary>
         [JsonProperty("statusCode")]
         public long StatusCode { get; set; } = default!;
 
+        /// <summary>
+        /// Position of this attempt in the retry sequence.
+        /// </summary>
         [JsonProperty("retryAttempt")]
         public long RetryAttempt { get; set; } = default!;
 
+        /// <summary>
+        /// Current status of the attempt.
+        /// </summary>
         [JsonProperty("status")]
         public string Status { get; set; } = default!;
 
+        /// <summary>
+        /// When the next retry is scheduled, absent once the attempt is settled.
+        /// </summary>
         [JsonProperty("nextRetryAfter")]
         public DateTime? NextRetryAfter { get; set; }
     }

@@ -15,9 +15,15 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2BulkElementAddMetadata
     {
+        /// <summary>
+        /// The bulk action this element performs.
+        /// </summary>
         [JsonProperty("action")]
         public string Action { get; set; } = default!;
 
+        /// <summary>
+        /// Idempotency key scoped to this element, making it safe to retry the bulk request.
+        /// </summary>
         [JsonProperty("ik")]
         public string? Ik { get; set; }
 

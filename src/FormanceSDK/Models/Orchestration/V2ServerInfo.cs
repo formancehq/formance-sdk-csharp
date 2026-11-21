@@ -14,6 +14,9 @@ namespace FormanceSDK.Models.Orchestration
 
     public class V2ServerInfo
     {
+        /// <summary>
+        /// Version of the orchestration service.
+        /// </summary>
         [JsonProperty("version")]
         public string Version { get; set; } = default!;
     }

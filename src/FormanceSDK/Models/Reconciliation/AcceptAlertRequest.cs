@@ -17,9 +17,15 @@ namespace FormanceSDK.Models.Reconciliation
     /// </summary>
     public class AcceptAlertRequest
     {
+        /// <summary>
+        /// Who is accepting the break.
+        /// </summary>
         [JsonProperty("by")]
         public string By { get; set; } = default!;
 
+        /// <summary>
+        /// Why the break is being accepted rather than corrected.
+        /// </summary>
         [JsonProperty("note")]
         public string Note { get; set; } = default!;
     }

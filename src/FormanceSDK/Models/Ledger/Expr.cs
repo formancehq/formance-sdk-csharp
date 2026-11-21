@@ -11,6 +11,9 @@ namespace FormanceSDK.Models.Ledger
 {
     using FormanceSDK.Utils;
 
+    /// <summary>
+    /// Expression the account's balances must satisfy.
+    /// </summary>
     public class Expr
     {
     }

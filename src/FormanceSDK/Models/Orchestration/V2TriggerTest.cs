@@ -14,11 +14,20 @@ namespace FormanceSDK.Models.Orchestration
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Result of evaluating a trigger against a sample event, without running the workflow.
+    /// </summary>
     public class V2TriggerTest
     {
+        /// <summary>
+        /// How the trigger's filter evaluated against the sample event.
+        /// </summary>
         [JsonProperty("filter")]
         public Filter? Filter { get; set; }
 
+        /// <summary>
+        /// The variables the trigger would build from the sample event.
+        /// </summary>
         [JsonProperty("variables")]
         public Dictionary<string, Variables>? Variables { get; set; }
     }

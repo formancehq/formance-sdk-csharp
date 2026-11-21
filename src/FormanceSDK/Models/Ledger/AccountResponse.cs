@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Ledger
 
     public class AccountResponse
     {
+        /// <summary>
+        /// An account together with its volumes and net balances per asset.
+        /// </summary>
         [JsonProperty("data")]
         public AccountWithVolumesAndBalances Data { get; set; } = default!;
     }

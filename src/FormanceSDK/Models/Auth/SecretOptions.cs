@@ -15,9 +15,15 @@ namespace FormanceSDK.Models.Auth
 
     public class SecretOptions
     {
+        /// <summary>
+        /// Human-readable name identifying the secret.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
     }

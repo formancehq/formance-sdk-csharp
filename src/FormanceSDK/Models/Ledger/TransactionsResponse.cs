@@ -16,6 +16,9 @@ namespace FormanceSDK.Models.Ledger
 
     public class TransactionsResponse
     {
+        /// <summary>
+        /// The transactions that were created.
+        /// </summary>
         [JsonProperty("data")]
         public List<Models.Ledger.Transaction> Data { get; set; } = default!;
     }

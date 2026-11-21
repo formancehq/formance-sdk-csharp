@@ -51,6 +51,9 @@ namespace FormanceSDK.Models.Ledger
         }
     }
 
+    /// <summary>
+    /// Identifier of the entity the metadata was set on, either an account address or a transaction ID.
+    /// </summary>
     [JsonConverter(typeof(TargetId.TargetIdConverter))]
     public class TargetId
     {

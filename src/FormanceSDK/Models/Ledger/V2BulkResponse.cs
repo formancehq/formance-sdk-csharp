@@ -16,12 +16,21 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2BulkResponse
     {
+        /// <summary>
+        /// Result of each element of the bulk request, in submission order.
+        /// </summary>
         [JsonProperty("data")]
         public List<V2BulkElementResult>? Data { get; set; }
 
+        /// <summary>
+        /// Machine-readable error code identifying the failure.
+        /// </summary>
         [JsonProperty("errorCode")]
         public V2ErrorsEnum? ErrorCode { get; set; }
 
+        /// <summary>
+        /// Human-readable description of the error.
+        /// </summary>
         [JsonProperty("errorMessage")]
         public string? ErrorMessage { get; set; }
     }

@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Wallets
 
     public class GetTransactionsResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the list of transactions.
+        /// </summary>
         [JsonProperty("cursor")]
         public Models.Wallets.Cursor Cursor { get; set; } = default!;
     }

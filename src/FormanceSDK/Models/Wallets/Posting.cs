@@ -15,15 +15,27 @@ namespace FormanceSDK.Models.Wallets
 
     public class Posting
     {
+        /// <summary>
+        /// Amount to move, as an arbitrary-precision integer expressed in the asset's smallest unit.
+        /// </summary>
         [JsonProperty("amount")]
         public BigInteger Amount { get; set; } = default!;
 
+        /// <summary>
+        /// The asset being moved, optionally carrying a scale suffix such as USD/2.
+        /// </summary>
         [JsonProperty("asset")]
         public string Asset { get; set; } = default!;
 
+        /// <summary>
+        /// Address of the account credited by this posting.
+        /// </summary>
         [JsonProperty("destination")]
         public string Destination { get; set; } = default!;
 
+        /// <summary>
+        /// Address of the account debited by this posting.
+        /// </summary>
         [JsonProperty("source")]
         public string Source { get; set; } = default!;
     }

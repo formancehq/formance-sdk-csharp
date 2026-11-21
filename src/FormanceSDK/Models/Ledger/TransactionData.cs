@@ -17,15 +17,27 @@ namespace FormanceSDK.Models.Ledger
 
     public class TransactionData
     {
+        /// <summary>
+        /// The fund movements making up the transaction.
+        /// </summary>
         [JsonProperty("postings")]
         public List<Models.Ledger.Posting> Postings { get; set; } = default!;
 
+        /// <summary>
+        /// Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions.
+        /// </summary>
         [JsonProperty("reference")]
         public string? Reference { get; set; }
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, object>? Metadata { get; set; } = null;
 
+        /// <summary>
+        /// The transaction time to record, letting you backdate or postdate the transaction. See <a href="https://docs.formance.com/modules/ledger/working-with/bi-temporality">bi-temporality</a>
+        /// </summary>
         [JsonProperty("timestamp")]
         public DateTime? Timestamp { get; set; }
     }

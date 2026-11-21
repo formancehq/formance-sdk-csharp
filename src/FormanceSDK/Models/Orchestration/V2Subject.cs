@@ -52,6 +52,9 @@ namespace FormanceSDK.Models.Orchestration
         }
     }
 
+    /// <summary>
+    /// The counterparty of a wallet movement, either a ledger account or another wallet.
+    /// </summary>
     [JsonConverter(typeof(V2Subject.V2SubjectConverter))]
     public class V2Subject
     {

@@ -1,0 +1,14 @@
+# FlowPattern
+
+
+## Fields
+
+| Field                                                                 | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `Signature`                                                           | *string*                                                              | :heavy_minus_sign:                                                    | Canonical flow signature (e.g. "users:{id}:main->bank:fees[USD]")     |
+| `Structure`                                                           | [Structure](../../Models/LedgerV3/Structure.md)                       | :heavy_minus_sign:                                                    | N/A                                                                   |
+| `TransactionCount`                                                    | *long*                                                                | :heavy_minus_sign:                                                    | N/A                                                                   |
+| `Postings`                                                            | List<[NormalizedPosting](../../Models/LedgerV3/NormalizedPosting.md)> | :heavy_minus_sign:                                                    | N/A                                                                   |
+| `Temporal`                                                            | [TemporalStats](../../Models/LedgerV3/TemporalStats.md)               | :heavy_minus_sign:                                                    | N/A                                                                   |
+| `VolumeStats`                                                         | List<[AssetVolumeStats](../../Models/LedgerV3/AssetVolumeStats.md)>   | :heavy_minus_sign:                                                    | N/A                                                                   |
+| `MetadataKeys`                                                        | List<*string*>                                                        | :heavy_minus_sign:                                                    | N/A                                                                   |

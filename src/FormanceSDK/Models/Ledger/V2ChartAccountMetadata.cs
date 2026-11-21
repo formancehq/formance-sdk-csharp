@@ -14,6 +14,9 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2ChartAccountMetadata
     {
+        /// <summary>
+        /// Value applied to this metadata key when an account matching the segment is created.
+        /// </summary>
         [JsonProperty("default")]
         public string? Default { get; set; }
     }

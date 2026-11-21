@@ -14,29 +14,56 @@ namespace FormanceSDK.Models.Auth
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// An OAuth2 client registered on the stack.
+    /// </summary>
     public class Client
     {
+        /// <summary>
+        /// Whether the client is public, meaning it cannot keep a secret and uses PKCE instead.
+        /// </summary>
         [JsonProperty("public")]
         public bool? Public { get; set; }
 
+        /// <summary>
+        /// URIs the authorization server may redirect to after a successful authorization.
+        /// </summary>
         [JsonProperty("redirectUris")]
         public List<string>? RedirectUris { get; set; }
 
+        /// <summary>
+        /// Human-readable description of the client.
+        /// </summary>
         [JsonProperty("description")]
         public string? Description { get; set; }
 
+        /// <summary>
+        /// Display name of the client.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// Whether the client is trusted, skipping the user consent screen.
+        /// </summary>
         [JsonProperty("trusted")]
         public bool? Trusted { get; set; }
 
+        /// <summary>
+        /// URIs the authorization server may redirect to after logout.
+        /// </summary>
         [JsonProperty("postLogoutRedirectUris")]
         public List<string>? PostLogoutRedirectUris { get; set; }
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string>? Metadata { get; set; } = null;
 
+        /// <summary>
+        /// Scopes the client is allowed to request.
+        /// </summary>
         [JsonProperty("scopes")]
         public List<string>? Scopes { get; set; }
 
@@ -44,6 +71,6 @@ namespace FormanceSDK.Models.Auth
         public string Id { get; set; } = default!;
 
         [JsonProperty("secrets")]
-        public List<ClientSecret>? Secrets { get; set; }
+        public List<Models.Auth.ClientSecret>? Secrets { get; set; }
     }
 }

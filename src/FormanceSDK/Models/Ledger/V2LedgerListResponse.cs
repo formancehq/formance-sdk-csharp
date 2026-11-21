@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2LedgerListResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the list of ledgers.
+        /// </summary>
         [JsonProperty("cursor")]
         public V2LedgerListResponseCursor Cursor { get; set; } = default!;
     }

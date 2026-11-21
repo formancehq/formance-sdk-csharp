@@ -14,6 +14,9 @@ namespace FormanceSDK.Models.Ledger
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Storage backend information, including the migrations applied to the ledger's bucket.
+    /// </summary>
     public class V2LedgerInfoStorage
     {
         [JsonProperty("migrations")]

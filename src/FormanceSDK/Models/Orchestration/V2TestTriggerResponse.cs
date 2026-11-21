@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Orchestration
 
     public class V2TestTriggerResponse
     {
+        /// <summary>
+        /// Result of evaluating a trigger against a sample event, without running the workflow.
+        /// </summary>
         [JsonProperty("data")]
         public V2TriggerTest Data { get; set; } = default!;
     }

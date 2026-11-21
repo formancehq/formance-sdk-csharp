@@ -12,8 +12,14 @@ namespace FormanceSDK.Models.Orchestration
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Take the funds from a payment.
+    /// </summary>
     public class V2StageSendSourcePayment
     {
+        /// <summary>
+        /// Identifier of the payment to take funds from.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 

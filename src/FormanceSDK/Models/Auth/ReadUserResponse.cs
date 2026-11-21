@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Auth
 
     public class ReadUserResponse
     {
+        /// <summary>
+        /// A user known to the stack's identity provider.
+        /// </summary>
         [JsonProperty("data")]
         public User? Data { get; set; }
     }

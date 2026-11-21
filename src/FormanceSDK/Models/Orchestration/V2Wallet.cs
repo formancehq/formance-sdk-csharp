@@ -28,12 +28,21 @@ namespace FormanceSDK.Models.Orchestration
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable name of the wallet.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// When the wallet was created.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Name of the ledger backing this wallet.
+        /// </summary>
         [JsonProperty("ledger")]
         public string Ledger { get; set; } = default!;
     }

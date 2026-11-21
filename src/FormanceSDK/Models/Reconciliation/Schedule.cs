@@ -13,14 +13,26 @@ namespace FormanceSDK.Models.Reconciliation
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// When a rule runs, either on demand or on a cron expression.
+    /// </summary>
     public class Schedule
     {
+        /// <summary>
+        /// Whether the rule runs only when triggered or on a recurring cron schedule.
+        /// </summary>
         [JsonProperty("kind")]
-        public Kind Kind { get; set; } = default!;
+        public Models.Reconciliation.Kind Kind { get; set; } = default!;
 
+        /// <summary>
+        /// Cron expression driving the schedule, required when kind is cron.
+        /// </summary>
         [JsonProperty("expr")]
         public string? Expr { get; set; }
 
+        /// <summary>
+        /// Timezone the cron expression is interpreted in.
+        /// </summary>
         [JsonProperty("tz")]
         public string? Tz { get; set; }
 

@@ -1,0 +1,11 @@
+# TemporalStats
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `FirstSeen`                                                                           | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `LastSeen`                                                                            | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `TransactionsPerDay`                                                                  | *double*                                                                              | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `PeakHours`                                                                           | List<[HourBucket](../../Models/LedgerV3/HourBucket.md)>                               | :heavy_minus_sign:                                                                    | N/A                                                                                   |

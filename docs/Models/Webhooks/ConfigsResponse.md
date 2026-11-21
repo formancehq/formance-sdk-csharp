@@ -5,4 +5,4 @@
 
 | Field                                                     | Type                                                      | Required                                                  | Description                                               |
 | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| `Cursor`                                                  | [Models.Webhooks.Cursor](../../Models/Webhooks/Cursor.md) | :heavy_check_mark:                                        | N/A                                                       |
+| `Cursor`                                                  | [Models.Webhooks.Cursor](../../Models/Webhooks/Cursor.md) | :heavy_check_mark:                                        | Paginated cursor wrapping the list of configurations      |

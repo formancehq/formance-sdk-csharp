@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Webhooks
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// How the attempt ended. A retryable failure is retried, a permanent failure is not.
+    /// </summary>
     public enum Outcome
     {
         [JsonProperty("succeeded")]

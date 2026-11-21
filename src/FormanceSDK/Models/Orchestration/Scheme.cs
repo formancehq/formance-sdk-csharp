@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Orchestration
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Payment scheme or rail the payment travelled over.
+    /// </summary>
     public enum Scheme
     {
         [JsonProperty("visa")]

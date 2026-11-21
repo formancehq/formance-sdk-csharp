@@ -18,6 +18,9 @@ namespace FormanceSDK.Models.Wallets
 
     public class DebitWalletRequest
     {
+        /// <summary>
+        /// An amount together with the asset it is denominated in.
+        /// </summary>
         [JsonProperty("amount")]
         public Models.Wallets.Monetary Amount { get; set; } = default!;
 
@@ -33,9 +36,15 @@ namespace FormanceSDK.Models.Wallets
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable reason for the debit.
+        /// </summary>
         [JsonProperty("description")]
         public string? Description { get; set; }
 
+        /// <summary>
+        /// The counterparty of a wallet movement, either a ledger account or another wallet.
+        /// </summary>
         [JsonProperty("destination", NullValueHandling = NullValueHandling.Include)]
         public Models.Wallets.Subject? Destination { get; set; }
 
@@ -49,6 +58,9 @@ namespace FormanceSDK.Models.Wallets
             return Destination != null ? Destination.WalletSubject : null;
         }
 
+        /// <summary>
+        /// Names of the balances to debit from, in order. Defaults to the main balance when omitted.
+        /// </summary>
         [JsonProperty("balances")]
         public List<string>? Balances { get; set; }
 

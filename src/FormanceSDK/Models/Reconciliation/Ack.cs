@@ -13,14 +13,26 @@ namespace FormanceSDK.Models.Reconciliation
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Record of who acknowledged an alert and when.
+    /// </summary>
     public class Ack
     {
+        /// <summary>
+        /// Who acknowledged the alert.
+        /// </summary>
         [JsonProperty("by")]
         public string By { get; set; } = default!;
 
+        /// <summary>
+        /// When the alert was acknowledged.
+        /// </summary>
         [JsonProperty("at")]
         public DateTime At { get; set; } = default!;
 
+        /// <summary>
+        /// Free-text note left by whoever acknowledged the alert.
+        /// </summary>
         [JsonProperty("note")]
         public string? Note { get; set; }
     }

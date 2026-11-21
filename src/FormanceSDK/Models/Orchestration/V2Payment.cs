@@ -16,50 +16,98 @@ namespace FormanceSDK.Models.Orchestration
     using System.Collections.Generic;
     using System.Numerics;
 
+    /// <summary>
+    /// A payment observed or initiated through a connector.
+    /// </summary>
     public class V2Payment
     {
+        /// <summary>
+        /// Unique identifier of the payment.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier the payment carries at the provider.
+        /// </summary>
         [JsonProperty("reference")]
         public string Reference { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the account the funds left.
+        /// </summary>
         [JsonProperty("sourceAccountID")]
         public string SourceAccountID { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the account the funds reached.
+        /// </summary>
         [JsonProperty("destinationAccountID")]
         public string DestinationAccountID { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the connector that produced the payment.
+        /// </summary>
         [JsonProperty("connectorID")]
         public string ConnectorID { get; set; } = default!;
 
+        /// <summary>
+        /// The payment provider behind a connector.
+        /// </summary>
         [JsonProperty("provider")]
         public V2Connector? Provider { get; set; }
 
+        /// <summary>
+        /// Direction of the payment.
+        /// </summary>
         [JsonProperty("type")]
         public V2PaymentType Type { get; set; } = default!;
 
+        /// <summary>
+        /// Where a payment stands in its lifecycle.
+        /// </summary>
         [JsonProperty("status")]
         public V2PaymentStatus Status { get; set; } = default!;
 
+        /// <summary>
+        /// Amount the payment was created with, before any adjustment.
+        /// </summary>
         [JsonProperty("initialAmount")]
         public BigInteger InitialAmount { get; set; } = default!;
 
+        /// <summary>
+        /// Payment scheme or rail the payment travelled over.
+        /// </summary>
         [JsonProperty("scheme")]
         public V2PaymentScheme Scheme { get; set; } = default!;
 
+        /// <summary>
+        /// Asset the payment is denominated in.
+        /// </summary>
         [JsonProperty("asset")]
         public string Asset { get; set; } = default!;
 
+        /// <summary>
+        /// When the payment was created.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// The provider's original payload, passed through untouched.
+        /// </summary>
         [JsonProperty("raw", NullValueHandling = NullValueHandling.Include)]
         public V2PaymentRaw? Raw { get; set; }
 
+        /// <summary>
+        /// Successive changes to the payment's amount and status.
+        /// </summary>
         [JsonProperty("adjustments")]
         public List<V2PaymentAdjustment> Adjustments { get; set; } = default!;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to a payment.
+        /// </summary>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Include)]
         public V2PaymentMetadata? Metadata { get; set; }
     }

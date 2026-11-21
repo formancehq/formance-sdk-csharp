@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Orchestration
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// A Numscript program executed to produce the postings. Mutually exclusive with postings.
+    /// </summary>
     public class V2PostTransactionScript
     {
         [JsonProperty("plain")]

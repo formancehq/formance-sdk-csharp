@@ -22,6 +22,6 @@ namespace FormanceSDK.Models.Requests
         /// <summary>
         /// OK.
         /// </summary>
-        public Models.Payments.PaymentResponse? PaymentResponse { get; set; }
+        public PaymentResponse? PaymentResponse { get; set; }
     }
 }

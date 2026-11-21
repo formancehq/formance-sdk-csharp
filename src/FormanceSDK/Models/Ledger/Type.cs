@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Ledger
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// The type of operation this log represents.
+    /// </summary>
     public enum Type
     {
         [JsonProperty("NEW_TRANSACTION")]

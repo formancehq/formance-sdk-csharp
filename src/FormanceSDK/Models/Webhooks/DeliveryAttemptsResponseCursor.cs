@@ -14,6 +14,9 @@ namespace FormanceSDK.Models.Webhooks
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Paginated cursor wrapping the list of delivery attempts.
+    /// </summary>
     public class DeliveryAttemptsResponseCursor
     {
         [JsonProperty("pageSize")]

@@ -13,11 +13,20 @@ namespace FormanceSDK.Models.Ledger
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Runtime information about a ledger, including the state of its storage migrations.
+    /// </summary>
     public class V2LedgerInfo
     {
+        /// <summary>
+        /// Name of the ledger.
+        /// </summary>
         [JsonProperty("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// Storage backend information, including the migrations applied to the ledger's bucket.
+        /// </summary>
         [JsonProperty("storage")]
         public V2LedgerInfoStorage? Storage { get; set; }
     }

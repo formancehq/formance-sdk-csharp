@@ -12,11 +12,20 @@ namespace FormanceSDK.Models.Ledger
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Aggregate counts for a ledger.
+    /// </summary>
     public class Stats
     {
+        /// <summary>
+        /// Total number of accounts in the ledger.
+        /// </summary>
         [JsonProperty("accounts")]
         public long Accounts { get; set; } = default!;
 
+        /// <summary>
+        /// Total number of transactions in the ledger.
+        /// </summary>
         [JsonProperty("transactions")]
         public long Transactions { get; set; } = default!;
     }

@@ -14,6 +14,9 @@ namespace FormanceSDK.Models.Reconciliation
 
     public class UnsnoozeAlertRequest
     {
+        /// <summary>
+        /// Who is lifting the snooze.
+        /// </summary>
         [JsonProperty("by")]
         public string By { get; set; } = default!;
     }

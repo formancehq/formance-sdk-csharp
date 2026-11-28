@@ -263,27 +263,14 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="ledger">Name of the ledger.</param>
-        /// <param name="address">
-        /// Exact address of the account. It must match the following regular expressions pattern:<br/>
-        /// ```<br/>
-        /// ^\w+(:\w+)*$<br/>
-        /// ```
-        /// </param>
-        /// <param name="expand">Description not available.</param>
-        /// <param name="pit">Description not available.</param>
+        /// <param name="request">A <see cref="V2GetAccountRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetAccountResponse"/> response envelope when completed.</returns>
-        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="address"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2GetAccountResponse> GetAccountAsync(
-            string ledger,
-            string address,
-            string? expand = null,
-            DateTime? pit = null
-        );
+        public  Task<V2GetAccountResponse> GetAccountAsync(V2GetAccountRequest request);
 
         /// <summary>
         /// Add metadata to an account.
@@ -401,22 +388,14 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="ledger">Name of the ledger.</param>
-        /// <param name="id">Transaction ID.</param>
-        /// <param name="expand">Description not available.</param>
-        /// <param name="pit">Description not available.</param>
+        /// <param name="request">A <see cref="V2GetTransactionRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2GetTransactionResponse"/> response envelope when completed.</returns>
-        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<Models.Requests.V2GetTransactionResponse> GetTransactionAsync(
-            string ledger,
-            BigInteger id,
-            string? expand = null,
-            DateTime? pit = null
-        );
+        public  Task<Models.Requests.V2GetTransactionResponse> GetTransactionAsync(V2GetTransactionRequest request);
 
         /// <summary>
         /// Set the metadata of a transaction by its ID.
@@ -482,22 +461,14 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="ledger">Name of the ledger.</param>
-        /// <param name="requestBody">Description not available.</param>
-        /// <param name="pit">Description not available.</param>
-        /// <param name="useInsertionDate">Use insertion date instead of effective date.</param>
+        /// <param name="request">A <see cref="V2GetBalancesAggregatedRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetBalancesAggregatedResponse"/> response envelope when completed.</returns>
-        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="requestBody"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public  Task<V2GetBalancesAggregatedResponse> GetBalancesAggregatedAsync(
-            string ledger,
-            Dictionary<string, object> requestBody,
-            DateTime? pit = null,
-            bool? useInsertionDate = null
-        );
+        public  Task<V2GetBalancesAggregatedResponse> GetBalancesAggregatedAsync(V2GetBalancesAggregatedRequest request);
 
         /// <summary>
         /// Get list of volumes with balances for (account/asset).
@@ -555,7 +526,9 @@ namespace FormanceSDK
         /// <returns>An awaitable task that returns a <see cref="V2ExportLogsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
-        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
         public  Task<V2ExportLogsResponse> ExportLogsAsync(string ledger);
 
         /// <summary>
@@ -2482,6 +2455,7 @@ namespace FormanceSDK
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
             if (!httpRequest.Headers.Contains("Accept"))
             {
@@ -2593,44 +2567,23 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="ledger">Name of the ledger.</param>
-        /// <param name="address">
-        /// Exact address of the account. It must match the following regular expressions pattern:<br/>
-        /// ```<br/>
-        /// ^\w+(:\w+)*$<br/>
-        /// ```
-        /// </param>
-        /// <param name="expand">Description not available.</param>
-        /// <param name="pit">Description not available.</param>
+        /// <param name="request">A <see cref="V2GetAccountRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetAccountResponse"/> response envelope when completed.</returns>
-        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="address"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<V2GetAccountResponse> GetAccountAsync(
-            string ledger,
-            string address,
-            string? expand = null,
-            DateTime? pit = null
-        )
+        public async  Task<V2GetAccountResponse> GetAccountAsync(V2GetAccountRequest request)
         {
-            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
-            if (address == null) throw new ArgumentNullException(nameof(address));
-
-            var request = new V2GetAccountRequest()
-            {
-                Ledger = ledger,
-                Address = address,
-                Expand = expand,
-                Pit = pit,
-            };
+            if (request == null) throw new ArgumentNullException(nameof(request));
 
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/accounts/{address}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
             if (!httpRequest.Headers.Contains("Accept"))
             {
@@ -2683,14 +2636,14 @@ namespace FormanceSDK
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    Models.Ledger.V2AccountResponse obj;
+                    V2AccountResponse obj;
                     try
                     {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<Models.Ledger.V2AccountResponse>(httpResponseBody, NullValueHandling.Ignore);
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<V2AccountResponse>(httpResponseBody, NullValueHandling.Ignore);
                     }
                     catch (Exception ex)
                     {
-                        throw new ResponseValidationException("Failed to deserialize response body into Models.Ledger.V2AccountResponse.", httpRequest, httpResponse, httpResponseBody, ex);
+                        throw new ResponseValidationException("Failed to deserialize response body into V2AccountResponse.", httpRequest, httpResponse, httpResponseBody, ex);
                     }
 
                     var response = new V2GetAccountResponse()
@@ -3242,6 +3195,7 @@ namespace FormanceSDK
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
             if (!httpRequest.Headers.Contains("Accept"))
             {
@@ -3484,38 +3438,23 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="ledger">Name of the ledger.</param>
-        /// <param name="id">Transaction ID.</param>
-        /// <param name="expand">Description not available.</param>
-        /// <param name="pit">Description not available.</param>
+        /// <param name="request">A <see cref="V2GetTransactionRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="Models.Requests.V2GetTransactionResponse"/> response envelope when completed.</returns>
-        /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
-        public async  Task<Models.Requests.V2GetTransactionResponse> GetTransactionAsync(
-            string ledger,
-            BigInteger id,
-            string? expand = null,
-            DateTime? pit = null
-        )
+        public async  Task<Models.Requests.V2GetTransactionResponse> GetTransactionAsync(V2GetTransactionRequest request)
         {
-            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
-
-            var request = new V2GetTransactionRequest()
-            {
-                Ledger = ledger,
-                Id = id,
-                Expand = expand,
-                Pit = pit,
-            };
+            if (request == null) throw new ArgumentNullException(nameof(request));
 
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/transactions/{id}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
             if (!httpRequest.Headers.Contains("Accept"))
             {
@@ -3988,39 +3927,25 @@ namespace FormanceSDK
         /// <remarks>
         /// If set, this operation will use <see cref="FormanceSDK.Models.Components.Security.ClientID"/> from the global security.
         /// </remarks>
-        /// <param name="ledger">Name of the ledger.</param>
-        /// <param name="requestBody">Description not available.</param>
-        /// <param name="pit">Description not available.</param>
-        /// <param name="useInsertionDate">Use insertion date instead of effective date.</param>
+        /// <param name="request">A <see cref="V2GetBalancesAggregatedRequest"/> parameter.</param>
         /// <returns>An awaitable task that returns a <see cref="V2GetBalancesAggregatedResponse"/> response envelope when completed.</returns>
-        /// <exception cref="ArgumentNullException">One of <paramref name="ledger"/> or <paramref name="requestBody"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="request"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
         /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
         /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
         /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<V2GetBalancesAggregatedResponse> GetBalancesAggregatedAsync(
-            string ledger,
-            Dictionary<string, object> requestBody,
-            DateTime? pit = null,
-            bool? useInsertionDate = null
+            V2GetBalancesAggregatedRequest request
         )
         {
-            if (ledger == null) throw new ArgumentNullException(nameof(ledger));
-            if (requestBody == null) throw new ArgumentNullException(nameof(requestBody));
-
-            var request = new V2GetBalancesAggregatedRequest()
-            {
-                Ledger = ledger,
-                RequestBody = requestBody,
-                Pit = pit,
-                UseInsertionDate = useInsertionDate,
-            };
+            if (request == null) throw new ArgumentNullException(nameof(request));
 
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = URLBuilder.Build(baseUrl, "/api/ledger/v2/{ledger}/aggregate/balances", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
             if (!httpRequest.Headers.Contains("Accept"))
             {
@@ -4150,6 +4075,7 @@ namespace FormanceSDK
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
             if (!httpRequest.Headers.Contains("Accept"))
             {
@@ -4278,6 +4204,7 @@ namespace FormanceSDK
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
             if (!httpRequest.Headers.Contains("Accept"))
             {
@@ -4507,7 +4434,9 @@ namespace FormanceSDK
         /// <returns>An awaitable task that returns a <see cref="V2ExportLogsResponse"/> response envelope when completed.</returns>
         /// <exception cref="ArgumentNullException">The required parameter <paramref name="ledger"/> is null.</exception>
         /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
-        /// <exception cref="SDKException">Default API Exception. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="V2ErrorResponseError">Error. Thrown when the response status code is none of 200.</exception>
+        /// <exception cref="SDKException">Default API Exception.</exception>
         public async  Task<V2ExportLogsResponse> ExportLogsAsync(string ledger)
         {
             if (ledger == null) throw new ArgumentNullException(nameof(ledger));
@@ -4525,7 +4454,7 @@ namespace FormanceSDK
 
             if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest.Headers.Add("Accept", "*/*");
+                httpRequest.Headers.Add("Accept", "application/octet-stream");
             }
 
             if (SDKConfiguration.SecuritySource != null)
@@ -4571,18 +4500,41 @@ namespace FormanceSDK
             int responseStatusCode = (int)httpResponse.StatusCode;
             if(responseStatusCode == 200)
             {
-                return new V2ExportLogsResponse()
+                if(Utilities.IsContentTypeMatch("application/octet-stream", contentType))
                 {
-                    HttpMeta = new Models.Components.HTTPMetadata()
+                    var response = new V2ExportLogsResponse()
                     {
-                        Response = httpResponse,
-                        Request = httpRequest
-                    }
-                };
+                        HttpMeta = new Models.Components.HTTPMetadata()
+                        {
+                            Response = httpResponse,
+                            Request = httpRequest
+                        }
+                    };
+                    response.Bytes = await httpResponse.Content.ReadAsByteArrayAsync();
+                    return response;
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
             else
             {
-                throw new Models.Errors.SDKException("API error occurred", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
+                if(Utilities.IsContentTypeMatch("application/json", contentType))
+                {
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    V2ErrorResponseErrorPayload payload;
+                    try
+                    {
+                        payload = ResponseBodyDeserializer.DeserializeNotNull<V2ErrorResponseErrorPayload>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into V2ErrorResponseErrorPayload.", httpRequest, httpResponse, httpResponseBody, ex);
+                    }
+
+                    throw new V2ErrorResponseError(payload, httpRequest, httpResponse, httpResponseBody);
+                }
+
+                throw new Models.Errors.SDKException("Unknown content type received", httpRequest, httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
         }
 
@@ -4610,6 +4562,7 @@ namespace FormanceSDK
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
             httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
             if (!httpRequest.Headers.Contains("Accept"))
             {

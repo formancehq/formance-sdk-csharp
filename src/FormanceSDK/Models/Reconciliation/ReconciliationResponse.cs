@@ -18,6 +18,9 @@ namespace FormanceSDK.Models.Reconciliation
     /// </summary>
     public class ReconciliationResponse
     {
+        /// <summary>
+        /// One run of a policy, comparing both sides and reporting the drift between them.
+        /// </summary>
         [JsonProperty("data")]
         public Models.Reconciliation.Reconciliation Data { get; set; } = default!;
     }

@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Wallets
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// A wallet together with the funds it currently holds.
+    /// </summary>
     public class WalletWithBalances
     {
         /// <summary>
@@ -29,15 +32,27 @@ namespace FormanceSDK.Models.Wallets
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable name of the wallet.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// When the wallet was created.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// Aggregated funds held by the wallet, keyed by asset.
+        /// </summary>
         [JsonProperty("balances")]
         public WalletWithBalancesBalances Balances { get; set; } = default!;
 
+        /// <summary>
+        /// Name of the ledger backing this wallet.
+        /// </summary>
         [JsonProperty("ledger")]
         public string Ledger { get; set; } = default!;
     }

@@ -15,20 +15,38 @@ namespace FormanceSDK.Models.Wallets
     using System.Collections.Generic;
     using System.Numerics;
 
+    /// <summary>
+    /// Aggregated funds held by a wallet, broken down by availability.
+    /// </summary>
     public class WalletSummary
     {
+        /// <summary>
+        /// Each balance of the wallet with its per-asset amounts.
+        /// </summary>
         [JsonProperty("balances")]
         public List<BalanceWithAssets> Balances { get; set; } = default!;
 
+        /// <summary>
+        /// Funds available to debit, keyed by asset. Covers balances with no expiry and those not yet expired.
+        /// </summary>
         [JsonProperty("availableFunds")]
         public Dictionary<string, BigInteger> AvailableFunds { get; set; } = default!;
 
+        /// <summary>
+        /// Funds held in balances whose expiry date has passed, keyed by asset.
+        /// </summary>
         [JsonProperty("expiredFunds")]
         public Dictionary<string, BigInteger> ExpiredFunds { get; set; } = default!;
 
+        /// <summary>
+        /// Funds held in balances carrying an expiry date that has not yet passed, keyed by asset.
+        /// </summary>
         [JsonProperty("expirableFunds")]
         public Dictionary<string, BigInteger> ExpirableFunds { get; set; } = default!;
 
+        /// <summary>
+        /// Funds currently locked by pending holds, keyed by asset.
+        /// </summary>
         [JsonProperty("holdFunds")]
         public Dictionary<string, BigInteger> HoldFunds { get; set; } = default!;
     }

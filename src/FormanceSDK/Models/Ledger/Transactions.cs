@@ -16,6 +16,9 @@ namespace FormanceSDK.Models.Ledger
 
     public class Transactions
     {
+        /// <summary>
+        /// The transactions to create, applied in order.
+        /// </summary>
         [JsonProperty("transactions")]
         public List<TransactionData> TransactionsValue { get; set; } = default!;
     }

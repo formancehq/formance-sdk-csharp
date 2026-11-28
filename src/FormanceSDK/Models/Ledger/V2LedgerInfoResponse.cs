@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2LedgerInfoResponse
     {
+        /// <summary>
+        /// Runtime information about a ledger, including the state of its storage migrations.
+        /// </summary>
         [JsonProperty("data")]
         public V2LedgerInfo? Data { get; set; }
     }

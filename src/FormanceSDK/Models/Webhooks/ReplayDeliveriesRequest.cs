@@ -17,21 +17,39 @@ namespace FormanceSDK.Models.Webhooks
 
     public class ReplayDeliveriesRequest
     {
+        /// <summary>
+        /// Replay deliveries created at or after this time.
+        /// </summary>
         [JsonProperty("createdAtFrom")]
         public DateTime CreatedAtFrom { get; set; } = default!;
 
+        /// <summary>
+        /// Replay deliveries created at or before this time. Defaults to now when omitted.
+        /// </summary>
         [JsonProperty("createdAtTo")]
         public DateTime? CreatedAtTo { get; set; }
 
+        /// <summary>
+        /// Restrict the replay to deliveries in these statuses.
+        /// </summary>
         [JsonProperty("statuses")]
         public List<Statuses>? Statuses { get; set; }
 
+        /// <summary>
+        /// Restrict the replay to deliveries targeting these webhook configurations.
+        /// </summary>
         [JsonProperty("configIds")]
         public List<string>? ConfigIds { get; set; }
 
+        /// <summary>
+        /// Pagination cursor from a previous replay response, used to continue a large replay.
+        /// </summary>
         [JsonProperty("cursor")]
         public string? Cursor { get; set; }
 
+        /// <summary>
+        /// Maximum number of deliveries to process in this call.
+        /// </summary>
         [JsonProperty("pageSize")]
         public long? PageSize { get; set; } = 1000;
     }

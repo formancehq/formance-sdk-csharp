@@ -14,12 +14,21 @@ namespace FormanceSDK.Models.Wallets
 
     public class WalletSubject
     {
+        /// <summary>
+        /// Discriminator identifying this subject as a wallet.
+        /// </summary>
         [JsonProperty("type")]
         public string Type { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the wallet.
+        /// </summary>
         [JsonProperty("identifier")]
         public string Identifier { get; set; } = default!;
 
+        /// <summary>
+        /// Name of the balance within the wallet to use. Defaults to the main balance when omitted.
+        /// </summary>
         [JsonProperty("balance")]
         public string? Balance { get; set; }
     }

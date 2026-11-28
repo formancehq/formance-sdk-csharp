@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Orchestration
 
     public class V2ListRunsResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the list of runs.
+        /// </summary>
         [JsonProperty("cursor")]
         public V2ListRunsResponseCursor Cursor { get; set; } = default!;
     }

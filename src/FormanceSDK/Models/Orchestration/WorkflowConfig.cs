@@ -13,11 +13,26 @@ namespace FormanceSDK.Models.Orchestration
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// The stages a workflow runs, in order.
+    /// </summary>
     public class WorkflowConfig
     {
+        /// <summary>
+        /// Human-readable name for the workflow.
+        /// </summary>
         [JsonProperty("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// Total attempts per stage activity, including the initial attempt. Stored at workflow creation; defaults to 15 when omitted.
+        /// </summary>
+        [JsonProperty("activityMaxAttempts")]
+        public int? ActivityMaxAttempts { get; set; } = 15;
+
+        /// <summary>
+        /// The stages executed in order when the workflow runs.
+        /// </summary>
         [JsonProperty("stages")]
         public List<Dictionary<string, object>> Stages { get; set; } = default!;
     }

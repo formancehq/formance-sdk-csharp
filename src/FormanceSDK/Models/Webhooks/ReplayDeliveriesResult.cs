@@ -13,23 +13,44 @@ namespace FormanceSDK.Models.Webhooks
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Outcome of a bulk replay, counting the deliveries it moved.
+    /// </summary>
     public class ReplayDeliveriesResult
     {
+        /// <summary>
+        /// Number of failed deliveries moved back to pending and scheduled for a new retry cycle.
+        /// </summary>
         [JsonProperty("replayed")]
         public long Replayed { get; set; } = default!;
 
+        /// <summary>
+        /// Number of already-pending deliveries whose next attempt was brought forward to now.
+        /// </summary>
         [JsonProperty("expedited")]
         public long Expedited { get; set; } = default!;
 
+        /// <summary>
+        /// Number of candidates left untouched, because their status changed before the replay applied.
+        /// </summary>
         [JsonProperty("skipped")]
         public long Skipped { get; set; } = default!;
 
+        /// <summary>
+        /// Whether further deliveries match and can be processed with the returned cursor.
+        /// </summary>
         [JsonProperty("hasMore")]
         public bool HasMore { get; set; } = default!;
 
+        /// <summary>
+        /// Cursor to pass to the next replay call to continue where this one stopped.
+        /// </summary>
         [JsonProperty("nextCursor")]
         public string? NextCursor { get; set; }
 
+        /// <summary>
+        /// Upper time bound actually applied, echoed so a paginated replay stays on a fixed window.
+        /// </summary>
         [JsonProperty("createdAtTo")]
         public DateTime CreatedAtTo { get; set; } = default!;
     }

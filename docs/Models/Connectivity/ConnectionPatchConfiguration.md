@@ -1,0 +1,14 @@
+# ConnectionPatchConfiguration
+
+
+## Fields
+
+| Field                                                                         | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `Version`                                                                     | *string*                                                                      | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `Channel`                                                                     | [ConnectionPatchChannel](../../Models/Connectivity/ConnectionPatchChannel.md) | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `Suspend`                                                                     | *bool*                                                                        | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `InitialCursor`                                                               | *string*                                                                      | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `PollInterval`                                                                | *string*                                                                      | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `Env`                                                                         | Dictionary<String, *string*>                                                  | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `Files`                                                                       | Dictionary<String, *string*>                                                  | :heavy_minus_sign:                                                            | N/A                                                                           |

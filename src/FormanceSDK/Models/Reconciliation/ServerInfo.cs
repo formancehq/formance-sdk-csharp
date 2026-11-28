@@ -17,6 +17,9 @@ namespace FormanceSDK.Models.Reconciliation
     /// </summary>
     public class ServerInfo
     {
+        /// <summary>
+        /// Version of the reconciliation service.
+        /// </summary>
         [JsonProperty("version")]
         public string Version { get; set; } = default!;
     }

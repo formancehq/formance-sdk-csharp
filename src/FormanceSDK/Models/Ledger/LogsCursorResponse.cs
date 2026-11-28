@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Ledger
 
     public class LogsCursorResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the list of logs.
+        /// </summary>
         [JsonProperty("cursor")]
         public LogsCursorResponseCursor Cursor { get; set; } = default!;
     }

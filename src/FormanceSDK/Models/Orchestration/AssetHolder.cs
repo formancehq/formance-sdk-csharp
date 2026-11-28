@@ -16,6 +16,9 @@ namespace FormanceSDK.Models.Orchestration
 
     public class AssetHolder
     {
+        /// <summary>
+        /// Amounts held, keyed by asset.
+        /// </summary>
         [JsonProperty("assets")]
         public Dictionary<string, BigInteger> Assets { get; set; } = default!;
     }

@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2SchemasCursorResponse
     {
+        /// <summary>
+        /// Paginated cursor over the ledger's schemas.
+        /// </summary>
         [JsonProperty("cursor")]
         public V2SchemasCursor Cursor { get; set; } = default!;
     }

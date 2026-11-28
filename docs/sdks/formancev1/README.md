@@ -31,7 +31,7 @@ Show server information
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="getInfo" method="get" path="/api/ledger/_info" -->
+<!-- UsageSnippet language="csharp" operationID="getInfo" method="get" path="/api/ledger/_info#ledger" -->
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
@@ -764,7 +764,7 @@ var res = await sdk.Ledger.V1.GetTransactionAsync(
 
 ### Response
 
-**[GetTransactionResponse](../../Models/Requests/GetTransactionResponse.md)**
+**[Models.Requests.GetTransactionResponse](../../Models/Requests/GetTransactionResponse.md)**
 
 ### Errors
 

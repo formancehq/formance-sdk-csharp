@@ -17,18 +17,33 @@ namespace FormanceSDK.Models.Ledger
 
     public class Log
     {
+        /// <summary>
+        /// Unique sequential identifier for this log entry within the ledger.
+        /// </summary>
         [JsonProperty("id")]
         public long Id { get; set; } = default!;
 
+        /// <summary>
+        /// The type of operation this log represents.
+        /// </summary>
         [JsonProperty("type")]
         public Models.Ledger.Type Type { get; set; } = default!;
 
+        /// <summary>
+        /// The payload of the log entry, whose shape depends on the log type.
+        /// </summary>
         [JsonProperty("data")]
         public Dictionary<string, object> Data { get; set; } = default!;
 
+        /// <summary>
+        /// SHA256 hash of the log entry, chained from the previous log for integrity verification.
+        /// </summary>
         [JsonProperty("hash")]
         public string Hash { get; set; } = default!;
 
+        /// <summary>
+        /// Timestamp when the operation was recorded.
+        /// </summary>
         [JsonProperty("date")]
         public DateTime Date { get; set; } = default!;
     }

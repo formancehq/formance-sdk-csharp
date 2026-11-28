@@ -20,19 +20,28 @@ namespace FormanceSDK.Models.Reconciliation
     /// reconciliation period. There is exactly one Alert per<br/>
     /// (ruleID, fingerprint, periodID) — within a period, re-opens after resolve<br/>
     /// flip the status back to OPEN in place; the same fingerprint failing in a<br/>
-    /// new period is a separate Alert. For a `continuous`-cadence rule there is<br/>
+    /// new period is a separate Alert. For a `continuous` period type there is<br/>
     /// one unbounded period, so it behaves as one Alert per (ruleID, fingerprint).<br/>
     /// The full history of transitions lives in alert_event<br/>
     /// (see /alerts/{alertID}/events).
     /// </summary>
     public class Alert
     {
+        /// <summary>
+        /// Unique identifier of the alert.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the rule that raised the alert.
+        /// </summary>
         [JsonProperty("ruleID")]
         public string RuleID { get; set; } = default!;
 
+        /// <summary>
+        /// Identifies what is failing within the rule, so the same break dedupes to one alert.
+        /// </summary>
         [JsonProperty("fingerprint")]
         public string Fingerprint { get; set; } = default!;
 
@@ -42,33 +51,57 @@ namespace FormanceSDK.Models.Reconciliation
         [JsonProperty("periodID")]
         public string PeriodID { get; set; } = default!;
 
+        /// <summary>
+        /// Where the alert stands in its open, acknowledged, resolved lifecycle.
+        /// </summary>
         [JsonProperty("status")]
         public Models.Reconciliation.Status Status { get; set; } = default!;
 
+        /// <summary>
+        /// How serious an alert is, used to route and prioritise notifications.
+        /// </summary>
         [JsonProperty("severity")]
         public Severity Severity { get; set; } = default!;
 
+        /// <summary>
+        /// When the fingerprint first failed within this period.
+        /// </summary>
         [JsonProperty("firstSeenAt")]
         public DateTime FirstSeenAt { get; set; } = default!;
 
+        /// <summary>
+        /// When the fingerprint most recently failed.
+        /// </summary>
         [JsonProperty("lastSeenAt")]
         public DateTime LastSeenAt { get; set; } = default!;
 
         /// <summary>
-        /// Count of FAIL events on this alert across reopen cycles within its period (lifetime, for a continuous-cadence rule).
+        /// Count of FAIL events on this alert across reopen cycles within its period (lifetime, for a `continuous` period type).
         /// </summary>
         [JsonProperty("occurrenceCount")]
         public long OccurrenceCount { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the evaluation that last touched the alert.
+        /// </summary>
         [JsonProperty("lastEvaluationID")]
         public string LastEvaluationID { get; set; } = default!;
 
+        /// <summary>
+        /// Data captured from the failing evaluation, explaining what broke.
+        /// </summary>
         [JsonProperty("evidence")]
         public Dictionary<string, object>? Evidence { get; set; }
 
+        /// <summary>
+        /// Record of who acknowledged an alert and when.
+        /// </summary>
         [JsonProperty("ack")]
         public Ack? Ack { get; set; }
 
+        /// <summary>
+        /// Record of how an alert was resolved and by whom.
+        /// </summary>
         [JsonProperty("resolution")]
         public Resolution? Resolution { get; set; }
 
@@ -80,12 +113,21 @@ namespace FormanceSDK.Models.Reconciliation
         [JsonProperty("snooze")]
         public Snooze? Snooze { get; set; }
 
+        /// <summary>
+        /// Key/value pairs copied from the rule that raised the alert.
+        /// </summary>
         [JsonProperty("labels")]
         public Dictionary<string, string>? Labels { get; set; }
 
+        /// <summary>
+        /// When the alert was created.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// When the alert was last modified.
+        /// </summary>
         [JsonProperty("updatedAt")]
         public DateTime UpdatedAt { get; set; } = default!;
     }

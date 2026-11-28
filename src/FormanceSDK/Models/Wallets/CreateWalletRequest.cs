@@ -21,6 +21,9 @@ namespace FormanceSDK.Models.Wallets
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; } = default!;
 
+        /// <summary>
+        /// Human-readable name for the wallet.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
     }

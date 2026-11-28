@@ -14,9 +14,15 @@ namespace FormanceSDK.Models.Reconciliation
 
     public class AckAlertRequest
     {
+        /// <summary>
+        /// Who is acknowledging the alert.
+        /// </summary>
         [JsonProperty("by")]
         public string By { get; set; } = default!;
 
+        /// <summary>
+        /// Free-text note to record with the acknowledgement.
+        /// </summary>
         [JsonProperty("note")]
         public string? Note { get; set; }
     }

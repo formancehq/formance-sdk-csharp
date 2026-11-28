@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Reconciliation
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// How the alert was resolved, whether automatically, by booking a correcting transaction, or by business acceptance.
+    /// </summary>
     public enum ResolutionKind
     {
         [JsonProperty("auto")]

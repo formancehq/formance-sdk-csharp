@@ -3,13 +3,13 @@
 
 ## Fields
 
-| Field                        | Type                         | Required                     | Description                  |
-| ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
-| `Public`                     | *bool*                       | :heavy_minus_sign:           | N/A                          |
-| `RedirectUris`               | List<*string*>               | :heavy_minus_sign:           | N/A                          |
-| `Description`                | *string*                     | :heavy_minus_sign:           | N/A                          |
-| `Name`                       | *string*                     | :heavy_check_mark:           | N/A                          |
-| `Trusted`                    | *bool*                       | :heavy_minus_sign:           | N/A                          |
-| `PostLogoutRedirectUris`     | List<*string*>               | :heavy_minus_sign:           | N/A                          |
-| `Metadata`                   | Dictionary<String, *string*> | :heavy_minus_sign:           | N/A                          |
-| `Scopes`                     | List<*string*>               | :heavy_minus_sign:           | N/A                          |
+| Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `Public`                                                                            | *bool*                                                                              | :heavy_minus_sign:                                                                  | Whether the client is public, meaning it cannot keep a secret and uses PKCE instead |
+| `RedirectUris`                                                                      | List<*string*>                                                                      | :heavy_minus_sign:                                                                  | URIs the authorization server may redirect to after a successful authorization      |
+| `Description`                                                                       | *string*                                                                            | :heavy_minus_sign:                                                                  | Human-readable description of the client                                            |
+| `Name`                                                                              | *string*                                                                            | :heavy_check_mark:                                                                  | Display name of the client                                                          |
+| `Trusted`                                                                           | *bool*                                                                              | :heavy_minus_sign:                                                                  | Whether the client is trusted, skipping the user consent screen                     |
+| `PostLogoutRedirectUris`                                                            | List<*string*>                                                                      | :heavy_minus_sign:                                                                  | URIs the authorization server may redirect to after logout                          |
+| `Metadata`                                                                          | Dictionary<String, *string*>                                                        | :heavy_minus_sign:                                                                  | Arbitrary key/value pairs attached to the resource                                  |
+| `Scopes`                                                                            | List<*string*>                                                                      | :heavy_minus_sign:                                                                  | Scopes the client is allowed to request                                             |

@@ -14,6 +14,9 @@ namespace FormanceSDK.Models.Orchestration
 
     public class V2StageWaitEvent
     {
+        /// <summary>
+        /// Type of event the workflow waits for before continuing.
+        /// </summary>
         [JsonProperty("event")]
         public string Event { get; set; } = default!;
     }

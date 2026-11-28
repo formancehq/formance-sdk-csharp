@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Wallets
 
     public class CreateBalanceResponse
     {
+        /// <summary>
+        /// A named balance within a wallet, optionally carrying an expiry date.
+        /// </summary>
         [JsonProperty("data")]
         public Balance Data { get; set; } = default!;
     }

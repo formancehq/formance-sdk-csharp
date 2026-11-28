@@ -15,9 +15,15 @@ namespace FormanceSDK.Models.Orchestration
 
     public class V2StageDelay
     {
+        /// <summary>
+        /// Wait until this absolute point in time. Mutually exclusive with duration.
+        /// </summary>
         [JsonProperty("until")]
         public DateTime? Until { get; set; }
 
+        /// <summary>
+        /// Wait for this long, expressed as a Go duration such as 10s. Mutually exclusive with until.
+        /// </summary>
         [JsonProperty("duration")]
         public string? Duration { get; set; }
     }

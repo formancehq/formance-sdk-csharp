@@ -14,12 +14,21 @@ namespace FormanceSDK.Models.Gateway
 
     public class Version
     {
+        /// <summary>
+        /// Name of the component.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;
 
+        /// <summary>
+        /// Version of the component currently deployed.
+        /// </summary>
         [JsonProperty("version")]
         public string VersionValue { get; set; } = default!;
 
+        /// <summary>
+        /// Whether the component is reporting itself healthy.
+        /// </summary>
         [JsonProperty("health")]
         public bool Health { get; set; } = default!;
     }

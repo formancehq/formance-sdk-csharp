@@ -22,6 +22,6 @@ namespace FormanceSDK.Models.Requests
         /// <summary>
         /// OK.
         /// </summary>
-        public Models.Ledger.V2AccountResponse? V2AccountResponse { get; set; }
+        public V2AccountResponse? V2AccountResponse { get; set; }
     }
 }

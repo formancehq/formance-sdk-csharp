@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Orchestration
 
     public class V2GetWorkflowInstanceResponse
     {
+        /// <summary>
+        /// One run of a workflow, tracking its per-stage progress.
+        /// </summary>
         [JsonProperty("data")]
         public V2WorkflowInstance Data { get; set; } = default!;
     }

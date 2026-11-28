@@ -282,15 +282,11 @@ var res = await sdk.Ledger.V2.InsertSchemaAsync(
             } },
         },
         Queries = new Dictionary<string, V2QueryTemplate>() {
-            { "key", new V2QueryTemplate() {
-                Params = V2QueryParams.CreateQueryTemplateAccountParams(
-                    new QueryTemplateAccountParams() {
-                        PageSize = 100,
-                        Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-                        Sort = "id:desc",
-                    }
-                ),
-            } },
+            { "key", V2QueryTemplate.CreateVolumes(
+                new V2VolumeQueryTemplate() {
+                    Resource = V2VolumeQueryTemplateResource.Volumes,
+                }
+            ) },
         },
     }
 );
@@ -691,28 +687,28 @@ Get account by its address
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Requests;
 
 var sdk = new Formance(security: new Security() {
     ClientID = "<YOUR_CLIENT_ID_HERE>",
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Ledger.V2.GetAccountAsync(
-    ledger: "ledger001",
-    address: "users:001"
-);
+V2GetAccountRequest req = new V2GetAccountRequest() {
+    Ledger = "ledger001",
+    Address = "users:001",
+};
+
+var res = await sdk.Ledger.V2.GetAccountAsync(req);
 
 // handle response
 ```
 
 ### Parameters
 
-| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  | Example                                                                                                      |
-| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `Ledger`                                                                                                     | *string*                                                                                                     | :heavy_check_mark:                                                                                           | Name of the ledger.                                                                                          | ledger001                                                                                                    |
-| `Address`                                                                                                    | *string*                                                                                                     | :heavy_check_mark:                                                                                           | Exact address of the account. It must match the following regular expressions pattern:<br/>```<br/>^\w+(:\w+)*$<br/>```<br/> | users:001                                                                                                    |
-| `Expand`                                                                                                     | *string*                                                                                                     | :heavy_minus_sign:                                                                                           | N/A                                                                                                          |                                                                                                              |
-| `Pit`                                                                                                        | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0)                        | :heavy_minus_sign:                                                                                           | N/A                                                                                                          |                                                                                                              |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [V2GetAccountRequest](../../Models/Requests/V2GetAccountRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 
 ### Response
 
@@ -1052,6 +1048,7 @@ Get transaction from a ledger by its ID
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Requests;
 using System.Numerics;
 
 var sdk = new Formance(security: new Security() {
@@ -1059,22 +1056,21 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Ledger.V2.GetTransactionAsync(
-    ledger: "ledger001",
-    id: BigInteger.Parse("1234")
-);
+V2GetTransactionRequest req = new V2GetTransactionRequest() {
+    Ledger = "ledger001",
+    Id = BigInteger.Parse("1234"),
+};
+
+var res = await sdk.Ledger.V2.GetTransactionAsync(req);
 
 // handle response
 ```
 
 ### Parameters
 
-| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
-| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `Ledger`                                                                              | *string*                                                                              | :heavy_check_mark:                                                                    | Name of the ledger.                                                                   | ledger001                                                                             |
-| `Id`                                                                                  | *BigInteger*                                                                          | :heavy_check_mark:                                                                    | Transaction ID.                                                                       | 1234                                                                                  |
-| `Expand`                                                                              | *string*                                                                              | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
-| `Pit`                                                                                 | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [V2GetTransactionRequest](../../Models/Requests/V2GetTransactionRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
 
 ### Response
 
@@ -1240,6 +1236,7 @@ Get the aggregated balances from selected accounts
 ```csharp
 using FormanceSDK;
 using FormanceSDK.Models.Components;
+using FormanceSDK.Models.Requests;
 using System.Collections.Generic;
 
 var sdk = new Formance(security: new Security() {
@@ -1247,26 +1244,25 @@ var sdk = new Formance(security: new Security() {
     ClientSecret = "<YOUR_CLIENT_SECRET_HERE>",
 });
 
-var res = await sdk.Ledger.V2.GetBalancesAggregatedAsync(
-    ledger: "ledger001",
-    requestBody: new Dictionary<string, object>() {
+V2GetBalancesAggregatedRequest req = new V2GetBalancesAggregatedRequest() {
+    Ledger = "ledger001",
+    RequestBody = new Dictionary<string, object>() {
         { "key", "<value>" },
         { "key1", "<value>" },
         { "key2", "<value>" },
-    }
-);
+    },
+};
+
+var res = await sdk.Ledger.V2.GetBalancesAggregatedAsync(req);
 
 // handle response
 ```
 
 ### Parameters
 
-| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
-| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `Ledger`                                                                              | *string*                                                                              | :heavy_check_mark:                                                                    | Name of the ledger.                                                                   | ledger001                                                                             |
-| `RequestBody`                                                                         | Dictionary<String, *object*>                                                          | :heavy_check_mark:                                                                    | N/A                                                                                   |                                                                                       |
-| `Pit`                                                                                 | [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-5.0) | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
-| `UseInsertionDate`                                                                    | *bool*                                                                                | :heavy_minus_sign:                                                                    | Use insertion date instead of effective date                                          |                                                                                       |
+| Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `request`                                                                                 | [V2GetBalancesAggregatedRequest](../../Models/Requests/V2GetBalancesAggregatedRequest.md) | :heavy_check_mark:                                                                        | The request object to use for the request.                                                |
 
 ### Response
 
@@ -1454,9 +1450,10 @@ var res = await sdk.Ledger.V2.ExportLogsAsync(ledger: "ledger001");
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| FormanceSDK.Models.Errors.SDKException | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                                     | Status Code                                    | Content Type                                   |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| FormanceSDK.Models.Ledger.V2ErrorResponseError | default                                        | application/json                               |
+| FormanceSDK.Models.Errors.SDKException         | 4XX, 5XX                                       | \*/\*                                          |
 
 ## RunQuery
 
@@ -1484,13 +1481,10 @@ V2RunQueryRequest req = new V2RunQueryRequest() {
     Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     Sort = "id:desc",
     RequestBody = new V2RunQueryRequestBody() {
-        Params = V2QueryParams.CreateQueryTemplateAccountParams(
-            new QueryTemplateAccountParams() {
-                PageSize = 100,
-                Cursor = "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-                Sort = "id:desc",
-            }
-        ),
+        Params = new V2RunQueryParams() {
+            PageSize = 100,
+            Sort = "id:desc",
+        },
     },
 };
 

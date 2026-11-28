@@ -5,4 +5,4 @@
 
 | Field                            | Type                             | Required                         | Description                      |
 | -------------------------------- | -------------------------------- | -------------------------------- | -------------------------------- |
-| `Assets`                         | Dictionary<String, *BigInteger*> | :heavy_check_mark:               | N/A                              |
+| `Assets`                         | Dictionary<String, *BigInteger*> | :heavy_check_mark:               | Amounts held, keyed by asset     |

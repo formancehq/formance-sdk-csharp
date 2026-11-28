@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Webhooks
 
     public class ConfigResponse
     {
+        /// <summary>
+        /// A webhook endpoint together with the event types it subscribes to.
+        /// </summary>
         [JsonProperty("data")]
         public WebhooksConfig Data { get; set; } = default!;
     }

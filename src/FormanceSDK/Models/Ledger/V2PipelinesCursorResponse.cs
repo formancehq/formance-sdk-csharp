@@ -18,6 +18,9 @@ namespace FormanceSDK.Models.Ledger
     /// </summary>
     public class V2PipelinesCursorResponse
     {
+        /// <summary>
+        /// Paginated cursor wrapping the list of pipelines.
+        /// </summary>
         [JsonProperty("cursor")]
         public V2PipelinesCursorResponseCursor Cursor { get; set; } = default!;
     }

@@ -16,36 +16,69 @@ namespace FormanceSDK.Models.Webhooks
 
     public class DeliveryAttempt
     {
+        /// <summary>
+        /// Unique identifier of the attempt.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the delivery this attempt belongs to.
+        /// </summary>
         [JsonProperty("deliveryID")]
         public string DeliveryID { get; set; } = default!;
 
+        /// <summary>
+        /// Position of this attempt within its retry cycle.
+        /// </summary>
         [JsonProperty("attemptNumber")]
         public long AttemptNumber { get; set; } = default!;
 
+        /// <summary>
+        /// Retry cycle this attempt belongs to.
+        /// </summary>
         [JsonProperty("replayGeneration")]
         public long ReplayGeneration { get; set; } = default!;
 
+        /// <summary>
+        /// URL the attempt was sent to.
+        /// </summary>
         [JsonProperty("endpoint")]
         public string Endpoint { get; set; } = default!;
 
+        /// <summary>
+        /// How the attempt ended. A retryable failure is retried, a permanent failure is not.
+        /// </summary>
         [JsonProperty("outcome")]
         public Outcome Outcome { get; set; } = default!;
 
+        /// <summary>
+        /// HTTP status code returned by the endpoint.
+        /// </summary>
         [JsonProperty("statusCode")]
         public long StatusCode { get; set; } = default!;
 
+        /// <summary>
+        /// Error reported by the attempt, when it did not succeed.
+        /// </summary>
         [JsonProperty("error")]
         public string? Error { get; set; }
 
+        /// <summary>
+        /// How long the attempt took, in milliseconds.
+        /// </summary>
         [JsonProperty("durationMillis")]
         public long? DurationMillis { get; set; }
 
+        /// <summary>
+        /// Truncated body returned by the endpoint, kept for troubleshooting.
+        /// </summary>
         [JsonProperty("responseExcerpt")]
         public string? ResponseExcerpt { get; set; }
 
+        /// <summary>
+        /// When the attempt was made.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
     }

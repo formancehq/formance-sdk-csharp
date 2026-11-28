@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Wallets
 
     public class DebitWalletResponse
     {
+        /// <summary>
+        /// Funds locked by a pending debit, later either confirmed or voided.
+        /// </summary>
         [JsonProperty("data")]
         public Models.Wallets.Hold Data { get; set; } = default!;
     }

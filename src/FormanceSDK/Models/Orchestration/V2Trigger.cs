@@ -14,23 +14,44 @@ namespace FormanceSDK.Models.Orchestration
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// A rule that starts a workflow when a matching event arrives.
+    /// </summary>
     public class V2Trigger
     {
+        /// <summary>
+        /// Type of event that fires this trigger.
+        /// </summary>
         [JsonProperty("event")]
         public string Event { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the workflow to run when the trigger fires.
+        /// </summary>
         [JsonProperty("workflowID")]
         public string WorkflowID { get; set; } = default!;
 
+        /// <summary>
+        /// Version of the trigger definition.
+        /// </summary>
         [JsonProperty("version")]
         public string? Version { get; set; }
 
+        /// <summary>
+        /// Expression evaluated against the event. The workflow runs only when it matches.
+        /// </summary>
         [JsonProperty("filter")]
         public string? Filter { get; set; }
 
+        /// <summary>
+        /// Expressions evaluated against the event to build the workflow's input variables.
+        /// </summary>
         [JsonProperty("vars")]
         public Dictionary<string, object>? Vars { get; set; }
 
+        /// <summary>
+        /// Human-readable name for the trigger.
+        /// </summary>
         [JsonProperty("name")]
         public string? Name { get; set; }
 

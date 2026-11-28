@@ -16,12 +16,21 @@ namespace FormanceSDK.Models.Gateway
 
     public class GetVersionsResponse
     {
+        /// <summary>
+        /// Region the stack is deployed in.
+        /// </summary>
         [JsonProperty("region")]
         public string Region { get; set; } = default!;
 
+        /// <summary>
+        /// Environment the stack is deployed in.
+        /// </summary>
         [JsonProperty("env")]
         public string Env { get; set; } = default!;
 
+        /// <summary>
+        /// Version and health of each component in the stack.
+        /// </summary>
         [JsonProperty("versions")]
         public List<Models.Gateway.Version> Versions { get; set; } = default!;
     }

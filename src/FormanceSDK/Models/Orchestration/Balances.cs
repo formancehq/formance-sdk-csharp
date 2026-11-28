@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Orchestration
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Aggregated funds held by the wallet, keyed by asset.
+    /// </summary>
     public class Balances
     {
         [JsonProperty("main")]

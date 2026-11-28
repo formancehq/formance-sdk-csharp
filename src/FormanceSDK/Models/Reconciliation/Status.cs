@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Reconciliation
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Where the alert stands in its open, acknowledged, resolved lifecycle.
+    /// </summary>
     public enum Status
     {
         [JsonProperty("OPEN")]

@@ -14,20 +14,38 @@ namespace FormanceSDK.Models.Webhooks
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// An event queued for delivery to a webhook endpoint, tracking its retry state.
+    /// </summary>
     public class Delivery
     {
+        /// <summary>
+        /// Unique identifier of the delivery.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Identifier of the event being delivered.
+        /// </summary>
         [JsonProperty("eventID")]
         public string EventID { get; set; } = default!;
 
+        /// <summary>
+        /// Key sent with the request so the receiver can deduplicate retries of the same delivery.
+        /// </summary>
         [JsonProperty("idempotencyKey")]
         public string? IdempotencyKey { get; set; }
 
+        /// <summary>
+        /// Identifier of the webhook configuration this delivery targets.
+        /// </summary>
         [JsonProperty("configID")]
         public string ConfigID { get; set; } = default!;
 
+        /// <summary>
+        /// Type of the event being delivered.
+        /// </summary>
         [JsonProperty("eventType")]
         public string EventType { get; set; } = default!;
 
@@ -37,36 +55,69 @@ namespace FormanceSDK.Models.Webhooks
         [JsonProperty("payload")]
         public string? Payload { get; set; }
 
+        /// <summary>
+        /// Current state of a delivery in its retry lifecycle.
+        /// </summary>
         [JsonProperty("status")]
         public DeliveryStatus Status { get; set; } = default!;
 
+        /// <summary>
+        /// Number of attempts made in the current retry cycle. Reset when a failed delivery is replayed.
+        /// </summary>
         [JsonProperty("attemptCount")]
         public long AttemptCount { get; set; } = default!;
 
+        /// <summary>
+        /// Incremented each time a failed delivery is replayed, grouping attempts into retry cycles. Replaying a pending delivery leaves it unchanged.
+        /// </summary>
         [JsonProperty("replayGeneration")]
         public long ReplayGeneration { get; set; } = default!;
 
+        /// <summary>
+        /// When the current retry cycle began. Cleared when a failed delivery is replayed.
+        /// </summary>
         [JsonProperty("cycleStartedAt")]
         public DateTime? CycleStartedAt { get; set; }
 
+        /// <summary>
+        /// When the next delivery attempt is scheduled.
+        /// </summary>
         [JsonProperty("nextAttemptAt")]
         public DateTime? NextAttemptAt { get; set; }
 
+        /// <summary>
+        /// When a worker claimed this delivery for the attempt in flight. Cleared when a failed delivery is replayed.
+        /// </summary>
         [JsonProperty("claimedAt")]
         public DateTime? ClaimedAt { get; set; }
 
+        /// <summary>
+        /// When the most recent attempt was made.
+        /// </summary>
         [JsonProperty("lastAttemptAt")]
         public DateTime? LastAttemptAt { get; set; }
 
+        /// <summary>
+        /// HTTP status code returned by the most recent attempt.
+        /// </summary>
         [JsonProperty("lastStatusCode")]
         public long? LastStatusCode { get; set; }
 
+        /// <summary>
+        /// Error reported by the most recent attempt.
+        /// </summary>
         [JsonProperty("lastError")]
         public string? LastError { get; set; }
 
+        /// <summary>
+        /// When the delivery was created.
+        /// </summary>
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// When the delivery was last modified.
+        /// </summary>
         [JsonProperty("updatedAt")]
         public DateTime UpdatedAt { get; set; } = default!;
     }

@@ -21,27 +21,51 @@ namespace FormanceSDK.Models.Ledger
     /// </summary>
     public class V2LogTransaction
     {
+        /// <summary>
+        /// Unique sequential identifier for this transaction within the ledger.
+        /// </summary>
         [JsonProperty("id")]
         public BigInteger Id { get; set; } = default!;
 
+        /// <summary>
+        /// The fund movements making up the transaction.
+        /// </summary>
         [JsonProperty("postings")]
         public List<Models.Ledger.V2Posting> Postings { get; set; } = default!;
 
+        /// <summary>
+        /// Arbitrary key/value pairs attached to the resource.
+        /// </summary>
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; } = default!;
 
+        /// <summary>
+        /// The transaction time: when the transaction is considered to have occurred. See <a href="https://docs.formance.com/modules/ledger/working-with/bi-temporality">bi-temporality</a>
+        /// </summary>
         [JsonProperty("timestamp")]
         public DateTime Timestamp { get; set; } = default!;
 
+        /// <summary>
+        /// Optional caller-supplied identifier, unique within the ledger.
+        /// </summary>
         [JsonProperty("reference")]
         public string? Reference { get; set; }
 
+        /// <summary>
+        /// The request time: when the transaction was actually written to the ledger. See <a href="https://docs.formance.com/modules/ledger/working-with/bi-temporality">bi-temporality</a>
+        /// </summary>
         [JsonProperty("insertedAt")]
         public DateTime? InsertedAt { get; set; }
 
+        /// <summary>
+        /// When the transaction row was last modified.
+        /// </summary>
         [JsonProperty("updatedAt")]
         public DateTime? UpdatedAt { get; set; }
 
+        /// <summary>
+        /// When the transaction was reverted, on the request-time axis.
+        /// </summary>
         [JsonProperty("revertedAt")]
         public DateTime? RevertedAt { get; set; }
 
@@ -57,15 +81,27 @@ namespace FormanceSDK.Models.Ledger
         [JsonProperty("template")]
         public string? Template { get; set; }
 
+        /// <summary>
+        /// Volumes aggregated per account and per asset.
+        /// </summary>
         [JsonProperty("postCommitVolumes")]
         public Dictionary<string, Dictionary<string, Models.Ledger.V2Volume>>? PostCommitVolumes { get; set; }
 
+        /// <summary>
+        /// Volumes aggregated per account and per asset.
+        /// </summary>
         [JsonProperty("postCommitEffectiveVolumes")]
         public Dictionary<string, Dictionary<string, Models.Ledger.V2Volume>>? PostCommitEffectiveVolumes { get; set; }
 
+        /// <summary>
+        /// Volumes aggregated per account and per asset.
+        /// </summary>
         [JsonProperty("preCommitVolumes")]
         public Dictionary<string, Dictionary<string, Models.Ledger.V2Volume>>? PreCommitVolumes { get; set; }
 
+        /// <summary>
+        /// Volumes aggregated per account and per asset.
+        /// </summary>
         [JsonProperty("preCommitEffectiveVolumes")]
         public Dictionary<string, Dictionary<string, Models.Ledger.V2Volume>>? PreCommitEffectiveVolumes { get; set; }
     }

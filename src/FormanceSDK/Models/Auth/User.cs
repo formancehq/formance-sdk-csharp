@@ -12,14 +12,26 @@ namespace FormanceSDK.Models.Auth
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// A user known to the stack's identity provider.
+    /// </summary>
     public class User
     {
+        /// <summary>
+        /// Unique identifier of the user.
+        /// </summary>
         [JsonProperty("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// Subject claim identifying the user with the identity provider.
+        /// </summary>
         [JsonProperty("subject")]
         public string? Subject { get; set; }
 
+        /// <summary>
+        /// Email address of the user.
+        /// </summary>
         [JsonProperty("email")]
         public string? Email { get; set; }
     }

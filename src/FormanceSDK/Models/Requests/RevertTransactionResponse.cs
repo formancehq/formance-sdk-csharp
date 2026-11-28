@@ -23,7 +23,7 @@ namespace FormanceSDK.Models.Requests
         /// <summary>
         /// OK.
         /// </summary>
-        public TransactionResponse? TransactionResponse { get; set; }
+        public Models.Ledger.TransactionResponse? TransactionResponse { get; set; }
 
         public Dictionary<string, List<string>> Headers { get; set; } = new Dictionary<string, List<string>>();
     }

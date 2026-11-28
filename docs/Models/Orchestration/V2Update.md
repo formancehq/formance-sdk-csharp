@@ -5,4 +5,4 @@
 
 | Field                                                            | Type                                                             | Required                                                         | Description                                                      |
 | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `Account`                                                        | [V2UpdateAccount](../../Models/Orchestration/V2UpdateAccount.md) | :heavy_minus_sign:                                               | N/A                                                              |
+| `Account`                                                        | [V2UpdateAccount](../../Models/Orchestration/V2UpdateAccount.md) | :heavy_minus_sign:                                               | Metadata to set on a ledger account                              |

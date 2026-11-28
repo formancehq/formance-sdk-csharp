@@ -12,11 +12,20 @@ namespace FormanceSDK.Models.Orchestration
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Take the funds from a wallet.
+    /// </summary>
     public class V2StageSendSourceWallet
     {
+        /// <summary>
+        /// Identifier of the wallet to take funds from.
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = default!;
 
+        /// <summary>
+        /// Name of the balance within the wallet. Defaults to the main balance when omitted.
+        /// </summary>
         [JsonProperty("balance")]
         public string? Balance { get; set; }
     }

@@ -1,0 +1,12 @@
+# SetAccountMetadataFromAddressActionRead
+
+For every posting address matching `pattern`, iterate every entry in `replacements` and set accountMetadata[address][key] to the RE2 replacement of the address. Each replacement carries an optional metadata `type` token (same tokens as SetMetadataActionRead.type).
+
+
+
+## Fields
+
+| Field                                                                                                                       | Type                                                                                                                        | Required                                                                                                                    | Description                                                                                                                 |
+| --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `Pattern`                                                                                                                   | *string*                                                                                                                    | :heavy_check_mark:                                                                                                          | N/A                                                                                                                         |
+| `Replacements`                                                                                                              | List<[SetAccountMetadataFromAddressReplacementRead](../../Models/LedgerV3/SetAccountMetadataFromAddressReplacementRead.md)> | :heavy_check_mark:                                                                                                          | N/A                                                                                                                         |

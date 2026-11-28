@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Reconciliation
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// Which built-in check a rule applies, determining the shape of its templateSpec.
+    /// </summary>
     public enum TemplateKind
     {
         [JsonProperty("ledger_vs_pool_drift")]

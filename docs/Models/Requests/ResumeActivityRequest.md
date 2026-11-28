@@ -1,0 +1,11 @@
+# ResumeActivityRequest
+
+
+## Fields
+
+| Field                                                                           | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `InstanceID`                                                                    | *string*                                                                        | :heavy_check_mark:                                                              | The instance id                                                                 |
+| `Number`                                                                        | *long*                                                                          | :heavy_check_mark:                                                              | The nonnegative stage number                                                    |
+| `ActivityID`                                                                    | *string*                                                                        | :heavy_check_mark:                                                              | The paused activity id                                                          |
+| `RequestBody`                                                                   | [ResumeActivityRequestBody](../../Models/Requests/ResumeActivityRequestBody.md) | :heavy_check_mark:                                                              | N/A                                                                             |

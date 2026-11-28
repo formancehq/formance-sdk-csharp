@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Orchestration
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Send the funds to a payment.
+    /// </summary>
     public class StageSendDestinationPayment
     {
         /// <summary>

@@ -15,6 +15,9 @@ namespace FormanceSDK.Models.Wallets
 
     public class GetWalletSummaryResponse
     {
+        /// <summary>
+        /// Aggregated funds held by a wallet, broken down by availability.
+        /// </summary>
         [JsonProperty("data")]
         public WalletSummary Data { get; set; } = default!;
     }

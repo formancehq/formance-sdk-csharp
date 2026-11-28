@@ -15,9 +15,15 @@ namespace FormanceSDK.Models.Ledger
 
     public class Contract
     {
+        /// <summary>
+        /// Account address, or pattern, the contract applies to.
+        /// </summary>
         [JsonProperty("account")]
         public string? Account { get; set; }
 
+        /// <summary>
+        /// Expression the account's balances must satisfy.
+        /// </summary>
         [JsonProperty("expr")]
         public Expr Expr { get; set; } = default!;
     }

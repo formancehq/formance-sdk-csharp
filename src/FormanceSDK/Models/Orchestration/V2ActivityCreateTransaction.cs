@@ -13,11 +13,20 @@ namespace FormanceSDK.Models.Orchestration
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// Arguments for the activity that writes a transaction to a ledger.
+    /// </summary>
     public class V2ActivityCreateTransaction
     {
+        /// <summary>
+        /// Name of the ledger to write the transaction to.
+        /// </summary>
         [JsonProperty("ledger")]
         public string? Ledger { get; set; }
 
+        /// <summary>
+        /// A transaction to write to a ledger.
+        /// </summary>
         [JsonProperty("data")]
         public Models.Orchestration.V2PostTransaction? Data { get; set; }
     }

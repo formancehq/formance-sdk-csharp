@@ -14,6 +14,9 @@ namespace FormanceSDK.Models.Reconciliation
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Paginated cursor wrapping the alert's event log.
+    /// </summary>
     public class AlertEventsCursorResponseCursor
     {
         [JsonProperty("pageSize")]

@@ -18,6 +18,9 @@ namespace FormanceSDK.Models.Requests
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=configId")]
         public string? ConfigId { get; set; }
 
+        /// <summary>
+        /// Current state of a delivery in its retry lifecycle.
+        /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=status")]
         public DeliveryStatus? Status { get; set; }
 

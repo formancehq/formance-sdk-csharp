@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Wallets
     using FormanceSDK.Utils;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// The wallet's main balance, keyed by asset.
+    /// </summary>
     public class Balances
     {
         [JsonProperty("main")]

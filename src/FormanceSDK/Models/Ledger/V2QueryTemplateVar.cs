@@ -14,9 +14,15 @@ namespace FormanceSDK.Models.Ledger
 
     public class V2QueryTemplateVar
     {
+        /// <summary>
+        /// Type of the variable.
+        /// </summary>
         [JsonProperty("type")]
         public string Type { get; set; } = default!;
 
+        /// <summary>
+        /// Value used when the variable is not supplied at query time.
+        /// </summary>
         [JsonProperty("default")]
         public object? Default { get; set; }
     }

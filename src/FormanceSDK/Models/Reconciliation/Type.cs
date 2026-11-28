@@ -13,6 +13,9 @@ namespace FormanceSDK.Models.Reconciliation
     using Newtonsoft.Json;
     using System;
 
+    /// <summary>
+    /// What happened, whether an evaluation outcome or a manual transition.
+    /// </summary>
     public enum Type
     {
         [JsonProperty("fail")]
